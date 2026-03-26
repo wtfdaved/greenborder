@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Green Border | 915 Cannabis Guide – El Paso & Sunland Park</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="The Green Border is the premier 915 Cannabis Guide for El Paso, TX and Sunland Park, NM. Find the best dispensaries, latest cannabis news, and education for the border community." />
+  <meta name="keywords" content="El Paso dispensaries, 915 cannabis, Sunland Park dispensaries, New Mexico cannabis, El Paso weed, The Green Border, border cannabis guide, 915 weed, NMDOH dispensary, cannabis El Paso TX" />
+  <meta name="author" content="The Green Border" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://greenborder.org/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenborder.org/" />
+  <meta property="og:title" content="The Green Border | 915 Cannabis Guide" />
+  <meta property="og:description" content="El Paso & Sunland Park's premier cannabis guide. Dispensaries, news, and culture for the 915 border community." />
+  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Green Border | 915 Cannabis Guide" />
+  <meta name="twitter:description" content="El Paso & Sunland Park's premier cannabis guide for the 915 border community." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
+            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Rajdhani', 'Inter', 'sans-serif'],
+          },
+          backgroundImage: {
+            'hero-grid': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease-out forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0a0a0a;
+      color: #e5e7eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Glassmorphism Nav ── */
+    .glass-nav {
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    }
+
+    /* ── Hero ── */
+    .hero-gradient {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(245,158,11,0.07) 0%, transparent 60%),
+        #0a0a0a;
+    }
+    .hero-glow {
+      text-shadow: 0 0 60px rgba(16,185,129,0.4), 0 0 120px rgba(16,185,129,0.15);
+    }
+
+    /* ── Cards ── */
+    .dispensary-card {
+      background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+      border: 1px solid rgba(16,185,129,0.12);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dispensary-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(16,185,129,0.5);
+      box-shadow: 0 20px 60px rgba(16,185,129,0.12), 0 0 0 1px rgba(16,185,129,0.1);
+    }
+    .news-card {
+      background: linear-gradient(135deg, #111111 0%, #181818 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245,158,11,0.35);
+    }
+
+    /* ── Badge ── */
+    .badge-rec { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+    .badge-med { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+    .badge-new { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+
+    /* ── Section divider ── */
+    .section-line {
+      display: inline-block;
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, #10b981, #f59e0b);
+      border-radius: 9999px;
+    }
+
+    /* ── Emerald glow button ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(16,185,129,0.5);
+      transform: translateY(-2px);
+    }
+
+    /* ── Mobile menu toggle ── */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Star rating ── */
+    .stars { color: #f59e0b; letter-spacing: 2px; }
+
+    /* ── Tag strip ── */
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── Education icon box ── */
+    .edu-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║              STICKY NAV                      ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<header id="site-header" class="glass-nav fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="text-2xl select-none">🌿</span>
+        <div>
+          <span class="font-display font-700 text-lg text-white tracking-wide group-hover:text-emerald-400 transition-colors" style="font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:0.06em;">THE GREEN BORDER</span>
+          <span class="hidden sm:block text-[10px] text-emerald-500 uppercase tracking-widest font-semibold leading-none">915 Cannabis Guide</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="#dispensaries" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Dispensaries</a>
+        <a href="#news"         class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">News</a>
+        <a href="#education"    class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Education</a>
+        <a href="#about"        class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">About</a>
+        <a href="#dispensaries" class="ml-3 px-5 py-2 text-sm font-semibold text-white rounded-lg btn-primary">Find Dispensary</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="hamburger" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition">
+        <span class="w-5 h-0.5 bg-gray-300 rounded block transition-all" id="hb1"></span>
+        <span class="w-5 h-0.5 bg-gray-300 rounded block transition-all" id="hb2"></span>
+        <span class="w-4 h-0.5 bg-gray-300 rounded block transition-all" id="hb3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden border-t border-white/5 px-4 pb-4 pt-2 space-y-1">
+    <a href="#dispensaries" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Dispensaries</a>
+    <a href="#news"         class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">News</a>
+    <a href="#education"    class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Education</a>
+    <a href="#about"        class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">About</a>
+    <a href="#dispensaries" class="block mt-2 px-4 py-2.5 text-sm font-semibold text-center text-white rounded-lg btn-primary">Find Dispensary</a>
+  </div>
+</header>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                  HERO                        ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="hero-gradient bg-hero-grid min-h-screen flex flex-col items-center justify-center text-center pt-16 px-4 relative overflow-hidden">
+
+  <!-- Ambient orbs -->
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10 animate-pulse-slow" style="background:radial-gradient(circle, #10b981, transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-8 animate-pulse-slow" style="background:radial-gradient(circle, #f59e0b, transparent 70%);filter:blur(60px);pointer-events:none;animation-delay:2s;"></div>
+
+  <!-- Badge -->
+  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 border border-emerald-500/30 text-emerald-400 bg-emerald-500/10 animate-fade-up">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span>
+    El Paso · Sunland Park · The 915
+  </div>
+
+  <!-- Headline -->
+  <h1 class="hero-glow font-display text-5xl sm:text-7xl md:text-8xl font-bold text-white leading-none tracking-tight mb-4 animate-fade-up" style="font-family:'Rajdhani',sans-serif;font-weight:700;animation-delay:0.1s;">
+    The 915<br />
+    <span class="text-emerald-400">Cannabis</span> Guide
+  </h1>
+
+  <!-- Sub-headline -->
+  <p class="max-w-2xl text-gray-400 text-lg sm:text-xl leading-relaxed mb-10 animate-fade-up" style="animation-delay:0.2s;">
+    Your border-community resource for finding <span class="text-white font-medium">legal cannabis</span> in El Paso &amp; Sunland Park — dispensaries, deals, news, and culture, all in one place.
+  </p>
+
+  <!-- CTAs -->
+  <div class="flex flex-col sm:flex-row gap-4 animate-fade-up" style="animation-delay:0.3s;">
+    <a href="#dispensaries" class="btn-primary px-8 py-3.5 rounded-xl text-white font-semibold text-base shadow-lg">
+      Browse Dispensaries
+    </a>
+    <a href="#news" class="px-8 py-3.5 rounded-xl font-semibold text-base border border-white/15 text-gray-300 hover:border-emerald-500/50 hover:text-white transition-all">
+      Latest News
+    </a>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="mt-16 grid grid-cols-3 gap-4 sm:gap-12 animate-fade-up" style="animation-delay:0.4s;">
+    <div>
+      <div class="text-2xl sm:text-3xl font-bold text-emerald-400" style="font-family:'Rajdhani',sans-serif;">10+</div>
+      <div class="text-xs sm:text-sm text-gray-500 mt-1">Local Dispensaries</div>
+    </div>
+    <div class="border-x border-white/8 px-4 sm:px-12">
+      <div class="text-2xl sm:text-3xl font-bold text-gold-400" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">2</div>
+      <div class="text-xs sm:text-sm text-gray-500 mt-1">Border States</div>
+    </div>
+    <div>
+      <div class="text-2xl sm:text-3xl font-bold text-emerald-400" style="font-family:'Rajdhani',sans-serif;">100%</div>
+      <div class="text-xs sm:text-sm text-gray-500 mt-1">Legal &amp; Licensed</div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600 animate-bounce">
+    <span class="text-xs tracking-widest uppercase">Scroll</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║           DISPENSARIES SECTION               ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="dispensaries" class="py-20 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-14 reveal">
+    <span class="section-line mb-4 block mx-auto"></span>
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Featured Dispensaries</h2>
+    <p class="text-gray-400 max-w-xl mx-auto">Legal, licensed, and local — the best spots in the 915 and across the border.</p>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="flex flex-wrap justify-center gap-2 mb-10 reveal">
+    <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium border transition-all" data-filter="all" style="background:rgba(16,185,129,0.15);color:#34d399;border-color:rgba(16,185,129,0.4);">All</button>
+    <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-white/10 text-gray-400 hover:border-emerald-500/40 hover:text-emerald-400 transition-all" data-filter="nm">New Mexico</button>
+    <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-white/10 text-gray-400 hover:border-emerald-500/40 hover:text-emerald-400 transition-all" data-filter="tx">Texas (CBD)</button>
+    <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-white/10 text-gray-400 hover:border-gold-400/40 hover:text-yellow-400 transition-all" data-filter="deals">Deals</button>
+  </div>
+
+  <!-- Dispensary grid -->
+  <div id="dispensary-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Card 1 -->
+    <div class="dispensary-card rounded-2xl overflow-hidden reveal" data-state="nm">
+      <div class="h-44 relative overflow-hidden" style="background:linear-gradient(135deg,#0d2b1e,#1a4a31);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-30">🌿</div>
+        <div class="absolute top-3 left-3 flex gap-2">
+          <span class="badge-rec tag">Recreational</span>
+          <span class="badge-new tag">New</span>
+        </div>
+        <div class="absolute bottom-3 right-3 stars text-sm">★★★★★</div>
+      </div>
+      <div class="p-5">
+        <h3 class="text-white font-semibold text-lg mb-1">Sunland Park Wellness</h3>
+        <p class="text-emerald-500 text-sm font-medium mb-2 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Sunland Park, NM
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Premium flower, edibles &amp; concentrates. Just minutes from the El Paso border. Friendly staff, competitive prices.</p>
+        <div class="flex items-center justify-between">
+          <div class="flex gap-1">
+            <span class="tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2);">Flower</span>
+            <span class="tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2);">Edibles</span>
+          </div>
+          <a href="#" class="text-emerald-400 text-sm font-semibold hover:underline flex items-center gap-1">
+            View →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="dispensary-card rounded-2xl overflow-hidden reveal" data-state="nm">
+      <div class="h-44 relative overflow-hidden" style="background:linear-gradient(135deg,#1a1a0d,#2e2e0a);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-30">🏆</div>
+        <div class="absolute top-3 left-3 flex gap-2">
+          <span class="badge-rec tag">Recreational</span>
+          <span class="badge-med tag">Medical</span>
+        </div>
+        <div class="absolute bottom-3 right-3 stars text-sm">★★★★★</div>
+      </div>
+      <div class="p-5">
+        <h3 class="text-white font-semibold text-lg mb-1">High Desert Relief</h3>
+        <p class="text-emerald-500 text-sm font-medium mb-2 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Las Cruces, NM
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Top-shelf menu with daily deals for locals. Veteran discounts available. Wide selection of NM-grown strains.</p>
+        <div class="flex items-center justify-between">
+          <div class="flex gap-1">
+            <span class="tag" style="background:rgba(245,158,11,0.1);color:#fcd34d;border:1px solid rgba(245,158,11,0.2);">Veteran 🎖</span>
+            <span class="tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2);">Concentrates</span>
+          </div>
+          <a href="#" class="text-emerald-400 text-sm font-semibold hover:underline flex items-center gap-1">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="dispensary-card rounded-2xl overflow-hidden reveal" data-state="nm">
+      <div class="h-44 relative overflow-hidden" style="background:linear-gradient(135deg,#0f1a2e,#1a2e4a);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-30">💎</div>
+        <div class="absolute top-3 left-3 flex gap-2">
+          <span class="badge-med tag">Medical</span>
+        </div>
+        <div class="absolute bottom-3 right-3 stars text-sm">★★★★<span class="text-gray-600">★</span></div>
+      </div>
+      <div class="p-5">
+        <h3 class="text-white font-semibold text-lg mb-1">Verde Cannabis Co.</h3>
+        <p class="text-emerald-500 text-sm font-medium mb-2 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Anthony, NM
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Boutique dispensary focused on medical patients. Knowledgeable budtenders with a curated, artisanal selection.</p>
+        <div class="flex items-center justify-between">
+          <div class="flex gap-1">
+            <span class="tag" style="background:rgba(99,102,241,0.1);color:#a5b4fc;border:1px solid rgba(99,102,241,0.2);">Boutique</span>
+            <span class="tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2);">Tinctures</span>
+          </div>
+          <a href="#" class="text-emerald-400 text-sm font-semibold hover:underline flex items-center gap-1">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="dispensary-card rounded-2xl overflow-hidden reveal" data-state="tx">
+      <div class="h-44 relative overflow-hidden" style="background:linear-gradient(135deg,#1c0a0a,#2e1212);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-30">🌵</div>
+        <div class="absolute top-3 left-3 flex gap-2">
+          <span class="tag" style="background:rgba(239,68,68,0.15);color:#fca5a5;border:1px solid rgba(239,68,68,0.3);">CBD / Hemp</span>
+        </div>
+        <div class="absolute bottom-3 right-3 stars text-sm">★★★★<span class="text-gray-600">★</span></div>
+      </div>
+      <div class="p-5">
+        <h3 class="text-white font-semibold text-lg mb-1">El Paso Hemp Co.</h3>
+        <p class="text-emerald-500 text-sm font-medium mb-2 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          El Paso, TX
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Hemp-derived CBD, Delta-8 and wellness products. Legal in Texas. Great starter option for El Paso residents.</p>
+        <div class="flex items-center justify-between">
+          <div class="flex gap-1">
+            <span class="tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2);">CBD</span>
+            <span class="tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2);">Delta-8</span>
+          </div>
+          <a href="#" class="text-emerald-400 text-sm font-semibold hover:underline flex items-center gap-1">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="dispensary-card rounded-2xl overflow-hidden reveal" data-state="nm">
+      <div class="h-44 relative overflow-hidden" style="background:linear-gradient(135deg,#0d1f1a,#1a3326);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-30">🔥</div>
+        <div class="absolute top-3 left-3 flex gap-2">
+          <span class="badge-rec tag">Recreational</span>
+          <span class="tag" style="background:rgba(245,158,11,0.15);color:#fcd34d;border:1px solid rgba(245,158,11,0.3);">🔥 Hot Deal</span>
+        </div>
+        <div class="absolute bottom-3 right-3 stars text-sm">★★★★★</div>
+      </div>
+      <div class="p-5">
+        <h3 class="text-white font-semibold text-lg mb-1">Border Botanicals</h3>
+        <p class="text-emerald-500 text-sm font-medium mb-2 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Sunland Park, NM
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Community-first dispensary with weekly specials, loyalty rewards, and a relaxed atmosphere. Popular with 915 locals.</p>
+        <div class="flex items-center justify-between">
+          <div class="flex gap-1">
+            <span class="tag" style="background:rgba(245,158,11,0.1);color:#fcd34d;border:1px solid rgba(245,158,11,0.2);">Loyalty</span>
+            <span class="tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2);">Flower</span>
+          </div>
+          <a href="#" class="text-emerald-400 text-sm font-semibold hover:underline flex items-center gap-1">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 – Submit CTA -->
+    <div class="rounded-2xl overflow-hidden reveal border-2 border-dashed border-emerald-500/25 flex flex-col items-center justify-center p-8 text-center hover:border-emerald-500/50 transition-colors group" style="background:rgba(16,185,129,0.03);">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);">
+        <span class="text-2xl">➕</span>
+      </div>
+      <h3 class="text-white font-semibold text-base mb-2">Add Your Dispensary</h3>
+      <p class="text-gray-500 text-sm mb-5">Are we missing you? Submit your dispensary to be featured on The Green Border.</p>
+      <a href="mailto:hello@greenborder.org?subject=Dispensary Listing Request" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/10 transition-all">Submit Listing</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║             BORDER CROSSING BANNER           ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="px-4 py-3 max-w-6xl mx-auto">
+  <div class="rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(16,185,129,0.08));border:1px solid rgba(245,158,11,0.25);">
+    <span class="text-3xl">⚠️</span>
+    <div class="text-center sm:text-left">
+      <p class="text-yellow-300 font-semibold text-sm">Cannabis Stays on Your Side of the Border</p>
+      <p class="text-gray-400 text-xs mt-0.5">It is a <strong class="text-white">federal crime</strong> to transport cannabis across state or international borders. Consume legally — enjoy locally.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║               LATEST NEWS                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="news" class="py-20 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-14 reveal">
+    <span class="section-line mb-4 block mx-auto"></span>
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Latest from The Green Border</h2>
+    <p class="text-gray-400 max-w-xl mx-auto">Cannabis news, policy updates, and culture for the 915 and beyond.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Article 1 – Featured -->
+    <div class="news-card rounded-2xl overflow-hidden reveal lg:col-span-2">
+      <div class="h-52 relative overflow-hidden" style="background:linear-gradient(135deg,#0a1f12,#10341e);">
+        <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20">📰</div>
+        <div class="absolute bottom-4 left-4">
+          <span class="tag" style="background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Featured</span>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">March 2026</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-emerald-500 font-medium">Policy</span>
+        </div>
+        <h3 class="text-white font-semibold text-xl leading-snug mb-3">New Mexico's Cannabis Market Hits Record Sales — What It Means for Border Shoppers</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Adult-use cannabis sales in New Mexico continue to surge, with Sunland Park and Anthony dispensaries seeing heavy traffic from El Paso residents crossing the border for legal access.</p>
+        <a href="#" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read Article <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div class="news-card rounded-2xl overflow-hidden reveal flex flex-col">
+      <div class="h-40 relative overflow-hidden" style="background:linear-gradient(135deg,#100d1f,#1a1530);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-20">🔬</div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">Feb 2026</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-yellow-500 font-medium">Research</span>
+        </div>
+        <h3 class="text-white font-semibold text-base leading-snug mb-2">Understanding Terpenes: The Science Behind Your Favorite Strains</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">Myrcene, limonene, pinene — learn how terpenes shape the effects and flavors of cannabis beyond just THC percentage.</p>
+        <a href="#" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="news-card rounded-2xl overflow-hidden reveal">
+      <div class="h-40 relative overflow-hidden" style="background:linear-gradient(135deg,#1f0d0d,#301515);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-20">⚖️</div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">Jan 2026</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-red-400 font-medium">Legal</span>
+        </div>
+        <h3 class="text-white font-semibold text-base leading-snug mb-2">Texas Hemp Update: What's Changed for El Paso CBD Shops</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Recent Texas legislative sessions have brought new rules to hemp retailers. Here's what El Paso shoppers need to know.</p>
+        <a href="#" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div class="news-card rounded-2xl overflow-hidden reveal">
+      <div class="h-40 relative overflow-hidden" style="background:linear-gradient(135deg,#0a1a1f,#0d2530);">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-20">🌄</div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">Dec 2025</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-emerald-500 font-medium">Culture</span>
+        </div>
+        <h3 class="text-white font-semibold text-base leading-snug mb-2">Border Culture &amp; Cannabis: The 915's Unique Cannabis Identity</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">How El Paso's bicultural identity shapes a cannabis community unlike anywhere else in the US.</p>
+        <a href="#" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Newsletter CTA -->
+    <div class="news-card rounded-2xl p-6 flex flex-col justify-between reveal" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border-color:rgba(16,185,129,0.2);">
+      <div>
+        <div class="text-2xl mb-3">📬</div>
+        <h3 class="text-white font-semibold text-lg mb-2">Stay in the Loop</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">Get the latest 915 cannabis news, deals, and dispensary updates delivered to your inbox.</p>
+      </div>
+      <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
+        <input type="email" placeholder="your@email.com" required class="w-full px-4 py-2.5 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
+        <button type="submit" class="w-full btn-primary py-2.5 rounded-xl text-white text-sm font-semibold">Subscribe Free</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║              EDUCATION SECTION               ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="education" class="py-20 px-4" style="background:linear-gradient(180deg,#0a0a0a 0%,#0f0f0f 50%,#0a0a0a 100%);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <span class="section-line mb-4 block mx-auto"></span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Cannabis Education</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Know before you go. Practical guides for 915 first-timers and seasoned consumers alike.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="dispensary-card rounded-2xl p-5 reveal">
+        <div class="edu-icon mb-4">🗺️</div>
+        <h3 class="text-white font-semibold mb-2">How to Cross for Cannabis</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Step-by-step guide to legally purchasing cannabis in New Mexico as a Texas resident — without crossing back with product.</p>
+        <a href="#" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <div class="dispensary-card rounded-2xl p-5 reveal">
+        <div class="edu-icon mb-4">🧪</div>
+        <h3 class="text-white font-semibold mb-2">Understanding Lab Tests</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">COAs, THC/CBD ratios, terpene profiles — how to read your product's certificate of analysis like a pro.</p>
+        <a href="#" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <div class="dispensary-card rounded-2xl p-5 reveal">
+        <div class="edu-icon mb-4">🌱</div>
+        <h3 class="text-white font-semibold mb-2">Indica, Sativa & Hybrids</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Debunking the myths. What modern cannabis science actually says about strain types and their effects on different consumers.</p>
+        <a href="#" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <div class="dispensary-card rounded-2xl p-5 reveal">
+        <div class="edu-icon mb-4">⚖️</div>
+        <h3 class="text-white font-semibold mb-2">NM &amp; TX Cannabis Laws</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Current possession limits, purchase rules, and what's legal vs. illegal for El Paso and New Mexico border residents in 2026.</p>
+        <a href="#" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                ABOUT SECTION                 ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="about" class="py-20 px-4 max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+    <div class="reveal">
+      <span class="section-line mb-5 block"></span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-5" style="font-family:'Rajdhani',sans-serif;">About The Green Border</h2>
+      <p class="text-gray-400 leading-relaxed mb-4">
+        The Green Border was built for the <span class="text-white font-medium">915 community</span> — the El Paso residents, the Sunland Park locals, and the border-crossers navigating two states with very different cannabis laws.
+      </p>
+      <p class="text-gray-400 leading-relaxed mb-4">
+        We cut through the noise to give you accurate, up-to-date dispensary info, legal guidance, and honest cannabis journalism rooted in the unique culture of the US-Mexico border region.
+      </p>
+      <p class="text-gray-400 leading-relaxed mb-6">
+        No corporate affiliations. No paid rankings. Just a community resource for the people who live here.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-300" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Independent &amp; Community-Owned
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-300" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">
+          <span class="w-2 h-2 rounded-full bg-yellow-400"></span> El Paso Born &amp; Raised
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats card -->
+    <div class="grid grid-cols-2 gap-4 reveal">
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(16,185,129,0.15);">
+        <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">915</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Area Code</div>
+      </div>
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(245,158,11,0.15);">
+        <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">2</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">States Covered</div>
+      </div>
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(16,185,129,0.15);">
+        <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">Free</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Always</div>
+      </div>
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(245,158,11,0.15);">
+        <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">100%</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Independent</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                   FOOTER                     ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<footer style="background:#080808;border-top:1px solid rgba(255,255,255,0.06);">
+  <div class="max-w-6xl mx-auto px-4 py-14">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🌿</span>
+          <span class="text-white font-bold tracking-wide" style="font-family:'Rajdhani',sans-serif;font-size:1.2rem;letter-spacing:0.06em;">THE GREEN BORDER</span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed max-w-xs">El Paso &amp; Sunland Park's premier cannabis guide for the 915 border community. Know the law, find the dispensary, enjoy legally.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="#" aria-label="Twitter/X" class="w-9 h-9 rounded-xl flex items-center justify-center text-gray-500 hover:text-white transition" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">𝕏</a>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-xl flex items-center justify-center text-gray-500 hover:text-white transition" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">📷</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#dispensaries" class="text-gray-500 text-sm hover:text-emerald-400 transition">Dispensaries</a></li>
+          <li><a href="#news" class="text-gray-500 text-sm hover:text-emerald-400 transition">Latest News</a></li>
+          <li><a href="#education" class="text-gray-500 text-sm hover:text-emerald-400 transition">Education</a></li>
+          <li><a href="#about" class="text-gray-500 text-sm hover:text-emerald-400 transition">About Us</a></li>
+          <li><a href="mailto:hello@greenborder.org" class="text-gray-500 text-sm hover:text-emerald-400 transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Legal</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-500 text-sm hover:text-emerald-400 transition">Privacy Policy</a></li>
+          <li><a href="#" class="text-gray-500 text-sm hover:text-emerald-400 transition">Terms of Use</a></li>
+          <li><a href="#" class="text-gray-500 text-sm hover:text-emerald-400 transition">Disclaimer</a></li>
+        </ul>
+        <div class="mt-4 p-3 rounded-xl text-xs text-gray-600 leading-relaxed" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);">
+          For adults 21+ only. This site provides information only and does not facilitate sales.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-gray-600 text-xs">&copy; 2026 The Green Border · greenborder.org · All rights reserved.</p>
+      <p class="text-gray-700 text-xs">Built for the 915 🌵</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                JAVASCRIPT                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<script>
+  // ── Mobile menu toggle ──────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hb1 = document.getElementById('hb1');
+  const hb2 = document.getElementById('hb2');
+  const hb3 = document.getElementById('hb3');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    const open = mobileMenu.classList.contains('open');
+    hb1.style.transform = open ? 'rotate(45deg) translate(4px, 5px)' : '';
+    hb2.style.opacity   = open ? '0' : '1';
+    hb3.style.transform = open ? 'rotate(-45deg) translate(4px, -5px)' : '';
+  });
+
+  // Close menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hb1.style.transform = hb3.style.transform = '';
+    hb2.style.opacity = '1';
+  }));
+
+  // ── Scroll-reveal ────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Dispensary filter ────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.style.background = '';
+        b.style.color      = '';
+        b.style.borderColor= '';
+        b.classList.remove('active');
+      });
+      btn.style.background  = 'rgba(16,185,129,0.15)';
+      btn.style.color       = '#34d399';
+      btn.style.borderColor = 'rgba(16,185,129,0.4)';
+      btn.classList.add('active');
+
+      document.querySelectorAll('#dispensary-grid > div[data-state]').forEach(card => {
+        const show = filter === 'all' || card.dataset.state === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // ── Newsletter form ──────────────────────────────
+  function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = 'linear-gradient(135deg,#047857,#065f46)';
+    e.target.querySelector('input').value = '';
+    setTimeout(() => {
+      btn.textContent = 'Subscribe Free';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // ── Nav shadow on scroll ─────────────────────────
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('site-header');
+    header.style.boxShadow = window.scrollY > 10
+      ? '0 4px 30px rgba(0,0,0,0.5)'
+      : '';
+  }, { passive: true });
+</script>
+
+</body>
+</html>
