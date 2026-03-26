@@ -57,10 +57,13 @@
     }
   </script>
 
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ── Base ── */
@@ -73,13 +76,206 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Glassmorphism Nav ── */
-    .glass-nav {
-      background: rgba(10, 10, 10, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    /* ── Glass Header ── */
+    #tgb-glass-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1200px;
+      z-index: 10000;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+      border-radius: 20px;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
     }
+    body.scrolled #tgb-glass-header {
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .tgb-logo-container {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tgb-logo-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #1a4d2e;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(26, 77, 46, 0.1);
+      transition: transform 0.2s ease;
+    }
+    .tgb-logo-sparkle {
+      color: #ca8a04;
+      font-size: 24px;
+      animation: tgb-spin-slow 10s linear infinite;
+    }
+    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
+    .tgb-desktop-nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .tgb-header-link {
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 600;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .tgb-header-link:hover { color: #1a4d2e; }
+    .tgb-header-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ca8a04;
+      transition: width 0.3s ease;
+    }
+    .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .tgb-search-icon {
+      color: #1a4d2e;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .tgb-search-icon:hover { background: rgba(0,0,0,0.05); }
+    .tgb-header-btn {
+      background: #1a4d2e;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      transition: all 0.2s ease;
+    }
+    .tgb-header-btn:hover {
+      background: #14532d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+    }
+    @keyframes tgb-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .tgb-desktop-nav { display: none; }
+      .tgb-logo-text { font-size: 22px; }
+      #tgb-glass-header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        padding: 15px 20px;
+      }
+    }
+
+    /* ── Age Gate ── */
+    #tgb-age-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 999999;
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .tgb-age-card {
+      background: linear-gradient(145deg, rgba(255,255,255,1) 30%, rgba(246,248,252,0.95) 100%);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.8);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tgb-age-logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+    }
+    .tgb-age-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      color: #1d1d1f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+    .tgb-age-text {
+      font-size: 15px;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+    .tgb-age-btn-yes {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      background: linear-gradient(135deg, #1a4d2e 0%, #2a7d4e 100%);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-age-btn-yes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.35);
+    }
+    .tgb-age-btn-no {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #86868b;
+      text-decoration: none;
+      border-bottom: 1px dotted #86868b;
+    }
+    .tgb-age-btn-no:hover { color: #1d1d1f; }
+    #tgb-age-overlay.active { opacity: 1; }
+    #tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
 
     /* ── Hero ── */
     .hero-gradient {
@@ -136,10 +332,6 @@
       transform: translateY(-2px);
     }
 
-    /* ── Mobile menu toggle ── */
-    #mobile-menu { display: none; }
-    #mobile-menu.open { display: block; }
-
     /* ── Scroll reveal ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -173,54 +365,54 @@
 <body>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║              STICKY NAV                      ║ -->
+<!-- ║              GLASS HEADER                    ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<header id="site-header" class="glass-nav fixed top-0 left-0 right-0 z-50">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="flex items-center justify-between h-16">
+<header id="tgb-glass-header">
+  <a href="#" class="tgb-logo-container">
+    <span class="tgb-logo-text">The Green Border</span>
+    <span class="tgb-logo-sparkle">✦</span>
+  </a>
 
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-2 group">
-        <span class="text-2xl select-none">🌿</span>
-        <div>
-          <span class="font-display font-700 text-lg text-white tracking-wide group-hover:text-emerald-400 transition-colors" style="font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:0.06em;">THE GREEN BORDER</span>
-          <span class="hidden sm:block text-[10px] text-emerald-500 uppercase tracking-widest font-semibold leading-none">915 Cannabis Guide</span>
-        </div>
-      </a>
+  <nav class="tgb-desktop-nav">
+    <a href="#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="#news"         class="tgb-header-link">News</a>
+    <a href="#education"    class="tgb-header-link">Education</a>
+    <a href="#about"        class="tgb-header-link">About</a>
+  </nav>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-1">
-        <a href="#dispensaries" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Dispensaries</a>
-        <a href="#news"         class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">News</a>
-        <a href="#education"    class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Education</a>
-        <a href="#about"        class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">About</a>
-        <a href="#dispensaries" class="ml-3 px-5 py-2 text-sm font-semibold text-white rounded-lg btn-primary">Find Dispensary</a>
-      </nav>
-
-      <!-- Mobile hamburger -->
-      <button id="hamburger" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition">
-        <span class="w-5 h-0.5 bg-gray-300 rounded block transition-all" id="hb1"></span>
-        <span class="w-5 h-0.5 bg-gray-300 rounded block transition-all" id="hb2"></span>
-        <span class="w-4 h-0.5 bg-gray-300 rounded block transition-all" id="hb3"></span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden border-t border-white/5 px-4 pb-4 pt-2 space-y-1">
-    <a href="#dispensaries" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Dispensaries</a>
-    <a href="#news"         class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">News</a>
-    <a href="#education"    class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">Education</a>
-    <a href="#about"        class="block px-4 py-2.5 text-sm text-gray-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg transition-all">About</a>
-    <a href="#dispensaries" class="block mt-2 px-4 py-2.5 text-sm font-semibold text-center text-white rounded-lg btn-primary">Find Dispensary</a>
+  <div class="tgb-header-actions">
+    <a href="#dispensaries" class="tgb-search-icon" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </a>
+    <a href="#dispensaries" class="tgb-header-btn">Find Dispensary</a>
   </div>
 </header>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║               AGE GATE                       ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div id="tgb-age-overlay">
+  <div class="tgb-age-card">
+    <img src="https://www.thegreenborder.com/content/images/2025/12/3600x900.png" alt="The Green Border" class="tgb-age-logo">
+    <h2 class="tgb-age-title">Age Verification</h2>
+    <p class="tgb-age-text">
+      You must be 21 years or older to view information about cannabis dispensaries in New Mexico.
+    </p>
+    <button class="tgb-age-btn-yes" onclick="tgbVerifyAge()">
+      Yes, I am 21+
+    </button>
+    <a href="https://www.google.com" class="tgb-age-btn-no">I am under 21</a>
+  </div>
+</div>
 
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                  HERO                        ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="hero-gradient bg-hero-grid min-h-screen flex flex-col items-center justify-center text-center pt-16 px-4 relative overflow-hidden">
+<section class="hero-gradient bg-hero-grid min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
 
   <!-- Ambient orbs -->
   <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10 animate-pulse-slow" style="background:radial-gradient(circle, #10b981, transparent 70%);filter:blur(60px);pointer-events:none;"></div>
@@ -669,8 +861,8 @@
       <!-- Brand -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-2 mb-3">
-          <span class="text-2xl">🌿</span>
-          <span class="text-white font-bold tracking-wide" style="font-family:'Rajdhani',sans-serif;font-size:1.2rem;letter-spacing:0.06em;">THE GREEN BORDER</span>
+          <span style="font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;color:#34d399;letter-spacing:-0.5px;">The Green Border</span>
+          <span style="color:#ca8a04;font-size:1.1rem;">✦</span>
         </div>
         <p class="text-gray-500 text-sm leading-relaxed max-w-xs">El Paso &amp; Sunland Park's premier cannabis guide for the 915 border community. Know the law, find the dispensary, enjoy legally.</p>
         <div class="flex gap-3 mt-4">
@@ -718,27 +910,29 @@
 <!-- ║                JAVASCRIPT                    ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <script>
-  // ── Mobile menu toggle ──────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hb1 = document.getElementById('hb1');
-  const hb2 = document.getElementById('hb2');
-  const hb3 = document.getElementById('hb3');
+  // ── Body padding for fixed header ────────────────
+  document.body.style.paddingTop = "80px";
 
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-    const open = mobileMenu.classList.contains('open');
-    hb1.style.transform = open ? 'rotate(45deg) translate(4px, 5px)' : '';
-    hb2.style.opacity   = open ? '0' : '1';
-    hb3.style.transform = open ? 'rotate(-45deg) translate(4px, -5px)' : '';
+  // ── Age Gate ─────────────────────────────────────
+  document.addEventListener("DOMContentLoaded", function () {
+    const ageOverlay = document.getElementById('tgb-age-overlay');
+    const storageKey = 'tgb_age_verified_v1';
+    if (!localStorage.getItem(storageKey)) {
+      ageOverlay.style.display = 'flex';
+      setTimeout(() => ageOverlay.classList.add('active'), 50);
+      document.body.style.overflow = 'hidden';
+    }
   });
 
-  // Close menu when a link is clicked
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    hb1.style.transform = hb3.style.transform = '';
-    hb2.style.opacity = '1';
-  }));
+  function tgbVerifyAge() {
+    const ageOverlay = document.getElementById('tgb-age-overlay');
+    localStorage.setItem('tgb_age_verified_v1', 'true');
+    ageOverlay.classList.remove('active');
+    setTimeout(() => {
+      ageOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 400);
+  }
 
   // ── Scroll-reveal ────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
@@ -783,12 +977,9 @@
     }, 3000);
   }
 
-  // ── Nav shadow on scroll ─────────────────────────
+  // ── Scrolled state for header ────────────────────
   window.addEventListener('scroll', () => {
-    const header = document.getElementById('site-header');
-    header.style.boxShadow = window.scrollY > 10
-      ? '0 4px 30px rgba(0,0,0,0.5)'
-      : '';
+    document.body.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 </script>
 
