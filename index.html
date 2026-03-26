@@ -359,6 +359,252 @@
       border: 1px solid rgba(16,185,129,0.2);
       font-size: 1.5rem;
     }
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: 80px;
+        padding: 0 20px 40px 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(246,248,252,0.98) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.03), 0 20px 40px rgba(0,0,0,0.05);
+        border-radius: 30px;
+        padding: 50px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #1a4d2e;
+        margin: 0 0 10px 0;
+    }
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #6e6e73;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: #1a4d2e;
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(26, 77, 46, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 77, 46, 0.4);
+    }
+    .tgb-footer-nav {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #1d1d1f;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #1a4d2e; }
+    .tgb-favorites-section {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-favorites-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #86868b;
+        margin: 0 0 15px 0;
+        display: block;
+    }
+    .tgb-legal-block {
+        background: rgba(0,0,0,0.02);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #86868b;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #1d1d1f;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.6;
+    }
+
+    /* ── Mobile Bottom Nav ── */
+    .tgb-mobile-nav { display: none; }
+    @media (max-width: 768px) {
+        body { padding-bottom: 100px; }
+        .tgb-footer-card { padding: 30px 20px; }
+        .tgb-footer-nav { flex-direction: column; gap: 15px; }
+        .tgb-mobile-nav {
+            display: flex;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 50px;
+            z-index: 99999;
+            padding: 10px 0;
+            justify-content: space-evenly;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            height: 65px;
+        }
+        .tgb-mobile-nav.nav-collapsed {
+            width: 65px;
+            border-radius: 50%;
+            padding: 0;
+            justify-content: center;
+            background: #1a4d2e;
+            box-shadow: 0 10px 30px rgba(26, 77, 46, 0.4);
+            cursor: pointer;
+        }
+        .tgb-mobile-nav.nav-collapsed .tgb-nav-item {
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .tgb-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #86868b;
+            font-size: 10px;
+            font-weight: 500;
+            width: 18%;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+        .tgb-menu-toggler {
+            display: none;
+            color: white;
+            font-size: 24px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        .tgb-menu-toggler span {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: -2px;
+        }
+        .tgb-mobile-nav.nav-collapsed .tgb-menu-toggler {
+            display: flex;
+            animation: tgbFadeIn 0.3s ease forwards;
+        }
+        @keyframes tgbFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .tgb-nav-item.active { color: #1a4d2e; transform: translateY(-2px); }
+        .tgb-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            width: 4px;
+            height: 4px;
+            background: #1a4d2e;
+            border-radius: 50%;
+        }
+        .tgb-nav-icon {
+            font-size: 24px;
+            margin-bottom: 3px;
+            transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1);
+        }
+        .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.1); }
+    }
+
+    /* ── Back to Top Button ── */
+    #tgb-scroll-btn {
+        position: fixed;
+        bottom: 90px;
+        right: 30px;
+        z-index: 2147483647;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    #tgb-scroll-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    #tgb-scroll-btn:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(26, 77, 46, 0.2);
+    }
+    #tgb-scroll-arrow {
+        width: 12px;
+        height: 12px;
+        border-top: 3px solid #1a4d2e;
+        border-right: 3px solid #1a4d2e;
+        transform: rotate(-45deg);
+        margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+        #tgb-scroll-btn { bottom: 110px; right: 20px; width: 45px; height: 45px; z-index: 9990; }
+    }
   </style>
 </head>
 
@@ -854,55 +1100,47 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                   FOOTER                     ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<footer style="background:#080808;border-top:1px solid rgba(255,255,255,0.06);">
-  <div class="max-w-6xl mx-auto px-4 py-14">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+<footer class="tgb-glass-footer">
+    <div class="tgb-footer-card">
 
-      <!-- Brand -->
-      <div class="lg:col-span-2">
-        <div class="flex items-center gap-2 mb-3">
-          <span style="font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;color:#34d399;letter-spacing:-0.5px;">The Green Border</span>
-          <span style="color:#ca8a04;font-size:1.1rem;">✦</span>
+        <div class="tgb-footer-cta">
+            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+            <p class="tgb-cta-text">
+                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
+            </p>
+            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
         </div>
-        <p class="text-gray-500 text-sm leading-relaxed max-w-xs">El Paso &amp; Sunland Park's premier cannabis guide for the 915 border community. Know the law, find the dispensary, enjoy legally.</p>
-        <div class="flex gap-3 mt-4">
-          <a href="#" aria-label="Twitter/X" class="w-9 h-9 rounded-xl flex items-center justify-center text-gray-500 hover:text-white transition" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">𝕏</a>
-          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-xl flex items-center justify-center text-gray-500 hover:text-white transition" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">📷</a>
-        </div>
-      </div>
 
-      <!-- Quick Links -->
-      <div>
-        <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Quick Links</h4>
-        <ul class="space-y-2">
-          <li><a href="#dispensaries" class="text-gray-500 text-sm hover:text-emerald-400 transition">Dispensaries</a></li>
-          <li><a href="#news" class="text-gray-500 text-sm hover:text-emerald-400 transition">Latest News</a></li>
-          <li><a href="#education" class="text-gray-500 text-sm hover:text-emerald-400 transition">Education</a></li>
-          <li><a href="#about" class="text-gray-500 text-sm hover:text-emerald-400 transition">About Us</a></li>
-          <li><a href="mailto:hello@greenborder.org" class="text-gray-500 text-sm hover:text-emerald-400 transition">Contact</a></li>
-        </ul>
-      </div>
+        <nav class="tgb-footer-nav">
+            <a href="https://www.thegreenborder.com/about/" class="tgb-footer-link">About Us</a>
+            <a href="https://www.thegreenborder.com/best-el-paso-dispensaries/" class="tgb-footer-link">Dispensary Map</a>
+            <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-footer-link">Advertise</a>
+            <a href="https://www.thegreenborder.com/tips/" class="tgb-footer-link">Send a Tip</a>
+        </nav>
 
-      <!-- Legal -->
-      <div>
-        <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Legal</h4>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-500 text-sm hover:text-emerald-400 transition">Privacy Policy</a></li>
-          <li><a href="#" class="text-gray-500 text-sm hover:text-emerald-400 transition">Terms of Use</a></li>
-          <li><a href="#" class="text-gray-500 text-sm hover:text-emerald-400 transition">Disclaimer</a></li>
-        </ul>
-        <div class="mt-4 p-3 rounded-xl text-xs text-gray-600 leading-relaxed" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);">
-          For adults 21+ only. This site provides information only and does not facilitate sales.
+        <div class="tgb-favorites-section">
+            <span class="tgb-favorites-title">Our Favorites</span>
+            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
+                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
+                <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-footer-link" style="color: #ca8a04;">✨ Get Added Here</a>
+            </nav>
         </div>
-      </div>
+
+        <div class="tgb-legal-block">
+            <p class="tgb-disclaimer-text">
+                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
+            </p>
+            <p class="tgb-disclaimer-text">
+                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
+            </p>
+            <div class="tgb-copyright">
+                Powered by the 915 | Made with ❤ in El Paso, Texas
+                <br>
+                &copy; <span id="tgb-year"></span> The Green Border
+            </div>
+        </div>
 
     </div>
-
-    <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-gray-600 text-xs">&copy; 2026 The Green Border · greenborder.org · All rights reserved.</p>
-      <p class="text-gray-700 text-xs">Built for the 915 🌵</p>
-    </div>
-  </div>
 </footer>
 
 
@@ -981,6 +1219,115 @@
   window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
+</script>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║             MOBILE BOTTOM NAV                ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="tgb-mobile-nav" id="tgb-mobile-menu">
+    <div class="tgb-menu-toggler">
+        <div>☰</div>
+        <span>Menu</span>
+    </div>
+    <a href="https://greenborder.org/" class="tgb-nav-item" id="nav-home">
+        <span class="tgb-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="https://www.thegreenborder.com/best-el-paso-dispensaries/" class="tgb-nav-item" id="nav-map">
+        <span class="tgb-nav-icon">🗺️</span>
+        <span>Map</span>
+    </a>
+    <a href="https://www.thegreenborder.com/new-mexico-dispensary-sales-data/" class="tgb-nav-item" id="nav-data">
+        <span class="tgb-nav-icon">📊</span>
+        <span>Data</span>
+    </a>
+    <a href="https://www.thegreenborder.com/sunland-park-cannabis-tax-calculator/" class="tgb-nav-item" id="nav-tax">
+        <span class="tgb-nav-icon">🧮</span>
+        <span>Tax</span>
+    </a>
+    <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-nav-item" id="nav-partner">
+        <span class="tgb-nav-icon">🤝</span>
+        <span>Partner</span>
+    </a>
+</div>
+
+<div id="tgb-scroll-btn" onclick="tgbScrollToTop()">
+    <div id="tgb-scroll-arrow"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Footer year
+        document.getElementById("tgb-year").textContent = new Date().getFullYear();
+
+        // Mobile nav active state
+        const currentPath = window.location.pathname;
+        const currentHref = window.location.href;
+
+        function setActive(id) {
+            document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
+            const el = document.getElementById(id);
+            if (el) el.classList.add('active');
+        }
+
+        if (currentHref.includes("sunland-park-cannabis-tax-calculator")) {
+            setActive('nav-tax');
+        } else if (currentHref.includes("best-el-paso-dispensaries")) {
+            setActive('nav-map');
+        } else if (currentHref.includes("new-mexico-dispensary-sales-data") || currentHref.includes("sales-data")) {
+            setActive('nav-data');
+        } else if (currentHref.includes("advertising-partnerships")) {
+            setActive('nav-partner');
+        } else if (currentPath === "/" || currentPath === "" || currentHref.includes("greenborder.org/") && !currentHref.includes("greenborder.org/b") && !currentHref.includes("greenborder.org/n") && !currentHref.includes("greenborder.org/s") && !currentHref.includes("greenborder.org/a")) {
+            setActive('nav-home');
+        }
+
+        document.querySelectorAll('.tgb-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Collapse on scroll
+        const navMenu = document.getElementById('tgb-mobile-menu');
+        let isNavExpanded = true;
+
+        window.addEventListener("scroll", function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (window.innerWidth <= 768) {
+                if (scrollTop > 50) {
+                    if (isNavExpanded) {
+                        navMenu.classList.add('nav-collapsed');
+                        isNavExpanded = false;
+                    }
+                } else if (scrollTop < 10) {
+                    navMenu.classList.remove('nav-collapsed');
+                    isNavExpanded = true;
+                }
+            }
+            // Back to top button
+            const scrollBtn = document.getElementById("tgb-scroll-btn");
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add("show");
+            } else {
+                scrollBtn.classList.remove("show");
+            }
+        }, { passive: true });
+
+        // Tap collapsed menu to expand
+        navMenu.addEventListener('click', function(e) {
+            if (navMenu.classList.contains('nav-collapsed')) {
+                e.preventDefault();
+                navMenu.classList.remove('nav-collapsed');
+                isNavExpanded = true;
+            }
+        });
+    });
+
+    function tgbScrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 </script>
 
 </body>
