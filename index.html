@@ -186,14 +186,23 @@
     }
     @media (max-width: 900px) {
       .tgb-desktop-nav { display: none; }
-      .tgb-logo-text { font-size: 22px; }
+      .tgb-logo-text { font-size: 20px; }
+      .tgb-logo-sparkle { font-size: 20px; }
       #tgb-glass-header {
         width: 100%;
         top: 0;
         border-radius: 0;
         border: none;
         border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-        padding: 15px 20px;
+        padding: 12px 16px;
+        max-width: none;
+      }
+      .tgb-header-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .tgb-search-icon {
+        padding: 6px;
       }
     }
 
@@ -761,26 +770,6 @@
     <a href="#region-chaparral" class="tag-pill bg-sky-500/15 text-sky-400 border border-sky-500/30 hover:bg-sky-500/25 transition-all">📍 Chaparral</a>
     <a href="#region-st"        class="tag-pill bg-violet-500/15 text-violet-400 border border-violet-500/30 hover:bg-violet-500/25 transition-all">📍 Santa Teresa</a>
     <a href="#region-anthony"   class="tag-pill bg-amber-500/15 text-amber-400 border border-amber-500/30 hover:bg-amber-500/25 transition-all">📍 Anthony</a>
-  </div>
-
-    <!-- ── STAT STRIP ─────────────────────────────────── -->
-  <div class="grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden mb-8">
-    <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">38</div>
-      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Dispensaries</div>
-    </div>
-    <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">4</div>
-      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Regions</div>
-    </div>
-    <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">3</div>
-      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Lounges</div>
-    </div>
-    <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">1</div>
-      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">24-Hr Shop</div>
-    </div>
   </div>
 
   <!-- ── WARNING BANNER ────────────────────────────── -->
