@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog | The Green Border – 915 Cannabis News & Culture</title>
+  <title>News | The Green Border – 915 Cannabis News & Culture</title>
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="Read the latest cannabis news, policy updates, and culture articles from The Green Border. Coverage of El Paso, Sunland Park, and the 915 border community." />
   <meta name="keywords" content="cannabis news, 915 cannabis, dispensary news, cannabis policy, El Paso cannabis, Sunland Park news, cannabis culture" />
   <meta name="author" content="The Green Border" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://greenborder.org/blog.html" />
+  <link rel="canonical" href="https://greenborder.org/news.html" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://greenborder.org/blog.html" />
-  <meta property="og:title" content="Blog | The Green Border – 915 Cannabis News & Culture" />
+  <meta property="og:url" content="https://greenborder.org/news.html" />
+  <meta property="og:title" content="News | The Green Border – 915 Cannabis News & Culture" />
   <meta property="og:description" content="Latest cannabis news, policy updates, and culture articles for the 915 border community." />
   <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Blog | The Green Border" />
+  <meta name="twitter:title" content="News | The Green Border" />
   <meta name="twitter:description" content="Latest cannabis news and culture from the 915 border community." />
 
   <!-- Tailwind CSS CDN -->
@@ -242,8 +242,8 @@
       letter-spacing: 0.5px;
     }
 
-    /* ── Blog-specific Styles ── */
-    .blog-hero {
+    /* ── News-specific Styles ── */
+    .news-hero {
       background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(202, 138, 4, 0.05));
       border: 1px solid rgba(16, 185, 129, 0.2);
     }
@@ -264,6 +264,114 @@
       background: rgba(16, 185, 129, 0.2);
       border-color: rgba(16, 185, 129, 0.5);
       color: #34d399;
+    }
+
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: 80px;
+        padding: 0 20px 40px 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(246,248,252,0.98) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.03), 0 20px 40px rgba(0,0,0,0.05);
+        border-radius: 30px;
+        padding: 50px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #1a4d2e;
+        margin: 0 0 10px 0;
+    }
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #6e6e73;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: #1a4d2e;
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(26, 77, 46, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 77, 46, 0.4);
+    }
+    .tgb-footer-nav {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #1d1d1f;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #1a4d2e; }
+    .tgb-favorites-section {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-favorites-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #86868b;
+        margin: 0 0 15px 0;
+        display: block;
+    }
+    .tgb-legal-block {
+        background: rgba(0,0,0,0.02);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #86868b;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #1d1d1f;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.6;
     }
 
     /* ── Mobile Nav ── */
@@ -298,6 +406,8 @@
     @media (max-width: 768px) {
       .tgb-mobile-nav { display: flex; }
       body { padding-bottom: 70px; }
+      .tgb-footer-card { padding: 30px 20px; }
+      .tgb-footer-nav { flex-direction: column; gap: 15px; }
     }
   </style>
 </head>
@@ -313,7 +423,7 @@
   </a>
   <nav class="tgb-desktop-nav">
     <a href="/" class="tgb-header-link">Home</a>
-    <a href="/blog.html" class="tgb-header-link" style="color: #1a4d2e;">Blog</a>
+    <a href="/news.html" class="tgb-header-link" style="color: #1a4d2e;">News</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
     <a href="/#education" class="tgb-header-link">Education</a>
     <a href="/#about" class="tgb-header-link">About</a>
@@ -323,12 +433,12 @@
 </header>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║            BLOG HERO SECTION                ║ -->
+<!-- ║            NEWS HERO SECTION                ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <section class="pt-40 pb-16 px-4 max-w-6xl mx-auto">
   <div class="text-center mb-12">
     <span class="section-line mb-4 block mx-auto"></span>
-    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">The Green Border Blog</h1>
+    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">The Green Border News</h1>
     <p class="text-gray-400 text-lg max-w-2xl mx-auto">Cannabis news, policy updates, and culture for the 915 and beyond. Stay informed on what's happening in El Paso, Sunland Park, and the border community.</p>
   </div>
 
@@ -346,7 +456,7 @@
 <!-- ║          FEATURED ARTICLE                   ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <section class="px-4 max-w-6xl mx-auto mb-16">
-  <article class="news-card rounded-3xl overflow-hidden blog-hero">
+  <article class="news-card rounded-3xl overflow-hidden news-hero">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
       <div class="h-64 md:h-auto relative overflow-hidden rounded-2xl" style="background:linear-gradient(135deg,#0a1f12,#10341e);">
         <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20">📰</div>
@@ -476,7 +586,7 @@
       <p>Science is still evolving on exactly how much terpenes influence effects versus how much is placebo, but one thing is certain: they're a big part of why cannabis is so diverse and personal an experience.</p>
     </div>
 
-    <button onclick="backToGrid()" class="mt-8 text-emerald-400 font-semibold hover:underline flex items-center gap-1">← Back to Blog</button>
+    <button onclick="backToGrid()" class="mt-8 text-emerald-400 font-semibold hover:underline flex items-center gap-1">← Back to News</button>
   </article>
 
   <!-- Article: Hemp -->
@@ -526,7 +636,7 @@
       <p>The days of the Wild West hemp market are over. That's good for all of us.</p>
     </div>
 
-    <button onclick="backToGrid()" class="mt-8 text-emerald-400 font-semibold hover:underline flex items-center gap-1">← Back to Blog</button>
+    <button onclick="backToGrid()" class="mt-8 text-emerald-400 font-semibold hover:underline flex items-center gap-1">← Back to News</button>
   </article>
 
   <!-- Article: Culture -->
@@ -561,7 +671,7 @@
       <p>That's the 915 advantage. And it's worth celebrating.</p>
     </div>
 
-    <button onclick="backToGrid()" class="mt-8 text-emerald-400 font-semibold hover:underline flex items-center gap-1">← Back to Blog</button>
+    <button onclick="backToGrid()" class="mt-8 text-emerald-400 font-semibold hover:underline flex items-center gap-1">← Back to News</button>
   </article>
 
 </section>
@@ -584,30 +694,66 @@
 </section>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║           FOOTER / MOBILE NAV               ║ -->
+<!-- ║                   FOOTER                     ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<footer class="py-8 px-4 border-t border-gray-800">
-  <div class="max-w-6xl mx-auto text-center text-gray-500 text-sm">
-    <p>&copy; 2026 The Green Border. Supporting the 915 community.</p>
-    <p class="mt-2 text-xs">
-      <a href="/" class="text-emerald-400 hover:underline">Home</a> •
-      <a href="/blog.html" class="text-emerald-400 hover:underline">Blog</a> •
-      <a href="https://www.thegreenborder.com/about/" class="text-emerald-400 hover:underline">About</a> •
-      <a href="https://www.thegreenborder.com/tips/" class="text-emerald-400 hover:underline">Send a Tip</a>
-    </p>
-  </div>
+<footer class="tgb-glass-footer">
+    <div class="tgb-footer-card">
+
+        <div class="tgb-footer-cta">
+            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+            <p class="tgb-cta-text">
+                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
+            </p>
+            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
+        </div>
+
+        <nav class="tgb-footer-nav">
+            <a href="/" class="tgb-footer-link">Home</a>
+            <a href="/news.html" class="tgb-footer-link">News</a>
+            <a href="https://www.thegreenborder.com/about/" class="tgb-footer-link">About Us</a>
+            <a href="https://www.thegreenborder.com/best-el-paso-dispensaries/" class="tgb-footer-link">Dispensary Map</a>
+            <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-footer-link">Advertise</a>
+            <a href="https://www.thegreenborder.com/tips/" class="tgb-footer-link">Send a Tip</a>
+        </nav>
+
+        <div class="tgb-favorites-section">
+            <span class="tgb-favorites-title">Our Favorites</span>
+            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
+                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
+                <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-footer-link" style="color: #ca8a04;">✨ Get Added Here</a>
+            </nav>
+        </div>
+
+        <div class="tgb-legal-block">
+            <p class="tgb-disclaimer-text">
+                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
+            </p>
+            <p class="tgb-disclaimer-text">
+                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
+            </p>
+            <div class="tgb-copyright">
+                Powered by the 915 | Made with ❤ in El Paso, Texas
+                <br>
+                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.2
+            </div>
+        </div>
+
+    </div>
 </footer>
 
 <!-- Mobile Navigation -->
 <nav class="tgb-mobile-nav">
   <a href="/" class="tgb-nav-item" id="nav-home">🏠 Home</a>
-  <a href="/blog.html" class="tgb-nav-item" id="nav-blog">📝 Blog</a>
+  <a href="/news.html" class="tgb-nav-item" id="nav-news">📰 News</a>
   <a href="https://www.thegreenborder.com/best-el-paso-dispensaries/" class="tgb-nav-item" id="nav-map">📍 Map</a>
   <a href="/#education" class="tgb-nav-item" id="nav-edu">📚 Learn</a>
   <a href="/#about" class="tgb-nav-item" id="nav-about">ℹ️ About</a>
 </nav>
 
 <script>
+  // Set year in footer
+  document.getElementById('tgb-year').textContent = new Date().getFullYear();
+
   // Header scroll effect
   window.addEventListener('scroll', () => {
     const header = document.getElementById('tgb-glass-header');
