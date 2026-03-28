@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(python -c \":*)",
-      "Bash(python _patch.py)"
+      "Bash(python _patch.py)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)"
     ]
   }
 }
