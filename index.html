@@ -3,194 +3,2059 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Greenborder — Coming Soon</title>
+  <title>The Green Border | 915 Cannabis Guide – El Paso & Sunland Park</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="The Green Border is the premier 915 Cannabis Guide for El Paso, TX and Sunland Park, NM. Find the best dispensaries, latest cannabis news, and education for the border community." />
+  <meta name="keywords" content="El Paso dispensaries, 915 cannabis, Sunland Park dispensaries, New Mexico cannabis, El Paso weed, The Green Border, border cannabis guide, 915 weed, NMDOH dispensary, cannabis El Paso TX" />
+  <meta name="author" content="The Green Border" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://greenborder.org/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenborder.org/" />
+  <meta property="og:title" content="The Green Border | 915 Cannabis Guide" />
+  <meta property="og:description" content="El Paso & Sunland Park's premier cannabis guide. Dispensaries, news, and culture for the 915 border community." />
+  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Green Border | 915 Cannabis Guide" />
+  <meta name="twitter:description" content="El Paso & Sunland Park's premier cannabis guide for the 915 border community." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
+            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Rajdhani', 'Inter', 'sans-serif'],
+          },
+          backgroundImage: {
+            'hero-grid': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease-out forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --green: #2e7d52;
-      --green-light: #4caf7d;
-      --green-pale: #e8f5ee;
-      --text: #1a2e22;
-      --muted: #6b8f76;
-    }
-
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--green-pale);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      background-color: #0a0a0a;
+      color: #e5e7eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 560px;
+    /* ── Glass Header ── */
+    #tgb-glass-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1200px;
+      z-index: 10000;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border-radius: 20px;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+    body.scrolled #tgb-glass-header {
+      top: 0;
       width: 100%;
-      text-align: center;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
     }
-
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 3rem;
-    }
-
-    .logo-mark {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--green);
-      border-radius: 8px;
+    .tgb-logo-container {
+      text-decoration: none;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
     }
-
-    .logo-mark svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--green);
-    }
-
-    .logo-text {
-      font-size: 1.25rem;
+    .tgb-logo-text {
+      font-family: 'Fraunces', serif;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--green);
+      font-size: 28px;
+      color: #34d399;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      transition: transform 0.2s ease;
     }
-
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 1rem;
+    .tgb-logo-sparkle {
+      color: #ca8a04;
+      font-size: 24px;
+      animation: tgb-spin-slow 10s linear infinite;
     }
-
-    h1 span {
-      color: var(--green);
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-    }
-
-    .notify-form {
+    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
+    .tgb-desktop-nav {
       display: flex;
-      gap: 0.5rem;
-      max-width: 420px;
-      margin: 0 auto 3rem;
+      gap: 30px;
+      align-items: center;
     }
-
-    .notify-form input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: 1.5px solid #c5ddd0;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .notify-form input:focus {
-      border-color: var(--green);
-    }
-
-    .notify-form input::placeholder {
-      color: #a0b8a8;
-    }
-
-    .notify-form button {
-      padding: 0.75rem 1.25rem;
-      background: var(--green);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.95rem;
+    .tgb-header-link {
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      color: #cbd5e1;
       font-weight: 600;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ca8a04;
+      transition: width 0.3s ease;
+    }
+    .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .tgb-search-icon {
+      color: #34d399;
       cursor: pointer;
-      white-space: nowrap;
+      padding: 8px;
+      border-radius: 50%;
       transition: background 0.2s;
     }
-
-    .notify-form button:hover {
-      background: var(--green-light);
+    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-header-btn {
+      background: #1a4d2e;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      transition: all 0.2s ease;
+    }
+    .tgb-header-btn:hover {
+      background: #14532d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+    }
+    @keyframes tgb-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .tgb-desktop-nav { display: none; }
+      .tgb-logo-text { font-size: 20px; }
+      .tgb-logo-sparkle { font-size: 20px; }
+      #tgb-glass-header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        padding: 12px 16px;
+        max-width: none;
+      }
+      .tgb-header-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .tgb-search-icon {
+        padding: 6px;
+      }
     }
 
-    .divider {
-      display: flex;
+    /* ── Age Gate ── */
+    #tgb-age-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 999999;
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      color: var(--muted);
-      font-size: 0.85rem;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .tgb-age-card {
+      background: linear-gradient(145deg, rgba(255,255,255,1) 30%, rgba(246,248,252,0.95) 100%);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.8);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tgb-age-logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+    }
+    .tgb-age-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      color: #1d1d1f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+    .tgb-age-text {
+      font-size: 15px;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+    .tgb-age-btn-yes {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      background: linear-gradient(135deg, #1a4d2e 0%, #2a7d4e 100%);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-age-btn-yes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.35);
+    }
+    .tgb-age-btn-no {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #86868b;
+      text-decoration: none;
+      border-bottom: 1px dotted #86868b;
+    }
+    .tgb-age-btn-no:hover { color: #1d1d1f; }
+    #tgb-age-overlay.active { opacity: 1; }
+    #tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
+
+    /* ── Hero ── */
+    .hero-gradient {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(245,158,11,0.07) 0%, transparent 60%),
+        #0a0a0a;
+    }
+    .hero-glow {
+      text-shadow: 0 0 60px rgba(16,185,129,0.4), 0 0 120px rgba(16,185,129,0.15);
     }
 
-    .divider::before,
-    .divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: #c5ddd0;
+    /* ── Cards ── */
+    .dispensary-card {
+      background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+      border: 1px solid rgba(16,185,129,0.12);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dispensary-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(16,185,129,0.5);
+      box-shadow: 0 20px 60px rgba(16,185,129,0.12), 0 0 0 1px rgba(16,185,129,0.1);
+    }
+    .news-card {
+      background: linear-gradient(135deg, #111111 0%, #181818 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245,158,11,0.35);
     }
 
-    .footer {
-      margin-top: 3rem;
-      font-size: 0.8rem;
-      color: var(--muted);
+    /* ── Badge ── */
+    .badge-rec { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+    .badge-med { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+    .badge-new { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+
+    /* ── Section divider ── */
+    .section-line {
+      display: inline-block;
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, #10b981, #f59e0b);
+      border-radius: 9999px;
+    }
+
+    /* ── Emerald glow button ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(16,185,129,0.5);
+      transform: translateY(-2px);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Star rating ── */
+    .stars { color: #f59e0b; letter-spacing: 2px; }
+
+    /* ── Tag strip ── */
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── Education icon box ── */
+    .edu-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      font-size: 1.5rem;
+    }
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: 80px;
+        padding: 0 20px 40px 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(246,248,252,0.98) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.03), 0 20px 40px rgba(0,0,0,0.05);
+        border-radius: 30px;
+        padding: 50px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #1a4d2e;
+        margin: 0 0 10px 0;
+    }
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #6e6e73;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: #1a4d2e;
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(26, 77, 46, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 77, 46, 0.4);
+    }
+    .tgb-footer-nav {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #1d1d1f;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #1a4d2e; }
+    .tgb-favorites-section {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-favorites-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #86868b;
+        margin: 0 0 15px 0;
+        display: block;
+    }
+    .tgb-legal-block {
+        background: rgba(0,0,0,0.02);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #86868b;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #1d1d1f;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.6;
+    }
+
+    /* ── Mobile Bottom Nav ── */
+    .tgb-mobile-nav { display: none; }
+    @media (max-width: 768px) {
+        body { padding-bottom: 100px; }
+        .tgb-footer-card { padding: 30px 20px; }
+        .tgb-footer-nav { flex-direction: column; gap: 15px; }
+        .tgb-mobile-nav {
+            display: flex;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94%;
+            max-width: 420px;
+            background: rgba(10, 10, 10, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+            border-radius: 50px;
+            z-index: 99999;
+            padding: 10px 0;
+            justify-content: space-evenly;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            height: 65px;
+        }
+        .tgb-mobile-nav.nav-collapsed {
+            width: 65px;
+            border-radius: 50%;
+            padding: 0;
+            justify-content: center;
+            background: #052e16;
+            border-color: rgba(52, 211, 153, 0.3);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(52,211,153,0.1);
+            cursor: pointer;
+        }
+        .tgb-mobile-nav.nav-collapsed .tgb-nav-item {
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .tgb-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            width: 18%;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+        .tgb-menu-toggler {
+            display: none;
+            color: #34d399;
+            font-size: 22px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        .tgb-menu-toggler span {
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: -1px;
+            color: #34d399;
+        }
+        .tgb-mobile-nav.nav-collapsed .tgb-menu-toggler {
+            display: flex;
+            animation: tgbFadeIn 0.3s ease forwards;
+        }
+        @keyframes tgbFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .tgb-nav-item.active { color: #34d399; transform: translateY(-2px); }
+        .tgb-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            width: 4px;
+            height: 4px;
+            background: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(52,211,153,0.6);
+        }
+        .tgb-nav-icon {
+            font-size: 22px;
+            margin-bottom: 3px;
+            transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1);
+            filter: grayscale(0.3);
+        }
+        .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.15); filter: grayscale(0); }
+        .tgb-nav-item:not(.active):hover { color: #d1d5db; }
+    }
+
+    /* ── Back to Top Button ── */
+    #tgb-scroll-btn {
+        position: fixed;
+        bottom: 90px;
+        right: 30px;
+        z-index: 2147483647;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    #tgb-scroll-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    #tgb-scroll-btn:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(26, 77, 46, 0.2);
+    }
+    #tgb-scroll-arrow {
+        width: 12px;
+        height: 12px;
+        border-top: 3px solid #1a4d2e;
+        border-right: 3px solid #1a4d2e;
+        transform: rotate(-45deg);
+        margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+        #tgb-scroll-btn { bottom: 110px; right: 20px; width: 45px; height: 45px; z-index: 9990; }
+    }
+
+    /* ── Dispensary Directory ── */
+    .font-display { font-family: 'Rajdhani', 'Inter', sans-serif; }
+    .font-body    { font-family: 'Inter', system-ui, sans-serif; }
+    .font-mono-dir{ font-family: 'Rajdhani', monospace; letter-spacing: 0.05em; }
+    .card-hover   { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .tag-pill     { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
+    .filter-sticky{ transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+    .filter-sticky.filter-hidden { max-height: 0; overflow: hidden; opacity: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; border-color: transparent; pointer-events: none; box-shadow: none; }
+    #gb-filter-toggle { transition: all 0.3s ease; }
+    #gb-filter-toggle svg { transition: transform 0.3s ease; }
+    #gb-filter-toggle.filter-is-hidden svg { transform: rotate(180deg); }
+    .anim-in      { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .ribbon {
+      position: absolute; top: 0; right: 0;
+      color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 6px 14px 6px 18px; border-radius: 0 24px 0 20px;
+      font-family: 'Inter', sans-serif; backdrop-filter: blur(4px);
+      box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
+    }
+    .scroll-x { overflow-x: auto; scrollbar-width: none; }
+    .scroll-x::-webkit-scrollbar { display: none; }
+    @media (max-width: 640px) {
+      .card-actions { flex-direction: column; }
+      .card-actions a { width: 100%; text-align: center; justify-content: center; }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
-        </svg>
-      </div>
-      <span class="logo-text">greenborder</span>
-    </div>
 
-    <h1>Something <span>green</span><br>is on the way.</h1>
-    <p class="subtitle">
-      We're working on something great. Be the first to know<br>when we launch.
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║              GLASS HEADER                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<header id="tgb-glass-header">
+  <a href="#" class="tgb-logo-container">
+    <span class="tgb-logo-text">The Green Border</span>
+    <span class="tgb-logo-sparkle">✦</span>
+  </a>
+
+  <nav class="tgb-desktop-nav">
+    <a href="/"             class="tgb-header-link">Home</a>
+    <a href="/news.html"    class="tgb-header-link">News</a>
+    <a href="#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="#education"    class="tgb-header-link">Education</a>
+    <a href="#about"        class="tgb-header-link">About</a>
+  </nav>
+
+  <div class="tgb-header-actions">
+    <a href="#dispensaries" class="tgb-search-icon" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </a>
+    <a href="#dispensaries" class="tgb-header-btn">Find Dispensary</a>
+  </div>
+</header>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║               AGE GATE                       ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div id="tgb-age-overlay">
+  <div class="tgb-age-card">
+    <img src="https://www.thegreenborder.com/content/images/2025/12/3600x900.png" alt="The Green Border" class="tgb-age-logo">
+    <h2 class="tgb-age-title">Age Verification</h2>
+    <p class="tgb-age-text">
+      You must be 21 years or older to view information about cannabis dispensaries in New Mexico.
     </p>
+    <button class="tgb-age-btn-yes" onclick="tgbVerifyAge()">
+      Yes, I am 21+
+    </button>
+    <a href="https://www.google.com" class="tgb-age-btn-no">I am under 21</a>
+  </div>
+</div>
 
-    <form class="notify-form" onsubmit="handleSubmit(event)">
-      <input type="email" id="email" placeholder="your@email.com" required />
-      <button type="submit">Notify me</button>
-    </form>
 
-    <div class="divider">stay tuned</div>
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                  HERO                        ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="hero-gradient bg-hero-grid min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
 
-    <p class="footer">&copy; 2026 Greenborder. All rights reserved.</p>
+  <!-- Ambient orbs -->
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10 animate-pulse-slow" style="background:radial-gradient(circle, #10b981, transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-8 animate-pulse-slow" style="background:radial-gradient(circle, #f59e0b, transparent 70%);filter:blur(60px);pointer-events:none;animation-delay:2s;"></div>
+
+  <!-- Badge -->
+  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 border border-emerald-500/30 text-emerald-400 bg-emerald-500/10 animate-fade-up">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span>
+    El Paso · Sunland Park · The 915
   </div>
 
-  <script>
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      const input = e.target.querySelector('input');
-      btn.textContent = "You're on the list!";
-      btn.style.background = '#4caf7d';
-      btn.disabled = true;
-      input.disabled = true;
+  <!-- Headline -->
+  <h1 class="hero-glow font-display text-5xl sm:text-7xl md:text-8xl font-bold text-white leading-none tracking-tight mb-4 animate-fade-up" style="font-family:'Rajdhani',sans-serif;font-weight:700;animation-delay:0.1s;">
+    The 915<br />
+    <span class="text-emerald-400">Cannabis</span> Guide
+  </h1>
+
+  <!-- Sub-headline -->
+  <p class="max-w-2xl text-gray-300 text-lg sm:text-xl leading-relaxed mb-6 animate-fade-up" style="animation-delay:0.2s;">
+    The only guide built for the 915 — compare <span class="text-white font-medium">dispensary menus &amp; deals</span> across the El Paso area, including Sunland Park, Santa Teresa, Anthony, and Chaparral, NM, without driving around blind.
+  </p>
+
+  <!-- Benefit pills -->
+  <div class="flex flex-wrap justify-center gap-3 mb-10 animate-fade-up" style="animation-delay:0.25s;">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">
+      <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      38+ Dispensaries Mapped
+    </span>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">
+      <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+      Daily Deals &amp; Specials
+    </span>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">
+      <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      Menus, Hours &amp; Reviews
+    </span>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">
+      <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Licensed &amp; Legal Only
+    </span>
+  </div>
+
+  <!-- CTAs -->
+  <div class="flex flex-col sm:flex-row gap-4 animate-fade-up" style="animation-delay:0.3s;">
+    <a href="#dispensaries" class="btn-primary px-8 py-3.5 rounded-xl text-white font-semibold text-base shadow-lg">
+      Browse Dispensaries
+    </a>
+    <a href="#news" class="px-8 py-3.5 rounded-xl font-semibold text-base border border-white/15 text-gray-300 hover:border-emerald-500/50 hover:text-white transition-all">
+      Latest News
+    </a>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden animate-fade-up max-w-2xl mx-auto" style="animation-delay:0.4s;">
+    <div class="bg-white/5 text-center py-6 px-4">
+      <div class="font-display text-3xl font-bold text-emerald-400">38</div>
+      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Dispensaries</div>
+    </div>
+    <div class="bg-white/5 text-center py-6 px-4">
+      <div class="font-display text-3xl font-bold text-emerald-400">4</div>
+      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Regions</div>
+    </div>
+    <div class="bg-white/5 text-center py-6 px-4">
+      <div class="font-display text-3xl font-bold text-emerald-400">3</div>
+      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Lounges</div>
+    </div>
+    <div class="bg-white/5 text-center py-6 px-4">
+      <div class="font-display text-3xl font-bold text-emerald-400">1</div>
+      <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">24-Hr Shop</div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600 animate-bounce">
+    <span class="text-xs tracking-widest uppercase">Scroll</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║           DISPENSARIES SECTION               ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="dispensaries" class="py-20 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-14 reveal">
+    <span class="section-line mb-4 block mx-auto"></span>
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Featured Dispensaries</h2>
+    <p class="text-gray-400 max-w-xl mx-auto">Legal, licensed, and local — the best spots across the green border.</p>
+  </div>
+
+  <!-- Directory -->
+  <div id="dispensary-dir">
+
+  <!-- Quick-jump regions -->
+  <div class="flex flex-wrap justify-center gap-2 mb-8">
+    <a href="#region-sunland"   class="tag-pill bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-all">📍 Sunland Park</a>
+    <a href="#region-chaparral" class="tag-pill bg-sky-500/15 text-sky-400 border border-sky-500/30 hover:bg-sky-500/25 transition-all">📍 Chaparral</a>
+    <a href="#region-st"        class="tag-pill bg-violet-500/15 text-violet-400 border border-violet-500/30 hover:bg-violet-500/25 transition-all">📍 Santa Teresa</a>
+    <a href="#region-anthony"   class="tag-pill bg-amber-500/15 text-amber-400 border border-amber-500/30 hover:bg-amber-500/25 transition-all">📍 Anthony</a>
+  </div>
+
+  <!-- ── WARNING BANNER ────────────────────────────── -->
+  <div class="flex gap-4 items-start bg-rose-500/10 border border-rose-500/20 rounded-[2rem] p-6 mb-8">
+    <div class="shrink-0 w-12 h-12 bg-rose-500/15 rounded-2xl flex items-center justify-center border border-rose-500/20">
+      <svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    </div>
+    <div class="pt-1">
+      <div class="font-display font-semibold text-rose-300 text-lg mb-1.5">Border Crossing Warning</div>
+      <p class="text-rose-400/80 text-sm leading-relaxed">Cannabis is legal in New Mexico, but <strong class="text-rose-300">remains illegal in Texas</strong>. Possession of any amount across state lines can lead to felony charges. Please consume responsibly.</p>
+    </div>
+  </div>
+
+  <!-- ── STICKY FILTER BAR ──────────────────────────── -->
+  <div class="filter-sticky bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.3)] px-5 py-4 mb-8 transition-all">
+    <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+      <!-- Search -->
+      <div class="relative flex-1 min-w-0">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-linecap="round"/></svg>
+        <input id="gb-search" type="text" placeholder="Search by name, street, or vibe…"
+          class="w-full pl-11 pr-10 py-3 text-sm bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500/50 placeholder-gray-600 transition-all text-gray-200">
+        <button id="gb-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 hover:text-gray-300 hidden transition-colors" onclick="document.getElementById('gb-search').value=''; document.getElementById('gb-search').dispatchEvent(new Event('input')); this.classList.add('hidden');">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <!-- Region -->
+      <select id="gb-city" class="text-sm font-medium border border-white/10 rounded-2xl bg-[#1a1a1a] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-all min-w-[152px] text-gray-300">
+        <option value="All">All Regions</option>
+        <option value="Sunland Park">Sunland Park</option>
+        <option value="Chaparral">Chaparral</option>
+        <option value="Santa Teresa">Santa Teresa</option>
+        <option value="Anthony">Anthony</option>
+      </select>
+      <!-- Category -->
+      <select id="gb-vibe" class="text-sm font-medium border border-white/10 rounded-2xl bg-[#1a1a1a] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-all min-w-[172px] text-gray-300">
+        <option value="All">All Vibes</option>
+        <option value="lounge">🛋️ Consumption Lounges</option>
+        <option value="drive-thru">🚗 Drive-Thru &amp; Pickup</option>
+        <option value="budget">🔥 Best Deals &amp; Value</option>
+        <option value="boutique">💎 Boutique &amp; Craft</option>
+        <option value="premium">⭐ Premium Selection</option>
+        <option value="medical">🏥 Medical Focus</option>
+        <option value="open24">🌙 Open 24 Hours</option>
+      </select>
+    </div>
+
+    <!-- Feature chips -->
+    <div class="scroll-x mt-4 flex gap-2 pb-1">
+      <span class="text-[9px] text-gray-600 tracking-widest uppercase self-center shrink-0 mr-1 font-bold">Quick filter:</span>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="lounge">🛋️ Lounge</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="drive-thru">🚗 Drive-Thru</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="open24">🌙 24 Hrs</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="medical">🏥 Medical</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="boutique">💎 Boutique</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="budget">🔥 Best Deals</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="organic">🌱 Organic / Craft</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="premium">⭐ Premium</button>
+    </div>
+  </div>
+
+    <!-- Results meta -->
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-6 px-2">
+    <p class="text-sm font-semibold text-gray-500" id="gb-count">Loading…</p>
+    <div class="flex items-center gap-2">
+      <!-- Sort toggle -->
+      <button id="gb-sort" class="flex items-center gap-1.5 text-[11px] text-gray-400 hover:text-emerald-400 tracking-wide transition-colors font-bold bg-white/5 px-3 py-1 rounded-full border border-white/10 hover:border-emerald-500/30" title="Sort order">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9M3 12h9m5-8v16m0 0l-4-4m4 4l4-4"/></svg>
+        <span id="gb-sort-label">Default</span>
+      </button>
+      <!-- Filter hide toggle -->
+      <button id="gb-filter-toggle" class="flex items-center gap-1.5 text-[11px] text-gray-400 hover:text-emerald-400 tracking-wide transition-colors font-bold bg-white/5 px-3 py-1 rounded-full border border-white/10 hover:border-emerald-500/30" title="Hide/show search filters">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+        <span id="gb-toggle-label">Hide Filters</span>
+      </button>
+      <button id="gb-reset" class="hidden text-[11px] text-emerald-400 hover:text-emerald-300 tracking-wide transition-colors font-bold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">✕ Clear all</button>
+    </div>
+  </div>
+
+  <!-- No results -->
+  <div id="gb-no-results" class="hidden py-24 text-center rounded-[2rem] border border-white/10 bg-white/5">
+    <div class="text-6xl mb-5 opacity-60">🔍</div>
+    <p class="font-display text-2xl text-white mb-2">No dispensaries found</p>
+    <p class="text-sm text-gray-500 mb-6">Try a different search term or clear your filters.</p>
+    <button onclick="gbReset()" class="text-sm font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-6 py-2.5 rounded-xl border border-emerald-500/20">Clear filters</button>
+  </div>
+
+    <!-- ── CARD GRID ──────────────────────────────────── -->
+  <!-- Set to exactly 2 columns on desktop to widen cards and prevent text squishing/stretching -->
+  <div id="gb-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"></div>
+
+  <!-- ── CTA BAND ────────────────────────────────────── -->
+  <div class="mt-20 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 text-center">
+    <div class="text-[10px] tracking-[0.2em] uppercase text-emerald-400 font-bold mb-4">Own a Dispensary?</div>
+    <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">Get In Front of Thousands<br class="hidden sm:block"> of Border-Area Shoppers</h3>
+    <p class="text-gray-400 text-base leading-relaxed max-w-xl mx-auto mb-8">Our curated guide is the #1 resource for El Paso locals crossing to shop. Claim your listing, run featured placements, and drive measurable foot traffic.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" target="_blank"
+         class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-emerald-900/20 transition-all hover:-translate-y-1">
+        Become a Partner →
+      </a>
+      <a href="https://www.thegreenborder.com/best-el-paso-dispensaries/#/portal/signup" target="_blank"
+         class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/15 hover:bg-white/10 text-white text-sm font-bold rounded-2xl transition-all hover:-translate-y-1">
+        Join the Cannabis Club
+      </a>
+    </div>
+  </div>
+
+    <!-- ── FAQ ────────────────────────────────────────── -->
+  <div class="mt-20 max-w-3xl mx-auto pb-16">
+    <h3 class="font-display text-3xl font-bold text-white text-center mb-10">Frequently Asked Questions</h3>
+    <div class="space-y-4" id="gb-faqs">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+
+<script>
+(function(){
+
+/* ══════════════════════════════════════════════════════════
+   COMPLETE DISPENSARY DATA — 2026 JSON INJECTION
+   ══════════════════════════════════════════════════════════ */
+const RAW_DATA = [
+  {
+    "id": "custom_1772668487748", "city": "Sunland Park", "icon": "🚀", "name": "Astro Buds Dispensary, Consumption Lounge & Grill",
+    "address": "1650 Appaloosa Dr, Sunland Park, NM 88063", "website": "https://astrobudsnm.com/",
+    "vibe": "Sunland Park's first Lounge and Grill. Experience a fully tailored menu with amazing food all in one spot. ",
+    "tags": [ "🔥 Favorite", "🛋 Consumption Lounge", "🍬 In-House Brands", "🏔️ Craft Flower", "🌌 Sci-Fi Themed", "☕ Infused Cafe", "🚗 Drive-Thru", "🌱 Organic / Craft", "🌿 Massive Selection", "🧠 Expert Staff", "🎯 Top Shelf", "🤝 Beginner Friendly", "⚾ Sports Vibe", "🌵 Border Reliable", "💧 Clean Environment", "🏭 Consistent", "🎨 Best Interior Design" ],
+    "rank": 1, "excluded": false, "featured": true
+  },
+  {
+    "id": "sp2", "city": "Sunland Park", "icon": "🥭", "name": "Mango Cannabis", "address": "Sunland Park, NM",
+    "website": "https://mangocannabis.com/new-mexico-dispensary/sunland-park/sunland-park-dispensary/?ref=thegreenborder.com",
+    "vibe": "High energy with a truly massive inventory. If speed and selection are what you need, Mango delivers. They consistently carry one of the widest menus in the state — edibles, cartridges, and flower always in stock.",
+    "tags": [ "📍 Curbside Pickup", "📦 Huge Inventory", "🌿 Massive Selection", "✅ Reliable", "💧 Clean Environment" ],
+    "rank": 2, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp3", "city": "Sunland Park", "icon": "🌌", "name": "Dark Matter", "address": "1615 Appaloosa Dr",
+    "website": "https://www.darkmattercanna.com/location/dark-matter-sunland-park/?ref=thegreenborder.com",
+    "vibe": "Sleek, futuristic, and unlike most shops on the strip. Dark Matter carries everything you may need, and for a great price with their specials!",
+    "tags": [ "🔬 Lab Focus", "🎯 Top Shelf", "🌿 Massive Selection", "🧠 Expert Staff", "📍 Curbside Pickup", "👽 Space-Themed", "✅ Reliable", "📦 Huge Inventory" ],
+    "rank": 3, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp5", "city": "Sunland Park", "icon": "🌿", "name": "Top Crop", "address": "1621 Appaloosa Dr",
+    "website": "https://topcropcannabis.com/best-cannabis-dispensary-sunland-park?ref=thegreenborder.com",
+    "vibe": "Claiming to be the largest dispensary in New Mexico, Top Crop backs it up with an enormous, well-organized menu. Whether you're hunting budget-friendly flower or high-end concentrates, the inventory is hard to beat — and their daily deals sweeten the deal further.",
+    "tags": [ "🌿 Massive Selection", "💰 Best Deals", "📦 Huge Inventory", "🎨 Best Interior Design", "✅ Reliable", "🚗 Drive-Thru" ],
+    "rank": 4, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp11", "city": "Sunland Park", "icon": "🔥", "name": "Score 420", "address": "2355 McNutt Rd & 1925 Appaloosa Dr",
+    "website": "https://score420.store/sunland-park-dispensary/?ref=thegreenborder.com",
+    "vibe": "Two locations, one simple mission: get you the best value in Sunland Park. Score 420 is the go-to for anyone who wants solid flower and pre-roll or vapes without paying a premium for branding. Fun, unpretentious, and consistently stocked.",
+    "tags": [ "💰 Best Deals", "🔥 Favorite", "✅ Reliable", "🍬 In-House Brands", "🧠 Expert Staff" ],
+    "rank": 5, "excluded": false, "featured": true
+  },
+  {
+    "id": "sp1", "city": "Sunland Park", "icon": "☕", "name": "Fields of Dreams", "address": "Appaloosa Blvd",
+    "website": "https://www.fodnm.com/deals?ref=thegreenborder.com",
+    "vibe": "The first dispensary you see the moment you cross into Sunland Park. The iconic white building with the big green leaf is hard to miss — and for good reason. They grow their own flower on-site, run a full Infused Cafe, and even have a Drive-Thru for when you don't want to leave your car.",
+    "tags": [ "☕ Infused Cafe", "🚗 Drive-Thru", "🌿 On-site Grow", "🏰 Locally Owned", "🌵 Border Reliable" ],
+    "rank": 6, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp6", "city": "Sunland Park", "icon": "👑", "name": "Old Gods", "address": "1541 Appaloosa Dr",
+    "website": "https://oldgodsdispensary.com/?ref=thegreenborder.com",
+    "vibe": "Small, intimate, and intentional. Old Gods is the boutique option on the strip — a refreshing alternative to the big-box shops. The selection is carefully curated and the staff will actually take the time to talk to you.",
+    "tags": [ "💎 Boutique", "🧠 Expert Staff", "🚗 Drive-Thru", "🎯 Top Shelf", "❤️ Top Staff", "🎨 Best Interior Design" ],
+    "rank": 7, "excluded": false, "featured": true
+  },
+  {
+    "id": "sp4", "city": "Sunland Park", "icon": "🍪", "name": "Cookies", "address": "1500 Appaloosa St",
+    "website": "https://sunland.cookies.co/?ref=thegreenborder.com",
+    "vibe": "The iconic blue branding. The legendary genetics. Cookies needs no introduction — home of Gary Payton, Cereal Milk, and dozens of exclusive drops you can only get here. If you're chasing a specific cultivar, this is the official source.",
+    "tags": [ "🍪 Exclusive Genetics", "🏆 Connoisseur Pick", "🎯 Top Shelf", "🏭 Consistent", "🚗 Drive-Thru" ],
+    "rank": 8, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp13", "city": "Sunland Park", "icon": "💨", "name": "Dispensary Near Me", "address": "1290 McNutt Rd",
+    "website": "https://www.dispensarynearmenm.com/?ref=thegreenborder.com",
+    "vibe": "One of the only shops in Sunland Park with an active consumption lounge. Licensed for both retail and on-site use, this is where you go if you want the full experience — shop, stay, enjoy. A true community social hub.",
+    "tags": [ "🛋 Consumption Lounge", "🍬 In-House Brands", "💋 Boutique Feel", "💎 Boutique" ],
+    "rank": 9, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp7", "city": "Sunland Park", "icon": "⭐", "name": "Prohibition 37", "address": "871 McNutt Rd",
+    "website": "https://www.p37cannabis.com/location/sunland-park/?ref=thegreenborder.com",
+    "vibe": "P37 brings a professional, slightly rebellious energy to the McNutt corridor. With a strong foundation in medical cannabis and a growing recreational menu, it's the kind of shop you keep coming back to because the experience is always consistent.",
+    "tags": [ "⭐ Loyalty Program", "🏥 Medical Focus", "🏔️ Craft Flower", "🎯 Top Shelf", "🏭 Consistent" ],
+    "rank": 10, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp15", "city": "Sunland Park", "icon": "🚀", "name": "Apogee", "address": "1769 Victory Ln",
+    "website": "https://apogeenm.com/?ref=thegreenborder.com",
+    "vibe": "'Apogee' means the highest point — and that's exactly what they're building toward. Focused on therapeutic-grade products with a consumption lounge in development, Apogee is one to watch for those who want a premium, on-site experience in Sunland Park.",
+    "tags": [ "🏥 Medical Focus", "⏱️Consumption Lounge Coming Soon", "🏰 Locally Owned", "👽 Space-Themed", "🎯 Top Shelf", "🤝 Beginner Friendly", "🚗 Drive-Thru" ],
+    "rank": 11, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp9", "city": "Sunland Park", "icon": "🏔️", "name": "Elevation 3789", "address": "1999 Futurity Dr, Unit A",
+    "website": "https://elevationcannabis.co/dispensaries/elevation-3789/?ref=thegreenborder.com",
+    "vibe": "A boutique experience that feels personal rather than corporate. Elevation 3789 puts a heavy emphasis on craft cannabis — the kind of flower that's properly cured, properly grown, and worth the extra attention.",
+    "tags": [ "🏔️ Craft Flower", "💎 Boutique", "🌱 Organic / Craft" ],
+    "rank": 12, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp8", "city": "Sunland Park", "icon": "✅", "name": "R. Greenleaf", "address": "1541 Appaloosa, Units 1 & 2",
+    "website": "https://rgreenleaf.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com",
+    "vibe": "One of New Mexico's most established cannabis brands, and it shows. The staff is knowledgeable, the rewards program is genuinely good, and the experience strikes the right balance between medical-grade guidance and recreational convenience.",
+    "tags": [ "⭐ Loyalty Program", "🏥 Medical Focus", "🧠 Expert Staff", "🤝 Beginner Friendly" ],
+    "rank": 13, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp21", "city": "Sunland Park", "icon": "💨", "name": "Toke It Up", "address": "1999 Futurity Drive",
+    "website": "https://tokeitupdispensary.com/?ref=thegreenborder.com",
+    "vibe": "Social by design. With a consumption lounge in development on Futurity Drive, Toke It Up is building toward a full shop-and-stay experience. The current retail side is solid, and the community-first vibe gives it a distinct personality among the Sunland Park options.",
+    "tags": [ "🏰 Locally Owned", "💎 Boutique", "⏱️Consumption Lounge Coming Soon" ],
+    "rank": 14, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp19", "city": "Sunland Park", "icon": "⚔️", "name": "Obi Wan", "address": "2167 McNutt Rd, Suite A",
+    "website": "https://www.obiwancannabis.online/?ref=thegreenborder.com",
+    "vibe": "The dispensary you are looking for. Pop-culture branding aside, Obi Wan on McNutt delivers genuine quality with staff who act as expert guides rather than just cashiers. The lighthearted theme makes it a memorable first visit.",
+    "tags": [ "🌌 Sci-Fi Themed", "🧠 Expert Staff", "🎨 Best Interior Design" ],
+    "rank": 15, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp23", "city": "Sunland Park", "icon": "🐑", "name": "Black Sheep", "address": "1925 Appaloosa, Ste 6",
+    "website": "https://blacksheepnm.com/?ref=thegreenborder.com",
+    "vibe": "Previously TenTen, they sets the bar at a perfect 10 and builds everything around reaching it — premium cultivars, clean aesthetics, and a menu that prioritizes quality over quantity. The kind of shop you visit when you actually want the best on the shelf.",
+    "tags": [ "🎯 Top Shelf", "💎 Boutique", "🌵 Border Reliable", "🏰 Locally Owned" ],
+    "rank": 16, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp14", "city": "Sunland Park", "icon": "💋", "name": "Besos", "address": "1805 Futurity Dr",
+    "website": "https://thehouseofve.com/?ref=thegreenborder.com",
+    "vibe": "Besos brings a warmth that stands out on Futurity Drive. The branding is distinct, the atmosphere is intimate, and the service feels genuinely personal. Worth a visit for the experience alone.",
+    "tags": [ "💋 Boutique Feel", "💰 Best Deals", "📍 Curbside Pickup" ],
+    "rank": 17, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp17", "city": "Sunland Park", "icon": "🌱", "name": "Greens", "address": "101 Maguey, Suite 4",
+    "website": "https://greensnm.com/?ref=thegreenborder.com",
+    "vibe": "Neighborhood shop energy in the best way possible. Greens on Maguey Road is down-to-earth, community-focused, and stocked with fresh products. If you're tired of corporate chain vibes, this is a breath of fresh air.",
+    "tags": [ "🏰 Locally Owned", "🌵 Border Reliable" ],
+    "rank": 18, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp10", "city": "Sunland Park", "icon": "🏔️", "name": "Everest", "address": "1580 Appaloosa Dr, Ste 320",
+    "website": "https://everestnm.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com",
+    "vibe": "Built around a simple promise: clean cannabis. Everest avoids harsh chemicals throughout their growing process and produces in-house edibles and concentrates that health-conscious consumers keep requesting by name. The crisp, clinical atmosphere matches their standards.",
+    "tags": [ "🌱 Organic / Craft", "🍬 In-House Brands", "🏥 Medical Focus" ],
+    "rank": 19, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp12", "city": "Sunland Park", "icon": "🏰", "name": "Empire Garden", "address": "1144 McNutt Road",
+    "website": "https://empiregardensunland.com/?ref=thegreenborder.com",
+    "vibe": "A locally owned standby on the McNutt corridor. Empire Garden has built a reputation for variety and friendly service — the kind of shop where the staff recognizes regulars and the daily selection stays fresh.",
+    "tags": [ "🏰 Locally Owned", "📦 Huge Inventory", "✅ Reliable", "🎯 Top Shelf" ],
+    "rank": 20, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp16", "city": "Sunland Park", "icon": "🏥", "name": "Ultra Health", "address": "1155 McNutt Road",
+    "website": "https://ultrahealth.com/new-mexico-dispensaries/sunland-park-cannabis-dispensary/?ref=thegreenborder.com",
+    "vibe": "New Mexico's #1 cannabis provider by footprint. Ultra Health is the reliable option for patients and recreational users who want a familiar, trustworthy experience. Their inventory is broad, their pricing is accessible.",
+    "tags": [ "🏥 Medical Focus", "📖 Education First", "🍬 In-House Brands" ],
+    "rank": 21, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp18", "city": "Sunland Park", "icon": "🧪", "name": "Green Labs", "address": "245 Derby Rd",
+    "website": "https://greenlabscannabisnm.com/location/green-labs-dispensary/?ref=thegreenborder.com",
+    "vibe": "If you actually care about terpene profiles and cannabinoid ratios, Green Labs is your place. This is a scientifically-minded shop that prioritizes education alongside experience — a great stop for curious consumers who want to understand what they're buying.",
+    "tags": [ "📖 Education First", "🏰 Locally Owned" ],
+    "rank": 22, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp20", "city": "Sunland Park", "icon": "🚂", "name": "Round House Reserve", "address": "1165 McNutt Dr, Unit C5",
+    "website": "https://weedmaps.com/dispensaries/round-house-reserve-1?ref=thegreenborder.com",
+    "vibe": "Rustic warmth and an obsession with quality flower. Round House built their reputation on their Reserve shelf — potent, well-cured strains that keep McNutt regulars coming back specifically for what's behind the counter.",
+    "tags": [ "🚂 Reserve Shelf", "🎯 Top Shelf" ],
+    "rank": 23, "excluded": false, "featured": false
+  },
+  {
+    "id": "sp22", "city": "Sunland Park", "icon": "☀️", "name": "Sunshine Essentials", "address": "267 Anapra Rd",
+    "website": "https://dutchie.com/dispensary/sunshine-essentials?ref=thegreenborder.com",
+    "vibe": "Bright, cheerful, and perfectly positioned for anyone who wants a quick stop on the Anapra corridor without driving all the way into the main Sunland Park cluster. Friendly staff and a solid rotating daily selection.",
+    "tags": [ "💎 Boutique", "🏰 Locally Owned" ],
+    "rank": 24, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch1", "city": "Chaparral", "icon": "🌱", "name": "Astro Buds", "address": "Chaparral, NM",
+    "website": null,
+    "vibe": "The gold standard for organic, soil-grown flower in the borderland. Astro Buds takes a 'Soil to Oil' approach that results in terpene-rich, beautifully cured cannabis. For the connoisseur who cares deeply about how their flower was grown, this is the first stop in Chaparral.",
+    "tags": [ "🌱 Organic / Craft", "🏆 Connoisseur Pick", "💰 Best Deals", "👽 Space-Themed", "✅ Reliable", "🔥 Favorite", "❤️ Top Staff", "🎯 Top Shelf" ],
+    "rank": 1, "excluded": false, "featured": true
+  },
+  {
+    "id": "ch3", "city": "Chaparral", "icon": "🌿", "name": "Green Therapy", "address": "460 County Line Dr, Space F",
+    "website": "https://gtdispensary.com/?ref=thegreenborder.com",
+    "vibe": "Calm, approachable, and focused on the healing side of cannabis. Green Therapy is a genuinely therapeutic environment — staff who understand the difference between indica-forward blends and CBD ratios, and who will walk you through it without judgment. Excellent for first-timers.",
+    "tags": [ "🤝 Beginner Friendly", "🏥 Medical Focus" ],
+    "rank": 2, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch2", "city": "Chaparral", "icon": "🌙", "name": "High Valley Cannabis", "address": "Archangel Way, Chaparral",
+    "website": null,
+    "vibe": "The only dispensary in the borderland area that stays open 24 hours and has a consumption lounge. Whether you're a night-shift worker, an insomniac, or you just realized at 2 AM that you're out — High Valley is always there with the lights on, now featuring an active lounge. No other shop in the area can say that.",
+    "tags": [ "🌙 Open 24 Hours", "🛋 Consumption Lounge", "✅ Reliable" ],
+    "rank": 3, "excluded": false, "featured": true
+  },
+  {
+    "id": "ch4", "city": "Chaparral", "icon": "💧", "name": "Pure Medd", "address": "170 McCombs",
+    "website": "https://puremedd.com/?ref=thegreenborder.com",
+    "vibe": "Clean, clinical, and refreshingly easy to navigate. Pure Medd removes the guesswork from your shopping trip with a well-organized menu and a no-fuss atmosphere. Go in knowing what you want and leave with exactly that.",
+    "tags": [ "💧 Clean Environment", "📖 Education First" ],
+    "rank": 4, "excluded": false, "featured": false
+  },
+  {
+    "id": "custom_1772670316123", "city": "Chaparral", "icon": "🌿", "name": "House of Flowers", "address": "1042 State Line Dr, Chaparral, NM 88081",
+    "website": "https://houseofflowers24.com/",
+    "vibe": "Drive thru cannabis shop for fast and easy pick up.",
+    "tags": [ "🚗 Drive-Thru" ],
+    "rank": 5, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch7", "city": "Chaparral", "icon": "🌸", "name": "Ganjika Gardens", "address": "1245 Riley Way",
+    "website": "https://ganjikagardens.com/?ref=thegreenborder.com",
+    "vibe": "You can feel the love for the craft the moment you walk in. Ganjika Gardens is one of those boutique shops that attracts staff who are genuinely passionate about cannabis — and it shows in the quality of the flower and the depth of the conversations you'll have there.",
+    "tags": [ "❤️ Top Staff", "💎 Boutique", "🌱 Organic / Craft" ],
+    "rank": 6, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch6", "city": "Chaparral", "icon": "👽", "name": "Area 54", "address": "764 Angelina Blvd",
+    "website": "https://area54dispensary.com/?ref=thegreenborder.com",
+    "vibe": "New Mexico has a long tradition of extraterrestrial mythology, and Area 54 leans right into it. The space-themed branding makes for a genuinely fun shopping experience — and behind the creative concept, the concentrate selection is seriously impressive.",
+    "tags": [ "👽 Space-Themed", "🔬 Lab Focus" ],
+    "rank": 7, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch8", "city": "Chaparral", "icon": "🏭", "name": "Groth Industries", "address": "140 Schneberger Dr",
+    "website": "https://grothindustries.com/?ref=thegreenborder.com",
+    "vibe": "Consistency above all else. Groth Industries is the dependable, no-drama option in Chaparral — a shop where the product speaks for itself and the experience is the same every single time. Exactly what you want when you're driving out from El Paso.",
+    "tags": [ "🏭 Consistent", "✅ Reliable" ],
+    "rank": 8, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch10", "city": "Chaparral", "icon": "💰", "name": "Richy Rich", "address": "101 Angelina Blvd",
+    "website": null,
+    "vibe": "Unapologetically premium. Richy Rich carries a luxury attitude without the stuffiness — if you want to treat yourself to the best product available in Chaparral, this is where you go. The selection skews toward high-end, and the attitude is all abundance.",
+    "tags": [ "🎯 Top Shelf", "💎 Boutique" ],
+    "rank": 9, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch5", "city": "Chaparral", "icon": "🌵", "name": "Stateline Cannabis", "address": "1101 Stephanie, Chaparral",
+    "website": "https://statelinecannabis.online/?ref=thegreenborder.com",
+    "vibe": "Rugged, reliable, and built for the borderland. Stateline Cannabis is easy to reach and consistently stocked — the kind of shop that embodies the no-nonsense spirit of the Chaparral corridor.",
+    "tags": [ "🌵 Border Reliable", "✅ Reliable" ],
+    "rank": 10, "excluded": false, "featured": false
+  },
+  {
+    "id": "ch9", "city": "Chaparral", "icon": "🤩", "name": "Uforia", "address": "305 S County Line Dr",
+    "website": "https://uforianm.com/?ref=thegreenborder.com",
+    "vibe": "Uplifting by name and by nature. Uforia is built for the recreational crowd who want to walk out feeling genuinely better than when they walked in. They lean into creative, mood-elevating strains and run a bright, positive atmosphere that lives up to the name.",
+    "tags": [ "💎 Boutique", "🔥 Favorite" ],
+    "rank": 11, "excluded": false, "featured": false
+  },
+  {
+    "id": "st3", "city": "Santa Teresa", "icon": "🗣️", "name": "Public Affair", "address": "5325 McNutt Rd",
+    "website": "https://public-affair.com/?ref=thegreenborder.com",
+    "vibe": "Arguably the best-designed dispensary on the entire border. Walking into Public Affair feels closer to a boutique hotel lobby than a cannabis shop — the interiors are elegant, the atmosphere is social, and the whole experience challenges every expectation about what a dispensary can feel like.",
+    "tags": [ "🎨 Best Interior Design", "💎 Boutique" ],
+    "rank": 1, "excluded": false, "featured": false
+  },
+  {
+    "id": "st2", "city": "Santa Teresa", "icon": "👋", "name": "Hi Life", "address": "5620 McNutt Rd",
+    "website": "https://hilife-dispensarynm.com/?ref=thegreenborder.com",
+    "vibe": "There's a warmth to Hi Life that's hard to fake. The staff genuinely wants you to have a good experience — they remember regulars, take their time with newcomers, and consistently deliver quality service that makes the McNutt Road trip worth it.",
+    "tags": [ "❤️ Top Staff", "🤝 Beginner Friendly" ],
+    "rank": 2, "excluded": false, "featured": false
+  },
+  {
+    "id": "st4", "city": "Santa Teresa", "icon": "☁️", "name": "Garden of Dreams", "address": "5300 McNutt Rd",
+    "website": "https://www.god420.com/?ref=thegreenborder.com",
+    "vibe": "Designed for the end of the day. Garden of Dreams curates a deeply relaxing menu with indica-forward strains and sleep-friendly products at the center. If winding down is the goal, this is where you shop.",
+    "tags": [ "☁️ Indica / Relaxation", "💎 Boutique" ],
+    "rank": 3, "excluded": false, "featured": false
+  },
+  {
+    "id": "st1", "city": "Santa Teresa", "icon": "💎", "name": "St. Canapa", "address": "Santa Teresa, NM",
+    "website": null,
+    "vibe": "The go-to for Upper Valley residents who don't want to compromise on quality. St. Canapa runs a refined, stress-free environment with top-shelf flower and staff who match that energy. Think boutique hotel, not dispensary.",
+    "tags": [ "🎯 Top Shelf", "💎 Boutique" ],
+    "rank": 4, "excluded": false, "featured": true
+  },
+  {
+    "id": "an1", "city": "Anthony", "icon": "🏔️", "name": "Rocky Mountain Cannabis", "address": "Anthony, NM (near I-10)",
+    "website": null,
+    "vibe": "Chain reliability with the warmth of a local shop. Rocky Mountain Cannabis is the first call for Anthony-area shoppers looking for consistent quality at a price point that typically beats Sunland Park. Right off I-10 and dependably stocked.",
+    "tags": [ "💰 Best Deals", "✅ Reliable" ],
+    "rank": 1, "excluded": false, "featured": false
+  },
+  {
+    "id": "an2", "city": "Anthony", "icon": "⚾", "name": "Top of the Eighth", "address": "401 Anthony Dr, Suite B",
+    "website": "https://www.topoftheeighth.com/?ref=thegreenborder.com",
+    "vibe": "Sports energy meets everyday value. Top of the Eighth is the neighborhood pick for Anthony residents who want solid quality without paying premium prices. The vibes are friendly and the eighths are worth the drive.",
+    "tags": [ "⚾ Sports Vibe", "💰 Best Deals" ],
+    "rank": 2, "excluded": false, "featured": false
+  },
+  {
+    "id": "an3", "city": "Anthony", "icon": "🛣️", "name": "Milla Cero", "address": "103 Miller St",
+    "website": "https://www.milla-cero.com/?ref=thegreenborder.com",
+    "vibe": "Mile Zero is the perfect name for a dispensary at the very start of the New Mexico cannabis corridor. Milla Cero has a genuine cultural identity — bilingual staff, a welcoming community-first attitude, and an approach to cannabis retail that reflects the borderland it serves.",
+    "tags": [ "🌐 Bilingual", "🤝 Beginner Friendly", "❤️ Top Staff" ],
+    "rank": 3, "excluded": false, "featured": false
+  },
+  {
+    "id": "an4", "city": "Anthony", "icon": "🎓", "name": "Kushology 101", "address": "1600 E O'Hara Rd (I-10 exit)",
+    "website": "https://kushology101.com/?ref=thegreenborder.com",
+    "vibe": "The clear destination dispensary for Anthony. Kushology 101 packs a massive inventory into an accessible location right off I-10, and they back it up with consistent weekly specials — Texas ID Tuesday, Flower Friday — that reward return visits. 'Don't Settle for Subpar Cannabis' isn't just a slogan here.",
+    "tags": [ "💰 Best Deals", "📦 Huge Inventory", "🔥 Texas ID Specials" ],
+    "rank": 4, "excluded": false, "featured": true
+  }
+];
+
+// Dynamically map the injected JSON to the frontend UI structure
+const DATA = RAW_DATA.filter(d => !d.excluded).map(d => {
+  // Split the vibe paragraph to fill the two card text areas beautifully
+  const vibeParts = (d.vibe || "").split('. ');
+  const vibeText = vibeParts[0] + (vibeParts.length > 1 ? '.' : '');
+  const loveText = vibeParts.slice(1).join('. ') || "An absolute must-visit location with an atmosphere you have to experience yourself.";
+
+  const tagsStr = d.tags.join(' ').toLowerCase();
+
+  // Feature Category Map for accurate cross-filtering
+  const featureCategoryMap = {
+    'lounge': ['lounge'],
+    'drive-thru': ['drive-thru', 'curbside'],
+    'budget': ['deals', 'value'],
+    'open24': ['24 hours'],
+    'medical': ['medical'],
+    'premium': ['top shelf', 'premium', 'connoisseur'],
+    'organic': ['organic', 'craft'],
+    'boutique': ['boutique']
+  };
+
+  const extra = [];
+  for (const [catKey, keywords] of Object.entries(featureCategoryMap)) {
+    if (keywords.some(kw => tagsStr.includes(kw))) {
+      extra.push(catKey);
     }
-  </script>
+  }
+
+  // Set primary category for initial rendering
+  let category = 'boutique';
+  if (extra.includes('lounge')) category = 'lounge';
+  else if (extra.includes('drive-thru')) category = 'drive-thru';
+  else if (extra.includes('budget')) category = 'budget';
+  else if (extra.includes('open24')) category = 'open24';
+  else if (extra.includes('medical')) category = 'medical';
+  else if (extra.includes('premium')) category = 'premium';
+
+  // Intelligent UI Tag and Badge Generation
+  let badge = null;
+  if (d.tags.includes("🔥 Favorite")) badge = "Local Fav";
+  else if (d.tags.includes("🌙 Open 24 Hours")) badge = "Open 24/7";
+  else if (d.featured) badge = "Top Pick";
+
+  // Clean the main pill by stripping emojis if needed
+  let mainTag = d.tags.length > 0 ? d.tags[0].replace(/[^a-zA-Z0-9\s\/-]/g, '').trim() : "Premium Dispensary";
+  if (mainTag.toLowerCase() === 'favorite' && d.tags.length > 1) {
+    mainTag = d.tags[1].replace(/[^a-zA-Z0-9\s\/-]/g, '').trim();
+  }
+
+  let tagColor = 'default';
+  if (d.featured || tagsStr.includes('top shelf') || tagsStr.includes('premium')) tagColor = 'gold';
+  else if (tagsStr.includes('organic') || tagsStr.includes('lounge') || tagsStr.includes('craft')) tagColor = 'green';
+
+  return {
+    id: d.id,
+    name: d.name,
+    address: d.address,
+    city: d.city,
+    icon: d.icon || "🌿",
+    badge: badge,
+    tag: mainTag,
+    tagColor: tagColor,
+    vibe: vibeText,
+    love: loveText,
+    category: category,
+    extra: extra, // Powers the cross-filter
+    features: d.tags.slice(0, 4), // Keep cards clean with top 4 tags
+    website: d.website,
+    featured: d.featured,
+    rank: d.rank
+  };
+});
+
+/* ══════════════════════════════════════════════════════════
+   STATE
+   ══════════════════════════════════════════════════════════ */
+let searchVal = '', cityVal = 'All', vibeVal = 'All', chipVal = null, sortVal = 'default';
+
+/* ══════════════════════════════════════════════════════════
+   REGION CONFIG
+   ══════════════════════════════════════════════════════════ */
+const REGIONS = [
+  { id: "sunland",   city: "Sunland Park",  emoji: "📍", label: "Sunland Park, NM",  meta: "West El Paso · 10–20 min drive", color: "emerald", anchor: "region-sunland" },
+  { id: "chaparral", city: "Chaparral",     emoji: "📍", label: "Chaparral, NM",     meta: "Northeast El Paso · via Dyer / US-54", color: "sky",     anchor: "region-chaparral" },
+  { id: "st",        city: "Santa Teresa",  emoji: "📍", label: "Santa Teresa, NM",  meta: "Upper Valley · Port of Entry", color: "violet",  anchor: "region-st" },
+  { id: "anthony",   city: "Anthony",       emoji: "📍", label: "Anthony, NM",       meta: "Lower Valley · I-10 Corridor", color: "amber",   anchor: "region-anthony" }
+];
+
+const REGION_COLORS = {
+  emerald: { header: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400", meta: "text-emerald-500/70", dot: "bg-emerald-500" },
+  sky:     { header: "bg-sky-500/10 border-sky-500/20 text-sky-400",             meta: "text-sky-500/70",     dot: "bg-sky-500" },
+  violet:  { header: "bg-violet-500/10 border-violet-500/20 text-violet-400",    meta: "text-violet-500/70",  dot: "bg-violet-500" },
+  amber:   { header: "bg-amber-500/10 border-amber-500/20 text-amber-400",       meta: "text-amber-500/70",   dot: "bg-amber-500" }
+};
+
+/* ══════════════════════════════════════════════════════════
+   CARD TEMPLATE
+   ══════════════════════════════════════════════════════════ */
+function card(d) {
+  const map = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.name+' '+d.address+' '+d.city+' NM')}`;
+  const tagBg = d.tagColor === 'gold'    ? 'bg-amber-500/15 text-amber-400 border-amber-500/30'
+              : d.tagColor === 'green'   ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+              :                            'bg-white/10 text-gray-300 border-white/20';
+  const badgeHtml = d.badge
+    ? `<div class="ribbon ${d.tagColor === 'gold' ? 'bg-amber-500/90' : d.tagColor === 'green' ? 'bg-emerald-600/90' : 'bg-slate-700/90'}">${d.badge}</div>`
+    : '';
+  const featBorder = d.featured ? 'border-emerald-500/40 ring-[3px] ring-emerald-400/20 shadow-[0_8px_30px_rgba(16,185,129,0.2)]' : 'border-white/10 hover:border-white/25';
+  
+  // Adjusted button classes for flex-1 sharing to prevent squishing out of bounds
+  const websiteBtn = d.website
+    ? `<a href="${d.website}" target="_blank" rel="noopener noreferrer"
+          class="flex-1 flex items-center justify-center gap-2 bg-emerald-900/90 hover:bg-emerald-700 text-white text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap shadow-sm">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Visit Site
+       </a>`
+    : '';
+
+  return `
+  <div class="relative bg-white/5 backdrop-blur-xl rounded-[2rem] border ${featBorder} flex flex-col h-full overflow-hidden card-hover" data-id="${d.id}">
+    ${badgeHtml}
+    <div class="p-5 sm:p-6 flex flex-col flex-1">
+
+      <!-- Head -->
+      <div class="flex items-start gap-4 mb-5">
+        <div class="shrink-0 w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-3xl">
+          ${d.icon}
+        </div>
+        <div class="min-w-0 flex-1 pt-1">
+          <!-- Added break-words whitespace-normal to guarantee it wraps fully -->
+          <h3 class="font-display text-[1.25rem] font-bold text-white leading-tight mb-1 break-words whitespace-normal">${d.name}</h3>
+          <a href="${map}" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-start gap-1 mt-1 text-[11px] text-gray-500 hover:text-emerald-400 transition-colors leading-snug">
+            <svg class="w-3 h-3 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+            <span>${d.address}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tag -->
+      <div class="mb-5">
+        <span class="tag-pill border ${tagBg}">${d.tag}</span>
+      </div>
+
+      <!-- Vibe (Tightened spacing to reduce vertical bloat) -->
+      <div class="space-y-3 mb-5">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-3.5">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            <span class="text-[9px] text-emerald-400 uppercase tracking-widest font-bold">The Vibe</span>
+          </div>
+          <p class="text-[13px] text-gray-300 leading-relaxed">${d.vibe}</p>
+        </div>
+        <div class="px-2">
+          <div class="flex items-center gap-1.5 mb-1">
+            <svg class="w-3.5 h-3.5 text-rose-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+            <span class="text-[9px] text-rose-400 uppercase tracking-widest font-bold">Why We Love It</span>
+          </div>
+          <p class="text-[13px] text-gray-400 leading-relaxed">${d.love}</p>
+        </div>
+      </div>
+
+      <!-- Bottom wrapper that cleanly pushes tags and actions to the bottom together -->
+      <div class="mt-auto flex flex-col gap-5 pt-2">
+        <!-- Features -->
+        <div class="flex flex-wrap gap-2">
+          ${d.features.map(f=>`<span class="tag-pill bg-white/5 text-gray-400 border border-white/10">${f}</span>`).join('')}
+        </div>
+
+        <!-- Actions: flex-wrap + flex-1 so buttons nicely sit next to each other -->
+        <div class="flex flex-wrap sm:flex-nowrap gap-2 sm:gap-3 card-actions pt-4 border-t border-white/10">
+          ${websiteBtn}
+          <a href="${map}" target="_blank" rel="noopener noreferrer"
+             class="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-10l6-3m0 13l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4"/></svg>
+            Directions
+          </a>
+          <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" target="_blank" rel="noopener noreferrer"
+             class="flex items-center justify-center text-emerald-500/60 hover:text-emerald-400 text-[11px] font-bold transition-colors px-3 py-2 border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-500/10 rounded-xl whitespace-nowrap shrink-0">
+            Claim
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════
+   AD CARD
+   ══════════════════════════════════════════════════════════ */
+function adCard() {
+  return `
+  <div class="relative bg-gradient-to-br from-emerald-900/20 to-teal-900/10 rounded-[2rem] border border-dashed border-emerald-500/30 flex flex-col items-center justify-center text-center p-8">
+    <div class="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-2xl mb-5">✦</div>
+    <h4 class="font-display text-xl font-bold text-white mb-2 leading-tight">Your Dispensary Here</h4>
+    <p class="text-sm text-emerald-400/70 leading-relaxed mb-6 max-w-[220px]">Put your shop in front of thousands of active shoppers along the border.</p>
+    <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" target="_blank"
+       class="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:-translate-y-0.5">
+      Get Featured →
+    </a>
+  </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════
+   REGION HEADER
+   ══════════════════════════════════════════════════════════ */
+function regionHeader(r) {
+  const c = REGION_COLORS[r.color];
+  return `
+  <div id="${r.anchor}" class="col-span-full scroll-mt-32">
+    <div class="${c.header} rounded-[2rem] px-6 py-5 flex items-center gap-4 border">
+      <div class="${c.dot} w-2.5 h-2.5 rounded-full shrink-0 shadow-sm"></div>
+      <div class="min-w-0">
+        <h2 class="font-display text-2xl font-bold leading-tight">${r.label}</h2>
+        <p class="${c.meta} font-mono text-[10px] tracking-wider uppercase mt-1 font-semibold">${r.meta}</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RENDER
+   ══════════════════════════════════════════════════════════ */
+function render() {
+  const grid = document.getElementById('gb-grid');
+  const noRes = document.getElementById('gb-no-results');
+  const countEl = document.getElementById('gb-count');
+  const resetBtn = document.getElementById('gb-reset');
+
+  const filterActive = searchVal || cityVal !== 'All' || vibeVal !== 'All' || chipVal;
+
+  // Filter
+  function match(d) {
+    const cat = chipVal || (vibeVal !== 'All' ? vibeVal : null);
+    if (searchVal) {
+      const hay = [d.name, d.address, d.city, d.tag, d.vibe, d.love, ...d.features].join(' ').toLowerCase();
+      if (!hay.includes(searchVal.toLowerCase())) return false;
+    }
+    if (cityVal !== 'All' && d.city !== cityVal) return false;
+    if (cat) {
+      if (d.category !== cat && !d.extra.includes(cat)) return false;
+    }
+    return true;
+  }
+
+  const filtered = DATA.filter(match);
+  const total = filtered.length;
+
+  countEl.textContent = filterActive
+    ? `${total} dispensar${total !== 1 ? 'ies' : 'y'} found`
+    : `Showing all ${total} dispensaries`;
+  resetBtn.classList.toggle('hidden', !filterActive);
+  noRes.classList.toggle('hidden', total > 0);
+
+  if (total === 0) { grid.innerHTML = ''; return; }
+
+  let html = '';
+
+  function sortItems(items) {
+    if (sortVal === 'alpha') {
+      return [...items].sort((a,b) => a.name.localeCompare(b.name));
+    }
+    // default: featured first, then rank
+    return [...items].sort((a,b) => {
+      if (b.featured !== a.featured) return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+      return a.rank - b.rank;
+    });
+  }
+
+  if (!filterActive || cityVal !== 'All') {
+    // Show by region with headers
+    const regionsToShow = cityVal === 'All' ? REGIONS : REGIONS.filter(r => r.city === cityVal);
+    regionsToShow.forEach((r, ri) => {
+      const regionItems = filtered.filter(d => d.city === r.city);
+      if (regionItems.length === 0) return;
+
+      html += regionHeader(r);
+      sortItems(regionItems).forEach(d => { html += card(d); });
+
+      // Insert ad card after first region (only in full view)
+      if (ri === 0 && cityVal === 'All') html += adCard();
+    });
+  } else {
+    // Flat filtered list
+    sortItems(filtered).forEach(d => { html += card(d); });
+  }
+
+  grid.innerHTML = html;
+}
+
+/* ══════════════════════════════════════════════════════════
+   EVENT BINDING
+   ══════════════════════════════════════════════════════════ */
+const searchEl = document.getElementById('gb-search');
+const clearBtn = document.getElementById('gb-search-clear');
+searchEl.addEventListener('input', function() {
+  searchVal = this.value.trim();
+  clearBtn.classList.toggle('hidden', !searchVal);
+  render();
+});
+
+document.getElementById('gb-city').addEventListener('change', function() {
+  cityVal = this.value; render();
+});
+document.getElementById('gb-vibe').addEventListener('change', function() {
+  vibeVal = this.value;
+  // clear chip when dropdown used
+  chipVal = null;
+  document.querySelectorAll('.gb-chip').forEach(c => c.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50'));
+  render();
+});
+
+document.querySelectorAll('.gb-chip').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const v = this.dataset.chip;
+    if (chipVal === v) {
+      chipVal = null;
+      this.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50');
+    } else {
+      chipVal = v;
+      vibeVal = 'All';
+      document.getElementById('gb-vibe').value = 'All';
+      document.querySelectorAll('.gb-chip').forEach(c => c.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50'));
+      this.classList.add('bg-emerald-500/20','text-emerald-300','border-emerald-500/50');
+    }
+    render();
+  });
+});
+
+document.getElementById('gb-reset').addEventListener('click', gbReset);
+
+function gbReset() {
+  searchVal = ''; cityVal = 'All'; vibeVal = 'All'; chipVal = null;
+  searchEl.value = '';
+  clearBtn.classList.add('hidden');
+  document.getElementById('gb-city').value = 'All';
+  document.getElementById('gb-vibe').value = 'All';
+  document.querySelectorAll('.gb-chip').forEach(c => c.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50'));
+  render();
+}
+window.gbReset = gbReset;
+
+// Sort toggle
+document.getElementById('gb-sort').addEventListener('click', function() {
+  sortVal = sortVal === 'default' ? 'alpha' : 'default';
+  document.getElementById('gb-sort-label').textContent = sortVal === 'alpha' ? 'A–Z' : 'Default';
+  this.classList.toggle('text-emerald-400', sortVal === 'alpha');
+  this.classList.toggle('border-emerald-500/30', sortVal === 'alpha');
+  this.classList.toggle('bg-emerald-500/10', sortVal === 'alpha');
+  render();
+});
+
+// Filter hide/show toggle
+(function() {
+  const filterBar = document.querySelector('.filter-sticky');
+  const toggleBtn = document.getElementById('gb-filter-toggle');
+  const toggleLabel = document.getElementById('gb-toggle-label');
+  let filtersVisible = true;
+  toggleBtn.addEventListener('click', function() {
+    filtersVisible = !filtersVisible;
+    filterBar.classList.toggle('filter-hidden', !filtersVisible);
+    toggleLabel.textContent = filtersVisible ? 'Hide Filters' : 'Show Filters';
+    this.classList.toggle('filter-is-hidden', !filtersVisible);
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   FAQ
+   ══════════════════════════════════════════════════════════ */
+const FAQS = [
+  { q: "Do I need a medical card to buy in New Mexico?",
+    a: "No. Anyone 21+ with a valid government-issued ID (Driver's License, Passport, Consular ID, etc.) can purchase recreational cannabis at any dispensary listed above. No medical card required." },
+  { q: "How much cannabis can I buy at once?",
+    a: "The recreational purchase limit per transaction in New Mexico is: 2 ounces of flower, 16 grams of concentrate (wax, cartridges, etc.), or 800mg of edibles. These limits apply per visit at each dispensary." },
+  { q: "Can I use my Texas ID?",
+    a: "Yes — any valid, unexpired government-issued ID works. In fact, some shops like Kushology 101 run 'Texas ID Tuesday' promotions specifically for you." },
+  { q: "Can I smoke in public?",
+    a: "Generally, no. Public consumption is restricted in New Mexico. However, licensed consumption lounges allow you to legally consume on-site. For example, High Valley Cannabis is a legal on-site consumption option alongside other local lounges." },
+  { q: "Are there any active consumption lounges?",
+    a: "Yes! The borderland area currently features three active consumption lounges: Astro Buds, Dispensary Near Me, and High Valley Cannabis. These provide a safe, legal environment to enjoy your purchases on-site." },
+  { q: "Which area is closest to my part of El Paso?",
+    a: "West El Paso & Upper Valley → Sunland Park or Santa Teresa. Northeast El Paso → Chaparral via Dyer St / US-54. East El Paso → Chaparral via Montana Ave to US-54. Lower Valley → Anthony via I-10." }
+];
+
+const faqContainer = document.getElementById('gb-faqs');
+faqContainer.innerHTML = FAQS.map((f,i) => `
+  <div class="border border-white/10 rounded-[2rem] bg-white/5 overflow-hidden hover:bg-white/8 transition-colors">
+    <button class="gb-faq-btn w-full text-left px-6 sm:px-8 py-6 flex justify-between items-center gap-4 focus:outline-none" data-idx="${i}">
+      <span class="font-display font-semibold text-white text-[15px] leading-snug">${f.q}</span>
+      <div class="shrink-0 w-8 h-8 bg-white/10 border border-white/20 rounded-full flex items-center justify-center transition-all">
+        <svg class="gb-faq-ico w-4 h-4 text-emerald-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+    </button>
+    <div class="gb-faq-body hidden px-6 sm:px-8 pb-7 pt-0">
+      <div class="border-t border-white/10 pt-5">
+        <p class="text-[15px] text-gray-400 leading-relaxed">${f.a}</p>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+document.querySelectorAll('.gb-faq-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const body = this.nextElementSibling;
+    const ico = this.querySelector('.gb-faq-ico');
+    const open = !body.classList.contains('hidden');
+    body.classList.toggle('hidden', open);
+    ico.style.transform = open ? '' : 'rotate(180deg)';
+    this.parentElement.classList.toggle('border-emerald-500/30', !open);
+    this.parentElement.classList.toggle('bg-white/8', !open);
+  });
+});
+
+/* Initial render */
+render();
+
+})();
+</script>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║             BORDER CROSSING BANNER           ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="px-4 py-3 max-w-6xl mx-auto">
+  <div class="rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(16,185,129,0.08));border:1px solid rgba(245,158,11,0.25);">
+    <span class="text-3xl">⚠️</span>
+    <div class="text-center sm:text-left">
+      <p class="text-yellow-300 font-semibold text-sm">Cannabis Stays on Your Side of the Border</p>
+      <p class="text-gray-400 text-xs mt-0.5">It is a <strong class="text-white">federal crime</strong> to transport cannabis across state or international borders. Consume legally — enjoy locally.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║               LATEST NEWS                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="news" class="py-20 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-14 reveal">
+    <span class="section-line mb-4 block mx-auto"></span>
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Latest from The Green Border</h2>
+    <p class="text-gray-400 max-w-xl mx-auto">Cannabis news, policy updates, and culture for the 915 and beyond.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Article 1 – Featured -->
+    <a href="/articles/hemp-ban-2026.html" class="news-card rounded-2xl overflow-hidden reveal lg:col-span-2 block no-underline transition hover:transform hover:translate-y-[-4px]">
+      <div class="h-52 relative overflow-hidden">
+        <img src="https://www.thegreenborder.com/content/images/size/w800/2026/03/photo-1681857240171-7408cd66c75e-1.jpeg" alt="Hemp products" class="w-full h-full object-cover">
+        <div class="absolute bottom-4 left-4">
+          <span class="tag" style="background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);">Featured</span>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">March 5, 2026</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-red-400 font-medium">Hemp &amp; Policy</span>
+        </div>
+        <h3 class="text-white font-semibold text-xl leading-snug mb-3">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">A federal law will ban most hemp-derived THC products by November 12, 2026. In Texas, that means 6,350 businesses and 40,000 jobs are on the clock.</p>
+        <span class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read Article <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <!-- CTA: View All Articles -->
+    <div class="news-card rounded-2xl overflow-hidden reveal flex flex-col">
+      <div class="h-40 relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(245,158,11,0.08));">
+        <div class="text-6xl opacity-30">📰</div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">Latest News</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-emerald-500 font-medium">Explore</span>
+        </div>
+        <h3 class="text-white font-semibold text-base leading-snug mb-2">Read All Articles</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">Browse the latest cannabis policy updates, industry news, and 915 community coverage on our news page.</p>
+        <a href="/news.html" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">View All <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Newsletter CTA -->
+    <div class="news-card rounded-2xl p-6 flex flex-col justify-between reveal" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border-color:rgba(16,185,129,0.2);">
+      <div>
+        <div class="text-2xl mb-3">📬</div>
+        <h3 class="text-white font-semibold text-lg mb-2">Stay in the Loop</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">Get the latest 915 cannabis news, deals, and dispensary updates delivered to your inbox.</p>
+      </div>
+      <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
+        <input type="email" placeholder="your@email.com" required class="w-full px-4 py-2.5 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
+        <button type="submit" class="w-full btn-primary py-2.5 rounded-xl text-white text-sm font-semibold">Subscribe Free</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║              EDUCATION SECTION               ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="education" class="py-20 px-4" style="background:linear-gradient(180deg,#0a0a0a 0%,#0f0f0f 50%,#0a0a0a 100%);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <span class="section-line mb-4 block mx-auto"></span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Cannabis Education</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Know before you go. Practical guides for 915 first-timers and seasoned consumers alike.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="dispensary-card rounded-2xl p-5 reveal">
+        <div class="edu-icon mb-4">🍬</div>
+        <h3 class="text-white font-semibold mb-2">Edibles 101: Start Low, Go Slow</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Master cannabis edibles with our complete guide to dosing, timing, and safety. Learn why edibles feel different and how to avoid common pitfalls.</p>
+        <a href="/education/edibles-101-start-low-go-slow-desert-survival-guide.html" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <div class="dispensary-card rounded-2xl p-5 reveal">
+        <div class="edu-icon mb-4">💨</div>
+        <h3 class="text-white font-semibold mb-2">Vapes, Dabs, or Flower?</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Compare consumption methods and find the perfect fit for your lifestyle. Discover which method is right for your tolerance, environment, and preferences.</p>
+        <a href="/education/vapes-dabs-flower-perfect-consumption-method.html" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <div class="dispensary-card rounded-2xl p-5 reveal">
+        <div class="edu-icon mb-4">📖</div>
+        <h3 class="text-white font-semibold mb-2">Dispensary Menu 101</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Decode cannabis terminology: What's an eighth? Shake vs. buds? Live resin vs. distillate? Master dispensary jargon like a pro.</p>
+        <a href="/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                ABOUT SECTION                 ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="about" class="py-20 px-4 max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+    <div class="reveal">
+      <span class="section-line mb-5 block"></span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-5" style="font-family:'Rajdhani',sans-serif;">About The Green Border</h2>
+      <p class="text-gray-400 leading-relaxed mb-4">
+        The Green Border was built for the <span class="text-white font-medium">915 community</span> — the El Paso residents, the Sunland Park locals, and the border-crossers navigating two states with very different cannabis laws.
+      </p>
+      <p class="text-gray-400 leading-relaxed mb-4">
+        We cut through the noise to give you accurate, up-to-date dispensary info, legal guidance, and honest cannabis journalism rooted in the unique culture of the US-Mexico border region.
+      </p>
+      <p class="text-gray-400 leading-relaxed mb-6">
+        No corporate affiliations. No paid rankings. Just a community resource for the people who live here.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-300" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Independent &amp; Community-Owned
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-300" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);">
+          <span class="w-2 h-2 rounded-full bg-yellow-400"></span> El Paso Born &amp; Raised
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats card -->
+    <div class="grid grid-cols-2 gap-4 reveal">
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(16,185,129,0.15);">
+        <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">915</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Area Code</div>
+      </div>
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(245,158,11,0.15);">
+        <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">2</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">States Covered</div>
+      </div>
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(16,185,129,0.15);">
+        <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">Free</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Always</div>
+      </div>
+      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(245,158,11,0.15);">
+        <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">100%</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Independent</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                   FOOTER                     ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<footer class="tgb-glass-footer">
+    <div class="tgb-footer-card">
+
+        <div class="tgb-footer-cta">
+            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+            <p class="tgb-cta-text">
+                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
+            </p>
+            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
+        </div>
+
+        <nav class="tgb-footer-nav">
+            <a href="/" class="tgb-footer-link">Home</a>
+            <a href="/news.html" class="tgb-footer-link">News</a>
+            <a href="https://www.thegreenborder.com/about/" class="tgb-footer-link">About Us</a>
+            <a href="https://www.thegreenborder.com/best-el-paso-dispensaries/" class="tgb-footer-link">Dispensary Map</a>
+            <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-footer-link">Advertise</a>
+            <a href="https://www.thegreenborder.com/tips/" class="tgb-footer-link">Send a Tip</a>
+        </nav>
+
+        <div class="tgb-favorites-section">
+            <span class="tgb-favorites-title">Our Favorites</span>
+            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
+                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
+                <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-footer-link" style="color: #ca8a04;">✨ Get Added Here</a>
+            </nav>
+        </div>
+
+        <div class="tgb-legal-block">
+            <p class="tgb-disclaimer-text">
+                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
+            </p>
+            <p class="tgb-disclaimer-text">
+                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
+            </p>
+            <div class="tgb-copyright">
+                Powered by the 915 | Made with ❤ in El Paso, Texas
+                <br>
+                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.2
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                JAVASCRIPT                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<script>
+  // ── Body padding for fixed header ────────────────
+  document.body.style.paddingTop = "80px";
+
+  // ── Age Gate ─────────────────────────────────────
+  document.addEventListener("DOMContentLoaded", function () {
+    const ageOverlay = document.getElementById('tgb-age-overlay');
+    const storageKey = 'tgb_age_verified_v1';
+    if (!localStorage.getItem(storageKey)) {
+      ageOverlay.style.display = 'flex';
+      setTimeout(() => ageOverlay.classList.add('active'), 50);
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  function tgbVerifyAge() {
+    const ageOverlay = document.getElementById('tgb-age-overlay');
+    localStorage.setItem('tgb_age_verified_v1', 'true');
+    ageOverlay.classList.remove('active');
+    setTimeout(() => {
+      ageOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 400);
+  }
+
+  // ── Scroll-reveal ────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Dispensary filter ────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.style.background = '';
+        b.style.color      = '';
+        b.style.borderColor= '';
+        b.classList.remove('active');
+      });
+      btn.style.background  = 'rgba(16,185,129,0.15)';
+      btn.style.color       = '#34d399';
+      btn.style.borderColor = 'rgba(16,185,129,0.4)';
+      btn.classList.add('active');
+
+      document.querySelectorAll('#dispensary-grid > div[data-state]').forEach(card => {
+        const show = filter === 'all' || card.dataset.state === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // ── Newsletter form ──────────────────────────────
+  function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = 'linear-gradient(135deg,#047857,#065f46)';
+    e.target.querySelector('input').value = '';
+    setTimeout(() => {
+      btn.textContent = 'Subscribe Free';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // ── Scrolled state for header ────────────────────
+  window.addEventListener('scroll', () => {
+    document.body.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+</script>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║             MOBILE BOTTOM NAV                ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="tgb-mobile-nav" id="tgb-mobile-menu">
+    <div class="tgb-menu-toggler">
+        <div>☰</div>
+        <span>Menu</span>
+    </div>
+    <a href="https://greenborder.org/" class="tgb-nav-item" id="nav-home">
+        <span class="tgb-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="/news.html" class="tgb-nav-item" id="nav-news">
+        <span class="tgb-nav-icon">📰</span>
+        <span>News</span>
+    </a>
+    <a href="https://www.thegreenborder.com/best-el-paso-dispensaries/" class="tgb-nav-item" id="nav-map">
+        <span class="tgb-nav-icon">🗺️</span>
+        <span>Map</span>
+    </a>
+    <a href="https://www.thegreenborder.com/new-mexico-dispensary-sales-data/" class="tgb-nav-item" id="nav-data">
+        <span class="tgb-nav-icon">📊</span>
+        <span>Data</span>
+    </a>
+    <a href="https://www.thegreenborder.com/advertising-partnerships-with-ep-cannabis-club/" class="tgb-nav-item" id="nav-partner">
+        <span class="tgb-nav-icon">🤝</span>
+        <span>Partner</span>
+    </a>
+</div>
+
+<div id="tgb-scroll-btn" onclick="tgbScrollToTop()">
+    <div id="tgb-scroll-arrow"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Footer year
+        document.getElementById("tgb-year").textContent = new Date().getFullYear();
+
+        // Mobile nav active state
+        const currentPath = window.location.pathname;
+        const currentHref = window.location.href;
+
+        function setActive(id) {
+            document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
+            const el = document.getElementById(id);
+            if (el) el.classList.add('active');
+        }
+
+        if (currentHref.includes("sunland-park-cannabis-tax-calculator")) {
+            setActive('nav-tax');
+        } else if (currentHref.includes("best-el-paso-dispensaries")) {
+            setActive('nav-map');
+        } else if (currentHref.includes("new-mexico-dispensary-sales-data") || currentHref.includes("sales-data")) {
+            setActive('nav-data');
+        } else if (currentHref.includes("advertising-partnerships")) {
+            setActive('nav-partner');
+        } else if (currentPath === "/" || currentPath === "" || currentHref.includes("greenborder.org/") && !currentHref.includes("greenborder.org/b") && !currentHref.includes("greenborder.org/n") && !currentHref.includes("greenborder.org/s") && !currentHref.includes("greenborder.org/a")) {
+            setActive('nav-home');
+        }
+
+        document.querySelectorAll('.tgb-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Collapse on scroll
+        const navMenu = document.getElementById('tgb-mobile-menu');
+        let isNavExpanded = true;
+
+        window.addEventListener("scroll", function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (window.innerWidth <= 768) {
+                if (scrollTop > 50) {
+                    if (isNavExpanded) {
+                        navMenu.classList.add('nav-collapsed');
+                        isNavExpanded = false;
+                    }
+                } else if (scrollTop < 10) {
+                    navMenu.classList.remove('nav-collapsed');
+                    isNavExpanded = true;
+                }
+            }
+            // Back to top button
+            const scrollBtn = document.getElementById("tgb-scroll-btn");
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add("show");
+            } else {
+                scrollBtn.classList.remove("show");
+            }
+        }, { passive: true });
+
+        // Tap collapsed menu to expand
+        navMenu.addEventListener('click', function(e) {
+            if (navMenu.classList.contains('nav-collapsed')) {
+                e.preventDefault();
+                navMenu.classList.remove('nav-collapsed');
+                isNavExpanded = true;
+            }
+        });
+    });
+
+    function tgbScrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
 </body>
 </html>
