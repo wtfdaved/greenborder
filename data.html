@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Data | The Green Border</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="The Green Border Sales Data Dashboard - Track cannabis sales trends, dispensary performance, and market insights across the 915 border region." />
+  <meta name="keywords" content="cannabis sales data, dispensary analytics, 915 sales trends, New Mexico cannabis market" />
+  <meta name="author" content="The Green Border" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://greenborder.org/data.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenborder.org/data.html" />
+  <meta property="og:title" content="Sales Data | The Green Border" />
+  <meta property="og:description" content="Track cannabis sales trends and dispensary performance across the 915 border region." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
+            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Rajdhani', 'Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0a0a0a;
+      color: #e5e7eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Glass Header ── */
+    #tgb-glass-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1200px;
+      z-index: 10000;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border-radius: 20px;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+    body.scrolled #tgb-glass-header {
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+    }
+    .tgb-logo-container {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tgb-logo-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #34d399;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      transition: transform 0.2s ease;
+    }
+    .tgb-logo-sparkle {
+      color: #ca8a04;
+      font-size: 24px;
+      animation: tgb-spin-slow 10s linear infinite;
+    }
+    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
+    .tgb-desktop-nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .tgb-header-link {
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 600;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ca8a04;
+      transition: width 0.3s ease;
+    }
+    .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .tgb-search-icon {
+      color: #34d399;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-header-btn {
+      background: #1a4d2e;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      transition: all 0.2s ease;
+    }
+    .tgb-header-btn:hover {
+      background: #14532d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+    }
+    @keyframes tgb-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .tgb-desktop-nav { display: none; }
+      .tgb-logo-text { font-size: 20px; }
+      .tgb-logo-sparkle { font-size: 20px; }
+      #tgb-glass-header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        padding: 12px 16px;
+        max-width: none;
+      }
+      .tgb-header-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .tgb-search-icon {
+        padding: 6px;
+      }
+    }
+
+    /* ── Section divider ── */
+    .section-line {
+      display: inline-block;
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, #10b981, #f59e0b);
+      border-radius: 9999px;
+    }
+
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: 80px;
+        padding: 0 20px 40px 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(246,248,252,0.98) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.03), 0 20px 40px rgba(0,0,0,0.05);
+        border-radius: 30px;
+        padding: 50px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #1a4d2e;
+        margin: 0 0 10px 0;
+    }
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #6e6e73;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: #1a4d2e;
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(26, 77, 46, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 77, 46, 0.4);
+    }
+    .tgb-footer-nav {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #1d1d1f;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #1a4d2e; }
+    .tgb-favorites-section {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tgb-favorites-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #86868b;
+        margin: 0 0 15px 0;
+        display: block;
+    }
+    .tgb-legal-block {
+        background: rgba(0,0,0,0.02);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #86868b;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #1d1d1f;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.6;
+    }
+
+    /* ── Mobile Bottom Nav ── */
+    .tgb-mobile-nav { display: none; }
+    @media (max-width: 768px) {
+        body { padding-bottom: 100px; }
+        .tgb-footer-card { padding: 30px 20px; }
+        .tgb-footer-nav { flex-direction: column; gap: 15px; }
+        .tgb-mobile-nav {
+            display: flex;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94%;
+            max-width: 420px;
+            background: rgba(10, 10, 10, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+            border-radius: 50px;
+            z-index: 99999;
+            padding: 10px 0;
+            justify-content: space-evenly;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            height: 65px;
+        }
+        .tgb-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            width: 20%;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+        .tgb-nav-item.active { color: #34d399; transform: translateY(-2px); }
+        .tgb-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            width: 4px;
+            height: 4px;
+            background: #34d399;
+            border-radius: 50%;
+        }
+        .tgb-nav-icon { font-size: 20px; margin-bottom: 2px; }
+    }
+
+    /* ── Content Section ── */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      min-height: 60vh;
+    }
+
+    .dashboard-placeholder {
+      background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(245,158,11,0.05) 100%);
+      border: 2px dashed rgba(16,185,129,0.3);
+      border-radius: 20px;
+      padding: 60px 40px;
+      text-align: center;
+      color: #cbd5e1;
+    }
+
+    .dashboard-placeholder h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #34d399;
+      margin-bottom: 15px;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .dashboard-placeholder p {
+      font-size: 16px;
+      color: #9ca3af;
+      margin-bottom: 20px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .code-hint {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin: 30px auto 0;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      color: #a5b4fc;
+    }
+
+    .code-hint code {
+      color: #34d399;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║               HEADER / NAV                   ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<header id="tgb-glass-header">
+  <a href="/" class="tgb-logo-container">
+    <span class="tgb-logo-text">The Green Border</span>
+    <span class="tgb-logo-sparkle">✦</span>
+  </a>
+
+  <nav class="tgb-desktop-nav">
+    <a href="/"             class="tgb-header-link">Home</a>
+    <a href="/news.html"    class="tgb-header-link">News</a>
+    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
+    <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="/#education"    class="tgb-header-link">Education</a>
+    <a href="/#about"        class="tgb-header-link">About</a>
+  </nav>
+
+  <div class="tgb-header-actions">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </a>
+    <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
+  </div>
+</header>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║           PAGE TITLE & INTRO                 ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="pt-40 pb-20 px-4 text-center">
+  <span class="section-line mb-4 block mx-auto"></span>
+  <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 font-display">Sales Data</h1>
+  <p class="text-gray-300 text-lg max-w-2xl mx-auto">Track cannabis sales trends, dispensary performance, and market insights across the 915 border region.</p>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║        DASHBOARD PLACEHOLDER                 ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="dashboard-container">
+  <div class="dashboard-placeholder">
+    <h2>📊 Your Dashboard Goes Here</h2>
+    <p>Replace this section with your existing dashboard code. All styling, headers, and footers are already configured and ready to use.</p>
+
+    <div class="code-hint">
+      <code><!-- Paste your dashboard HTML/code here --></code><br>
+      <code style="color: #9ca3af;">// Your charts, tables, and data visualizations go within the .dashboard-container</code>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                  FOOTER                      ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<footer class="tgb-glass-footer">
+    <div class="tgb-footer-card">
+
+        <div class="tgb-footer-cta">
+            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+            <p class="tgb-cta-text">
+                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
+            </p>
+            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
+        </div>
+
+        <nav class="tgb-footer-nav">
+            <a href="/" class="tgb-footer-link">Home</a>
+            <a href="/news.html" class="tgb-footer-link">News</a>
+            <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+            <a href="/#education" class="tgb-footer-link">Education</a>
+            <a href="/#about" class="tgb-footer-link">About</a>
+        </nav>
+
+        <div class="tgb-favorites-section">
+            <span class="tgb-favorites-title">Our Favorites</span>
+            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
+                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
+            </nav>
+        </div>
+
+        <div class="tgb-legal-block">
+            <p class="tgb-disclaimer-text">
+                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
+            </p>
+            <p class="tgb-disclaimer-text">
+                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
+            </p>
+            <div class="tgb-copyright">
+                Powered by the 915 | Made with ❤ in El Paso, Texas
+                <br>
+                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.2
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                JAVASCRIPT                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<script>
+  // ── Body padding for fixed header ────────────────
+  document.body.style.paddingTop = "80px";
+
+  // ── Scrolled state for header ────────────────────
+  window.addEventListener('scroll', () => {
+    document.body.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Update year in footer ────────────────────────
+  document.getElementById('tgb-year').textContent = new Date().getFullYear();
+</script>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║             MOBILE BOTTOM NAV                ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="tgb-mobile-nav" id="tgb-mobile-menu">
+    <a href="/" class="tgb-nav-item" id="nav-home">
+        <span class="tgb-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="/news.html" class="tgb-nav-item" id="nav-news">
+        <span class="tgb-nav-icon">📰</span>
+        <span>News</span>
+    </a>
+    <a href="/data.html" class="tgb-nav-item" id="nav-data">
+        <span class="tgb-nav-icon">📊</span>
+        <span>Data</span>
+    </a>
+    <a href="/#education" class="tgb-nav-item" id="nav-edu">
+        <span class="tgb-nav-icon">📚</span>
+        <span>Education</span>
+    </a>
+    <a href="/#about" class="tgb-nav-item" id="nav-about">
+        <span class="tgb-nav-icon">ℹ️</span>
+        <span>About</span>
+    </a>
+</div>
+
+</body>
+</html>
