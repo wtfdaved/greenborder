@@ -1678,73 +1678,39 @@ render();
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
     <!-- Article 1 – Featured -->
-    <div class="news-card rounded-2xl overflow-hidden reveal lg:col-span-2">
-      <div class="h-52 relative overflow-hidden" style="background:linear-gradient(135deg,#0a1f12,#10341e);">
-        <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20">📰</div>
+    <a href="/articles/hemp-ban-2026.html" class="news-card rounded-2xl overflow-hidden reveal lg:col-span-2 block no-underline transition hover:transform hover:translate-y-[-4px]">
+      <div class="h-52 relative overflow-hidden">
+        <img src="https://www.thegreenborder.com/content/images/size/w800/2026/03/photo-1681857240171-7408cd66c75e-1.jpeg" alt="Hemp products" class="w-full h-full object-cover">
         <div class="absolute bottom-4 left-4">
-          <span class="tag" style="background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Featured</span>
+          <span class="tag" style="background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);">Featured</span>
         </div>
       </div>
       <div class="p-6">
         <div class="flex items-center gap-3 mb-3">
-          <span class="text-xs text-gray-500">March 2026</span>
+          <span class="text-xs text-gray-500">March 5, 2026</span>
           <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-          <span class="text-xs text-emerald-500 font-medium">Policy</span>
+          <span class="text-xs text-red-400 font-medium">Hemp &amp; Policy</span>
         </div>
-        <h3 class="text-white font-semibold text-xl leading-snug mb-3">New Mexico's Cannabis Market Hits Record Sales — What It Means for Border Shoppers</h3>
-        <p class="text-gray-500 text-sm leading-relaxed mb-4">Adult-use cannabis sales in New Mexico continue to surge, with Sunland Park and Anthony dispensaries seeing heavy traffic from El Paso residents crossing the border for legal access.</p>
-        <a href="/news.html" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read Article <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+        <h3 class="text-white font-semibold text-xl leading-snug mb-3">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">A federal law will ban most hemp-derived THC products by November 12, 2026. In Texas, that means 6,350 businesses and 40,000 jobs are on the clock.</p>
+        <span class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read Article <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
       </div>
-    </div>
+    </a>
 
-    <!-- Article 2 -->
+    <!-- CTA: View All Articles -->
     <div class="news-card rounded-2xl overflow-hidden reveal flex flex-col">
-      <div class="h-40 relative overflow-hidden" style="background:linear-gradient(135deg,#100d1f,#1a1530);">
-        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-20">🔬</div>
+      <div class="h-40 relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(245,158,11,0.08));">
+        <div class="text-6xl opacity-30">📰</div>
       </div>
       <div class="p-5 flex flex-col flex-1">
         <div class="flex items-center gap-3 mb-3">
-          <span class="text-xs text-gray-500">Feb 2026</span>
+          <span class="text-xs text-gray-500">Latest News</span>
           <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-          <span class="text-xs text-yellow-500 font-medium">Research</span>
+          <span class="text-xs text-emerald-500 font-medium">Explore</span>
         </div>
-        <h3 class="text-white font-semibold text-base leading-snug mb-2">Understanding Terpenes: The Science Behind Your Favorite Strains</h3>
-        <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">Myrcene, limonene, pinene — learn how terpenes shape the effects and flavors of cannabis beyond just THC percentage.</p>
-        <a href="/news.html#article-terpenes" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
-      </div>
-    </div>
-
-    <!-- Article 3 -->
-    <div class="news-card rounded-2xl overflow-hidden reveal">
-      <div class="h-40 relative overflow-hidden" style="background:linear-gradient(135deg,#1f0d0d,#301515);">
-        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-20">⚖️</div>
-      </div>
-      <div class="p-5">
-        <div class="flex items-center gap-3 mb-3">
-          <span class="text-xs text-gray-500">Jan 2026</span>
-          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-          <span class="text-xs text-red-400 font-medium">Legal</span>
-        </div>
-        <h3 class="text-white font-semibold text-base leading-snug mb-2">Texas Hemp Update: What's Changed for El Paso CBD Shops</h3>
-        <p class="text-gray-500 text-sm leading-relaxed mb-4">Recent Texas legislative sessions have brought new rules to hemp retailers. Here's what El Paso shoppers need to know.</p>
-        <a href="/news.html#article-hemp" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
-      </div>
-    </div>
-
-    <!-- Article 4 -->
-    <div class="news-card rounded-2xl overflow-hidden reveal">
-      <div class="h-40 relative overflow-hidden" style="background:linear-gradient(135deg,#0a1a1f,#0d2530);">
-        <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-20">🌄</div>
-      </div>
-      <div class="p-5">
-        <div class="flex items-center gap-3 mb-3">
-          <span class="text-xs text-gray-500">Dec 2025</span>
-          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-          <span class="text-xs text-emerald-500 font-medium">Culture</span>
-        </div>
-        <h3 class="text-white font-semibold text-base leading-snug mb-2">Border Culture &amp; Cannabis: The 915's Unique Cannabis Identity</h3>
-        <p class="text-gray-500 text-sm leading-relaxed mb-4">How El Paso's bicultural identity shapes a cannabis community unlike anywhere else in the US.</p>
-        <a href="/news.html#article-culture" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+        <h3 class="text-white font-semibold text-base leading-snug mb-2">Read All Articles</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">Browse the latest cannabis policy updates, industry news, and 915 community coverage on our news page.</p>
+        <a href="/news.html" class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">View All <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
       </div>
     </div>
 
