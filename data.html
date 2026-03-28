@@ -567,34 +567,66 @@
     <div class="flex-1 overflow-y-auto overflow-x-hidden tgb-scroll p-4 lg:p-5 flex flex-col gap-4">
         
         <!-- KPI Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 shrink-0">
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col justify-center">
-                <div class="flex justify-between items-center mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Revenue</span>
+        <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 shrink-0">
+            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-emerald-900/30 shadow-lg hover:border-emerald-600/50 transition-colors flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Total Revenue</span>
                     <i data-lucide="dollar-sign" class="w-4 h-4 text-emerald-500"></i>
                 </div>
-                <span id="kpi-total" class="text-xl md:text-2xl font-black text-slate-100 tracking-tight">--</span>
-            </div>
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col justify-center">
-                <div class="flex justify-between items-center mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Adult-Use</span>
-                    <i data-lucide="users" class="w-4 h-4 text-blue-400"></i>
+                <div>
+                    <span id="kpi-total" class="text-lg md:text-xl font-black text-emerald-300 tracking-tight block">--</span>
+                    <span id="kpi-total-growth" class="text-[10px] text-emerald-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
-                <span id="kpi-adult" class="text-xl md:text-2xl font-black text-slate-100 tracking-tight">--</span>
             </div>
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col justify-center">
-                <div class="flex justify-between items-center mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Medical</span>
-                    <i data-lucide="activity" class="w-4 h-4 text-rose-400"></i>
+            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-blue-900/30 shadow-lg hover:border-blue-600/50 transition-colors flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-blue-400">Adult-Use</span>
+                    <i data-lucide="users" class="w-4 h-4 text-blue-500"></i>
                 </div>
-                <span id="kpi-medical" class="text-xl md:text-2xl font-black text-slate-100 tracking-tight">--</span>
+                <div>
+                    <span id="kpi-adult" class="text-lg md:text-xl font-black text-blue-300 tracking-tight block">--</span>
+                    <span id="kpi-adult-growth" class="text-[10px] text-blue-400/80 font-semibold mt-1">↑ +0.0%</span>
+                </div>
             </div>
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col justify-center">
-                <div class="flex justify-between items-center mb-1">
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Active DBAs</span>
-                    <i data-lucide="store" class="w-4 h-4 text-amber-400"></i>
+            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-rose-900/30 shadow-lg hover:border-rose-600/50 transition-colors flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose-400">Medical</span>
+                    <i data-lucide="activity" class="w-4 h-4 text-rose-500"></i>
                 </div>
-                <span id="kpi-stores" class="text-xl md:text-2xl font-black text-slate-100 tracking-tight">--</span>
+                <div>
+                    <span id="kpi-medical" class="text-lg md:text-xl font-black text-rose-300 tracking-tight block">--</span>
+                    <span id="kpi-medical-growth" class="text-[10px] text-rose-400/80 font-semibold mt-1">↑ +0.0%</span>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-amber-900/30 shadow-lg hover:border-amber-600/50 transition-colors flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">Active DBAs</span>
+                    <i data-lucide="store" class="w-4 h-4 text-amber-500"></i>
+                </div>
+                <div>
+                    <span id="kpi-stores" class="text-lg md:text-xl font-black text-amber-300 tracking-tight block">--</span>
+                    <span id="kpi-stores-growth" class="text-[10px] text-amber-400/80 font-semibold mt-1">= 0</span>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-violet-900/30 shadow-lg hover:border-violet-600/50 transition-colors flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-violet-400">Avg Per Store</span>
+                    <i data-lucide="trending-up" class="w-4 h-4 text-violet-500"></i>
+                </div>
+                <div>
+                    <span id="kpi-avg-per-store" class="text-lg md:text-xl font-black text-violet-300 tracking-tight block">--</span>
+                    <span id="kpi-avg-growth" class="text-[10px] text-violet-400/80 font-semibold mt-1">↑ +0.0%</span>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-cyan-900/30 shadow-lg hover:border-cyan-600/50 transition-colors flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-400">Market Concentration</span>
+                    <i data-lucide="pie-chart" class="w-4 h-4 text-cyan-500"></i>
+                </div>
+                <div>
+                    <span id="kpi-concentration" class="text-lg md:text-xl font-black text-cyan-300 tracking-tight block">--</span>
+                    <span id="kpi-top3-share" class="text-[10px] text-cyan-400/80 font-semibold mt-1">Top 3</span>
+                </div>
             </div>
         </div>
 
@@ -627,6 +659,44 @@
             </div>
         </div>
 
+        <!-- Additional Charts Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0 min-h-[280px]">
+            <!-- Top 10 Performers -->
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+                <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Top 10 Performers</h3>
+                <div class="relative flex-1 w-full min-h-[200px]">
+                    <canvas id="tgbBarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Sales Breakdown (Adult-Use vs Medical) -->
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+                <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Sales Breakdown</h3>
+                <div class="relative flex-1 w-full min-h-[200px]">
+                    <canvas id="tgbBreakdownChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Geographic & Performance Metrics -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0">
+            <!-- City Distribution -->
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm">
+                <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">By Location</h3>
+                <div id="city-distribution" class="space-y-2">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm">
+                <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Market Insights</h3>
+                <div id="market-insights" class="space-y-3">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
         <!-- Data Table Container -->
         <div class="bg-[#1a1a1a] rounded-xl border border-slate-700 shadow-sm flex flex-col flex-1 overflow-hidden min-h-[400px]">
             <div class="overflow-x-auto tgb-scroll flex-1">
@@ -643,6 +713,8 @@
                             <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-right cursor-pointer hover:text-emerald-400 group" data-sort="value">
                                 <span id="th-val-label">Total Sales</span> <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                             </th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center w-16">MoM %</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center w-20">Adult/Med</th>
                             <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider w-48">Market Share</th>
                         </tr>
                     </thead>
@@ -1285,11 +1357,57 @@
         const sumTotal = aggregatedTableData.reduce((a, b) => a + b.total, 0);
         const sumAdult = aggregatedTableData.reduce((a, b) => a + b.adultUse, 0);
         const sumMedical = aggregatedTableData.reduce((a, b) => a + b.medical, 0);
-        
+
+        // Get previous month data for growth calculation
+        const currentMonthKey = currentMonth === 'all' ? null : currentMonth;
+        let prevMonthKey = null;
+        if (currentMonthKey && currentMonthKey !== 'all') {
+            const idx = monthKeys.indexOf(currentMonthKey);
+            if (idx > 0) prevMonthKey = monthKeys[idx - 1];
+        }
+
+        const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : null;
+        const prevMonthTotal = prevMonthData ? prevMonthData.reduce((a, b) => a + b.total, 0) : sumTotal;
+        const prevMonthAdult = prevMonthData ? prevMonthData.reduce((a, b) => a + b.adultUse, 0) : sumAdult;
+        const prevMonthMedical = prevMonthData ? prevMonthData.reduce((a, b) => a + b.medical, 0) : sumMedical;
+
+        // Calculate growth percentages
+        const totalGrowth = prevMonthTotal ? ((sumTotal - prevMonthTotal) / prevMonthTotal) * 100 : 0;
+        const adultGrowth = prevMonthAdult ? ((sumAdult - prevMonthAdult) / prevMonthAdult) * 100 : 0;
+        const medicalGrowth = prevMonthMedical ? ((sumMedical - prevMonthMedical) / prevMonthMedical) * 100 : 0;
+
+        // Average per store and growth
+        const avgPerStore = aggregatedTableData.length > 0 ? sumTotal / aggregatedTableData.length : 0;
+        const prevAvgPerStore = prevMonthData && prevMonthData.length > 0 ? prevMonthTotal / prevMonthData.length : avgPerStore;
+        const avgGrowth = prevAvgPerStore ? ((avgPerStore - prevAvgPerStore) / prevAvgPerStore) * 100 : 0;
+
+        // Market concentration (top 3 stores)
+        const sorted = [...aggregatedTableData].sort((a, b) => b.total - a.total);
+        const top3Total = sorted.slice(0, 3).reduce((a, b) => a + b.total, 0);
+        const concentration = sumTotal > 0 ? (top3Total / sumTotal) * 100 : 0;
+
+        // Update DOM
         document.getElementById('kpi-total').textContent = fmt(sumTotal, true);
+        document.getElementById('kpi-total-growth').textContent = `${totalGrowth > 0 ? '↑' : totalGrowth < 0 ? '↓' : '='} ${Math.abs(totalGrowth).toFixed(1)}%`;
+        document.getElementById('kpi-total-growth').style.color = totalGrowth > 0 ? '#34d399' : totalGrowth < 0 ? '#f87171' : '#94a3b8';
+
         document.getElementById('kpi-adult').textContent = fmt(sumAdult, true);
+        document.getElementById('kpi-adult-growth').textContent = `${adultGrowth > 0 ? '↑' : adultGrowth < 0 ? '↓' : '='} ${Math.abs(adultGrowth).toFixed(1)}%`;
+        document.getElementById('kpi-adult-growth').style.color = adultGrowth > 0 ? '#60a5fa' : adultGrowth < 0 ? '#f87171' : '#94a3b8';
+
         document.getElementById('kpi-medical').textContent = fmt(sumMedical, true);
+        document.getElementById('kpi-medical-growth').textContent = `${medicalGrowth > 0 ? '↑' : medicalGrowth < 0 ? '↓' : '='} ${Math.abs(medicalGrowth).toFixed(1)}%`;
+        document.getElementById('kpi-medical-growth').style.color = medicalGrowth > 0 ? '#fb7185' : medicalGrowth < 0 ? '#f87171' : '#94a3b8';
+
         document.getElementById('kpi-stores').textContent = aggregatedTableData.length;
+        document.getElementById('kpi-stores-growth').textContent = `${aggregatedTableData.length - (prevMonthData ? prevMonthData.length : aggregatedTableData.length)}`;
+
+        document.getElementById('kpi-avg-per-store').textContent = fmt(avgPerStore, true);
+        document.getElementById('kpi-avg-growth').textContent = `${avgGrowth > 0 ? '↑' : avgGrowth < 0 ? '↓' : '='} ${Math.abs(avgGrowth).toFixed(1)}%`;
+        document.getElementById('kpi-avg-growth').style.color = avgGrowth > 0 ? '#a78bfa' : avgGrowth < 0 ? '#f87171' : '#94a3b8';
+
+        document.getElementById('kpi-concentration').textContent = concentration.toFixed(1) + '%';
+        document.getElementById('kpi-top3-share').textContent = `Top 3: ${concentration.toFixed(0)}%`;
     }
 
     function renderCharts() {
@@ -1404,6 +1522,15 @@
             d.licensee.toLowerCase().includes(searchQuery)
         );
 
+        // Get previous month data for MoM calculation
+        const currentMonthKey = currentMonth === 'all' ? null : currentMonth;
+        let prevMonthKey = null;
+        if (currentMonthKey && currentMonthKey !== 'all') {
+            const idx = monthKeys.indexOf(currentMonthKey);
+            if (idx > 0) prevMonthKey = monthKeys[idx - 1];
+        }
+        const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : null;
+
         displayData.sort((a, b) => {
             let valA = a[sortCol], valB = b[sortCol];
             if (typeof valA === 'string') valA = valA.toLowerCase();
@@ -1422,16 +1549,30 @@
         // Show empty state if no results
         if (displayData.length === 0) {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td colspan="5" class="px-4 py-12 text-center text-slate-400 font-medium">No dispensaries match your search.</td>`;
+            tr.innerHTML = `<td colspan="7" class="px-4 py-12 text-center text-slate-400 font-medium">No dispensaries match your search.</td>`;
             tbody.appendChild(tr);
             return;
         }
 
         displayData.forEach((row, index) => {
             const sharePct = ((row.value / totalMarketValue) * 100).toFixed(1);
+
+            // Calculate MoM growth
+            let momGrowth = 0;
+            if (prevMonthData) {
+                const prevRow = prevMonthData.find(p => p.dba === row.dba);
+                if (prevRow && prevRow.value > 0) {
+                    momGrowth = ((row.value - prevRow.value) / prevRow.value) * 100;
+                }
+            }
+
+            // Adult/Medical ratio
+            const adultPct = row.total > 0 ? Math.round((row.adultUse / row.total) * 100) : 0;
+            const medicalPct = 100 - adultPct;
+
             const tr = document.createElement('tr');
             if (selectedDba === row.dba) tr.classList.add('active-row');
-            
+
             tr.onclick = () => {
                 // Toggle selection
                 selectedDba = selectedDba === row.dba ? null : row.dba;
@@ -1450,6 +1591,8 @@
                 rankHtml = `<span class="text-xs text-slate-400 font-medium">${index + 1}</span>`;
             }
 
+            const momColor = momGrowth > 0 ? '#34d399' : momGrowth < 0 ? '#f87171' : '#94a3b8';
+
             tr.innerHTML = `
                 <td class="px-4 py-3 whitespace-nowrap text-center">${rankHtml}</td>
                 <td class="px-4 py-3 whitespace-nowrap">
@@ -1467,6 +1610,16 @@
                 <td class="px-4 py-3 whitespace-nowrap text-right">
                     <span class="text-sm font-bold text-slate-100">${fmt(row.value)}</span>
                 </td>
+                <td class="px-4 py-3 whitespace-nowrap text-center">
+                    <span class="text-xs font-bold" style="color: ${momColor}">${momGrowth > 0 ? '+' : ''}${momGrowth.toFixed(1)}%</span>
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-center">
+                    <div class="flex items-center justify-center gap-1 text-[9px] font-bold">
+                        <span class="text-blue-400">${adultPct}%</span>
+                        <span class="text-slate-500">/</span>
+                        <span class="text-rose-400">${medicalPct}%</span>
+                    </div>
+                </td>
                 <td class="px-4 py-3 whitespace-nowrap">
                     <div class="flex items-center gap-2">
                         <span class="text-xs font-bold text-slate-400 w-10 text-right">${sharePct}%</span>
@@ -1480,12 +1633,138 @@
         });
     }
 
+    let barChartInstance = null;
+    let breakdownChartInstance = null;
+
+    function renderAdditionalCharts() {
+        // Top 10 Bar Chart
+        const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value);
+        const top10 = sorted.slice(0, 10);
+        const barLabels = top10.map(d => d.dba.length > 15 ? d.dba.substring(0, 13) + '..' : d.dba);
+        const barValues = top10.map(d => d.value);
+        const barColors = colors.slice(0, 10);
+
+        const ctxBar = document.getElementById('tgbBarChart')?.getContext('2d');
+        if (ctxBar) {
+            if (barChartInstance) {
+                barChartInstance.data.labels = barLabels;
+                barChartInstance.data.datasets[0].data = barValues;
+                barChartInstance.data.datasets[0].backgroundColor = barColors;
+                barChartInstance.update('none');
+            } else {
+                barChartInstance = new Chart(ctxBar, {
+                    type: 'bar',
+                    data: { labels: barLabels, datasets: [{ data: barValues, backgroundColor: barColors, borderRadius: 4, borderSkipped: false }] },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => fmt(ctx.parsed.x) } } },
+                        scales: {
+                            x: { grid: { color: '#333' }, ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#9ca3af' }, beginAtZero: true },
+                            y: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af' } }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Adult-Use vs Medical Breakdown
+        const adultTotal = aggregatedTableData.reduce((a, b) => a + b.adultUse, 0);
+        const medicalTotal = aggregatedTableData.reduce((a, b) => a + b.medical, 0);
+        const breakdownLabels = ['Adult-Use', 'Medical'];
+        const breakdownValues = [adultTotal, medicalTotal];
+        const breakdownColors = ['#60a5fa', '#f87171'];
+
+        const ctxBreakdown = document.getElementById('tgbBreakdownChart')?.getContext('2d');
+        if (ctxBreakdown) {
+            if (breakdownChartInstance) {
+                breakdownChartInstance.data.labels = breakdownLabels;
+                breakdownChartInstance.data.datasets[0].data = breakdownValues;
+                breakdownChartInstance.update('none');
+            } else {
+                breakdownChartInstance = new Chart(ctxBreakdown, {
+                    type: 'doughnut',
+                    data: { labels: breakdownLabels, datasets: [{ data: breakdownValues, backgroundColor: breakdownColors, borderWidth: 2, borderColor: '#1a1a1a' }] },
+                    options: {
+                        responsive: true, maintainAspectRatio: false, cutout: '60%',
+                        plugins: {
+                            legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#e5e7eb' } },
+                            tooltip: { callbacks: { label: (ctx) => ` ${fmt(ctx.parsed)} (${((ctx.parsed / (adultTotal + medicalTotal)) * 100).toFixed(1)}%)` } }
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    function renderCityDistribution() {
+        const cityMap = {};
+        aggregatedTableData.forEach(d => {
+            if (!cityMap[d.city]) cityMap[d.city] = { total: 0, count: 0 };
+            cityMap[d.city].total += d.value;
+            cityMap[d.city].count += 1;
+        });
+
+        const cities = Object.entries(cityMap)
+            .map(([city, data]) => ({ city, total: data.total, count: data.count }))
+            .sort((a, b) => b.total - a.total);
+
+        const container = document.getElementById('city-distribution');
+        if (container) {
+            container.innerHTML = cities.map(c => `
+                <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800">
+                    <div class="flex-1">
+                        <div class="text-xs font-bold text-slate-200">${c.city}</div>
+                        <div class="text-[10px] text-slate-500">${c.count} stores</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm font-bold text-emerald-400">${fmt(c.total, true)}</div>
+                        <div class="text-[10px] text-slate-500">${((c.total / cities.reduce((a, b) => a + b.total, 0)) * 100).toFixed(1)}%</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    function renderMarketInsights() {
+        const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value);
+        const top3 = sorted.slice(0, 3);
+        const bottom3 = sorted.slice(-3).reverse();
+        const totalMarket = sorted.reduce((a, b) => a + b.value, 0);
+
+        // Calculate volatility (simple metric)
+        const avgStore = totalMarket / sorted.length;
+        const volatility = sorted.reduce((a, b) => a + Math.pow(b.value - avgStore, 2), 0) / sorted.length;
+
+        const insights = [
+            { label: 'Market Leader', value: top3[0]?.dba || '--', detail: fmt(top3[0]?.value || 0, true) },
+            { label: 'Emerging Star', value: bottom3[0]?.dba || '--', detail: fmt(bottom3[0]?.value || 0, true) },
+            { label: 'Market Diversity', value: (sorted.length > 0 ? Math.round((avgStore / sorted[0].value) * 100) : 0) + '%', detail: 'Avg vs Top Store' }
+        ];
+
+        const container = document.getElementById('market-insights');
+        if (container) {
+            container.innerHTML = insights.map(i => `
+                <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800">
+                    <div>
+                        <div class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">${i.label}</div>
+                        <div class="text-sm font-bold text-slate-100 mt-1">${i.value}</div>
+                    </div>
+                    <div class="text-right text-emerald-400 text-xs font-semibold">${i.detail}</div>
+                </div>
+            `).join('');
+        }
+    }
+
     // ---- 5. Event Listeners & Init ----
 
     function runUpdate() {
         aggregatedTableData = getAggregatedData(currentMonth);
         updateKPIs();
         renderCharts();
+        renderAdditionalCharts();
+        renderCityDistribution();
+        renderMarketInsights();
         renderTable();
     }
 
