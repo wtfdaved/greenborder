@@ -656,6 +656,15 @@
       cursor: pointer;
       padding: 0;
       font-family: inherit;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .region-header-btn:hover {
+      opacity: 0.85;
+    }
+    .region-header-btn:active {
+      transform: scale(0.98);
     }
     .region-header-content {
       flex: 1;
@@ -672,6 +681,7 @@
       justify-content: center;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       flex-shrink: 0;
+      color: currentColor;
     }
     .region-header-btn.collapsed .region-collapse-icon {
       transform: rotate(-90deg);
@@ -679,16 +689,18 @@
     .region-container {
       display: grid;
       grid-column: 1 / -1;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      grid-template-columns: subgrid;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
       opacity: 1;
       max-height: 10000px;
       overflow: visible;
+      will-change: max-height, opacity;
     }
     .region-container.collapsed {
-      display: none;
       opacity: 0;
       max-height: 0;
       overflow: hidden;
+      pointer-events: none;
     }
     .region-meta-info {
       font-size: 0.875rem;
