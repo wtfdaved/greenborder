@@ -1,0 +1,40 @@
+[33mdcd3e8e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Migrate from static HTML to Next.js application
+[33mbffd566[m Add Clerk authentication to Next.js App Router
+[33mdeb37c6[m Expose toggleRegionCollapse function globally for onclick handlers
+[33me3c35ca[m Fix city section collapse — resolve duplicate ID bug causing cards not to hide
+[33m501742b[m Fix region container to properly hide/show dispensaries based on collapse state
+[33mb172707[m Make all region sections collapsed by default
+[33m1c0b7d3[m Enhance collapse button interactivity and animation smoothness
+[33m8e27ad6[m[33m ([m[1;31morigin/claude/add-city-collapse-feature-1e9G9[m[33m)[m Add city collapse feature for dispensary list
+[33m4ea8aa2[m[33m ([m[1;31morigin/claude/fix-chaparral-spelling-0B6D9[m[33m)[m Fix Chaparral spelling for House of Flowers dispensary in sales data dashboard
+[33m19375fd[m Update article image to Texas flag photo
+[33m2d3ca51[m[33m ([m[1;31morigin/claude/add-cannabis-news-article-LHMyW[m[33m)[m Add Texas cannabis legalization article and update news/home pages
+[33mef9779e[m Fix scroll cue overlap on mobile - hide on small screens (#6)
+[33mea882e6[m Fix scroll text alignment for mobile and desktop (#4)
+[33mc20a33f[m Enhance data dashboard with comprehensive analytics and visualizations (#3)
+[33me1145ef[m[33m ([m[1;31morigin/claude/update-site-navigation-BN3tL[m[33m)[m Add /data navigation links to all pages
+[33m4df131d[m Optimization
+[33m4eaa8fb[m Optimize data dashboard: dark theme, performance improvements, and UX fixes
+[33m87ede59[m Create Sales Data page with header, footer, and menu integration
+[33m64b89c3[m Revert to external Unsplash images in articles
+[33mc868af5[m[33m ([m[1;31morigin/claude/update-site-navigation-Ki5Ej[m[33m)[m Update site navigation and remove external thegreenborder.com links
+[33m1c9067c[m[33m ([m[1;31morigin/claude/add-education-articles-R5s1f[m[33m)[m Add three SEO-optimized education articles
+[33mddf8287[m Update home page to reflect current article content
+[33m7d60ff4[m[33m ([m[1;31morigin/claude/add-first-article-page-eUEUE[m[33m)[m Add first article: Hemp Ban 2026
+[33m09fb375[m[33m ([m[1;31morigin/claude/rebrand-blog-to-news-MgD3v[m[33m)[m Rebrand Blog to News with improved footer styling
+[33mcdba804[m[33m ([m[1;31morigin/claude/update-homepage-nav-6fLoX[m[33m)[m Update homepage tagline and add Home/Blog to all nav menus
+[33mc3d2e5a[m[33m ([m[1;31morigin/claude/improve-homepage-headline-RAM7t[m[33m)[m Fix sub-headline geo copy and mobile scroll cue alignment
+[33mb7c2115[m Improve homepage hero sub-headline for SEO and engagement
+[33mc509890[m Remove sticky behavior from search filter bar
+[33m684e303[m Improve search bar, add sort, redesign mobile nav, update footer (v0.2)
+[33m4287350[m Remove duplicate stats section and optimize header for mobile
+[33m0738cb6[m[33m ([m[1;31morigin/claude/unify-homepage-header-RPvDV[m[33m)[m Unify homepage header and stats sections
+[33m87e7b67[m Add dedicated blog page with article grid and filtering
+[33m30f04d6[m[33m ([m[1;31morigin/claude/create-blog-page-jrPdE[m[33m)[m Create dedicated blog page with full article management
+[33m6d07f9e[m update
+[33m9a616c7[m Integrate dispensary directory into dark site theme
+[33ma3a510c[m List Update
+[33mc6eddcf[m Footer Update
+[33mdc7dcd9[m Header Update
+[33mf40314e[m Index Update
+[33m18d4d40[m Initial launch: The Green Border homepage
