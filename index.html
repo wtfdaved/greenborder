@@ -1725,7 +1725,12 @@ document.querySelectorAll('.gb-faq-btn').forEach(btn => {
 /* ══════════════════════════════════════════════════════════
    REGION COLLAPSE STATE MANAGEMENT
    ══════════════════════════════════════════════════════════ */
-const collapsedRegions = new Set(JSON.parse(localStorage.getItem('collapsedRegions') || '[]'));
+// Initialize with all regions collapsed by default
+const DEFAULT_COLLAPSED = new Set(['region-sunland', 'region-chaparral', 'region-st', 'region-anthony']);
+const storedState = localStorage.getItem('collapsedRegions');
+const collapsedRegions = storedState
+  ? new Set(JSON.parse(storedState))
+  : new Set(DEFAULT_COLLAPSED);
 
 function toggleRegionCollapse(regionId) {
   const region = document.getElementById(regionId);
