@@ -1731,6 +1731,7 @@ function toggleRegionCollapse(cardsId) {
   container.classList.toggle('collapsed', !isCollapsed);
   btn.classList.toggle('collapsed', !isCollapsed);
 }
+window.toggleRegionCollapse = toggleRegionCollapse;
 
 /* Initial render */
 render();
