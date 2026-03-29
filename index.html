@@ -687,22 +687,20 @@
       transform: rotate(-90deg);
     }
     .region-container {
+      display: grid;
       grid-column: 1 / -1;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s ease;
-      opacity: 1;
-      max-height: 10000px;
-      overflow: visible;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1.5rem;
       margin-bottom: 2rem;
-      will-change: max-height, opacity;
-      visibility: visible;
+    }
+    @media (min-width: 768px) {
+      .region-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .region-container { gap: 2rem; }
     }
     .region-container.collapsed {
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-      pointer-events: none;
-      visibility: hidden;
-      margin-bottom: 0;
+      display: none;
     }
     .region-meta-info {
       font-size: 0.875rem;
@@ -1508,10 +1506,10 @@ function adCard() {
    ══════════════════════════════════════════════════════════ */
 function regionHeader(r) {
   const c = REGION_COLORS[r.color];
-  const regionId = `region-${r.id}`;
+  const cardsId = `cards-${r.id}`;
   return `
   <div id="${r.anchor}" class="col-span-full scroll-mt-32">
-    <button class="region-header-btn ${c.header} rounded-[2rem] px-6 py-5 border w-full transition-colors hover:bg-white/[0.08]" data-region-id="${regionId}" onclick="toggleRegionCollapse('${regionId}')">
+    <button class="region-header-btn ${c.header} rounded-[2rem] px-6 py-5 border w-full transition-colors hover:bg-white/[0.08] collapsed" data-region-id="${cardsId}" onclick="toggleRegionCollapse('${cardsId}')">
       <div class="region-header-content">
         <div class="${c.dot} w-2.5 h-2.5 rounded-full shrink-0 shadow-sm"></div>
         <div class="min-w-0 flex-1">
@@ -1583,7 +1581,7 @@ function render() {
       if (regionItems.length === 0) return;
 
       html += regionHeader(r);
-      html += `<div id="region-${r.id}" class="region-container grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">`;
+      html += `<div id="cards-${r.id}" class="region-container collapsed">`;
       sortItems(regionItems).forEach(d => { html += card(d); });
       html += `</div>`;
 
@@ -1596,9 +1594,6 @@ function render() {
   }
 
   grid.innerHTML = html;
-
-  // Restore collapse states after rendering
-  restoreCollapseStates();
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1727,43 +1722,14 @@ document.querySelectorAll('.gb-faq-btn').forEach(btn => {
 /* ══════════════════════════════════════════════════════════
    REGION COLLAPSE STATE MANAGEMENT
    ══════════════════════════════════════════════════════════ */
-// Initialize with all regions collapsed by default
-const DEFAULT_COLLAPSED = new Set(['region-sunland', 'region-chaparral', 'region-st', 'region-anthony']);
-const storedState = localStorage.getItem('collapsedRegions');
-const collapsedRegions = storedState
-  ? new Set(JSON.parse(storedState))
-  : new Set(DEFAULT_COLLAPSED);
+function toggleRegionCollapse(cardsId) {
+  const container = document.getElementById(cardsId);
+  const btn = document.querySelector(`[data-region-id="${cardsId}"]`);
+  if (!container || !btn) return;
 
-function toggleRegionCollapse(regionId) {
-  const region = document.getElementById(regionId);
-  const btn = document.querySelector(`[data-region-id="${regionId}"]`);
-
-  if (!region || !btn) return;
-
-  const isCollapsed = region.classList.contains('collapsed');
-
-  if (isCollapsed) {
-    region.classList.remove('collapsed');
-    btn.classList.remove('collapsed');
-    collapsedRegions.delete(regionId);
-  } else {
-    region.classList.add('collapsed');
-    btn.classList.add('collapsed');
-    collapsedRegions.add(regionId);
-  }
-
-  localStorage.setItem('collapsedRegions', JSON.stringify([...collapsedRegions]));
-}
-
-function restoreCollapseStates() {
-  collapsedRegions.forEach(regionId => {
-    const region = document.getElementById(regionId);
-    const btn = document.querySelector(`[data-region-id="${regionId}"]`);
-    if (region && btn) {
-      region.classList.add('collapsed');
-      btn.classList.add('collapsed');
-    }
-  });
+  const isCollapsed = container.classList.contains('collapsed');
+  container.classList.toggle('collapsed', !isCollapsed);
+  btn.classList.toggle('collapsed', !isCollapsed);
 }
 
 /* Initial render */
