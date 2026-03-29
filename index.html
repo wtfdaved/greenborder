@@ -732,13 +732,11 @@
   </a>
 
   <nav class="tgb-desktop-nav">
-    <a href="/"             class="tgb-header-link">Home</a>
     <a href="/news.html"    class="tgb-header-link">News</a>
     <a href="/data.html"    class="tgb-header-link">Sales Data</a>
     <a href="#dispensaries" class="tgb-header-link">Dispensaries</a>
     <a href="#education"    class="tgb-header-link">Education</a>
     <a href="#about"        class="tgb-header-link">About</a>
-    <a href="/premium.html" class="tgb-header-link">Premium Dashboard</a>
   </nav>
 
   <div class="tgb-header-actions">
@@ -749,6 +747,7 @@
       </svg>
     </a>
     <a href="#dispensaries" class="tgb-header-btn">Find Dispensary</a>
+    <button id="premium-nav-btn" class="tgb-header-btn" style="background-color: gold; color: #1a1a1a; cursor: pointer; border: none;">Premium Dashboard</button>
   </div>
 </header>
 
@@ -2146,6 +2145,36 @@ render();
     function tgbScrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+</script>
+
+<script async crossorigin="anonymous" data-clerk-publishable-key="pk_test_aW5zcGlyZWQtc2Vhc25haWwtNDUuY2xlcmsuYWNjb3VudHMuZGV2JA" src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" type="text/javascript"></script>
+
+<script>
+  window.addEventListener("load", async function() {
+    await window.Clerk.load();
+
+    const premiumBtn = document.getElementById("premium-nav-btn");
+
+    if (!window.Clerk.user) {
+      // User is NOT logged in
+      premiumBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.Clerk.openSignUp();
+      });
+      premiumBtn.textContent = "Sign Up / Premium";
+    } else {
+      // User IS logged in
+      premiumBtn.href = "/premium.html";
+      premiumBtn.textContent = "Premium Dashboard";
+
+      // Mount the Clerk user button in the navbar
+      const userButtonDiv = document.createElement("div");
+      userButtonDiv.id = "user-button";
+      premiumBtn.parentNode.insertBefore(userButtonDiv, premiumBtn);
+
+      window.Clerk.mountUserButton(userButtonDiv);
+    }
+  });
 </script>
 
 </body>
