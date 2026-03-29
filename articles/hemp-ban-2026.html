@@ -104,10 +104,15 @@
       font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: 28px;
-      color: #10b981;
+      color: #34d399;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(16, 185, 129, 0.1);
+      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
       transition: transform 0.2s ease;
+    }
+    .tgb-logo-sparkle {
+      color: #ca8a04;
+      font-size: 24px;
+      animation: tgb-spin-slow 10s linear infinite;
     }
     .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
     .tgb-desktop-nav {
@@ -116,10 +121,12 @@
       align-items: center;
     }
     .tgb-header-link {
+      font-family: 'Inter', sans-serif;
       text-decoration: none;
-      color: #9ca3af;
+      color: #cbd5e1;
       font-weight: 600;
       font-size: 15px;
+      position: relative;
       transition: color 0.2s ease;
     }
     .tgb-header-link:hover { color: #34d399; }
@@ -134,21 +141,60 @@
       transition: width 0.3s ease;
     }
     .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .tgb-search-icon {
+      color: #34d399;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
     .tgb-header-btn {
-      padding: 10px 22px;
-      background-color: #10b981;
+      background: #1a4d2e;
       color: white;
-      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
       font-weight: 600;
       font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
       text-decoration: none;
-      transition: all 0.3s ease;
-      border: 1px solid #10b981;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      transition: all 0.2s ease;
     }
     .tgb-header-btn:hover {
-      background-color: #059669;
-      border-color: #ca8a04;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+      background: #14532d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+    }
+    @keyframes tgb-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .tgb-desktop-nav { display: none; }
+      .tgb-logo-text { font-size: 20px; }
+      .tgb-logo-sparkle { font-size: 20px; }
+      #tgb-glass-header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        padding: 12px 16px;
+        max-width: none;
+      }
+      .tgb-header-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .tgb-search-icon {
+        padding: 6px;
+      }
     }
     @media (max-width: 768px) {
       #tgb-glass-header { display: none; }
@@ -322,13 +368,25 @@
     <span class="tgb-logo-text">The Green Border</span>
     <span class="tgb-logo-sparkle">✨</span>
   </a>
+
   <nav class="tgb-desktop-nav">
-    <a href="/" class="tgb-header-link">Home</a>
-    <a href="/news.html" class="tgb-header-link">News</a>
-    <a href="/data.html" class="tgb-header-link">Sales Data</a>
-    <a href="/#education" class="tgb-header-link">Education</a>
-    <a href="/#about" class="tgb-header-link">About</a>
+    <a href="/"             class="tgb-header-link">Home</a>
+    <a href="/news.html"    class="tgb-header-link">News</a>
+    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
+    <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="/#education"    class="tgb-header-link">Education</a>
+    <a href="/#about"        class="tgb-header-link">About</a>
   </nav>
+
+  <div class="tgb-header-actions">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </a>
+    <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
+  </div>
 </header>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
