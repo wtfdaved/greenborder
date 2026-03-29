@@ -687,20 +687,22 @@
       transform: rotate(-90deg);
     }
     .region-container {
-      display: grid;
       grid-column: 1 / -1;
-      grid-template-columns: subgrid;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s ease;
       opacity: 1;
       max-height: 10000px;
       overflow: visible;
+      margin-bottom: 2rem;
       will-change: max-height, opacity;
+      visibility: visible;
     }
     .region-container.collapsed {
       opacity: 0;
       max-height: 0;
       overflow: hidden;
       pointer-events: none;
+      visibility: hidden;
+      margin-bottom: 0;
     }
     .region-meta-info {
       font-size: 0.875rem;
