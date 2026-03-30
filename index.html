@@ -1493,7 +1493,7 @@ function adCard() {
     <div class="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-2xl mb-5">✦</div>
     <h4 class="font-display text-xl font-bold text-white mb-2 leading-tight">Your Dispensary Here</h4>
     <p class="text-sm text-emerald-400/70 leading-relaxed mb-6 max-w-[220px]">Put your shop in front of thousands of active shoppers along the border.</p>
-    <a href="/#about"
+    <a href="/partnerships.html"
        class="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:-translate-y-0.5">
       Get Featured →
     </a>
@@ -1583,10 +1583,9 @@ function render() {
       html += `<div id="cards-${r.id}" class="region-container collapsed">`;
       sortItems(regionItems).forEach(d => { html += card(d); });
       html += `</div>`;
-
-      // Insert ad card after first region (only in full view)
-      if (ri === 0 && cityVal === 'All') html += adCard();
     });
+    // Insert ad card at the end of all regions (only in full view)
+    if (cityVal === 'All') html += adCard();
   } else {
     // Flat filtered list
     sortItems(filtered).forEach(d => { html += card(d); });
