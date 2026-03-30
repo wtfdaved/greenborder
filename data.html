@@ -564,6 +564,17 @@
     #data-quality-badge .pulse {
         animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
+
+    /* Dropdown options styling for readability */
+    #tgb-month option {
+        background-color: white;
+        color: black;
+    }
+    #tgb-month option:checked {
+        background: linear-gradient(#10b981, #10b981);
+        background-color: #10b981;
+        color: white;
+    }
 </style>
 
 <div id="tgb-ultra-dash" class="text-sm">
@@ -623,9 +634,9 @@
 
             <!-- Controls -->
             <div class="relative flex-1 sm:flex-none">
-                <select id="tgb-month" class="w-full sm:w-40 appearance-none bg-white border border-slate-600 text-black py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
+                <select id="tgb-month" class="w-full sm:w-40 appearance-none bg-[#242424] border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
                     <option value="all">Full Year 2025</option>
-                    <option value="2026-02">February 2026</option>
+                    <option value="2026-02" selected>February 2026</option>
                     <option value="2026-01">January 2026</option>
                     <option value="2025-12">December 2025</option>
                     <option value="2025-11">November 2025</option>
@@ -1613,7 +1624,7 @@
     ];
 
     // ---- 2. Global State & Formatting ----
-    let currentMonth = 'all';
+    let currentMonth = '2026-02';
     let currentMetric = 'total';
     let sortCol = 'value';
     let sortDir = 'desc';
