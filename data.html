@@ -755,6 +755,39 @@
             </div>
         </div>
 
+        <!-- New Visualizations Row 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0 min-h-[300px]">
+            <!-- Market Positioning Scatter Plot -->
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+                <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center gap-2">
+                    Market Positioning
+                    <span class="text-[9px] text-slate-500 font-normal">Size = Market Share</span>
+                </h3>
+                <div class="relative flex-1 w-full min-h-[250px]">
+                    <canvas id="tgbScatterChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Sales Velocity Chart -->
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+                <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Sales Velocity (MoM Growth)</h3>
+                <div class="relative flex-1 w-full min-h-[250px]">
+                    <canvas id="tgbVelocityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heatmap Row -->
+        <div class="grid grid-cols-1 gap-4 shrink-0">
+            <!-- Monthly Sales Heatmap -->
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+                <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Monthly Sales Heatmap by City</h3>
+                <div id="heatmap-container" class="overflow-x-auto">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
         <!-- Geographic & Performance Metrics -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0">
             <!-- City Distribution -->
@@ -1408,6 +1441,10 @@
 
     let donutChartInstance = null;
     let lineChartInstance = null;
+    let scatterChartInstance = null;
+    let velocityChartInstance = null;
+    let breakdownChartInstance = null;
+    let barChartInstance = null;
     let aggregatedTableData = [];
 
     const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -2133,6 +2170,200 @@
         }
     }
 
+    function renderScatterChart() {
+        // Market Positioning Scatter Plot
+        const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value);
+        const totalMarket = aggregatedTableData.reduce((a, b) => a + b.value, 0);
+
+        // Get growth rates for each dispensary
+        const currentMonthKey = currentMonth === 'all' ? null : currentMonth;
+        let prevMonthKey = null;
+        if (currentMonthKey && currentMonthKey !== 'all') {
+            const idx = monthKeys.indexOf(currentMonthKey);
+            if (idx > 0) prevMonthKey = monthKeys[idx - 1];
+        }
+
+        const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : aggregatedTableData;
+
+        const scatterData = sorted.map(d => {
+            const marketShare = (d.value / totalMarket) * 100;
+            const prevData = prevMonthData.find(p => p.dba === d.dba);
+            const growth = prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
+            return {
+                x: d.value,
+                y: growth,
+                r: Math.sqrt(marketShare) * 3,
+                label: d.dba,
+                backgroundColor: marketShare > 5 ? '#34d399' : marketShare > 2 ? '#60a5fa' : '#f59e0b'
+            };
+        });
+
+        const ctxScatter = document.getElementById('tgbScatterChart')?.getContext('2d');
+        if (ctxScatter) {
+            if (scatterChartInstance) {
+                scatterChartInstance.data.datasets[0].data = scatterData;
+                scatterChartInstance.update('none');
+            } else {
+                scatterChartInstance = new Chart(ctxScatter, {
+                    type: 'bubble',
+                    data: {
+                        datasets: [{
+                            data: scatterData,
+                            backgroundColor: scatterData.map(d => d.backgroundColor),
+                            borderColor: scatterData.map(d => d.backgroundColor),
+                            borderWidth: 1,
+                            opacity: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    title: (context) => scatterData[context[0].dataIndex]?.label || '',
+                                    label: (context) => {
+                                        const item = scatterData[context.dataIndex];
+                                        return [
+                                            `Sales: ${fmt(item.x, true)}`,
+                                            `Growth: ${item.y.toFixed(1)}%`,
+                                            `Share: ${Math.sqrt(item.r / 3).toFixed(2)}%`
+                                        ];
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                type: 'linear',
+                                position: 'bottom',
+                                grid: { color: '#333' },
+                                title: { display: true, text: 'Sales Volume', font: { size: 10, family: 'Inter' }, color: '#9ca3af' },
+                                ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#9ca3af' },
+                                min: 0
+                            },
+                            y: {
+                                grid: { color: '#333' },
+                                title: { display: true, text: 'Growth Rate (%)', font: { size: 10, family: 'Inter' }, color: '#9ca3af' },
+                                ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af', callback: (v) => v.toFixed(0) + '%' }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    function renderSalesVelocityChart() {
+        // Sales Velocity - MoM growth rates for top dispensaries
+        const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value).slice(0, 8);
+
+        const currentMonthKey = currentMonth === 'all' ? null : currentMonth;
+        let prevMonthKey = null;
+        if (currentMonthKey && currentMonthKey !== 'all') {
+            const idx = monthKeys.indexOf(currentMonthKey);
+            if (idx > 0) prevMonthKey = monthKeys[idx - 1];
+        }
+
+        const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : aggregatedTableData;
+
+        const velocityLabels = sorted.map(d => d.dba.length > 15 ? d.dba.substring(0, 13) + '..' : d.dba);
+        const velocityValues = sorted.map(d => {
+            const prevData = prevMonthData.find(p => p.dba === d.dba);
+            return prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
+        });
+
+        const ctxVelocity = document.getElementById('tgbVelocityChart')?.getContext('2d');
+        if (ctxVelocity) {
+            if (velocityChartInstance) {
+                velocityChartInstance.data.labels = velocityLabels;
+                velocityChartInstance.data.datasets[0].data = velocityValues;
+                velocityChartInstance.data.datasets[0].backgroundColor = velocityValues.map(v => v > 0 ? '#34d399' : '#f87171');
+                velocityChartInstance.update('none');
+            } else {
+                velocityChartInstance = new Chart(ctxVelocity, {
+                    type: 'bar',
+                    data: {
+                        labels: velocityLabels,
+                        datasets: [{
+                            label: 'MoM Growth %',
+                            data: velocityValues,
+                            backgroundColor: velocityValues.map(v => v > 0 ? '#34d399' : '#f87171'),
+                            borderRadius: 4,
+                            borderSkipped: false
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'x',
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { callbacks: { label: (ctx) => `${ctx.parsed.y.toFixed(1)}%` } }
+                        },
+                        scales: {
+                            x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af' } },
+                            y: { grid: { color: '#333' }, ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => v.toFixed(0) + '%', color: '#9ca3af' } }
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    function renderHeatmap() {
+        // Monthly Sales Heatmap by City
+        const container = document.getElementById('heatmap-container');
+        if (!container) return;
+
+        const cityMonthData = {};
+        rawData.forEach(d => {
+            if (!cityMonthData[d.city]) cityMonthData[d.city] = {};
+            if (!cityMonthData[d.city][d.month]) cityMonthData[d.city][d.month] = 0;
+            cityMonthData[d.city][d.month] += currentMetric === 'total' ? d.total : (currentMetric === 'adultUse' ? d.adultUse : d.medical);
+        });
+
+        // Get all unique cities and months
+        const cities = Object.keys(cityMonthData).sort((a, b) => {
+            const totalA = Object.values(cityMonthData[a]).reduce((a, b) => a + b, 0);
+            const totalB = Object.values(cityMonthData[b]).reduce((a, b) => a + b, 0);
+            return totalB - totalA;
+        });
+
+        const months = monthKeys;
+
+        // Find min/max for color scaling
+        let minVal = Infinity, maxVal = -Infinity;
+        cities.forEach(city => {
+            months.forEach(month => {
+                const val = cityMonthData[city][month] || 0;
+                minVal = Math.min(minVal, val);
+                maxVal = Math.max(maxVal, val);
+            });
+        });
+
+        // Generate HTML for heatmap
+        let html = '<table class="w-full text-xs border-collapse"><thead><tr><th class="p-2 bg-[#111] text-slate-400 text-left font-bold">City</th>';
+        months.forEach(m => {
+            html += `<th class="p-2 bg-[#111] text-slate-400 text-center font-bold">${monthLabels[monthKeys.indexOf(m)]}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+
+        cities.forEach(city => {
+            html += `<tr><td class="p-2 font-bold text-slate-300 bg-[#111]">${city}</td>`;
+            months.forEach(month => {
+                const val = cityMonthData[city][month] || 0;
+                const intensity = maxVal > minVal ? (val - minVal) / (maxVal - minVal) : 0;
+                const hue = 120 + (1 - intensity) * 120; // Green to Red
+                const color = `hsl(${hue}, 70%, ${40 + intensity * 20}%)`;
+                html += `<td class="p-2 text-center text-white font-semibold" style="background-color: ${color}; border: 1px solid #2a2a2a;">${fmt(val, true)}</td>`;
+            });
+            html += '</tr>';
+        });
+
+        html += '</tbody></table>';
+        container.innerHTML = html;
+    }
+
     function renderCityDistribution() {
         const container = document.getElementById('city-distribution');
         if (!container) return;
@@ -2229,6 +2460,9 @@
         updateKPIs();
         renderCharts();
         renderAdditionalCharts();
+        renderScatterChart();
+        renderSalesVelocityChart();
+        renderHeatmap();
         renderCityDistribution();
         renderMarketInsights();
         renderTable();
