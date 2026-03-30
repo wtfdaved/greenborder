@@ -491,6 +491,7 @@
     #tgb-ultra-dash tbody tr { transition: background-color 0.15s ease; cursor: pointer; }
     #tgb-ultra-dash tbody tr:hover { background-color: #1f1f1f; }
     #tgb-ultra-dash tbody tr.active-row { background-color: rgba(16, 185, 129, 0.1); border-left: 3px solid #34d399; }
+    #tgb-ultra-dash tbody tr.comparison-selected { background-color: rgba(96, 165, 250, 0.1); border-left: 3px solid #60a5fa; }
 
     /* Rank Badges */
     #tgb-ultra-dash .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
@@ -727,6 +728,21 @@
                 <div id="market-insights" class="space-y-3">
                     <!-- Injected via JS -->
                 </div>
+            </div>
+        </div>
+
+        <!-- Comparison Mode Panel -->
+        <div id="comparison-panel" class="bg-gradient-to-r from-[#1a1a1a] to-[#111] rounded-xl border border-emerald-900/30 shadow-sm p-4 hidden">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="sliders-horizontal" class="w-5 h-5 text-emerald-400"></i>
+                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Comparison Mode</h3>
+                    <span id="comparison-count" class="text-[10px] text-emerald-400 font-semibold">(0/3 selected)</span>
+                </div>
+                <button id="btn-clear-comparison" class="text-[10px] text-slate-400 hover:text-rose-400 font-medium bg-slate-800 hover:bg-rose-900 px-3 py-1 rounded transition-colors">Clear Comparison</button>
+            </div>
+            <div id="comparison-cards-container" class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                <!-- Comparison KPI cards injected via JS -->
             </div>
         </div>
 
@@ -1339,6 +1355,10 @@
     let timeRangeMode = 'single'; // 'single' for individual month, 'range' for date ranges
     let selectedTimeRange = 'all'; // 'all', 'last3m', 'last6m', 'ytd'
 
+    // Comparison mode state
+    let comparisonMode = false;
+    let selectedForComparison = []; // Array of up to 3 dispensary names for comparison
+
     let donutChartInstance = null;
     let lineChartInstance = null;
     let aggregatedTableData = [];
@@ -1501,42 +1521,73 @@
             });
         }
 
-        // Update or Create Trend Line
-        const trendData = getTrendData(selectedDba);
+        // Update or Create Trend Line (with comparison mode support)
         const ctxLine = document.getElementById('tgbLineChart').getContext('2d');
+        const comparisonColors = ['#34d399', '#60a5fa', '#f59e0b', '#ec4899'];
 
-        let labelName = selectedDba || 'Overall Market';
-        let lineCol = selectedDba ? '#34d399' : '#60a5fa'; // Green if specific, Blue if market
+        let datasets = [];
+
+        if (comparisonMode && selectedForComparison.length > 0) {
+            // Comparison mode: show selected dispensaries
+            selectedForComparison.forEach((dbaName, idx) => {
+                const trendData = getTrendData(dbaName);
+                datasets.push({
+                    label: dbaName,
+                    data: trendData,
+                    borderColor: comparisonColors[idx % comparisonColors.length],
+                    backgroundColor: comparisonColors[idx % comparisonColors.length] + '15',
+                    borderWidth: 2,
+                    pointBackgroundColor: comparisonColors[idx % comparisonColors.length],
+                    pointRadius: 3,
+                    fill: false,
+                    tension: 0.3
+                });
+            });
+        } else if (selectedDba) {
+            // Single selection: show selected dispensary
+            const trendData = getTrendData(selectedDba);
+            datasets.push({
+                label: selectedDba,
+                data: trendData,
+                borderColor: '#34d399',
+                backgroundColor: '#34d39920',
+                borderWidth: 2,
+                pointBackgroundColor: '#34d399',
+                pointRadius: 3,
+                fill: true,
+                tension: 0.3
+            });
+        } else {
+            // Overall market trend
+            const trendData = getTrendData();
+            datasets.push({
+                label: 'Overall Market',
+                data: trendData,
+                borderColor: '#60a5fa',
+                backgroundColor: '#60a5fa20',
+                borderWidth: 2,
+                pointBackgroundColor: '#60a5fa',
+                pointRadius: 3,
+                fill: true,
+                tension: 0.3
+            });
+        }
 
         if (lineChartInstance) {
-            lineChartInstance.data.datasets[0].label = labelName;
-            lineChartInstance.data.datasets[0].data = trendData;
-            lineChartInstance.data.datasets[0].borderColor = lineCol;
-            lineChartInstance.data.datasets[0].backgroundColor = lineCol + '20';
-            lineChartInstance.data.datasets[0].pointBackgroundColor = lineCol;
+            lineChartInstance.data.datasets = datasets;
             lineChartInstance.update('none');
         } else {
             lineChartInstance = new Chart(ctxLine, {
                 type: 'line',
                 data: {
                     labels: monthLabels,
-                    datasets: [{
-                        label: labelName,
-                        data: trendData,
-                        borderColor: lineCol,
-                        backgroundColor: lineCol + '20',
-                        borderWidth: 2,
-                        pointBackgroundColor: lineCol,
-                        pointRadius: 3,
-                        fill: true,
-                        tension: 0.3
-                    }]
+                    datasets: datasets
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false },
-                        tooltip: { callbacks: { label: (ctx) => ` ${fmt(ctx.parsed.y)}` } }
+                        legend: { display: datasets.length > 1, labels: { usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#cbd5e1' } },
+                        tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${fmt(ctx.parsed.y)}` } }
                     },
                     scales: {
                         x: { grid: { display: false, color: '#333' }, ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af' } },
@@ -1622,22 +1673,33 @@
 
             const tr = document.createElement('tr');
             if (selectedDba === row.dba) tr.classList.add('active-row');
+            if (selectedForComparison.includes(row.dba)) tr.classList.add('comparison-selected');
 
-            tr.onclick = () => {
-                // Toggle selection
-                selectedDba = selectedDba === row.dba ? null : row.dba;
-                document.querySelectorAll('#tgb-tbody tr').forEach(t => t.classList.remove('active-row'));
-                if (selectedDba) tr.classList.add('active-row');
-                renderCharts(); // Update line chart
+            tr.onclick = (event) => {
+                // Ctrl/Cmd + Click for comparison mode
+                if (event.ctrlKey || event.metaKey) {
+                    toggleComparisonSelection(row.dba);
+                    if (selectedForComparison.includes(row.dba)) {
+                        tr.classList.add('comparison-selected');
+                    } else {
+                        tr.classList.remove('comparison-selected');
+                    }
+                } else {
+                    // Regular click for trend selection
+                    selectedDba = selectedDba === row.dba ? null : row.dba;
+                    document.querySelectorAll('#tgb-tbody tr').forEach(t => t.classList.remove('active-row'));
+                    if (selectedDba) tr.classList.add('active-row');
+                    renderCharts(); // Update line chart
 
-                // Scroll to charts section when dispensary is selected
-                if (selectedDba) {
-                    const chartsSection = document.getElementById('tgb-charts-section');
-                    const scrollContainer = document.querySelector('#tgb-ultra-dash > .tgb-scroll');
-                    if (chartsSection && scrollContainer) {
-                        // Calculate scroll position relative to scrollable container
-                        const offsetTop = chartsSection.offsetTop;
-                        scrollContainer.scrollTo({ top: offsetTop - 100, behavior: 'smooth' });
+                    // Scroll to charts section when dispensary is selected
+                    if (selectedDba) {
+                        const chartsSection = document.getElementById('tgb-charts-section');
+                        const scrollContainer = document.querySelector('#tgb-ultra-dash > .tgb-scroll');
+                        if (chartsSection && scrollContainer) {
+                            // Calculate scroll position relative to scrollable container
+                            const offsetTop = chartsSection.offsetTop;
+                            scrollContainer.scrollTo({ top: offsetTop - 100, behavior: 'smooth' });
+                        }
                     }
                 }
             };
@@ -1860,6 +1922,81 @@
         document.getElementById('time-ytd').classList.toggle('text-slate-300', selectedTimeRange !== 'ytd');
     }
 
+    function toggleComparisonSelection(dbaName) {
+        if (selectedForComparison.includes(dbaName)) {
+            selectedForComparison = selectedForComparison.filter(d => d !== dbaName);
+        } else if (selectedForComparison.length < 3) {
+            selectedForComparison.push(dbaName);
+        }
+
+        comparisonMode = selectedForComparison.length > 0;
+        updateComparisonPanel();
+        renderCharts();
+    }
+
+    function updateComparisonPanel() {
+        const panel = document.getElementById('comparison-panel');
+        const countSpan = document.getElementById('comparison-count');
+        const container = document.getElementById('comparison-cards-container');
+
+        countSpan.textContent = `(${selectedForComparison.length}/3 selected)`;
+
+        if (selectedForComparison.length === 0) {
+            panel.classList.add('hidden');
+            return;
+        }
+
+        panel.classList.remove('hidden');
+
+        // Create comparison KPI cards
+        const cards = selectedForComparison.map(dbaName => {
+            const data = aggregatedTableData.find(d => d.dba === dbaName);
+            if (!data) return '';
+
+            return `
+                <div class="bg-gradient-to-br from-[#111] to-[#0a0a0a] p-4 rounded-lg border border-slate-700 hover:border-emerald-600/50 transition-colors">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex-1 truncate">
+                            <div class="text-xs font-bold text-slate-200 truncate">${dbaName}</div>
+                            <div class="text-[10px] text-slate-500">${data.city}</div>
+                        </div>
+                        <button class="text-slate-400 hover:text-rose-400 ml-2" onclick="toggleComparisonSelection('${dbaName.replace(/'/g, "\\'")}')">×</button>
+                    </div>
+                    <div class="space-y-2 mt-3 pt-3 border-t border-slate-800">
+                        <div>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider">Total Sales</div>
+                            <div class="text-sm font-bold text-emerald-400">${fmt(data.value, true)}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider">Market Share</div>
+                            <div class="text-sm font-bold text-blue-400">${((data.value / aggregatedTableData.reduce((a, b) => a + b.value, 0)) * 100).toFixed(2)}%</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <div class="flex-1">
+                                <div class="text-[9px] text-slate-500 uppercase tracking-wider">Adult-Use</div>
+                                <div class="text-xs font-bold text-blue-400">${fmt(data.adultUse, true)}</div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-[9px] text-slate-500 uppercase tracking-wider">Medical</div>
+                                <div class="text-xs font-bold text-rose-400">${fmt(data.medical, true)}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = cards.join('');
+    }
+
+    function clearComparison() {
+        selectedForComparison = [];
+        comparisonMode = false;
+        updateComparisonPanel();
+        renderCharts();
+        document.querySelectorAll('#tgb-tbody tr').forEach(t => t.classList.remove('comparison-selected'));
+    }
+
     function renderCityDistribution() {
         const container = document.getElementById('city-distribution');
         if (!container) return;
@@ -1981,6 +2118,10 @@
         selectedDba = null;
         document.querySelectorAll('#tgb-tbody tr').forEach(t => t.classList.remove('active-row'));
         renderCharts();
+    });
+
+    document.getElementById('btn-clear-comparison').addEventListener('click', () => {
+        clearComparison();
     });
 
     // Drill-down navigation handlers
