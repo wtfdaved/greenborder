@@ -595,6 +595,49 @@
                 </div>
             </div>
         </div>
+
+        <!-- Advanced Filters Toggle & Panel -->
+        <div class="mt-3 pt-3 border-t border-slate-700">
+            <button id="btn-toggle-filters" class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-emerald-400 transition-colors group">
+                <i data-lucide="filter" class="w-4 h-4 group-hover:text-emerald-400"></i>
+                <span>Advanced Filters</span>
+                <i id="filters-toggle-icon" data-lucide="chevron-down" class="w-4 h-4 transition-transform"></i>
+            </button>
+
+            <div id="advanced-filters-panel" class="hidden mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pb-3">
+                <!-- Growth Rate Filter -->
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Growth Rate</label>
+                    <div class="flex gap-2">
+                        <button class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors flex-1" onclick="applyFilterView('topGainers')">Top Gainers</button>
+                        <button class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors flex-1" onclick="applyFilterView('topDecliners')">Decliners</button>
+                    </div>
+                </div>
+
+                <!-- Market Share Filter -->
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Market Share</label>
+                    <div class="flex gap-2">
+                        <button class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors flex-1" onclick="applyFilterView('marketLeaders')">Leaders (>5%)</button>
+                        <button class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors flex-1" onclick="applyFilterView('niche')">Niche (<2%)</button>
+                    </div>
+                </div>
+
+                <!-- Quick Views -->
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Quick Views</label>
+                    <div class="flex gap-2">
+                        <button class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors flex-1" onclick="applyFilterView('top10')">Top 10</button>
+                        <button class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors flex-1" onclick="applyFilterView('bottom10')">Bottom 10</button>
+                    </div>
+                </div>
+
+                <!-- Clear Filters -->
+                <div class="flex items-end">
+                    <button id="btn-clear-filters" class="px-3 py-1 rounded text-xs font-bold text-white bg-slate-600 hover:bg-slate-500 transition-colors w-full">Clear Filters</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Main Scrollable Content -->
@@ -1359,6 +1402,10 @@
     let comparisonMode = false;
     let selectedForComparison = []; // Array of up to 3 dispensary names for comparison
 
+    // Advanced filtering state
+    let activeFilterView = null; // 'topGainers', 'topDecliners', 'marketLeaders', 'niche', 'top10', 'bottom10'
+    let advancedFiltersExpanded = false;
+
     let donutChartInstance = null;
     let lineChartInstance = null;
     let aggregatedTableData = [];
@@ -1997,6 +2044,95 @@
         document.querySelectorAll('#tgb-tbody tr').forEach(t => t.classList.remove('comparison-selected'));
     }
 
+    function applyFilterView(filterType) {
+        activeFilterView = filterType;
+
+        // Get sorted data
+        const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value);
+        const totalMarket = aggregatedTableData.reduce((a, b) => a + b.value, 0);
+
+        let filtered = aggregatedTableData;
+
+        switch (filterType) {
+            case 'topGainers':
+                // Top 10 by growth rate (requires previous month data)
+                const currentMonthKey = currentMonth === 'all' ? null : currentMonth;
+                let prevMonthKey = null;
+                if (currentMonthKey && currentMonthKey !== 'all') {
+                    const idx = monthKeys.indexOf(currentMonthKey);
+                    if (idx > 0) prevMonthKey = monthKeys[idx - 1];
+                }
+
+                const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : aggregatedTableData;
+                filtered = aggregatedTableData
+                    .map(d => {
+                        const prevData = prevMonthData.find(p => p.dba === d.dba);
+                        const growth = prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
+                        return { ...d, growth };
+                    })
+                    .sort((a, b) => b.growth - a.growth)
+                    .slice(0, 10);
+                break;
+
+            case 'topDecliners':
+                const cmk = currentMonth === 'all' ? null : currentMonth;
+                let pmk = null;
+                if (cmk && cmk !== 'all') {
+                    const idx = monthKeys.indexOf(cmk);
+                    if (idx > 0) pmk = monthKeys[idx - 1];
+                }
+                const pmd = pmk ? getAggregatedData(pmk) : aggregatedTableData;
+                filtered = aggregatedTableData
+                    .map(d => {
+                        const prevData = pmd.find(p => p.dba === d.dba);
+                        const growth = prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
+                        return { ...d, growth };
+                    })
+                    .sort((a, b) => a.growth - b.growth)
+                    .slice(0, 10);
+                break;
+
+            case 'marketLeaders':
+                filtered = aggregatedTableData.filter(d => ((d.value / totalMarket) * 100) >= 5).sort((a, b) => b.value - a.value);
+                break;
+
+            case 'niche':
+                filtered = aggregatedTableData.filter(d => ((d.value / totalMarket) * 100) < 2).sort((a, b) => b.value - a.value);
+                break;
+
+            case 'top10':
+                filtered = sorted.slice(0, 10);
+                break;
+
+            case 'bottom10':
+                filtered = sorted.slice(-10).reverse();
+                break;
+        }
+
+        // Update aggregated data with filter
+        aggregatedTableData = filtered;
+        renderTable();
+    }
+
+    function clearAdvancedFilters() {
+        activeFilterView = null;
+        runUpdate();
+    }
+
+    function toggleAdvancedFilters() {
+        advancedFiltersExpanded = !advancedFiltersExpanded;
+        const panel = document.getElementById('advanced-filters-panel');
+        const icon = document.getElementById('filters-toggle-icon');
+
+        if (advancedFiltersExpanded) {
+            panel.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            panel.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
     function renderCityDistribution() {
         const container = document.getElementById('city-distribution');
         if (!container) return;
@@ -2122,6 +2258,14 @@
 
     document.getElementById('btn-clear-comparison').addEventListener('click', () => {
         clearComparison();
+    });
+
+    document.getElementById('btn-toggle-filters').addEventListener('click', () => {
+        toggleAdvancedFilters();
+    });
+
+    document.getElementById('btn-clear-filters').addEventListener('click', () => {
+        clearAdvancedFilters();
     });
 
     // Drill-down navigation handlers
