@@ -633,7 +633,7 @@
         </div>
 
         <!-- Charts Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 shrink-0 min-h-[280px]">
+        <div id="tgb-charts-section" class="grid grid-cols-1 lg:grid-cols-3 gap-4 shrink-0 min-h-[280px]">
             <!-- Market Share -->
             <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4 flex justify-between">
@@ -1581,6 +1581,17 @@
                 document.querySelectorAll('#tgb-tbody tr').forEach(t => t.classList.remove('active-row'));
                 if (selectedDba) tr.classList.add('active-row');
                 renderCharts(); // Update line chart
+
+                // Scroll to charts section when dispensary is selected
+                if (selectedDba) {
+                    const chartsSection = document.getElementById('tgb-charts-section');
+                    const scrollContainer = document.querySelector('#tgb-ultra-dash > .tgb-scroll');
+                    if (chartsSection && scrollContainer) {
+                        // Calculate scroll position relative to scrollable container
+                        const offsetTop = chartsSection.offsetTop;
+                        scrollContainer.scrollTo({ top: offsetTop - 100, behavior: 'smooth' });
+                    }
+                }
             };
 
             // Ranks
