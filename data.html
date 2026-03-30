@@ -598,8 +598,11 @@
             </div>
 
             <div class="relative flex-1 sm:flex-none">
-                <i data-lucide="search" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400"></i>
-                <input type="text" id="tgb-search" placeholder="Search DBA..." class="w-full sm:w-48 bg-[#242424] border border-slate-600 text-slate-100 py-1.5 pl-8 pr-3 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all placeholder-slate-500">
+                <i data-lucide="search" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none"></i>
+                <input type="text" id="tgb-search" placeholder="Search DBA, city, or license..." class="w-full sm:w-48 bg-[#242424] border border-slate-600 text-slate-100 py-1.5 pl-8 pr-3 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all placeholder-slate-500">
+                <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-1 bg-[#242424] border border-slate-600 rounded-lg shadow-lg z-50 max-h-40 overflow-y-auto text-xs">
+                    <!-- Recent searches injected via JS -->
+                </div>
             </div>
         </div>
     </div>
@@ -827,11 +830,14 @@
                 </div>
             </div>
 
-            <!-- Performance Metrics -->
+            <!-- Performance Metrics & Insights -->
             <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Market Insights</h3>
                 <div id="market-insights" class="space-y-3">
                     <!-- Injected via JS -->
+                </div>
+                <div id="contextual-insights" class="mt-4 pt-4 border-t border-slate-800 space-y-2">
+                    <!-- Contextual insights injected via JS -->
                 </div>
             </div>
         </div>
@@ -1480,6 +1486,29 @@
     // Advanced filtering state
     let activeFilterView = null; // 'topGainers', 'topDecliners', 'marketLeaders', 'niche', 'top10', 'bottom10'
     let advancedFiltersExpanded = false;
+
+    // Search state
+    let recentSearches = JSON.parse(localStorage.getItem('tgb-recent-searches')) || [];
+
+    // Fuzzy search function
+    function fuzzyMatch(query, target) {
+        let queryIdx = 0;
+        let targetIdx = 0;
+        let score = 0;
+
+        query = query.toLowerCase();
+        target = target.toLowerCase();
+
+        while (queryIdx < query.length && targetIdx < target.length) {
+            if (query[queryIdx] === target[targetIdx]) {
+                score += 1;
+                queryIdx++;
+            }
+            targetIdx++;
+        }
+
+        return queryIdx === query.length ? score : -1;
+    }
 
     let donutChartInstance = null;
     let lineChartInstance = null;
@@ -2579,6 +2608,69 @@
                 </div>
             `).join('');
         }
+
+        // Contextual Insights
+        const contextualInsights = [];
+
+        // Detect outliers (sales more than 2 std devs from mean)
+        const stdev = Math.sqrt(volatility);
+        const outliers = sorted.filter(d => Math.abs(d.value - avgStore) > 2 * stdev);
+        if (outliers.length > 0) {
+            outliers.slice(0, 2).forEach(o => {
+                const isOutlierHigh = o.value > avgStore;
+                contextualInsights.push({
+                    type: 'outlier',
+                    icon: isOutlierHigh ? '📈' : '📉',
+                    text: `${o.dba} is ${isOutlierHigh ? 'performing' : 'underperforming'} significantly (${Math.abs(((o.value - avgStore) / avgStore) * 100).toFixed(0)}% vs avg)`
+                });
+            });
+        }
+
+        // City correlation insights
+        const cityMap = {};
+        aggregatedTableData.forEach(d => {
+            if (!cityMap[d.city]) cityMap[d.city] = { count: 0, totalSales: 0 };
+            cityMap[d.city].count += 1;
+            cityMap[d.city].totalSales += d.value;
+        });
+
+        const cities = Object.values(cityMap);
+        const avgStoresPerCity = cities.reduce((a, b) => a + b.count, 0) / cities.length;
+        const citiesWithManyStores = cities.filter(c => c.count > avgStoresPerCity * 1.5);
+        const avgSalesHighStoreCount = citiesWithManyStores.reduce((a, b) => a + (b.totalSales / b.count), 0) / citiesWithManyStores.length;
+        const avgSaleLowStoreCount = cities.filter(c => c.count <= avgStoresPerCity).reduce((a, b) => a + (b.totalSales / b.count), 0) / Math.max(1, cities.filter(c => c.count <= avgStoresPerCity).length);
+
+        if (avgSaleLowStoreCount > avgSalesHighStoreCount) {
+            contextualInsights.push({
+                type: 'correlation',
+                icon: '🔗',
+                text: `Cities with fewer stores have ${Math.abs(((avgSaleLowStoreCount - avgSalesHighStoreCount) / avgSalesHighStoreCount) * 100).toFixed(0)}% higher avg sales per store`
+            });
+        }
+
+        // Market concentration insight
+        const top3Share = (top3.reduce((a, b) => a + b.value, 0) / totalMarket) * 100;
+        if (top3Share > 60) {
+            contextualInsights.push({
+                type: 'concentration',
+                icon: '🎯',
+                text: `Market is highly concentrated - top 3 stores control ${top3Share.toFixed(0)}% of sales`
+            });
+        }
+
+        const contextContainer = document.getElementById('contextual-insights');
+        if (contextContainer) {
+            if (contextualInsights.length === 0) {
+                contextContainer.innerHTML = '<div class="text-[10px] text-slate-500 italic">No notable insights at this time</div>';
+            } else {
+                contextContainer.innerHTML = contextualInsights.map(i => `
+                    <div class="flex gap-2 text-[10px] p-2 bg-[#111] rounded border border-slate-800/50">
+                        <span class="text-sm">${i.icon}</span>
+                        <span class="text-slate-400">${i.text}</span>
+                    </div>
+                `).join('');
+            }
+        }
     }
 
     // ---- 5. Event Listeners & Init ----
@@ -2613,7 +2705,70 @@
     document.getElementById('tgb-search').addEventListener('input', (e) => {
         searchQuery = e.target.value.toLowerCase();
         renderTable();
+        updateSearchSuggestions();
     });
+
+    document.getElementById('tgb-search').addEventListener('focus', () => {
+        updateSearchSuggestions();
+    });
+
+    document.getElementById('tgb-search').addEventListener('blur', () => {
+        setTimeout(() => {
+            document.getElementById('search-suggestions').classList.add('hidden');
+        }, 200);
+    });
+
+    function updateSearchSuggestions() {
+        const input = document.getElementById('tgb-search');
+        const suggestionsContainer = document.getElementById('search-suggestions');
+        const query = input.value.toLowerCase();
+
+        if (!query) {
+            // Show recent searches
+            if (recentSearches.length === 0) {
+                suggestionsContainer.classList.add('hidden');
+                return;
+            }
+            suggestionsContainer.innerHTML = recentSearches.map(s => `
+                <div class="px-3 py-2 hover:bg-slate-700 cursor-pointer text-slate-400 hover:text-slate-200" onclick="document.getElementById('tgb-search').value='${s}'; searchQuery='${s}'; renderTable(); document.getElementById('search-suggestions').classList.add('hidden');">
+                    <i data-lucide="clock" class="w-3 h-3 inline mr-1"></i> ${s}
+                </div>
+            `).join('');
+            suggestionsContainer.classList.remove('hidden');
+        } else {
+            // Show fuzzy matched results
+            const matches = [];
+            const dispensaryNames = [...new Set(aggregatedTableData.map(d => d.dba))];
+            const cities = [...new Set(aggregatedTableData.map(d => d.city))];
+
+            const allOptions = [...dispensaryNames, ...cities];
+            const scored = allOptions
+                .map(opt => ({ option: opt, score: fuzzyMatch(query, opt) }))
+                .filter(item => item.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 5);
+
+            if (scored.length === 0) {
+                suggestionsContainer.classList.add('hidden');
+                return;
+            }
+
+            suggestionsContainer.innerHTML = scored.map(item => `
+                <div class="px-3 py-2 hover:bg-slate-700 cursor-pointer text-slate-400 hover:text-slate-200" onclick="document.getElementById('tgb-search').value='${item.option}'; searchQuery='${item.option.toLowerCase()}'; addRecentSearch('${item.option}'); renderTable(); document.getElementById('search-suggestions').classList.add('hidden');">
+                    ${item.option}
+                </div>
+            `).join('');
+            suggestionsContainer.classList.remove('hidden');
+        }
+    }
+
+    function addRecentSearch(query) {
+        if (!query) return;
+        recentSearches = recentSearches.filter(s => s !== query);
+        recentSearches.unshift(query);
+        recentSearches = recentSearches.slice(0, 8);
+        localStorage.setItem('tgb-recent-searches', JSON.stringify(recentSearches));
+    }
 
     document.getElementById('btn-clear-trend').addEventListener('click', () => {
         selectedDba = null;
