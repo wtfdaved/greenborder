@@ -517,6 +517,53 @@
     @media (max-width: 1024px) {
         #tgb-charts-section { grid-template-columns: 1fr; }
     }
+
+    /* Tooltips & Visual Polish */
+    [data-tooltip] {
+        position: relative;
+        cursor: help;
+    }
+
+    [data-tooltip]:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.9);
+        color: #34d399;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        white-space: nowrap;
+        z-index: 1000;
+        margin-bottom: 4px;
+        border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    /* Legend Styling */
+    #tgb-ultra-dash .legend-item {
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    #tgb-ultra-dash .legend-item:hover {
+        opacity: 0.8;
+    }
+
+    #tgb-ultra-dash .legend-item.hidden {
+        opacity: 0.3;
+    }
+
+    /* Pulse animation for live data indicator */
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    #data-quality-badge .pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
 </style>
 
 <div id="tgb-ultra-dash" class="text-sm">
@@ -529,7 +576,13 @@
             </div>
             <div>
                 <h2 class="text-lg font-bold text-slate-100 leading-tight m-0">El Paso Region Sales</h2>
-                <p class="text-[11px] text-slate-400 font-medium m-0 uppercase tracking-wider">NM Dispensary Market Data</p>
+                <p class="text-[11px] text-slate-400 font-medium m-0 uppercase tracking-wider flex items-center gap-2">
+                    NM Dispensary Market Data
+                    <span id="data-quality-badge" class="text-[9px] px-2 py-1 bg-emerald-900/30 text-emerald-400 rounded border border-emerald-700/50 flex items-center gap-1" title="Data freshness indicator">
+                        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                        Updated
+                    </span>
+                </p>
             </div>
         </div>
 
@@ -677,7 +730,7 @@
 
         <!-- KPI Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 shrink-0">
-            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-emerald-900/30 shadow-lg hover:border-emerald-600/50 transition-colors flex flex-col justify-between">
+            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-emerald-900/30 shadow-lg hover:border-emerald-600/50 transition-colors flex flex-col justify-between" data-tooltip="Total sales revenue across all dispensaries for selected period">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Total Revenue</span>
                     <i data-lucide="dollar-sign" class="w-4 h-4 text-emerald-500"></i>
@@ -742,7 +795,7 @@
         <!-- Charts Grid -->
         <div id="tgb-charts-section" class="grid grid-cols-1 lg:grid-cols-3 gap-4 shrink-0 min-h-[280px]">
             <!-- Market Share -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1">
+            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1" data-tooltip="Click on legend items to focus on specific dispensaries">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4 flex justify-between">
                     Market Share <span id="donut-lbl" class="text-[10px] text-slate-500 font-medium">Top 10</span>
                 </h3>
@@ -2680,6 +2733,7 @@
         updateBreadcrumb();
         updateCategoryButtons();
         updateTimeRangeDisplay();
+        updateDataQualityIndicator();
         updateKPIs();
         renderCharts();
         renderAdditionalCharts();
@@ -2768,6 +2822,26 @@
         recentSearches.unshift(query);
         recentSearches = recentSearches.slice(0, 8);
         localStorage.setItem('tgb-recent-searches', JSON.stringify(recentSearches));
+    }
+
+    function updateDataQualityIndicator() {
+        const badge = document.getElementById('data-quality-badge');
+        if (!badge) return;
+
+        const lastMonth = monthKeys[monthKeys.length - 1];
+        const hasLatestData = rawData.some(d => d.month === lastMonth);
+
+        if (hasLatestData) {
+            badge.innerHTML = '<span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> Updated';
+            badge.title = `Latest data: ${lastMonth}`;
+            badge.classList.remove('bg-amber-900/30', 'text-amber-400', 'border-amber-700/50');
+            badge.classList.add('bg-emerald-900/30', 'text-emerald-400', 'border-emerald-700/50');
+        } else {
+            badge.innerHTML = '<span class="w-2 h-2 bg-amber-400 rounded-full"></span> Partial Data';
+            badge.title = `Latest available: ${lastMonth} (May not be complete)`;
+            badge.classList.remove('bg-emerald-900/30', 'text-emerald-400', 'border-emerald-700/50');
+            badge.classList.add('bg-amber-900/30', 'text-amber-400', 'border-amber-700/50');
+        }
     }
 
     document.getElementById('btn-clear-trend').addEventListener('click', () => {
