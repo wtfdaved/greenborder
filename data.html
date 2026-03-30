@@ -565,9 +565,31 @@
         </div>
     </div>
 
+    <!-- Breadcrumb Navigation & Category Filter -->
+    <div id="breadcrumb-section" class="px-4 lg:px-5 pt-4 pb-2 bg-gradient-to-b from-[#1a1a1a] to-transparent shrink-0">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <!-- Breadcrumb Trail -->
+            <div class="flex items-center gap-2 text-xs text-slate-400 flex-wrap">
+                <button id="breadcrumb-all" class="hover:text-emerald-400 font-medium transition-colors">All Cities</button>
+                <span id="breadcrumb-separator" class="text-slate-600 hidden">/</span>
+                <span id="breadcrumb-city" class="text-emerald-400 font-semibold hidden"></span>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex items-center gap-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Category:</span>
+                <div class="flex gap-2">
+                    <button id="cat-total" class="px-3 py-1 rounded text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors" data-category="total">All</button>
+                    <button id="cat-adult" class="px-3 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-category="adultUse">Adult-Use</button>
+                    <button id="cat-medical" class="px-3 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-category="medical">Medical</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Scrollable Content -->
     <div class="flex-1 overflow-y-auto overflow-x-hidden tgb-scroll p-4 lg:p-5 flex flex-col gap-4">
-        
+
         <!-- KPI Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 shrink-0">
             <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-emerald-900/30 shadow-lg hover:border-emerald-600/50 transition-colors flex flex-col justify-between">
@@ -1299,6 +1321,11 @@
     let searchQuery = '';
     let selectedDba = null; // Store selected row for trend chart
 
+    // Drill-down navigation state
+    let currentCity = null; // null = all cities, or city name
+    let categoryFilter = 'total'; // 'total', 'adultUse', or 'medical'
+    let navigationHistory = []; // Breadcrumb history
+
     let donutChartInstance = null;
     let lineChartInstance = null;
     let aggregatedTableData = [];
@@ -1320,9 +1347,13 @@
 
     // ---- 3. Core Logic ----
     
-    // Aggregates raw data based on the current timeframe
+    // Aggregates raw data based on the current timeframe and city filter
     function getAggregatedData(monthKey) {
-        const records = monthKey === 'all' ? rawData : rawData.filter(d => d.month === monthKey);
+        let records = monthKey === 'all' ? rawData : rawData.filter(d => d.month === monthKey);
+        // Apply city filter if drilling down
+        if (currentCity) {
+            records = records.filter(d => d.city === currentCity);
+        }
         const map = {};
         records.forEach(d => {
             if (!map[d.dba]) {
@@ -1333,7 +1364,7 @@
             map[d.dba].medical += d.medical;
             if (d.licensee.length > map[d.dba].licensee.length) map[d.dba].licensee = d.licensee;
         });
-        
+
         return Object.values(map).map(d => {
             // "value" is the currently selected metric value
             d.value = currentMetric === 'total' ? d.total : (currentMetric === 'adultUse' ? d.adultUse : d.medical);
@@ -1344,7 +1375,11 @@
     // Gets 12-month array for the trend chart
     function getTrendData(dbaName = null) {
         return monthKeys.map(mk => {
-            const monthRecords = rawData.filter(d => d.month === mk && (!dbaName || d.dba === dbaName));
+            let monthRecords = rawData.filter(d => d.month === mk && (!dbaName || d.dba === dbaName));
+            // Apply city filter if drilling down
+            if (currentCity && !dbaName) {
+                monthRecords = monthRecords.filter(d => d.city === currentCity);
+            }
             let sum = 0;
             monthRecords.forEach(d => {
                 sum += currentMetric === 'total' ? d.total : (currentMetric === 'adultUse' ? d.adultUse : d.medical);
@@ -1710,7 +1745,82 @@
         }
     }
 
+    // Drill-down navigation helper functions
+    function updateBreadcrumb() {
+        const breadcrumbAll = document.getElementById('breadcrumb-all');
+        const breadcrumbSep = document.getElementById('breadcrumb-separator');
+        const breadcrumbCity = document.getElementById('breadcrumb-city');
+
+        if (currentCity) {
+            breadcrumbAll.style.color = '#cbd5e1';
+            breadcrumbAll.classList.remove('text-emerald-400', 'font-semibold');
+            breadcrumbSep.classList.remove('hidden');
+            breadcrumbCity.classList.remove('hidden');
+            breadcrumbCity.textContent = currentCity;
+            document.getElementById('city-distribution').innerHTML = '<div class="text-center py-4 text-slate-400">Showing data for ' + currentCity + '</div>';
+        } else {
+            breadcrumbAll.style.color = '#34d399';
+            breadcrumbAll.classList.add('font-medium');
+            breadcrumbSep.classList.add('hidden');
+            breadcrumbCity.classList.add('hidden');
+        }
+    }
+
+    function updateCategoryButtons() {
+        document.getElementById('cat-total').classList.toggle('bg-emerald-600', categoryFilter === 'total');
+        document.getElementById('cat-total').classList.toggle('bg-slate-700', categoryFilter !== 'total');
+        document.getElementById('cat-total').classList.toggle('text-white', categoryFilter === 'total');
+        document.getElementById('cat-total').classList.toggle('text-slate-300', categoryFilter !== 'total');
+
+        document.getElementById('cat-adult').classList.toggle('bg-emerald-600', categoryFilter === 'adultUse');
+        document.getElementById('cat-adult').classList.toggle('bg-slate-700', categoryFilter !== 'adultUse');
+        document.getElementById('cat-adult').classList.toggle('text-white', categoryFilter === 'adultUse');
+        document.getElementById('cat-adult').classList.toggle('text-slate-300', categoryFilter !== 'adultUse');
+
+        document.getElementById('cat-medical').classList.toggle('bg-emerald-600', categoryFilter === 'medical');
+        document.getElementById('cat-medical').classList.toggle('bg-slate-700', categoryFilter !== 'medical');
+        document.getElementById('cat-medical').classList.toggle('text-white', categoryFilter === 'medical');
+        document.getElementById('cat-medical').classList.toggle('text-slate-300', categoryFilter !== 'medical');
+    }
+
+    function drillDownToCity(cityName) {
+        currentCity = cityName;
+        selectedDba = null;
+        updateBreadcrumb();
+        runUpdate();
+    }
+
     function renderCityDistribution() {
+        const container = document.getElementById('city-distribution');
+        if (!container) return;
+
+        // If drilled down to a specific city, show its dispensaries
+        if (currentCity) {
+            const cityData = aggregatedTableData.filter(d => d.city === currentCity);
+            const totalCityValue = cityData.reduce((a, b) => a + b.value, 0);
+
+            if (cityData.length === 0) {
+                container.innerHTML = '<div class="text-center py-4 text-slate-400">No dispensaries found</div>';
+                return;
+            }
+
+            container.innerHTML = '<div class="text-[11px] text-slate-400 mb-3 font-semibold uppercase">Dispensaries in ' + currentCity + '</div>' +
+                cityData.sort((a, b) => b.value - a.value).map(d => `
+                <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-[#151515] transition-all cursor-pointer" onclick="document.getElementById('tgb-tbody').scrollIntoView({behavior:'smooth'}); selectedDba='${d.dba}'; renderCharts(); document.querySelectorAll('#tgb-tbody tr').forEach((t,i) => t.classList.toggle('active-row', t.querySelector('td:nth-child(2)')?.textContent.includes('${d.dba}')));">
+                    <div class="flex-1 truncate">
+                        <div class="text-xs font-bold text-slate-200 truncate">${d.dba}</div>
+                        <div class="text-[10px] text-slate-500 truncate">${d.city}</div>
+                    </div>
+                    <div class="text-right shrink-0 ml-2">
+                        <div class="text-sm font-bold text-emerald-400">${fmt(d.value, true)}</div>
+                        <div class="text-[10px] text-slate-500">${((d.value / totalCityValue) * 100).toFixed(1)}%</div>
+                    </div>
+                </div>
+            `).join('');
+            return;
+        }
+
+        // Show all cities
         const cityMap = {};
         aggregatedTableData.forEach(d => {
             if (!cityMap[d.city]) cityMap[d.city] = { total: 0, count: 0 };
@@ -1722,21 +1832,18 @@
             .map(([city, data]) => ({ city, total: data.total, count: data.count }))
             .sort((a, b) => b.total - a.total);
 
-        const container = document.getElementById('city-distribution');
-        if (container) {
-            container.innerHTML = cities.map(c => `
-                <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800">
-                    <div class="flex-1">
-                        <div class="text-xs font-bold text-slate-200">${c.city}</div>
-                        <div class="text-[10px] text-slate-500">${c.count} stores</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-sm font-bold text-emerald-400">${fmt(c.total, true)}</div>
-                        <div class="text-[10px] text-slate-500">${((c.total / cities.reduce((a, b) => a + b.total, 0)) * 100).toFixed(1)}%</div>
-                    </div>
+        container.innerHTML = cities.map(c => `
+            <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-[#151515] transition-all cursor-pointer" onclick="drillDownToCity('${c.city}')">
+                <div class="flex-1">
+                    <div class="text-xs font-bold text-slate-200">${c.city}</div>
+                    <div class="text-[10px] text-slate-500">${c.count} stores</div>
                 </div>
-            `).join('');
-        }
+                <div class="text-right">
+                    <div class="text-sm font-bold text-emerald-400">${fmt(c.total, true)}</div>
+                    <div class="text-[10px] text-slate-500">${((c.total / cities.reduce((a, b) => a + b.total, 0)) * 100).toFixed(1)}%</div>
+                </div>
+            </div>
+        `).join('');
     }
 
     function renderMarketInsights() {
@@ -1773,6 +1880,8 @@
 
     function runUpdate() {
         aggregatedTableData = getAggregatedData(currentMonth);
+        updateBreadcrumb();
+        updateCategoryButtons();
         updateKPIs();
         renderCharts();
         renderAdditionalCharts();
@@ -1801,6 +1910,38 @@
         selectedDba = null;
         document.querySelectorAll('#tgb-tbody tr').forEach(t => t.classList.remove('active-row'));
         renderCharts();
+    });
+
+    // Drill-down navigation handlers
+    document.getElementById('breadcrumb-all').addEventListener('click', () => {
+        currentCity = null;
+        updateBreadcrumb();
+        runUpdate();
+    });
+
+    // Category filter handlers
+    document.getElementById('cat-total').addEventListener('click', () => {
+        categoryFilter = 'total';
+        currentMetric = 'total';
+        document.getElementById('tgb-metric').value = 'total';
+        updateCategoryButtons();
+        runUpdate();
+    });
+
+    document.getElementById('cat-adult').addEventListener('click', () => {
+        categoryFilter = 'adultUse';
+        currentMetric = 'adultUse';
+        document.getElementById('tgb-metric').value = 'adultUse';
+        updateCategoryButtons();
+        runUpdate();
+    });
+
+    document.getElementById('cat-medical').addEventListener('click', () => {
+        categoryFilter = 'medical';
+        currentMetric = 'medical';
+        document.getElementById('tgb-metric').value = 'medical';
+        updateCategoryButtons();
+        runUpdate();
     });
 
     // Sort handlers
