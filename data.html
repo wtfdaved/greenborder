@@ -529,6 +529,15 @@
                 </div>
             </a>
 
+            <!-- Time Range Quick Filters -->
+            <div id="time-range-filters" class="flex items-center gap-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 hidden sm:inline">Period:</span>
+                <button id="time-all" class="px-2 py-1 rounded text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors" data-range="all">All Year</button>
+                <button id="time-last3" class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last3m">Last 3M</button>
+                <button id="time-last6" class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last6m">Last 6M</button>
+                <button id="time-ytd" class="px-2 py-1 rounded text-xs font-bold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors hidden sm:inline-block" data-range="ytd">YTD</button>
+            </div>
+
             <!-- Controls -->
             <div class="relative flex-1 sm:flex-none">
                 <select id="tgb-month" class="w-full sm:w-40 appearance-none bg-[#242424] border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
@@ -1326,6 +1335,10 @@
     let categoryFilter = 'total'; // 'total', 'adultUse', or 'medical'
     let navigationHistory = []; // Breadcrumb history
 
+    // Time range state
+    let timeRangeMode = 'single'; // 'single' for individual month, 'range' for date ranges
+    let selectedTimeRange = 'all'; // 'all', 'last3m', 'last6m', 'ytd'
+
     let donutChartInstance = null;
     let lineChartInstance = null;
     let aggregatedTableData = [];
@@ -1790,6 +1803,63 @@
         runUpdate();
     }
 
+    function getMonthsForTimeRange(range) {
+        // Returns array of months to include for the given time range
+        const currentMonthIndex = 11; // December is the latest (12th month, 0-indexed = 11)
+        if (range === 'all') return monthKeys;
+        if (range === 'last3m') return monthKeys.slice(currentMonthIndex - 2, currentMonthIndex + 1); // Last 3 months: Oct, Nov, Dec
+        if (range === 'last6m') return monthKeys.slice(currentMonthIndex - 5, currentMonthIndex + 1); // Last 6 months: Jul-Dec
+        if (range === 'ytd') return monthKeys.slice(0, currentMonthIndex + 1); // Jan-Dec (all months)
+        return monthKeys;
+    }
+
+    function getAggregatedDataForRange(range) {
+        // Aggregate data for a time range (all months in range)
+        const months = getMonthsForTimeRange(range);
+        const records = rawData.filter(d => months.includes(d.month));
+        if (currentCity) {
+            records = records.filter(d => d.city === currentCity);
+        }
+        const map = {};
+        records.forEach(d => {
+            if (!map[d.dba]) {
+                map[d.dba] = { dba: d.dba, licensee: d.licensee, city: d.city, address: d.address, total: 0, adultUse: 0, medical: 0 };
+            }
+            map[d.dba].total += d.total;
+            map[d.dba].adultUse += d.adultUse;
+            map[d.dba].medical += d.medical;
+            if (d.licensee.length > map[d.dba].licensee.length) map[d.dba].licensee = d.licensee;
+        });
+
+        return Object.values(map).map(d => {
+            d.value = currentMetric === 'total' ? d.total : (currentMetric === 'adultUse' ? d.adultUse : d.medical);
+            return d;
+        });
+    }
+
+    function updateTimeRangeDisplay() {
+        // Update button styling based on selected time range
+        document.getElementById('time-all').classList.toggle('bg-emerald-600', selectedTimeRange === 'all');
+        document.getElementById('time-all').classList.toggle('bg-slate-700', selectedTimeRange !== 'all');
+        document.getElementById('time-all').classList.toggle('text-white', selectedTimeRange === 'all');
+        document.getElementById('time-all').classList.toggle('text-slate-300', selectedTimeRange !== 'all');
+
+        document.getElementById('time-last3').classList.toggle('bg-emerald-600', selectedTimeRange === 'last3m');
+        document.getElementById('time-last3').classList.toggle('bg-slate-700', selectedTimeRange !== 'last3m');
+        document.getElementById('time-last3').classList.toggle('text-white', selectedTimeRange === 'last3m');
+        document.getElementById('time-last3').classList.toggle('text-slate-300', selectedTimeRange !== 'last3m');
+
+        document.getElementById('time-last6').classList.toggle('bg-emerald-600', selectedTimeRange === 'last6m');
+        document.getElementById('time-last6').classList.toggle('bg-slate-700', selectedTimeRange !== 'last6m');
+        document.getElementById('time-last6').classList.toggle('text-white', selectedTimeRange === 'last6m');
+        document.getElementById('time-last6').classList.toggle('text-slate-300', selectedTimeRange !== 'last6m');
+
+        document.getElementById('time-ytd').classList.toggle('bg-emerald-600', selectedTimeRange === 'ytd');
+        document.getElementById('time-ytd').classList.toggle('bg-slate-700', selectedTimeRange !== 'ytd');
+        document.getElementById('time-ytd').classList.toggle('text-white', selectedTimeRange === 'ytd');
+        document.getElementById('time-ytd').classList.toggle('text-slate-300', selectedTimeRange !== 'ytd');
+    }
+
     function renderCityDistribution() {
         const container = document.getElementById('city-distribution');
         if (!container) return;
@@ -1882,6 +1952,7 @@
         aggregatedTableData = getAggregatedData(currentMonth);
         updateBreadcrumb();
         updateCategoryButtons();
+        updateTimeRangeDisplay();
         updateKPIs();
         renderCharts();
         renderAdditionalCharts();
@@ -1942,6 +2013,59 @@
         document.getElementById('tgb-metric').value = 'medical';
         updateCategoryButtons();
         runUpdate();
+    });
+
+    // Time range quick filter handlers
+    document.getElementById('time-all').addEventListener('click', () => {
+        selectedTimeRange = 'all';
+        currentMonth = 'all';
+        updateTimeRangeDisplay();
+        runUpdate();
+    });
+
+    document.getElementById('time-last3').addEventListener('click', () => {
+        selectedTimeRange = 'last3m';
+        currentMonth = null; // Use range mode
+        aggregatedTableData = getAggregatedDataForRange('last3m');
+        updateTimeRangeDisplay();
+        updateBreadcrumb();
+        updateCategoryButtons();
+        updateKPIs();
+        renderCharts();
+        renderAdditionalCharts();
+        renderCityDistribution();
+        renderMarketInsights();
+        renderTable();
+    });
+
+    document.getElementById('time-last6').addEventListener('click', () => {
+        selectedTimeRange = 'last6m';
+        currentMonth = null; // Use range mode
+        aggregatedTableData = getAggregatedDataForRange('last6m');
+        updateTimeRangeDisplay();
+        updateBreadcrumb();
+        updateCategoryButtons();
+        updateKPIs();
+        renderCharts();
+        renderAdditionalCharts();
+        renderCityDistribution();
+        renderMarketInsights();
+        renderTable();
+    });
+
+    document.getElementById('time-ytd').addEventListener('click', () => {
+        selectedTimeRange = 'ytd';
+        currentMonth = null; // Use range mode
+        aggregatedTableData = getAggregatedDataForRange('ytd');
+        updateTimeRangeDisplay();
+        updateBreadcrumb();
+        updateCategoryButtons();
+        updateKPIs();
+        renderCharts();
+        renderAdditionalCharts();
+        renderCityDistribution();
+        renderMarketInsights();
+        renderTable();
     });
 
     // Sort handlers
