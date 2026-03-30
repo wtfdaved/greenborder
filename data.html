@@ -503,6 +503,20 @@
     /* Animations */
     @keyframes tgb-pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 50% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } }
     #tgb-ultra-dash .premium-btn:hover .premium-icon { animation: tgb-pulse 1.5s infinite; }
+
+    /* Mobile Improvements */
+    @media (max-width: 768px) {
+        #tgb-ultra-dash button, #tgb-ultra-dash select, #tgb-ultra-dash input {
+            min-height: 44px; /* Better touch targets */
+        }
+        #tgb-ultra-dash tbody tr { padding: 12px 0; /* More space for touch */ }
+        #tgb-ultra-dash .tgb-scroll { scroll-behavior: smooth; }
+    }
+
+    /* Responsive Charts */
+    @media (max-width: 1024px) {
+        #tgb-charts-section { grid-template-columns: 1fr; }
+    }
 </style>
 
 <div id="tgb-ultra-dash" class="text-sm">
@@ -853,7 +867,20 @@
                 <span>Click a row to view specific trends</span>
             </div>
         </div>
-        
+
+    </div>
+
+    <!-- Floating Action Button (Mobile) -->
+    <div id="fab-container" class="fixed bottom-24 right-4 z-50 sm:hidden flex flex-col gap-2">
+        <button id="fab-main" class="w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg flex items-center justify-center transition-all" title="Quick Actions">
+            <i data-lucide="filter" class="w-6 h-6"></i>
+        </button>
+        <div id="fab-menu" class="hidden flex flex-col gap-2 bg-slate-800 rounded-lg p-2 shadow-lg">
+            <button onclick="applyFilterView('top10')" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">Top 10</button>
+            <button onclick="applyFilterView('topGainers')" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">Gainers</button>
+            <button onclick="toggleAdvancedFilters()" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">Filters</button>
+            <button onclick="clearAdvancedFilters(); document.getElementById('fab-menu').classList.add('hidden');" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">Reset</button>
+        </div>
     </div>
 </div>
 
@@ -2501,6 +2528,21 @@
     document.getElementById('btn-clear-filters').addEventListener('click', () => {
         clearAdvancedFilters();
     });
+
+    // Mobile FAB (Floating Action Button)
+    const fabMain = document.getElementById('fab-main');
+    const fabMenu = document.getElementById('fab-menu');
+    if (fabMain && fabMenu) {
+        fabMain.addEventListener('click', () => {
+            fabMenu.classList.toggle('hidden');
+        });
+        // Close FAB menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#fab-container')) {
+                fabMenu.classList.add('hidden');
+            }
+        });
+    }
 
     // Drill-down navigation handlers
     document.getElementById('breadcrumb-all').addEventListener('click', () => {
