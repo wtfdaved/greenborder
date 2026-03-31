@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Allow: /articles/
+Allow: /education/
+Allow: /partnerships.html
+
+Disallow: /.git/
+Disallow: /.claude/
+Disallow: /csv/
+Disallow: /public/
+
+Sitemap: https://greenborder.org/sitemap.xml
+
+# Crawl delay for Googlebot (1 second between requests)
+User-agent: Googlebot
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: BadBot
+Disallow: /
+
+User-agent: MJ12bot
+Crawl-delay: 10
