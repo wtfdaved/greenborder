@@ -7545,6 +7545,7 @@
     // Advanced filtering state
     let activeFilterView = null; // 'topGainers', 'topDecliners', 'marketLeaders', 'niche', 'top10', 'bottom10'
     let advancedFiltersExpanded = false;
+    let originalAggregatedData = []; // Store unfiltered data to apply filters to
 
     // Search state
     let recentSearches = JSON.parse(localStorage.getItem('tgb-recent-searches')) || [];
@@ -8446,11 +8447,11 @@
     function applyFilterView(filterType) {
         activeFilterView = filterType;
 
-        // Get sorted data
-        const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value);
-        const totalMarket = aggregatedTableData.reduce((a, b) => a + b.value, 0);
+        // Get sorted data from original unfiltered data
+        const sorted = [...originalAggregatedData].sort((a, b) => b.value - a.value);
+        const totalMarket = originalAggregatedData.reduce((a, b) => a + b.value, 0);
 
-        let filtered = aggregatedTableData;
+        let filtered = originalAggregatedData;
 
         switch (filterType) {
             case 'topGainers':
@@ -8462,8 +8463,8 @@
                     if (idx > 0) prevMonthKey = monthKeys[idx - 1];
                 }
 
-                const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : aggregatedTableData;
-                filtered = aggregatedTableData
+                const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : originalAggregatedData;
+                filtered = originalAggregatedData
                     .map(d => {
                         const prevData = prevMonthData.find(p => p.dba === d.dba);
                         const growth = prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
@@ -8480,8 +8481,8 @@
                     const idx = monthKeys.indexOf(cmk);
                     if (idx > 0) pmk = monthKeys[idx - 1];
                 }
-                const pmd = pmk ? getAggregatedData(pmk) : aggregatedTableData;
-                filtered = aggregatedTableData
+                const pmd = pmk ? getAggregatedData(pmk) : originalAggregatedData;
+                filtered = originalAggregatedData
                     .map(d => {
                         const prevData = pmd.find(p => p.dba === d.dba);
                         const growth = prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
@@ -8492,11 +8493,11 @@
                 break;
 
             case 'marketLeaders':
-                filtered = aggregatedTableData.filter(d => ((d.value / totalMarket) * 100) >= 5).sort((a, b) => b.value - a.value);
+                filtered = originalAggregatedData.filter(d => ((d.value / totalMarket) * 100) >= 5).sort((a, b) => b.value - a.value);
                 break;
 
             case 'niche':
-                filtered = aggregatedTableData.filter(d => ((d.value / totalMarket) * 100) < 2).sort((a, b) => b.value - a.value);
+                filtered = originalAggregatedData.filter(d => ((d.value / totalMarket) * 100) < 2).sort((a, b) => b.value - a.value);
                 break;
 
             case 'top10':
@@ -8968,6 +8969,13 @@
 
     function runUpdate() {
         aggregatedTableData = getAggregatedData(currentMonth);
+        originalAggregatedData = [...aggregatedTableData]; // Store the unfiltered data
+
+        // Reapply active filter if one is set
+        if (activeFilterView) {
+            applyFilterView(activeFilterView);
+        }
+
         updateBreadcrumb();
         updateCategoryButtons();
         updateTimeRangeDisplay();
@@ -9183,6 +9191,10 @@
         selectedTimeRange = 'last3m';
         currentMonth = null; // Use range mode
         aggregatedTableData = getAggregatedDataForRange('last3m');
+        originalAggregatedData = [...aggregatedTableData]; // Store unfiltered data
+        if (activeFilterView) {
+            applyFilterView(activeFilterView);
+        }
         updateTimeRangeDisplay();
         updateBreadcrumb();
         updateCategoryButtons();
@@ -9198,6 +9210,10 @@
         selectedTimeRange = 'last6m';
         currentMonth = null; // Use range mode
         aggregatedTableData = getAggregatedDataForRange('last6m');
+        originalAggregatedData = [...aggregatedTableData]; // Store unfiltered data
+        if (activeFilterView) {
+            applyFilterView(activeFilterView);
+        }
         updateTimeRangeDisplay();
         updateBreadcrumb();
         updateCategoryButtons();
@@ -9213,6 +9229,10 @@
         selectedTimeRange = 'ytd';
         currentMonth = null; // Use range mode
         aggregatedTableData = getAggregatedDataForRange('ytd');
+        originalAggregatedData = [...aggregatedTableData]; // Store unfiltered data
+        if (activeFilterView) {
+            applyFilterView(activeFilterView);
+        }
         updateTimeRangeDisplay();
         updateBreadcrumb();
         updateCategoryButtons();
