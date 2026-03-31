@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Green Border
 
-## Getting Started
+**The premier cannabis guide for El Paso (915) and Sunland Park, NM**
 
-First, run the development server:
+## Mission
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The Green Border is dedicated to providing the cannabis community in El Paso, Texas and Sunland Park, New Mexico with accurate, up-to-date information about dispensaries, products, industry news, and education. We serve as a trusted resource for both new and experienced cannabis users navigating the unique landscape of the border region.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What We Offer
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🏪 Dispensary Guide
+Comprehensive information about cannabis dispensaries serving the El Paso and Sunland Park area, including operating hours, locations, and product availability.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 📰 Cannabis News & Industry Updates
+Stay informed on the latest cannabis legislation, market developments, and regulatory changes affecting the border community.
 
-## Learn More
+### 📚 Cannabis Education
+In-depth guides to help you make informed decisions, including:
+- Consumption methods (flower, vapes, dabs, edibles)
+- Product types and quality indicators
+- Dosing and harm reduction
+- Legal considerations for the region
 
-To learn more about Next.js, take a look at the following resources:
+### 📊 Product & Dispensary Data
+Detailed matching and analysis tools to help you find the right dispensaries and products for your needs.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Our Community
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+We're here for the **915 area code community** - El Paso residents and the broader border region interested in accessing quality cannabis information and resources.
 
-## Deploy on Vercel
+## Getting Involved
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Have dispensary information to share? Cannabis news tips? Education topics you'd like us to cover? We welcome community contributions and feedback.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+**The Green Border** — *Serving the 915 Cannabis Community with Integrity and Insight*
