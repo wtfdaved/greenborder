@@ -7594,6 +7594,7 @@
             if (records.length === 0) return null;
 
             const data = { dba, month };
+            data.city = records[0].city; // Get city from first record
             data.total = records.reduce((sum, r) => sum + r.total, 0);
             data.adultUse = records.reduce((sum, r) => sum + r.adultUse, 0);
             data.medical = records.reduce((sum, r) => sum + r.medical, 0);
