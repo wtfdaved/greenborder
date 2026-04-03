@@ -86,93 +86,6 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-/**
- * Mobile Navigation Script - Unified Component
- * Handles: Active state, scroll collapse, menu toggling, scroll to top
- */
-
-document.addEventListener("DOMContentLoaded", function() {
-    // ── Footer year ──
-    const yearEl = document.getElementById("tgb-year");
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-
-    // ── Mobile nav active state ──
-    const currentPath = window.location.pathname;
-    const currentHref = window.location.href;
-
-    function setActive(id) {
-        document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-        const el = document.getElementById(id);
-        if (el) el.classList.add('active');
-    }
-
-    // Determine which nav item should be active
-    if (currentPath === "/" || currentPath === "" || (currentHref.includes("greenborder.org/") && !currentHref.includes("greenborder.org/b") && !currentHref.includes("greenborder.org/n") && !currentHref.includes("greenborder.org/s") && !currentHref.includes("greenborder.org/a"))) {
-        setActive('nav-home');
-    } else if (currentHref.includes("news")) {
-        setActive('nav-news');
-    } else if (currentHref.includes("data") || currentHref.includes("sales")) {
-        setActive('nav-data');
-    } else if (currentHref.includes("education")) {
-        setActive('nav-edu');
-    } else if (currentHref.includes("about") || currentHref.includes("partnership")) {
-        setActive('nav-about');
-    }
-
-    // Handle nav item clicks
-    document.querySelectorAll('.tgb-nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-            document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // ── Collapse on scroll ──
-    const navMenu = document.getElementById('tgb-mobile-menu');
-    let isNavExpanded = true;
-
-    window.addEventListener("scroll", function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (window.innerWidth <= 768) {
-            if (scrollTop > 50) {
-                if (isNavExpanded) {
-                    navMenu.classList.add('nav-collapsed');
-                    isNavExpanded = false;
-                }
-            } else if (scrollTop < 10) {
-                navMenu.classList.remove('nav-collapsed');
-                isNavExpanded = true;
-            }
-        }
-
-        // Back to top button
-        const scrollBtn = document.getElementById("tgb-scroll-btn");
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add("show");
-        } else {
-            scrollBtn.classList.remove("show");
-        }
-    }, { passive: true });
-
-    // ── Tap collapsed menu to expand ──
-    navMenu.addEventListener('click', function(e) {
-        if (navMenu.classList.contains('nav-collapsed')) {
-            e.preventDefault();
-            navMenu.classList.remove('nav-collapsed');
-            isNavExpanded = true;
-        }
-    });
-});
-
-// ── Scroll to top ──
-function tgbScrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-</script>
-  <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -212,511 +125,660 @@ function tgbScrollToTop() {
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-/* ═════════════════════════════════════════════════════════════════════════ */
-/* Shared Styles - Header, Footer, Mobile Nav                               */
-/* Mobile Optimizations: Safe Areas, Touch Targets, Responsive Typography   */
-/* ═════════════════════════════════════════════════════════════════════════ */
-
-/* ── Base ── */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background-color: #0a0a0a;
-  color: #e5e7eb;
-  font-family: 'Inter', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── Glass Header ── */
-#tgb-glass-header {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 95%;
-  max-width: 1200px;
-  z-index: 10000;
-  background: rgba(26, 26, 26, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(16, 185, 129, 0.15);
-  box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
-  border-radius: 20px;
-  padding: 12px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: all 0.3s ease;
-}
-
-body.scrolled #tgb-glass-header {
-  top: 0;
-  width: 100%;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-}
-
-.tgb-logo-container {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 4px 0;
-}
-
-.tgb-logo-text {
-  font-family: 'Fraunces', serif;
-  font-weight: 700;
-  font-size: 28px;
-  color: #34d399;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
-  transition: transform 0.2s ease;
-  line-height: 1;
-}
-
-.tgb-logo-sparkle {
-  color: #ca8a04;
-  font-size: 24px;
-  animation: tgb-spin-slow 10s linear infinite;
-}
-
-.tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
-
-.tgb-desktop-nav {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-
-.tgb-header-link {
-  font-family: 'Inter', sans-serif;
-  text-decoration: none;
-  color: #cbd5e1;
-  font-weight: 600;
-  font-size: 15px;
-  position: relative;
-  transition: color 0.2s ease;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
-}
-
-.tgb-header-link:hover { color: #34d399; }
-
-.tgb-header-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #ca8a04;
-  transition: width 0.3s ease;
-}
-
-.tgb-header-link:hover::after { width: 100%; }
-
-.tgb-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.tgb-search-icon {
-  color: #34d399;
-  cursor: pointer;
-  padding: 12px;
-  border-radius: 50%;
-  transition: background 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  min-width: 44px;
-}
-
-.tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
-
-.tgb-header-btn {
-  background: #1a4d2e;
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
-  transition: all 0.2s ease;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tgb-header-btn:hover {
-  background: #14532d;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
-}
-
-@keyframes tgb-spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* Mobile Header Optimizations */
-@media (max-width: 900px) {
-  .tgb-desktop-nav { display: none; }
-  .tgb-logo-text { font-size: 20px; }
-  .tgb-logo-sparkle { font-size: 20px; }
-  #tgb-glass-header {
-    width: 100%;
-    top: 0;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-    padding: 12px max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
-    max-width: none;
-  }
-  .tgb-header-btn {
-    padding: 10px 24px;
-    font-size: 13px;
-  }
-  .tgb-search-icon {
-    padding: 10px;
-  }
-}
-
-/* ── Glass Footer ── */
-.tgb-glass-footer {
-    margin-top: 80px;
-    padding: 0 max(20px, env(safe-area-inset-left)) max(40px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-right));
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    position: relative;
-    z-index: 10;
-}
-
-.tgb-footer-card {
-    max-width: 900px;
-    margin: 0 auto;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
-      rgba(26, 26, 26, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(16, 185, 129, 0.15);
-    box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
-    border-radius: 30px;
-    padding: 50px;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-}
-
-.tgb-footer-cta {
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(16,185,129,0.1);
-}
-
-.tgb-cta-title {
-    font-size: 24px;
-    font-weight: 800;
-    color: #34d399;
-    margin: 0 0 10px 0;
-}
-
-.tgb-cta-title a {
-    color: #34d399;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.tgb-cta-title a:hover { color: #10b981; }
-
-.tgb-cta-text {
-    font-size: 16px;
-    color: #cbd5e1;
-    margin: 0 auto 25px auto;
-    max-width: 600px;
-    line-height: 1.5;
-}
-
-.tgb-sub-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-    text-decoration: none;
-    padding: 14px 32px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.tgb-sub-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-}
-
-.tgb-footer-nav {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-
-.tgb-footer-link {
-    text-decoration: none;
-    color: #cbd5e1;
-    font-weight: 600;
-    font-size: 15px;
-    transition: color 0.2s ease;
-    padding: 8px 0;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-}
-
-.tgb-footer-link:hover { color: #34d399; }
-
-.tgb-favorites-section {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(16,185,129,0.1);
-}
-
-.tgb-favorites-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
-    color: #94a3b8;
-    margin: 0 0 15px 0;
-    display: block;
-}
-
-.tgb-legal-block {
-    background: rgba(16,185,129,0.05);
-    border-radius: 16px;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.tgb-disclaimer-text {
-    font-size: 11px;
-    line-height: 1.5;
-    color: #94a3b8;
-    margin: 0 0 10px 0;
-    text-align: justify;
-    text-align-last: center;
-}
-
-.tgb-copyright {
-    font-size: 12px;
-    color: #cbd5e1;
-    font-weight: 600;
-    margin-top: 15px;
-    opacity: 0.7;
-}
-
-/* Mobile Footer Optimizations */
-@media (max-width: 768px) {
-    .tgb-glass-footer { padding: 0 max(12px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-right)); }
-    .tgb-footer-card { padding: 30px 20px; }
-    .tgb-footer-nav { flex-direction: column; gap: 15px; }
-    .tgb-cta-title { font-size: 20px; }
-    .tgb-cta-text { font-size: 14px; }
-}
-
-/* ── Mobile Bottom Nav ── */
-.tgb-mobile-nav { display: none; }
-
-@media (max-width: 768px) {
-    body { padding-bottom: 100px; }
-
-    .tgb-mobile-nav {
-        display: flex;
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 94%;
-        max-width: 420px;
-        background: rgba(10, 10, 10, 0.88);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-        border-radius: 50px;
-        z-index: 99999;
-        padding: 10px 0;
-        justify-content: space-evenly;
-        align-items: center;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-        height: 65px;
-        left: env(safe-area-inset-left);
-        right: env(safe-area-inset-right);
-        bottom: max(20px, env(safe-area-inset-bottom));
-        width: auto;
-        transform: none;
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0a0a0a;
+      color: #e5e7eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .tgb-mobile-nav.nav-collapsed {
-        width: 65px;
-        border-radius: 50%;
-        padding: 0;
-        justify-content: center;
-        background: #052e16;
-        border-color: rgba(52, 211, 153, 0.3);
-        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(52,211,153,0.1);
-        cursor: pointer;
+    /* ── Glass Header ── */
+    #tgb-glass-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1200px;
+      z-index: 10000;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border-radius: 20px;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
     }
-
-    .tgb-mobile-nav.nav-collapsed .tgb-nav-item {
-        display: none;
-        opacity: 0;
-        pointer-events: none;
+    body.scrolled #tgb-glass-header {
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
     }
-
-    .tgb-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: #6b7280;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        position: relative;
-        transition: all 0.3s ease;
-        opacity: 1;
-        min-height: 48px;
-        min-width: 48px;
-        padding: 4px 8px;
-        gap: 4px;
-        text-align: center;
+    .tgb-logo-container {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-
-    .tgb-menu-toggler {
-        display: none;
-        color: #34d399;
-        font-size: 22px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    .tgb-logo-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #34d399;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      transition: transform 0.2s ease;
+    }
+    .tgb-logo-sparkle {
+      color: #ca8a04;
+      font-size: 24px;
+      animation: tgb-spin-slow 10s linear infinite;
+    }
+    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
+    .tgb-desktop-nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .tgb-header-link {
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 600;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ca8a04;
+      transition: width 0.3s ease;
+    }
+    .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .tgb-search-icon {
+      color: #34d399;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-header-btn {
+      background: #1a4d2e;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      transition: all 0.2s ease;
+    }
+    .tgb-header-btn:hover {
+      background: #14532d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+    }
+    @keyframes tgb-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .tgb-desktop-nav { display: none; }
+      .tgb-logo-text { font-size: 20px; }
+      .tgb-logo-sparkle { font-size: 20px; }
+      #tgb-glass-header {
         width: 100%;
-        height: 100%;
+        top: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        padding: 12px 16px;
+        max-width: none;
+      }
+      .tgb-header-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .tgb-search-icon {
+        padding: 6px;
+      }
     }
 
-    .tgb-menu-toggler span {
-        font-size: 8px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-top: -1px;
+    /* ── Age Gate ── */
+    #tgb-age-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 999999;
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .tgb-age-card {
+      background: linear-gradient(145deg, rgba(255,255,255,1) 30%, rgba(246,248,252,0.95) 100%);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.8);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tgb-age-logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+    }
+    .tgb-age-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      color: #1d1d1f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+    .tgb-age-text {
+      font-size: 15px;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+    .tgb-age-btn-yes {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      background: linear-gradient(135deg, #1a4d2e 0%, #2a7d4e 100%);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-age-btn-yes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.35);
+    }
+    .tgb-age-btn-no {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #86868b;
+      text-decoration: none;
+      border-bottom: 1px dotted #86868b;
+    }
+    .tgb-age-btn-no:hover { color: #1d1d1f; }
+    #tgb-age-overlay.active { opacity: 1; }
+    #tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
+
+    /* ── Hero ── */
+    .hero-gradient {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(245,158,11,0.07) 0%, transparent 60%),
+        #0a0a0a;
+    }
+    .hero-glow {
+      text-shadow: 0 0 60px rgba(16,185,129,0.4), 0 0 120px rgba(16,185,129,0.15);
+    }
+
+    /* ── Cards ── */
+    .dispensary-card {
+      background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+      border: 1px solid rgba(16,185,129,0.12);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dispensary-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(16,185,129,0.5);
+      box-shadow: 0 20px 60px rgba(16,185,129,0.12), 0 0 0 1px rgba(16,185,129,0.1);
+    }
+    .news-card {
+      background: linear-gradient(135deg, #111111 0%, #181818 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245,158,11,0.35);
+    }
+
+    /* ── Badge ── */
+    .badge-rec { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+    .badge-med { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+    .badge-new { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+
+    /* ── Section divider ── */
+    .section-line {
+      display: inline-block;
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, #10b981, #f59e0b);
+      border-radius: 9999px;
+    }
+
+    /* ── Emerald glow button ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(16,185,129,0.5);
+      transform: translateY(-2px);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Star rating ── */
+    .stars { color: #f59e0b; letter-spacing: 2px; }
+
+    /* ── Tag strip ── */
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── Education icon box ── */
+    .edu-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      font-size: 1.5rem;
+    }
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: 80px;
+        padding: 0 20px 40px 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background:
+          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
+          rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(16, 185, 129, 0.15);
+        box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
+        border-radius: 30px;
+        padding: 50px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(16,185,129,0.1);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
         color: #34d399;
+        margin: 0 0 10px 0;
     }
-
-    .tgb-mobile-nav.nav-collapsed .tgb-menu-toggler {
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #cbd5e1;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    .tgb-footer-nav {
         display: flex;
-        animation: tgbFadeIn 0.3s ease forwards;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #cbd5e1;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-favorites-section {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(16,185,129,0.1);
+    }
+    .tgb-favorites-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #94a3b8;
+        margin: 0 0 15px 0;
+        display: block;
+    }
+    .tgb-legal-block {
+        background: rgba(16,185,129,0.05);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #94a3b8;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #cbd5e1;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.7;
     }
 
-    @keyframes tgbFadeIn {
-        from { opacity: 0; transform: scale(0.8); }
-        to   { opacity: 1; transform: scale(1); }
+    /* ── Mobile Bottom Nav ── */
+    .tgb-mobile-nav { display: none; }
+    @media (max-width: 768px) {
+        body { padding-bottom: 100px; }
+        .tgb-footer-card { padding: 30px 20px; }
+        .tgb-footer-nav { flex-direction: column; gap: 15px; }
+        .tgb-mobile-nav {
+            display: flex;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94%;
+            max-width: 420px;
+            background: rgba(10, 10, 10, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+            border-radius: 50px;
+            z-index: 99999;
+            padding: 10px 0;
+            justify-content: space-evenly;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            height: 65px;
+        }
+        .tgb-mobile-nav.nav-collapsed {
+            width: 65px;
+            border-radius: 50%;
+            padding: 0;
+            justify-content: center;
+            background: #052e16;
+            border-color: rgba(52, 211, 153, 0.3);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(52,211,153,0.1);
+            cursor: pointer;
+        }
+        .tgb-mobile-nav.nav-collapsed .tgb-nav-item {
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .tgb-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            width: 18%;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+        .tgb-menu-toggler {
+            display: none;
+            color: #34d399;
+            font-size: 22px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        .tgb-menu-toggler span {
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: -1px;
+            color: #34d399;
+        }
+        .tgb-mobile-nav.nav-collapsed .tgb-menu-toggler {
+            display: flex;
+            animation: tgbFadeIn 0.3s ease forwards;
+        }
+        @keyframes tgbFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .tgb-nav-item.active { color: #34d399; transform: translateY(-2px); }
+        .tgb-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            width: 4px;
+            height: 4px;
+            background: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(52,211,153,0.6);
+        }
+        .tgb-nav-icon {
+            font-size: 22px;
+            margin-bottom: 3px;
+            transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1);
+            filter: grayscale(0.3);
+        }
+        .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.15); filter: grayscale(0); }
+        .tgb-nav-item:not(.active):hover { color: #d1d5db; }
     }
 
-    .tgb-nav-item.active { color: #34d399; transform: translateY(-2px); }
-    .tgb-nav-item.active::after {
-        content: '';
-        position: absolute;
-        bottom: -6px;
-        width: 4px;
-        height: 4px;
-        background: #34d399;
-        border-radius: 50%;
-        box-shadow: 0 0 6px rgba(52,211,153,0.6);
-    }
-
-    .tgb-nav-icon {
-        font-size: 22px;
-        transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1);
-        filter: grayscale(0.3);
-    }
-
-    .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.15); filter: grayscale(0); }
-    .tgb-nav-item:not(.active):hover { color: #d1d5db; }
-}
-
-/* ── Back to Top Button ── */
-#tgb-scroll-btn {
-    position: fixed;
-    bottom: 90px;
-    right: 30px;
-    z-index: 2147483647;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    cursor: pointer;
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-#tgb-scroll-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
-
-#tgb-scroll-btn:hover {
-    background: rgba(255, 255, 255, 0.95);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(26, 77, 46, 0.2);
-}
-
-#tgb-scroll-arrow {
-    width: 12px;
-    height: 12px;
-    border-top: 3px solid #1a4d2e;
-    border-right: 3px solid #1a4d2e;
-    transform: rotate(-45deg);
-    margin-top: 4px;
-}
-
-@media (max-width: 768px) {
+    /* ── Back to Top Button ── */
     #tgb-scroll-btn {
-        bottom: max(110px, calc(100px + env(safe-area-inset-bottom)));
-        right: max(20px, env(safe-area-inset-right));
-        width: 45px;
-        height: 45px;
-        z-index: 9990;
+        position: fixed;
+        bottom: 90px;
+        right: 30px;
+        z-index: 2147483647;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
     }
-}
+    #tgb-scroll-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    #tgb-scroll-btn:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(26, 77, 46, 0.2);
+    }
+    #tgb-scroll-arrow {
+        width: 12px;
+        height: 12px;
+        border-top: 3px solid #1a4d2e;
+        border-right: 3px solid #1a4d2e;
+        transform: rotate(-45deg);
+        margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+        #tgb-scroll-btn { bottom: 110px; right: 20px; width: 45px; height: 45px; z-index: 9990; }
+    }
 
-</style>
+    /* ── Dispensary Directory ── */
+    .font-display { font-family: 'Rajdhani', 'Inter', sans-serif; }
+    .font-body    { font-family: 'Inter', system-ui, sans-serif; }
+    .font-mono-dir{ font-family: 'Rajdhani', monospace; letter-spacing: 0.05em; }
+    .card-hover   { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .tag-pill     { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
+    .filter-sticky{ transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+    .filter-sticky.filter-hidden { max-height: 0; overflow: hidden; opacity: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; border-color: transparent; pointer-events: none; box-shadow: none; }
+    #gb-filter-toggle { transition: all 0.3s ease; }
+    #gb-filter-toggle svg { transition: transform 0.3s ease; }
+    #gb-filter-toggle.filter-is-hidden svg { transform: rotate(180deg); }
+    .anim-in      { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .ribbon {
+      position: absolute; top: 0; right: 0;
+      color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 6px 14px 6px 18px; border-radius: 0 24px 0 20px;
+      font-family: 'Inter', sans-serif; backdrop-filter: blur(4px);
+      box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
+    }
+    .scroll-x { overflow-x: auto; scrollbar-width: none; }
+    .scroll-x::-webkit-scrollbar { display: none; }
+
+    /* ── Region Collapse ── */
+    .region-header-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .region-header-btn:hover {
+      opacity: 0.85;
+    }
+    .region-header-btn:active {
+      transform: scale(0.98);
+    }
+    .region-header-content {
+      flex: 1;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .region-collapse-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+      color: currentColor;
+    }
+    .region-header-btn.collapsed .region-collapse-icon {
+      transform: rotate(-90deg);
+    }
+    .region-container {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) {
+      .region-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .region-container { gap: 2rem; }
+    }
+    .region-container.collapsed {
+      display: none;
+    }
+    .region-meta-info {
+      font-size: 0.875rem;
+      color: inherit;
+    }
+    .region-count {
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 640px) {
+      .card-actions { flex-direction: column; }
+      .card-actions a { width: 100%; text-align: center; justify-content: center; }
+    }
+  </style>
 </head>
 
 <body>
@@ -724,9 +786,8 @@ body.scrolled #tgb-glass-header {
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              GLASS HEADER                    ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-  <!-- Glass Header - Unified Component -->
 <header id="tgb-glass-header">
-  <a href="/" class="tgb-logo-container">
+  <a href="#" class="tgb-logo-container">
     <span class="tgb-logo-text">The Green Border</span>
     <span class="tgb-logo-sparkle">✦</span>
   </a>
@@ -749,7 +810,6 @@ body.scrolled #tgb-glass-header {
     <a href="#dispensaries" class="tgb-header-btn">Find Dispensary</a>
   </div>
 </header>
-
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║               AGE GATE                       ║ -->
@@ -987,93 +1047,6 @@ body.scrolled #tgb-glass-header {
 
 
 <script>
-/**
- * Mobile Navigation Script - Unified Component
- * Handles: Active state, scroll collapse, menu toggling, scroll to top
- */
-
-document.addEventListener("DOMContentLoaded", function() {
-    // ── Footer year ──
-    const yearEl = document.getElementById("tgb-year");
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-
-    // ── Mobile nav active state ──
-    const currentPath = window.location.pathname;
-    const currentHref = window.location.href;
-
-    function setActive(id) {
-        document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-        const el = document.getElementById(id);
-        if (el) el.classList.add('active');
-    }
-
-    // Determine which nav item should be active
-    if (currentPath === "/" || currentPath === "" || (currentHref.includes("greenborder.org/") && !currentHref.includes("greenborder.org/b") && !currentHref.includes("greenborder.org/n") && !currentHref.includes("greenborder.org/s") && !currentHref.includes("greenborder.org/a"))) {
-        setActive('nav-home');
-    } else if (currentHref.includes("news")) {
-        setActive('nav-news');
-    } else if (currentHref.includes("data") || currentHref.includes("sales")) {
-        setActive('nav-data');
-    } else if (currentHref.includes("education")) {
-        setActive('nav-edu');
-    } else if (currentHref.includes("about") || currentHref.includes("partnership")) {
-        setActive('nav-about');
-    }
-
-    // Handle nav item clicks
-    document.querySelectorAll('.tgb-nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-            document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // ── Collapse on scroll ──
-    const navMenu = document.getElementById('tgb-mobile-menu');
-    let isNavExpanded = true;
-
-    window.addEventListener("scroll", function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (window.innerWidth <= 768) {
-            if (scrollTop > 50) {
-                if (isNavExpanded) {
-                    navMenu.classList.add('nav-collapsed');
-                    isNavExpanded = false;
-                }
-            } else if (scrollTop < 10) {
-                navMenu.classList.remove('nav-collapsed');
-                isNavExpanded = true;
-            }
-        }
-
-        // Back to top button
-        const scrollBtn = document.getElementById("tgb-scroll-btn");
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add("show");
-        } else {
-            scrollBtn.classList.remove("show");
-        }
-    }, { passive: true });
-
-    // ── Tap collapsed menu to expand ──
-    navMenu.addEventListener('click', function(e) {
-        if (navMenu.classList.contains('nav-collapsed')) {
-            e.preventDefault();
-            navMenu.classList.remove('nav-collapsed');
-            isNavExpanded = true;
-        }
-    });
-});
-
-// ── Scroll to top ──
-function tgbScrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-</script>
-  <script>
 (function(){
 
 /* ══════════════════════════════════════════════════════════
@@ -2001,7 +1974,6 @@ render();
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                   FOOTER                     ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-  <!-- Glass Footer - Unified Component -->
 <footer class="tgb-glass-footer">
     <div class="tgb-footer-card">
 
@@ -2047,98 +2019,10 @@ render();
 </footer>
 
 
-
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                JAVASCRIPT                    ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <script>
-/**
- * Mobile Navigation Script - Unified Component
- * Handles: Active state, scroll collapse, menu toggling, scroll to top
- */
-
-document.addEventListener("DOMContentLoaded", function() {
-    // ── Footer year ──
-    const yearEl = document.getElementById("tgb-year");
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-
-    // ── Mobile nav active state ──
-    const currentPath = window.location.pathname;
-    const currentHref = window.location.href;
-
-    function setActive(id) {
-        document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-        const el = document.getElementById(id);
-        if (el) el.classList.add('active');
-    }
-
-    // Determine which nav item should be active
-    if (currentPath === "/" || currentPath === "" || (currentHref.includes("greenborder.org/") && !currentHref.includes("greenborder.org/b") && !currentHref.includes("greenborder.org/n") && !currentHref.includes("greenborder.org/s") && !currentHref.includes("greenborder.org/a"))) {
-        setActive('nav-home');
-    } else if (currentHref.includes("news")) {
-        setActive('nav-news');
-    } else if (currentHref.includes("data") || currentHref.includes("sales")) {
-        setActive('nav-data');
-    } else if (currentHref.includes("education")) {
-        setActive('nav-edu');
-    } else if (currentHref.includes("about") || currentHref.includes("partnership")) {
-        setActive('nav-about');
-    }
-
-    // Handle nav item clicks
-    document.querySelectorAll('.tgb-nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-            document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // ── Collapse on scroll ──
-    const navMenu = document.getElementById('tgb-mobile-menu');
-    let isNavExpanded = true;
-
-    window.addEventListener("scroll", function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (window.innerWidth <= 768) {
-            if (scrollTop > 50) {
-                if (isNavExpanded) {
-                    navMenu.classList.add('nav-collapsed');
-                    isNavExpanded = false;
-                }
-            } else if (scrollTop < 10) {
-                navMenu.classList.remove('nav-collapsed');
-                isNavExpanded = true;
-            }
-        }
-
-        // Back to top button
-        const scrollBtn = document.getElementById("tgb-scroll-btn");
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add("show");
-        } else {
-            scrollBtn.classList.remove("show");
-        }
-    }, { passive: true });
-
-    // ── Tap collapsed menu to expand ──
-    navMenu.addEventListener('click', function(e) {
-        if (navMenu.classList.contains('nav-collapsed')) {
-            e.preventDefault();
-            navMenu.classList.remove('nav-collapsed');
-            isNavExpanded = true;
-        }
-    });
-});
-
-// ── Scroll to top ──
-function tgbScrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-</script>
-  <script>
   // ── Body padding for fixed header ────────────────
   document.body.style.paddingTop = "80px";
 
@@ -2215,39 +2099,9 @@ function tgbScrollToTop() {
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║             MOBILE BOTTOM NAV                ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-  <!-- Mobile Bottom Navigation - Unified Component -->
 <div class="tgb-mobile-nav" id="tgb-mobile-menu">
     <div class="tgb-menu-toggler">
         <div>☰</div>
-        <span>Menu</span>
-    </div>
-    <a href="/" class="tgb-nav-item" id="nav-home">
-        <span class="tgb-nav-icon">🏠</span>
-        <span>Home</span>
-    </a>
-    <a href="/news.html" class="tgb-nav-item" id="nav-news">
-        <span class="tgb-nav-icon">📰</span>
-        <span>News</span>
-    </a>
-    <a href="/data.html" class="tgb-nav-item" id="nav-data">
-        <span class="tgb-nav-icon">📊</span>
-        <span>Data</span>
-    </a>
-    <a href="/#education" class="tgb-nav-item" id="nav-edu">
-        <span class="tgb-nav-icon">📚</span>
-        <span>Education</span>
-    </a>
-    <a href="/#about" class="tgb-nav-item" id="nav-about">
-        <span class="tgb-nav-icon">ℹ️</span>
-        <span>About</span>
-    </a>
-</div>
-
-<!-- Back to Top Button -->
-<div id="tgb-scroll-btn" onclick="tgbScrollToTop()">
-    <div id="tgb-scroll-arrow"></div>
-</div>
-
         <span>Menu</span>
     </div>
     <a href="/" class="tgb-nav-item" id="nav-home">
@@ -2277,93 +2131,6 @@ function tgbScrollToTop() {
 </div>
 
 <script>
-/**
- * Mobile Navigation Script - Unified Component
- * Handles: Active state, scroll collapse, menu toggling, scroll to top
- */
-
-document.addEventListener("DOMContentLoaded", function() {
-    // ── Footer year ──
-    const yearEl = document.getElementById("tgb-year");
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-
-    // ── Mobile nav active state ──
-    const currentPath = window.location.pathname;
-    const currentHref = window.location.href;
-
-    function setActive(id) {
-        document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-        const el = document.getElementById(id);
-        if (el) el.classList.add('active');
-    }
-
-    // Determine which nav item should be active
-    if (currentPath === "/" || currentPath === "" || (currentHref.includes("greenborder.org/") && !currentHref.includes("greenborder.org/b") && !currentHref.includes("greenborder.org/n") && !currentHref.includes("greenborder.org/s") && !currentHref.includes("greenborder.org/a"))) {
-        setActive('nav-home');
-    } else if (currentHref.includes("news")) {
-        setActive('nav-news');
-    } else if (currentHref.includes("data") || currentHref.includes("sales")) {
-        setActive('nav-data');
-    } else if (currentHref.includes("education")) {
-        setActive('nav-edu');
-    } else if (currentHref.includes("about") || currentHref.includes("partnership")) {
-        setActive('nav-about');
-    }
-
-    // Handle nav item clicks
-    document.querySelectorAll('.tgb-nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-            document.querySelectorAll('.tgb-nav-item').forEach(el => el.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // ── Collapse on scroll ──
-    const navMenu = document.getElementById('tgb-mobile-menu');
-    let isNavExpanded = true;
-
-    window.addEventListener("scroll", function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (window.innerWidth <= 768) {
-            if (scrollTop > 50) {
-                if (isNavExpanded) {
-                    navMenu.classList.add('nav-collapsed');
-                    isNavExpanded = false;
-                }
-            } else if (scrollTop < 10) {
-                navMenu.classList.remove('nav-collapsed');
-                isNavExpanded = true;
-            }
-        }
-
-        // Back to top button
-        const scrollBtn = document.getElementById("tgb-scroll-btn");
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add("show");
-        } else {
-            scrollBtn.classList.remove("show");
-        }
-    }, { passive: true });
-
-    // ── Tap collapsed menu to expand ──
-    navMenu.addEventListener('click', function(e) {
-        if (navMenu.classList.contains('nav-collapsed')) {
-            e.preventDefault();
-            navMenu.classList.remove('nav-collapsed');
-            isNavExpanded = true;
-        }
-    });
-});
-
-// ── Scroll to top ──
-function tgbScrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-</script>
-  <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Footer year
         document.getElementById("tgb-year").textContent = new Date().getFullYear();
