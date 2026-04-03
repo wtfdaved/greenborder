@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News | The Green Border – 915 Cannabis News & Culture</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Read the latest cannabis news, policy updates, and culture articles from The Green Border. Coverage of El Paso, Sunland Park, and the 915 border community." />
+  <meta name="keywords" content="cannabis news, 915 cannabis, dispensary news, cannabis policy, El Paso cannabis, Sunland Park news, cannabis culture" />
+  <meta name="author" content="The Green Border" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://greenborder.org/news.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenborder.org/news.html" />
+  <meta property="og:title" content="News | The Green Border – 915 Cannabis News & Culture" />
+  <meta property="og:description" content="Latest cannabis news, policy updates, and culture articles for the 915 border community." />
+  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="News | The Green Border" />
+  <meta name="twitter:description" content="Latest cannabis news and culture from the 915 border community." />
+
+  <!-- Additional Meta Tags -->
+  <meta http-equiv="content-language" content="en-US" />
+  <meta name="theme-color" content="#10b981" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "headline": "The Green Border News",
+    "description": "Latest cannabis news, policy updates, and culture articles for the 915 border community",
+    "url": "https://greenborder.org/news.html",
+    "creator": {
+      "@type": "Organization",
+      "name": "The Green Border"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://greenborder.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "News",
+        "item": "https://greenborder.org/news.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
+            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Rajdhani', 'Inter', 'sans-serif'],
+          },
+          backgroundImage: {
+            'hero-grid': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease-out forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  {{SHARED_STYLES}}
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║            GLASS HEADER / NAV               ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+  {{HEADER}}
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║            NEWS HERO SECTION                ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="pt-40 pb-16 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-12">
+    <span class="section-line mb-4 block mx-auto"></span>
+    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">The Green Border News</h1>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto">Cannabis news, policy updates, and culture for the 915 and beyond. Stay informed on what's happening in El Paso, Sunland Park, and the border community.</p>
+  </div>
+
+  <!-- Category Filters -->
+  <div class="flex flex-wrap justify-center gap-3 mb-12">
+    <button class="category-filter active" onclick="filterArticles('all')">All Articles</button>
+    <button class="category-filter" onclick="filterArticles('policy')">Policy</button>
+    <button class="category-filter" onclick="filterArticles('research')">Research</button>
+    <button class="category-filter" onclick="filterArticles('legal')">Legal</button>
+    <button class="category-filter" onclick="filterArticles('culture')">Culture</button>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║          FEATURED ARTICLE                   ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="px-4 max-w-6xl mx-auto mb-16">
+  <a href="/articles/hemp-ban-2026.html" class="news-card rounded-3xl overflow-hidden news-hero block no-underline transition hover:transform hover:translate-y-[-4px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
+      <div class="h-64 md:h-auto relative overflow-hidden rounded-2xl">
+        <img src="https://images.unsplash.com/photo-1681857240171-7408cd66c75e?w=1200&q=80" alt="Hemp products" class="w-full h-full object-cover">
+      </div>
+      <div class="flex flex-col justify-center">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="tag" style="background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);">Featured</span>
+          <span class="text-xs text-gray-500">March 5, 2026</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-red-400 font-medium">Hemp &amp; Policy</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h2>
+        <p class="text-gray-400 mb-6 text-lg">A federal law tucked inside last year's government shutdown deal will ban most hemp-derived THC products in America by November 12, 2026. In Texas, that means 6,350 businesses, 40,000 jobs, and $7.5 billion in economic activity are on the clock.</p>
+        <div class="flex items-center gap-4">
+          <span class="text-sm text-gray-500">By El Paso Cannabis Club</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-sm text-gray-500">6 min read</span>
+        </div>
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║          ARTICLES GRID                      ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="px-4 max-w-6xl mx-auto pb-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="articles-grid">
+
+    <!-- Article 1: Texas Cannabis Legalization -->
+    <a href="/articles/texas-cannabis-legalization-march-2026.html" class="news-card rounded-2xl overflow-hidden block no-underline transition hover:transform hover:translate-y-[-4px]" data-category="policy">
+      <div class="h-48 relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1655129786334-d6fa7a68057b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3cwfDF8c2VhcmNofDI2fHx0ZXhhcyUyMGZsYWd8ZW58MHx8fHwxNzcyNjU5NDgyfDA&ixlib=rb-4.1.0&q=80&w=2000" alt="Texas flag" class="w-full h-full object-cover">
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">Mar 4, 2026</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-emerald-400 font-medium">Texas &amp; Policy</span>
+        </div>
+        <h3 class="text-white font-semibold text-xl mb-3">Texas Just Voted 80% for Cannabis Legalization — So Why Is It Still Illegal Here?</h3>
+        <p class="text-gray-500 text-sm mb-4">Texas Democratic primary voters approved cannabis legalization by 80%. What does this mean for El Paso and the path forward?</p>
+        <span class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <!-- Article 2: Hemp Ban -->
+    <a href="/articles/hemp-ban-2026.html" class="news-card rounded-2xl overflow-hidden block no-underline transition hover:transform hover:translate-y-[-4px]" data-category="policy">
+      <div class="h-48 relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1681857240171-7408cd66c75e?w=1200&q=80" alt="Hemp products" class="w-full h-full object-cover">
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xs text-gray-500">Mar 5, 2026</span>
+          <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+          <span class="text-xs text-red-400 font-medium">Hemp &amp; Policy</span>
+        </div>
+        <h3 class="text-white font-semibold text-xl mb-3">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h3>
+        <p class="text-gray-500 text-sm mb-4">A federal law will ban most hemp-derived THC products by November 12, 2026. In Texas, that means 6,350 businesses and 40,000 jobs are on the clock.</p>
+        <span class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║         NEWSLETTER CTA                      ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="px-4 max-w-6xl mx-auto mb-20">
+  <div class="news-card rounded-2xl p-8 md:p-12" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border:1px solid rgba(16,185,129,0.2);">
+    <div class="max-w-2xl">
+      <div class="text-4xl mb-4">📬</div>
+      <h2 class="text-3xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Stay in the Loop</h2>
+      <p class="text-gray-400 mb-6">Get the latest 915 cannabis news, deals, and dispensary updates delivered to your inbox every week.</p>
+      <form class="flex flex-col sm:flex-row gap-3">
+        <input type="email" placeholder="your@email.com" required class="flex-1 px-4 py-3 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
+        <button type="submit" class="btn-primary px-6 py-3 rounded-xl text-white font-semibold whitespace-nowrap">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                   FOOTER                     ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+  {{FOOTER}}
+
+<!-- Mobile Navigation -->
+<nav class="tgb-mobile-nav">
+  <a href="/" class="tgb-nav-item" id="nav-home">🏠 Home</a>
+  <a href="/news.html" class="tgb-nav-item" id="nav-news">📰 News</a>
+  <a href="/data.html" class="tgb-nav-item" id="nav-data">📊 Data</a>
+  <a href="/#education" class="tgb-nav-item" id="nav-edu">📚 Education</a>
+  <a href="/#about" class="tgb-nav-item" id="nav-about">ℹ️ About</a>
+</nav>
+
+<script>
+  // Set year in footer
+  document.getElementById('tgb-year').textContent = new Date().getFullYear();
+
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('tgb-glass-header');
+    header.classList.toggle('scrolled', window.scrollY > 100);
+  });
+
+  // Article filtering (for future use when more articles are added)
+  function filterArticles(category) {
+    const buttons = document.querySelectorAll('.category-filter');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const articles = document.querySelectorAll('[data-category]');
+    articles.forEach(article => {
+      if (category === 'all' || article.dataset.category === category) {
+        article.style.display = 'block';
+      } else {
+        article.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
