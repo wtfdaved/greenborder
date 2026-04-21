@@ -1465,9 +1465,13 @@ function card(d) {
   const featBorder = d.featured ? 'border-emerald-500/40 ring-[3px] ring-emerald-400/20 shadow-[0_8px_30px_rgba(16,185,129,0.2)]' : 'border-white/10 hover:border-white/25';
   
   // Adjusted button classes for flex-1 sharing to prevent squishing out of bounds
-  const isAstroBuds = d.id === 'custom_1772668487748';
-  const detailsBtn = isAstroBuds
-    ? `<a href="/astro-buds.html"
+  const detailsLinks = {
+    'custom_1772668487748': '/astro-buds.html',
+    'sp2': '/mango-cannabis.html',
+    'sp6': '/old-gods.html'
+  };
+  const detailsBtn = detailsLinks[d.id]
+    ? `<a href="${detailsLinks[d.id]}"
           class="flex-1 flex items-center justify-center gap-2 bg-violet-900/90 hover:bg-violet-700 text-white text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap shadow-sm">
           <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           View Details

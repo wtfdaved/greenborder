@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Old Gods Dispensary | The Green Border – El Paso Cannabis Guide</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Old Gods Dispensary in Sunland Park, NM. 4.8★ rating. Premium cannabis store with excellent customer service." />
+  <meta name="keywords" content="Old Gods Dispensary, Sunland Park dispensary, cannabis, New Mexico, El Paso" />
+  <meta name="author" content="The Green Border" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://greenborder.org/old-gods.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenborder.org/old-gods.html" />
+  <meta property="og:title" content="Old Gods Dispensary | The Green Border" />
+  <meta property="og:description" content="Old Gods Dispensary in Sunland Park, NM. Premium cannabis store with excellent products and customer service." />
+  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Old Gods Dispensary | The Green Border" />
+  <meta name="twitter:description" content="Old Gods Dispensary in Sunland Park, NM." />
+
+  <!-- Additional Meta Tags -->
+  <meta http-equiv="content-language" content="en-US" />
+  <meta name="theme-color" content="#10b981" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Old Gods Dispensary",
+    "image": "https://greenborder.org/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1541 Appaloosa Dr",
+      "addressLocality": "Sunland Park",
+      "addressRegion": "NM",
+      "postalCode": "88063",
+      "addressCountry": "US"
+    },
+    "telephone": "(575) 332-4257",
+    "description": "Premium cannabis store in Sunland Park, NM with excellent products and friendly staff.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "392"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
+            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Rajdhani', 'Inter', 'sans-serif'],
+          },
+          backgroundImage: {
+            'hero-grid': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease-out forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0a0a0a;
+      color: #e5e7eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Glass Header ── */
+    #tgb-glass-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1200px;
+      z-index: 10000;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border-radius: 20px;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+    body.scrolled #tgb-glass-header {
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+    }
+    .tgb-logo-container {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tgb-logo-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #34d399;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      transition: transform 0.2s ease;
+    }
+    .tgb-logo-sparkle {
+      color: #ca8a04;
+      font-size: 24px;
+      animation: tgb-spin-slow 10s linear infinite;
+    }
+    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
+    .tgb-desktop-nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .tgb-header-link {
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 600;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ca8a04;
+      transition: width 0.3s ease;
+    }
+    .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .tgb-search-icon {
+      color: #34d399;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-header-btn {
+      background: #1a4d2e;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      transition: all 0.2s ease;
+    }
+    .tgb-header-btn:hover {
+      background: #14532d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+    }
+    @keyframes tgb-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .tgb-desktop-nav { display: none; }
+      .tgb-logo-text { font-size: 20px; }
+      .tgb-logo-sparkle { font-size: 20px; }
+      #tgb-glass-header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        padding: 12px 16px;
+        max-width: none;
+      }
+      .tgb-header-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .tgb-search-icon {
+        padding: 6px;
+      }
+    }
+
+    /* ── Age Gate ── */
+    #tgb-age-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 999999;
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .tgb-age-card {
+      background: linear-gradient(145deg, rgba(255,255,255,1) 30%, rgba(246,248,252,0.95) 100%);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.8);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tgb-age-logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+    }
+    .tgb-age-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      color: #1d1d1f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+    .tgb-age-text {
+      font-size: 15px;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+    .tgb-age-btn-yes {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      background: linear-gradient(135deg, #1a4d2e 0%, #2a7d4e 100%);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-age-btn-yes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.35);
+    }
+    .tgb-age-btn-no {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #86868b;
+      text-decoration: none;
+      border-bottom: 1px dotted #86868b;
+    }
+    .tgb-age-btn-no:hover { color: #1d1d1f; }
+    #tgb-age-overlay.active { opacity: 1; }
+    #tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
+
+    /* ── Hero Gradient ── */
+    .hero-gradient {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(245,158,11,0.07) 0%, transparent 60%),
+        #0a0a0a;
+    }
+    .hero-glow {
+      text-shadow: 0 0 60px rgba(16,185,129,0.4), 0 0 120px rgba(16,185,129,0.15);
+    }
+
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: 80px;
+        padding: 0 20px 40px 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background:
+          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
+          rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(16, 185, 129, 0.15);
+        box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
+        border-radius: 30px;
+        padding: 50px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(16,185,129,0.1);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #34d399;
+        margin: 0 0 10px 0;
+    }
+    .tgb-cta-title a {
+        color: #34d399;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    .tgb-cta-title a:hover {
+        color: #10b981;
+    }
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #cbd5e1;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    .tgb-footer-nav {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #cbd5e1;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-favorites-section {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(16,185,129,0.1);
+    }
+    .tgb-favorites-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #94a3b8;
+        margin: 0 0 15px 0;
+        display: block;
+    }
+    .tgb-legal-block {
+        background: rgba(16,185,129,0.05);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #94a3b8;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #cbd5e1;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.7;
+    }
+
+    /* ── Section divider ── */
+    .section-line {
+      display: inline-block;
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, #10b981, #f59e0b);
+      border-radius: 9999px;
+    }
+
+    /* ── Button styles ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(16,185,129,0.5);
+      transform: translateY(-2px);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Detail Page Styles ── */
+    .detail-hero {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .detail-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      background: rgba(16, 185, 129, 0.05);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .info-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-value {
+      color: #e5e7eb;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .info-value a {
+      color: #34d399;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .info-value a:hover {
+      color: #10b981;
+    }
+
+    .stars {
+      color: #f59e0b;
+      letter-spacing: 2px;
+      font-size: 20px;
+    }
+
+    .rating-text {
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      margin: 0.25rem;
+    }
+
+    .tags-container {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .review-item {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid rgba(16, 185, 129, 0.4);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-author {
+      font-weight: 600;
+      color: #34d399;
+      font-size: 15px;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-text {
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        body { padding-bottom: 100px; }
+        .tgb-footer-card { padding: 30px 20px; }
+        .tgb-footer-nav { flex-direction: column; gap: 15px; }
+        .detail-info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║              GLASS HEADER                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<header id="tgb-glass-header">
+  <a href="/" class="tgb-logo-container">
+    <span class="tgb-logo-text">The Green Border</span>
+    <span class="tgb-logo-sparkle">✦</span>
+  </a>
+
+  <nav class="tgb-desktop-nav">
+    <a href="/news.html"    class="tgb-header-link">News</a>
+    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
+    <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="/#education"    class="tgb-header-link">Education</a>
+    <a href="/#about"        class="tgb-header-link">About</a>
+  </nav>
+
+  <div class="tgb-header-actions">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </a>
+    <a href="/" class="tgb-header-btn">Back Home</a>
+  </div>
+</header>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║               AGE GATE                       ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div id="tgb-age-overlay">
+  <div class="tgb-age-card">
+    <div class="tgb-age-logo" style="background: linear-gradient(135deg, #1a4d2e 0%, #2a7d4e 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">The Green Border</div>
+    <h2 class="tgb-age-title">Age Verification</h2>
+    <p class="tgb-age-text">
+      You must be 21 years or older to view information about cannabis dispensaries in New Mexico.
+    </p>
+    <button class="tgb-age-btn-yes" onclick="tgbVerifyAge()">
+      Yes, I am 21+
+    </button>
+    <a href="https://www.google.com" class="tgb-age-btn-no">I am under 21</a>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║           DETAIL PAGE HERO                   ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="detail-hero min-h-fit pt-40 pb-20 px-4">
+  <div class="max-w-4xl mx-auto reveal">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 border border-emerald-500/30 text-emerald-400 bg-emerald-500/10">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span>
+      Sunland Park
+    </div>
+
+    <h1 class="hero-glow font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6" style="font-family:'Rajdhani',sans-serif;">
+      Old Gods Dispensary
+    </h1>
+
+    <p class="text-gray-300 text-lg max-w-2xl mb-8 leading-relaxed">
+      Premium cannabis store with unmatched prices, variety, and friendly staff in Sunland Park, New Mexico.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-6 mb-8">
+      <div>
+        <div class="stars">★★★★★ 4.8</div>
+        <div class="rating-text">(392 Google reviews)</div>
+      </div>
+      <div class="text-gray-400 text-sm">
+        <strong class="text-gray-300">Type:</strong> Small business ‧ Cannabis store in Sunland Park, New Mexico
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║           DETAILS SECTION                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="py-16 px-4 max-w-4xl mx-auto reveal">
+  <div class="detail-info-grid mb-16">
+
+    <div class="info-card">
+      <div class="info-label">📍 Address</div>
+      <div class="info-value">
+        1541 Appaloosa Dr<br />
+        Sunland Park, NM 88063
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-label">📞 Phone</div>
+      <div class="info-value">
+        <a href="tel:+15753324257">(575) 332-4257</a>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-label">🕐 Hours</div>
+      <div class="info-value">
+        Open · Closes 11 PM
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║           REVIEWS SECTION                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="py-16 px-4 max-w-4xl mx-auto reveal" style="animation-delay: 0.2s;">
+  <h2 class="text-2xl font-bold text-white mb-10" style="font-family:'Rajdhani',sans-serif;">Google Reviews</h2>
+
+  <div class="review-item">
+    <div class="review-author">★★★★★</div>
+    <div class="review-text">
+      "Prices and variety of products are unmatched!"
+    </div>
+  </div>
+
+  <div class="review-item">
+    <div class="review-author">★★★★★</div>
+    <div class="review-text">
+      "Great place friendly staff wide selection"
+    </div>
+  </div>
+
+  <div class="review-item">
+    <div class="review-author">★★★★★</div>
+    <div class="review-text">
+      "Awesome service great consumer service!"
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║           FOOTER                             ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<footer class="tgb-glass-footer">
+    <div class="tgb-footer-card">
+
+        <div class="tgb-footer-cta">
+            <h3 class="tgb-cta-title"><a href="https://www.instagram.com/ep.canna" target="_blank">Join the Cannabis Club</a></h3>
+            <p class="tgb-cta-text">
+                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
+            </p>
+            <a href="https://www.instagram.com/ep.canna" target="_blank" class="tgb-sub-btn">Subscribe Free</a>
+        </div>
+
+        <nav class="tgb-footer-nav">
+            <a href="/" class="tgb-footer-link">Home</a>
+            <a href="/news.html" class="tgb-footer-link">News</a>
+            <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+            <a href="/#education" class="tgb-footer-link">Education</a>
+            <a href="/#about" class="tgb-footer-link">About</a>
+            <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
+        </nav>
+
+        <div class="tgb-favorites-section">
+            <span class="tgb-favorites-title">Our Favorites</span>
+            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
+                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
+            </nav>
+        </div>
+
+        <div class="tgb-legal-block">
+            <p class="tgb-disclaimer-text">
+                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
+            </p>
+            <p class="tgb-disclaimer-text">
+                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
+            </p>
+            <div class="tgb-copyright">
+                Powered by the 915 | Made with ❤ in El Paso, Texas
+                <br>
+                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.3
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+  // ── Body padding for fixed header ────────────────
+  document.body.style.paddingTop = "80px";
+
+  // ── Age Gate ─────────────────────────────────────
+  document.addEventListener("DOMContentLoaded", function () {
+    const ageOverlay = document.getElementById('tgb-age-overlay');
+    const storageKey = 'tgb_age_verified_v1';
+    if (!localStorage.getItem(storageKey)) {
+      ageOverlay.style.display = 'flex';
+      setTimeout(() => ageOverlay.classList.add('active'), 50);
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  function tgbVerifyAge() {
+    const ageOverlay = document.getElementById('tgb-age-overlay');
+    localStorage.setItem('tgb_age_verified_v1', 'true');
+    ageOverlay.classList.remove('active');
+    setTimeout(() => {
+      ageOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 400);
+  }
+
+  // ── Scroll-reveal ────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Year in footer ─────────────────────────────
+  document.getElementById('tgb-year').textContent = new Date().getFullYear();
+
+  // ── Header scroll effect ────────────────────────
+  window.addEventListener('scroll', function() {
+    const header = document.getElementById('tgb-glass-header');
+    if (window.scrollY > 0) {
+      document.body.classList.add('scrolled');
+    } else {
+      document.body.classList.remove('scrolled');
+    }
+  });
+</script>
+
+</body>
+</html>
