@@ -8193,7 +8193,38 @@
     }
 
     // ---- 3. Core Logic ----
-    
+
+    // Normalize DBA names for cross-month matching
+    function normalizeDbaName(dba) {
+        if (!dba) return '';
+        // Convert to uppercase for comparison
+        let normalized = dba.toUpperCase().trim();
+        // Remove common location/type suffixes
+        normalized = normalized.replace(/\s*-\s*(RETAIL|CONSUMPTION|DISPENSARY|LLC|INC|LOUNGE|GRILL|GROW|BOTANICA|APOTHECARY|RESERVE|ORGANICS|ESSENTIALS|CANNABIS|BUDS|LABS|THERAPY|HOUSE|GARDENS|DISPENSARY NEAR ME)[\s\-].*/i, '');
+        // Clean up extra whitespace and common abbreviations
+        normalized = normalized.replace(/\s+(LLC|INC|CO|LTD|LCS|NM)[\s,.].*$/i, '');
+        normalized = normalized.replace(/\s*\/\s*/g, ' ');
+        normalized = normalized.replace(/\s+/g, ' ').trim();
+        return normalized;
+    }
+
+    // Build DBA mapping between months to handle naming variations
+    const dbaMapping = {};
+    const uniqueNormalizedDbas = new Set();
+    rawData.forEach(record => {
+        const normalized = normalizeDbaName(record.dba);
+        if (normalized) {
+            uniqueNormalizedDbas.add(normalized);
+            if (!dbaMapping[normalized]) dbaMapping[normalized] = {};
+            dbaMapping[normalized][record.month] = record.dba;
+        }
+    });
+
+    // Get canonical DBA name for a given normalized name and month
+    function getCanonicalDba(normalizedName, month) {
+        return dbaMapping[normalizedName] ? dbaMapping[normalizedName][month] || dbaMapping[normalizedName][Object.keys(dbaMapping[normalizedName])[0]] : null;
+    }
+
     // Aggregates raw data based on the current timeframe and city filter
     function getAggregatedData(monthKey) {
         let records = monthKey === 'all' ? rawData : rawData.filter(d => d.month === monthKey);
@@ -8222,7 +8253,18 @@
     // Gets 12-month array for the trend chart
     function getTrendData(dbaName = null) {
         return monthKeys.map(mk => {
-            let monthRecords = rawData.filter(d => d.month === mk && (!dbaName || d.dba === dbaName));
+            let monthRecords;
+            if (!dbaName) {
+                monthRecords = rawData.filter(d => d.month === mk);
+            } else {
+                // Try exact match first
+                monthRecords = rawData.filter(d => d.month === mk && d.dba === dbaName);
+                // If no exact match, try normalized DBA matching
+                if (monthRecords.length === 0) {
+                    const normalizedTarget = normalizeDbaName(dbaName);
+                    monthRecords = rawData.filter(d => d.month === mk && normalizeDbaName(d.dba) === normalizedTarget);
+                }
+            }
             // Apply city filter if drilling down
             if (currentCity && !dbaName) {
                 monthRecords = monthRecords.filter(d => d.city === currentCity);
@@ -8238,7 +8280,13 @@
     // Modal Utility Functions
     function getDispensaryHistoricalData(dba) {
         return monthKeys.map(month => {
-            const records = rawData.filter(d => d.dba === dba && d.month === month);
+            // Try exact match first
+            let records = rawData.filter(d => d.dba === dba && d.month === month);
+            // If no exact match, try normalized DBA matching
+            if (records.length === 0) {
+                const normalizedTarget = normalizeDbaName(dba);
+                records = rawData.filter(d => normalizeDbaName(d.dba) === normalizedTarget && d.month === month);
+            }
             if (records.length === 0) return null;
 
             const data = { dba, month };
@@ -8722,14 +8770,22 @@
         displayData.forEach((row, index) => {
             const sharePct = ((row.value / totalMarketValue) * 100).toFixed(1);
 
-            // Calculate MoM growth
+            // Calculate MoM growth with DBA name normalization
             let momGrowth = 0;
             let isNewDispensary = false;
             let momDisplay = '0.0%';
             let momColor = '#94a3b8';
 
             if (prevMonthData) {
-                const prevRow = prevMonthData.find(p => p.dba === row.dba);
+                // Try exact match first
+                let prevRow = prevMonthData.find(p => p.dba === row.dba);
+
+                // If no exact match, try normalized DBA matching
+                if (!prevRow) {
+                    const normalizedCurrent = normalizeDbaName(row.dba);
+                    prevRow = prevMonthData.find(p => normalizeDbaName(p.dba) === normalizedCurrent);
+                }
+
                 if (prevRow && prevRow.value > 0) {
                     momGrowth = ((row.value - prevRow.value) / prevRow.value) * 100;
                     momColor = momGrowth > 0 ? '#34d399' : momGrowth < 0 ? '#f87171' : '#94a3b8';
@@ -9250,7 +9306,15 @@
 
         const velocityLabels = sorted.map(d => d.dba.length > 15 ? d.dba.substring(0, 13) + '..' : d.dba);
         const velocityValues = sorted.map(d => {
-            const prevData = prevMonthData.find(p => p.dba === d.dba);
+            // Try exact match first
+            let prevData = prevMonthData.find(p => p.dba === d.dba);
+
+            // If no exact match, try normalized DBA matching
+            if (!prevData) {
+                const normalizedCurrent = normalizeDbaName(d.dba);
+                prevData = prevMonthData.find(p => normalizeDbaName(p.dba) === normalizedCurrent);
+            }
+
             return prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
         });
 
