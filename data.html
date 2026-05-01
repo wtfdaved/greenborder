@@ -489,11 +489,20 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║           PAGE TITLE & INTRO                 ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="pt-40 pb-4 md:pb-8 px-4 text-center max-w-7xl mx-auto">
-  <span class="section-line mb-4 block mx-auto"></span>
-  <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 font-display">Sales Data</h1>
-  <p class="text-gray-300 text-lg max-w-2xl mx-auto">Track cannabis sales trends, dispensary performance, and market insights across the 915 border region.</p>
+<section class="pt-40 pb-12 md:pb-16 px-4 text-center">
+  <div class="max-w-3xl mx-auto">
+    <span class="section-line mb-4 block mx-auto"></span>
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 font-display">Sales Data</h1>
+    <p class="text-gray-300 text-lg mb-4">Track cannabis sales trends, dispensary performance, and market insights across the 915 border region.</p>
+    <div class="text-slate-400 text-sm space-y-1">
+      <p class="font-medium">📊 15 months of historical data (Jan 2025 - Mar 2026) | 46+ active dispensaries | Multiple sales categories</p>
+      <p class="text-xs">Analyze revenue trends, market concentration, city-level performance, adult-use vs. medical splits, and MoM growth metrics</p>
+    </div>
+  </div>
 </section>
+
+<!-- Gradient Bridge -->
+<div class="h-12 md:h-16 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent"></div>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║         SALES DATA DASHBOARD                 ║ -->
@@ -510,7 +519,7 @@
         line-height: 1.5;
         width: 100%;
         max-width: 1400px;
-        margin: -40px auto 0;
+        margin: 0 auto;
         padding: 0 20px;
         min-height: 600px;
         background-color: #111111;
@@ -521,16 +530,6 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 10px 40px -10px rgba(0,0,0,0.3);
-    }
-    @media (max-width: 768px) {
-        #tgb-ultra-dash {
-            margin: -20px auto 0;
-        }
-    }
-    @media (min-width: 1024px) {
-        #tgb-ultra-dash {
-            margin: -40px auto 0;
-        }
     }
     #tgb-ultra-dash *, #tgb-ultra-dash ::before, #tgb-ultra-dash ::after {
         box-sizing: border-box; border-width: 0; border-style: solid; border-color: rgba(255,255,255,0.1);
@@ -746,6 +745,9 @@
     }
 </style>
 
+<!-- Dashboard Container with Proper Spacing -->
+<div class="px-4 pb-20">
+    <div class="max-w-7xl mx-auto">
 <div id="tgb-ultra-dash" class="text-sm">
     
     <!-- Top Global Header -->
@@ -1160,6 +1162,9 @@
         </div>
     </div>
 </div>
+    </div>
+</div>
+<!-- End Dashboard Container -->
 
 <script>
 (function() {
