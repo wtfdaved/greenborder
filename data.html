@@ -8197,32 +8197,44 @@
     // Normalize DBA names for cross-month matching
     function normalizeDbaName(dba) {
         if (!dba) return '';
-        // Convert to uppercase for comparison
-        let normalized = dba.toUpperCase().trim();
-        // Remove common location/type suffixes
-        normalized = normalized.replace(/\s*-\s*(RETAIL|CONSUMPTION|DISPENSARY|LLC|INC|LOUNGE|GRILL|GROW|BOTANICA|APOTHECARY|RESERVE|ORGANICS|ESSENTIALS|CANNABIS|BUDS|LABS|THERAPY|HOUSE|GARDENS|DISPENSARY NEAR ME)[\s\-].*/i, '');
-        // Clean up extra whitespace and common abbreviations
-        normalized = normalized.replace(/\s+(LLC|INC|CO|LTD|LCS|NM)[\s,.].*$/i, '');
-        normalized = normalized.replace(/\s*\/\s*/g, ' ');
-        normalized = normalized.replace(/\s+/g, ' ').trim();
-        return normalized;
+        return dba.toUpperCase().trim();
     }
 
-    // Build DBA mapping between months to handle naming variations
-    const dbaMapping = {};
-    const uniqueNormalizedDbas = new Set();
+    // Create a unique identifier for a dispensary based on multiple fields
+    function getDispensaryKey(record) {
+        // Use city + normalized licensee/dba as a more reliable unique key
+        const city = record.city || '';
+        const normalized = record.dba.toUpperCase().trim();
+        // Extract the core business name from licensee when available
+        let licenseeCore = record.licensee ? record.licensee.split(/[/-]/)[0].trim().toUpperCase() : normalized;
+        // Remove trailing LLC, INC, CO, LTD, etc. and punctuation for more reliable matching
+        // Only remove LLC, INC, CO, LTD when at the very end, not NM which may be part of the name
+        licenseeCore = licenseeCore.replace(/[\s,]+[-]?\s*(LLC|INC|CO|LTD|LCS)[\s,]*$/i, '').trim();
+        return `${city}|${licenseeCore}`;
+    }
+
+    // Build dispensary mapping for cross-month matching
+    const dispensaryMap = {}; // Maps unique keys to sets of DBAs across months
+    const dbaToKey = {}; // Maps each DBA to its unique key
+
     rawData.forEach(record => {
-        const normalized = normalizeDbaName(record.dba);
-        if (normalized) {
-            uniqueNormalizedDbas.add(normalized);
-            if (!dbaMapping[normalized]) dbaMapping[normalized] = {};
-            dbaMapping[normalized][record.month] = record.dba;
+        const key = getDispensaryKey(record);
+        const dba = record.dba;
+
+        if (!dispensaryMap[key]) {
+            dispensaryMap[key] = {};
         }
+        if (!dispensaryMap[key][record.month]) {
+            dispensaryMap[key][record.month] = dba;
+        }
+        dbaToKey[dba] = key;
     });
 
-    // Get canonical DBA name for a given normalized name and month
-    function getCanonicalDba(normalizedName, month) {
-        return dbaMapping[normalizedName] ? dbaMapping[normalizedName][month] || dbaMapping[normalizedName][Object.keys(dbaMapping[normalizedName])[0]] : null;
+    // Find the matching DBA in a different month for the same dispensary
+    function findMatchingDba(currentDba, targetMonth) {
+        const key = dbaToKey[currentDba];
+        if (!key || !dispensaryMap[key]) return null;
+        return dispensaryMap[key][targetMonth] || null;
     }
 
     // Aggregates raw data based on the current timeframe and city filter
@@ -8259,10 +8271,12 @@
             } else {
                 // Try exact match first
                 monthRecords = rawData.filter(d => d.month === mk && d.dba === dbaName);
-                // If no exact match, try normalized DBA matching
+                // If no exact match, try finding matching DBA using dispensary key
                 if (monthRecords.length === 0) {
-                    const normalizedTarget = normalizeDbaName(dbaName);
-                    monthRecords = rawData.filter(d => d.month === mk && normalizeDbaName(d.dba) === normalizedTarget);
+                    const matchingDba = findMatchingDba(dbaName, mk);
+                    if (matchingDba) {
+                        monthRecords = rawData.filter(d => d.month === mk && d.dba === matchingDba);
+                    }
                 }
             }
             // Apply city filter if drilling down
@@ -8282,10 +8296,12 @@
         return monthKeys.map(month => {
             // Try exact match first
             let records = rawData.filter(d => d.dba === dba && d.month === month);
-            // If no exact match, try normalized DBA matching
+            // If no exact match, try finding matching DBA using dispensary key
             if (records.length === 0) {
-                const normalizedTarget = normalizeDbaName(dba);
-                records = rawData.filter(d => normalizeDbaName(d.dba) === normalizedTarget && d.month === month);
+                const matchingDba = findMatchingDba(dba, month);
+                if (matchingDba) {
+                    records = rawData.filter(d => d.dba === matchingDba && d.month === month);
+                }
             }
             if (records.length === 0) return null;
 
@@ -8780,10 +8796,12 @@
                 // Try exact match first
                 let prevRow = prevMonthData.find(p => p.dba === row.dba);
 
-                // If no exact match, try normalized DBA matching
-                if (!prevRow) {
-                    const normalizedCurrent = normalizeDbaName(row.dba);
-                    prevRow = prevMonthData.find(p => normalizeDbaName(p.dba) === normalizedCurrent);
+                // If no exact match, try finding matching DBA using dispensary key
+                if (!prevRow && prevMonthKey) {
+                    const matchingDba = findMatchingDba(row.dba, prevMonthKey);
+                    if (matchingDba) {
+                        prevRow = prevMonthData.find(p => p.dba === matchingDba);
+                    }
                 }
 
                 if (prevRow && prevRow.value > 0) {
@@ -9309,10 +9327,12 @@
             // Try exact match first
             let prevData = prevMonthData.find(p => p.dba === d.dba);
 
-            // If no exact match, try normalized DBA matching
-            if (!prevData) {
-                const normalizedCurrent = normalizeDbaName(d.dba);
-                prevData = prevMonthData.find(p => normalizeDbaName(p.dba) === normalizedCurrent);
+            // If no exact match, try finding matching DBA using dispensary key
+            if (!prevData && prevMonthKey) {
+                const matchingDba = findMatchingDba(d.dba, prevMonthKey);
+                if (matchingDba) {
+                    prevData = prevMonthData.find(p => p.dba === matchingDba);
+                }
             }
 
             return prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
