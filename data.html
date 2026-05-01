@@ -635,6 +635,102 @@
         background-color: #10b981;
         color: white;
     }
+
+    /* New Dispensary Badge Styling */
+    .mom-new {
+        color: #fbbf24;
+        font-weight: bold;
+        background: rgba(245, 158, 11, 0.15);
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        display: inline-block;
+        font-size: 0.75rem;
+    }
+
+    /* Enhanced KPI Card Styling */
+    .kpi-card {
+        position: relative;
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+    }
+
+    .kpi-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        border-radius: 12px 0 0 12px;
+        background: var(--card-accent, #10b981);
+    }
+
+    .kpi-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Color variants for KPI cards */
+    .kpi-revenue { --card-accent: #10b981; } /* Emerald */
+    .kpi-adult { --card-accent: #3b82f6; } /* Blue */
+    .kpi-medical { --card-accent: #f43f5e; } /* Rose */
+    .kpi-dbas { --card-accent: #f59e0b; } /* Amber */
+    .kpi-avg { --card-accent: #8b5cf6; } /* Violet */
+    .kpi-concentration { --card-accent: #06b6d4; } /* Cyan */
+
+    /* Enhanced Chart Container Styling */
+    .chart-container {
+        position: relative;
+        transition: all 0.3s ease;
+        border-left: 3px solid var(--chart-accent, #10b981) !important;
+    }
+
+    .chart-container:hover {
+        box-shadow: 0 0 15px rgba(var(--accent-rgb, 16 185 129), 0.2), 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Chart title styling */
+    .chart-container h3 {
+        color: #34d399;
+        letter-spacing: 0.15em;
+        font-size: 0.875rem;
+        font-weight: 700;
+    }
+
+    /* Chart color variants */
+    .chart-trend { --chart-accent: #10b981; --accent-rgb: 16 185 129; } /* Emerald */
+    .chart-market { --chart-accent: #3b82f6; --accent-rgb: 59 130 246; } /* Blue */
+    .chart-velocity { --chart-accent: #f59e0b; --accent-rgb: 245 158 11; } /* Gold */
+    .chart-geography { --chart-accent: #06b6d4; --accent-rgb: 6 182 212; } /* Cyan */
+    .chart-performance { --chart-accent: #f43f5e; --accent-rgb: 244 63 94; } /* Rose */
+
+    /* Table Styling Enhancements */
+    tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    tbody tr:hover {
+        background-color: rgba(16, 185, 129, 0.1);
+    }
+
+    tbody tr.active {
+        border-left: 3px solid #10b981;
+        background-color: rgba(16, 185, 129, 0.15);
+    }
+
+    thead {
+        background: linear-gradient(to bottom, rgba(16, 185, 129, 0.05), transparent);
+    }
+
+    /* Smooth Transitions */
+    * {
+        transition: all 0.2s ease;
+    }
+
+    button, select, [role="button"] {
+        cursor: pointer;
+    }
 </style>
 
 <div id="tgb-ultra-dash" class="text-sm">
@@ -758,76 +854,76 @@
     </div>
 
     <!-- Main Scrollable Content -->
-    <div class="flex-1 overflow-y-auto overflow-x-hidden tgb-scroll p-4 lg:p-5 flex flex-col gap-4">
+    <div class="flex-1 overflow-y-auto overflow-x-hidden tgb-scroll p-6 lg:p-6 flex flex-col gap-6">
 
         <!-- KPI Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 shrink-0">
-            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-emerald-900/30 shadow-lg hover:border-emerald-600/50 transition-colors flex flex-col justify-between" data-tooltip="Total sales revenue across all dispensaries for selected period">
+        <div class="grid grid-cols-2 lg:grid-cols-6 gap-5 shrink-0">
+            <div class="kpi-card kpi-revenue bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-emerald-900/30 shadow-lg flex flex-col justify-between pl-5" data-tooltip="Total sales revenue across all dispensaries for selected period">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Total Revenue</span>
                     <i data-lucide="dollar-sign" class="w-4 h-4 text-emerald-500"></i>
                 </div>
                 <div>
-                    <span id="kpi-total" class="text-lg md:text-xl font-black text-emerald-300 tracking-tight block">--</span>
+                    <span id="kpi-total" class="text-2xl md:text-3xl font-black text-emerald-300 tracking-tight block">--</span>
                     <span id="kpi-total-growth" class="text-[10px] text-emerald-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-blue-900/30 shadow-lg hover:border-blue-600/50 transition-colors flex flex-col justify-between">
+            <div class="kpi-card kpi-adult bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-blue-900/30 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-blue-400">Adult-Use</span>
                     <i data-lucide="users" class="w-4 h-4 text-blue-500"></i>
                 </div>
                 <div>
-                    <span id="kpi-adult" class="text-lg md:text-xl font-black text-blue-300 tracking-tight block">--</span>
+                    <span id="kpi-adult" class="text-2xl md:text-3xl font-black text-blue-300 tracking-tight block">--</span>
                     <span id="kpi-adult-growth" class="text-[10px] text-blue-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-rose-900/30 shadow-lg hover:border-rose-600/50 transition-colors flex flex-col justify-between">
+            <div class="kpi-card kpi-medical bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-rose-900/30 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-rose-400">Medical</span>
                     <i data-lucide="activity" class="w-4 h-4 text-rose-500"></i>
                 </div>
                 <div>
-                    <span id="kpi-medical" class="text-lg md:text-xl font-black text-rose-300 tracking-tight block">--</span>
+                    <span id="kpi-medical" class="text-2xl md:text-3xl font-black text-rose-300 tracking-tight block">--</span>
                     <span id="kpi-medical-growth" class="text-[10px] text-rose-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-amber-900/30 shadow-lg hover:border-amber-600/50 transition-colors flex flex-col justify-between">
+            <div class="kpi-card kpi-dbas bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-amber-900/30 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">Active DBAs</span>
                     <i data-lucide="store" class="w-4 h-4 text-amber-500"></i>
                 </div>
                 <div>
-                    <span id="kpi-stores" class="text-lg md:text-xl font-black text-amber-300 tracking-tight block">--</span>
+                    <span id="kpi-stores" class="text-2xl md:text-3xl font-black text-amber-300 tracking-tight block">--</span>
                     <span id="kpi-stores-growth" class="text-[10px] text-amber-400/80 font-semibold mt-1">= 0</span>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-violet-900/30 shadow-lg hover:border-violet-600/50 transition-colors flex flex-col justify-between">
+            <div class="kpi-card kpi-avg bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-violet-900/30 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-violet-400">Avg Per Store</span>
                     <i data-lucide="trending-up" class="w-4 h-4 text-violet-500"></i>
                 </div>
                 <div>
-                    <span id="kpi-avg-per-store" class="text-lg md:text-xl font-black text-violet-300 tracking-tight block">--</span>
+                    <span id="kpi-avg-per-store" class="text-2xl md:text-3xl font-black text-violet-300 tracking-tight block">--</span>
                     <span id="kpi-avg-growth" class="text-[10px] text-violet-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-[#1a1a1a] to-[#111] p-4 rounded-xl border border-cyan-900/30 shadow-lg hover:border-cyan-600/50 transition-colors flex flex-col justify-between">
+            <div class="kpi-card kpi-concentration bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-cyan-900/30 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-400">Market Concentration</span>
                     <i data-lucide="pie-chart" class="w-4 h-4 text-cyan-500"></i>
                 </div>
                 <div>
-                    <span id="kpi-concentration" class="text-lg md:text-xl font-black text-cyan-300 tracking-tight block">--</span>
+                    <span id="kpi-concentration" class="text-2xl md:text-3xl font-black text-cyan-300 tracking-tight block">--</span>
                     <span id="kpi-top3-share" class="text-[10px] text-cyan-400/80 font-semibold mt-1">Top 3</span>
                 </div>
             </div>
         </div>
 
         <!-- Charts Grid -->
-        <div id="tgb-charts-section" class="grid grid-cols-1 lg:grid-cols-3 gap-4 shrink-0 min-h-[280px]">
+        <div id="tgb-charts-section" class="grid grid-cols-1 lg:grid-cols-3 gap-5 shrink-0 min-h-[280px]">
             <!-- Market Share -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1" data-tooltip="Click on legend items to focus on specific dispensaries">
+            <div class="chart-container chart-market bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1" data-tooltip="Click on legend items to focus on specific dispensaries">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4 flex justify-between">
                     Market Share <span id="donut-lbl" class="text-[10px] text-slate-500 font-medium">Top 10</span>
                 </h3>
@@ -837,7 +933,7 @@
             </div>
 
             <!-- Trend Chart -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1 lg:col-span-2">
+            <div class="chart-container chart-trend bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1 lg:col-span-2">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
                         12-Month Trend
@@ -854,9 +950,9 @@
         </div>
 
         <!-- Additional Charts Row -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0 min-h-[280px]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 shrink-0 min-h-[280px]">
             <!-- Top 10 Performers -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-velocity bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Top 10 Performers</h3>
                 <div class="relative flex-1 w-full min-h-[200px]">
                     <canvas id="tgbBarChart"></canvas>
@@ -864,7 +960,7 @@
             </div>
 
             <!-- Sales Breakdown (Adult-Use vs Medical) -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-market bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Sales Breakdown</h3>
                 <div class="relative flex-1 w-full min-h-[200px]">
                     <canvas id="tgbBreakdownChart"></canvas>
@@ -873,9 +969,9 @@
         </div>
 
         <!-- New Visualizations Row 1 -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0 min-h-[300px]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 shrink-0 min-h-[300px]">
             <!-- Market Positioning Scatter Plot -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-geography bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center gap-2">
                     Market Positioning
                     <span class="text-[9px] text-slate-500 font-normal">Size = Market Share</span>
@@ -886,7 +982,7 @@
             </div>
 
             <!-- Sales Velocity Chart -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-performance bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Sales Velocity (MoM Growth)</h3>
                 <div class="relative flex-1 w-full min-h-[250px]">
                     <canvas id="tgbVelocityChart"></canvas>
@@ -895,9 +991,9 @@
         </div>
 
         <!-- Heatmap Row -->
-        <div class="grid grid-cols-1 gap-4 shrink-0">
+        <div class="grid grid-cols-1 gap-5 shrink-0">
             <!-- Monthly Sales Heatmap -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-geography bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Monthly Sales Heatmap by City</h3>
                 <div id="heatmap-container" class="overflow-x-auto">
                     <!-- Injected via JS -->
@@ -906,9 +1002,9 @@
         </div>
 
         <!-- Geographic & Performance Metrics -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 shrink-0">
             <!-- City Distribution -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm">
+            <div class="chart-container chart-geography bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">By Location</h3>
                 <div id="city-distribution" class="space-y-2">
                     <!-- Injected via JS -->
@@ -916,7 +1012,7 @@
             </div>
 
             <!-- Performance Metrics & Insights -->
-            <div class="bg-[#1a1a1a] p-4 rounded-xl border border-slate-700 shadow-sm">
+            <div class="chart-container chart-performance bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Market Insights</h3>
                 <div id="market-insights" class="space-y-3">
                     <!-- Injected via JS -->
@@ -1023,7 +1119,7 @@
                             <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-right cursor-pointer hover:text-emerald-400 group" data-sort="value">
                                 <span id="th-val-label">Total Sales</span> <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                             </th>
-                            <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center w-16">MoM %</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center w-20">MoM %</th>
                             <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center w-20">Adult/Med</th>
                             <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider w-48">Market Share</th>
                         </tr>
