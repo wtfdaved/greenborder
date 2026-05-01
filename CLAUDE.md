@@ -2,7 +2,7 @@
 
 ## Dashboard Overview
 
-**Purpose**: Interactive analytics dashboard for cannabis sales data across dispensaries in California, tracking month-over-month growth, market trends, and inventory velocity.
+**Purpose**: Interactive analytics dashboard for cannabis sales data across dispensaries in New Mexico, tracking month-over-month growth, market trends, and inventory velocity.
 
 **Technology Stack**:
 - **Frontend**: HTML5 + Vanilla JavaScript (no frameworks)
