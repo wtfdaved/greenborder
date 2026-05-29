@@ -113,6 +113,14 @@ function openDispensaryDetail(dispensaryId) {
           <p>License #: ${escapeHtml(dispensary.licenseNumber)}</p>
         </div>
       ` : ''}
+
+      <!-- Claim/Premium CTA -->
+      <div class="border-t border-gray-700 pt-4 flex gap-3">
+        <a href="/partner.html?claim=${encodeURIComponent(dispensary.id)}"
+           class="flex-1 px-4 py-2 bg-gold-600 hover:bg-gold-500 text-white font-semibold rounded transition text-center">
+          ✓ Is This Your Dispensary? Claim Listing
+        </a>
+      </div>
     </div>
   `;
 
