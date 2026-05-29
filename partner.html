@@ -298,10 +298,20 @@
   </footer>
 
   <script>
+    // Stripe Payment Links Configuration
+    const STRIPE_LINKS = {
+      basic: 'https://buy.stripe.com/test_basic_link_here',
+      premium: 'https://buy.stripe.com/test_premium_link_here',
+      enterprise: 'https://buy.stripe.com/test_enterprise_link_here'
+    };
+
+    // Global state for dispensary claim
+    let claimId = null;
+
     // Initialize from URL parameters
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
-      const claimId = params.get('claim');
+      claimId = params.get('claim');
 
       if (claimId) {
         showClaimAlert(claimId);
@@ -326,29 +336,32 @@
     }
 
     /**
-     * Start Stripe checkout (placeholder)
-     * Will be connected to actual Stripe integration
+     * Redirect to Stripe checkout with optional dispensary tracking
      */
     function startCheckout(tier) {
-      console.log('🛒 Starting checkout for tier:', tier);
+      const stripeLink = STRIPE_LINKS[tier];
 
-      // Placeholder for Stripe integration
-      alert(`Stripe checkout for ${tier} tier will launch here.\n\nTier: ${tier}\nStatus: Placeholder function ready for Stripe.js integration`);
+      if (!stripeLink) {
+        alert('Payment link for this tier is not configured. Please contact support.');
+        return;
+      }
 
-      // TODO: Integrate Stripe Payment Links or Sessions
-      // window.location.href = `https://checkout.stripe.com/...`;
+      let checkoutUrl = stripeLink;
+
+      // Append client_reference_id if dispensary is being claimed
+      if (claimId) {
+        const separator = stripeLink.includes('?') ? '&' : '?';
+        checkoutUrl = `${stripeLink}${separator}client_reference_id=${encodeURIComponent(claimId)}`;
+      }
+
+      window.location.href = checkoutUrl;
     }
 
     /**
-     * Contact sales placeholder
+     * Redirect to sales contact
      */
     function contactSales() {
-      console.log('📞 Contacting sales team');
-
-      // Placeholder for contact form
-      alert('Sales contact form will open here.\n\nEmail: partners@greenborder.org\nPhone: (575) 555-0000');
-
-      // TODO: Open contact form modal or redirect to form
+      window.location.href = 'mailto:partners@greenborder.org?subject=Enterprise%20Plan%20Inquiry';
     }
 
     /**
