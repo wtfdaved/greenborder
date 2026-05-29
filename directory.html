@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cannabis Dispensary Directory | The Green Border</title>
+
+  <meta name="description" content="Find cannabis dispensaries in Southern New Mexico near El Paso. Search by location, type, hours, and ratings." />
+  <meta name="keywords" content="cannabis dispensary directory, El Paso dispensaries, New Mexico cannabis, Sunland Park" />
+  <meta name="author" content="The Green Border" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://greenborder.org/directory.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenborder.org/directory.html" />
+  <meta property="og:title" content="Cannabis Dispensary Directory | The Green Border" />
+  <meta property="og:description" content="Find cannabis dispensaries in Southern New Mexico near El Paso. Search by location, type, hours, and ratings." />
+
+  <!-- Additional Meta Tags -->
+  <meta http-equiv="content-language" content="en-US" />
+  <meta name="theme-color" content="#10b981" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' },
+            gold: { 400: '#fbbf24', 500: '#f59e0b' },
+            charcoal: { 700: '#1a1a1a', 900: '#0a0a0a' },
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #0a0a0a;
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+
+<body class="bg-charcoal-900">
+  <!-- Header -->
+  <header class="bg-charcoal-700 border-b border-emerald-500/20 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-emerald-400">🌿 Green Border Dispensary Directory</h1>
+        <a href="index.html" class="text-gray-400 hover:text-white transition">← Back to Home</a>
+      </div>
+      <p class="text-gray-400 mt-2">Find cannabis dispensaries in Southern New Mexico</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- Filters & Search -->
+    <div class="bg-charcoal-700 rounded-lg p-6 mb-8 space-y-4">
+      <h2 class="text-lg font-semibold text-emerald-400">Filters</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Search -->
+        <div>
+          <label class="block text-sm text-gray-400 mb-2">Search</label>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Dispensary name or city..."
+            class="w-full bg-charcoal-900 text-white px-3 py-2 rounded border border-gray-700 focus:border-emerald-500 outline-none"
+            onkeyup="applyFilters()"
+          />
+        </div>
+
+        <!-- City Filter -->
+        <div>
+          <label class="block text-sm text-gray-400 mb-2">City</label>
+          <select
+            id="city-filter"
+            class="w-full bg-charcoal-900 text-white px-3 py-2 rounded border border-gray-700 focus:border-emerald-500 outline-none"
+            onchange="applyFilters()"
+          >
+            <option value="">All Cities</option>
+          </select>
+        </div>
+
+        <!-- Type Filter -->
+        <div>
+          <label class="block text-sm text-gray-400 mb-2">Type</label>
+          <select
+            id="type-filter"
+            class="w-full bg-charcoal-900 text-white px-3 py-2 rounded border border-gray-700 focus:border-emerald-500 outline-none"
+            onchange="applyFilters()"
+          >
+            <option value="">All Types</option>
+            <option value="retail">Retail</option>
+            <option value="lounge">Lounge</option>
+            <option value="wholesale">Wholesale</option>
+            <option value="cultivation">Cultivation</option>
+          </select>
+        </div>
+
+        <!-- Rating Filter -->
+        <div>
+          <label class="block text-sm text-gray-400 mb-2">Min. Rating</label>
+          <select
+            id="rating-filter"
+            class="w-full bg-charcoal-900 text-white px-3 py-2 rounded border border-gray-700 focus:border-emerald-500 outline-none"
+            onchange="applyFilters()"
+          >
+            <option value="">Any Rating</option>
+            <option value="4.5">4.5+ ★</option>
+            <option value="4.0">4.0+ ★</option>
+            <option value="3.5">3.5+ ★</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3 justify-end pt-2">
+        <button onclick="exportToCSV()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded transition">
+          📥 Export CSV
+        </button>
+        <button onclick="location.reload()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded transition">
+          🔄 Refresh Data
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Count -->
+    <div class="mb-4 text-gray-400">
+      <p id="result-count">Loading dispensaries...</p>
+    </div>
+
+    <!-- Dispensary Grid -->
+    <div id="dispensary-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div class="col-span-full text-center py-12 text-gray-500">Loading...</div>
+    </div>
+
+  </main>
+
+  <!-- Detail Modal -->
+  <div id="dispensary-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-charcoal-700 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+      <div class="sticky top-0 bg-charcoal-800 border-b border-gray-700 px-6 py-4 flex items-center justify-between">
+        <h2 class="text-xl font-bold text-white">Dispensary Details</h2>
+        <button onclick="closeDispensaryModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div id="modal-content" class="p-6"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/data/dispensaries-config.js"></script>
+  <script src="/data/data-service.js"></script>
+  <script src="/js/directory-ui.js"></script>
+
+  <script>
+    // Initialize directory on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('🚀 Initializing Dispensary Directory...');
+
+      // Load data
+      const dispensaries = await window.dispensaryService.load();
+
+      if (dispensaries.length > 0) {
+        // Populate filters
+        populateCityFilter();
+
+        // Render grid
+        renderDispensaryGrid(dispensaries);
+
+        // Update count
+        updateResultCount(dispensaries.length);
+      } else {
+        updateResultCount(0);
+      }
+
+      // Subscribe to data updates
+      window.dispensaryService.subscribe('data-loaded', (data) => {
+        console.log('📊 Data updated, refreshing view...');
+        populateCityFilter();
+        applyFilters();
+      });
+
+      // Close modal on background click
+      document.getElementById('dispensary-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'dispensary-modal') closeDispensaryModal();
+      });
+
+      // Show service status
+      console.log('📊 Service Status:', window.dispensaryService.getStatus());
+    });
+  </script>
+</body>
+</html>
