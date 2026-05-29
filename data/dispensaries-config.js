@@ -10,12 +10,13 @@
 const DISPENSARY_CONFIG = {
   // Primary: Airtable API
   airtable: {
-    enabled: true,
+    enabled: false,
 
-    // From your Airtable base settings
-    baseId: import.meta.env.VITE_AIRTABLE_BASE_ID || 'appXXXXXXXXXXXXXX',
-    tableId: import.meta.env.VITE_AIRTABLE_TABLE_ID || 'tblXXXXXXXXXXXXXX',
-    apiKey: import.meta.env.VITE_AIRTABLE_API_KEY || '',
+    // From your Airtable base settings (set to empty for fallback)
+    // To enable Airtable: set enabled: true and provide valid credentials
+    baseId: 'appXXXXXXXXXXXXXX',
+    tableId: 'tblXXXXXXXXXXXXXX',
+    apiKey: '',
 
     // Which Airtable view to use
     view: 'Grid view',
