@@ -211,16 +211,57 @@
   </div>
 
   <!-- Scripts -->
+  <script src="/data/airtableSync.js"></script>
   <script src="/data/dispensaries-config.js"></script>
   <script src="/data/data-service.js"></script>
   <script src="/js/directory-ui.js"></script>
+
+  <!-- Airtable Sync Initialization -->
+  <script>
+    // Initialize Airtable sync with production credentials
+    (function initializeAirtableSync() {
+      // Airtable Configuration
+      const AIRTABLE_CONFIG = {
+        baseId: 'appsyx973b3QozJv6',
+        tableId: 'tblKwRRyoKXAf85b1'
+      };
+
+      // Securely retrieve API key from:
+      // 1. localStorage (set via secure admin panel or stored locally)
+      // 2. window variable (injected by parent frame or loader)
+      // 3. Empty string (will use JSON fallback)
+      const getSecureApiKey = () => {
+        return (
+          localStorage.getItem('AIRTABLE_SECURE_KEY') ||
+          (typeof window !== 'undefined' && window.AIRTABLE_SECURE_KEY) ||
+          ''
+        );
+      };
+
+      // Initialize the sync service
+      const apiKey = getSecureApiKey();
+      window.airtableSync.initialize({
+        apiKey: apiKey,
+        baseId: AIRTABLE_CONFIG.baseId,
+        tableId: AIRTABLE_CONFIG.tableId
+      });
+
+      // Log status
+      const status = window.airtableSync.getStatus();
+      if (status.initialized) {
+        console.log('✅ Airtable sync initialized - live database connected');
+      } else {
+        console.warn('⚠️ Airtable API key not found - will use JSON fallback');
+      }
+    })();
+  </script>
 
   <script>
     // Initialize directory on page load
     document.addEventListener('DOMContentLoaded', async () => {
       console.log('🚀 Initializing Dispensary Directory...');
 
-      // Load data
+      // Load data from Airtable or fallback
       const dispensaries = await window.dispensaryService.load();
 
       if (dispensaries.length > 0) {
@@ -238,7 +279,6 @@
 
       // Subscribe to data updates
       window.dispensaryService.subscribe('data-loaded', (data) => {
-        console.log('📊 Data updated, refreshing view...');
         populateCityFilter();
         applyFilters();
       });
@@ -248,8 +288,13 @@
         if (e.target.id === 'dispensary-modal') closeDispensaryModal();
       });
 
-      // Show service status
-      console.log('📊 Service Status:', window.dispensaryService.getStatus());
+      // Show sync status
+      const syncStatus = window.airtableSync.getStatus();
+      if (syncStatus.initialized) {
+        console.log(`✅ Directory loaded from Airtable (${dispensaries.length} dispensaries)`);
+      } else {
+        console.log(`✅ Directory loaded from fallback (${dispensaries.length} dispensaries)`);
+      }
     });
   </script>
 </body>
