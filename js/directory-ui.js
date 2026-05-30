@@ -412,3 +412,16 @@ function escapeHtml(text) {
   };
   return String(text).replace(/[&<>"']/g, m => map[m]);
 }
+
+// ============================================
+// EXPOSE FUNCTIONS TO GLOBAL SCOPE
+// ============================================
+// Make functions globally accessible for HTML event handlers
+window.renderDispensariesByCity = renderDispensariesByCity;
+window.applyFilters = applyFilters;
+window.populateCityFilter = populateCityFilter;
+window.updateResultCount = updateResultCount;
+window.exportToCSV = exportToCSV;
+window.openDispensaryDetail = openDispensaryDetail;
+window.closeDispensaryModal = closeDispensaryModal;
+window.escapeHtml = escapeHtml;
