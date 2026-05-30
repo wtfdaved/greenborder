@@ -5,6 +5,7 @@
 /**
  * Render dispensaries grouped by city
  * Premium dispensaries appear first in each city
+ * Only renders city sections that have dispensaries
  */
 function renderDispensariesByCity(dispensaries) {
   try {
@@ -31,10 +32,11 @@ function renderDispensariesByCity(dispensaries) {
       grouped[city] = (dispensaries || []).filter(d => d && d.city === city);
     });
 
-    // Build HTML
+    // Build HTML - only include cities that have dispensaries
     let html = '';
+    const citiesWithDispensaries = cityOrder.filter(city => grouped[city]?.length > 0);
 
-    cityOrder.forEach(city => {
+    citiesWithDispensaries.forEach(city => {
       const cityDisps = grouped[city] || [];
       if (cityDisps.length === 0) return;
 
@@ -69,7 +71,7 @@ function renderDispensariesByCity(dispensaries) {
     });
 
     container.innerHTML = html || '<div class="text-center py-12 text-gray-400">No dispensaries to display</div>';
-    console.log(`✅ Rendered ${dispensaries.length} dispensaries grouped by city`);
+    console.log(`✅ Rendered ${dispensaries.length} dispensaries grouped by ${citiesWithDispensaries.length} cities`);
   } catch (error) {
     console.error('renderDispensariesByCity error:', error);
     const container = document.getElementById('dispensary-grid-by-city');
@@ -80,7 +82,7 @@ function renderDispensariesByCity(dispensaries) {
 }
 
 /**
- * Create a premium dispensary card
+ * Create a premium dispensary card with liquid glass design
  */
 function createPremiumCard(dsp) {
   try {
@@ -92,10 +94,13 @@ function createPremiumCard(dsp) {
            onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
         <div class="premium-badge">FEATURED ✨</div>
 
-        <!-- Header -->
-        <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5">
-          <h3 class="text-xl font-bold text-white">${escapeHtml(dsp.name)}</h3>
-          <p class="text-emerald-100 text-sm">${escapeHtml(dsp.city)}</p>
+        <!-- Glass Header -->
+        <div class="card-header-glass p-5 border-b border-emerald-500/20">
+          <h3 class="text-xl font-bold text-white mb-1">${escapeHtml(dsp.name)}</h3>
+          <p class="text-emerald-100 text-sm flex items-center gap-1">
+            <span>📍</span>
+            <span>${escapeHtml(dsp.city)}</span>
+          </p>
         </div>
 
         <!-- Content -->
@@ -111,23 +116,23 @@ function createPremiumCard(dsp) {
             <p>${escapeHtml(dsp.address)}</p>
           </div>
 
-          <!-- Contact -->
-          <div class="text-sm space-y-1">
-            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:underline font-medium">${dsp.phone}</a></p>` : ''}
-            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:underline font-medium">Visit Website →</a></p>` : ''}
+          <!-- Contact Buttons -->
+          <div class="text-sm space-y-2">
+            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:text-emerald-300 font-medium">📞 ${dsp.phone}</a></p>` : ''}
+            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-medium">🌐 Visit Website</a></p>` : ''}
           </div>
 
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2">
-            ${dsp.hasAdultUse ? '<span class="badge-rec px-2 py-1 rounded text-xs font-bold">Adult Use</span>' : ''}
-            ${dsp.hasMedical ? '<span class="badge-med px-2 py-1 rounded text-xs font-bold">Medical</span>' : ''}
-            ${dsp.hasConsumption ? '<span class="badge-new px-2 py-1 rounded text-xs font-bold">Lounge</span>' : ''}
+          <!-- Badges with Emoji -->
+          <div class="flex flex-wrap gap-2 pt-2">
+            ${dsp.hasAdultUse ? '<span class="badge-rec-emoji px-3 py-1.5 rounded-full text-xs font-bold">🌿 Recreational</span>' : ''}
+            ${dsp.hasMedical ? '<span class="badge-med-emoji px-3 py-1.5 rounded-full text-xs font-bold">🏥 Medical</span>' : ''}
+            ${dsp.hasConsumption ? '<span class="badge-lounge-emoji px-3 py-1.5 rounded-full text-xs font-bold">🛋️ Lounge</span>' : ''}
           </div>
 
           <!-- CTA -->
           <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
-             class="mt-3 block w-full text-center px-3 py-2 bg-gold-600 hover:bg-gold-500 text-white text-sm font-bold rounded-lg transition">
-            Claim Listing
+             class="mt-4 block w-full text-center px-3 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white text-sm font-bold rounded-lg transition transform hover:scale-105">
+            ✓ Claim Listing
           </a>
         </div>
       </div>
@@ -139,7 +144,7 @@ function createPremiumCard(dsp) {
 }
 
 /**
- * Create a standard dispensary card
+ * Create a standard dispensary card with liquid glass design
  */
 function createStandardCard(dsp) {
   try {
@@ -150,10 +155,13 @@ function createStandardCard(dsp) {
       <div class="dispensary-card rounded-2xl overflow-hidden transition-all cursor-pointer group"
            onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
 
-        <!-- Header -->
-        <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5">
-          <h3 class="text-xl font-bold text-white">${escapeHtml(dsp.name)}</h3>
-          <p class="text-emerald-100 text-sm">${escapeHtml(dsp.city)}</p>
+        <!-- Glass Header -->
+        <div class="card-header-glass p-5 border-b border-emerald-500/20">
+          <h3 class="text-xl font-bold text-white mb-1">${escapeHtml(dsp.name)}</h3>
+          <p class="text-emerald-100 text-sm flex items-center gap-1">
+            <span>📍</span>
+            <span>${escapeHtml(dsp.city)}</span>
+          </p>
         </div>
 
         <!-- Content -->
@@ -169,23 +177,23 @@ function createStandardCard(dsp) {
             <p>${escapeHtml(dsp.address)}</p>
           </div>
 
-          <!-- Contact -->
-          <div class="text-sm space-y-1">
-            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:underline">${dsp.phone}</a></p>` : ''}
-            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:underline">Visit Website →</a></p>` : ''}
+          <!-- Contact Buttons -->
+          <div class="text-sm space-y-2">
+            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:text-emerald-300 font-medium">📞 ${dsp.phone}</a></p>` : ''}
+            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-medium">🌐 Visit Website</a></p>` : ''}
           </div>
 
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2">
-            ${dsp.hasAdultUse ? '<span class="badge-rec px-2 py-1 rounded text-xs font-bold">Adult Use</span>' : ''}
-            ${dsp.hasMedical ? '<span class="badge-med px-2 py-1 rounded text-xs font-bold">Medical</span>' : ''}
-            ${dsp.hasConsumption ? '<span class="badge-new px-2 py-1 rounded text-xs font-bold">Lounge</span>' : ''}
+          <!-- Badges with Emoji -->
+          <div class="flex flex-wrap gap-2 pt-2">
+            ${dsp.hasAdultUse ? '<span class="badge-rec-emoji px-3 py-1.5 rounded-full text-xs font-bold">🌿 Recreational</span>' : ''}
+            ${dsp.hasMedical ? '<span class="badge-med-emoji px-3 py-1.5 rounded-full text-xs font-bold">🏥 Medical</span>' : ''}
+            ${dsp.hasConsumption ? '<span class="badge-lounge-emoji px-3 py-1.5 rounded-full text-xs font-bold">🛋️ Lounge</span>' : ''}
           </div>
 
           <!-- CTA -->
           <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
-             class="mt-3 block w-full text-center px-3 py-2 bg-gold-600 hover:bg-gold-500 text-white text-sm font-bold rounded-lg transition">
-            Claim Listing
+             class="mt-4 block w-full text-center px-3 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white text-sm font-bold rounded-lg transition transform hover:scale-105">
+            ✓ Claim Listing
           </a>
         </div>
       </div>

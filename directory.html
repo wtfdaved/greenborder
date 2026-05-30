@@ -310,12 +310,12 @@
     .premium-card {
       background: linear-gradient(135deg, #242424 0%, #1a1a1a 100%);
       border: 1px solid rgba(16,185,129,0.25);
-      box-shadow: 0 0 30px rgba(16,185,129,0.2), inset 0 0 20px rgba(16,185,129,0.05);
+      box-shadow: 0 0 30px rgba(16,185,129,0.25), inset 0 0 25px rgba(16,185,129,0.08);
       position: relative;
     }
     .premium-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 0 40px rgba(16,185,129,0.3), inset 0 0 20px rgba(16,185,129,0.1);
+      box-shadow: 0 0 50px rgba(16,185,129,0.35), inset 0 0 30px rgba(16,185,129,0.12);
     }
     .premium-badge {
       position: absolute;
@@ -337,6 +337,55 @@
     .badge-rec { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
     .badge-med { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
     .badge-new { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+
+    /* ── Glass Badge (Emoji-style) ── */
+    .badge-rec-emoji {
+      background: rgba(16,185,129,0.15);
+      color: #34d399;
+      border: 1px solid rgba(16,185,129,0.3);
+      backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+    }
+    .badge-rec-emoji:hover {
+      background: rgba(16,185,129,0.25);
+      border-color: rgba(16,185,129,0.5);
+    }
+
+    .badge-med-emoji {
+      background: rgba(245,158,11,0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245,158,11,0.3);
+      backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+    }
+    .badge-med-emoji:hover {
+      background: rgba(245,158,11,0.25);
+      border-color: rgba(245,158,11,0.5);
+    }
+
+    .badge-lounge-emoji {
+      background: rgba(99,102,241,0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99,102,241,0.3);
+      backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+    }
+    .badge-lounge-emoji:hover {
+      background: rgba(99,102,241,0.25);
+      border-color: rgba(99,102,241,0.5);
+    }
+
+    /* ── Glass Header ── */
+    .card-header-glass {
+      background: rgba(16,185,129,0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+    .dispensary-card:hover .card-header-glass,
+    .premium-card:hover .card-header-glass {
+      background: rgba(16,185,129,0.12);
+    }
 
     /* ── City sections ── */
     .city-section {
