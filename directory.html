@@ -564,54 +564,187 @@
   </script>
 
   <script>
+    // Fallback rendering function (safe baseline)
+    function safeRenderDispensaries(dispensaries) {
+      try {
+        const container = document.getElementById('dispensary-grid-by-city');
+        if (!container) return;
+
+        if (dispensaries.length === 0) {
+          container.innerHTML = '<div class="text-center py-12 text-gray-400"><p>No dispensaries found.</p></div>';
+          return;
+        }
+
+        // Group by city safely
+        const cityOrder = ['Sunland Park', 'Chaparral', 'Santa Teresa', 'Anthony'];
+        let html = '';
+
+        cityOrder.forEach(city => {
+          const cityDisps = dispensaries.filter(d => d.city === city);
+          if (cityDisps.length === 0) return;
+
+          const premium = cityDisps.filter(d => d.isPremium);
+          const standard = cityDisps.filter(d => !d.isPremium);
+
+          html += '<section class="city-section"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">';
+
+          // Premium cards
+          premium.forEach(dsp => {
+            html += `<div class="premium-card rounded-2xl overflow-hidden cursor-pointer relative p-5">
+              <div class="premium-badge">FEATURED ✨</div>
+              <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5 -m-5 mb-3">
+                <h3 class="text-xl font-bold text-white">${(dsp.name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h3>
+                <p class="text-emerald-100 text-sm">${(dsp.city || '').replace(/</g, '&lt;')}</p>
+              </div>
+              <div class="space-y-3">
+                <p class="text-gold-400 font-bold">${(dsp.rating || 0).toFixed(1)}★</p>
+                <p class="text-sm text-gray-300">${(dsp.address || '').replace(/</g, '&lt;')}</p>
+                ${dsp.phone ? `<p class="text-sm"><a href="tel:${dsp.phone}" class="text-emerald-400">${dsp.phone}</a></p>` : ''}
+              </div>
+            </div>`;
+          });
+
+          // Standard cards
+          standard.forEach(dsp => {
+            html += `<div class="dispensary-card rounded-2xl overflow-hidden cursor-pointer p-5">
+              <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5 -m-5 mb-3">
+                <h3 class="text-xl font-bold text-white">${(dsp.name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h3>
+                <p class="text-emerald-100 text-sm">${(dsp.city || '').replace(/</g, '&lt;')}</p>
+              </div>
+              <div class="space-y-3">
+                <p class="text-gold-400 font-bold">${(dsp.rating || 0).toFixed(1)}★</p>
+                <p class="text-sm text-gray-300">${(dsp.address || '').replace(/</g, '&lt;')}</p>
+                ${dsp.phone ? `<p class="text-sm"><a href="tel:${dsp.phone}" class="text-emerald-400">${dsp.phone}</a></p>` : ''}
+              </div>
+            </div>`;
+          });
+
+          html += '</div></section>';
+        });
+
+        container.innerHTML = html;
+        console.log('✅ Rendered with safe fallback');
+      } catch (e) {
+        console.error('Safe render failed:', e);
+        document.getElementById('dispensary-grid-by-city').innerHTML = '<div class="text-center py-12 text-red-400">Error displaying dispensaries. Please refresh.</div>';
+      }
+    }
+
     // Header scroll listener
     document.addEventListener('scroll', () => {
-      const header = document.getElementById('tgb-glass-header');
-      const body = document.getElementById('tgb-body');
-      if (window.scrollY > 100) {
-        body.classList.add('scrolled');
-      } else {
-        body.classList.remove('scrolled');
+      try {
+        const header = document.getElementById('tgb-glass-header');
+        const body = document.getElementById('tgb-body');
+        if (window.scrollY > 100) {
+          body?.classList.add('scrolled');
+        } else {
+          body?.classList.remove('scrolled');
+        }
+      } catch (e) {
+        console.warn('Header scroll error:', e);
       }
     });
 
     // Initialize directory on page load
     document.addEventListener('DOMContentLoaded', async () => {
-      console.log('🚀 Initializing Dispensary Directory...');
+      try {
+        console.log('🚀 Initializing Dispensary Directory...');
 
-      // Load data from Airtable or fallback
-      const dispensaries = await window.dispensaryService.load();
+        // Verify services exist
+        if (!window.dispensaryService) {
+          throw new Error('dispensaryService not loaded');
+        }
 
-      if (dispensaries.length > 0) {
-        // Populate filters
-        populateCityFilter();
+        // Load data with timeout
+        const loadPromise = window.dispensaryService.load();
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Data load timeout')), 10000)
+        );
 
-        // Render grid grouped by city
-        renderDispensariesByCity(dispensaries);
+        let dispensaries = [];
+        try {
+          dispensaries = await Promise.race([loadPromise, timeoutPromise]);
+        } catch (loadErr) {
+          console.error('Data load error:', loadErr);
+          dispensaries = window.dispensaryService?.data || [];
+        }
 
-        // Update count
-        updateResultCount(dispensaries.length);
-      } else {
-        updateResultCount(0);
-      }
+        if (dispensaries.length > 0) {
+          try {
+            // Populate filters safely
+            if (typeof populateCityFilter === 'function') {
+              populateCityFilter();
+            }
 
-      // Subscribe to data updates
-      window.dispensaryService.subscribe('data-loaded', (data) => {
-        populateCityFilter();
-        applyFilters();
-      });
+            // Try new rendering first, fall back to safe rendering
+            if (typeof renderDispensariesByCity === 'function') {
+              renderDispensariesByCity(dispensaries);
+            } else {
+              console.warn('renderDispensariesByCity not found, using safe render');
+              safeRenderDispensaries(dispensaries);
+            }
 
-      // Close modal on background click
-      document.getElementById('dispensary-modal').addEventListener('click', (e) => {
-        if (e.target.id === 'dispensary-modal') closeDispensaryModal();
-      });
+            // Update count
+            if (typeof updateResultCount === 'function') {
+              updateResultCount(dispensaries.length);
+            } else {
+              const el = document.getElementById('result-count');
+              if (el) el.textContent = `${dispensaries.length} dispensaries found`;
+            }
+          } catch (renderErr) {
+            console.error('Render error:', renderErr);
+            safeRenderDispensaries(dispensaries);
+          }
+        } else {
+          document.getElementById('result-count').textContent = '0 dispensaries found';
+        }
 
-      // Show sync status
-      const syncStatus = window.airtableSync.getStatus();
-      if (syncStatus.initialized) {
-        console.log(`✅ Directory loaded from Airtable (${dispensaries.length} dispensaries)`);
-      } else {
-        console.log(`✅ Directory loaded from fallback (${dispensaries.length} dispensaries)`);
+        // Subscribe to data updates with error handling
+        try {
+          if (window.dispensaryService?.subscribe) {
+            window.dispensaryService.subscribe('data-loaded', (data) => {
+              try {
+                if (typeof populateCityFilter === 'function') populateCityFilter();
+                if (typeof applyFilters === 'function') applyFilters();
+              } catch (e) {
+                console.error('Filter update error:', e);
+              }
+            });
+          }
+        } catch (e) {
+          console.warn('Subscribe error:', e);
+        }
+
+        // Modal close handler
+        try {
+          const modal = document.getElementById('dispensary-modal');
+          if (modal) {
+            modal.addEventListener('click', (e) => {
+              if (e.target.id === 'dispensary-modal' && typeof closeDispensaryModal === 'function') {
+                closeDispensaryModal();
+              }
+            });
+          }
+        } catch (e) {
+          console.warn('Modal handler error:', e);
+        }
+
+        // Show sync status
+        try {
+          const syncStatus = window.airtableSync?.getStatus?.();
+          if (syncStatus?.initialized) {
+            console.log(`✅ Directory loaded from Airtable (${dispensaries.length} dispensaries)`);
+          } else {
+            console.log(`✅ Directory loaded from fallback (${dispensaries.length} dispensaries)`);
+          }
+        } catch (e) {
+          console.log(`✅ Directory loaded (${dispensaries.length} dispensaries)`);
+        }
+
+      } catch (error) {
+        console.error('❌ Directory initialization failed:', error);
+        document.getElementById('result-count').textContent = '⚠️ Error loading dispensaries';
+        safeRenderDispensaries([]);
       }
     });
   </script>

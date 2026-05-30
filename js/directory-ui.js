@@ -7,148 +7,193 @@
  * Premium dispensaries appear first in each city
  */
 function renderDispensariesByCity(dispensaries) {
-  const container = document.getElementById('dispensary-grid-by-city');
-  if (!container) return;
+  try {
+    const container = document.getElementById('dispensary-grid-by-city');
+    if (!container) {
+      console.warn('Container dispensary-grid-by-city not found');
+      return;
+    }
 
-  if (dispensaries.length === 0) {
-    container.innerHTML = `
-      <div class="text-center py-12 text-gray-400">
-        <p class="text-lg">No dispensaries found. Try adjusting your filters.</p>
-      </div>
-    `;
-    return;
+    if (!dispensaries || dispensaries.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-12 text-gray-400">
+          <p class="text-lg">No dispensaries found. Try adjusting your filters.</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Group by city in order: Sunland Park, Chaparral, Santa Teresa, Anthony
+    const cityOrder = ['Sunland Park', 'Chaparral', 'Santa Teresa', 'Anthony'];
+    const grouped = {};
+
+    cityOrder.forEach(city => {
+      grouped[city] = (dispensaries || []).filter(d => d && d.city === city);
+    });
+
+    // Build HTML
+    let html = '';
+
+    cityOrder.forEach(city => {
+      const cityDisps = grouped[city] || [];
+      if (cityDisps.length === 0) return;
+
+      try {
+        // Separate premium and standard
+        const premium = cityDisps.filter(d => d && d.isPremium);
+        const standard = cityDisps.filter(d => d && !d.isPremium);
+
+        html += `<section class="city-section">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${premium.map(dsp => {
+              try {
+                return createPremiumCard(dsp);
+              } catch (e) {
+                console.error('Premium card error:', e);
+                return '';
+              }
+            }).join('')}
+            ${standard.map(dsp => {
+              try {
+                return createStandardCard(dsp);
+              } catch (e) {
+                console.error('Standard card error:', e);
+                return '';
+              }
+            }).join('')}
+          </div>
+        </section>`;
+      } catch (e) {
+        console.error(`Error processing city ${city}:`, e);
+      }
+    });
+
+    container.innerHTML = html || '<div class="text-center py-12 text-gray-400">No dispensaries to display</div>';
+    console.log(`✅ Rendered ${dispensaries.length} dispensaries grouped by city`);
+  } catch (error) {
+    console.error('renderDispensariesByCity error:', error);
+    const container = document.getElementById('dispensary-grid-by-city');
+    if (container) {
+      container.innerHTML = '<div class="text-center py-12 text-red-400">Error rendering dispensaries</div>';
+    }
   }
-
-  // Group by city in order: Sunland Park, Chaparral, Santa Teresa, Anthony
-  const cityOrder = ['Sunland Park', 'Chaparral', 'Santa Teresa', 'Anthony'];
-  const grouped = {};
-
-  cityOrder.forEach(city => {
-    grouped[city] = dispensaries.filter(d => d.city === city);
-  });
-
-  // Build HTML
-  let html = '';
-
-  cityOrder.forEach(city => {
-    const cityDisps = grouped[city];
-    if (cityDisps.length === 0) return;
-
-    // Separate premium and standard
-    const premium = cityDisps.filter(d => d.isPremium);
-    const standard = cityDisps.filter(d => !d.isPremium);
-
-    html += `<section class="city-section">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        ${premium.map(dsp => createPremiumCard(dsp)).join('')}
-        ${standard.map(dsp => createStandardCard(dsp)).join('')}
-      </div>
-    </section>`;
-  });
-
-  container.innerHTML = html;
-  console.log(`✅ Rendered ${dispensaries.length} dispensaries grouped by city`);
 }
 
 /**
  * Create a premium dispensary card
  */
 function createPremiumCard(dsp) {
-  return `
-    <div class="premium-card rounded-2xl overflow-hidden transition-all cursor-pointer group relative"
-         onclick="openDispensaryDetail('${dsp.id}')">
-      <div class="premium-badge">FEATURED ✨</div>
+  try {
+    if (!dsp) return '';
+    const rating = dsp.rating ? parseFloat(dsp.rating).toFixed(1) : '0.0';
+    const reviews = dsp.reviewCount || 0;
+    return `
+      <div class="premium-card rounded-2xl overflow-hidden transition-all cursor-pointer group relative"
+           onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
+        <div class="premium-badge">FEATURED ✨</div>
 
-      <!-- Header -->
-      <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5">
-        <h3 class="text-xl font-bold text-white">${escapeHtml(dsp.name)}</h3>
-        <p class="text-emerald-100 text-sm">${escapeHtml(dsp.city)}</p>
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5">
+          <h3 class="text-xl font-bold text-white">${escapeHtml(dsp.name)}</h3>
+          <p class="text-emerald-100 text-sm">${escapeHtml(dsp.city)}</p>
+        </div>
+
+        <!-- Content -->
+        <div class="p-5 space-y-4">
+          <!-- Rating -->
+          <div class="flex items-center gap-2">
+            <span class="text-gold-400 font-bold text-lg">${rating}★</span>
+            <span class="text-gray-400 text-sm">(${reviews} reviews)</span>
+          </div>
+
+          <!-- Address -->
+          <div class="text-sm text-gray-300">
+            <p>${escapeHtml(dsp.address)}</p>
+          </div>
+
+          <!-- Contact -->
+          <div class="text-sm space-y-1">
+            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:underline font-medium">${dsp.phone}</a></p>` : ''}
+            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:underline font-medium">Visit Website →</a></p>` : ''}
+          </div>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2">
+            ${dsp.hasAdultUse ? '<span class="badge-rec px-2 py-1 rounded text-xs font-bold">Adult Use</span>' : ''}
+            ${dsp.hasMedical ? '<span class="badge-med px-2 py-1 rounded text-xs font-bold">Medical</span>' : ''}
+            ${dsp.hasConsumption ? '<span class="badge-new px-2 py-1 rounded text-xs font-bold">Lounge</span>' : ''}
+          </div>
+
+          <!-- CTA -->
+          <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
+             class="mt-3 block w-full text-center px-3 py-2 bg-gold-600 hover:bg-gold-500 text-white text-sm font-bold rounded-lg transition">
+            Claim Listing
+          </a>
+        </div>
       </div>
-
-      <!-- Content -->
-      <div class="p-5 space-y-4">
-        <!-- Rating -->
-        <div class="flex items-center gap-2">
-          <span class="text-gold-400 font-bold text-lg">${dsp.rating.toFixed(1)}★</span>
-          <span class="text-gray-400 text-sm">(${dsp.reviewCount} reviews)</span>
-        </div>
-
-        <!-- Address -->
-        <div class="text-sm text-gray-300">
-          <p>${escapeHtml(dsp.address)}</p>
-        </div>
-
-        <!-- Contact -->
-        <div class="text-sm space-y-1">
-          ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:underline font-medium">${dsp.phone}</a></p>` : ''}
-          ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:underline font-medium">Visit Website →</a></p>` : ''}
-        </div>
-
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-2">
-          ${dsp.hasAdultUse ? '<span class="badge-rec px-2 py-1 rounded text-xs font-bold">Adult Use</span>' : ''}
-          ${dsp.hasMedical ? '<span class="badge-med px-2 py-1 rounded text-xs font-bold">Medical</span>' : ''}
-          ${dsp.hasConsumption ? '<span class="badge-new px-2 py-1 rounded text-xs font-bold">Lounge</span>' : ''}
-        </div>
-
-        <!-- CTA -->
-        <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
-           class="mt-3 block w-full text-center px-3 py-2 bg-gold-600 hover:bg-gold-500 text-white text-sm font-bold rounded-lg transition">
-          Claim Listing
-        </a>
-      </div>
-    </div>
-  `;
+    `;
+  } catch (error) {
+    console.error('createPremiumCard error:', error);
+    return '';
+  }
 }
 
 /**
  * Create a standard dispensary card
  */
 function createStandardCard(dsp) {
-  return `
-    <div class="dispensary-card rounded-2xl overflow-hidden transition-all cursor-pointer group"
-         onclick="openDispensaryDetail('${dsp.id}')">
+  try {
+    if (!dsp) return '';
+    const rating = dsp.rating ? parseFloat(dsp.rating).toFixed(1) : '0.0';
+    const reviews = dsp.reviewCount || 0;
+    return `
+      <div class="dispensary-card rounded-2xl overflow-hidden transition-all cursor-pointer group"
+           onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
 
-      <!-- Header -->
-      <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5">
-        <h3 class="text-xl font-bold text-white">${escapeHtml(dsp.name)}</h3>
-        <p class="text-emerald-100 text-sm">${escapeHtml(dsp.city)}</p>
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 p-5">
+          <h3 class="text-xl font-bold text-white">${escapeHtml(dsp.name)}</h3>
+          <p class="text-emerald-100 text-sm">${escapeHtml(dsp.city)}</p>
+        </div>
+
+        <!-- Content -->
+        <div class="p-5 space-y-4">
+          <!-- Rating -->
+          <div class="flex items-center gap-2">
+            <span class="text-gold-400 font-bold">${rating}★</span>
+            <span class="text-gray-400 text-sm">(${reviews} reviews)</span>
+          </div>
+
+          <!-- Address -->
+          <div class="text-sm text-gray-300">
+            <p>${escapeHtml(dsp.address)}</p>
+          </div>
+
+          <!-- Contact -->
+          <div class="text-sm space-y-1">
+            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:underline">${dsp.phone}</a></p>` : ''}
+            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:underline">Visit Website →</a></p>` : ''}
+          </div>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2">
+            ${dsp.hasAdultUse ? '<span class="badge-rec px-2 py-1 rounded text-xs font-bold">Adult Use</span>' : ''}
+            ${dsp.hasMedical ? '<span class="badge-med px-2 py-1 rounded text-xs font-bold">Medical</span>' : ''}
+            ${dsp.hasConsumption ? '<span class="badge-new px-2 py-1 rounded text-xs font-bold">Lounge</span>' : ''}
+          </div>
+
+          <!-- CTA -->
+          <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
+             class="mt-3 block w-full text-center px-3 py-2 bg-gold-600 hover:bg-gold-500 text-white text-sm font-bold rounded-lg transition">
+            Claim Listing
+          </a>
+        </div>
       </div>
-
-      <!-- Content -->
-      <div class="p-5 space-y-4">
-        <!-- Rating -->
-        <div class="flex items-center gap-2">
-          <span class="text-gold-400 font-bold">${dsp.rating.toFixed(1)}★</span>
-          <span class="text-gray-400 text-sm">(${dsp.reviewCount} reviews)</span>
-        </div>
-
-        <!-- Address -->
-        <div class="text-sm text-gray-300">
-          <p>${escapeHtml(dsp.address)}</p>
-        </div>
-
-        <!-- Contact -->
-        <div class="text-sm space-y-1">
-          ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:underline">${dsp.phone}</a></p>` : ''}
-          ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:underline">Visit Website →</a></p>` : ''}
-        </div>
-
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-2">
-          ${dsp.hasAdultUse ? '<span class="badge-rec px-2 py-1 rounded text-xs font-bold">Adult Use</span>' : ''}
-          ${dsp.hasMedical ? '<span class="badge-med px-2 py-1 rounded text-xs font-bold">Medical</span>' : ''}
-          ${dsp.hasConsumption ? '<span class="badge-new px-2 py-1 rounded text-xs font-bold">Lounge</span>' : ''}
-        </div>
-
-        <!-- CTA -->
-        <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
-           class="mt-3 block w-full text-center px-3 py-2 bg-gold-600 hover:bg-gold-500 text-white text-sm font-bold rounded-lg transition">
-          Claim Listing
-        </a>
-      </div>
-    </div>
-  `;
+    `;
+  } catch (error) {
+    console.error('createStandardCard error:', error);
+    return '';
+  }
 }
 
 /**
@@ -236,48 +281,61 @@ function closeDispensaryModal() {
  * Apply filters and re-render grid (grouped by city)
  */
 function applyFilters() {
-  let results = window.dispensaryService.data;
+  try {
+    let results = window.dispensaryService?.data || [];
 
-  // Search
-  const searchInput = document.getElementById('search-input');
-  if (searchInput && searchInput.value) {
-    results = window.dispensaryService.search(searchInput.value);
+    // Search
+    const searchInput = document.getElementById('search-input');
+    if (searchInput && searchInput.value && window.dispensaryService?.search) {
+      try {
+        results = window.dispensaryService.search(searchInput.value);
+      } catch (e) {
+        console.error('Search error:', e);
+      }
+    }
+
+    // City filter
+    const cityFilter = document.getElementById('city-filter');
+    if (cityFilter && cityFilter.value) {
+      results = (results || []).filter(d => d && d.city === cityFilter.value);
+    }
+
+    // Type filter
+    const typeFilter = document.getElementById('type-filter');
+    if (typeFilter && typeFilter.value) {
+      results = (results || []).filter(d => d && d.type === typeFilter.value);
+    }
+
+    // Rating filter
+    const ratingFilter = document.getElementById('rating-filter');
+    if (ratingFilter && ratingFilter.value) {
+      results = (results || []).filter(d => d && d.rating >= parseFloat(ratingFilter.value));
+    }
+
+    renderDispensariesByCity(results);
+    updateResultCount(results.length);
+  } catch (error) {
+    console.error('applyFilters error:', error);
+    document.getElementById('result-count').textContent = 'Error applying filters';
   }
-
-  // City filter
-  const cityFilter = document.getElementById('city-filter');
-  if (cityFilter && cityFilter.value) {
-    results = results.filter(d => d.city === cityFilter.value);
-  }
-
-  // Type filter
-  const typeFilter = document.getElementById('type-filter');
-  if (typeFilter && typeFilter.value) {
-    results = results.filter(d => d.type === typeFilter.value);
-  }
-
-  // Rating filter
-  const ratingFilter = document.getElementById('rating-filter');
-  if (ratingFilter && ratingFilter.value) {
-    results = results.filter(d => d.rating >= parseFloat(ratingFilter.value));
-  }
-
-  renderDispensariesByCity(results);
-  updateResultCount(results.length);
 }
 
 /**
  * Update city dropdown from available data
  */
 function populateCityFilter() {
-  const cities = window.dispensaryService.getCities();
-  const select = document.getElementById('city-filter');
+  try {
+    const cities = window.dispensaryService?.getCities?.() || [];
+    const select = document.getElementById('city-filter');
 
-  if (select) {
-    select.innerHTML = `
-      <option value="">All Cities (${cities.length})</option>
-      ${cities.map(city => `<option value="${city}">${city}</option>`).join('')}
-    `;
+    if (select) {
+      select.innerHTML = `
+        <option value="">All Cities (${cities.length})</option>
+        ${(cities || []).map(city => `<option value="${city}">${(city || '').replace(/</g, '&lt;')}</option>`).join('')}
+      `;
+    }
+  } catch (error) {
+    console.error('populateCityFilter error:', error);
   }
 }
 
@@ -285,9 +343,13 @@ function populateCityFilter() {
  * Update result count display
  */
 function updateResultCount(count) {
-  const countElement = document.getElementById('result-count');
-  if (countElement) {
-    countElement.textContent = `${count} dispensaries found`;
+  try {
+    const countElement = document.getElementById('result-count');
+    if (countElement) {
+      countElement.textContent = `${count || 0} dispensaries found`;
+    }
+  } catch (error) {
+    console.error('updateResultCount error:', error);
   }
 }
 
