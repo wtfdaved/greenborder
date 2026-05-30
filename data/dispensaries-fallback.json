@@ -13,7 +13,8 @@
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": true,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": true
   },
   {
     "id": "sp2",
@@ -24,12 +25,13 @@
     "phone": "",
     "website": "https://mangocannabis.com/new-mexico-dispensary/sunland-park/sunland-park-dispensary/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp3",
@@ -40,12 +42,13 @@
     "phone": "",
     "website": "https://www.darkmattercanna.com/location/dark-matter-sunland-park/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp5",
@@ -56,12 +59,13 @@
     "phone": "",
     "website": "https://topcropcannabis.com/best-cannabis-dispensary-sunland-park?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp11",
@@ -77,7 +81,8 @@
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp1",
@@ -88,12 +93,13 @@
     "phone": "",
     "website": "https://www.fodnm.com/deals?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp6",
@@ -109,7 +115,8 @@
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp4",
@@ -120,12 +127,13 @@
     "phone": "",
     "website": "https://sunland.cookies.co/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp13",
@@ -136,12 +144,13 @@
     "phone": "",
     "website": "https://www.dispensarynearmenm.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": true,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp7",
@@ -152,12 +161,13 @@
     "phone": "",
     "website": "https://www.p37cannabis.com/location/sunland-park/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": true,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp15",
@@ -168,12 +178,13 @@
     "phone": "",
     "website": "https://apogeenm.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": true,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp9",
@@ -184,12 +195,13 @@
     "phone": "",
     "website": "https://elevationcannabis.co/dispensaries/elevation-3789/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp8",
@@ -200,12 +212,13 @@
     "phone": "",
     "website": "https://rgreenleaf.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": true,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp21",
@@ -216,12 +229,13 @@
     "phone": "",
     "website": "https://tokeitupdispensary.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp19",
@@ -232,12 +246,13 @@
     "phone": "",
     "website": "https://www.obiwancannabis.online/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp23",
@@ -248,12 +263,13 @@
     "phone": "",
     "website": "https://blacksheepnm.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp14",
@@ -264,12 +280,13 @@
     "phone": "",
     "website": "https://thehouseofve.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp17",
@@ -280,12 +297,13 @@
     "phone": "",
     "website": "https://greensnm.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp10",
@@ -296,12 +314,13 @@
     "phone": "",
     "website": "https://everestnm.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": true,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp12",
@@ -312,12 +331,13 @@
     "phone": "",
     "website": "https://empiregardensunland.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp16",
@@ -328,12 +348,13 @@
     "phone": "",
     "website": "https://ultrahealth.com/new-mexico-dispensaries/sunland-park-cannabis-dispensary/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": true,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp18",
@@ -344,12 +365,13 @@
     "phone": "",
     "website": "https://greenlabscannabisnm.com/location/green-labs-dispensary/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp20",
@@ -360,12 +382,13 @@
     "phone": "",
     "website": "https://weedmaps.com/dispensaries/round-house-reserve-1?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "sp22",
@@ -376,12 +399,13 @@
     "phone": "",
     "website": "https://dutchie.com/dispensary/sunshine-essentials?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch1",
@@ -397,7 +421,8 @@
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": true
   },
   {
     "id": "ch3",
@@ -408,12 +433,13 @@
     "phone": "",
     "website": "https://gtdispensary.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": true,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch2",
@@ -429,7 +455,8 @@
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": true,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch4",
@@ -440,12 +467,13 @@
     "phone": "",
     "website": "https://puremedd.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "custom_1772670316123",
@@ -456,12 +484,13 @@
     "phone": "",
     "website": "https://houseofflowers24.com/",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch7",
@@ -472,12 +501,13 @@
     "phone": "",
     "website": "https://ganjikagardens.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch6",
@@ -488,12 +518,13 @@
     "phone": "",
     "website": "https://area54dispensary.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch8",
@@ -504,12 +535,13 @@
     "phone": "",
     "website": "https://grothindustries.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch10",
@@ -520,12 +552,13 @@
     "phone": "",
     "website": null,
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch5",
@@ -536,12 +569,13 @@
     "phone": "",
     "website": "https://statelinecannabis.online/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "ch9",
@@ -552,12 +586,13 @@
     "phone": "",
     "website": "https://uforianm.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "st3",
@@ -568,12 +603,13 @@
     "phone": "",
     "website": "https://public-affair.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": true
   },
   {
     "id": "st2",
@@ -584,12 +620,13 @@
     "phone": "",
     "website": "https://hilife-dispensarynm.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "st4",
@@ -600,12 +637,13 @@
     "phone": "",
     "website": "https://www.god420.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "st1",
@@ -621,7 +659,8 @@
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "an1",
@@ -632,12 +671,13 @@
     "phone": "",
     "website": null,
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": true
   },
   {
     "id": "an2",
@@ -648,12 +688,13 @@
     "phone": "",
     "website": "https://www.topoftheeighth.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "an3",
@@ -664,12 +705,13 @@
     "phone": "",
     "website": "https://www.milla-cero.com/?ref=thegreenborder.com",
     "type": "retail",
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 50,
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   },
   {
     "id": "an4",
@@ -685,6 +727,7 @@
     "hasAdultUse": true,
     "hasMedical": false,
     "hasConsumption": false,
-    "lastUpdated": "2026-05-30T00:00:00Z"
+    "lastUpdated": "2026-05-30T00:00:00Z",
+    "isPremium": false
   }
 ]
