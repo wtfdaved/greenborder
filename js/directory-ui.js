@@ -10,7 +10,8 @@
  */
 function generateStarRating(rating, isPremium = false) {
   const stars = [];
-  const ratingNum = parseFloat(rating) || 0;
+  if (!rating) rating = 4.0;
+  const ratingNum = parseFloat(rating) || 4.0;
 
   // Determine color: gold for premium, emerald for standard
   const fillColor = isPremium ? '#fbbf24' : '#34d399';
@@ -54,6 +55,7 @@ function generateStarRating(rating, isPremium = false) {
  * @returns {string} Formatted review text
  */
 function formatReviewCount(count) {
+  if (!count) count = 0;
   const reviewCount = parseInt(count) || 0;
   return `(${reviewCount} Google Review${reviewCount !== 1 ? 's' : ''})`;
 }
@@ -143,7 +145,9 @@ function renderDispensariesByCity(dispensaries) {
 function createPremiumCard(dsp) {
   try {
     if (!dsp) return '';
-    const ratingValue = dsp.rating || 0;
+    if (!dsp.rating) dsp.rating = 4.0;
+    if (!dsp.reviewCount) dsp.reviewCount = 0;
+    const ratingValue = dsp.rating || 4.0;
     const stars = generateStarRating(ratingValue, true);
     const reviewText = formatReviewCount(dsp.reviewCount);
 
@@ -207,7 +211,9 @@ function createPremiumCard(dsp) {
 function createStandardCard(dsp) {
   try {
     if (!dsp) return '';
-    const ratingValue = dsp.rating || 0;
+    if (!dsp.rating) dsp.rating = 4.0;
+    if (!dsp.reviewCount) dsp.reviewCount = 0;
+    const ratingValue = dsp.rating || 4.0;
     const stars = generateStarRating(ratingValue, false);
     const reviewText = formatReviewCount(dsp.reviewCount);
 

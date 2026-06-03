@@ -277,7 +277,13 @@ class AirtableSyncService {
 
   /**
    * Get API key from environment variables
-   * Checks window.ENV, process.env, or localStorage
+   * Checks: window.ENV, process.env, or localStorage
+   *
+   * To configure:
+   * 1. Development: Set window.ENV.AIRTABLE_API_KEY in browser console
+   * 2. Production: Use environment variables in hosting (Netlify, Vercel, etc.)
+   * 3. Backend: Inject via <script> tag before this file loads
+   *
    * @private
    */
   getApiKeyFromEnv() {
@@ -291,6 +297,7 @@ class AirtableSyncService {
 
   /**
    * Get base ID from environment variables
+   * Checks: window.ENV, process.env, or localStorage
    * @private
    */
   getBaseIdFromEnv() {
@@ -304,6 +311,7 @@ class AirtableSyncService {
 
   /**
    * Get table ID from environment variables
+   * Checks: window.ENV, process.env, or localStorage
    * @private
    */
   getTableIdFromEnv() {

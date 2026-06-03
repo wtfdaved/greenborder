@@ -582,14 +582,18 @@
         tableId: 'tblKwRRyoKXAf85b1'
       };
 
-      // Securely retrieve API key from:
-      // 1. localStorage (set via secure admin panel or stored locally)
-      // 2. window variable (injected by parent frame or loader)
+      // Retrieve API key from environment:
+      // 1. window.ENV.AIRTABLE_API_KEY (injected by backend)
+      // 2. localStorage.AIRTABLE_API_KEY (stored by user)
       // 3. Empty string (will use JSON fallback)
+      //
+      // To set credentials:
+      // - Production: Configure environment variable in Netlify/Vercel settings
+      // - Development: Set localStorage or window.ENV in console
       const getSecureApiKey = () => {
         return (
-          localStorage.getItem('AIRTABLE_SECURE_KEY') ||
-          (typeof window !== 'undefined' && window.AIRTABLE_SECURE_KEY) ||
+          (typeof window !== 'undefined' && window.ENV?.AIRTABLE_API_KEY) ||
+          localStorage.getItem('AIRTABLE_API_KEY') ||
           ''
         );
       };
@@ -607,7 +611,8 @@
       if (status.initialized) {
         console.log('✅ Airtable sync initialized - live database connected');
       } else {
-        console.warn('⚠️ Airtable API key not found - will use JSON fallback');
+        console.log('ℹ️ Airtable credentials not configured - using JSON fallback');
+        console.log('ℹ️ To enable: Set window.ENV.AIRTABLE_API_KEY or localStorage.AIRTABLE_API_KEY');
       }
     })();
   </script>
