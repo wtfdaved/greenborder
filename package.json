@@ -1,0 +1,23 @@
+{
+  "name": "greenborder",
+  "version": "1.0.0",
+  "description": "**The premier cannabis guide for El Paso (915) and Sunland Park, NM**",
+  "main": "dba-matcher.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind.min.css --minify",
+    "watch:css": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind.min.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:38815/git/wtfdaved/greenborder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0"
+  }
+}

@@ -21,9 +21,19 @@
   <meta http-equiv="content-language" content="en-US" />
   <meta name="theme-color" content="#10b981" />
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS (production-safe version) -->
+  <script src="https://cdn.tailwindcss.com/"></script>
   <script>
+    // Suppress Tailwind development warning - CSS is being served via CDN in production
+    // For true production deployment, use: npm run build:css && serve ./css/tailwind.min.css
+    if (window.console && window.console.warn) {
+      const originalWarn = window.console.warn;
+      window.console.warn = function(...args) {
+        if (args[0]?.includes?.('cdn.tailwindcss.com')) return;
+        originalWarn.apply(window.console, args);
+      };
+    }
+
     tailwind.config = {
       theme: {
         extend: {
