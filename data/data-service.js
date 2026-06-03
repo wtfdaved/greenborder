@@ -173,7 +173,7 @@ class DispensaryDataService {
       // Classification
       type: this.normalizeType(item.type),
 
-      // Ratings
+      // Ratings & Reviews
       rating: this.parseFloat(item.rating),
       reviewCount: this.parseInt(item.reviewCount),
 
@@ -181,6 +181,12 @@ class DispensaryDataService {
       hasAdultUse: this.parseBoolean(item.hasAdultUse),
       hasMedical: this.parseBoolean(item.hasMedical),
       hasConsumption: this.parseBoolean(item.hasConsumption),
+
+      // Premium/Featured flag
+      isPremium: this.parseBoolean(item.isPremium),
+
+      // Logo and branding
+      logoUrl: String(item.logoUrl || '').trim(),
 
       // License info
       licenseNumber: String(item.licenseNumber || '').trim(),

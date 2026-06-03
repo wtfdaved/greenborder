@@ -3,6 +3,62 @@
 // ============================================
 
 /**
+ * Generate SVG star rating display with configurable styling
+ * @param {number} rating - Rating value (0-5)
+ * @param {boolean} isPremium - Whether to use gold styling for premium dispensaries
+ * @returns {string} HTML string with SVG stars
+ */
+function generateStarRating(rating, isPremium = false) {
+  const stars = [];
+  const ratingNum = parseFloat(rating) || 0;
+
+  // Determine color: gold for premium, emerald for standard
+  const fillColor = isPremium ? '#fbbf24' : '#34d399';
+  const emptyColor = '#4b5563';
+
+  // Generate 5 star elements
+  for (let i = 1; i <= 5; i++) {
+    let fillPercent = 100;
+
+    if (i > ratingNum) {
+      if (i - 1 < ratingNum) {
+        fillPercent = Math.round((ratingNum - (i - 1)) * 100);
+      } else {
+        fillPercent = 0;
+      }
+    }
+
+    // Create SVG star with gradient fill
+    const starId = `star-${Math.random().toString(36).substr(2, 9)}`;
+    const svg = `
+      <svg class="inline-block w-5 h-5 mr-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="${starId}" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="${fillPercent}%" stop-color="${fillColor}" />
+            <stop offset="${fillPercent}%" stop-color="${emptyColor}" />
+          </linearGradient>
+        </defs>
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              fill="url(#${starId})" stroke="${isPremium ? '#d97706' : '#047857'}" stroke-width="0.5"/>
+      </svg>
+    `;
+    stars.push(svg);
+  }
+
+  return `<div class="flex items-center">${stars.join('')}</div>`;
+}
+
+/**
+ * Format review count display
+ * @param {number} count - Number of reviews
+ * @returns {string} Formatted review text
+ */
+function formatReviewCount(count) {
+  const reviewCount = parseInt(count) || 0;
+  return `(${reviewCount} Google Review${reviewCount !== 1 ? 's' : ''})`;
+}
+
+/**
  * Render dispensaries grouped by city
  * Premium dispensaries appear first in each city
  * Only renders city sections that have dispensaries
@@ -87,8 +143,10 @@ function renderDispensariesByCity(dispensaries) {
 function createPremiumCard(dsp) {
   try {
     if (!dsp) return '';
-    const rating = dsp.rating ? parseFloat(dsp.rating).toFixed(1) : '0.0';
-    const reviews = dsp.reviewCount || 0;
+    const ratingValue = dsp.rating || 0;
+    const stars = generateStarRating(ratingValue, true);
+    const reviewText = formatReviewCount(dsp.reviewCount);
+
     return `
       <div class="premium-card rounded-2xl overflow-hidden transition-all cursor-pointer group relative"
            onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
@@ -105,10 +163,10 @@ function createPremiumCard(dsp) {
 
         <!-- Content -->
         <div class="p-5 space-y-4">
-          <!-- Rating -->
-          <div class="flex items-center gap-2">
-            <span class="text-gold-400 font-bold text-lg">${rating}★</span>
-            <span class="text-gray-400 text-sm">(${reviews} reviews)</span>
+          <!-- Rating with Stars -->
+          <div class="space-y-1.5">
+            ${stars}
+            <p class="text-gray-400 text-xs font-medium">${ratingValue.toFixed(1)} • ${reviewText}</p>
           </div>
 
           <!-- Address -->
@@ -149,8 +207,10 @@ function createPremiumCard(dsp) {
 function createStandardCard(dsp) {
   try {
     if (!dsp) return '';
-    const rating = dsp.rating ? parseFloat(dsp.rating).toFixed(1) : '0.0';
-    const reviews = dsp.reviewCount || 0;
+    const ratingValue = dsp.rating || 0;
+    const stars = generateStarRating(ratingValue, false);
+    const reviewText = formatReviewCount(dsp.reviewCount);
+
     return `
       <div class="dispensary-card rounded-2xl overflow-hidden transition-all cursor-pointer group"
            onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
@@ -166,10 +226,10 @@ function createStandardCard(dsp) {
 
         <!-- Content -->
         <div class="p-5 space-y-4">
-          <!-- Rating -->
-          <div class="flex items-center gap-2">
-            <span class="text-gold-400 font-bold">${rating}★</span>
-            <span class="text-gray-400 text-sm">(${reviews} reviews)</span>
+          <!-- Rating with Stars -->
+          <div class="space-y-1.5">
+            ${stars}
+            <p class="text-gray-400 text-xs font-medium">${ratingValue.toFixed(1)} • ${reviewText}</p>
           </div>
 
           <!-- Address -->
@@ -232,9 +292,9 @@ function openDispensaryDetail(dispensaryId) {
         <p class="text-gray-400 mt-1">${escapeHtml(dispensary.city)}</p>
 
         ${dispensary.rating > 0 ? `
-          <div class="mt-3 flex items-center gap-2">
-            <span class="text-2xl text-gold-500">${dispensary.rating.toFixed(1)}★</span>
-            <span class="text-gray-400">${dispensary.reviewCount} reviews</span>
+          <div class="mt-3 space-y-2">
+            ${generateStarRating(dispensary.rating, dispensary.isPremium)}
+            <p class="text-gray-400 text-sm">${dispensary.rating.toFixed(1)} • ${formatReviewCount(dispensary.reviewCount)}</p>
           </div>
         ` : ''}
       </div>
@@ -425,3 +485,5 @@ window.exportToCSV = exportToCSV;
 window.openDispensaryDetail = openDispensaryDetail;
 window.closeDispensaryModal = closeDispensaryModal;
 window.escapeHtml = escapeHtml;
+window.generateStarRating = generateStarRating;
+window.formatReviewCount = formatReviewCount;

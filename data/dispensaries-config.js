@@ -12,11 +12,15 @@ const DISPENSARY_CONFIG = {
   airtable: {
     enabled: false,
 
-    // From your Airtable base settings (set to empty for fallback)
+    // From your Airtable base settings
     // To enable Airtable: set enabled: true and provide valid credentials
-    baseId: 'appXXXXXXXXXXXXXX',
-    tableId: 'tblXXXXXXXXXXXXXX',
-    apiKey: '',
+    // Credentials can come from:
+    // 1. Environment variables: AIRTABLE_BASE_ID, AIRTABLE_TABLE_ID, AIRTABLE_API_KEY
+    // 2. This config (will be overridden by env vars)
+    // 3. Airtable Sync Service initialization
+    baseId: process.env.AIRTABLE_BASE_ID || '',
+    tableId: process.env.AIRTABLE_TABLE_ID || '',
+    apiKey: process.env.AIRTABLE_API_KEY || '',
 
     // Which Airtable view to use
     view: 'Grid view',
@@ -35,7 +39,9 @@ const DISPENSARY_CONFIG = {
       'reviewCount',
       'hasAdultUse',
       'hasMedical',
-      'hasConsumption'
+      'hasConsumption',
+      'isPremium',
+      'logoUrl'
     ],
 
     // How often to refresh from Airtable (milliseconds)
