@@ -584,11 +584,28 @@
       white-space: nowrap;
     }
 
-    /* ── Sticky filter bar ── */
+    /* ── Sticky filter bar (desktop only) ── */
     .filter-bar {
       position: sticky;
       top: 90px;
       z-index: 20;
+    }
+    /* On phones/tablets the bar scrolls away normally and stays compact so it
+       never dominates the viewport or "follows" the user down the page. */
+    @media (max-width: 900px) {
+      .filter-bar {
+        position: static !important;
+        top: auto;
+        padding: 1rem !important;
+        margin-bottom: 1.5rem !important;
+        border-radius: 1rem !important;
+      }
+      .filter-bar > .grid { gap: 0.625rem !important; }
+      .filter-bar label { margin-bottom: 0.25rem !important; }
+      .filter-bar input,
+      .filter-bar select { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+      .offering-chip { padding: 6px 12px; font-size: 0.8rem; }
+      .city-section { scroll-margin-top: 80px; }
     }
   </style>
 </head>
@@ -633,9 +650,9 @@
 
     <!-- Filters & Search -->
     <div class="filter-bar bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 mb-8 space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Search -->
-        <div>
+        <div class="col-span-2 lg:col-span-1">
           <label class="block text-sm text-gray-400 mb-2 font-semibold">Search</label>
           <input
             id="search-input"

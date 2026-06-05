@@ -7,6 +7,20 @@
  * Supports Airtable, JSON APIs, and fallback JSON files
  */
 
+// Browser-safe environment lookup. In the browser `process` does not exist, so
+// reading `process.env.X` directly throws a ReferenceError and aborts this
+// script (which previously left DISPENSARY_CONFIG undefined and broke the whole
+// page). Prefer window.ENV (injected by the host) then process.env (build/SSR).
+const ENV = (() => {
+  try {
+    if (typeof window !== 'undefined' && window.ENV) return window.ENV;
+  } catch (e) { /* ignore */ }
+  try {
+    if (typeof process !== 'undefined' && process.env) return process.env;
+  } catch (e) { /* ignore */ }
+  return {};
+})();
+
 const DISPENSARY_CONFIG = {
   // Primary: Airtable API
   airtable: {
@@ -18,9 +32,9 @@ const DISPENSARY_CONFIG = {
     // 1. Environment variables: AIRTABLE_BASE_ID, AIRTABLE_TABLE_ID, AIRTABLE_API_KEY
     // 2. This config (will be overridden by env vars)
     // 3. Airtable Sync Service initialization
-    baseId: process.env.AIRTABLE_BASE_ID || '',
-    tableId: process.env.AIRTABLE_TABLE_ID || '',
-    apiKey: process.env.AIRTABLE_API_KEY || '',
+    baseId: ENV.AIRTABLE_BASE_ID || '',
+    tableId: ENV.AIRTABLE_TABLE_ID || '',
+    apiKey: ENV.AIRTABLE_API_KEY || '',
 
     // Which Airtable view to use
     view: 'Grid view',
