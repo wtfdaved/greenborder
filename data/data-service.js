@@ -43,13 +43,28 @@ class DispensaryDataService {
     this.isSyncing = true;
 
     try {
-      // Try primary source
-      if (this.config.airtable.enabled && this.config.airtable.apiKey) {
+      // Preferred: the live Airtable sync service (carries the rich field
+      // mapping). Only accept genuine Airtable rows — they carry an airtableId;
+      // anything else falls through to our own seed-tagged JSON fallback below.
+      if (typeof window !== 'undefined' && window.airtableSync?.getStatus?.().initialized) {
+        try {
+          console.log('🌐 Fetching via Airtable sync service...');
+          const synced = await window.airtableSync.sync();
+          if (Array.isArray(synced) && synced.length && synced[0].airtableId) {
+            this.data = synced;
+          }
+        } catch (e) {
+          console.warn('⚠️ Airtable sync failed, will fall back:', e.message);
+        }
+      }
+
+      // Secondary: direct Airtable fetch when configured in DISPENSARY_CONFIG.
+      if ((!this.data || this.data.length === 0) && this.config.airtable.enabled && this.config.airtable.apiKey) {
         console.log('🌐 Fetching from Airtable...');
         this.data = await this.fetchFromAirtable();
       }
 
-      // Fallback if needed
+      // Fallback: static JSON file.
       if (!this.data || this.data.length === 0) {
         if (this.config.fallbackJson.enabled) {
           console.log('📄 Falling back to JSON...');
