@@ -400,9 +400,195 @@
     /* ── City sections ── */
     .city-section {
       margin-bottom: 3rem;
+      scroll-margin-top: 120px;
     }
     .city-section:empty {
       display: none;
+    }
+    .city-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(16,185,129,0.15);
+    }
+    .city-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .city-count {
+      font-size: 0.8rem;
+      color: #34d399;
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.25);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* ── Hero stats ── */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 680px;
+      margin: 1.5rem auto 0;
+    }
+    .hero-stat {
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.18);
+      border-radius: 16px;
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .hero-stat-value {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #34d399;
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── City quick-nav ── */
+    .city-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .city-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .city-chip:hover {
+      color: #34d399;
+      border-color: rgba(16,185,129,0.4);
+      background: rgba(16,185,129,0.08);
+    }
+    .city-chip-count {
+      font-size: 0.7rem;
+      color: #94a3b8;
+    }
+
+    /* ── Offering toggle chips ── */
+    .offering-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .offering-chip:hover { border-color: rgba(16,185,129,0.4); }
+    .offering-chip[data-active="true"] {
+      color: #34d399;
+      background: rgba(16,185,129,0.15);
+      border-color: rgba(16,185,129,0.5);
+    }
+
+    /* ── Card extras ── */
+    .card-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.06);
+    }
+    .card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .card-action:hover {
+      color: #34d399;
+      border-color: rgba(16,185,129,0.4);
+      background: rgba(16,185,129,0.08);
+    }
+    .card-action.accent {
+      color: #fbbf24;
+      background: rgba(245,158,11,0.12);
+      border-color: rgba(245,158,11,0.3);
+    }
+    .card-action.accent:hover {
+      background: rgba(245,158,11,0.2);
+      border-color: rgba(245,158,11,0.5);
+    }
+
+    /* ── Open-now pill ── */
+    .open-pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .open-pill.open { color: #34d399; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); }
+    .open-pill.closed { color: #f87171; background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.3); }
+    .open-pill.neutral { color: #cbd5e1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+
+    /* ── Deal banner ── */
+    .deal-banner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #fde68a;
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 12px;
+      padding: 8px 12px;
+    }
+    .deal-tag {
+      font-weight: 700;
+      color: #fbbf24;
+      white-space: nowrap;
+    }
+
+    /* ── Sticky filter bar ── */
+    .filter-bar {
+      position: sticky;
+      top: 90px;
+      z-index: 20;
     }
   </style>
 </head>
@@ -438,21 +624,23 @@
   <main class="max-w-7xl mx-auto px-4 pt-32 pb-20">
 
     <!-- Title Section -->
-    <div class="text-center mb-12">
+    <div class="text-center mb-8">
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Cannabis Dispensary Directory</h1>
-      <p class="text-gray-400 text-lg">Find licensed, legal dispensaries across Southern New Mexico</p>
+      <p class="text-gray-400 text-lg">Every licensed, legal dispensary across Southern New Mexico — deals, hours, menus &amp; directions in one place</p>
+      <!-- Hero Stats -->
+      <div id="hero-stats" class="hero-stats"></div>
     </div>
 
     <!-- Filters & Search -->
-    <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 mb-8 space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="filter-bar bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 mb-8 space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Search -->
         <div>
           <label class="block text-sm text-gray-400 mb-2 font-semibold">Search</label>
           <input
             id="search-input"
             type="text"
-            placeholder="Dispensary name..."
+            placeholder="Name, address, city..."
             class="w-full bg-white/5 text-white px-4 py-2.5 rounded-xl border border-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition"
             onkeyup="applyFilters()"
           />
@@ -470,48 +658,47 @@
           </select>
         </div>
 
-        <!-- Type Filter -->
+        <!-- Sort -->
         <div>
-          <label class="block text-sm text-gray-400 mb-2 font-semibold">Type</label>
+          <label class="block text-sm text-gray-400 mb-2 font-semibold">Sort By</label>
           <select
-            id="type-filter"
+            id="sort-filter"
             class="w-full bg-white/5 text-white px-4 py-2.5 rounded-xl border border-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition"
             onchange="applyFilters()"
           >
-            <option value="">All Types</option>
-            <option value="retail">Retail</option>
-            <option value="lounge">Lounge</option>
-            <option value="wholesale">Wholesale</option>
-            <option value="cultivation">Cultivation</option>
-          </select>
-        </div>
-
-        <!-- Rating Filter -->
-        <div>
-          <label class="block text-sm text-gray-400 mb-2 font-semibold">Min. Rating</label>
-          <select
-            id="rating-filter"
-            class="w-full bg-white/5 text-white px-4 py-2.5 rounded-xl border border-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition"
-            onchange="applyFilters()"
-          >
-            <option value="">Any Rating</option>
-            <option value="4.5">4.5+ ★</option>
-            <option value="4.0">4.0+ ★</option>
-            <option value="3.5">3.5+ ★</option>
+            <option value="featured">Featured First</option>
+            <option value="name">Name (A–Z)</option>
+            <option value="rating">Rating (High → Low)</option>
+            <option value="recent">Recently Updated</option>
           </select>
         </div>
       </div>
 
+      <!-- Offerings toggle chips -->
+      <div class="flex flex-wrap items-center gap-2 pt-1">
+        <span class="text-sm text-gray-400 font-semibold mr-1">Offerings:</span>
+        <span class="offering-chip" data-offering="rec"    data-active="false" onclick="toggleOffering(this)">🌿 Recreational</span>
+        <span class="offering-chip" data-offering="med"    data-active="false" onclick="toggleOffering(this)">🏥 Medical</span>
+        <span class="offering-chip" data-offering="lounge" data-active="false" onclick="toggleOffering(this)">🛋️ Lounge</span>
+        <span class="offering-chip" data-offering="deals"  data-active="false" onclick="toggleOffering(this)">🔥 Has Deals</span>
+      </div>
+
       <!-- Action Buttons -->
-      <div class="flex gap-3 justify-end pt-2">
+      <div class="flex gap-3 justify-end pt-1">
+        <button onclick="clearFilters()" class="px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-lg border border-white/10 transition font-medium text-sm">
+          ✕ Clear
+        </button>
         <button onclick="exportToCSV()" class="px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-lg border border-white/10 transition font-medium text-sm">
           📥 Export CSV
         </button>
-        <button onclick="location.reload()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition font-medium text-sm">
+        <button onclick="refreshData()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition font-medium text-sm">
           🔄 Refresh Data
         </button>
       </div>
     </div>
+
+    <!-- City quick-nav -->
+    <nav id="city-nav" class="city-nav"></nav>
 
     <!-- Results Count -->
     <div class="mb-6 text-gray-400 text-sm">
@@ -740,20 +927,19 @@
               populateCityFilter();
             }
 
+            // Hero stats + SEO structured data
+            if (typeof renderHeroStats === 'function') renderHeroStats(dispensaries);
+            if (typeof injectStructuredData === 'function') injectStructuredData(dispensaries);
+
             // Try new rendering first, fall back to safe rendering
-            if (typeof renderDispensariesByCity === 'function') {
+            if (typeof applyFilters === 'function') {
+              applyFilters();
+            } else if (typeof renderDispensariesByCity === 'function') {
               renderDispensariesByCity(dispensaries);
+              if (typeof updateResultCount === 'function') updateResultCount(dispensaries.length);
             } else {
               console.warn('renderDispensariesByCity not found, using safe render');
               safeRenderDispensaries(dispensaries);
-            }
-
-            // Update count
-            if (typeof updateResultCount === 'function') {
-              updateResultCount(dispensaries.length);
-            } else {
-              const el = document.getElementById('result-count');
-              if (el) el.textContent = `${dispensaries.length} dispensaries found`;
             }
           } catch (renderErr) {
             console.error('Render error:', renderErr);
@@ -769,6 +955,8 @@
             window.dispensaryService.subscribe('data-loaded', (data) => {
               try {
                 if (typeof populateCityFilter === 'function') populateCityFilter();
+                if (typeof renderHeroStats === 'function') renderHeroStats(data);
+                if (typeof injectStructuredData === 'function') injectStructuredData(data);
                 if (typeof applyFilters === 'function') applyFilters();
               } catch (e) {
                 console.error('Filter update error:', e);
