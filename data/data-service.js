@@ -140,7 +140,10 @@ class DispensaryDataService {
       throw new Error(`JSON fetch failed: ${response.status}`);
     }
 
-    return await response.json();
+    const records = await response.json();
+    // Tag fallback records as seed so the UI can distinguish placeholder
+    // ratings/reviews from genuine Airtable data.
+    return (records || []).map(r => ({ dataSource: 'seed', ...r }));
   }
 
   /**
@@ -164,11 +167,24 @@ class DispensaryDataService {
       // Contact
       phone: String(item.phone || item.telephone || '').trim(),
       website: String(item.website || item.url || '').trim(),
+      email: String(item.email || '').trim(),
 
-      // Hours (could be object or string)
-      hours: typeof item.hours === 'string'
-        ? this.parseHours(item.hours)
-        : item.hours || {},
+      // Social & ordering
+      instagram: String(item.instagram || '').trim(),
+      facebook: String(item.facebook || '').trim(),
+      menuUrl: String(item.menuUrl || item.menu || '').trim(),
+
+      // Hours (object keyed by day, or plain string — preserved as-is)
+      hours: this.normalizeHours(item.hours),
+
+      // Map / directions
+      mapLink: String(item.mapLink || '').trim(),
+
+      // Promotions
+      deals: String(item.deals || '').trim(),
+
+      // Description
+      description: String(item.description || '').trim(),
 
       // Classification
       type: this.normalizeType(item.type),
@@ -195,7 +211,7 @@ class DispensaryDataService {
       // Metadata
       dataSource: item.dataSource || 'airtable',
       lastUpdated: item.lastUpdated || new Date().toISOString(),
-      tags: item.tags || []
+      tags: Array.isArray(item.tags) ? item.tags : (item.tags ? [item.tags] : [])
     }));
   }
 
@@ -313,6 +329,8 @@ class DispensaryDataService {
     return this.data.filter(item =>
       item.name.toLowerCase().includes(q) ||
       item.city.toLowerCase().includes(q) ||
+      (item.address || '').toLowerCase().includes(q) ||
+      (item.tags || []).some(t => String(t).toLowerCase().includes(q)) ||
       (item.phone || '').includes(q)
     );
   }
@@ -425,15 +443,46 @@ class DispensaryDataService {
   }
 
   /**
-   * Utility: Parse hours string (optional advanced feature)
+   * Utility: Normalize hours into a consistent shape.
+   * Accepts either a per-day object ({ mon: "9:00-21:00", ... }) or a plain
+   * string. Returns the object/string as-is, or '' when empty/unusable.
    * @private
    */
-  parseHours(hoursString) {
-    // If already an object, return as-is
-    if (typeof hoursString === 'object') return hoursString;
+  normalizeHours(hours) {
+    if (!hours) return '';
+    if (typeof hours === 'object') return hours;
+    return String(hours).trim();
+  }
 
-    // Placeholder: could implement more sophisticated parsing
-    return {};
+  /**
+   * Compute open/closed status from an hours object keyed by 3-letter day
+   * (mon, tue, ...) with "HH:MM-HH:MM" ranges (24h). Returns null when the
+   * hours can't be interpreted (e.g. a free-text string), so callers can fall
+   * back to simply displaying the text.
+   * @param {object|string} hours
+   * @param {Date} [now]
+   * @returns {{isOpen:boolean, todayLabel:string}|null}
+   */
+  getOpenStatus(hours, now = new Date()) {
+    if (!hours || typeof hours !== 'object') return null;
+
+    const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const todayKey = days[now.getDay()];
+    const raw = hours[todayKey] ?? hours[todayKey.toUpperCase()];
+    if (!raw) return { isOpen: false, todayLabel: 'Closed today' };
+
+    const text = String(raw).trim();
+    if (/closed/i.test(text)) return { isOpen: false, todayLabel: 'Closed today' };
+
+    const match = text.match(/(\d{1,2}):?(\d{2})?\s*-\s*(\d{1,2}):?(\d{2})?/);
+    if (!match) return { isOpen: false, todayLabel: text };
+
+    const open = parseInt(match[1], 10) * 60 + parseInt(match[2] || '0', 10);
+    let close = parseInt(match[3], 10) * 60 + parseInt(match[4] || '0', 10);
+    if (close <= open) close += 24 * 60; // handle past-midnight close
+    const mins = now.getHours() * 60 + now.getMinutes();
+
+    return { isOpen: mins >= open && mins < close, todayLabel: text };
   }
 
   /**

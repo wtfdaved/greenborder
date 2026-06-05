@@ -46,6 +46,42 @@ class AirtableSyncService {
       'Map Link': 'mapLink',
       'Google Maps': 'mapLink',
       'Maps Link': 'mapLink',
+      'Directions': 'mapLink',
+
+      'Hours': 'hours',
+      'Business Hours': 'hours',
+      'Store Hours': 'hours',
+
+      'Email': 'email',
+      'Email Address': 'email',
+
+      'Instagram': 'instagram',
+      'IG': 'instagram',
+      'Instagram URL': 'instagram',
+
+      'Facebook': 'facebook',
+      'FB': 'facebook',
+      'Facebook URL': 'facebook',
+
+      'Menu': 'menuUrl',
+      'Online Menu': 'menuUrl',
+      'Order Online': 'menuUrl',
+      'Menu Link': 'menuUrl',
+      'Order Link': 'menuUrl',
+      'Dutchie': 'menuUrl',
+      'Weedmaps': 'menuUrl',
+
+      'License Number': 'licenseNumber',
+      'License #': 'licenseNumber',
+      'License': 'licenseNumber',
+
+      'Description': 'description',
+      'About': 'description',
+      'Bio': 'description',
+
+      'Tags': 'tags',
+      'Amenities': 'tags',
+      'Features': 'tags',
 
       'isPremium': 'isPremium',
       'Premium': 'isPremium',
@@ -224,6 +260,14 @@ class AirtableSyncService {
       mapped.logoUrl = mapped.logoUrl || '';
       mapped.mapLink = mapped.mapLink || '';
       mapped.deals = mapped.deals || '';
+      mapped.menuUrl = mapped.menuUrl || '';
+      mapped.email = mapped.email || '';
+      mapped.instagram = mapped.instagram || '';
+      mapped.facebook = mapped.facebook || '';
+      mapped.description = mapped.description || '';
+      mapped.licenseNumber = mapped.licenseNumber || '';
+      mapped.hours = mapped.hours || '';
+      mapped.tags = Array.isArray(mapped.tags) ? mapped.tags : (mapped.tags ? [mapped.tags] : []);
       mapped.dataSource = 'airtable';
       mapped.lastUpdated = new Date().toISOString();
 
@@ -250,10 +294,17 @@ class AirtableSyncService {
       return parseFloat(value) || 0;
     }
 
-    // Handle URL arrays (Airtable often returns as array)
-    if ((fieldName === 'logoUrl' || fieldName === 'mapLink') && Array.isArray(value)) {
-      return value[0] || '';
+    // Handle URL arrays (Airtable often returns attachments/links as array)
+    if ((fieldName === 'logoUrl' || fieldName === 'mapLink' || fieldName === 'menuUrl') && Array.isArray(value)) {
+      // Airtable attachments are objects with a .url property; plain links are strings
+      const first = value[0];
+      if (first && typeof first === 'object') return first.url || '';
+      return first || '';
     }
+
+    // Pass structured fields through untouched (hours object, tags multi-select array)
+    if (fieldName === 'hours' && typeof value === 'object') return value;
+    if (fieldName === 'tags') return Array.isArray(value) ? value : [value];
 
     // Convert to string for text fields
     return String(value).trim();
@@ -343,7 +394,15 @@ class AirtableSyncService {
       'Review Count',
       'Adult Use',
       'Medical',
-      'Consumption'
+      'Consumption',
+      'Hours',
+      'Email',
+      'Instagram',
+      'Facebook',
+      'Menu',
+      'License Number',
+      'Description',
+      'Tags'
     ];
   }
 

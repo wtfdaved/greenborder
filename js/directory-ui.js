@@ -2,6 +2,44 @@
 // DIRECTORY UI RENDERING & INTERACTIONS
 // ============================================
 
+// Preferred display order for known cities; any other city from Airtable is
+// appended alphabetically so new cities never disappear from the page.
+const PREFERRED_CITY_ORDER = ['Sunland Park', 'Chaparral', 'Santa Teresa', 'Anthony'];
+
+const DAY_LABELS = {
+  mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat', sun: 'Sun'
+};
+const DAY_ORDER = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// ----------------------------------------------------------------------------
+// Small data helpers
+// ----------------------------------------------------------------------------
+
+/**
+ * A rating/review is "real" only when it comes from genuine Airtable data
+ * (not the seeded fallback) and has a positive review count. Seed records use
+ * uniform placeholder values, so we hide stars/reviews for them to keep the
+ * directory credible. They appear automatically once real numbers exist.
+ */
+function hasRealRating(dsp) {
+  return !!dsp && dsp.dataSource !== 'seed' && dsp.rating > 0 && dsp.reviewCount > 0;
+}
+
+/**
+ * Build a directions URL: prefer an explicit map link, otherwise construct a
+ * Google Maps search from the dispensary name + address + city.
+ */
+function getDirectionsUrl(dsp) {
+  if (dsp.mapLink) return dsp.mapLink;
+  const query = [dsp.name, dsp.address, dsp.city, 'NM'].filter(Boolean).join(' ');
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+/** Number of offerings/highlights, used for hero stats. */
+function countWith(dispensaries, predicate) {
+  return (dispensaries || []).filter(predicate).length;
+}
+
 /**
  * Generate SVG star rating display with configurable styling
  * @param {number} rating - Rating value (0-5)
@@ -60,12 +98,62 @@ function formatReviewCount(count) {
   return `(${reviewCount} Google Review${reviewCount !== 1 ? 's' : ''})`;
 }
 
+// ----------------------------------------------------------------------------
+// City grouping
+// ----------------------------------------------------------------------------
+
 /**
- * Render dispensaries grouped by city
- * Premium dispensaries appear first in each city
- * Only renders city sections that have dispensaries
+ * Group dispensaries by city, preferred cities first then any others
+ * alphabetically. Returns an ordered array of { city, items }.
  */
-function renderDispensariesByCity(dispensaries) {
+function groupByCity(dispensaries) {
+  const groups = {};
+  (dispensaries || []).forEach(d => {
+    if (!d || !d.city) return;
+    (groups[d.city] = groups[d.city] || []).push(d);
+  });
+
+  const allCities = Object.keys(groups);
+  const ordered = [
+    ...PREFERRED_CITY_ORDER.filter(c => groups[c]),
+    ...allCities.filter(c => !PREFERRED_CITY_ORDER.includes(c)).sort()
+  ];
+
+  return ordered.map(city => ({ city, items: groups[city] }));
+}
+
+/** Stable sort within a city: premium first, then the active sort key. */
+function sortDispensaries(items, sortKey) {
+  const arr = [...items];
+  const byName = (a, b) => a.name.localeCompare(b.name);
+
+  arr.sort((a, b) => {
+    // Featured always rises to the top of its city section.
+    if (!!a.isPremium !== !!b.isPremium) return a.isPremium ? -1 : 1;
+
+    switch (sortKey) {
+      case 'name':
+        return byName(a, b);
+      case 'rating':
+        return (b.rating || 0) - (a.rating || 0) || byName(a, b);
+      case 'recent':
+        return new Date(b.lastUpdated || 0) - new Date(a.lastUpdated || 0) || byName(a, b);
+      default:
+        return byName(a, b);
+    }
+  });
+  return arr;
+}
+
+// ----------------------------------------------------------------------------
+// Rendering
+// ----------------------------------------------------------------------------
+
+/**
+ * Render dispensaries grouped by city with section headers, premium first.
+ * Renders every city present in the data (not just a hardcoded list).
+ */
+function renderDispensariesByCity(dispensaries, sortKey) {
   try {
     const container = document.getElementById('dispensary-grid-by-city');
     if (!container) {
@@ -75,61 +163,43 @@ function renderDispensariesByCity(dispensaries) {
 
     if (!dispensaries || dispensaries.length === 0) {
       container.innerHTML = `
-        <div class="text-center py-12 text-gray-400">
-          <p class="text-lg">No dispensaries found. Try adjusting your filters.</p>
+        <div class="text-center py-16 text-gray-400">
+          <p class="text-lg mb-2">No dispensaries match your filters.</p>
+          <button onclick="clearFilters()" class="text-emerald-400 hover:text-emerald-300 underline">Clear all filters</button>
         </div>
       `;
+      renderCityNav([]);
       return;
     }
 
-    // Group by city in order: Sunland Park, Chaparral, Santa Teresa, Anthony
-    const cityOrder = ['Sunland Park', 'Chaparral', 'Santa Teresa', 'Anthony'];
-    const grouped = {};
+    const grouped = groupByCity(dispensaries);
 
-    cityOrder.forEach(city => {
-      grouped[city] = (dispensaries || []).filter(d => d && d.city === city);
-    });
-
-    // Build HTML - only include cities that have dispensaries
     let html = '';
-    const citiesWithDispensaries = cityOrder.filter(city => grouped[city]?.length > 0);
+    grouped.forEach(({ city, items }) => {
+      const sorted = sortDispensaries(items, sortKey);
+      const cityId = `city-${(city || '').toLowerCase().replace(/[^\w]+/g, '-')}`;
 
-    citiesWithDispensaries.forEach(city => {
-      const cityDisps = grouped[city] || [];
-      if (cityDisps.length === 0) return;
-
-      try {
-        // Separate premium and standard
-        const premium = cityDisps.filter(d => d && d.isPremium);
-        const standard = cityDisps.filter(d => d && !d.isPremium);
-
-        html += `<section class="city-section">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            ${premium.map(dsp => {
-              try {
-                return createPremiumCard(dsp);
-              } catch (e) {
-                console.error('Premium card error:', e);
-                return '';
-              }
-            }).join('')}
-            ${standard.map(dsp => {
-              try {
-                return createStandardCard(dsp);
-              } catch (e) {
-                console.error('Standard card error:', e);
-                return '';
-              }
-            }).join('')}
-          </div>
-        </section>`;
-      } catch (e) {
-        console.error(`Error processing city ${city}:`, e);
-      }
+      html += `<section class="city-section" id="${cityId}">
+        <div class="city-header">
+          <h2 class="city-title">${escapeHtml(city)}</h2>
+          <span class="city-count">${items.length} dispensar${items.length === 1 ? 'y' : 'ies'}</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          ${sorted.map(dsp => {
+            try {
+              return createDispensaryCard(dsp);
+            } catch (e) {
+              console.error('Card render error:', e);
+              return '';
+            }
+          }).join('')}
+        </div>
+      </section>`;
     });
 
     container.innerHTML = html || '<div class="text-center py-12 text-gray-400">No dispensaries to display</div>';
-    console.log(`✅ Rendered ${dispensaries.length} dispensaries grouped by ${citiesWithDispensaries.length} cities`);
+    renderCityNav(grouped.map(g => ({ city: g.city, count: g.items.length })));
+    console.log(`✅ Rendered ${dispensaries.length} dispensaries across ${grouped.length} cities`);
   } catch (error) {
     console.error('renderDispensariesByCity error:', error);
     const container = document.getElementById('dispensary-grid-by-city');
@@ -140,146 +210,147 @@ function renderDispensariesByCity(dispensaries) {
 }
 
 /**
- * Create a premium dispensary card with liquid glass design
+ * Unified card builder. Every block is field-driven: it only renders when the
+ * underlying data exists, so the same card works for a bare record or a fully
+ * populated Airtable row.
  */
-function createPremiumCard(dsp) {
+function createDispensaryCard(dsp) {
   try {
     if (!dsp) return '';
-    if (!dsp.rating) dsp.rating = 4.0;
-    if (!dsp.reviewCount) dsp.reviewCount = 0;
-    const ratingValue = dsp.rating || 4.0;
-    const stars = generateStarRating(ratingValue, true);
-    const reviewText = formatReviewCount(dsp.reviewCount);
+
+    const premium = !!dsp.isPremium;
+    const cardClass = premium ? 'premium-card' : 'dispensary-card';
+    const id = escapeHtml(dsp.id);
+
+    // --- Header (logo + name + city) ---
+    const logo = dsp.logoUrl
+      ? `<img src="${escapeHtml(dsp.logoUrl)}" alt="${escapeHtml(dsp.name)} logo" class="card-logo" loading="lazy" onerror="this.style.display='none'" />`
+      : '';
+
+    // --- Rating (only when genuine) ---
+    let ratingBlock = '';
+    if (hasRealRating(dsp)) {
+      ratingBlock = `
+        <div class="space-y-1.5">
+          ${generateStarRating(dsp.rating, premium)}
+          <p class="text-gray-400 text-xs font-medium">${dsp.rating.toFixed(1)} • ${formatReviewCount(dsp.reviewCount)}</p>
+        </div>`;
+    }
+
+    // --- Open-now / hours pill ---
+    let hoursBlock = '';
+    const status = window.dispensaryService?.getOpenStatus?.(dsp.hours);
+    if (status) {
+      hoursBlock = `<span class="open-pill ${status.isOpen ? 'open' : 'closed'}">${status.isOpen ? '● Open now' : '● Closed'} · ${escapeHtml(status.todayLabel)}</span>`;
+    } else if (typeof dsp.hours === 'string' && dsp.hours) {
+      hoursBlock = `<span class="open-pill neutral">🕑 ${escapeHtml(dsp.hours)}</span>`;
+    }
+
+    // --- Deals ---
+    const dealsBlock = dsp.deals
+      ? `<div class="deal-banner"><span class="deal-tag">🔥 Deal</span><span>${escapeHtml(dsp.deals)}</span></div>`
+      : '';
+
+    // --- Offerings badges ---
+    const badges = `
+      <div class="flex flex-wrap gap-2 pt-1">
+        ${dsp.hasAdultUse ? '<span class="badge-rec-emoji px-3 py-1.5 rounded-full text-xs font-bold">🌿 Recreational</span>' : ''}
+        ${dsp.hasMedical ? '<span class="badge-med-emoji px-3 py-1.5 rounded-full text-xs font-bold">🏥 Medical</span>' : ''}
+        ${dsp.hasConsumption ? '<span class="badge-lounge-emoji px-3 py-1.5 rounded-full text-xs font-bold">🛋️ Lounge</span>' : ''}
+      </div>`;
+
+    // --- Action row ---
+    const actions = `
+      <div class="flex flex-wrap gap-2 pt-1">
+        <a href="${escapeHtml(getDirectionsUrl(dsp))}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()">📍 Directions</a>
+        ${dsp.menuUrl ? `<a href="${escapeHtml(dsp.menuUrl)}" target="_blank" rel="noopener" class="card-action accent" onclick="event.stopPropagation()">🛒 Order / Menu</a>` : ''}
+        ${dsp.website ? `<a href="${escapeHtml(dsp.website)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()">🌐 Website</a>` : ''}
+        ${dsp.phone ? `<a href="tel:${escapeHtml(dsp.phone)}" class="card-action" onclick="event.stopPropagation()">📞 Call</a>` : ''}
+        ${dsp.instagram ? `<a href="${escapeHtml(dsp.instagram)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()" aria-label="Instagram">📸</a>` : ''}
+        ${dsp.facebook ? `<a href="${escapeHtml(dsp.facebook)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()" aria-label="Facebook">📘</a>` : ''}
+      </div>`;
 
     return `
-      <div class="premium-card rounded-2xl overflow-hidden transition-all cursor-pointer group relative"
-           onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
-        <div class="premium-badge">FEATURED ✨</div>
+      <div class="${cardClass} rounded-2xl overflow-hidden transition-all cursor-pointer group relative animate-fade-up"
+           onclick="try { openDispensaryDetail('${id}'); } catch(e) { console.error(e); }">
+        ${premium ? '<div class="premium-badge">FEATURED ✨</div>' : ''}
 
-        <!-- Glass Header -->
-        <div class="card-header-glass p-5 border-b border-emerald-500/20">
-          <h3 class="text-xl font-bold text-white mb-1">${escapeHtml(dsp.name)}</h3>
-          <p class="text-emerald-100 text-sm flex items-center gap-1">
-            <span>📍</span>
-            <span>${escapeHtml(dsp.city)}</span>
-          </p>
+        <div class="card-header-glass p-5 border-b border-emerald-500/20 flex items-center gap-3">
+          ${logo}
+          <div class="min-w-0">
+            <h3 class="text-xl font-bold text-white mb-0.5 truncate">${escapeHtml(dsp.name)}</h3>
+            <p class="text-emerald-100 text-sm flex items-center gap-1">
+              <span>📍</span><span>${escapeHtml(dsp.city)}</span>
+            </p>
+          </div>
         </div>
 
-        <!-- Content -->
         <div class="p-5 space-y-4">
-          <!-- Rating with Stars -->
-          <div class="space-y-1.5">
-            ${stars}
-            <p class="text-gray-400 text-xs font-medium">${ratingValue.toFixed(1)} • ${reviewText}</p>
-          </div>
-
-          <!-- Address -->
-          <div class="text-sm text-gray-300">
-            <p>${escapeHtml(dsp.address)}</p>
-          </div>
-
-          <!-- Contact Buttons -->
-          <div class="text-sm space-y-2">
-            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:text-emerald-300 font-medium">📞 ${dsp.phone}</a></p>` : ''}
-            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-medium">🌐 Visit Website</a></p>` : ''}
-          </div>
-
-          <!-- Badges with Emoji -->
-          <div class="flex flex-wrap gap-2 pt-2">
-            ${dsp.hasAdultUse ? '<span class="badge-rec-emoji px-3 py-1.5 rounded-full text-xs font-bold">🌿 Recreational</span>' : ''}
-            ${dsp.hasMedical ? '<span class="badge-med-emoji px-3 py-1.5 rounded-full text-xs font-bold">🏥 Medical</span>' : ''}
-            ${dsp.hasConsumption ? '<span class="badge-lounge-emoji px-3 py-1.5 rounded-full text-xs font-bold">🛋️ Lounge</span>' : ''}
-          </div>
-
-          <!-- CTA -->
-          <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
-             class="mt-4 block w-full text-center px-3 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white text-sm font-bold rounded-lg transition transform hover:scale-105">
+          ${ratingBlock}
+          ${hoursBlock ? `<div>${hoursBlock}</div>` : ''}
+          <p class="text-sm text-gray-300">${escapeHtml(dsp.address)}</p>
+          ${dealsBlock}
+          ${badges}
+          ${actions}
+          <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}" onclick="event.stopPropagation()"
+             class="mt-2 block w-full text-center px-3 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white text-sm font-bold rounded-lg transition transform hover:scale-105">
             ✓ Claim Listing
           </a>
         </div>
       </div>
     `;
   } catch (error) {
-    console.error('createPremiumCard error:', error);
+    console.error('createDispensaryCard error:', error);
     return '';
   }
 }
 
+// Backward-compatible aliases
+function createPremiumCard(dsp) { return createDispensaryCard(dsp); }
+function createStandardCard(dsp) { return createDispensaryCard(dsp); }
+function renderDispensaryGrid(dispensaries) { renderDispensariesByCity(dispensaries); }
+
 /**
- * Create a standard dispensary card with liquid glass design
+ * Render city quick-nav jump chips above the grid.
  */
-function createStandardCard(dsp) {
-  try {
-    if (!dsp) return '';
-    if (!dsp.rating) dsp.rating = 4.0;
-    if (!dsp.reviewCount) dsp.reviewCount = 0;
-    const ratingValue = dsp.rating || 4.0;
-    const stars = generateStarRating(ratingValue, false);
-    const reviewText = formatReviewCount(dsp.reviewCount);
-
-    return `
-      <div class="dispensary-card rounded-2xl overflow-hidden transition-all cursor-pointer group"
-           onclick="try { openDispensaryDetail('${dsp.id}'); } catch(e) { console.error(e); }">
-
-        <!-- Glass Header -->
-        <div class="card-header-glass p-5 border-b border-emerald-500/20">
-          <h3 class="text-xl font-bold text-white mb-1">${escapeHtml(dsp.name)}</h3>
-          <p class="text-emerald-100 text-sm flex items-center gap-1">
-            <span>📍</span>
-            <span>${escapeHtml(dsp.city)}</span>
-          </p>
-        </div>
-
-        <!-- Content -->
-        <div class="p-5 space-y-4">
-          <!-- Rating with Stars -->
-          <div class="space-y-1.5">
-            ${stars}
-            <p class="text-gray-400 text-xs font-medium">${ratingValue.toFixed(1)} • ${reviewText}</p>
-          </div>
-
-          <!-- Address -->
-          <div class="text-sm text-gray-300">
-            <p>${escapeHtml(dsp.address)}</p>
-          </div>
-
-          <!-- Contact Buttons -->
-          <div class="text-sm space-y-2">
-            ${dsp.phone ? `<p><a href="tel:${dsp.phone}" class="text-emerald-400 hover:text-emerald-300 font-medium">📞 ${dsp.phone}</a></p>` : ''}
-            ${dsp.website ? `<p><a href="${escapeHtml(dsp.website)}" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-medium">🌐 Visit Website</a></p>` : ''}
-          </div>
-
-          <!-- Badges with Emoji -->
-          <div class="flex flex-wrap gap-2 pt-2">
-            ${dsp.hasAdultUse ? '<span class="badge-rec-emoji px-3 py-1.5 rounded-full text-xs font-bold">🌿 Recreational</span>' : ''}
-            ${dsp.hasMedical ? '<span class="badge-med-emoji px-3 py-1.5 rounded-full text-xs font-bold">🏥 Medical</span>' : ''}
-            ${dsp.hasConsumption ? '<span class="badge-lounge-emoji px-3 py-1.5 rounded-full text-xs font-bold">🛋️ Lounge</span>' : ''}
-          </div>
-
-          <!-- CTA -->
-          <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}"
-             class="mt-4 block w-full text-center px-3 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white text-sm font-bold rounded-lg transition transform hover:scale-105">
-            ✓ Claim Listing
-          </a>
-        </div>
-      </div>
-    `;
-  } catch (error) {
-    console.error('createStandardCard error:', error);
-    return '';
+function renderCityNav(cities) {
+  const nav = document.getElementById('city-nav');
+  if (!nav) return;
+  if (!cities || cities.length === 0) {
+    nav.innerHTML = '';
+    return;
   }
+  nav.innerHTML = cities.map(({ city, count }) => {
+    const cityId = `city-${(city || '').toLowerCase().replace(/[^\w]+/g, '-')}`;
+    return `<a href="#${cityId}" class="city-chip">${escapeHtml(city)} <span class="city-chip-count">${count}</span></a>`;
+  }).join('');
 }
 
 /**
- * Backward compatibility: render flat grid (deprecated, using city grouping instead)
+ * Render hero stat counters from the full dataset.
  */
-function renderDispensaryGrid(dispensaries) {
-  renderDispensariesByCity(dispensaries);
+function renderHeroStats(dispensaries) {
+  const el = document.getElementById('hero-stats');
+  if (!el) return;
+  const data = dispensaries || window.dispensaryService?.data || [];
+  const cities = new Set(data.map(d => d.city).filter(Boolean));
+  const stats = [
+    { value: data.length, label: 'Dispensaries' },
+    { value: cities.size, label: 'Cities' },
+    { value: countWith(data, d => d.hasConsumption), label: 'Lounges' },
+    { value: countWith(data, d => d.deals), label: 'Active Deals' }
+  ];
+  el.innerHTML = stats.map(s => `
+    <div class="hero-stat">
+      <div class="hero-stat-value">${s.value}</div>
+      <div class="hero-stat-label">${s.label}</div>
+    </div>`).join('');
 }
 
-/**
- * Open detail modal for a dispensary
- */
+// ----------------------------------------------------------------------------
+// Detail modal
+// ----------------------------------------------------------------------------
+
 function openDispensaryDetail(dispensaryId) {
   const dispensary = window.dispensaryService.getById(dispensaryId);
   if (!dispensary) {
@@ -290,50 +361,72 @@ function openDispensaryDetail(dispensaryId) {
   const modal = document.getElementById('dispensary-modal');
   const content = document.getElementById('modal-content');
 
+  const status = window.dispensaryService?.getOpenStatus?.(dispensary.hours);
+
+  // Full weekly hours table when structured
+  let hoursTable = '';
+  if (dispensary.hours && typeof dispensary.hours === 'object') {
+    const rows = DAY_ORDER
+      .filter(day => dispensary.hours[day] || dispensary.hours[day.toUpperCase()])
+      .map(day => `<div class="flex justify-between"><span class="text-gray-400">${DAY_LABELS[day]}</span><span>${escapeHtml(String(dispensary.hours[day] || dispensary.hours[day.toUpperCase()]))}</span></div>`)
+      .join('');
+    if (rows) hoursTable = `<div class="space-y-1 text-sm">${rows}</div>`;
+  } else if (typeof dispensary.hours === 'string' && dispensary.hours) {
+    hoursTable = `<p class="text-sm text-gray-300">${escapeHtml(dispensary.hours)}</p>`;
+  }
+
   content.innerHTML = `
     <div class="space-y-6">
-      <!-- Header -->
-      <div class="border-b border-gray-700 pb-4">
-        <h2 class="text-3xl font-bold text-white">${escapeHtml(dispensary.name)}</h2>
-        <p class="text-gray-400 mt-1">${escapeHtml(dispensary.city)}</p>
-
-        ${dispensary.rating > 0 ? `
-          <div class="mt-3 space-y-2">
-            ${generateStarRating(dispensary.rating, dispensary.isPremium)}
-            <p class="text-gray-400 text-sm">${dispensary.rating.toFixed(1)} • ${formatReviewCount(dispensary.reviewCount)}</p>
-          </div>
-        ` : ''}
+      <div class="border-b border-gray-700 pb-4 flex items-start gap-4">
+        ${dispensary.logoUrl ? `<img src="${escapeHtml(dispensary.logoUrl)}" alt="" class="w-16 h-16 rounded-lg object-cover" onerror="this.style.display='none'" />` : ''}
+        <div class="min-w-0">
+          <h2 class="text-3xl font-bold text-white">${escapeHtml(dispensary.name)}</h2>
+          <p class="text-gray-400 mt-1">📍 ${escapeHtml(dispensary.address || dispensary.city)}</p>
+          ${status ? `<span class="open-pill ${status.isOpen ? 'open' : 'closed'} mt-2 inline-block">${status.isOpen ? '● Open now' : '● Closed'} · ${escapeHtml(status.todayLabel)}</span>` : ''}
+          ${hasRealRating(dispensary) ? `
+            <div class="mt-3 space-y-2">
+              ${generateStarRating(dispensary.rating, dispensary.isPremium)}
+              <p class="text-gray-400 text-sm">${dispensary.rating.toFixed(1)} • ${formatReviewCount(dispensary.reviewCount)}</p>
+            </div>` : ''}
+        </div>
       </div>
 
-      <!-- Contact Info -->
-      <div class="space-y-2">
-        <h3 class="text-lg font-semibold text-emerald-400">Contact</h3>
-        <p><span class="text-gray-400">Address:</span> ${escapeHtml(dispensary.address)}</p>
-        <p><a href="tel:${dispensary.phone}" class="text-emerald-400 hover:underline">${dispensary.phone}</a></p>
-        ${dispensary.website ? `<p><a href="${escapeHtml(dispensary.website)}" target="_blank" class="text-emerald-400 hover:underline">🌐 Visit Website</a></p>` : ''}
-      </div>
+      ${dispensary.description ? `<p class="text-gray-300">${escapeHtml(dispensary.description)}</p>` : ''}
 
-      <!-- Products & Services -->
+      ${dispensary.deals ? `<div class="deal-banner"><span class="deal-tag">🔥 Deal</span><span>${escapeHtml(dispensary.deals)}</span></div>` : ''}
+
       <div class="space-y-2">
         <h3 class="text-lg font-semibold text-emerald-400">Products & Services</h3>
         <div class="flex flex-wrap gap-3">
-          ${dispensary.hasAdultUse ? '<span class="bg-emerald-900/50 text-emerald-200 px-3 py-1 rounded">✓ Adult Use</span>' : '<span class="bg-gray-700/50 text-gray-400 px-3 py-1 rounded">✗ Adult Use</span>'}
-          ${dispensary.hasMedical ? '<span class="bg-blue-900/50 text-blue-200 px-3 py-1 rounded">✓ Medical</span>' : '<span class="bg-gray-700/50 text-gray-400 px-3 py-1 rounded">✗ Medical</span>'}
+          ${dispensary.hasAdultUse ? '<span class="bg-emerald-900/50 text-emerald-200 px-3 py-1 rounded">✓ Recreational</span>' : ''}
+          ${dispensary.hasMedical ? '<span class="bg-blue-900/50 text-blue-200 px-3 py-1 rounded">✓ Medical</span>' : ''}
           ${dispensary.hasConsumption ? '<span class="bg-gold-900/50 text-gold-200 px-3 py-1 rounded">✓ Consumption Lounge</span>' : ''}
         </div>
       </div>
 
-      <!-- License Info (if available) -->
+      ${hoursTable ? `<div class="space-y-2"><h3 class="text-lg font-semibold text-emerald-400">Hours</h3>${hoursTable}</div>` : ''}
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-semibold text-emerald-400">Contact & Links</h3>
+        <div class="flex flex-wrap gap-2">
+          <a href="${escapeHtml(getDirectionsUrl(dispensary))}" target="_blank" rel="noopener" class="card-action">📍 Directions</a>
+          ${dispensary.menuUrl ? `<a href="${escapeHtml(dispensary.menuUrl)}" target="_blank" rel="noopener" class="card-action accent">🛒 Order / Menu</a>` : ''}
+          ${dispensary.website ? `<a href="${escapeHtml(dispensary.website)}" target="_blank" rel="noopener" class="card-action">🌐 Website</a>` : ''}
+          ${dispensary.phone ? `<a href="tel:${escapeHtml(dispensary.phone)}" class="card-action">📞 ${escapeHtml(dispensary.phone)}</a>` : ''}
+          ${dispensary.email ? `<a href="mailto:${escapeHtml(dispensary.email)}" class="card-action">✉️ Email</a>` : ''}
+          ${dispensary.instagram ? `<a href="${escapeHtml(dispensary.instagram)}" target="_blank" rel="noopener" class="card-action">📸 Instagram</a>` : ''}
+          ${dispensary.facebook ? `<a href="${escapeHtml(dispensary.facebook)}" target="_blank" rel="noopener" class="card-action">📘 Facebook</a>` : ''}
+        </div>
+      </div>
+
       ${dispensary.licenseNumber ? `
         <div class="bg-gray-900 p-3 rounded text-sm text-gray-400">
           <p>License #: ${escapeHtml(dispensary.licenseNumber)}</p>
-        </div>
-      ` : ''}
+        </div>` : ''}
 
-      <!-- Claim/Premium CTA -->
-      <div class="border-t border-gray-700 pt-4 flex gap-3">
+      <div class="border-t border-gray-700 pt-4">
         <a href="/partner.html?claim=${encodeURIComponent(dispensary.id)}"
-           class="flex-1 px-4 py-2 bg-gold-600 hover:bg-gold-500 text-white font-semibold rounded transition text-center">
+           class="block px-4 py-2 bg-gold-600 hover:bg-gold-500 text-white font-semibold rounded transition text-center">
           ✓ Is This Your Dispensary? Claim Listing
         </a>
       </div>
@@ -343,54 +436,108 @@ function openDispensaryDetail(dispensaryId) {
   modal.classList.remove('hidden');
 }
 
-/**
- * Close the detail modal
- */
 function closeDispensaryModal() {
   const modal = document.getElementById('dispensary-modal');
   modal.classList.add('hidden');
 }
 
+// ----------------------------------------------------------------------------
+// Filtering, sorting, search
+// ----------------------------------------------------------------------------
+
 /**
- * Apply filters and re-render grid (grouped by city)
+ * Compute the currently filtered/sorted result set from all controls.
+ * Shared by the renderer and the CSV export so they always agree.
+ */
+function getFilteredResults() {
+  let results = window.dispensaryService?.data || [];
+
+  // Search
+  const searchInput = document.getElementById('search-input');
+  if (searchInput && searchInput.value && window.dispensaryService?.search) {
+    try {
+      results = window.dispensaryService.search(searchInput.value);
+    } catch (e) {
+      console.error('Search error:', e);
+    }
+  }
+
+  // City
+  const cityFilter = document.getElementById('city-filter');
+  if (cityFilter && cityFilter.value) {
+    results = results.filter(d => d && d.city === cityFilter.value);
+  }
+
+  // Offerings toggle chips (AND logic)
+  const offerings = Array.from(document.querySelectorAll('.offering-chip[data-active="true"]'))
+    .map(el => el.dataset.offering);
+  offerings.forEach(off => {
+    if (off === 'rec') results = results.filter(d => d.hasAdultUse);
+    else if (off === 'med') results = results.filter(d => d.hasMedical);
+    else if (off === 'lounge') results = results.filter(d => d.hasConsumption);
+    else if (off === 'deals') results = results.filter(d => d.deals);
+  });
+
+  return results;
+}
+
+function getSortKey() {
+  const sortFilter = document.getElementById('sort-filter');
+  return sortFilter ? sortFilter.value : 'featured';
+}
+
+/**
+ * Apply all filters and re-render.
  */
 function applyFilters() {
   try {
-    let results = window.dispensaryService?.data || [];
-
-    // Search
-    const searchInput = document.getElementById('search-input');
-    if (searchInput && searchInput.value && window.dispensaryService?.search) {
-      try {
-        results = window.dispensaryService.search(searchInput.value);
-      } catch (e) {
-        console.error('Search error:', e);
-      }
-    }
-
-    // City filter
-    const cityFilter = document.getElementById('city-filter');
-    if (cityFilter && cityFilter.value) {
-      results = (results || []).filter(d => d && d.city === cityFilter.value);
-    }
-
-    // Type filter
-    const typeFilter = document.getElementById('type-filter');
-    if (typeFilter && typeFilter.value) {
-      results = (results || []).filter(d => d && d.type === typeFilter.value);
-    }
-
-    // Rating filter
-    const ratingFilter = document.getElementById('rating-filter');
-    if (ratingFilter && ratingFilter.value) {
-      results = (results || []).filter(d => d && d.rating >= parseFloat(ratingFilter.value));
-    }
-
-    renderDispensariesByCity(results);
+    const results = getFilteredResults();
+    renderDispensariesByCity(results, getSortKey());
     updateResultCount(results.length);
   } catch (error) {
     console.error('applyFilters error:', error);
-    document.getElementById('result-count').textContent = 'Error applying filters';
+    const el = document.getElementById('result-count');
+    if (el) el.textContent = 'Error applying filters';
+  }
+}
+
+/**
+ * Toggle an offerings chip and re-filter.
+ */
+function toggleOffering(el) {
+  const active = el.dataset.active === 'true';
+  el.dataset.active = active ? 'false' : 'true';
+  applyFilters();
+}
+
+/**
+ * Reset all controls.
+ */
+function clearFilters() {
+  const search = document.getElementById('search-input');
+  if (search) search.value = '';
+  const city = document.getElementById('city-filter');
+  if (city) city.value = '';
+  const sort = document.getElementById('sort-filter');
+  if (sort) sort.value = 'featured';
+  document.querySelectorAll('.offering-chip').forEach(el => { el.dataset.active = 'false'; });
+  applyFilters();
+}
+
+/**
+ * Force a fresh pull from Airtable (bypasses cache) and re-render.
+ */
+async function refreshData() {
+  try {
+    const el = document.getElementById('result-count');
+    if (el) el.textContent = 'Refreshing…';
+    await window.dispensaryService.load(true);
+    populateCityFilter();
+    renderHeroStats();
+    applyFilters();
+  } catch (e) {
+    console.error('Refresh error:', e);
+    applyFilters();
   }
 }
 
@@ -401,11 +548,11 @@ function populateCityFilter() {
   try {
     const cities = window.dispensaryService?.getCities?.() || [];
     const select = document.getElementById('city-filter');
-
     if (select) {
+      const current = select.value;
       select.innerHTML = `
         <option value="">All Cities (${cities.length})</option>
-        ${(cities || []).map(city => `<option value="${city}">${(city || '').replace(/</g, '&lt;')}</option>`).join('')}
+        ${cities.map(city => `<option value="${escapeHtml(city)}"${city === current ? ' selected' : ''}>${escapeHtml(city)}</option>`).join('')}
       `;
     }
   } catch (error) {
@@ -420,7 +567,7 @@ function updateResultCount(count) {
   try {
     const countElement = document.getElementById('result-count');
     if (countElement) {
-      countElement.textContent = `${count || 0} dispensaries found`;
+      countElement.textContent = `${count || 0} dispensar${count === 1 ? 'y' : 'ies'} found`;
     }
   } catch (error) {
     console.error('updateResultCount error:', error);
@@ -428,40 +575,84 @@ function updateResultCount(count) {
 }
 
 /**
- * Export filtered results as CSV
+ * Export the CURRENTLY FILTERED results as CSV.
  */
 function exportToCSV() {
-  const dispensaries = window.dispensaryService.data;
+  try {
+    const dispensaries = getFilteredResults();
 
-  const headers = ['Name', 'City', 'Address', 'Phone', 'Website', 'Rating', 'Type'];
-  const rows = dispensaries.map(d => [
-    d.name,
-    d.city,
-    d.address,
-    d.phone,
-    d.website,
-    d.rating,
-    d.type
-  ]);
+    const headers = ['Name', 'City', 'Address', 'Phone', 'Website', 'Recreational', 'Medical', 'Lounge', 'Deals', 'Menu', 'Hours'];
+    const csvCell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+    const hoursToText = (h) => {
+      if (!h) return '';
+      if (typeof h === 'string') return h;
+      return DAY_ORDER.filter(d => h[d]).map(d => `${DAY_LABELS[d]} ${h[d]}`).join('; ');
+    };
 
-  // Create CSV
-  const csvContent = [
-    headers.join(','),
-    ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
-  ].join('\n');
+    const rows = dispensaries.map(d => [
+      d.name, d.city, d.address, d.phone, d.website,
+      d.hasAdultUse ? 'Yes' : 'No',
+      d.hasMedical ? 'Yes' : 'No',
+      d.hasConsumption ? 'Yes' : 'No',
+      d.deals, d.menuUrl, hoursToText(d.hours)
+    ]);
 
-  // Download
-  const blob = new Blob([csvContent], { type: 'text/csv' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `greenborder-dispensaries-${new Date().toISOString().split('T')[0]}.csv`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(csvCell).join(','))
+    ].join('\n');
 
-  console.log('📥 CSV exported');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `greenborder-dispensaries-${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    console.log(`📥 CSV exported (${dispensaries.length} rows)`);
+  } catch (e) {
+    console.error('exportToCSV error:', e);
+  }
+}
+
+/**
+ * Inject JSON-LD ItemList of LocalBusiness for SEO / discoverability.
+ */
+function injectStructuredData(dispensaries) {
+  try {
+    const data = dispensaries || window.dispensaryService?.data || [];
+    if (!data.length) return;
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Cannabis Dispensary Directory — Southern New Mexico',
+      numberOfItems: data.length,
+      itemListElement: data.map((d, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'Store',
+          name: d.name,
+          address: { '@type': 'PostalAddress', streetAddress: d.address, addressLocality: d.city, addressRegion: 'NM' },
+          ...(d.website ? { url: d.website } : {}),
+          ...(d.phone ? { telephone: d.phone } : {})
+        }
+      }))
+    };
+    let script = document.getElementById('directory-jsonld');
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'directory-jsonld';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(itemList);
+  } catch (e) {
+    console.warn('JSON-LD injection skipped:', e);
+  }
 }
 
 /**
@@ -469,22 +660,19 @@ function exportToCSV() {
  */
 function escapeHtml(text) {
   if (!text) return '';
-  const map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
   return String(text).replace(/[&<>"']/g, m => map[m]);
 }
 
 // ============================================
 // EXPOSE FUNCTIONS TO GLOBAL SCOPE
 // ============================================
-// Make functions globally accessible for HTML event handlers
 window.renderDispensariesByCity = renderDispensariesByCity;
+window.createDispensaryCard = createDispensaryCard;
 window.applyFilters = applyFilters;
+window.toggleOffering = toggleOffering;
+window.clearFilters = clearFilters;
+window.refreshData = refreshData;
 window.populateCityFilter = populateCityFilter;
 window.updateResultCount = updateResultCount;
 window.exportToCSV = exportToCSV;
@@ -493,3 +681,6 @@ window.closeDispensaryModal = closeDispensaryModal;
 window.escapeHtml = escapeHtml;
 window.generateStarRating = generateStarRating;
 window.formatReviewCount = formatReviewCount;
+window.renderHeroStats = renderHeroStats;
+window.injectStructuredData = injectStructuredData;
+window.getFilteredResults = getFilteredResults;
