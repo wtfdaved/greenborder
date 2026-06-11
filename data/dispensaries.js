@@ -8,575 +8,98 @@
 
 window.DISPENSARIES = [
 
-  // ── SUNLAND PARK ─────────────────────────────────────────────────────────
+  // ── SUNLAND PARK ──────────────────────────────────────────────────────────
 
-  {
-    "id": "custom_1772668487748", "city": "Sunland Park", "icon": "🚀",
-    "name": "Astro Buds Dispensary, Consumption Lounge & Grill",
-    "address": "1650 Appaloosa Dr, Sunland Park, NM 88063", "zipCode": "88063",
-    "phone": "(575) 425-2837",
-    "website": "https://astrobudsnm.com/",
-    "description": "Sunland Park's first Lounge and Grill. Experience a fully tailored menu with amazing food all in one spot.",
-    "tags": ["🔥 Favorite","🛋 Consumption Lounge","🍬 In-House Brands","🏔️ Craft Flower","🌌 Sci-Fi Themed","☕ Infused Cafe","🚗 Drive-Thru","🌱 Organic / Craft","🌿 Massive Selection","🧠 Expert Staff","🎯 Top Shelf","🤝 Beginner Friendly","⚾ Sports Vibe","🌵 Border Reliable","💧 Clean Environment","🏭 Consistent","🎨 Best Interior Design"],
-    "rank": 1, "featured": true, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": true,
-    "rating": 4.5, "reviewCount": 149,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp2", "city": "Sunland Park", "icon": "🥭",
-    "name": "Mango Cannabis",
-    "address": "Sunland Park, NM", "zipCode": "",
-    "phone": "",
-    "website": "https://mangocannabis.com/new-mexico-dispensary/sunland-park/sunland-park-dispensary/?ref=thegreenborder.com",
-    "description": "High energy with a truly massive inventory. If speed and selection are what you need, Mango delivers. They consistently carry one of the widest menus in the state — edibles, cartridges, and flower always in stock.",
-    "tags": ["📍 Curbside Pickup","📦 Huge Inventory","🌿 Massive Selection","✅ Reliable","💧 Clean Environment"],
-    "rank": 2, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp3", "city": "Sunland Park", "icon": "🌌",
-    "name": "Dark Matter",
-    "address": "1615 Appaloosa Dr", "zipCode": "",
-    "phone": "",
-    "website": "https://www.darkmattercanna.com/location/dark-matter-sunland-park/?ref=thegreenborder.com",
-    "description": "Sleek, futuristic, and unlike most shops on the strip. Dark Matter carries everything you may need, and for a great price with their specials!",
-    "tags": ["🔬 Lab Focus","🎯 Top Shelf","🌿 Massive Selection","🧠 Expert Staff","📍 Curbside Pickup","👽 Space-Themed","✅ Reliable","📦 Huge Inventory"],
-    "rank": 3, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp5", "city": "Sunland Park", "icon": "🌿",
-    "name": "Top Crop",
-    "address": "1621 Appaloosa Dr", "zipCode": "",
-    "phone": "",
-    "website": "https://topcropcannabis.com/best-cannabis-dispensary-sunland-park?ref=thegreenborder.com",
-    "description": "Claiming to be the largest dispensary in New Mexico, Top Crop backs it up with an enormous, well-organized menu. Whether you're hunting budget-friendly flower or high-end concentrates, the inventory is hard to beat — and their daily deals sweeten the deal further.",
-    "tags": ["🌿 Massive Selection","💰 Best Deals","📦 Huge Inventory","🎨 Best Interior Design","✅ Reliable","🚗 Drive-Thru"],
-    "rank": 4, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp11", "city": "Sunland Park", "icon": "🔥",
-    "name": "Score 420",
-    "address": "2355 McNutt Rd & 1925 Appaloosa Dr", "zipCode": "",
-    "phone": "",
-    "website": "https://score420.store/sunland-park-dispensary/?ref=thegreenborder.com",
-    "description": "Two locations, one simple mission: get you the best value in Sunland Park. Score 420 is the go-to for anyone who wants solid flower and pre-roll or vapes without paying a premium for branding. Fun, unpretentious, and consistently stocked.",
-    "tags": ["💰 Best Deals","🔥 Favorite","✅ Reliable","🍬 In-House Brands","🧠 Expert Staff"],
-    "rank": 5, "featured": true, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4.5, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp1", "city": "Sunland Park", "icon": "☕",
-    "name": "Fields of Dreams",
-    "address": "Appaloosa Blvd", "zipCode": "",
-    "phone": "",
-    "website": "https://www.fodnm.com/deals?ref=thegreenborder.com",
-    "description": "The first dispensary you see the moment you cross into Sunland Park. The iconic white building with the big green leaf is hard to miss — and for good reason. They grow their own flower on-site, run a full Infused Cafe, and even have a Drive-Thru for when you don't want to leave your car.",
-    "tags": ["☕ Infused Cafe","🚗 Drive-Thru","🌿 On-site Grow","🏰 Locally Owned","🌵 Border Reliable"],
-    "rank": 6, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp6", "city": "Sunland Park", "icon": "👑",
-    "name": "Old Gods",
-    "address": "1541 Appaloosa Dr", "zipCode": "",
-    "phone": "",
-    "website": "https://oldgodsdispensary.com/?ref=thegreenborder.com",
-    "description": "Small, intimate, and intentional. Old Gods is the boutique option on the strip — a refreshing alternative to the big-box shops. The selection is carefully curated and the staff will actually take the time to talk to you.",
-    "tags": ["💎 Boutique","🧠 Expert Staff","🚗 Drive-Thru","🎯 Top Shelf","❤️ Top Staff","🎨 Best Interior Design"],
-    "rank": 7, "featured": true, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4.5, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp4", "city": "Sunland Park", "icon": "🍪",
-    "name": "Cookies",
-    "address": "1500 Appaloosa St", "zipCode": "",
-    "phone": "",
-    "website": "https://sunland.cookies.co/?ref=thegreenborder.com",
-    "description": "The iconic blue branding. The legendary genetics. Cookies needs no introduction — home of Gary Payton, Cereal Milk, and dozens of exclusive drops you can only get here. If you're chasing a specific cultivar, this is the official source.",
-    "tags": ["🍪 Exclusive Genetics","🏆 Connoisseur Pick","🎯 Top Shelf","🏭 Consistent","🚗 Drive-Thru"],
-    "rank": 8, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp13", "city": "Sunland Park", "icon": "💨",
-    "name": "Dispensary Near Me",
-    "address": "1290 McNutt Rd", "zipCode": "",
-    "phone": "",
-    "website": "https://www.dispensarynearmenm.com/?ref=thegreenborder.com",
-    "description": "One of the only shops in Sunland Park with an active consumption lounge. Licensed for both retail and on-site use, this is where you go if you want the full experience — shop, stay, enjoy. A true community social hub.",
-    "tags": ["🛋 Consumption Lounge","🍬 In-House Brands","💋 Boutique Feel","💎 Boutique"],
-    "rank": 9, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": true,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp7", "city": "Sunland Park", "icon": "⭐",
-    "name": "Prohibition 37",
-    "address": "871 McNutt Rd", "zipCode": "",
-    "phone": "",
-    "website": "https://www.p37cannabis.com/location/sunland-park/?ref=thegreenborder.com",
-    "description": "P37 brings a professional, slightly rebellious energy to the McNutt corridor. With a strong foundation in medical cannabis and a growing recreational menu, it's the kind of shop you keep coming back to because the experience is always consistent.",
-    "tags": ["⭐ Loyalty Program","🏥 Medical Focus","🏔️ Craft Flower","🎯 Top Shelf","🏭 Consistent"],
-    "rank": 10, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": true, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp15", "city": "Sunland Park", "icon": "🚀",
-    "name": "Apogee",
-    "address": "1769 Victory Ln", "zipCode": "",
-    "phone": "",
-    "website": "https://apogeenm.com/?ref=thegreenborder.com",
-    "description": "'Apogee' means the highest point — and that's exactly what they're building toward. Focused on therapeutic-grade products with a consumption lounge in development, Apogee is one to watch for those who want a premium, on-site experience in Sunland Park.",
-    "tags": ["🏥 Medical Focus","⏱️Consumption Lounge Coming Soon","🏰 Locally Owned","👽 Space-Themed","🎯 Top Shelf","🤝 Beginner Friendly","🚗 Drive-Thru"],
-    "rank": 11, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": true, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp9", "city": "Sunland Park", "icon": "🏔️",
-    "name": "Elevation 3789",
-    "address": "1999 Futurity Dr, Unit A", "zipCode": "",
-    "phone": "",
-    "website": "https://elevationcannabis.co/dispensaries/elevation-3789/?ref=thegreenborder.com",
-    "description": "A boutique experience that feels personal rather than corporate. Elevation 3789 puts a heavy emphasis on craft cannabis — the kind of flower that's properly cured, properly grown, and worth the extra attention.",
-    "tags": ["🏔️ Craft Flower","💎 Boutique","🌱 Organic / Craft"],
-    "rank": 12, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp8", "city": "Sunland Park", "icon": "✅",
-    "name": "R. Greenleaf",
-    "address": "1541 Appaloosa, Units 1 & 2", "zipCode": "",
-    "phone": "",
-    "website": "https://rgreenleaf.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com",
-    "description": "One of New Mexico's most established cannabis brands, and it shows. The staff is knowledgeable, the rewards program is genuinely good, and the experience strikes the right balance between medical-grade guidance and recreational convenience.",
-    "tags": ["⭐ Loyalty Program","🏥 Medical Focus","🧠 Expert Staff","🤝 Beginner Friendly"],
-    "rank": 13, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": true, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp21", "city": "Sunland Park", "icon": "💨",
-    "name": "Toke It Up",
-    "address": "1999 Futurity Drive", "zipCode": "",
-    "phone": "",
-    "website": "https://tokeitupdispensary.com/?ref=thegreenborder.com",
-    "description": "Social by design. With a consumption lounge in development on Futurity Drive, Toke It Up is building toward a full shop-and-stay experience. The current retail side is solid, and the community-first vibe gives it a distinct personality among the Sunland Park options.",
-    "tags": ["🏰 Locally Owned","💎 Boutique","⏱️Consumption Lounge Coming Soon"],
-    "rank": 14, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp19", "city": "Sunland Park", "icon": "⚔️",
-    "name": "Obi Wan",
-    "address": "2167 McNutt Rd, Suite A", "zipCode": "",
-    "phone": "",
-    "website": "https://www.obiwancannabis.online/?ref=thegreenborder.com",
-    "description": "The dispensary you are looking for. Pop-culture branding aside, Obi Wan on McNutt delivers genuine quality with staff who act as expert guides rather than just cashiers. The lighthearted theme makes it a memorable first visit.",
-    "tags": ["🌌 Sci-Fi Themed","🧠 Expert Staff","🎨 Best Interior Design"],
-    "rank": 15, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp23", "city": "Sunland Park", "icon": "🐑",
-    "name": "Black Sheep",
-    "address": "1925 Appaloosa, Ste 6", "zipCode": "",
-    "phone": "",
-    "website": "https://blacksheepnm.com/?ref=thegreenborder.com",
-    "description": "Previously TenTen, they set the bar at a perfect 10 and build everything around reaching it — premium cultivars, clean aesthetics, and a menu that prioritizes quality over quantity. The kind of shop you visit when you actually want the best on the shelf.",
-    "tags": ["🎯 Top Shelf","💎 Boutique","🌵 Border Reliable","🏰 Locally Owned"],
-    "rank": 16, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp14", "city": "Sunland Park", "icon": "💋",
-    "name": "Besos",
-    "address": "1805 Futurity Dr", "zipCode": "",
-    "phone": "",
-    "website": "https://thehouseofve.com/?ref=thegreenborder.com",
-    "description": "Besos brings a warmth that stands out on Futurity Drive. The branding is distinct, the atmosphere is intimate, and the service feels genuinely personal. Worth a visit for the experience alone.",
-    "tags": ["💋 Boutique Feel","💰 Best Deals","📍 Curbside Pickup"],
-    "rank": 17, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp17", "city": "Sunland Park", "icon": "🌱",
-    "name": "Greens",
-    "address": "101 Maguey, Suite 4", "zipCode": "",
-    "phone": "",
-    "website": "https://greensnm.com/?ref=thegreenborder.com",
-    "description": "Neighborhood shop energy in the best way possible. Greens on Maguey Road is down-to-earth, community-focused, and stocked with fresh products. If you're tired of corporate chain vibes, this is a breath of fresh air.",
-    "tags": ["🏰 Locally Owned","🌵 Border Reliable"],
-    "rank": 18, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp10", "city": "Sunland Park", "icon": "🏔️",
-    "name": "Everest",
-    "address": "1580 Appaloosa Dr, Ste 320", "zipCode": "",
-    "phone": "",
-    "website": "https://everestnm.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com",
-    "description": "Built around a simple promise: clean cannabis. Everest avoids harsh chemicals throughout their growing process and produces in-house edibles and concentrates that health-conscious consumers keep requesting by name. The crisp, clinical atmosphere matches their standards.",
-    "tags": ["🌱 Organic / Craft","🍬 In-House Brands","🏥 Medical Focus"],
-    "rank": 19, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": true, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp12", "city": "Sunland Park", "icon": "🏰",
-    "name": "Empire Garden",
-    "address": "1144 McNutt Road", "zipCode": "",
-    "phone": "",
-    "website": "https://empiregardensunland.com/?ref=thegreenborder.com",
-    "description": "A locally owned standby on the McNutt corridor. Empire Garden has built a reputation for variety and friendly service — the kind of shop where the staff recognizes regulars and the daily selection stays fresh.",
-    "tags": ["🏰 Locally Owned","📦 Huge Inventory","✅ Reliable","🎯 Top Shelf"],
-    "rank": 20, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp16", "city": "Sunland Park", "icon": "🏥",
-    "name": "Ultra Health",
-    "address": "1155 McNutt Road", "zipCode": "",
-    "phone": "",
-    "website": "https://ultrahealth.com/new-mexico-dispensaries/sunland-park-cannabis-dispensary/?ref=thegreenborder.com",
-    "description": "New Mexico's #1 cannabis provider by footprint. Ultra Health is the reliable option for patients and recreational users who want a familiar, trustworthy experience. Their inventory is broad, their pricing is accessible.",
-    "tags": ["🏥 Medical Focus","📖 Education First","🍬 In-House Brands"],
-    "rank": 21, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": true, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp18", "city": "Sunland Park", "icon": "🧪",
-    "name": "Green Labs",
-    "address": "245 Derby Rd", "zipCode": "",
-    "phone": "",
-    "website": "https://greenlabscannabisnm.com/location/green-labs-dispensary/?ref=thegreenborder.com",
-    "description": "If you actually care about terpene profiles and cannabinoid ratios, Green Labs is your place. This is a scientifically-minded shop that prioritizes education alongside experience — a great stop for curious consumers who want to understand what they're buying.",
-    "tags": ["📖 Education First","🏰 Locally Owned"],
-    "rank": 22, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp20", "city": "Sunland Park", "icon": "🚂",
-    "name": "Round House Reserve",
-    "address": "1165 McNutt Dr, Unit C5", "zipCode": "",
-    "phone": "",
-    "website": "https://weedmaps.com/dispensaries/round-house-reserve-1?ref=thegreenborder.com",
-    "description": "Rustic warmth and an obsession with quality flower. Round House built their reputation on their Reserve shelf — potent, well-cured strains that keep McNutt regulars coming back specifically for what's behind the counter.",
-    "tags": ["🚂 Reserve Shelf","🎯 Top Shelf"],
-    "rank": 23, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "sp22", "city": "Sunland Park", "icon": "☀️",
-    "name": "Sunshine Essentials",
-    "address": "267 Anapra Rd", "zipCode": "",
-    "phone": "",
-    "website": "https://dutchie.com/dispensary/sunshine-essentials?ref=thegreenborder.com",
-    "description": "Bright, cheerful, and perfectly positioned for anyone who wants a quick stop on the Anapra corridor without driving all the way into the main Sunland Park cluster. Friendly staff and a solid rotating daily selection.",
-    "tags": ["💎 Boutique","🏰 Locally Owned"],
-    "rank": 24, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
+  {"id": "custom_1772668487748", "city": "Sunland Park", "icon": "🚀", "name": "Astro Buds Dispensary, Consumption Lounge & Grill", "address": "1650 Appaloosa Dr, Sunland Park, NM 88063", "zipCode": "88063", "phone": "(575) 425-2837", "website": "https://astrobudsnm.com/", "description": "Astro Buds & Grill is Sunland Park's premier upscale dispensary, featuring a fast and convenient drive‑through for top‑tier cannabis pickup. Step inside our modern consumption lounge—a cannabis‑friendly sports‑bar atmosphere with a huge patio, live‑event stage, and dozens of TVs streaming sports, fights, and entertainment all day and all night! Experience one‑of‑a‑kind cannabis experiences like our immersive Hot Box, and enjoy exclusive access to Astro Buds—our organically grown, locally cultivated, award‑winning cannabis from the El Paso area. A truly elevated cannabis, food, and entertainment destination—only at Astro Buds & Grill.", "tags": ["🔥 Favorite", "🛋 Consumption Lounge", "🍬 In-House Brands", "🏔️ Craft Flower", "🌌 Sci-Fi Themed", "☕ Infused Cafe", "🚗 Drive-Thru", "🌱 Organic / Craft", "🧠 Expert Staff", "🎯 Top Shelf", "🤝 Beginner Friendly", "⚾ Sports Vibe", "🌵 Border Reliable", "💧 Clean Environment", "🏭 Consistent", "🎨 Best Interior Design"], "rank": 1, "featured": true, "isPremium": true, "hasAdultUse": true, "hasMedical": true, "hasConsumption": true, "rating": 4.7, "reviewCount": 193},
+
+  {"id": "sp2", "city": "Sunland Park", "icon": "🥭", "name": "Mango Cannabis", "address": "1051 McNutt Rd, Sunland Park, NM", "zipCode": "88063", "phone": "(575) 332-4108", "website": "https://mangocannabis.com/new-mexico-dispensary/sunland-park/sunland-park-dispensary/?ref=thegreenborder.com", "description": "Mango Cannabis is your go-to Sunland Park dispensary for top-quality recreational and medical marijuana. Located in Sunland Park, NM, we offer a wide selection of cannabis products, from popular strains to specialty items. Our friendly, knowledgeable team is here to help you find the perfect products to fit your needs, delivering an unmatched dispensary experience.", "tags": ["📍 Curbside Pickup", "📦 Huge Inventory", "🌿 Massive Selection", "✅ Reliable", "💧 Clean Environment", "🔥 Favorite", "🤝 Beginner Friendly"], "rank": 2, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 5247},
+
+  {"id": "sp3", "city": "Sunland Park", "icon": "🌌", "name": "Dark Matter", "address": "1615 Appaloosa Dr", "zipCode": "88063", "phone": "(575) 332-4397", "website": "https://www.darkmattercanna.com/location/dark-matter-sunland-park/?ref=thegreenborder.com", "description": "Best cannabis dispensary Sunland Park The finest green in the galaxy just landed in New Mexico. Dark Matter, renowned as the best cannabis dispensary in Sunland Park, NM, offers an experience that's out of this world. With an endless product library from the best New Mexico has to offer, there's sure to be something for every earthling to enjoy! Step into Dark Matter, where quality meets variety in a stellar setting. Explore our extensive range of top-shelf marijuana, including exclusive strains, edibles, and concentrates. Our knowledgeable staff are dedicated to guiding you in your quest for the perfect product.", "tags": ["🎯 Top Shelf", "🌿 Massive Selection", "🧠 Expert Staff", "📍 Curbside Pickup", "👽 Space-Themed", "✅ Reliable", "📦 Huge Inventory", "⭐ Loyalty Program", "🔥 Favorite"], "rank": 3, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 3314},
+
+  {"id": "sp5", "city": "Sunland Park", "icon": "🌿", "name": "Top Crop", "address": "1621 Appaloosa Dr", "zipCode": "88063", "phone": "(575) 332-4413", "website": "https://topcropcannabis.com/best-cannabis-dispensary-sunland-park?ref=thegreenborder.com", "description": "Best Cannabis Dispensary in Sunland Park Discover an exceptional cannabis experience at Top Crop Cannabis Dispensary in Sunland Park. Known for curating a premier selection, our Sunland Park dispensary brings a carefully chosen array of top-tier products to enthusiasts and newcomers alike. Explore a diverse menu featuring sought-after flower strains, a variety of dabs, cartridges, edibles, and more. Our team of knowledgeable budtenders are dedicated to guiding you through a unique selection, ensuring you find the perfect product to suit your needs. Visit Top Crop for a premier cannabis journey and discover why it's a favorite for connoisseurs across New Mexico.", "tags": ["🌿 Massive Selection", "💰 Best Deals", "📦 Huge Inventory", "🎨 Best Interior Design", "✅ Reliable", "🚗 Drive-Thru", "🔥 Favorite"], "rank": 4, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 459},
+
+  {"id": "sp11", "city": "Sunland Park", "icon": "🔥", "name": "Score 420", "address": "2355 McNutt Rd & 1925 Appaloosa Dr", "zipCode": "88063", "phone": "(575) 589-1643", "website": "https://score420.store/sunland-park-dispensary/?ref=thegreenborder.com", "description": "Two locations, one simple mission: get you the best value in Sunland Park. Score 420 is the go-to for anyone who wants solid flower and pre-roll or vapes without paying a premium for branding. Fun, unpretentious, and consistently stocked.", "tags": ["💰 Best Deals", "🔥 Favorite", "✅ Reliable", "🍬 In-House Brands", "🧠 Expert Staff"], "rank": 5, "featured": true, "isPremium": true, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 278},
+
+  {"id": "sp1", "city": "Sunland Park", "icon": "☕", "name": "Fields of Dreams", "address": "159 Sunland Park Dr, Sunland Park, NM 88063", "zipCode": "88063", "phone": "(575) 619-2112", "website": "https://www.fodnm.com/deals?ref=thegreenborder.com", "description": "The first dispensary you see the moment you cross into Sunland Park. The iconic white building with the big green leaf is hard to miss — and for good reason. They grow their own flower on-site, run a full Infused Cafe, and even have a Drive-Thru for when you don't want to leave your car.", "tags": ["☕ Infused Cafe", "🚗 Drive-Thru", "🌿 On-site Grow", "🏰 Locally Owned", "🌵 Border Reliable"], "rank": 6, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": false, "hasConsumption": false, "rating": 4.8, "reviewCount": 1726},
+
+  {"id": "sp6", "city": "Sunland Park", "icon": "👑", "name": "Old Gods", "address": "1541 Appaloosa Dr", "zipCode": "88063", "phone": "(575) 332-4257", "website": "https://oldgodsdispensary.com/?ref=thegreenborder.com", "description": "Small, intimate, and intentional. Old Gods is the boutique option on the strip — a refreshing alternative to the big-box shops. The selection is carefully curated and the staff will actually take the time to talk to you.", "tags": ["💎 Boutique", "🧠 Expert Staff", "🚗 Drive-Thru", "🎯 Top Shelf", "❤️ Top Staff", "🎨 Best Interior Design"], "rank": 7, "featured": true, "isPremium": true, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 399},
+
+  {"id": "sp4", "city": "Sunland Park", "icon": "🍪", "name": "Cookies", "address": "1500 Appaloosa Dr Ste B, Sunland Park, NM 88063", "zipCode": "88063", "phone": "(575) 332-4599", "website": "https://sunland.cookies.co/?ref=thegreenborder.com", "description": "Cookies Dispensary Sunland Park, located at 1500 Appaloosa Dr, Sunland Park, NM 88063, is your top choice for premium cannabis products. As the best dispensary in Sunland Park, we offer a wide range of Cookies cannabis, including flower, edibles, vapes, and more. Whether you're searching for a \"dispensary near me,\" \"cannabis dispensary Sunland Park,\" or \"weed store,\" Cookies Dispensary Sunland Park has everything you need. Our knowledgeable staff is here to guide you through our selection and help you find the best products to fit your needs. Visit Cookies Dispensary Sunland Park for the ultimate marijuana dispensary experience in New Mexico! Order Cookies Cannabis from our Marijuana Dispensary Today!", "tags": ["🍪 Exclusive Genetics", "🏆 Connoisseur Pick", "🎯 Top Shelf", "🏭 Consistent", "🚗 Drive-Thru"], "rank": 8, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4, "reviewCount": 50},
+
+  {"id": "sp13", "city": "Sunland Park", "icon": "💨", "name": "Dispensary Near Me", "address": "1290 McNutt Rd", "zipCode": "88063", "phone": "5753324066", "website": "https://www.dispensarynearmenm.com/?ref=thegreenborder.com", "description": "One of the only two shops in Sunland Park with an active consumption lounge. Licensed for both retail and on-site use, this is where you go if you want the full experience — shop, stay, enjoy. A true community social hub.", "tags": ["🛋 Consumption Lounge", "🍬 In-House Brands", "💋 Boutique Feel", "💎 Boutique"], "rank": 9, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": true, "rating": 4.8, "reviewCount": 461},
+
+  {"id": "sp7", "city": "Sunland Park", "icon": "⭐", "name": "Prohibition 37", "address": "871 McNutt Rd", "zipCode": "88063", "phone": "5753324500", "website": "https://www.p37cannabis.com/location/sunland-park/?ref=thegreenborder.com", "description": "P37 brings a professional, slightly rebellious energy to the McNutt corridor. With a strong foundation in medical cannabis and a growing recreational menu, it's the kind of shop you keep coming back to because the experience is always consistent.", "tags": ["⭐ Loyalty Program", "🏥 Medical Focus", "🏔️ Craft Flower", "🎯 Top Shelf", "🏭 Consistent"], "rank": 10, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 449},
+
+  {"id": "sp15", "city": "Sunland Park", "icon": "🚀", "name": "Apogee", "address": "1769 Victory Ln", "zipCode": "88063", "phone": "(575) 334-2764", "website": "https://apogeenm.com/?ref=thegreenborder.com", "description": "Step into a higher state of wellness at Apogee Therapeutics, where science meets serenity and cannabis is elevated to an art form. Nestled at the cutting edge of holistic care, our dispensary is more than just a destination — it's a journey. Whether you're seeking therapeutic relief, mindful relaxation, or elevated inspiration, our hand-curated selection of premium cannabis products is designed to meet you where you are and lift you higher. With a commitment to quality, transparency, and compassionate care, Apogee offers an experience as refined as our products. Our knowledgeable team is here to guide you through every step — from microdose to macro bliss — all in a welcoming, stylish space that feels more like a sanctuary than a store.", "tags": ["🏥 Medical Focus", "⏱️Consumption Lounge Coming Soon", "🏰 Locally Owned", "👽 Space-Themed", "🎯 Top Shelf", "🤝 Beginner Friendly", "🚗 Drive-Thru"], "rank": 11, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 5, "reviewCount": 700},
+
+  {"id": "sp9", "city": "Sunland Park", "icon": "🏔️", "name": "Elevation 3789", "address": "1999 Futurity Dr, Unit A", "zipCode": "88063", "phone": "(575) 332-9087", "website": "https://elevationcannabis.co/dispensaries/elevation-3789/?ref=thegreenborder.com", "description": "Elevation 3789' is your trusted Cannabis Dispensary at 1999 Futurity Dr, offering a premium Weed Dispensary and Marijuana Dispensary experience for adults. Shop our Recreational Dispensary selection featuring top-quality Cannabis Flower, flavorful THC Edibles, and high-potency Vape Cartridges. Stock up on convenient Pre Rolls and explore our curated Cannabis Concentrates for every preference. Visit our welcoming Cannabis Store for knowledgeable service, great value, and a menu designed to elevate your day.", "tags": ["🏔️ Craft Flower", "💎 Boutique", "🌱 Organic / Craft"], "rank": 12, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 5, "reviewCount": 1819},
+
+  {"id": "sp8", "city": "Sunland Park", "icon": "✅", "name": "R. Greenleaf", "address": "1541 Appaloosa, Units 1 & 2", "zipCode": "88063", "phone": "(575) 636-2480", "website": "https://rgreenleaf.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com", "description": "R.Greenleaf Sunland Park is El Paso's favorite New Mexico cannabis dispensary at 1541 Appaloosa Drive, serving medical patients and recreational customers just minutes across the state line from downtown El Paso, UTEP, and the 915. We welcome Texas neighbors with legal marijuana including premium flower, potent concentrates, delicious edibles, and quality vapes in a Texas-friendly environment. Open 8am-11pm Mon-Sat, 8am-9pm Sunday. Medical MCP cardholders receive specialized consultations and higher possession limits. Recreational customers 21+ enjoy quality selection and first-time deals. Our team helps first-timers from Texas navigate legal New Mexico cannabis safely. Easy Appaloosa Drive access with ample parking. Shop online or explore", "tags": ["⭐ Loyalty Program", "🏥 Medical Focus", "🧠 Expert Staff", "🤝 Beginner Friendly"], "rank": 13, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 716},
+
+  {"id": "sp21", "city": "Sunland Park", "icon": "💨", "name": "Toke It Up", "address": "1999 Futurity Drive", "zipCode": "88063", "phone": "(575) 332-4013", "website": "https://tokeitupdispensary.com/?ref=thegreenborder.com", "description": "Toke It Up Dispensary is your Sunland Park community cannabis connection.", "tags": ["🏰 Locally Owned", "💎 Boutique", "⏱️Consumption Lounge Coming Soon"], "rank": 14, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 101},
+
+  {"id": "sp19", "city": "Sunland Park", "icon": "⚔️", "name": "Obi Wan", "address": "2167 McNutt Rd, Suite A", "zipCode": "88063", "phone": "5054079333", "website": "https://www.obiwancannabis.online/?ref=thegreenborder.com", "description": "Obi Wan Cannabis is Sunland Park's premier cannabis dispensary at 2167 Sunland Park Dr, NM. We carry premium flower, pre-rolls, edibles, concentrates, vapes, tinctures, and topicals from New Mexico's top licensed cultivators. Our expert budtenders guide every customer — recreational (21+) or medical — to the perfect product. Proudly serving Sunland Park, Las Cruces, Santa Teresa, Anthony, and the greater El Paso border region. Locally owned. Lab-tested products. Come experience the Force.", "tags": ["🌌 Sci-Fi Themed", "🧠 Expert Staff", "🎨 Best Interior Design"], "rank": 15, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 448},
+
+  {"id": "sp23", "city": "Sunland Park", "icon": "🐑", "name": "Black Sheep", "address": "1925 Appaloosa, Ste 6", "zipCode": "88063", "phone": "(575) 332-4095", "website": "https://blacksheepnm.com/?ref=thegreenborder.com", "description": "Step into Ten Ten X Black Sheep Dispensary, a premier cannabis destination in Sunland Park. As a vertically integrated business, they are dedicated to a distinctive from-farm-to-shelf experience. Their in-house production ensures an unparalleled selection of premium cannabis products. As growers, manufacturers, and retailers, they offer a wide variety of expertly cultivated and curated items. Discover a commitment to quality and transparency, where every visit provides a rewarding and informative experience.", "tags": ["🎯 Top Shelf", "💎 Boutique", "🏰 Locally Owned"], "rank": 16, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.7, "reviewCount": 100},
+
+  {"id": "sp14", "city": "Sunland Park", "icon": "💋", "name": "Besos", "address": "1805 Futurity Dr", "zipCode": "88063", "phone": "(915) 219-7080", "website": "https://thehouseofve.com/?ref=thegreenborder.com", "description": "Besos Cannabis Co. is a dispensary in Sunland Park, New Mexico, committed to excellent customer service and the best variation that New Mexico has to offer.", "tags": ["💋 Boutique Feel", "💰 Best Deals", "📍 Curbside Pickup"], "rank": 17, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 1362},
+
+  {"id": "sp17", "city": "Sunland Park", "icon": "🌱", "name": "Greens", "address": "101 Maguey, Suite 4", "zipCode": "88063", "phone": "(575) 332-4351", "website": "https://greensnm.com/?ref=thegreenborder.com", "description": "Neighborhood shop energy in the best way possible. Greens on Maguey Road is down-to-earth, community-focused, and stocked with fresh products. If you're tired of corporate chain vibes, this is a breath of fresh air.", "tags": ["🏰 Locally Owned", "🌵 Border Reliable"], "rank": 18, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 5, "reviewCount": 273},
+
+  {"id": "sp10", "city": "Sunland Park", "icon": "🏔️", "name": "Everest", "address": "1580 Appaloosa Dr, Ste 320", "zipCode": "88063", "phone": "(575) 332-9037", "website": "https://everestnm.com/stores/recreational-marijuana-dispensary-sunland-park/?ref=thegreenborder.com", "description": "Everest Cannabis Dispensary in Sunland Park, NM has the best selection and prices on Flower, Concentrates, Vapes, Edibles, Topicals, Tinctures, Accessories and more!", "tags": ["🌱 Organic / Craft", "🍬 In-House Brands", "🏥 Medical Focus"], "rank": 19, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.5, "reviewCount": 558},
+
+  {"id": "sp12", "city": "Sunland Park", "icon": "🏰", "name": "Empire Garden", "address": "1144 McNutt Road", "zipCode": "88063", "phone": "(915) 955-1565", "website": "https://empiregardensunland.com/?ref=thegreenborder.com", "description": "Empire Garden Dispensary is a locally owned marijuana dispensary located in 1144 Mcnutt Rd, Sunland Park, NM 88063. We opened in 2024 and have been growing since, we thrive to give our customers a welcoming and helpful experience. ", "tags": ["🏰 Locally Owned", "📦 Huge Inventory", "✅ Reliable", "🎯 Top Shelf"], "rank": 20, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 151},
+
+  {"id": "sp16", "city": "Sunland Park", "icon": "🏥", "name": "Ultra Health", "address": "1155 McNutt Road", "zipCode": "88063", "phone": "(575) 589-0684", "website": "https://ultrahealth.com/new-mexico-dispensaries/sunland-park-cannabis-dispensary/?ref=thegreenborder.com", "description": "New Mexico's #1 cannabis provider by footprint. Ultra Health is the reliable option for patients and recreational users who want a familiar, trustworthy experience. Their inventory is broad, their pricing is accessible.", "tags": ["🏥 Medical Focus", "📖 Education First", "🍬 In-House Brands"], "rank": 21, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.2, "reviewCount": 843},
+
+  {"id": "sp18", "city": "Sunland Park", "icon": "🧪", "name": "Green Labs", "address": "245 Derby Rd", "zipCode": "88063", "phone": "(575) 332-4470", "website": "https://greenlabscannabisnm.com/location/green-labs-dispensary/?ref=thegreenborder.com", "description": "If you actually care about terpene profiles and cannabinoid ratios, Green Labs is your place. This is a scientifically-minded shop that prioritizes education alongside experience — a great stop for curious consumers who want to understand what they're buying.", "tags": ["📖 Education First", "🏰 Locally Owned"], "rank": 22, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 5, "reviewCount": 380},
+
+  {"id": "sp20", "city": "Sunland Park", "icon": "🚂", "name": "Round House Reserve", "address": "1165 McNutt Dr, Unit C5", "zipCode": "88063", "phone": "(575) 332-4449", "website": "https://weedmaps.com/dispensaries/round-house-reserve-1?ref=thegreenborder.com", "description": "Rustic warmth and an obsession with quality flower. Round House built their reputation on their Reserve shelf — potent, well-cured strains that keep McNutt regulars coming back specifically for what's behind the counter.", "tags": ["🚂 Reserve Shelf", "🎯 Top Shelf"], "rank": 23, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.7, "reviewCount": 377},
+
+  {"id": "sp22", "city": "Sunland Park", "icon": "☀️", "name": "Sunshine Essentials", "address": "267 Anapra Rd", "zipCode": "88063", "phone": "(915) 588-0617", "website": "https://dutchie.com/dispensary/sunshine-essentials?ref=thegreenborder.com", "description": "Sunshine Essentials - Premium Cannabis Store Near El Paso Looking for top-shelf cannabis in Sunland Park, El Paso, or Las Cruces? Sunshine Essentials is your local dispensary for potent flower, flavorful vapes, solventless rosin, gummies, and premium weed deals. We're a Mexican American-owned dispensary focused on quality over quantity no overstocked menus, just the best weed in the Borderland. Whether you're shopping recreational or medical, our expert budtenders make it easy. We're proud to serve El Paso, Canutillo, and Ciudad Juárez. Come visit our weed shop, or order online for curbside pickup or delivery. Open late every night. Discover why Sunshine Essentials is the best dispensary near El Paso, TX.", "tags": ["💎 Boutique", "🏰 Locally Owned"], "rank": 24, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 45},
 
   // ── CHAPARRAL ─────────────────────────────────────────────────────────────
 
-  {
-    "id": "ch1", "city": "Chaparral", "icon": "🌱",
-    "name": "Astro Buds",
-    "address": "Chaparral, NM", "zipCode": "",
-    "phone": "",
-    "website": null,
-    "description": "The gold standard for organic, soil-grown flower in the borderland. Astro Buds takes a 'Soil to Oil' approach that results in terpene-rich, beautifully cured cannabis. For the connoisseur who cares deeply about how their flower was grown, this is the first stop in Chaparral.",
-    "tags": ["🌱 Organic / Craft","🏆 Connoisseur Pick","💰 Best Deals","👽 Space-Themed","✅ Reliable","🔥 Favorite","❤️ Top Staff","🎯 Top Shelf"],
-    "rank": 1, "featured": true, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4.5, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch3", "city": "Chaparral", "icon": "🌿",
-    "name": "Green Therapy",
-    "address": "460 County Line Dr, Space F", "zipCode": "",
-    "phone": "",
-    "website": "https://gtdispensary.com/?ref=thegreenborder.com",
-    "description": "Calm, approachable, and focused on the healing side of cannabis. Green Therapy is a genuinely therapeutic environment — staff who understand the difference between indica-forward blends and CBD ratios, and who will walk you through it without judgment. Excellent for first-timers.",
-    "tags": ["🤝 Beginner Friendly","🏥 Medical Focus"],
-    "rank": 2, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": true, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch2", "city": "Chaparral", "icon": "🌙",
-    "name": "High Valley Cannabis",
-    "address": "Archangel Way, Chaparral", "zipCode": "",
-    "phone": "",
-    "website": null,
-    "description": "The only dispensary in the borderland area that stays open 24 hours and has a consumption lounge. Whether you're a night-shift worker, an insomniac, or you just realized at 2 AM that you're out — High Valley is always there with the lights on, now featuring an active lounge. No other shop in the area can say that.",
-    "tags": ["🌙 Open 24 Hours","🛋 Consumption Lounge","✅ Reliable"],
-    "rank": 3, "featured": true, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": true,
-    "rating": 4.5, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch4", "city": "Chaparral", "icon": "💧",
-    "name": "Pure Medd",
-    "address": "170 McCombs", "zipCode": "",
-    "phone": "",
-    "website": "https://puremedd.com/?ref=thegreenborder.com",
-    "description": "Clean, clinical, and refreshingly easy to navigate. Pure Medd removes the guesswork from your shopping trip with a well-organized menu and a no-fuss atmosphere. Go in knowing what you want and leave with exactly that.",
-    "tags": ["💧 Clean Environment","📖 Education First"],
-    "rank": 4, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "custom_1772670316123", "city": "Chaparral", "icon": "🌿",
-    "name": "House of Flowers",
-    "address": "1042 State Line Dr, Chaparral, NM 88081", "zipCode": "88081",
-    "phone": "",
-    "website": "https://houseofflowers24.com/",
-    "description": "Drive thru cannabis shop for fast and easy pick up.",
-    "tags": ["🚗 Drive-Thru"],
-    "rank": 5, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch7", "city": "Chaparral", "icon": "🌸",
-    "name": "Ganjika Gardens",
-    "address": "1245 Riley Way", "zipCode": "",
-    "phone": "",
-    "website": "https://ganjikagardens.com/?ref=thegreenborder.com",
-    "description": "You can feel the love for the craft the moment you walk in. Ganjika Gardens is one of those boutique shops that attracts staff who are genuinely passionate about cannabis — and it shows in the quality of the flower and the depth of the conversations you'll have there.",
-    "tags": ["❤️ Top Staff","💎 Boutique","🌱 Organic / Craft"],
-    "rank": 6, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch6", "city": "Chaparral", "icon": "👽",
-    "name": "Area 54",
-    "address": "764 Angelina Blvd", "zipCode": "",
-    "phone": "",
-    "website": "https://area54dispensary.com/?ref=thegreenborder.com",
-    "description": "New Mexico has a long tradition of extraterrestrial mythology, and Area 54 leans right into it. The space-themed branding makes for a genuinely fun shopping experience — and behind the creative concept, the concentrate selection is seriously impressive.",
-    "tags": ["👽 Space-Themed","🔬 Lab Focus"],
-    "rank": 7, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch8", "city": "Chaparral", "icon": "🏭",
-    "name": "Groth Industries",
-    "address": "140 Schneberger Dr", "zipCode": "",
-    "phone": "",
-    "website": "https://grothindustries.com/?ref=thegreenborder.com",
-    "description": "Consistency above all else. Groth Industries is the dependable, no-drama option in Chaparral — a shop where the product speaks for itself and the experience is the same every single time. Exactly what you want when you're driving out from El Paso.",
-    "tags": ["🏭 Consistent","✅ Reliable"],
-    "rank": 8, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch10", "city": "Chaparral", "icon": "💰",
-    "name": "Richy Rich",
-    "address": "101 Angelina Blvd", "zipCode": "",
-    "phone": "",
-    "website": null,
-    "description": "Unapologetically premium. Richy Rich carries a luxury attitude without the stuffiness — if you want to treat yourself to the best product available in Chaparral, this is where you go. The selection skews toward high-end, and the attitude is all abundance.",
-    "tags": ["🎯 Top Shelf","💎 Boutique"],
-    "rank": 9, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch5", "city": "Chaparral", "icon": "🌵",
-    "name": "Stateline Cannabis",
-    "address": "1101 Stephanie, Chaparral", "zipCode": "",
-    "phone": "",
-    "website": "https://statelinecannabis.online/?ref=thegreenborder.com",
-    "description": "Rugged, reliable, and built for the borderland. Stateline Cannabis is easy to reach and consistently stocked — the kind of shop that embodies the no-nonsense spirit of the Chaparral corridor.",
-    "tags": ["🌵 Border Reliable","✅ Reliable"],
-    "rank": 10, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "ch9", "city": "Chaparral", "icon": "🤩",
-    "name": "Uforia",
-    "address": "305 S County Line Dr", "zipCode": "",
-    "phone": "",
-    "website": "https://uforianm.com/?ref=thegreenborder.com",
-    "description": "Uplifting by name and by nature. Uforia is built for the recreational crowd who want to walk out feeling genuinely better than when they walked in. They lean into creative, mood-elevating strains and run a bright, positive atmosphere that lives up to the name.",
-    "tags": ["💎 Boutique","🔥 Favorite"],
-    "rank": 11, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
+  {"id": "ch1", "city": "Chaparral", "icon": "🌱", "name": "Astro Buds", "address": "308 McCombs Rd, Chaparral, NM", "zipCode": "88081", "phone": "(575) 824-2837", "website": "https://astrobudsnm.com/", "description": "The gold standard for organic, soil-grown flower in the borderland. Astro Buds takes a 'Soil to Oil' approach that results in terpene-rich, beautifully cured cannabis. For the connoisseur who cares deeply about how their flower was grown, this is the first stop in Chaparral.", "tags": ["🌱 Organic / Craft", "🏆 Connoisseur Pick", "💰 Best Deals", "👽 Space-Themed", "✅ Reliable", "🔥 Favorite", "❤️ Top Staff", "🎯 Top Shelf"], "rank": 1, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.7, "reviewCount": 406},
+
+  {"id": "ch3", "city": "Chaparral", "icon": "🌿", "name": "Green Therapy", "address": "460 County Line Dr, Space F", "zipCode": "88081", "phone": "(915) 279-6123", "website": "https://gtdispensary.com/?ref=thegreenborder.com", "description": "Green Therapy Dispensary is a recreational & medical dispensary offering the best quality of flower, cannabis edibles, cartridges, concentrates and much more. No medical card is required for non-medical transactions but customers must be 21 or over to enter and make purchases.", "tags": ["🤝 Beginner Friendly", "🏥 Medical Focus", "🔥 Favorite"], "rank": 2, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 1038},
+
+  {"id": "ch2", "city": "Chaparral", "icon": "🌙", "name": "High Valley Cannabis", "address": "100 Archangel Way, Chaparral, NM 88081", "zipCode": "88081", "phone": "(915) 701-8845", "website": null, "description": "The only dispensary in the borderland area that stays open 24 hours and has a consumption lounge. Whether you're a night-shift worker, an insomniac, or you just realized at 2 AM that you're out — High Valley is always there with the lights on, now featuring an active lounge. No other shop in the area can say that.", "tags": ["🌙 Open 24 Hours", "🛋 Consumption Lounge", "✅ Reliable"], "rank": 3, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": false, "hasConsumption": true, "rating": 4.7, "reviewCount": 983},
+
+  {"id": "ch4", "city": "Chaparral", "icon": "💧", "name": "Pure Medd", "address": "170 McCombs", "zipCode": "", "phone": "", "website": "https://puremedd.com/?ref=thegreenborder.com", "description": "Clean, clinical, and refreshingly easy to navigate. Pure Medd removes the guesswork from your shopping trip with a well-organized menu and a no-fuss atmosphere. Go in knowing what you want and leave with exactly that.", "tags": ["💧 Clean Environment", "📖 Education First"], "rank": 4, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": false, "hasConsumption": false, "rating": 4, "reviewCount": 50},
+
+  {"id": "custom_1772670316123", "city": "Chaparral", "icon": "🌿", "name": "House of Flowers", "address": "1042 State Line Dr, Chaparral, NM 88081", "zipCode": "88081", "phone": "(915) 241-8495", "website": "https://houseofflowers24.com/", "description": "In the enchanting town of Chaparral, nestled amidst the breathtaking New Mexican desert, lies the oasis of House of Flowers, a haven for cannabis enthusiasts seeking the finest herbal treasures. This sanctuary boasts a meticulously curated selection of premium cannabis strains, infused with aromatic essence and potent effects. Whether you are a seasoned connoisseur or embarking on a journey of exploration, House of Flowers invites you to discover the profound beauty of the cannabis experience.", "tags": ["🚗 Drive-Thru"], "rank": 5, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 420},
+
+  {"id": "ch7", "city": "Chaparral", "icon": "🌸", "name": "Ganjika Gardens", "address": "1245 Riley Way", "zipCode": "88081", "phone": "(855) 426-5452", "website": "https://ganjikagardens.com/?ref=thegreenborder.com", "description": "Welcome to Ganjika Gardens, New Mexico's trusted cannabis dispensary, where quality meets care. We are here to provide premium cannabis products, expert guidance, and a welcoming environment for all. Whether you are looking for top-tier flower, cartridges, edibles, or concentrates, we have got you covered. We are located conveniently in Chaparral right off of the 54 freeway.", "tags": ["❤️ Top Staff", "💎 Boutique", "🌱 Organic / Craft"], "rank": 6, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 295},
+
+  {"id": "ch6", "city": "Chaparral", "icon": "👽", "name": "Area 54", "address": "764 Angelina Blvd", "zipCode": "88081", "phone": "(575) 215-4504", "website": "https://area54dispensary.com/?ref=thegreenborder.com", "description": "Area 54 Dispensary proudly offers an extensive and carefully curated selection of both recreational and medicinal products, held to the highest standards of quality and consistency. Our experienced and friendly team is dedicated to providing personalized service and expert recommendations to ensure every customer—whether a seasoned user or a first-time visitor—feels confident and well-informed. Conveniently located in Angelina Plaza, we are the only dispensary within a 3-mile radius, making us the go-to destination for medical help in the Chaparral community. At Area 54, we strive to deliver a stellar experience that's truly out of this world.", "tags": ["👽 Space-Themed", "🔬 Lab Focus"], "rank": 7, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 197},
+
+  {"id": "ch8", "city": "Chaparral", "icon": "🏭", "name": "Groth Industries", "address": "140 Schneberger Dr", "zipCode": "88081", "phone": "(575) 496-7344", "website": "https://grothindustries.com/?ref=thegreenborder.com", "description": "We are VICE (Vertically Integrated Cannabis Enterprise) in New Mexico, dedicated to delivering high-quality cannabis products through a completely transparent process from seed to sale. Spearheading the recreational cannabis market in New Mexico, we proudly serve both the recreational and medical cannabis communities as the only boutique dispensary in Chaparral, NM", "tags": ["🏭 Consistent", "✅ Reliable"], "rank": 8, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 5, "reviewCount": 199},
+
+  {"id": "ch10", "city": "Chaparral", "icon": "💰", "name": "Richy Rich", "address": "101 Angelina Blvd", "zipCode": "88081", "phone": "(575) 616-8524", "website": null, "description": "Your local friendly plug. We are a locally owned and operated business that specializes in cannabis and cannabis related products. We have a little of everything from flower, prepolls to edibles, concentrates to topicals and even RSO and energy drinks. We have something for everyone. Always offering service with a smile. Come visit us!", "tags": ["🎯 Top Shelf", "💎 Boutique"], "rank": 9, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 67},
+
+  {"id": "ch5", "city": "Chaparral", "icon": "🌵", "name": "Stateline Cannabis", "address": "1101 Stephanie, Chaparral", "zipCode": "88081", "phone": "(575) 232-0303", "website": "https://statelinecannabis.online/?ref=thegreenborder.com", "description": "Rugged, reliable, and built for the borderland. Stateline Cannabis is easy to reach and consistently stocked — the kind of shop that embodies the no-nonsense spirit of the Chaparral corridor.", "tags": ["🌵 Border Reliable", "✅ Reliable", "🛋 Consumption Lounge"], "rank": 10, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": true, "rating": 5, "reviewCount": 30},
+
+  {"id": "ch9", "city": "Chaparral", "icon": "🤩", "name": "Uforia", "address": "305 S County Line Dr", "zipCode": "88081", "phone": "(575) 262-9484", "website": "https://uforianm.com/?ref=thegreenborder.com", "description": "Discover UFORIA! Your One Stop Shop Dispensary in Chaparral offering premium cannabis products. We offer a curated selection of medical and recreational cannabis products to elevate your experience. Step into a world of well-being and explore the possibilities within our welcoming dispensary. UFORIA is dedicated to providing quality cannabis in a comfortable and informative environment for all.", "tags": ["💎 Boutique", "🔥 Favorite"], "rank": 11, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 75},
 
   // ── SANTA TERESA ──────────────────────────────────────────────────────────
 
-  {
-    "id": "st3", "city": "Santa Teresa", "icon": "🗣️",
-    "name": "Public Affair",
-    "address": "5325 McNutt Rd", "zipCode": "",
-    "phone": "",
-    "website": "https://public-affair.com/?ref=thegreenborder.com",
-    "description": "Arguably the best-designed dispensary on the entire border. Walking into Public Affair feels closer to a boutique hotel lobby than a cannabis shop — the interiors are elegant, the atmosphere is social, and the whole experience challenges every expectation about what a dispensary can feel like.",
-    "tags": ["🎨 Best Interior Design","💎 Boutique"],
-    "rank": 1, "featured": false, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "st2", "city": "Santa Teresa", "icon": "👋",
-    "name": "Hi Life",
-    "address": "5620 McNutt Rd", "zipCode": "",
-    "phone": "",
-    "website": "https://hilife-dispensarynm.com/?ref=thegreenborder.com",
-    "description": "There's a warmth to Hi Life that's hard to fake. The staff genuinely wants you to have a good experience — they remember regulars, take their time with newcomers, and consistently deliver quality service that makes the McNutt Road trip worth it.",
-    "tags": ["❤️ Top Staff","🤝 Beginner Friendly"],
-    "rank": 2, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "st4", "city": "Santa Teresa", "icon": "☁️",
-    "name": "Garden of Dreams",
-    "address": "5300 McNutt Rd", "zipCode": "",
-    "phone": "",
-    "website": "https://www.god420.com/?ref=thegreenborder.com",
-    "description": "Designed for the end of the day. Garden of Dreams curates a deeply relaxing menu with indica-forward strains and sleep-friendly products at the center. If winding down is the goal, this is where you shop.",
-    "tags": ["☁️ Indica / Relaxation","💎 Boutique"],
-    "rank": 3, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "st1", "city": "Santa Teresa", "icon": "💎",
-    "name": "St. Canapa",
-    "address": "Santa Teresa, NM", "zipCode": "",
-    "phone": "",
-    "website": null,
-    "description": "The go-to for Upper Valley residents who don't want to compromise on quality. St. Canapa runs a refined, stress-free environment with top-shelf flower and staff who match that energy. Think boutique hotel, not dispensary.",
-    "tags": ["🎯 Top Shelf","💎 Boutique"],
-    "rank": 4, "featured": true, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4.5, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
+  {"id": "st3", "city": "Santa Teresa", "icon": "🗣️", "name": "Public Affair", "address": "5325 McNutt Rd", "zipCode": "88008", "phone": "(575) 332-4220", "website": "https://public-affair.com/?ref=thegreenborder.com", "description": "We are a first of its kind boutique style dispensary in Santa Teresa, NM! Step into our whimsical world of cannabis, where Alice and Wonderland meets Nordstrom. Let us take you on a journey filled with exceptional service and top notch products. Whether you're 21 or 101, we are here to meet your needs and take your cannabis experience to new heights.", "tags": ["🎨 Best Interior Design", "💎 Boutique"], "rank": 1, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 167},
+
+  {"id": "st2", "city": "Santa Teresa", "icon": "👋", "name": "Hi Life", "address": "5620 McNutt Rd", "zipCode": "88008", "phone": "(915) 226-5992", "website": "https://hilife-dispensarynm.com/?ref=thegreenborder.com", "description": "There's a warmth to Hi Life that's hard to fake. The staff genuinely wants you to have a good experience — they remember regulars, take their time with newcomers, and consistently deliver quality service that makes the McNutt Road trip worth it.", "tags": ["❤️ Top Staff", "🤝 Beginner Friendly"], "rank": 2, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 191},
+
+  {"id": "st4", "city": "Santa Teresa", "icon": "☁️", "name": "Garden of Dreams", "address": "5300 McNutt Rd", "zipCode": "88008", "phone": "(575) 332-4454", "website": "https://www.god420.com/?ref=thegreenborder.com", "description": "Designed for the end of the day. Garden of Dreams curates a deeply relaxing menu with indica-forward strains and sleep-friendly products at the center. If winding down is the goal, this is where you shop.", "tags": ["☁️ Indica / Relaxation", "💎 Boutique"], "rank": 3, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 104},
+
+  {"id": "st1", "city": "Santa Teresa", "icon": "💎", "name": "St. Canapa", "address": "Santa Teresa, NM", "zipCode": "88008", "phone": "(575) 332-4898", "website": null, "description": "The go-to for Upper Valley residents who don't want to compromise on quality. St. Canapa runs a refined, stress-free environment with top-shelf flower and staff who match that energy. Think boutique hotel, not dispensary.", "tags": ["🎯 Top Shelf", "💎 Boutique"], "rank": 4, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.7, "reviewCount": 136},
 
   // ── ANTHONY ───────────────────────────────────────────────────────────────
 
-  {
-    "id": "an1", "city": "Anthony", "icon": "🏔️",
-    "name": "Rocky Mountain Cannabis",
-    "address": "Anthony, NM (near I-10)", "zipCode": "",
-    "phone": "",
-    "website": null,
-    "description": "Chain reliability with the warmth of a local shop. Rocky Mountain Cannabis is the first call for Anthony-area shoppers looking for consistent quality at a price point that typically beats Sunland Park. Right off I-10 and dependably stocked.",
-    "tags": ["💰 Best Deals","✅ Reliable"],
-    "rank": 1, "featured": false, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "an2", "city": "Anthony", "icon": "⚾",
-    "name": "Top of the Eighth",
-    "address": "401 Anthony Dr, Suite B", "zipCode": "",
-    "phone": "",
-    "website": "https://www.topoftheeighth.com/?ref=thegreenborder.com",
-    "description": "Sports energy meets everyday value. Top of the Eighth is the neighborhood pick for Anthony residents who want solid quality without paying premium prices. The vibes are friendly and the eighths are worth the drive.",
-    "tags": ["⚾ Sports Vibe","💰 Best Deals"],
-    "rank": 2, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "an3", "city": "Anthony", "icon": "🛣️",
-    "name": "Milla Cero",
-    "address": "103 Miller St", "zipCode": "",
-    "phone": "",
-    "website": "https://www.milla-cero.com/?ref=thegreenborder.com",
-    "description": "Mile Zero is the perfect name for a dispensary at the very start of the New Mexico cannabis corridor. Milla Cero has a genuine cultural identity — bilingual staff, a welcoming community-first attitude, and an approach to cannabis retail that reflects the borderland it serves.",
-    "tags": ["🌐 Bilingual","🤝 Beginner Friendly","❤️ Top Staff"],
-    "rank": 3, "featured": false, "isPremium": false,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  },
-  {
-    "id": "an4", "city": "Anthony", "icon": "🎓",
-    "name": "Kushology 101",
-    "address": "1600 E O'Hara Rd (I-10 exit)", "zipCode": "",
-    "phone": "",
-    "website": "https://kushology101.com/?ref=thegreenborder.com",
-    "description": "The clear destination dispensary for Anthony. Kushology 101 packs a massive inventory into an accessible location right off I-10, and they back it up with consistent weekly specials — Texas ID Tuesday, Flower Friday — that reward return visits. 'Don't Settle for Subpar Cannabis' isn't just a slogan here.",
-    "tags": ["💰 Best Deals","📦 Huge Inventory","🔥 Texas ID Specials"],
-    "rank": 4, "featured": true, "isPremium": true,
-    "hasAdultUse": true, "hasMedical": false, "hasConsumption": false,
-    "rating": 4.5, "reviewCount": 50,
-    "dataSource": "static", "lastUpdated": "2026-05-30T00:00:00Z"
-  }
+  {"id": "an1", "city": "Anthony", "icon": "🏔️", "name": "Rocky Mountain Cannabis", "address": "816 S Anthony Dr, Anthony, NM 88021", "zipCode": "88021", "phone": "(575) 882-6110", "website": "https://rockymountaincannabis.com/rmclocations/anthony/", "description": "Chain reliability with the warmth of a local shop. Rocky Mountain Cannabis is the first call for Anthony-area shoppers looking for consistent quality at a price point that typically beats Sunland Park. Right off I-10 and dependably stocked. - \"Rocky Mountain Cannabis Anthony is the leading Cannabis Store - Dispensary in Anthony, NM, & the surrounding areas. We proudly offer Cannabis Edibles in Anthony, NM! Get in touch with us if you require THC Products. Whether you are looking for recreational pot edibles or CBD, we proudly offer a range of diverse products. Rocky Mountain Cannabis offers the largest selection of only the highest-quality marijuana topicals, concentrates, edibles, vaporizers, tinctures, flower products, & CBD products. Contact us if you are looking for \"Weed Concentrates near me. \" Shop our expansive line of flowers, pre-rolls, vaporizers, concentrates, edibles, tinctures, topicals, & more. Choose from the absolute best cannabis products when you shop at RMC.\"", "tags": ["✅ Reliable"], "rank": 1, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.8, "reviewCount": 504},
+
+  {"id": "an2", "city": "Anthony", "icon": "⚾", "name": "Top of the Eighth", "address": "401 Anthony Dr, Suite B", "zipCode": "88021", "phone": "(575) 201-5163", "website": "https://www.topoftheeighth.com/?ref=thegreenborder.com", "description": "Top of the 8th isn't just a dispensary We're the first and only baseball & sports-themed cannabis experience in the world. ⚾ Fueled by hustle. 🔥 Built for champions. 💯 Powered by Major League Products at Minor League Prices. We don't follow trends — we set the standard. Every inch of Top of the 8th screams confidence, culture, and commitment to excellence. Step up to the plate, and Smoke like a legend. Only at Top of the 8th.", "tags": ["⚾ Sports Vibe", "💰 Best Deals"], "rank": 2, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.9, "reviewCount": 422},
+
+  {"id": "an3", "city": "Anthony", "icon": "🛣️", "name": "Milla Cero", "address": "103 Miller St", "zipCode": "88021", "phone": "(575) 201-5560", "website": "https://www.milla-cero.com/?ref=thegreenborder.com", "description": "Nestled near Las Cruces, New Mexico, in Anthony at Mile Zero sits Milla Cero Dispensary. As a cannabis connoisseur's paradise, Milla Cero offers the finest New Mexico cannabis on the market. Their friendly and knowledgeable staff are passionate about educating and assisting customers in finding the perfect strain to align with their well-being.", "tags": [], "rank": 3, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4.7, "reviewCount": 52},
+
+  {"id": "an4", "city": "Anthony", "icon": "🎓", "name": "Kushology 101", "address": "1600 E O'Hara Rd (I-10 exit)", "zipCode": "88021", "phone": "(575) 824-7445", "website": "https://kushology101.com/?ref=thegreenborder.com", "description": "The clear destination dispensary for Anthony. Kushology 101 packs a massive inventory into an accessible location right off I-10, and they back it up with consistent weekly specials — Texas ID Tuesday, Flower Friday — that reward return visits. 'Don't Settle for Subpar Cannabis' isn't just a slogan here.", "tags": ["📦 Huge Inventory", "🔥 Texas ID Specials"], "rank": 4, "featured": false, "isPremium": false, "hasAdultUse": true, "hasMedical": true, "hasConsumption": false, "rating": 4, "reviewCount": 141}
 
 ];
