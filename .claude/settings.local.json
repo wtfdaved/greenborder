@@ -5,7 +5,18 @@
       "Bash(python _patch.py)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(grep -oE 'class=\"[^\"]{0,80}\"' partnerships.html)",
+      "Bash(grep -oE 'class=\"[^\"]{0,80}\"' partner.html)",
+      "Bash(python3 -)",
+      "Bash(node --check js/liquid-glass.js)",
+      "Bash(node --check js/directory-ui.js)",
+      "Read(//tmp/**)",
+      "Bash(npm install *)",
+      "Bash(npx playwright *)",
+      "Bash(node /tmp/smoke.js)",
+      "Bash(git reset *)",
+      "Bash(git push *)"
     ]
   }
 }

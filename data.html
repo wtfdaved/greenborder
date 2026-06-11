@@ -454,6 +454,10 @@
       color: #34d399;
     }
   </style>
+
+  <!-- Liquid Glass design system (must load after the inline styles above) -->
+  <link rel="stylesheet" href="/css/liquid-glass.css" />
+  <script src="/js/liquid-glass.js" defer></script>
 </head>
 <body>
 
@@ -511,10 +515,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-    /* Dark-themed dashboard styles */
+    /* Liquid-glass dashboard styles (light frosted theme) */
     #tgb-ultra-dash {
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        color: #e5e7eb;
+        color: #16211c;
         box-sizing: border-box;
         line-height: 1.5;
         width: 100%;
@@ -522,53 +526,61 @@
         margin: 0 auto;
         padding: 0 20px;
         min-height: 600px;
-        background-color: #111111;
-        border-radius: 20px;
-        border: 1px solid rgba(16, 185, 129, 0.15);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.40) 100%);
+        backdrop-filter: blur(26px) saturate(180%);
+        -webkit-backdrop-filter: blur(26px) saturate(180%);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.72);
         overflow: hidden;
         position: relative;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.3);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.95),
+            0 12px 44px rgba(23, 46, 37, 0.12);
     }
     #tgb-ultra-dash *, #tgb-ultra-dash ::before, #tgb-ultra-dash ::after {
-        box-sizing: border-box; border-width: 0; border-style: solid; border-color: rgba(255,255,255,0.1);
+        box-sizing: border-box; border-width: 0; border-style: solid; border-color: rgba(13, 32, 23, 0.10);
     }
     #tgb-ultra-dash input, #tgb-ultra-dash select, #tgb-ultra-dash button {
         font-family: inherit; font-size: 100%; margin: 0; text-transform: none; background: transparent;
     }
+    /* Frosted panel tiers used throughout the dashboard markup */
+    .lg-panel { background: rgba(255, 255, 255, 0.62) !important; }
+    .lg-panel-soft { background: rgba(255, 255, 255, 0.45) !important; }
+    .lg-panel-strong { background: rgba(255, 255, 255, 0.80) !important; }
     #tgb-ultra-dash .tgb-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
     #tgb-ultra-dash .tgb-scroll::-webkit-scrollbar-track { background: transparent; }
-    #tgb-ultra-dash .tgb-scroll::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 6px; }
-    #tgb-ultra-dash .tgb-scroll::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+    #tgb-ultra-dash .tgb-scroll::-webkit-scrollbar-thumb { background: rgba(23, 46, 37, 0.22); border-radius: 6px; }
+    #tgb-ultra-dash .tgb-scroll::-webkit-scrollbar-thumb:hover { background: rgba(23, 46, 37, 0.35); }
 
     /* Table hover & active states */
     #tgb-ultra-dash tbody tr { transition: background-color 0.15s ease; cursor: pointer; }
-    #tgb-ultra-dash tbody tr:hover { background-color: #1f1f1f; }
-    #tgb-ultra-dash tbody tr.active-row { background-color: rgba(16, 185, 129, 0.1); border-left: 3px solid #34d399; }
-    #tgb-ultra-dash tbody tr.comparison-selected { background-color: rgba(96, 165, 250, 0.1); border-left: 3px solid #60a5fa; }
+    #tgb-ultra-dash tbody tr:hover { background-color: rgba(5, 150, 105, 0.07); }
+    #tgb-ultra-dash tbody tr.active-row { background-color: rgba(5, 150, 105, 0.10); border-left: 3px solid #059669; }
+    #tgb-ultra-dash tbody tr.comparison-selected { background-color: rgba(37, 99, 235, 0.08); border-left: 3px solid #2563eb; }
 
     /* Rank Badges */
     #tgb-ultra-dash .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
     #tgb-ultra-dash .rank-1 { background: rgba(251, 146, 60, 0.2); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4); }
-    #tgb-ultra-dash .rank-2 { background: rgba(107, 114, 128, 0.2); color: #d1d5db; border: 1px solid rgba(107, 114, 128, 0.3); }
+    #tgb-ultra-dash .rank-2 { background: rgba(107, 114, 128, 0.14); color: #4b5a52; border: 1px solid rgba(107, 114, 128, 0.3); }
     #tgb-ultra-dash .rank-3 { background: rgba(249, 115, 22, 0.2); color: #ea580c; border: 1px solid rgba(249, 115, 22, 0.4); }
     #tgb-ultra-dash .rank-other { color: #6b7280; font-weight: 600; }
 
     /* Dispensary Detail Modal */
     .dispensary-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; }
     .dispensary-modal.hidden { display: none; }
-    .modal-overlay { position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); }
-    .modal-dialog { position: relative; z-index: 10000; width: 90%; max-width: 900px; max-height: 90vh; background: #1a1a1a; border: 1px solid #374151; border-radius: 16px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; animation: modalSlideIn 0.3s ease-out; }
+    .modal-overlay { position: absolute; inset: 0; background-color: rgba(20, 32, 26, 0.35); backdrop-filter: blur(8px) saturate(150%); -webkit-backdrop-filter: blur(8px) saturate(150%); }
+    .modal-dialog { position: relative; z-index: 10000; width: 90%; max-width: 900px; max-height: 90vh; background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 251, 248, 0.84) 100%); backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 20px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 24px 64px rgba(23, 46, 37, 0.25); display: flex; flex-direction: column; animation: modalSlideIn 0.3s ease-out; }
     @keyframes modalSlideIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    .modal-header { padding: 24px; border-bottom: 1px solid #2d3748; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .modal-header { padding: 24px; border-bottom: 1px solid rgba(13, 32, 23, 0.10); flex-shrink: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
     .modal-content { flex: 1; overflow-y: auto; padding: 24px; }
     .modal-content::-webkit-scrollbar { width: 6px; }
     .modal-content::-webkit-scrollbar-track { background: transparent; }
-    .modal-content::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
-    .modal-content::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+    .modal-content::-webkit-scrollbar-thumb { background: rgba(23, 46, 37, 0.22); border-radius: 3px; }
+    .modal-content::-webkit-scrollbar-thumb:hover { background: rgba(23, 46, 37, 0.35); }
     #modal-mom-table { width: 100%; }
-    #modal-mom-table tbody tr:hover { background-color: rgba(16, 185, 129, 0.05); }
+    #modal-mom-table tbody tr:hover { background-color: rgba(5, 150, 105, 0.06); }
     #modal-mom-table tbody tr td { padding: 12px 12px; }
     @media (max-width: 640px) { .dispensary-modal { padding: 80px 0; } .modal-dialog { width: 95%; max-height: calc(100vh - 100px); } .modal-header { padding: 16px; } .modal-content { padding: 16px; } }
 
@@ -602,15 +614,16 @@
         bottom: 100%;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.9);
-        color: #34d399;
+        background: rgba(255, 255, 255, 0.95);
+        color: #047857;
         padding: 6px 10px;
-        border-radius: 4px;
+        border-radius: 6px;
         font-size: 11px;
         white-space: nowrap;
         z-index: 1000;
         margin-bottom: 4px;
-        border: 1px solid rgba(52, 211, 153, 0.3);
+        border: 1px solid rgba(5, 150, 105, 0.3);
+        box-shadow: 0 6px 20px rgba(23, 46, 37, 0.15);
     }
 
     /* Legend Styling */
@@ -650,12 +663,12 @@
 
     /* New Dispensary Badge Styling */
     .mom-new {
-        color: #fbbf24;
+        color: #b45309;
         font-weight: bold;
-        background: rgba(245, 158, 11, 0.15);
+        background: rgba(245, 158, 11, 0.14);
         padding: 2px 6px;
         border-radius: 4px;
-        border: 1px solid rgba(245, 158, 11, 0.3);
+        border: 1px solid rgba(217, 119, 6, 0.3);
         display: inline-block;
         font-size: 0.75rem;
     }
@@ -663,8 +676,12 @@
     /* Enhanced KPI Card Styling */
     .kpi-card {
         position: relative;
-        backdrop-filter: blur(4px);
-        transition: all 0.3s ease;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.50) 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.75) !important;
+        backdrop-filter: blur(14px) saturate(170%);
+        -webkit-backdrop-filter: blur(14px) saturate(170%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 6px 22px rgba(23, 46, 37, 0.08);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
     }
 
     .kpi-card::before {
@@ -679,8 +696,8 @@
     }
 
     .kpi-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 10px 25px rgba(0, 0, 0, 0.4);
+        transform: translateY(-3px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 0 20px rgba(5, 150, 105, 0.14), 0 14px 32px rgba(23, 46, 37, 0.14);
     }
 
     /* Color variants for KPI cards */
@@ -694,17 +711,23 @@
     /* Enhanced Chart Container Styling */
     .chart-container {
         position: relative;
-        transition: all 0.3s ease;
-        border-left: 3px solid var(--chart-accent, #10b981) !important;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.46) 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.75) !important;
+        backdrop-filter: blur(14px) saturate(170%);
+        -webkit-backdrop-filter: blur(14px) saturate(170%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 6px 22px rgba(23, 46, 37, 0.08);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        border-left: 3px solid var(--chart-accent, #059669) !important;
     }
 
     .chart-container:hover {
-        box-shadow: 0 0 15px rgba(var(--accent-rgb, 16 185 129), 0.2), 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+        transform: translateY(-3px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 0 15px rgba(var(--accent-rgb, 5 150 105), 0.18), 0 14px 32px rgba(23, 46, 37, 0.14) !important;
     }
 
     /* Chart title styling */
     .chart-container h3 {
-        color: #34d399;
+        color: #047857;
         letter-spacing: 0.15em;
         font-size: 0.875rem;
         font-weight: 700;
@@ -723,16 +746,16 @@
     }
 
     tbody tr:hover {
-        background-color: rgba(16, 185, 129, 0.1);
+        background-color: rgba(5, 150, 105, 0.07);
     }
 
     tbody tr.active {
-        border-left: 3px solid #10b981;
-        background-color: rgba(16, 185, 129, 0.15);
+        border-left: 3px solid #059669;
+        background-color: rgba(5, 150, 105, 0.10);
     }
 
     thead {
-        background: linear-gradient(to bottom, rgba(16, 185, 129, 0.05), transparent);
+        background: linear-gradient(to bottom, rgba(5, 150, 105, 0.06), transparent);
     }
 
     /* Smooth Transitions */
@@ -751,7 +774,7 @@
 <div id="tgb-ultra-dash" class="text-sm">
     
     <!-- Top Global Header -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 lg:p-5 bg-[#1a1a1a] border-b border-slate-700 z-10 shrink-0 gap-4">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 lg:p-5 lg-panel border-b border-slate-700 z-10 shrink-0 gap-4">
         <div class="flex items-center gap-3 w-full md:w-auto">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-sm shrink-0">
                 <i data-lucide="leaf" class="text-white w-5 h-5"></i>
@@ -795,7 +818,7 @@
 
             <!-- Controls -->
             <div class="relative flex-1 sm:flex-none">
-                <select id="tgb-month" class="w-full sm:w-40 appearance-none bg-[#242424] border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
+                <select id="tgb-month" class="w-full sm:w-40 appearance-none lg-panel-strong border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
                     <option value="all">All Data (2025-2026)</option>
                     <option value="2026-03" selected>March 2026 (Latest)</option>
                     <option value="2026-02">February 2026</option>
@@ -817,7 +840,7 @@
             </div>
 
             <div class="relative flex-1 sm:flex-none">
-                <select id="tgb-metric" class="w-full sm:w-32 appearance-none bg-[#242424] border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
+                <select id="tgb-metric" class="w-full sm:w-32 appearance-none lg-panel-strong border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
                     <option value="total">Total Sales</option>
                     <option value="adultUse">Adult-Use</option>
                     <option value="medical">Medical</option>
@@ -827,8 +850,8 @@
 
             <div class="relative flex-1 sm:flex-none">
                 <i data-lucide="search" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none"></i>
-                <input type="text" id="tgb-search" placeholder="Search DBA, city, or license..." class="w-full sm:w-48 bg-[#242424] border border-slate-600 text-slate-100 py-1.5 pl-8 pr-3 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all placeholder-slate-500">
-                <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-1 bg-[#242424] border border-slate-600 rounded-lg shadow-lg z-50 max-h-40 overflow-y-auto text-xs">
+                <input type="text" id="tgb-search" placeholder="Search DBA, city, or license..." class="w-full sm:w-48 lg-panel-strong border border-slate-600 text-slate-100 py-1.5 pl-8 pr-3 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all placeholder-slate-500">
+                <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-1 lg-panel-strong border border-slate-600 rounded-lg shadow-lg z-50 max-h-40 overflow-y-auto text-xs">
                     <!-- Recent searches injected via JS -->
                 </div>
             </div>
@@ -836,7 +859,7 @@
     </div>
 
     <!-- Breadcrumb Navigation & Category Filter -->
-    <div id="breadcrumb-section" class="px-4 lg:px-5 pt-4 pb-2 bg-gradient-to-b from-[#1a1a1a] to-transparent shrink-0">
+    <div id="breadcrumb-section" class="px-4 lg:px-5 pt-4 pb-2 bg-gradient-to-b from-white/60 to-transparent shrink-0">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <!-- Breadcrumb Trail -->
             <div class="flex items-center gap-2 text-xs text-slate-400 flex-wrap">
@@ -863,7 +886,7 @@
 
         <!-- KPI Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-6 gap-5 shrink-0">
-            <div class="kpi-card kpi-revenue bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-emerald-900/30 shadow-lg flex flex-col justify-between pl-5" data-tooltip="Total sales revenue across all dispensaries for selected period">
+            <div class="kpi-card kpi-revenue lg-panel p-5 rounded-xl border border-emerald-600/25 shadow-lg flex flex-col justify-between pl-5" data-tooltip="Total sales revenue across all dispensaries for selected period">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Total Revenue</span>
                     <i data-lucide="dollar-sign" class="w-4 h-4 text-emerald-500"></i>
@@ -873,7 +896,7 @@
                     <span id="kpi-total-growth" class="text-[10px] text-emerald-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="kpi-card kpi-adult bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-blue-900/30 shadow-lg flex flex-col justify-between pl-5">
+            <div class="kpi-card kpi-adult lg-panel p-5 rounded-xl border border-blue-600/25 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-blue-400">Adult-Use</span>
                     <i data-lucide="users" class="w-4 h-4 text-blue-500"></i>
@@ -883,7 +906,7 @@
                     <span id="kpi-adult-growth" class="text-[10px] text-blue-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="kpi-card kpi-medical bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-rose-900/30 shadow-lg flex flex-col justify-between pl-5">
+            <div class="kpi-card kpi-medical lg-panel p-5 rounded-xl border border-rose-600/25 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-rose-400">Medical</span>
                     <i data-lucide="activity" class="w-4 h-4 text-rose-500"></i>
@@ -893,7 +916,7 @@
                     <span id="kpi-medical-growth" class="text-[10px] text-rose-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="kpi-card kpi-dbas bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-amber-900/30 shadow-lg flex flex-col justify-between pl-5">
+            <div class="kpi-card kpi-dbas lg-panel p-5 rounded-xl border border-amber-600/25 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">Active DBAs</span>
                     <i data-lucide="store" class="w-4 h-4 text-amber-500"></i>
@@ -903,7 +926,7 @@
                     <span id="kpi-stores-growth" class="text-[10px] text-amber-400/80 font-semibold mt-1">= 0</span>
                 </div>
             </div>
-            <div class="kpi-card kpi-avg bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-violet-900/30 shadow-lg flex flex-col justify-between pl-5">
+            <div class="kpi-card kpi-avg lg-panel p-5 rounded-xl border border-violet-600/25 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-violet-400">Avg Per Store</span>
                     <i data-lucide="trending-up" class="w-4 h-4 text-violet-500"></i>
@@ -913,7 +936,7 @@
                     <span id="kpi-avg-growth" class="text-[10px] text-violet-400/80 font-semibold mt-1">↑ +0.0%</span>
                 </div>
             </div>
-            <div class="kpi-card kpi-concentration bg-gradient-to-br from-[#1a1a1a] to-[#111] p-5 rounded-xl border border-cyan-900/30 shadow-lg flex flex-col justify-between pl-5">
+            <div class="kpi-card kpi-concentration lg-panel p-5 rounded-xl border border-cyan-600/25 shadow-lg flex flex-col justify-between pl-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-400">Market Concentration</span>
                     <i data-lucide="pie-chart" class="w-4 h-4 text-cyan-500"></i>
@@ -928,7 +951,7 @@
         <!-- Charts Grid -->
         <div id="tgb-charts-section" class="grid grid-cols-1 lg:grid-cols-3 gap-5 shrink-0 min-h-[280px]">
             <!-- Market Share -->
-            <div class="chart-container chart-market bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1" data-tooltip="Click on legend items to focus on specific dispensaries">
+            <div class="chart-container chart-market lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1" data-tooltip="Click on legend items to focus on specific dispensaries">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4 flex justify-between">
                     Market Share <span id="donut-lbl" class="text-[10px] text-slate-500 font-medium">Top 10</span>
                 </h3>
@@ -938,7 +961,7 @@
             </div>
 
             <!-- Trend Chart -->
-            <div class="chart-container chart-trend bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1 lg:col-span-2">
+            <div class="chart-container chart-trend lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1 lg:col-span-2">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
                         12-Month Trend
@@ -957,7 +980,7 @@
         <!-- Additional Charts Row -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 shrink-0 min-h-[280px]">
             <!-- Top 10 Performers -->
-            <div class="chart-container chart-velocity bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-velocity lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Top 10 Performers</h3>
                 <div class="relative flex-1 w-full min-h-[200px]">
                     <canvas id="tgbBarChart"></canvas>
@@ -965,7 +988,7 @@
             </div>
 
             <!-- Sales Breakdown (Adult-Use vs Medical) -->
-            <div class="chart-container chart-market bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-market lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Sales Breakdown</h3>
                 <div class="relative flex-1 w-full min-h-[200px]">
                     <canvas id="tgbBreakdownChart"></canvas>
@@ -976,7 +999,7 @@
         <!-- New Visualizations Row 1 -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 shrink-0 min-h-[300px]">
             <!-- Market Positioning Scatter Plot -->
-            <div class="chart-container chart-geography bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-geography lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center gap-2">
                     Market Positioning
                     <span class="text-[9px] text-slate-500 font-normal">Size = Market Share</span>
@@ -987,7 +1010,7 @@
             </div>
 
             <!-- Sales Velocity Chart -->
-            <div class="chart-container chart-performance bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-performance lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Sales Velocity (MoM Growth)</h3>
                 <div class="relative flex-1 w-full min-h-[250px]">
                     <canvas id="tgbVelocityChart"></canvas>
@@ -998,7 +1021,7 @@
         <!-- Heatmap Row -->
         <div class="grid grid-cols-1 gap-5 shrink-0">
             <!-- Monthly Sales Heatmap -->
-            <div class="chart-container chart-geography bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
+            <div class="chart-container chart-geography lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Monthly Sales Heatmap by City</h3>
                 <div id="heatmap-container" class="overflow-x-auto">
                     <!-- Injected via JS -->
@@ -1009,7 +1032,7 @@
         <!-- Geographic & Performance Metrics -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 shrink-0">
             <!-- City Distribution -->
-            <div class="chart-container chart-geography bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm">
+            <div class="chart-container chart-geography lg-panel p-5 rounded-xl border border-slate-700 shadow-sm">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">By Location</h3>
                 <div id="city-distribution" class="space-y-2">
                     <!-- Injected via JS -->
@@ -1017,7 +1040,7 @@
             </div>
 
             <!-- Performance Metrics & Insights -->
-            <div class="chart-container chart-performance bg-[#1a1a1a] p-5 rounded-xl border border-slate-700 shadow-sm">
+            <div class="chart-container chart-performance lg-panel p-5 rounded-xl border border-slate-700 shadow-sm">
                 <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">Market Insights</h3>
                 <div id="market-insights" class="space-y-3">
                     <!-- Injected via JS -->
@@ -1029,7 +1052,7 @@
         </div>
 
         <!-- Comparison Mode Panel -->
-        <div id="comparison-panel" class="bg-gradient-to-r from-[#1a1a1a] to-[#111] rounded-xl border border-emerald-900/30 shadow-sm p-4 hidden">
+        <div id="comparison-panel" class="lg-panel rounded-xl border border-emerald-600/25 shadow-sm p-4 hidden">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
                     <i data-lucide="sliders-horizontal" class="w-5 h-5 text-emerald-400"></i>
@@ -1074,7 +1097,7 @@
                         <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Month-over-Month Comparison</h3>
                         <div class="overflow-x-auto">
                             <table id="modal-mom-table" class="w-full text-left text-xs">
-                                <thead class="border-b border-slate-700 bg-[#111]">
+                                <thead class="border-b border-slate-700 lg-panel-soft">
                                     <tr>
                                         <th class="px-3 py-2 text-slate-400 font-bold">Month</th>
                                         <th class="px-3 py-2 text-slate-400 font-bold text-right">Sales</th>
@@ -1092,7 +1115,7 @@
                     <!-- Market Share Trend Chart -->
                     <div class="mb-6">
                         <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Market Share Trend</h3>
-                        <div class="h-64 bg-[#111] rounded-lg p-4 border border-slate-800">
+                        <div class="h-64 lg-panel-soft rounded-lg p-4 border border-slate-800">
                             <canvas id="modal-market-share-chart"></canvas>
                         </div>
                     </div>
@@ -1100,7 +1123,7 @@
                     <!-- Rank History Chart -->
                     <div class="mb-6">
                         <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Ranking History</h3>
-                        <div class="h-64 bg-[#111] rounded-lg p-4 border border-slate-800">
+                        <div class="h-64 lg-panel-soft rounded-lg p-4 border border-slate-800">
                             <canvas id="modal-rank-history-chart"></canvas>
                         </div>
                     </div>
@@ -1109,10 +1132,10 @@
         </div>
 
         <!-- Data Table Container -->
-        <div class="bg-[#1a1a1a] rounded-xl border border-slate-700 shadow-sm flex flex-col flex-1 overflow-hidden min-h-[400px]">
+        <div class="lg-panel rounded-xl border border-slate-700 shadow-sm flex flex-col flex-1 overflow-hidden min-h-[400px]">
             <div class="overflow-x-auto tgb-scroll flex-1">
                 <table class="w-full text-left border-collapse min-w-[700px]">
-                    <thead class="bg-[#111] sticky top-0 z-10 border-b border-slate-700 shadow-sm">
+                    <thead class="lg-panel-soft sticky top-0 z-10 border-b border-slate-700 shadow-sm">
                         <tr>
                             <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider w-12 text-center">Rank</th>
                             <th class="px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-emerald-400 group" data-sort="dba">
@@ -1134,7 +1157,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="px-4 py-2 border-t border-slate-700 bg-[#111] text-[10px] text-slate-500 flex justify-between items-center shrink-0">
+            <div class="px-4 py-2 border-t border-slate-700 lg-panel-soft text-[10px] text-slate-500 flex justify-between items-center shrink-0">
                 <span>Data Source: NM Cannabis Control Division</span>
                 <span>Click a row to view specific trends</span>
             </div>
@@ -8391,19 +8414,19 @@
         const adultPct = data.total > 0 ? Math.round((data.adultUse / data.total) * 100) : 0;
 
         container.innerHTML = `
-            <div class="bg-[#111] rounded-lg p-3 border border-slate-800">
+            <div class="lg-panel-soft rounded-lg p-3 border border-slate-800">
                 <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Total Sales</div>
                 <div class="text-lg font-bold text-slate-100">${fmt(data.total, true)}</div>
             </div>
-            <div class="bg-[#111] rounded-lg p-3 border border-slate-800">
+            <div class="lg-panel-soft rounded-lg p-3 border border-slate-800">
                 <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Adult-Use</div>
                 <div class="text-lg font-bold text-blue-400">${fmt(data.adultUse, true)}</div>
             </div>
-            <div class="bg-[#111] rounded-lg p-3 border border-slate-800">
+            <div class="lg-panel-soft rounded-lg p-3 border border-slate-800">
                 <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Medical</div>
                 <div class="text-lg font-bold text-rose-400">${fmt(data.medical, true)}</div>
             </div>
-            <div class="bg-[#111] rounded-lg p-3 border border-slate-800">
+            <div class="lg-panel-soft rounded-lg p-3 border border-slate-800">
                 <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Adult/Med Mix</div>
                 <div class="text-lg font-bold text-slate-100">${adultPct}% / ${100 - adultPct}%</div>
             </div>
@@ -8421,7 +8444,7 @@
 
             if (prev && prev.total > 0) {
                 momChange = ((data.total - prev.total) / prev.total) * 100;
-                momColor = momChange > 0 ? '#34d399' : momChange < 0 ? '#f87171' : '#6b7280';
+                momColor = momChange > 0 ? '#059669' : momChange < 0 ? '#dc2626' : '#6b7280';
             }
 
             const marketShare = getMarketShareForMonth(data.dba, data.month);
@@ -8455,13 +8478,13 @@
                 datasets: [{
                     label: 'Market Share %',
                     data,
-                    borderColor: '#34d399',
-                    backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                    borderColor: '#059669',
+                    backgroundColor: 'rgba(5, 150, 105, 0.1)',
                     borderWidth: 2,
                     fill: true,
                     tension: 0.4,
                     pointRadius: 4,
-                    pointBackgroundColor: '#34d399',
+                    pointBackgroundColor: '#059669',
                     pointBorderColor: '#1a1a1a',
                     pointBorderWidth: 2
                 }]
@@ -8483,12 +8506,12 @@
                     y: {
                         beginAtZero: true,
                         max: Math.max(...data) * 1.2,
-                        grid: { color: 'rgba(107, 114, 128, 0.1)' },
-                        ticks: { color: '#9ca3af', font: { size: 10 } }
+                        grid: { color: 'rgba(23, 46, 37, 0.08)' },
+                        ticks: { color: '#5b6963', font: { size: 10 } }
                     },
                     x: {
                         grid: { display: false },
-                        ticks: { color: '#9ca3af', font: { size: 9 } }
+                        ticks: { color: '#5b6963', font: { size: 9 } }
                     }
                 }
             }
@@ -8514,13 +8537,13 @@
                 datasets: [{
                     label: 'Ranking Position',
                     data,
-                    borderColor: '#60a5fa',
+                    borderColor: '#2563eb',
                     backgroundColor: 'rgba(96, 165, 250, 0.1)',
                     borderWidth: 2,
                     fill: true,
                     tension: 0.4,
                     pointRadius: 4,
-                    pointBackgroundColor: '#60a5fa',
+                    pointBackgroundColor: '#2563eb',
                     pointBorderColor: '#1a1a1a',
                     pointBorderWidth: 2
                 }]
@@ -8545,12 +8568,12 @@
                         beginAtZero: false,
                         min: 1,
                         max: 30,
-                        grid: { color: 'rgba(107, 114, 128, 0.1)' },
-                        ticks: { color: '#9ca3af', font: { size: 10 }, callback: (v) => '#' + v }
+                        grid: { color: 'rgba(23, 46, 37, 0.08)' },
+                        ticks: { color: '#5b6963', font: { size: 10 }, callback: (v) => '#' + v }
                     },
                     x: {
                         grid: { display: false },
-                        ticks: { color: '#9ca3af', font: { size: 9 } }
+                        ticks: { color: '#5b6963', font: { size: 9 } }
                     }
                 }
             }
@@ -8595,22 +8618,22 @@
         // Update DOM
         document.getElementById('kpi-total').textContent = fmt(sumTotal, true);
         document.getElementById('kpi-total-growth').textContent = `${totalGrowth > 0 ? '↑' : totalGrowth < 0 ? '↓' : '='} ${Math.abs(totalGrowth).toFixed(1)}%`;
-        document.getElementById('kpi-total-growth').style.color = totalGrowth > 0 ? '#34d399' : totalGrowth < 0 ? '#f87171' : '#94a3b8';
+        document.getElementById('kpi-total-growth').style.color = totalGrowth > 0 ? '#059669' : totalGrowth < 0 ? '#dc2626' : '#67776f';
 
         document.getElementById('kpi-adult').textContent = fmt(sumAdult, true);
         document.getElementById('kpi-adult-growth').textContent = `${adultGrowth > 0 ? '↑' : adultGrowth < 0 ? '↓' : '='} ${Math.abs(adultGrowth).toFixed(1)}%`;
-        document.getElementById('kpi-adult-growth').style.color = adultGrowth > 0 ? '#60a5fa' : adultGrowth < 0 ? '#f87171' : '#94a3b8';
+        document.getElementById('kpi-adult-growth').style.color = adultGrowth > 0 ? '#2563eb' : adultGrowth < 0 ? '#dc2626' : '#67776f';
 
         document.getElementById('kpi-medical').textContent = fmt(sumMedical, true);
         document.getElementById('kpi-medical-growth').textContent = `${medicalGrowth > 0 ? '↑' : medicalGrowth < 0 ? '↓' : '='} ${Math.abs(medicalGrowth).toFixed(1)}%`;
-        document.getElementById('kpi-medical-growth').style.color = medicalGrowth > 0 ? '#fb7185' : medicalGrowth < 0 ? '#f87171' : '#94a3b8';
+        document.getElementById('kpi-medical-growth').style.color = medicalGrowth > 0 ? '#e11d48' : medicalGrowth < 0 ? '#dc2626' : '#67776f';
 
         document.getElementById('kpi-stores').textContent = aggregatedTableData.length;
         document.getElementById('kpi-stores-growth').textContent = `${aggregatedTableData.length - (prevMonthData ? prevMonthData.length : aggregatedTableData.length)}`;
 
         document.getElementById('kpi-avg-per-store').textContent = fmt(avgPerStore, true);
         document.getElementById('kpi-avg-growth').textContent = `${avgGrowth > 0 ? '↑' : avgGrowth < 0 ? '↓' : '='} ${Math.abs(avgGrowth).toFixed(1)}%`;
-        document.getElementById('kpi-avg-growth').style.color = avgGrowth > 0 ? '#a78bfa' : avgGrowth < 0 ? '#f87171' : '#94a3b8';
+        document.getElementById('kpi-avg-growth').style.color = avgGrowth > 0 ? '#7c3aed' : avgGrowth < 0 ? '#dc2626' : '#67776f';
 
         document.getElementById('kpi-concentration').textContent = concentration.toFixed(1) + '%';
         document.getElementById('kpi-top3-share').textContent = `Top 3: ${concentration.toFixed(0)}%`;
@@ -8648,7 +8671,7 @@
                 options: {
                     responsive: true, maintainAspectRatio: false, cutout: '65%',
                     plugins: {
-                        legend: { position: 'right', labels: { boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#e5e7eb' } },
+                        legend: { position: 'right', labels: { boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#2c3a33' } },
                         tooltip: {
                             callbacks: { label: (ctx) => ` ${fmt(ctx.parsed)} (${((ctx.parsed / totalMarketValue) * 100).toFixed(1)}%)` }
                         }
@@ -8659,7 +8682,7 @@
 
         // Update or Create Trend Line (with comparison mode support)
         const ctxLine = document.getElementById('tgbLineChart').getContext('2d');
-        const comparisonColors = ['#34d399', '#60a5fa', '#f59e0b', '#ec4899'];
+        const comparisonColors = ['#059669', '#2563eb', '#f59e0b', '#ec4899'];
 
         let datasets = [];
 
@@ -8685,10 +8708,10 @@
             datasets.push({
                 label: selectedDba,
                 data: trendData,
-                borderColor: '#34d399',
-                backgroundColor: '#34d39920',
+                borderColor: '#059669',
+                backgroundColor: '#05966920',
                 borderWidth: 2,
-                pointBackgroundColor: '#34d399',
+                pointBackgroundColor: '#059669',
                 pointRadius: 3,
                 fill: true,
                 tension: 0.3
@@ -8699,10 +8722,10 @@
             datasets.push({
                 label: 'Overall Market',
                 data: trendData,
-                borderColor: '#60a5fa',
-                backgroundColor: '#60a5fa20',
+                borderColor: '#2563eb',
+                backgroundColor: '#2563eb20',
                 borderWidth: 2,
-                pointBackgroundColor: '#60a5fa',
+                pointBackgroundColor: '#2563eb',
                 pointRadius: 3,
                 fill: true,
                 tension: 0.3
@@ -8722,15 +8745,15 @@
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: datasets.length > 1, labels: { usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#cbd5e1' } },
+                        legend: { display: datasets.length > 1, labels: { usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#44544c' } },
                         tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${fmt(ctx.parsed.y)}` } }
                     },
                     scales: {
-                        x: { grid: { display: false, color: '#333' }, ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af' } },
+                        x: { grid: { display: false, color: 'rgba(23, 46, 37, 0.10)' }, ticks: { font: { family: 'Inter', size: 10 }, color: '#5b6963' } },
                         y: {
                             border: { display: false },
-                            grid: { color: '#333' },
-                            ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#9ca3af' },
+                            grid: { color: 'rgba(23, 46, 37, 0.10)' },
+                            ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#5b6963' },
                             beginAtZero: true
                         }
                     }
@@ -8798,7 +8821,7 @@
             let momGrowth = 0;
             let isNewDispensary = false;
             let momDisplay = '0.0%';
-            let momColor = '#94a3b8';
+            let momColor = '#67776f';
 
             if (prevMonthData) {
                 // Try exact match first
@@ -8814,13 +8837,13 @@
 
                 if (prevRow && prevRow.value > 0) {
                     momGrowth = ((row.value - prevRow.value) / prevRow.value) * 100;
-                    momColor = momGrowth > 0 ? '#34d399' : momGrowth < 0 ? '#f87171' : '#94a3b8';
+                    momColor = momGrowth > 0 ? '#059669' : momGrowth < 0 ? '#dc2626' : '#67776f';
                     momDisplay = `${momGrowth > 0 ? '+' : ''}${momGrowth.toFixed(1)}%`;
                 } else if (!prevRow) {
                     // New dispensary
                     isNewDispensary = true;
                     momDisplay = 'New ★';
-                    momColor = '#fbbf24';
+                    momColor = '#d97706';
                 }
             }
 
@@ -8925,8 +8948,8 @@
                         responsive: true, maintainAspectRatio: false,
                         plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => fmt(ctx.parsed.x) } } },
                         scales: {
-                            x: { grid: { color: '#333' }, ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#9ca3af' }, beginAtZero: true },
-                            y: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af' } }
+                            x: { grid: { color: 'rgba(23, 46, 37, 0.10)' }, ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#5b6963' }, beginAtZero: true },
+                            y: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10 }, color: '#5b6963' } }
                         }
                     }
                 });
@@ -8938,7 +8961,7 @@
         const medicalTotal = aggregatedTableData.reduce((a, b) => a + b.medical, 0);
         const breakdownLabels = ['Adult-Use', 'Medical'];
         const breakdownValues = [adultTotal, medicalTotal];
-        const breakdownColors = ['#60a5fa', '#f87171'];
+        const breakdownColors = ['#2563eb', '#dc2626'];
 
         const ctxBreakdown = document.getElementById('tgbBreakdownChart')?.getContext('2d');
         if (ctxBreakdown) {
@@ -8953,7 +8976,7 @@
                     options: {
                         responsive: true, maintainAspectRatio: false, cutout: '60%',
                         plugins: {
-                            legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#e5e7eb' } },
+                            legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#2c3a33' } },
                             tooltip: { callbacks: { label: (ctx) => ` ${fmt(ctx.parsed)} (${((ctx.parsed / (adultTotal + medicalTotal)) * 100).toFixed(1)}%)` } }
                         }
                     }
@@ -8969,14 +8992,14 @@
         const breadcrumbCity = document.getElementById('breadcrumb-city');
 
         if (currentCity) {
-            breadcrumbAll.style.color = '#cbd5e1';
+            breadcrumbAll.style.color = '#44544c';
             breadcrumbAll.classList.remove('text-emerald-400', 'font-semibold');
             breadcrumbSep.classList.remove('hidden');
             breadcrumbCity.classList.remove('hidden');
             breadcrumbCity.textContent = currentCity;
             document.getElementById('city-distribution').innerHTML = '<div class="text-center py-4 text-slate-400">Showing data for ' + currentCity + '</div>';
         } else {
-            breadcrumbAll.style.color = '#34d399';
+            breadcrumbAll.style.color = '#059669';
             breadcrumbAll.classList.add('font-medium');
             breadcrumbSep.classList.add('hidden');
             breadcrumbCity.classList.add('hidden');
@@ -9104,7 +9127,7 @@
             if (!data) return '';
 
             return `
-                <div class="bg-gradient-to-br from-[#111] to-[#0a0a0a] p-4 rounded-lg border border-slate-700 hover:border-emerald-600/50 transition-colors">
+                <div class="lg-panel-soft p-4 rounded-lg border border-slate-700 hover:border-emerald-600/50 transition-colors">
                     <div class="flex items-start justify-between mb-2">
                         <div class="flex-1 truncate">
                             <div class="text-xs font-bold text-slate-200 truncate">${dbaName}</div>
@@ -9265,7 +9288,7 @@
                 y: growth,
                 r: Math.sqrt(marketShare) * 3,
                 label: d.dba,
-                backgroundColor: marketShare > 5 ? '#34d399' : marketShare > 2 ? '#60a5fa' : '#f59e0b'
+                backgroundColor: marketShare > 5 ? '#059669' : marketShare > 2 ? '#2563eb' : '#f59e0b'
             };
         });
 
@@ -9308,15 +9331,15 @@
                             x: {
                                 type: 'linear',
                                 position: 'bottom',
-                                grid: { color: '#333' },
-                                title: { display: true, text: 'Sales Volume', font: { size: 10, family: 'Inter' }, color: '#9ca3af' },
-                                ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#9ca3af' },
+                                grid: { color: 'rgba(23, 46, 37, 0.10)' },
+                                title: { display: true, text: 'Sales Volume', font: { size: 10, family: 'Inter' }, color: '#5b6963' },
+                                ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#5b6963' },
                                 min: 0
                             },
                             y: {
-                                grid: { color: '#333' },
-                                title: { display: true, text: 'Growth Rate (%)', font: { size: 10, family: 'Inter' }, color: '#9ca3af' },
-                                ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af', callback: (v) => v.toFixed(0) + '%' }
+                                grid: { color: 'rgba(23, 46, 37, 0.10)' },
+                                title: { display: true, text: 'Growth Rate (%)', font: { size: 10, family: 'Inter' }, color: '#5b6963' },
+                                ticks: { font: { family: 'Inter', size: 10 }, color: '#5b6963', callback: (v) => v.toFixed(0) + '%' }
                             }
                         }
                     }
@@ -9359,7 +9382,7 @@
             if (velocityChartInstance) {
                 velocityChartInstance.data.labels = velocityLabels;
                 velocityChartInstance.data.datasets[0].data = velocityValues;
-                velocityChartInstance.data.datasets[0].backgroundColor = velocityValues.map(v => v > 0 ? '#34d399' : '#f87171');
+                velocityChartInstance.data.datasets[0].backgroundColor = velocityValues.map(v => v > 0 ? '#059669' : '#dc2626');
                 velocityChartInstance.update('none');
             } else {
                 velocityChartInstance = new Chart(ctxVelocity, {
@@ -9369,7 +9392,7 @@
                         datasets: [{
                             label: 'MoM Growth %',
                             data: velocityValues,
-                            backgroundColor: velocityValues.map(v => v > 0 ? '#34d399' : '#f87171'),
+                            backgroundColor: velocityValues.map(v => v > 0 ? '#059669' : '#dc2626'),
                             borderRadius: 4,
                             borderSkipped: false
                         }]
@@ -9382,8 +9405,8 @@
                             tooltip: { callbacks: { label: (ctx) => `${ctx.parsed.y.toFixed(1)}%` } }
                         },
                         scales: {
-                            x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10 }, color: '#9ca3af' } },
-                            y: { grid: { color: '#333' }, ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => v.toFixed(0) + '%', color: '#9ca3af' } }
+                            x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10 }, color: '#5b6963' } },
+                            y: { grid: { color: 'rgba(23, 46, 37, 0.10)' }, ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => v.toFixed(0) + '%', color: '#5b6963' } }
                         }
                     }
                 });
@@ -9423,14 +9446,14 @@
         });
 
         // Generate HTML for heatmap
-        let html = '<table class="w-full text-xs border-collapse"><thead><tr><th class="p-2 bg-[#111] text-slate-400 text-left font-bold">City</th>';
+        let html = '<table class="w-full text-xs border-collapse"><thead><tr><th class="p-2 lg-panel-soft text-slate-400 text-left font-bold">City</th>';
         months.forEach(m => {
-            html += `<th class="p-2 bg-[#111] text-slate-400 text-center font-bold">${monthLabels[monthKeys.indexOf(m)]}</th>`;
+            html += `<th class="p-2 lg-panel-soft text-slate-400 text-center font-bold">${monthLabels[monthKeys.indexOf(m)]}</th>`;
         });
         html += '</tr></thead><tbody>';
 
         cities.forEach(city => {
-            html += `<tr><td class="p-2 font-bold text-slate-300 bg-[#111]">${city}</td>`;
+            html += `<tr><td class="p-2 font-bold text-slate-300 lg-panel-soft">${city}</td>`;
             months.forEach(month => {
                 const val = cityMonthData[city][month] || 0;
                 const intensity = maxVal > minVal ? (val - minVal) / (maxVal - minVal) : 0;
@@ -9461,7 +9484,7 @@
 
             container.innerHTML = '<div class="text-[11px] text-slate-400 mb-3 font-semibold uppercase">Dispensaries in ' + currentCity + '</div>' +
                 cityData.sort((a, b) => b.value - a.value).map(d => `
-                <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-[#151515] transition-all cursor-pointer" onclick="document.getElementById('tgb-tbody').scrollIntoView({behavior:'smooth'}); selectedDba='${d.dba}'; renderCharts(); document.querySelectorAll('#tgb-tbody tr').forEach((t,i) => t.classList.toggle('active-row', t.querySelector('td:nth-child(2)')?.textContent.includes('${d.dba}')));">
+                <div class="flex items-center justify-between p-3 lg-panel-soft rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-white/80 transition-all cursor-pointer" onclick="document.getElementById('tgb-tbody').scrollIntoView({behavior:'smooth'}); selectedDba='${d.dba}'; renderCharts(); document.querySelectorAll('#tgb-tbody tr').forEach((t,i) => t.classList.toggle('active-row', t.querySelector('td:nth-child(2)')?.textContent.includes('${d.dba}')));">
                     <div class="flex-1 truncate">
                         <div class="text-xs font-bold text-slate-200 truncate">${d.dba}</div>
                         <div class="text-[10px] text-slate-500 truncate">${d.city}</div>
@@ -9488,7 +9511,7 @@
             .sort((a, b) => b.total - a.total);
 
         container.innerHTML = cities.map(c => `
-            <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-[#151515] transition-all cursor-pointer" onclick="drillDownToCity('${c.city}')">
+            <div class="flex items-center justify-between p-3 lg-panel-soft rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-white/80 transition-all cursor-pointer" onclick="drillDownToCity('${c.city}')">
                 <div class="flex-1">
                     <div class="text-xs font-bold text-slate-200">${c.city}</div>
                     <div class="text-[10px] text-slate-500">${c.count} stores</div>
@@ -9520,7 +9543,7 @@
         const container = document.getElementById('market-insights');
         if (container) {
             container.innerHTML = insights.map(i => `
-                <div class="flex items-center justify-between p-3 bg-[#111] rounded-lg border border-slate-800">
+                <div class="flex items-center justify-between p-3 lg-panel-soft rounded-lg border border-slate-800">
                     <div>
                         <div class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">${i.label}</div>
                         <div class="text-sm font-bold text-slate-100 mt-1">${i.value}</div>
@@ -9585,7 +9608,7 @@
                 contextContainer.innerHTML = '<div class="text-[10px] text-slate-500 italic">No notable insights at this time</div>';
             } else {
                 contextContainer.innerHTML = contextualInsights.map(i => `
-                    <div class="flex gap-2 text-[10px] p-2 bg-[#111] rounded border border-slate-800/50">
+                    <div class="flex gap-2 text-[10px] p-2 lg-panel-soft rounded border border-slate-800/50">
                         <span class="text-sm">${i.icon}</span>
                         <span class="text-slate-400">${i.text}</span>
                     </div>
