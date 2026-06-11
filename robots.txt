@@ -3,6 +3,7 @@ Allow: /
 Allow: /articles/
 Allow: /education/
 Allow: /partnerships.html
+Allow: /partner.html
 
 Disallow: /.git/
 Disallow: /.claude/

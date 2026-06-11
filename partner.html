@@ -3,24 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Partner with Green Border | Featured Dispensary Program</title>
+  <title>Partner with The Green Border | Featured Dispensary Listings &amp; Analytics</title>
 
-  <meta name="description" content="Get featured on the Green Border directory. Premium listings, analytics, and customer engagement tools for cannabis dispensaries." />
-  <meta name="keywords" content="cannabis dispensary listing, featured directory, B2B cannabis, New Mexico dispensary" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Feature your Southern New Mexico dispensary on The Green Border. Premium directory placement, customer analytics, and deal promotion tools — plans from $29/month with a 14-day free trial." />
+  <meta name="keywords" content="dispensary advertising New Mexico, featured dispensary listing, cannabis directory listing, dispensary marketing, Sunland Park dispensary, 915 cannabis, B2B cannabis tools" />
   <meta name="author" content="The Green Border" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://greenborder.org/partner.html" />
 
-  <!-- Tailwind CSS -->
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenborder.org/partner.html" />
+  <meta property="og:title" content="Partner with The Green Border | Featured Dispensary Listings" />
+  <meta property="og:description" content="Get your dispensary in front of thousands of 915-area cannabis shoppers. Featured placement, analytics, and deal tools from $29/month." />
+  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Partner with The Green Border" />
+  <meta name="twitter:description" content="Featured dispensary listings, analytics, and deal tools for Southern New Mexico dispensaries." />
+
+  <!-- Additional Meta Tags -->
+  <meta http-equiv="content-language" content="en-US" />
+  <meta name="theme-color" content="#10b981" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Partner with The Green Border",
+    "description": "Featured dispensary listings, customer analytics, and deal promotion tools for cannabis dispensaries in Southern New Mexico.",
+    "url": "https://greenborder.org/partner.html",
+    "creator": {
+      "@type": "Organization",
+      "name": "The Green Border"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://greenborder.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Partner", "item": "https://greenborder.org/partner.html" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does billing work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Plans bill monthly on a recurring cycle with no long-term contracts — cancel anytime. Every plan starts with a 14-day free trial."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I change plans later?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. You can upgrade or downgrade anytime, and changes take effect on your next billing cycle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What payment methods do you accept?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We accept all major credit cards (Visa, Mastercard, American Express) through Stripe's secure payment processing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my business data secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All data is encrypted in transit and at rest, with regular security audits. We never share your data with third parties."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    if (typeof tailwind !== 'undefined') {
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' },
-              gold: { 400: '#fbbf24', 500: '#f59e0b' },
-              charcoal: { 700: '#1a1a1a', 900: '#0a0a0a' },
-            }
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
+            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Rajdhani', 'Inter', 'sans-serif'],
           }
         }
       }
@@ -28,26 +116,355 @@
   </script>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', system-ui, sans-serif;
       background-color: #0a0a0a;
       color: #e5e7eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .pricing-card {
+    /* ── Glass Header ── */
+    #tgb-glass-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1200px;
+      z-index: 10000;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border-radius: 20px;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       transition: all 0.3s ease;
     }
-
-    .pricing-card:hover {
-      transform: translateY(-4px);
+    body.scrolled #tgb-glass-header {
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+    }
+    .tgb-logo-container {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tgb-logo-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #34d399;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      transition: transform 0.2s ease;
+    }
+    .tgb-logo-sparkle {
+      color: #ca8a04;
+      font-size: 24px;
+      animation: tgb-spin-slow 10s linear infinite;
+    }
+    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
+    .tgb-desktop-nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .tgb-header-link {
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 600;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ca8a04;
+      transition: width 0.3s ease;
+    }
+    .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .tgb-search-icon {
+      color: #34d399;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-header-btn {
+      background: #1a4d2e;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      transition: all 0.2s ease;
+    }
+    .tgb-header-btn:hover {
+      background: #14532d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+    }
+    @keyframes tgb-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .tgb-desktop-nav { display: none; }
+      .tgb-logo-text { font-size: 20px; }
+      .tgb-logo-sparkle { font-size: 20px; }
+      #tgb-glass-header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        padding: 12px 16px;
+        max-width: none;
+      }
+      .tgb-header-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .tgb-search-icon {
+        padding: 6px;
+      }
+    }
+    @media (max-width: 768px) {
+      #tgb-glass-header { display: none; }
     }
 
+    /* ── Content ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+      transform: translateY(-2px);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-gold:hover {
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+      transform: translateY(-2px);
+    }
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e5e7eb;
+      transition: all 0.3s ease;
+    }
+    .btn-glass:hover {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      transform: translateY(-2px);
+    }
+
+    /* ── Section Line ── */
+    .section-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #10b981, #ca8a04);
+    }
+
+    /* ── Pricing Cards ── */
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(16, 185, 129, 0.3);
+      transform: translateY(-4px);
+    }
     .pricing-card.featured {
       border: 2px solid #10b981;
       box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+    }
+
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: 80px;
+        padding: 0 20px 40px 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background:
+          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
+          rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(16, 185, 129, 0.15);
+        box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
+        border-radius: 30px;
+        padding: 50px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(16,185,129,0.1);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #34d399;
+        margin: 0 0 10px 0;
+    }
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #cbd5e1;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    .tgb-footer-nav {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #cbd5e1;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-favorites-section {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(16,185,129,0.1);
+    }
+    .tgb-favorites-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #94a3b8;
+        margin: 0 0 15px 0;
+        display: block;
+    }
+    .tgb-legal-block {
+        background: rgba(16,185,129,0.05);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #94a3b8;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #cbd5e1;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.7;
+    }
+
+    /* ── Mobile Nav ── */
+    .tgb-mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: none;
+      flex-justify: space-around;
+      align-items: center;
+      height: 70px;
+      background: rgba(10, 10, 10, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 9999;
+    }
+    .tgb-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #9ca3af;
+      text-decoration: none;
+      flex: 1;
+      height: 100%;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+    .tgb-nav-item:active, .tgb-nav-item:hover { color: #34d399; }
+    @media (max-width: 768px) {
+      .tgb-mobile-nav { display: flex; }
+      body { padding-bottom: 70px; }
+      .tgb-footer-card { padding: 30px 20px; }
+      .tgb-footer-nav { flex-direction: column; gap: 15px; }
     }
   </style>
 
@@ -55,27 +472,48 @@
   <link rel="stylesheet" href="/css/liquid-glass.css" />
   <script src="/js/liquid-glass.js" defer></script>
 </head>
+<body>
 
-<body class="bg-charcoal-900">
-  <!-- Header -->
-  <header class="bg-charcoal-700 border-b border-emerald-500/20 sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 py-4">
-      <div class="flex items-center justify-between">
-        <h1 class="text-2xl font-bold text-emerald-400">🌿 Green Border Partners</h1>
-        <a href="/" class="text-gray-400 hover:text-white transition">← Back to Home</a>
-      </div>
-      <p class="text-gray-400 mt-2">Feature your Southern NM dispensary</p>
-    </div>
-  </header>
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║            GLASS HEADER / NAV               ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<header id="tgb-glass-header">
+  <a href="/" class="tgb-logo-container">
+    <span class="tgb-logo-text">The Green Border</span>
+    <span class="tgb-logo-sparkle">✦</span>
+  </a>
 
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 py-12">
+  <nav class="tgb-desktop-nav">
+    <a href="/"             class="tgb-header-link">Home</a>
+    <a href="/news.html"    class="tgb-header-link">News</a>
+    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
+    <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="/#education"    class="tgb-header-link">Education</a>
+    <a href="/#about"        class="tgb-header-link">About</a>
+  </nav>
+
+  <div class="tgb-header-actions">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </a>
+    <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
+  </div>
+</header>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║            PARTNER HERO SECTION             ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<main class="max-w-6xl mx-auto px-4 pt-40 pb-12">
 
     <!-- Hero Section -->
-    <section class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-white mb-4">Grow Your Dispensary's Visibility</h2>
-      <p class="text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
-        Premium listings, customer analytics, deal management, and exclusive promotional tools designed for cannabis dispensaries in Southern New Mexico.
+    <section class="text-center mb-16">
+      <span class="section-line mb-4 block mx-auto"></span>
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">Put Your Dispensary in Front of Thousands</h1>
+      <p class="text-xl text-gray-400 mb-6 max-w-2xl mx-auto">
+        Premium directory placement, real customer analytics, and deal promotion tools built for cannabis dispensaries in Southern New Mexico and the 915 border community.
       </p>
     </section>
 
@@ -83,29 +521,33 @@
     <div id="claim-alert" class="mb-8 hidden"></div>
 
     <!-- Features Section -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-      <div class="lg-glass lg-sheen rounded-lg p-6">
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      <div class="lg-glass lg-sheen rounded-2xl p-6">
         <h3 class="text-lg font-bold text-emerald-400 mb-2">📊 Advanced Analytics</h3>
-        <p class="text-gray-400">Track customer visits, view trends, and understand your market position.</p>
+        <p class="text-gray-400">See who's finding your listing, track visit trends, and benchmark your market position against nearby dispensaries.</p>
       </div>
-      <div class="lg-glass lg-sheen rounded-lg p-6">
-        <h3 class="text-lg font-bold text-emerald-400 mb-2">🎯 Featured Listings</h3>
-        <p class="text-gray-400">Get priority placement in our directory with premium badge and visibility.</p>
+      <div class="lg-glass lg-sheen rounded-2xl p-6">
+        <h3 class="text-lg font-bold text-emerald-400 mb-2">🎯 Featured Placement</h3>
+        <p class="text-gray-400">Stand out with a Featured badge and priority placement at the top of our directory — the first thing shoppers see.</p>
       </div>
-      <div class="lg-glass lg-sheen rounded-lg p-6">
+      <div class="lg-glass lg-sheen rounded-2xl p-6">
         <h3 class="text-lg font-bold text-emerald-400 mb-2">🏷️ Deal Management</h3>
-        <p class="text-gray-400">Create, manage, and promote special offers directly to customers.</p>
+        <p class="text-gray-400">Launch, manage, and promote special offers directly to customers who are already looking for a place to shop.</p>
       </div>
     </section>
 
     <!-- Pricing Section -->
-    <section class="mb-12">
-      <h2 class="text-3xl font-bold text-white text-center mb-8">Simple, Transparent Pricing</h2>
+    <section class="mb-16">
+      <div class="text-center mb-8">
+        <span class="section-line mb-4 block mx-auto"></span>
+        <h2 class="text-3xl font-bold text-white" style="font-family:'Rajdhani',sans-serif;">Simple, Transparent Pricing</h2>
+        <p class="text-gray-400 mt-2">Every plan starts with a 14-day free trial. No contracts, cancel anytime.</p>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Basic Tier -->
-        <div class="pricing-card bg-charcoal-700 rounded-lg p-8 border border-gray-700">
-          <h3 class="text-2xl font-bold text-white mb-2">Basic</h3>
+        <div class="pricing-card lg-sheen rounded-2xl p-8">
+          <h3 class="text-2xl font-bold text-white mb-2" style="font-family:'Rajdhani',sans-serif;">Basic</h3>
           <p class="text-gray-400 mb-6">Perfect for getting started</p>
 
           <div class="mb-6">
@@ -115,10 +557,10 @@
 
           <ul class="space-y-3 mb-8 text-gray-300">
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> Claimed dispensary listing
+              <span class="text-emerald-400">✓</span> Claimed &amp; verified dispensary listing
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> Basic analytics
+              <span class="text-emerald-400">✓</span> Core analytics dashboard
             </li>
             <li class="flex items-center gap-2">
               <span class="text-emerald-400">✓</span> Up to 3 active deals
@@ -128,19 +570,19 @@
             </li>
           </ul>
 
-          <button onclick="startCheckout('basic')" class="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded transition">
+          <button onclick="startCheckout('basic')" class="btn-glass w-full px-4 py-3 font-semibold rounded-xl">
             Get Started
           </button>
         </div>
 
         <!-- Premium Tier (Featured) -->
-        <div class="pricing-card featured bg-charcoal-700 rounded-lg p-8 relative">
-          <div class="absolute top-0 right-0 bg-emerald-600 text-white px-3 py-1 rounded-bl-lg text-sm font-bold">
+        <div class="pricing-card featured lg-sheen rounded-2xl p-8 relative">
+          <div class="absolute top-0 right-0 bg-emerald-600 text-white px-3 py-1 rounded-bl-xl rounded-tr-2xl text-sm font-bold">
             POPULAR
           </div>
 
-          <h3 class="text-2xl font-bold text-white mb-2">Premium</h3>
-          <p class="text-gray-400 mb-6">Most popular choice</p>
+          <h3 class="text-2xl font-bold text-white mb-2" style="font-family:'Rajdhani',sans-serif;">Premium</h3>
+          <p class="text-gray-400 mb-6">Our most popular plan</p>
 
           <div class="mb-6">
             <span class="text-4xl font-bold text-emerald-400">$79</span>
@@ -149,34 +591,34 @@
 
           <ul class="space-y-3 mb-8 text-gray-300">
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> Featured badge & priority placement
+              <span class="text-emerald-400">✓</span> Featured badge &amp; priority placement
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> Advanced analytics & reports
+              <span class="text-emerald-400">✓</span> Advanced analytics &amp; reports
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> Unlimited deals/promotions
+              <span class="text-emerald-400">✓</span> Unlimited deals &amp; promotions
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> Priority email & phone support
+              <span class="text-emerald-400">✓</span> Priority email &amp; phone support
             </li>
             <li class="flex items-center gap-2">
               <span class="text-emerald-400">✓</span> Custom branding options
             </li>
           </ul>
 
-          <button onclick="startCheckout('premium')" class="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded transition">
+          <button onclick="startCheckout('premium')" class="btn-primary w-full px-4 py-3 font-semibold rounded-xl">
             Start Premium
           </button>
         </div>
 
         <!-- Enterprise Tier -->
-        <div class="pricing-card bg-charcoal-700 rounded-lg p-8 border border-gray-700">
-          <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
+        <div class="pricing-card lg-sheen rounded-2xl p-8">
+          <h3 class="text-2xl font-bold text-white mb-2" style="font-family:'Rajdhani',sans-serif;">Enterprise</h3>
           <p class="text-gray-400 mb-6">For multi-location operators</p>
 
           <div class="mb-6">
-            <span class="text-4xl font-bold text-gold-500">Custom</span>
+            <span class="text-4xl font-bold text-gold-400">Custom</span>
             <span class="text-gray-400">/month</span>
           </div>
 
@@ -185,10 +627,10 @@
               <span class="text-emerald-400">✓</span> Everything in Premium
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> Multiple location management
+              <span class="text-emerald-400">✓</span> Multi-location management
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-emerald-400">✓</span> API access & integrations
+              <span class="text-emerald-400">✓</span> API access &amp; integrations
             </li>
             <li class="flex items-center gap-2">
               <span class="text-emerald-400">✓</span> Dedicated account manager
@@ -198,7 +640,7 @@
             </li>
           </ul>
 
-          <button onclick="contactSales()" class="w-full px-4 py-2 bg-gold-600 hover:bg-gold-500 text-white font-semibold rounded transition">
+          <button onclick="contactSales()" class="btn-gold w-full px-4 py-3 font-semibold rounded-xl">
             Contact Sales
           </button>
         </div>
@@ -206,44 +648,47 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="mb-12">
-      <h2 class="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
+    <section class="mb-16">
+      <div class="text-center mb-8">
+        <span class="section-line mb-4 block mx-auto"></span>
+        <h2 class="text-3xl font-bold text-white" style="font-family:'Rajdhani',sans-serif;">Frequently Asked Questions</h2>
+      </div>
 
       <div class="space-y-4 max-w-2xl mx-auto">
-        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
+        <details class="lg-glass lg-sheen p-6 rounded-2xl cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             How does billing work?
-            <span class="group-open:rotate-180 transition">▼</span>
+            <span class="group-open:rotate-180 transition text-emerald-400">▼</span>
           </summary>
           <p class="text-gray-400 mt-4">
-            Monthly billing on a recurring cycle. You can cancel anytime with no long-term contracts. All plans include a 14-day free trial.
+            Plans bill monthly on a recurring cycle with no long-term contracts — cancel anytime. Every plan starts with a 14-day free trial.
           </p>
         </details>
 
-        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
+        <details class="lg-glass lg-sheen p-6 rounded-2xl cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             Can I change plans later?
-            <span class="group-open:rotate-180 transition">▼</span>
+            <span class="group-open:rotate-180 transition text-emerald-400">▼</span>
           </summary>
           <p class="text-gray-400 mt-4">
-            Absolutely! You can upgrade or downgrade your plan anytime. Changes take effect on your next billing cycle.
+            Absolutely. You can upgrade or downgrade anytime, and changes take effect on your next billing cycle.
           </p>
         </details>
 
-        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
+        <details class="lg-glass lg-sheen p-6 rounded-2xl cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             What payment methods do you accept?
-            <span class="group-open:rotate-180 transition">▼</span>
+            <span class="group-open:rotate-180 transition text-emerald-400">▼</span>
           </summary>
           <p class="text-gray-400 mt-4">
-            We accept all major credit cards (Visa, Mastercard, American Express) via Stripe secure payment processing.
+            We accept all major credit cards (Visa, Mastercard, American Express) through Stripe's secure payment processing.
           </p>
         </details>
 
-        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
+        <details class="lg-glass lg-sheen p-6 rounded-2xl cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             Is my business data secure?
-            <span class="group-open:rotate-180 transition">▼</span>
+            <span class="group-open:rotate-180 transition text-emerald-400">▼</span>
           </summary>
           <p class="text-gray-400 mt-4">
             Yes. All data is encrypted in transit and at rest, with regular security audits. We comply with industry standards and never share your data with third parties.
@@ -253,55 +698,81 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="bg-gradient-to-r from-emerald-900/30 to-gold-900/30 border border-emerald-500/30 rounded-lg p-8 text-center">
-      <h2 class="text-2xl font-bold text-white mb-2">Ready to Get Featured?</h2>
-      <p class="text-gray-300 mb-6">Join 50+ dispensaries already growing with Green Border</p>
-      <div class="flex gap-4 justify-center">
-        <button onclick="startCheckout('premium')" class="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded transition">
+    <section class="lg-glass lg-sheen rounded-2xl p-8 md:p-12 text-center" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border:1px solid rgba(16,185,129,0.2);">
+      <h2 class="text-3xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Ready to Get Featured?</h2>
+      <p class="text-gray-400 mb-6">Join the dispensaries already growing with The Green Border — your first 14 days are free.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="startCheckout('premium')" class="btn-primary px-6 py-3 font-semibold rounded-xl">
           Start Free Trial
         </button>
-        <button onclick="contactSales()" class="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded transition">
-          Schedule Demo
+        <button onclick="contactSales()" class="btn-glass px-6 py-3 font-semibold rounded-xl">
+          Schedule a Demo
         </button>
       </div>
     </section>
 
-  </main>
+</main>
 
-  <!-- Footer -->
-  <footer class="bg-charcoal-700 border-t border-emerald-500/20 mt-12">
-    <div class="max-w-7xl mx-auto px-4 py-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="text-lg font-bold text-emerald-400 mb-3">🌿 Green Border</h3>
-          <p class="text-gray-400 text-sm">Cannabis dispensary directory for Southern New Mexico</p>
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║                   FOOTER                     ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<footer class="tgb-glass-footer">
+    <div class="tgb-footer-card">
+
+        <div class="tgb-footer-cta">
+            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+            <p class="tgb-cta-text">
+                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
+            </p>
+            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
         </div>
 
-        <div>
-          <h4 class="text-sm font-semibold text-emerald-400 mb-3">Links</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/" class="text-gray-400 hover:text-emerald-400 transition">Home</a></li>
-            <li><a href="/directory.html" class="text-gray-400 hover:text-emerald-400 transition">Directory</a></li>
-            <li><a href="/news.html" class="text-gray-400 hover:text-emerald-400 transition">News</a></li>
-          </ul>
+        <nav class="tgb-footer-nav">
+            <a href="/" class="tgb-footer-link">Home</a>
+            <a href="/news.html" class="tgb-footer-link">News</a>
+            <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+            <a href="/#education" class="tgb-footer-link">Education</a>
+            <a href="/#about" class="tgb-footer-link">About</a>
+            <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
+        </nav>
+
+        <div class="tgb-favorites-section">
+            <span class="tgb-favorites-title">Our Favorites</span>
+            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
+                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
+            </nav>
         </div>
 
-        <div>
-          <h4 class="text-sm font-semibold text-emerald-400 mb-3">Contact</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="mailto:partners@greenborder.org" class="text-gray-400 hover:text-emerald-400 transition">partners@greenborder.org</a></li>
-            <li><a href="tel:+15755550000" class="text-gray-400 hover:text-emerald-400 transition">(575) 555-0000</a></li>
-          </ul>
+        <div class="tgb-legal-block">
+            <p class="tgb-disclaimer-text">
+                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
+            </p>
+            <p class="tgb-disclaimer-text">
+                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
+            </p>
+            <div class="tgb-copyright">
+                Powered by the 915 | Made with ❤ in El Paso, Texas
+                <br>
+                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.3
+            </div>
         </div>
-      </div>
 
-      <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
-        <p>&copy; 2026 Green Border. All rights reserved.</p>
-      </div>
     </div>
-  </footer>
+</footer>
 
-  <script>
+<!-- Mobile Navigation -->
+<nav class="tgb-mobile-nav">
+  <a href="/" class="tgb-nav-item" id="nav-home">🏠 Home</a>
+  <a href="/news.html" class="tgb-nav-item" id="nav-news">📰 News</a>
+  <a href="/data.html" class="tgb-nav-item" id="nav-data">📊 Data</a>
+  <a href="/#education" class="tgb-nav-item" id="nav-edu">📚 Education</a>
+  <a href="/#about" class="tgb-nav-item" id="nav-about">ℹ️ About</a>
+</nav>
+
+<script>
+    // Set year in footer
+    document.getElementById('tgb-year').textContent = new Date().getFullYear();
+
     // Stripe Payment Links Configuration
     const STRIPE_LINKS = {
       basic: 'https://buy.stripe.com/eVq7sL65PbBVfhG65z1B601',
@@ -328,8 +799,8 @@
     function showClaimAlert(dispensaryId) {
       const alert = document.getElementById('claim-alert');
       alert.innerHTML = `
-        <div class="bg-emerald-900/30 border border-emerald-500/50 rounded-lg p-4 flex items-center gap-3">
-          <span class="text-2xl">✓</span>
+        <div class="lg-glass rounded-2xl p-4 flex items-center gap-3" style="border:1px solid rgba(16,185,129,0.5);background:rgba(16,185,129,0.1);">
+          <span class="text-2xl text-emerald-400">✓</span>
           <div>
             <p class="font-semibold text-white">Claiming Listing</p>
             <p class="text-sm text-gray-300">We'll verify your ownership after signup. Dispensary ID: <code class="text-gold-400">${escapeHtml(dispensaryId)}</code></p>
@@ -382,6 +853,6 @@
       };
       return String(text).replace(/[&<>"']/g, m => map[m]);
     }
-  </script>
+</script>
 </body>
 </html>
