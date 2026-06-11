@@ -26,11 +26,26 @@ function hasRealRating(dsp) {
 }
 
 /**
+ * Sanitize an external URL coming from Airtable/seed data before it lands in
+ * an href/src. Only http(s) is allowed (blocks javascript: etc.); bare
+ * domains like "example.com" get https:// prepended so they don't resolve as
+ * relative links. Returns '' when unusable, which hides the button.
+ */
+function safeUrl(url) {
+  const s = String(url || '').trim();
+  if (!s) return '';
+  if (/^https?:\/\//i.test(s)) return s;
+  if (/^[\w-]+(\.[\w-]+)+([\/?#].*)?$/i.test(s)) return `https://${s}`;
+  return '';
+}
+
+/**
  * Build a directions URL: prefer an explicit map link, otherwise construct a
  * Google Maps search from the dispensary name + address + city.
  */
 function getDirectionsUrl(dsp) {
-  if (dsp.mapLink) return dsp.mapLink;
+  const mapLink = safeUrl(dsp.mapLink);
+  if (mapLink) return mapLink;
   const query = [dsp.name, dsp.address, dsp.city, 'NM'].filter(Boolean).join(' ');
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
@@ -271,8 +286,9 @@ function createDispensaryCard(dsp, opts = {}) {
     const id = escapeHtml(dsp.id);
 
     // --- Header (logo + name + city) ---
-    const logo = dsp.logoUrl
-      ? `<img src="${escapeHtml(dsp.logoUrl)}" alt="${escapeHtml(dsp.name)} logo" class="card-logo" loading="lazy" onerror="this.style.display='none'" />`
+    const logoUrl = safeUrl(dsp.logoUrl);
+    const logo = logoUrl
+      ? `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(dsp.name)} logo" class="card-logo" loading="lazy" onerror="this.style.display='none'" />`
       : '';
 
     // --- Rating (only when genuine) ---
@@ -310,15 +326,19 @@ function createDispensaryCard(dsp, opts = {}) {
         ${dsp.hasConsumption ? '<span class="badge-lounge-emoji px-3 py-1.5 rounded-full text-xs font-bold">🛋️ Lounge</span>' : ''}
       </div>`;
 
-    // --- Action row ---
+    // --- Action row (external links sanitized to http(s) only) ---
+    const menuUrl = safeUrl(dsp.menuUrl);
+    const website = safeUrl(dsp.website);
+    const instagram = safeUrl(dsp.instagram);
+    const facebook = safeUrl(dsp.facebook);
     const actions = `
       <div class="flex flex-wrap gap-2 pt-1">
         <a href="${escapeHtml(getDirectionsUrl(dsp))}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()">📍 Directions</a>
-        ${dsp.menuUrl ? `<a href="${escapeHtml(dsp.menuUrl)}" target="_blank" rel="noopener" class="card-action accent" onclick="event.stopPropagation()">🛒 Order / Menu</a>` : ''}
-        ${dsp.website ? `<a href="${escapeHtml(dsp.website)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()">🌐 Website</a>` : ''}
+        ${menuUrl ? `<a href="${escapeHtml(menuUrl)}" target="_blank" rel="noopener" class="card-action accent" onclick="event.stopPropagation()">🛒 Order / Menu</a>` : ''}
+        ${website ? `<a href="${escapeHtml(website)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()">🌐 Website</a>` : ''}
         ${dsp.phone ? `<a href="tel:${escapeHtml(dsp.phone)}" class="card-action" onclick="event.stopPropagation()">📞 Call</a>` : ''}
-        ${dsp.instagram ? `<a href="${escapeHtml(dsp.instagram)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()" aria-label="Instagram">📸</a>` : ''}
-        ${dsp.facebook ? `<a href="${escapeHtml(dsp.facebook)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()" aria-label="Facebook">📘</a>` : ''}
+        ${instagram ? `<a href="${escapeHtml(instagram)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()" aria-label="Instagram">📸</a>` : ''}
+        ${facebook ? `<a href="${escapeHtml(facebook)}" target="_blank" rel="noopener" class="card-action" onclick="event.stopPropagation()" aria-label="Facebook">📘</a>` : ''}
       </div>`;
 
     return `
@@ -425,6 +445,13 @@ function openDispensaryDetail(dispensaryId) {
 
   const status = window.dispensaryService?.getOpenStatus?.(dispensary.hours);
 
+  // External links sanitized to http(s) only
+  const modalLogoUrl = safeUrl(dispensary.logoUrl);
+  const modalMenuUrl = safeUrl(dispensary.menuUrl);
+  const modalWebsite = safeUrl(dispensary.website);
+  const modalInstagram = safeUrl(dispensary.instagram);
+  const modalFacebook = safeUrl(dispensary.facebook);
+
   // Full weekly hours table when structured
   let hoursTable = '';
   if (dispensary.hours && typeof dispensary.hours === 'object') {
@@ -440,7 +467,7 @@ function openDispensaryDetail(dispensaryId) {
   content.innerHTML = `
     <div class="space-y-6">
       <div class="border-b border-gray-700 pb-4 flex items-start gap-4">
-        ${dispensary.logoUrl ? `<img src="${escapeHtml(dispensary.logoUrl)}" alt="" class="w-16 h-16 rounded-lg object-cover" onerror="this.style.display='none'" />` : ''}
+        ${modalLogoUrl ? `<img src="${escapeHtml(modalLogoUrl)}" alt="" class="w-16 h-16 rounded-lg object-cover" onerror="this.style.display='none'" />` : ''}
         <div class="min-w-0">
           <h2 class="text-3xl font-bold text-white">${escapeHtml(dispensary.name)}</h2>
           <p class="text-gray-400 mt-1">📍 ${escapeHtml(dispensary.address || dispensary.city)}</p>
@@ -472,12 +499,12 @@ function openDispensaryDetail(dispensaryId) {
         <h3 class="text-lg font-semibold text-emerald-400">Contact & Links</h3>
         <div class="flex flex-wrap gap-2">
           <a href="${escapeHtml(getDirectionsUrl(dispensary))}" target="_blank" rel="noopener" class="card-action">📍 Directions</a>
-          ${dispensary.menuUrl ? `<a href="${escapeHtml(dispensary.menuUrl)}" target="_blank" rel="noopener" class="card-action accent">🛒 Order / Menu</a>` : ''}
-          ${dispensary.website ? `<a href="${escapeHtml(dispensary.website)}" target="_blank" rel="noopener" class="card-action">🌐 Website</a>` : ''}
+          ${modalMenuUrl ? `<a href="${escapeHtml(modalMenuUrl)}" target="_blank" rel="noopener" class="card-action accent">🛒 Order / Menu</a>` : ''}
+          ${modalWebsite ? `<a href="${escapeHtml(modalWebsite)}" target="_blank" rel="noopener" class="card-action">🌐 Website</a>` : ''}
           ${dispensary.phone ? `<a href="tel:${escapeHtml(dispensary.phone)}" class="card-action">📞 ${escapeHtml(dispensary.phone)}</a>` : ''}
           ${dispensary.email ? `<a href="mailto:${escapeHtml(dispensary.email)}" class="card-action">✉️ Email</a>` : ''}
-          ${dispensary.instagram ? `<a href="${escapeHtml(dispensary.instagram)}" target="_blank" rel="noopener" class="card-action">📸 Instagram</a>` : ''}
-          ${dispensary.facebook ? `<a href="${escapeHtml(dispensary.facebook)}" target="_blank" rel="noopener" class="card-action">📘 Facebook</a>` : ''}
+          ${modalInstagram ? `<a href="${escapeHtml(modalInstagram)}" target="_blank" rel="noopener" class="card-action">📸 Instagram</a>` : ''}
+          ${modalFacebook ? `<a href="${escapeHtml(modalFacebook)}" target="_blank" rel="noopener" class="card-action">📘 Facebook</a>` : ''}
         </div>
       </div>
 
@@ -500,8 +527,16 @@ function openDispensaryDetail(dispensaryId) {
 
 function closeDispensaryModal() {
   const modal = document.getElementById('dispensary-modal');
+  if (!modal) return;
   modal.classList.add('hidden');
 }
+
+// Escape closes the detail modal (no-op on pages without it).
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    try { closeDispensaryModal(); } catch (err) { /* modal not on page */ }
+  }
+});
 
 // ----------------------------------------------------------------------------
 // Filtering, sorting, search
@@ -557,10 +592,96 @@ function applyFilters() {
     const results = getFilteredResults();
     renderDispensariesByCity(results, getSortKey());
     updateResultCount(results.length);
+    syncFiltersToUrl();
   } catch (error) {
     console.error('applyFilters error:', error);
     const el = document.getElementById('result-count');
     if (el) el.textContent = 'Error applying filters';
+  }
+}
+
+/** Minimal debounce — trailing edge only. */
+function debounce(fn, wait = 200) {
+  let t = null;
+  return function (...args) {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+// Debounced variant for the search input so typing doesn't re-render per key.
+const debouncedApplyFilters = debounce(applyFilters, 200);
+
+/** Reflect current search/city into the URL (?q=&city=) without history spam. */
+function syncFiltersToUrl() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const q = document.getElementById('search-input')?.value?.trim();
+    const city = document.getElementById('city-filter')?.value;
+    if (q) params.set('q', q); else params.delete('q');
+    if (city) params.set('city', city); else params.delete('city');
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  } catch (e) { /* file:// or old browser — non-fatal */ }
+}
+
+/** Read ?q= and ?city= into the controls. Call AFTER populateCityFilter(). */
+function applyFiltersFromUrl() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    const city = params.get('city');
+    if (q) {
+      const el = document.getElementById('search-input');
+      if (el) el.value = q;
+    }
+    if (city) {
+      const el = document.getElementById('city-filter');
+      if (el) el.value = city; // no-op when the option doesn't exist
+    }
+    return !!(q || city);
+  } catch (e) {
+    return false;
+  }
+}
+
+/** Show/hide the ✕ button inside the search box and handle clearing. */
+function initSearchClearButton() {
+  const input = document.getElementById('search-input');
+  const btn = document.getElementById('search-clear');
+  if (!input || !btn) return;
+  const toggle = () => btn.classList.toggle('hidden', !input.value);
+  input.addEventListener('input', toggle);
+  btn.addEventListener('click', () => {
+    input.value = '';
+    toggle();
+    applyFilters(); // immediate, not debounced
+    input.focus();
+  });
+  toggle();
+}
+
+/**
+ * Render the data-source indicator next to the result count.
+ * Renders service metadata only — no dispensary-derived strings.
+ * @param {{source:string, fromCache:boolean, lastSync:Date|null, error:string|null}} info
+ */
+function renderDataStatus(info) {
+  try {
+    const el = document.getElementById('data-status');
+    if (!el || !info) return;
+    if (info.error && info.source === 'none') {
+      el.innerHTML = `<span class="text-red-400">⚠️ Couldn't load listings — <a href="#" onclick="refreshData(); return false;" class="underline">retry</a></span>`;
+    } else if (info.source === 'airtable') {
+      const when = info.lastSync
+        ? new Date(info.lastSync).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+        : '';
+      el.innerHTML = `<span class="text-emerald-400">● Live data${when ? ` · updated ${when}` : ''}${info.fromCache ? ' (cached)' : ''}</span>`;
+    } else {
+      el.innerHTML = `<span class="text-gray-500">📄 Showing saved listings (offline copy)${info.error ? ` — <a href="#" onclick="refreshData(); return false;" class="underline">retry live data</a>` : ''}</span>`;
+    }
+  } catch (e) {
+    console.warn('renderDataStatus error:', e);
   }
 }
 
@@ -598,6 +719,9 @@ async function refreshData() {
     populateCityFilter();
     renderHeroStats();
     applyFilters();
+    if (window.dispensaryService?.getDataSourceInfo) {
+      renderDataStatus(window.dispensaryService.getDataSourceInfo());
+    }
   } catch (e) {
     console.error('Refresh error:', e);
     applyFilters();
@@ -747,3 +871,8 @@ window.formatReviewCount = formatReviewCount;
 window.renderHeroStats = renderHeroStats;
 window.injectStructuredData = injectStructuredData;
 window.getFilteredResults = getFilteredResults;
+window.debouncedApplyFilters = debouncedApplyFilters;
+window.syncFiltersToUrl = syncFiltersToUrl;
+window.applyFiltersFromUrl = applyFiltersFromUrl;
+window.initSearchClearButton = initSearchClearButton;
+window.renderDataStatus = renderDataStatus;

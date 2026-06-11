@@ -36,6 +36,8 @@ const DISPENSARY_CONFIG = {
     tableId: ENV.AIRTABLE_TABLE_ID || '',
     apiKey: ENV.AIRTABLE_API_KEY || '',
 
+    // NOTE: view/fields below are no longer sent to the API — the fetch
+    // requests all fields and relies on airtableSync's field mapping.
     // Which Airtable view to use
     view: 'Grid view',
 

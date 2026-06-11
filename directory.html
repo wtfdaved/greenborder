@@ -720,13 +720,16 @@
         <!-- Search -->
         <div class="col-span-2 lg:col-span-1">
           <label class="block text-sm text-gray-400 mb-2 font-semibold">Search</label>
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Name, address, city..."
-            class="w-full bg-white/5 text-white px-4 py-2.5 rounded-xl border border-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition"
-            onkeyup="applyFilters()"
-          />
+          <div class="relative">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Name, address, city, phone..."
+              class="w-full bg-white/5 text-white px-4 py-2.5 pr-10 rounded-xl border border-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition"
+            />
+            <button id="search-clear" type="button" aria-label="Clear search"
+              class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">✕</button>
+          </div>
         </div>
 
         <!-- City Filter -->
@@ -784,9 +787,10 @@
     <!-- City quick-nav -->
     <nav id="city-nav" class="city-nav"></nav>
 
-    <!-- Results Count -->
-    <div class="mb-6 text-gray-400 text-sm">
+    <!-- Results Count & Data Source Status -->
+    <div class="mb-6 text-gray-400 text-sm flex flex-wrap items-center gap-x-4 gap-y-1">
       <p id="result-count">Loading dispensaries...</p>
+      <p id="data-status"></p>
     </div>
 
     <!-- Dispensary Grid by City -->
@@ -882,6 +886,7 @@
 
   <!-- Scripts -->
   <script src="/js/liquid-glass.js" defer></script>
+  <script src="/data/env.js"></script>
   <script src="/data/airtableSync.js"></script>
   <script src="/data/dispensaries-config.js"></script>
   <script src="/data/data-service.js"></script>
@@ -1038,12 +1043,27 @@
           dispensaries = window.dispensaryService?.data || [];
         }
 
+        // Show where the data came from (load resolves before subscriptions attach)
+        if (typeof renderDataStatus === 'function' && window.dispensaryService?.getDataSourceInfo) {
+          renderDataStatus(window.dispensaryService.getDataSourceInfo());
+        }
+
+        // Wire up search input (debounced; 'input' also catches paste/cut/clear)
+        const searchEl = document.getElementById('search-input');
+        if (searchEl && typeof window.debouncedApplyFilters === 'function') {
+          searchEl.addEventListener('input', window.debouncedApplyFilters);
+        }
+        if (typeof initSearchClearButton === 'function') initSearchClearButton();
+
         if (dispensaries.length > 0) {
           try {
             // Populate filters safely
             if (typeof populateCityFilter === 'function') {
               populateCityFilter();
             }
+
+            // Pre-fill controls from ?q= / ?city= deep links
+            if (typeof applyFiltersFromUrl === 'function') applyFiltersFromUrl();
 
             // Hero stats + SEO structured data
             if (typeof renderHeroStats === 'function') renderHeroStats(dispensaries);
@@ -1080,6 +1100,12 @@
                 console.error('Filter update error:', e);
               }
             });
+            if (typeof renderDataStatus === 'function') {
+              window.dispensaryService.subscribe('source-status', renderDataStatus);
+              window.dispensaryService.subscribe('data-error', () => {
+                renderDataStatus(window.dispensaryService.getDataSourceInfo());
+              });
+            }
           }
         } catch (e) {
           console.warn('Subscribe error:', e);
@@ -1114,6 +1140,9 @@
       } catch (error) {
         console.error('❌ Directory initialization failed:', error);
         document.getElementById('result-count').textContent = '⚠️ Error loading dispensaries';
+        if (typeof renderDataStatus === 'function') {
+          renderDataStatus({ source: 'none', error: String(error) });
+        }
         safeRenderDispensaries([]);
       }
     });

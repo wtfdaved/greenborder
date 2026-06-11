@@ -10,6 +10,7 @@ class DispensaryDataService {
     this.isSyncing = false;
     this.lastSync = null;
     this.lastError = null;
+    this.loadedFromCache = false;
 
     // Observer pattern for UI reactivity
     this.subscribers = new Map();
@@ -29,9 +30,22 @@ class DispensaryDataService {
     if (!forceRefresh) {
       const cached = this.loadFromCache();
       if (cached) {
-        this.data = cached;
-        console.log(`✅ Loaded ${cached.length} dispensaries from cache`);
-        return cached;
+        // Don't keep serving cached seed/fallback data once a live Airtable
+        // source is configured — refetch so real listings appear immediately.
+        const liveConfigured =
+          (typeof window !== 'undefined' && window.airtableSync?.getStatus?.().initialized) ||
+          (this.config.airtable.enabled && this.config.airtable.apiKey);
+        const cachedIsSeed = cached.some(r => r && r.dataSource === 'seed');
+
+        if (cachedIsSeed && liveConfigured) {
+          console.log('♻️ Cache holds seed data but a live source is configured — refetching');
+        } else {
+          this.data = cached;
+          this.loadedFromCache = true;
+          console.log(`✅ Loaded ${cached.length} dispensaries from cache`);
+          this.publish('source-status', this.getDataSourceInfo());
+          return cached;
+        }
       }
     }
 
@@ -41,6 +55,7 @@ class DispensaryDataService {
     }
 
     this.isSyncing = true;
+    this.loadedFromCache = false;
 
     try {
       // Preferred: the live Airtable sync service (carries the rich field
@@ -84,6 +99,7 @@ class DispensaryDataService {
 
         console.log(`✅ Loaded ${this.data.length} dispensaries`);
         this.publish('data-loaded', this.data);
+        this.publish('source-status', this.getDataSourceInfo());
       }
 
     } catch (error) {
@@ -95,8 +111,10 @@ class DispensaryDataService {
       const cached = this.loadFromCache();
       if (cached) {
         this.data = cached;
+        this.loadedFromCache = true;
         console.log(`ℹ️ Using stale cache data (${cached.length} items)`);
       }
+      this.publish('source-status', this.getDataSourceInfo());
     }
 
     this.isSyncing = false;
@@ -104,44 +122,23 @@ class DispensaryDataService {
   }
 
   /**
-   * Fetch from Airtable API
+   * Fetch from Airtable API.
+   * Delegates to the shared AirtableSyncService (rich field mapping +
+   * pagination) so there is exactly one Airtable client in the codebase.
    * @private
    */
   async fetchFromAirtable() {
-    const { baseId, tableId, apiKey, fields, view } = this.config.airtable;
+    const sync = (typeof window !== 'undefined') && window.airtableSync;
+    if (!sync) throw new Error('airtableSync service not loaded');
 
-    // Build API URL with parameters
-    const params = new URLSearchParams({
-      view: view,
-      fields: fields.join(','),
-      pageSize: 100
-    });
-
-    const url = `https://api.airtable.com/v0/${baseId}/${tableId}?${params}`;
-
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (response.status === 401) {
-      throw new Error('Airtable API key invalid');
+    // If the sync service wasn't initialized elsewhere, use config credentials.
+    if (!sync.getStatus().initialized) {
+      const { apiKey, baseId, tableId } = this.config.airtable;
+      sync.setCredentials(apiKey, baseId, tableId);
     }
 
-    if (!response.ok) {
-      throw new Error(`Airtable API error: ${response.status} ${response.statusText}`);
-    }
-
-    const json = await response.json();
-
-    // Airtable returns records with .fields property
-    return json.records.map(record => ({
-      airtableId: record.id,
-      ...record.fields
-    }));
+    // Returns internal-schema records tagged with airtableId.
+    return sync.fetchFromAirtable();
   }
 
   /**
@@ -335,19 +332,32 @@ class DispensaryDataService {
   }
 
   /**
-   * Fuzzy search across name + city
+   * Fuzzy search across name, city, address, zip, description, tags, phone.
+   * Multi-word queries: every token must match at least one field.
+   * Phone matching is digits-only, so "575-425-2837" matches "(575) 425-2837".
    */
   search(query) {
     if (!query) return this.data;
 
-    const q = query.toLowerCase();
-    return this.data.filter(item =>
-      item.name.toLowerCase().includes(q) ||
-      item.city.toLowerCase().includes(q) ||
-      (item.address || '').toLowerCase().includes(q) ||
-      (item.tags || []).some(t => String(t).toLowerCase().includes(q)) ||
-      (item.phone || '').includes(q)
-    );
+    const tokens = String(query).toLowerCase().split(/\s+/).filter(Boolean);
+    if (!tokens.length) return this.data;
+
+    const digitsOf = (s) => String(s || '').replace(/\D/g, '');
+
+    return this.data.filter(item => {
+      const haystack = [
+        item.name, item.city, item.address, item.zipCode,
+        item.description, ...(item.tags || [])
+      ].map(v => String(v || '').toLowerCase()).join(' ');
+      const phoneDigits = digitsOf(item.phone);
+
+      return tokens.every(tok => {
+        if (haystack.includes(tok)) return true;
+        // ≥3 digits avoids tokens like "1st" spuriously matching phones
+        const tokDigits = digitsOf(tok);
+        return tokDigits.length >= 3 && phoneDigits.includes(tokDigits);
+      });
+    });
   }
 
   /**
@@ -498,6 +508,23 @@ class DispensaryDataService {
     const mins = now.getHours() * 60 + now.getMinutes();
 
     return { isOpen: mins >= open && mins < close, todayLabel: text };
+  }
+
+  /**
+   * Describe where the current data came from, for the UI status line.
+   * @returns {{source:string, fromCache:boolean, lastSync:Date|null, count:number, error:string|null}}
+   */
+  getDataSourceInfo() {
+    const source = this.data[0]?.dataSource === 'seed'
+      ? 'seed'
+      : (this.data.length ? 'airtable' : 'none');
+    return {
+      source,
+      fromCache: !!this.loadedFromCache,
+      lastSync: this.lastSync,
+      count: this.data.length,
+      error: this.lastError
+    };
   }
 
   /**
