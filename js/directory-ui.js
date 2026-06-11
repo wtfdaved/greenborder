@@ -346,17 +346,17 @@ function createDispensaryCard(dsp, opts = {}) {
            onclick="try { openDispensaryDetail('${id}'); } catch(e) { console.error(e); }">
         ${premium ? '<div class="premium-badge">FEATURED ✨</div>' : ''}
 
-        <div class="card-header-glass p-5 border-b border-emerald-500/20 flex items-center gap-3">
+        <div class="card-header-glass p-4 sm:p-5 border-b border-emerald-500/20 flex items-center gap-3">
           ${logo}
           <div class="min-w-0">
-            <h3 class="text-xl font-bold text-white mb-0.5 truncate">${escapeHtml(dsp.name)}</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-white mb-0.5 leading-tight">${escapeHtml(dsp.name)}</h3>
             <p class="text-emerald-100 text-sm flex items-center gap-1">
               <span>📍</span><span>${escapeHtml(dsp.city)}</span>
             </p>
           </div>
         </div>
 
-        <div class="p-5 space-y-4">
+        <div class="p-4 sm:p-5 space-y-4">
           ${ratingBlock}
           ${hoursBlock ? `<div>${hoursBlock}</div>` : ''}
           <p class="text-sm text-gray-300">${escapeHtml(dsp.address)}</p>
@@ -469,7 +469,7 @@ function openDispensaryDetail(dispensaryId) {
       <div class="border-b border-gray-700 pb-4 flex items-start gap-4">
         ${modalLogoUrl ? `<img src="${escapeHtml(modalLogoUrl)}" alt="" class="w-16 h-16 rounded-lg object-cover" onerror="this.style.display='none'" />` : ''}
         <div class="min-w-0">
-          <h2 class="text-3xl font-bold text-white">${escapeHtml(dispensary.name)}</h2>
+          <h2 class="text-xl sm:text-3xl font-bold text-white leading-tight">${escapeHtml(dispensary.name)}</h2>
           <p class="text-gray-400 mt-1">📍 ${escapeHtml(dispensary.address || dispensary.city)}</p>
           ${status ? `<span class="open-pill ${status.isOpen ? 'open' : 'closed'} mt-2 inline-block">${status.isOpen ? '● Open now' : '● Closed'} · ${escapeHtml(status.todayLabel)}</span>` : ''}
           ${hasRealRating(dispensary) ? `

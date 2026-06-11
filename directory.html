@@ -606,6 +606,13 @@
       .filter-bar select { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
       .offering-chip { padding: 6px 12px; font-size: 0.8rem; }
       .city-section { scroll-margin-top: 80px; }
+      .city-header { flex-wrap: wrap; row-gap: 8px; }
+      .city-meta { margin-top: 4px; width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .city-title { font-size: 1.4rem; }
     }
   </style>
 
@@ -699,12 +706,12 @@
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 pt-32 pb-20">
+  <main class="max-w-7xl mx-auto px-4 pt-20 md:pt-32 pb-20">
 
     <!-- Title Section -->
     <div class="text-center mb-8">
-      <h1 class="text-4xl md:text-5xl font-bold mb-3 lg-gradient-text" style="font-family:'Rajdhani',sans-serif;">Cannabis Dispensary Directory</h1>
-      <p class="text-gray-400 text-lg">Every licensed, legal dispensary across Southern New Mexico — deals, hours, menus &amp; directions in one place</p>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 lg-gradient-text" style="font-family:'Rajdhani',sans-serif;">Cannabis Dispensary Directory</h1>
+      <p class="text-gray-400 text-base sm:text-lg">Every licensed, legal dispensary across Southern New Mexico — deals, hours, menus &amp; directions in one place</p>
       <p class="text-gray-500 text-base mt-3 max-w-3xl mx-auto">
         New Mexico cannabis is legal for adults 21+, and the closest dispensaries sit just minutes from El Paso in
         Sunland Park, Santa Teresa, Chaparral, and Anthony. Compare ratings, live open-now status, current deals,
@@ -715,10 +722,10 @@
     </div>
 
     <!-- Filters & Search -->
-    <div class="filter-bar bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 mb-8 space-y-4">
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="filter-bar bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6 mb-8 space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         <!-- Search -->
-        <div class="col-span-2 lg:col-span-1">
+        <div class="col-span-1 sm:col-span-2 lg:col-span-1">
           <label class="block text-sm text-gray-400 mb-2 font-semibold">Search</label>
           <div class="relative">
             <input
@@ -771,15 +778,15 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex gap-3 justify-end pt-1">
-        <button onclick="clearFilters()" class="px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-lg border border-white/10 transition font-medium text-sm">
+      <div class="flex flex-wrap gap-2 sm:gap-3 sm:justify-end pt-1">
+        <button onclick="clearFilters()" class="flex-1 sm:flex-none min-w-0 px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-lg border border-white/10 transition font-medium text-sm text-center">
           ✕ Clear
         </button>
-        <button onclick="exportToCSV()" class="px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-lg border border-white/10 transition font-medium text-sm">
-          📥 Export CSV
+        <button onclick="exportToCSV()" class="flex-1 sm:flex-none min-w-0 px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-lg border border-white/10 transition font-medium text-sm text-center">
+          📥 Export
         </button>
-        <button onclick="refreshData()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition font-medium text-sm">
-          🔄 Refresh Data
+        <button onclick="refreshData()" class="flex-1 sm:flex-none min-w-0 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition font-medium text-sm text-center">
+          🔄 Refresh
         </button>
       </div>
     </div>
@@ -832,7 +839,7 @@
     </section>
 
     <!-- Partnership CTA -->
-    <div class="bg-white/5 backdrop-blur-xl border border-emerald-500/20 rounded-3xl p-8 md:p-12 text-center">
+    <div class="bg-white/5 backdrop-blur-xl border border-emerald-500/20 rounded-3xl p-6 sm:p-8 md:p-12 text-center">
       <div class="text-sm text-emerald-400 font-bold uppercase tracking-widest mb-4">Own a Dispensary?</div>
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Feature Your Dispensary</h2>
       <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">Premium listings, featured placements, and customer engagement tools to grow your foot traffic across the border region.</p>
@@ -874,13 +881,13 @@
   </footer>
 
   <!-- Detail Modal -->
-  <div id="dispensary-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-charcoal-700 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-      <div class="sticky top-0 bg-charcoal-800 border-b border-gray-700 px-6 py-4 flex items-center justify-between">
-        <h2 class="text-xl font-bold text-white">Dispensary Details</h2>
-        <button onclick="closeDispensaryModal()" class="text-gray-400 hover:text-white">✕</button>
+  <div id="dispensary-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-charcoal-700 rounded-t-2xl sm:rounded-2xl max-w-2xl w-full max-h-[92vh] sm:max-h-[80vh] overflow-y-auto">
+      <div class="sticky top-0 bg-charcoal-800 border-b border-gray-700 px-4 sm:px-6 py-4 flex items-center justify-between">
+        <h2 class="text-lg sm:text-xl font-bold text-white">Dispensary Details</h2>
+        <button onclick="closeDispensaryModal()" class="text-gray-400 hover:text-white text-2xl leading-none px-2">✕</button>
       </div>
-      <div id="modal-content" class="p-6"></div>
+      <div id="modal-content" class="p-4 sm:p-6"></div>
     </div>
   </div>
 
