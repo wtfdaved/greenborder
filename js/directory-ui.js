@@ -500,8 +500,16 @@ function openDispensaryDetail(dispensaryId) {
 
 function closeDispensaryModal() {
   const modal = document.getElementById('dispensary-modal');
+  if (!modal) return;
   modal.classList.add('hidden');
 }
+
+// Escape closes the detail modal (no-op on pages without it).
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    try { closeDispensaryModal(); } catch (err) { /* modal not on page */ }
+  }
+});
 
 // ----------------------------------------------------------------------------
 // Filtering, sorting, search
@@ -557,10 +565,96 @@ function applyFilters() {
     const results = getFilteredResults();
     renderDispensariesByCity(results, getSortKey());
     updateResultCount(results.length);
+    syncFiltersToUrl();
   } catch (error) {
     console.error('applyFilters error:', error);
     const el = document.getElementById('result-count');
     if (el) el.textContent = 'Error applying filters';
+  }
+}
+
+/** Minimal debounce — trailing edge only. */
+function debounce(fn, wait = 200) {
+  let t = null;
+  return function (...args) {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+// Debounced variant for the search input so typing doesn't re-render per key.
+const debouncedApplyFilters = debounce(applyFilters, 200);
+
+/** Reflect current search/city into the URL (?q=&city=) without history spam. */
+function syncFiltersToUrl() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const q = document.getElementById('search-input')?.value?.trim();
+    const city = document.getElementById('city-filter')?.value;
+    if (q) params.set('q', q); else params.delete('q');
+    if (city) params.set('city', city); else params.delete('city');
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  } catch (e) { /* file:// or old browser — non-fatal */ }
+}
+
+/** Read ?q= and ?city= into the controls. Call AFTER populateCityFilter(). */
+function applyFiltersFromUrl() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    const city = params.get('city');
+    if (q) {
+      const el = document.getElementById('search-input');
+      if (el) el.value = q;
+    }
+    if (city) {
+      const el = document.getElementById('city-filter');
+      if (el) el.value = city; // no-op when the option doesn't exist
+    }
+    return !!(q || city);
+  } catch (e) {
+    return false;
+  }
+}
+
+/** Show/hide the ✕ button inside the search box and handle clearing. */
+function initSearchClearButton() {
+  const input = document.getElementById('search-input');
+  const btn = document.getElementById('search-clear');
+  if (!input || !btn) return;
+  const toggle = () => btn.classList.toggle('hidden', !input.value);
+  input.addEventListener('input', toggle);
+  btn.addEventListener('click', () => {
+    input.value = '';
+    toggle();
+    applyFilters(); // immediate, not debounced
+    input.focus();
+  });
+  toggle();
+}
+
+/**
+ * Render the data-source indicator next to the result count.
+ * Renders service metadata only — no dispensary-derived strings.
+ * @param {{source:string, fromCache:boolean, lastSync:Date|null, error:string|null}} info
+ */
+function renderDataStatus(info) {
+  try {
+    const el = document.getElementById('data-status');
+    if (!el || !info) return;
+    if (info.error && info.source === 'none') {
+      el.innerHTML = `<span class="text-red-400">⚠️ Couldn't load listings — <a href="#" onclick="refreshData(); return false;" class="underline">retry</a></span>`;
+    } else if (info.source === 'airtable') {
+      const when = info.lastSync
+        ? new Date(info.lastSync).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+        : '';
+      el.innerHTML = `<span class="text-emerald-400">● Live data${when ? ` · updated ${when}` : ''}${info.fromCache ? ' (cached)' : ''}</span>`;
+    } else {
+      el.innerHTML = `<span class="text-gray-500">📄 Showing saved listings (offline copy)${info.error ? ` — <a href="#" onclick="refreshData(); return false;" class="underline">retry live data</a>` : ''}</span>`;
+    }
+  } catch (e) {
+    console.warn('renderDataStatus error:', e);
   }
 }
 
@@ -598,6 +692,9 @@ async function refreshData() {
     populateCityFilter();
     renderHeroStats();
     applyFilters();
+    if (window.dispensaryService?.getDataSourceInfo) {
+      renderDataStatus(window.dispensaryService.getDataSourceInfo());
+    }
   } catch (e) {
     console.error('Refresh error:', e);
     applyFilters();
@@ -747,3 +844,8 @@ window.formatReviewCount = formatReviewCount;
 window.renderHeroStats = renderHeroStats;
 window.injectStructuredData = injectStructuredData;
 window.getFilteredResults = getFilteredResults;
+window.debouncedApplyFilters = debouncedApplyFilters;
+window.syncFiltersToUrl = syncFiltersToUrl;
+window.applyFiltersFromUrl = applyFiltersFromUrl;
+window.initSearchClearButton = initSearchClearButton;
+window.renderDataStatus = renderDataStatus;

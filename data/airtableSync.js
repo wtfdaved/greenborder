@@ -169,43 +169,59 @@ class AirtableSyncService {
   }
 
   /**
-   * Fetch data from Airtable API
-   * Maps Airtable fields to internal schema
+   * Fetch ALL data from Airtable API, following pagination offsets.
+   * Maps Airtable fields to internal schema.
+   *
+   * Intentionally requests every field: a `fields` param containing names the
+   * table doesn't have causes a 422 that fails the whole request, and
+   * mapAirtableRecords() already ignores fields it doesn't know.
    * @private
    */
   async fetchFromAirtable() {
-    const url = `https://api.airtable.com/v0/${this.baseId}/${this.tableId}`;
+    const baseUrl = `https://api.airtable.com/v0/${this.baseId}/${this.tableId}`;
+    const MAX_PAGES = 20; // 20 × 100 = 2000 records safety cap
+    const allRecords = [];
+    let offset = null;
+    let page = 0;
 
-    const params = new URLSearchParams({
-      pageSize: 100,
-      fields: this.fields.join(',')
-    });
+    do {
+      const params = new URLSearchParams({ pageSize: '100' });
+      if (offset) params.set('offset', offset);
 
-    const response = await fetch(`${url}?${params}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
-        'Content-Type': 'application/json'
+      const response = await fetch(`${baseUrl}?${params}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      // Handle API errors
+      if (response.status === 401) {
+        throw new Error('Airtable API key invalid');
       }
-    });
 
-    // Handle API errors
-    if (response.status === 401) {
-      throw new Error('Airtable API key invalid');
+      if (response.status === 429) {
+        throw new Error('Airtable rate limit exceeded');
+      }
+
+      if (!response.ok) {
+        throw new Error(`Airtable API error: ${response.status} ${response.statusText}`);
+      }
+
+      const json = await response.json();
+      allRecords.push(...(json.records || []));
+      offset = json.offset || null;
+      page++;
+    } while (offset && page < MAX_PAGES);
+
+    if (offset) {
+      console.warn(`⚠️ Stopped pagination after ${MAX_PAGES} pages (${allRecords.length} records)`);
     }
-
-    if (response.status === 429) {
-      throw new Error('Airtable rate limit exceeded');
-    }
-
-    if (!response.ok) {
-      throw new Error(`Airtable API error: ${response.status} ${response.statusText}`);
-    }
-
-    const json = await response.json();
+    console.log(`📦 Fetched ${allRecords.length} records across ${page} page(s)`);
 
     // Map Airtable records to internal schema
-    return this.mapAirtableRecords(json.records || []);
+    return this.mapAirtableRecords(allRecords);
   }
 
   /**
@@ -375,7 +391,9 @@ class AirtableSyncService {
   }
 
   /**
-   * Get default fields to fetch from Airtable
+   * Get default fields to fetch from Airtable.
+   * Retained for reference/back-compat only — the fetch no longer sends a
+   * `fields` param (it requests all fields and relies on fieldMapping).
    * @private
    */
   getDefaultFields() {
