@@ -651,7 +651,7 @@
     }
 
     /* Dropdown options styling for readability */
-    #tgb-month option {
+    #tgb-month option, #tgb-metric option {
         background-color: white;
         color: black;
     }
@@ -758,13 +758,129 @@
         background: linear-gradient(to bottom, rgba(5, 150, 105, 0.06), transparent);
     }
 
-    /* Smooth Transitions */
-    * {
-        transition: all 0.2s ease;
+    /* Smooth Transitions (scoped — a global * transition hurts scroll/paint perf, esp. mobile) */
+    #tgb-ultra-dash button, #tgb-ultra-dash select, #tgb-ultra-dash input, #tgb-ultra-dash a {
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     button, select, [role="button"] {
         cursor: pointer;
+    }
+
+    /* ── Readability: remap dark-theme text classes onto the light frosted panels ──
+       The dashboard markup (and JS-injected rows) use light slate/pale-300 colors meant
+       for dark backgrounds. These scoped overrides map them to dark, high-contrast
+       equivalents so every label, KPI, and table cell is legible on the glass panels. */
+    #tgb-ultra-dash .text-slate-100 { color: #0f172a !important; }
+    #tgb-ultra-dash .text-slate-200 { color: #1e293b !important; }
+    #tgb-ultra-dash .text-slate-300 { color: #334155 !important; }
+    #tgb-ultra-dash .text-slate-400 { color: #475569 !important; }
+    #tgb-ultra-dash .text-slate-500 { color: #5b6963 !important; }
+    #tgb-ultra-dash .hover\:text-slate-200:hover { color: #0f172a !important; }
+    #tgb-ultra-dash .placeholder-slate-500::placeholder { color: #6b7a73 !important; }
+
+    /* Pale -300 KPI values → strong 700-level tones */
+    #tgb-ultra-dash .text-emerald-300 { color: #047857 !important; }
+    #tgb-ultra-dash .text-blue-300    { color: #1d4ed8 !important; }
+    #tgb-ultra-dash .text-rose-300    { color: #be123c !important; }
+    #tgb-ultra-dash .text-amber-300   { color: #b45309 !important; }
+    #tgb-ultra-dash .text-violet-300  { color: #6d28d9 !important; }
+    #tgb-ultra-dash .text-cyan-300    { color: #0e7490 !important; }
+
+    /* -400 accents → 600-level tones */
+    #tgb-ultra-dash .text-emerald-400, #tgb-ultra-dash .hover\:text-emerald-400:hover { color: #059669 !important; }
+    #tgb-ultra-dash .text-blue-400    { color: #2563eb !important; }
+    #tgb-ultra-dash .text-rose-400, #tgb-ultra-dash .hover\:text-rose-400:hover { color: #e11d48 !important; }
+    #tgb-ultra-dash .text-amber-400   { color: #d97706 !important; }
+    #tgb-ultra-dash .text-violet-400  { color: #7c3aed !important; }
+    #tgb-ultra-dash .text-cyan-400    { color: #0891b2 !important; }
+    #tgb-ultra-dash .text-emerald-400\/80 { color: rgba(4, 120, 87, 0.85) !important; }
+    #tgb-ultra-dash .text-blue-400\/80    { color: rgba(29, 78, 216, 0.85) !important; }
+    #tgb-ultra-dash .text-rose-400\/80    { color: rgba(190, 18, 60, 0.85) !important; }
+    #tgb-ultra-dash .text-amber-400\/80   { color: rgba(180, 83, 9, 0.85) !important; }
+    #tgb-ultra-dash .text-violet-400\/80  { color: rgba(109, 40, 217, 0.85) !important; }
+    #tgb-ultra-dash .text-cyan-400\/80    { color: rgba(14, 116, 144, 0.85) !important; }
+
+    /* Dark slate buttons/panels → frosted light chips with dark text */
+    #tgb-ultra-dash .bg-slate-700 {
+        background-color: rgba(255, 255, 255, 0.72) !important;
+        color: #334155 !important;
+        border: 1px solid rgba(13, 32, 23, 0.14) !important;
+    }
+    #tgb-ultra-dash .hover\:bg-slate-600:hover,
+    #tgb-ultra-dash .hover\:bg-slate-700:hover {
+        background-color: rgba(5, 150, 105, 0.12) !important;
+        color: #047857 !important;
+    }
+    #tgb-ultra-dash .bg-slate-800 {
+        background-color: rgba(255, 255, 255, 0.65) !important;
+        border: 1px solid rgba(13, 32, 23, 0.12) !important;
+    }
+    #tgb-ultra-dash .hover\:bg-slate-800:hover { background-color: rgba(5, 150, 105, 0.10) !important; }
+    #tgb-ultra-dash .hover\:bg-rose-900:hover { background-color: rgba(225, 29, 72, 0.12) !important; }
+
+    /* Active filter chips: the #tgb-ultra-dash button reset (ID specificity) beats
+       Tailwind's .bg-emerald-600, leaving white text on a transparent chip. Restore it. */
+    #tgb-ultra-dash button.bg-emerald-600 {
+        background-color: #059669 !important;
+        color: #ffffff !important;
+        border: 1px solid #047857 !important;
+        box-shadow: 0 2px 8px rgba(5, 150, 105, 0.30);
+    }
+    #tgb-ultra-dash button.bg-emerald-600:hover { background-color: #047857 !important; }
+
+    /* Dark emerald/amber badge backgrounds → light tints */
+    #tgb-ultra-dash .bg-emerald-900,
+    #tgb-ultra-dash .bg-emerald-900\/30 {
+        background-color: rgba(5, 150, 105, 0.12) !important;
+        border-color: rgba(5, 150, 105, 0.35) !important;
+    }
+    #tgb-ultra-dash .bg-amber-900\/30 {
+        background-color: rgba(217, 119, 6, 0.12) !important;
+        border-color: rgba(217, 119, 6, 0.35) !important;
+    }
+
+    /* Dark borders / dividers → soft light borders */
+    #tgb-ultra-dash .border-slate-600,
+    #tgb-ultra-dash .border-slate-700,
+    #tgb-ultra-dash .border-slate-800 { border-color: rgba(13, 32, 23, 0.13) !important; }
+    #tgb-ultra-dash .divide-slate-800 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(13, 32, 23, 0.08) !important; }
+
+    /* Selects/inputs sit on near-white panels — force dark text */
+    #tgb-ultra-dash select, #tgb-ultra-dash input { color: #1e293b !important; }
+
+    /* Zebra striping for easier row scanning */
+    #tgb-ultra-dash #tgb-tbody tr:nth-child(even):not(.active-row):not(.comparison-selected) {
+        background-color: rgba(5, 150, 105, 0.035);
+    }
+
+    /* FAB stays dark over the dark page background — keep its menu legible */
+    #fab-menu {
+        background: rgba(255, 255, 255, 0.92) !important;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(13, 32, 23, 0.14);
+    }
+    #fab-menu button { color: #1e293b !important; }
+
+    /* ── Mobile optimization ── */
+    @media (max-width: 640px) {
+        #tgb-ultra-dash { padding: 0 8px; border-radius: 16px; backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); }
+        #tgb-ultra-dash .p-6 { padding: 12px !important; }
+        #tgb-ultra-dash .gap-6 { gap: 14px !important; }
+        #tgb-ultra-dash .gap-5 { gap: 10px !important; }
+        #tgb-ultra-dash .kpi-card { padding: 12px !important; }
+        #tgb-ultra-dash .kpi-card span[id^="kpi-"] { font-size: 1.35rem; }
+        /* Toolbar: let the period chips scroll horizontally instead of cramping */
+        #time-range-filters { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; padding-bottom: 2px; }
+        #time-range-filters button { white-space: nowrap; flex-shrink: 0; }
+        #tgb-ultra-dash .chart-container { padding: 14px !important; }
+        #tgb-ultra-dash .chart-container:hover { transform: none; }
+        #tgb-ultra-dash .kpi-card:hover { transform: none; }
+        /* Smooth momentum scrolling on the wide table */
+        #tgb-ultra-dash .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+        /* Slightly tighter table cells on small screens */
+        #tgb-tbody td, #tgb-ultra-dash thead th { padding-left: 10px !important; padding-right: 10px !important; }
     }
 </style>
 
@@ -1159,7 +1275,8 @@
             </div>
             <div class="px-4 py-2 border-t border-slate-700 lg-panel-soft text-[10px] text-slate-500 flex justify-between items-center shrink-0">
                 <span>Data Source: NM Cannabis Control Division</span>
-                <span>Click a row to view specific trends</span>
+                <span class="sm:hidden">Swipe table ↔ · Tap a row for details</span>
+                <span class="hidden sm:inline">Click a row to view specific trends</span>
             </div>
         </div>
 
@@ -1171,7 +1288,11 @@
             <i data-lucide="filter" class="w-6 h-6"></i>
         </button>
         <div id="fab-menu" class="hidden flex flex-col gap-2 bg-slate-800 rounded-lg p-2 shadow-lg">
-            <button onclick="document.getElementById('tgb-search').focus(); document.getElementById('fab-menu').classList.add('hidden');" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">Search</button>
+            <button onclick="document.getElementById('tgb-search').focus(); document.getElementById('tgb-search').scrollIntoView({behavior:'smooth', block:'center'}); document.getElementById('fab-menu').classList.add('hidden');" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">🔍 Search</button>
+            <button onclick="document.getElementById('btn-export-csv').click(); document.getElementById('fab-menu').classList.add('hidden');" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">⬇ Export CSV</button>
+            <button onclick="document.getElementById('btn-share-view').click(); document.getElementById('fab-menu').classList.add('hidden');" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">🔗 Share View</button>
+            <button onclick="document.getElementById('tgb-tbody').scrollIntoView({behavior:'smooth', block:'start'}); document.getElementById('fab-menu').classList.add('hidden');" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">📋 Jump to Table</button>
+            <button onclick="window.scrollTo({top:0, behavior:'smooth'}); document.getElementById('fab-menu').classList.add('hidden');" class="px-3 py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-colors">↑ Back to Top</button>
         </div>
     </div>
 </div>
