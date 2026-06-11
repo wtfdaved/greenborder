@@ -886,56 +886,11 @@
 
   <!-- Scripts -->
   <script src="/js/liquid-glass.js" defer></script>
-  <script src="/data/env.js"></script>
+  <script src="/data/dispensaries.js"></script>
   <script src="/data/airtableSync.js"></script>
   <script src="/data/dispensaries-config.js"></script>
   <script src="/data/data-service.js"></script>
   <script src="/js/directory-ui.js"></script>
-
-  <!-- Airtable Sync Initialization -->
-  <script>
-    // Initialize Airtable sync with production credentials
-    (function initializeAirtableSync() {
-      // Airtable Configuration
-      const AIRTABLE_CONFIG = {
-        baseId: 'appsyx973b3QozJv6',
-        tableId: 'tblKwRRyoKXAf85b1'
-      };
-
-      // Retrieve API key from environment:
-      // 1. window.ENV.AIRTABLE_API_KEY (injected by backend)
-      // 2. localStorage.AIRTABLE_API_KEY (stored by user)
-      // 3. Empty string (will use JSON fallback)
-      //
-      // To set credentials:
-      // - Production: Configure environment variable in Netlify/Vercel settings
-      // - Development: Set localStorage or window.ENV in console
-      const getSecureApiKey = () => {
-        return (
-          (typeof window !== 'undefined' && window.ENV?.AIRTABLE_API_KEY) ||
-          localStorage.getItem('AIRTABLE_API_KEY') ||
-          ''
-        );
-      };
-
-      // Initialize the sync service
-      const apiKey = getSecureApiKey();
-      window.airtableSync.initialize({
-        apiKey: apiKey,
-        baseId: AIRTABLE_CONFIG.baseId,
-        tableId: AIRTABLE_CONFIG.tableId
-      });
-
-      // Log status
-      const status = window.airtableSync.getStatus();
-      if (status.initialized) {
-        console.log('✅ Airtable sync initialized - live database connected');
-      } else {
-        console.log('ℹ️ Airtable credentials not configured - using JSON fallback');
-        console.log('ℹ️ To enable: Set window.ENV.AIRTABLE_API_KEY or localStorage.AIRTABLE_API_KEY');
-      }
-    })();
-  </script>
 
   <script>
     // Fallback rendering function (safe baseline)
@@ -1029,23 +984,17 @@
           throw new Error('dispensaryService not loaded');
         }
 
-        // Load data with timeout
-        const loadPromise = window.dispensaryService.load();
-        const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Data load timeout')), 10000)
-        );
+        // Load from the shared static dispensaries file — no API calls needed
+        const svc = window.dispensaryService;
+        svc.data = svc.normalize(window.DISPENSARIES || []);
+        svc.data = svc.deduplicate(svc.data);
+        svc.data = svc.sortByCity(svc.data);
+        svc.lastSync = new Date();
 
-        let dispensaries = [];
-        try {
-          dispensaries = await Promise.race([loadPromise, timeoutPromise]);
-        } catch (loadErr) {
-          console.error('Data load error:', loadErr);
-          dispensaries = window.dispensaryService?.data || [];
-        }
+        const dispensaries = svc.data;
 
-        // Show where the data came from (load resolves before subscriptions attach)
-        if (typeof renderDataStatus === 'function' && window.dispensaryService?.getDataSourceInfo) {
-          renderDataStatus(window.dispensaryService.getDataSourceInfo());
+        if (typeof renderDataStatus === 'function') {
+          renderDataStatus({ source: 'airtable', fromCache: false, lastSync: svc.lastSync, count: dispensaries.length });
         }
 
         // Wire up search input (debounced; 'input' also catches paste/cut/clear)

@@ -16,7 +16,9 @@
       "Bash(npx playwright *)",
       "Bash(node /tmp/smoke.js)",
       "Bash(git reset *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(node tests/data-services.test.mjs)",
+      "Bash(git checkout *)"
     ]
   }
 }
