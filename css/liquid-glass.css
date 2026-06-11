@@ -540,6 +540,9 @@ body.scrolled #tgb-glass-header {
 @media (max-width: 600px) {
   .hero-stats { grid-template-columns: repeat(3, 1fr); }
 }
+@media (max-width: 380px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+}
 .hero-stat {
   background: var(--lg-glass-bg);
   backdrop-filter: var(--lg-blur-soft);
