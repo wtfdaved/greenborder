@@ -608,6 +608,67 @@
       .city-section { scroll-margin-top: 80px; }
     }
   </style>
+
+  <!-- Liquid Glass design system (must load after the inline styles above) -->
+  <link rel="stylesheet" href="/css/liquid-glass.css" />
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is cannabis legal near El Paso, Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cannabis is legal for adults 21+ in New Mexico, including Sunland Park, Santa Teresa, Chaparral, and Anthony — all within a short drive of El Paso. It remains illegal in Texas and federally, so it cannot be transported across the state line."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Texas residents buy cannabis in New Mexico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. New Mexico dispensaries sell to any adult 21 or older with a valid government-issued ID, regardless of home state. Purchases must be consumed in New Mexico — bringing cannabis back into Texas is a crime."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do I need to buy from a dispensary?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A valid government-issued photo ID proving you are 21 or older. Most dispensaries accept cash and debit; credit cards are often unavailable due to federal banking rules."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which dispensary is closest to El Paso?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dispensaries in Sunland Park, NM are the closest to El Paso — roughly 10–15 minutes from the west side and downtown. Chaparral serves Northeast El Paso, while Santa Teresa and Anthony are convenient from I-10 and the Upper Valley."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I take my purchase back to Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Possessing cannabis in Texas remains illegal, and crossing the state line with it can carry serious penalties. Several dispensaries offer on-site consumption lounges where products can be enjoyed legally in New Mexico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there consumption lounges near El Paso?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Several dispensaries in Sunland Park and Chaparral operate licensed consumption lounges where adults 21+ can legally consume on site — some with food service and events. Use the Lounge filter above to find them."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="bg-charcoal-900" id="tgb-body">
@@ -642,9 +703,14 @@
 
     <!-- Title Section -->
     <div class="text-center mb-8">
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Cannabis Dispensary Directory</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mb-3 lg-gradient-text" style="font-family:'Rajdhani',sans-serif;">Cannabis Dispensary Directory</h1>
       <p class="text-gray-400 text-lg">Every licensed, legal dispensary across Southern New Mexico — deals, hours, menus &amp; directions in one place</p>
-      <!-- Hero Stats -->
+      <p class="text-gray-500 text-base mt-3 max-w-3xl mx-auto">
+        New Mexico cannabis is legal for adults 21+, and the closest dispensaries sit just minutes from El Paso in
+        Sunland Park, Santa Teresa, Chaparral, and Anthony. Compare ratings, live open-now status, current deals,
+        and consumption lounges below — every listing is a state-licensed retailer.
+      </p>
+      <!-- Hero Stats / Market Insights -->
       <div id="hero-stats" class="hero-stats"></div>
     </div>
 
@@ -698,6 +764,7 @@
         <span class="offering-chip" data-offering="med"    data-active="false" onclick="toggleOffering(this)">🏥 Medical</span>
         <span class="offering-chip" data-offering="lounge" data-active="false" onclick="toggleOffering(this)">🛋️ Lounge</span>
         <span class="offering-chip" data-offering="deals"  data-active="false" onclick="toggleOffering(this)">🔥 Has Deals</span>
+        <span class="offering-chip" data-offering="open"   data-active="false" onclick="toggleOffering(this)">🟢 Open Now</span>
       </div>
 
       <!-- Action Buttons -->
@@ -726,6 +793,39 @@
     <div id="dispensary-grid-by-city" class="space-y-12 mb-12">
       <div class="col-span-full text-center py-12 text-gray-500">Loading dispensaries...</div>
     </div>
+
+    <!-- FAQ -->
+    <section class="lg-faq mb-12" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="text-3xl font-bold text-white mb-2 text-center" style="font-family:'Rajdhani',sans-serif;">Visiting From El Paso? Know Before You Go</h2>
+      <p class="text-gray-400 text-center mb-8 max-w-2xl mx-auto">Quick answers about buying legal cannabis across the border in New Mexico.</p>
+
+      <div class="max-w-3xl mx-auto">
+        <details>
+          <summary>Is cannabis legal near El Paso, Texas?</summary>
+          <div class="faq-body">Cannabis is legal for adults 21+ in New Mexico, including Sunland Park, Santa Teresa, Chaparral, and Anthony — all within a short drive of El Paso. It remains illegal in Texas and federally, so it cannot be transported across the state line.</div>
+        </details>
+        <details>
+          <summary>Can Texas residents buy cannabis in New Mexico?</summary>
+          <div class="faq-body">Yes. New Mexico dispensaries sell to any adult 21 or older with a valid government-issued ID, regardless of home state. Purchases must be consumed in New Mexico — bringing cannabis back into Texas is a crime.</div>
+        </details>
+        <details>
+          <summary>What do I need to buy from a dispensary?</summary>
+          <div class="faq-body">A valid government-issued photo ID proving you are 21 or older. Most dispensaries accept cash and debit; credit cards are often unavailable due to federal banking rules.</div>
+        </details>
+        <details>
+          <summary>Which dispensary is closest to El Paso?</summary>
+          <div class="faq-body">Dispensaries in Sunland Park, NM are the closest to El Paso — roughly 10–15 minutes from the west side and downtown. Chaparral serves Northeast El Paso, while Santa Teresa and Anthony are convenient from I-10 and the Upper Valley.</div>
+        </details>
+        <details>
+          <summary>Can I take my purchase back to Texas?</summary>
+          <div class="faq-body">No. Possessing cannabis in Texas remains illegal, and crossing the state line with it can carry serious penalties. Several dispensaries offer on-site consumption lounges where products can be enjoyed legally in New Mexico.</div>
+        </details>
+        <details>
+          <summary>Are there consumption lounges near El Paso?</summary>
+          <div class="faq-body">Yes. Several dispensaries in Sunland Park and Chaparral operate licensed consumption lounges where adults 21+ can legally consume on site — some with food service and events. Use the 🛋️ Lounge filter above to find them.</div>
+        </details>
+      </div>
+    </section>
 
     <!-- Partnership CTA -->
     <div class="bg-white/5 backdrop-blur-xl border border-emerald-500/20 rounded-3xl p-8 md:p-12 text-center">
@@ -781,6 +881,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="/js/liquid-glass.js" defer></script>
   <script src="/data/airtableSync.js"></script>
   <script src="/data/dispensaries-config.js"></script>
   <script src="/data/data-service.js"></script>

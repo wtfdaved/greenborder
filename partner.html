@@ -50,6 +50,10 @@
       box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
     }
   </style>
+
+  <!-- Liquid Glass design system (must load after the inline styles above) -->
+  <link rel="stylesheet" href="/css/liquid-glass.css" />
+  <script src="/js/liquid-glass.js" defer></script>
 </head>
 
 <body class="bg-charcoal-900">
@@ -80,15 +84,15 @@
 
     <!-- Features Section -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-      <div class="bg-charcoal-700 rounded-lg p-6 border border-gray-700">
+      <div class="lg-glass lg-sheen rounded-lg p-6">
         <h3 class="text-lg font-bold text-emerald-400 mb-2">📊 Advanced Analytics</h3>
         <p class="text-gray-400">Track customer visits, view trends, and understand your market position.</p>
       </div>
-      <div class="bg-charcoal-700 rounded-lg p-6 border border-gray-700">
+      <div class="lg-glass lg-sheen rounded-lg p-6">
         <h3 class="text-lg font-bold text-emerald-400 mb-2">🎯 Featured Listings</h3>
         <p class="text-gray-400">Get priority placement in our directory with premium badge and visibility.</p>
       </div>
-      <div class="bg-charcoal-700 rounded-lg p-6 border border-gray-700">
+      <div class="lg-glass lg-sheen rounded-lg p-6">
         <h3 class="text-lg font-bold text-emerald-400 mb-2">🏷️ Deal Management</h3>
         <p class="text-gray-400">Create, manage, and promote special offers directly to customers.</p>
       </div>
@@ -206,7 +210,7 @@
       <h2 class="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
 
       <div class="space-y-4 max-w-2xl mx-auto">
-        <details class="bg-charcoal-700 p-6 rounded-lg border border-gray-700 cursor-pointer group">
+        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             How does billing work?
             <span class="group-open:rotate-180 transition">▼</span>
@@ -216,7 +220,7 @@
           </p>
         </details>
 
-        <details class="bg-charcoal-700 p-6 rounded-lg border border-gray-700 cursor-pointer group">
+        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             Can I change plans later?
             <span class="group-open:rotate-180 transition">▼</span>
@@ -226,7 +230,7 @@
           </p>
         </details>
 
-        <details class="bg-charcoal-700 p-6 rounded-lg border border-gray-700 cursor-pointer group">
+        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             What payment methods do you accept?
             <span class="group-open:rotate-180 transition">▼</span>
@@ -236,7 +240,7 @@
           </p>
         </details>
 
-        <details class="bg-charcoal-700 p-6 rounded-lg border border-gray-700 cursor-pointer group">
+        <details class="lg-glass p-6 rounded-lg cursor-pointer group">
           <summary class="font-semibold text-white flex justify-between items-center">
             Is my business data secure?
             <span class="group-open:rotate-180 transition">▼</span>

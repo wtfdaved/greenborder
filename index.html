@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>El Paso Cannabis Guide & Dispensary Directory | ElPaso.fyi</title>
+  <title>El Paso Cannabis Guide & Dispensary Directory | The Green Border</title>
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="Discover the best recreational dispensaries, cannabis stores, and consumption lounges just minutes from El Paso. Legal, licensed dispensaries with menus, hours, and reviews." />
@@ -15,7 +15,7 @@
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenborder.org/" />
-  <meta property="og:title" content="El Paso Cannabis Guide & Dispensary Directory | ElPaso.fyi" />
+  <meta property="og:title" content="El Paso Cannabis Guide & Dispensary Directory | The Green Border" />
   <meta property="og:description" content="Discover the best recreational dispensaries, cannabis stores, and consumption lounges just minutes from El Paso. Legal, licensed dispensaries with menus, hours, and reviews." />
   <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
 
@@ -839,6 +839,10 @@
       .card-actions a { width: 100%; text-align: center; justify-content: center; }
     }
   </style>
+
+  <!-- Liquid Glass design system (must load after the inline styles above) -->
+  <link rel="stylesheet" href="/css/liquid-glass.css" />
+  <script src="/js/liquid-glass.js" defer></script>
 </head>
 
 <body>
@@ -855,7 +859,7 @@
   <nav class="tgb-desktop-nav">
     <a href="/news.html"    class="tgb-header-link">News</a>
     <a href="/data.html"    class="tgb-header-link">Sales Data</a>
-    <a href="#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="/directory.html" class="tgb-header-link">Dispensaries</a>
     <a href="#education"    class="tgb-header-link">Education</a>
     <a href="#about"        class="tgb-header-link">About</a>
   </nav>
@@ -907,7 +911,7 @@
   <!-- Headline -->
   <h1 class="hero-glow font-display text-5xl sm:text-7xl md:text-8xl font-bold text-white leading-none tracking-tight mb-4 animate-fade-up" style="font-family:'Rajdhani',sans-serif;font-weight:700;animation-delay:0.1s;">
     El Paso<br />
-    <span class="text-emerald-400">Dispensaries</span> Guide
+    <span class="lg-gradient-text">Dispensaries</span> Guide
   </h1>
 
   <!-- Sub-headline -->
@@ -951,19 +955,19 @@
   <!-- Stats strip -->
   <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden animate-fade-up max-w-2xl mx-auto" style="animation-delay:0.4s;">
     <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">38</div>
+      <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>38</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Dispensaries</div>
     </div>
     <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">4</div>
+      <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>4</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Regions</div>
     </div>
     <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">3</div>
+      <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>3</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Lounges</div>
     </div>
     <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400">1</div>
+      <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>1</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">24-Hr Shop</div>
     </div>
   </div>
@@ -1547,7 +1551,7 @@ function card(d) {
     : '';
 
   return `
-  <div class="relative bg-white/5 backdrop-blur-xl rounded-[2rem] border ${featBorder} flex flex-col h-full overflow-hidden card-hover" data-id="${d.id}">
+  <div class="relative bg-white/5 backdrop-blur-xl rounded-[2rem] border ${featBorder} flex flex-col h-full overflow-hidden card-hover lg-sheen" data-id="${d.id}">
     ${badgeHtml}
     <div class="p-5 sm:p-6 flex flex-col flex-1">
 
@@ -1900,7 +1904,7 @@ render();
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
     <!-- Article 1 – Featured -->
-    <a href="/articles/texas-cannabis-legalization-march-2026.html" class="news-card rounded-2xl overflow-hidden reveal lg:col-span-2 block no-underline transition hover:transform hover:translate-y-[-4px]">
+    <a href="/articles/texas-cannabis-legalization-march-2026.html" class="news-card lg-sheen rounded-2xl overflow-hidden reveal lg:col-span-2 block no-underline transition hover:transform hover:translate-y-[-4px]">
       <div class="h-52 relative overflow-hidden">
         <img src="https://images.unsplash.com/photo-1655129786334-d6fa7a68057b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3cwfDF8c2VhcmNofDI2fHx0ZXhhcyUyMGZsYWd8ZW58MHx8fHwxNzcyNjU5NDgyfDA&ixlib=rb-4.1.0&q=80&w=2000" alt="Texas flag" class="w-full h-full object-cover">
         <div class="absolute bottom-4 left-4">
@@ -1920,7 +1924,7 @@ render();
     </a>
 
     <!-- CTA: View All Articles -->
-    <div class="news-card rounded-2xl overflow-hidden reveal flex flex-col">
+    <div class="news-card lg-sheen rounded-2xl overflow-hidden reveal flex flex-col">
       <div class="h-40 relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(245,158,11,0.08));">
         <div class="text-6xl opacity-30">📰</div>
       </div>
@@ -1937,7 +1941,7 @@ render();
     </div>
 
     <!-- Newsletter CTA -->
-    <div class="news-card rounded-2xl p-6 flex flex-col justify-between reveal" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border-color:rgba(16,185,129,0.2);">
+    <div class="news-card lg-sheen rounded-2xl p-6 flex flex-col justify-between reveal" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border-color:rgba(16,185,129,0.2);">
       <div>
         <div class="text-2xl mb-3">📬</div>
         <h3 class="text-white font-semibold text-lg mb-2">Stay in the Loop</h3>
@@ -1966,21 +1970,21 @@ render();
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-      <div class="dispensary-card rounded-2xl p-5 reveal">
+      <div class="dispensary-card lg-sheen rounded-2xl p-5 reveal">
         <div class="edu-icon mb-4">🍬</div>
         <h3 class="text-white font-semibold mb-2">Edibles 101: Start Low, Go Slow</h3>
         <p class="text-gray-500 text-sm leading-relaxed">Master cannabis edibles with our complete guide to dosing, timing, and safety. Learn why edibles feel different and how to avoid common pitfalls.</p>
         <a href="/education/edibles-101-start-low-go-slow-desert-survival-guide.html" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
       </div>
 
-      <div class="dispensary-card rounded-2xl p-5 reveal">
+      <div class="dispensary-card lg-sheen rounded-2xl p-5 reveal">
         <div class="edu-icon mb-4">💨</div>
         <h3 class="text-white font-semibold mb-2">Vapes, Dabs, or Flower?</h3>
         <p class="text-gray-500 text-sm leading-relaxed">Compare consumption methods and find the perfect fit for your lifestyle. Discover which method is right for your tolerance, environment, and preferences.</p>
         <a href="/education/vapes-dabs-flower-perfect-consumption-method.html" class="mt-4 inline-flex items-center gap-1 text-emerald-400 text-sm font-semibold hover:underline">Learn More →</a>
       </div>
 
-      <div class="dispensary-card rounded-2xl p-5 reveal">
+      <div class="dispensary-card lg-sheen rounded-2xl p-5 reveal">
         <div class="edu-icon mb-4">📖</div>
         <h3 class="text-white font-semibold mb-2">Dispensary Menu 101</h3>
         <p class="text-gray-500 text-sm leading-relaxed">Decode cannabis terminology: What's an eighth? Shake vs. buds? Live resin vs. distillate? Master dispensary jargon like a pro.</p>
@@ -2022,19 +2026,19 @@ render();
 
     <!-- Stats card -->
     <div class="grid grid-cols-2 gap-4 reveal">
-      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(16,185,129,0.15);">
+      <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
         <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">915</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Area Code</div>
       </div>
-      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(245,158,11,0.15);">
+      <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
         <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">2</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">States Covered</div>
       </div>
-      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(16,185,129,0.15);">
+      <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
         <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">Free</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Always</div>
       </div>
-      <div class="rounded-2xl p-5 text-center" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid rgba(245,158,11,0.15);">
+      <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
         <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">100%</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Independent</div>
       </div>
@@ -2060,6 +2064,7 @@ render();
 
         <nav class="tgb-footer-nav">
             <a href="/" class="tgb-footer-link">Home</a>
+            <a href="/directory.html" class="tgb-footer-link">Directory</a>
             <a href="/news.html" class="tgb-footer-link">News</a>
             <a href="/data.html" class="tgb-footer-link">Sales Data</a>
             <a href="/#education" class="tgb-footer-link">Education</a>

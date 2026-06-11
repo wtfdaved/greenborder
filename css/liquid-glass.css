@@ -1,0 +1,610 @@
+/* ═══════════════════════════════════════════════════════════════════
+   The Green Border — Liquid Glass Design System
+   Shared across all pages. Loaded AFTER each page's inline <style>
+   block so equal-specificity rules here win by source order.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Tokens ── */
+:root {
+  /* Glass surfaces */
+  --lg-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --lg-glass-bg-strong: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.04) 100%);
+  --lg-glass-emerald: linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(16, 185, 129, 0.04) 100%);
+  --lg-glass-gold: linear-gradient(135deg, rgba(245, 158, 11, 0.14) 0%, rgba(245, 158, 11, 0.04) 100%);
+
+  /* Backdrop blur */
+  --lg-blur: blur(24px) saturate(160%);
+  --lg-blur-strong: blur(32px) saturate(180%);
+  --lg-blur-soft: blur(14px) saturate(140%);
+
+  /* Edges & depth */
+  --lg-border: 1px solid rgba(255, 255, 255, 0.10);
+  --lg-border-emerald: 1px solid rgba(16, 185, 129, 0.28);
+  --lg-border-gold: 1px solid rgba(245, 158, 11, 0.35);
+  --lg-specular: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  --lg-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --lg-shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.45), 0 0 32px rgba(16, 185, 129, 0.10);
+  --lg-glow-emerald: 0 0 40px rgba(16, 185, 129, 0.12);
+
+  /* Radii */
+  --lg-r-sm: 14px;
+  --lg-r-md: 20px;
+  --lg-r-lg: 28px;
+
+  /* Motion */
+  --lg-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --lg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --lg-fast: 0.3s;
+  --lg-slow: 0.55s;
+
+  /* Brand */
+  --lg-emerald: #10b981;
+  --lg-emerald-bright: #34d399;
+  --lg-gold: #f59e0b;
+  --lg-gold-bright: #fbbf24;
+  --lg-ink: #0a0a0a;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --lg-blur: blur(14px) saturate(150%);
+    --lg-blur-strong: blur(18px) saturate(160%);
+  }
+}
+
+/* ── Ambient aurora background ── */
+/* The blobs live on body pseudo-elements with negative z-index, which paint
+   behind an opaque body background. Move the page color to <html> and make
+   body transparent (!important beats Tailwind's .bg-charcoal-900 on body). */
+html {
+  background-color: #0a0a0a;
+}
+body {
+  position: relative;
+  background-color: transparent !important;
+}
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  z-index: -2;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform;
+}
+body::before {
+  width: 60vw;
+  height: 60vw;
+  max-width: 820px;
+  max-height: 820px;
+  top: -22vh;
+  left: -14vw;
+  background: radial-gradient(circle at 35% 35%,
+    rgba(16, 185, 129, 0.16) 0%,
+    rgba(16, 185, 129, 0.06) 45%,
+    transparent 70%);
+  animation: lg-aurora-a 38s ease-in-out infinite alternate;
+}
+body::after {
+  width: 52vw;
+  height: 52vw;
+  max-width: 700px;
+  max-height: 700px;
+  bottom: -24vh;
+  right: -12vw;
+  background: radial-gradient(circle at 60% 60%,
+    rgba(245, 158, 11, 0.10) 0%,
+    rgba(16, 185, 129, 0.05) 50%,
+    transparent 72%);
+  animation: lg-aurora-b 46s ease-in-out infinite alternate;
+}
+@keyframes lg-aurora-a {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(10vw, 8vh, 0) scale(1.15); }
+  100% { transform: translate3d(4vw, 16vh, 0) scale(0.95); }
+}
+@keyframes lg-aurora-b {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-8vw, -10vh, 0) scale(1.12); }
+  100% { transform: translate3d(-14vw, -4vh, 0) scale(1.02); }
+}
+@media (max-width: 768px) {
+  body::before, body::after { filter: blur(60px); opacity: 0.8; }
+}
+
+/* ── Core glass recipes ── */
+.lg-glass,
+.lg-glass-strong,
+.lg-glass-emerald {
+  position: relative;
+  background: var(--lg-glass-bg);
+  backdrop-filter: var(--lg-blur);
+  -webkit-backdrop-filter: var(--lg-blur);
+  border: var(--lg-border);
+  border-radius: var(--lg-r-md);
+  box-shadow: var(--lg-specular), var(--lg-shadow);
+}
+.lg-glass-strong {
+  background: var(--lg-glass-bg-strong);
+  backdrop-filter: var(--lg-blur-strong);
+  -webkit-backdrop-filter: var(--lg-blur-strong);
+}
+.lg-glass-emerald {
+  background: var(--lg-glass-emerald);
+  border: var(--lg-border-emerald);
+  box-shadow: var(--lg-specular), var(--lg-shadow), var(--lg-glow-emerald);
+}
+
+/* ── Specular sheen (light sweep + pointer hotspot) ── */
+.lg-sheen { position: relative; overflow: hidden; }
+.lg-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(420px circle at var(--mx, 50%) var(--my, -40%),
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0.03) 35%,
+      transparent 65%);
+  opacity: 0;
+  transition: opacity var(--lg-fast) var(--lg-ease);
+}
+.lg-sheen:hover::after { opacity: 1; }
+
+/* ── Scroll reveal ── */
+.lg-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--lg-slow) var(--lg-ease) var(--lg-delay, 0s),
+    transform var(--lg-slow) var(--lg-ease) var(--lg-delay, 0s);
+  will-change: opacity, transform;
+}
+.lg-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* ── Focus visibility ── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--lg-emerald-bright);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Overrides of existing site classes — the cross-page reskin
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Glass header ── */
+#tgb-glass-header {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.015) 100%),
+    rgba(14, 16, 15, 0.62);
+  backdrop-filter: var(--lg-blur-strong);
+  -webkit-backdrop-filter: var(--lg-blur-strong);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 8px 32px rgba(0, 0, 0, 0.40),
+    0 0 40px rgba(16, 185, 129, 0.07);
+  transition: top var(--lg-fast) var(--lg-ease), width var(--lg-fast) var(--lg-ease),
+              border-radius var(--lg-fast) var(--lg-ease), box-shadow var(--lg-fast) var(--lg-ease);
+}
+body.scrolled #tgb-glass-header {
+  border-color: rgba(255, 255, 255, 0.07);
+  border-top-color: transparent;
+  box-shadow:
+    inset 0 -1px 0 rgba(16, 185, 129, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.5);
+}
+.tgb-header-btn {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(5, 150, 105, 0.85) 100%);
+  backdrop-filter: var(--lg-blur-soft);
+  -webkit-backdrop-filter: var(--lg-blur-soft);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 16px rgba(16, 185, 129, 0.25);
+  transition: transform var(--lg-fast) var(--lg-spring), box-shadow var(--lg-fast) var(--lg-ease);
+}
+.tgb-header-btn:hover {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 8px 24px rgba(16, 185, 129, 0.4);
+}
+
+/* ── Glass footer ── */
+.tgb-footer-card {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 65%),
+    var(--lg-glass-bg);
+  backdrop-filter: var(--lg-blur);
+  -webkit-backdrop-filter: var(--lg-blur);
+  border: var(--lg-border);
+  border-radius: var(--lg-r-lg);
+  box-shadow: var(--lg-specular), var(--lg-shadow), var(--lg-glow-emerald);
+}
+.tgb-sub-btn {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: transform var(--lg-fast) var(--lg-spring), box-shadow var(--lg-fast) var(--lg-ease);
+}
+.tgb-sub-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 10px 28px rgba(16, 185, 129, 0.45);
+}
+.tgb-legal-block {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Mobile bottom nav (home) ── */
+.tgb-mobile-nav {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%),
+    rgba(14, 16, 15, 0.66) !important;
+  backdrop-filter: var(--lg-blur-strong) !important;
+  -webkit-backdrop-filter: var(--lg-blur-strong) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 32px rgba(16, 185, 129, 0.08) !important;
+}
+
+/* ── Dispensary cards ── */
+.dispensary-card {
+  background: var(--lg-glass-bg);
+  border: var(--lg-border);
+  box-shadow: var(--lg-specular), 0 6px 24px rgba(0, 0, 0, 0.30);
+  transition:
+    transform var(--lg-fast) var(--lg-spring),
+    border-color var(--lg-fast) var(--lg-ease),
+    box-shadow var(--lg-fast) var(--lg-ease);
+}
+.dispensary-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: var(--lg-specular), var(--lg-shadow-hover);
+}
+.premium-card {
+  background:
+    linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, transparent 40%),
+    var(--lg-glass-bg-strong);
+  border: var(--lg-border-gold);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 36px rgba(245, 158, 11, 0.10);
+  transition:
+    transform var(--lg-fast) var(--lg-spring),
+    border-color var(--lg-fast) var(--lg-ease),
+    box-shadow var(--lg-fast) var(--lg-ease);
+}
+.premium-card:hover {
+  transform: translateY(-8px) scale(1.012);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 20px 48px rgba(0, 0, 0, 0.45),
+    0 0 48px rgba(245, 158, 11, 0.18);
+}
+.premium-badge {
+  background: var(--lg-glass-gold);
+  backdrop-filter: var(--lg-blur-soft);
+  -webkit-backdrop-filter: var(--lg-blur-soft);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.card-header-glass {
+  background: rgba(16, 185, 129, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+.news-card {
+  background: var(--lg-glass-bg);
+  border: var(--lg-border);
+  box-shadow: var(--lg-specular), 0 6px 24px rgba(0, 0, 0, 0.30);
+  transition:
+    transform var(--lg-fast) var(--lg-spring),
+    border-color var(--lg-fast) var(--lg-ease),
+    box-shadow var(--lg-fast) var(--lg-ease);
+}
+.news-card:hover {
+  transform: translateY(-5px) scale(1.005);
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: var(--lg-specular), 0 16px 40px rgba(0, 0, 0, 0.40), 0 0 28px rgba(245, 158, 11, 0.08);
+}
+
+/* ── Age gate (light glass on dark blurred overlay) ── */
+.tgb-age-card {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(244, 250, 247, 0.86) 100%);
+  backdrop-filter: var(--lg-blur);
+  -webkit-backdrop-filter: var(--lg-blur);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 24px 60px -12px rgba(0, 0, 0, 0.45),
+    0 0 60px rgba(16, 185, 129, 0.10);
+}
+
+/* ── Filter bar (directory) — beats inline Tailwind utilities ── */
+.filter-bar {
+  background: var(--lg-glass-bg-strong) !important;
+  backdrop-filter: var(--lg-blur-strong) !important;
+  -webkit-backdrop-filter: var(--lg-blur-strong) !important;
+  border: var(--lg-border) !important;
+  box-shadow: var(--lg-specular), var(--lg-shadow);
+}
+.filter-bar input,
+.filter-bar select {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color var(--lg-fast) var(--lg-ease), box-shadow var(--lg-fast) var(--lg-ease);
+}
+.filter-bar select option { background: #161616; color: #e5e7eb; }
+
+/* ── Chips, pills, actions ── */
+.offering-chip,
+.city-chip,
+.card-action {
+  background: var(--lg-glass-bg);
+  border: var(--lg-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    transform var(--lg-fast) var(--lg-spring),
+    background var(--lg-fast) var(--lg-ease),
+    border-color var(--lg-fast) var(--lg-ease),
+    color var(--lg-fast) var(--lg-ease);
+}
+.offering-chip:hover,
+.city-chip:hover,
+.card-action:hover {
+  transform: translateY(-2px);
+}
+.offering-chip[data-active="true"] {
+  background: var(--lg-glass-emerald);
+  border: var(--lg-border-emerald);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 18px rgba(16, 185, 129, 0.18);
+}
+.deal-banner {
+  background: var(--lg-glass-gold);
+  border: var(--lg-border-gold);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* ── Hero stats / insight tiles ── */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 12px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 600px) {
+  .hero-stats { grid-template-columns: repeat(3, 1fr); }
+}
+.hero-stat {
+  background: var(--lg-glass-bg);
+  backdrop-filter: var(--lg-blur-soft);
+  -webkit-backdrop-filter: var(--lg-blur-soft);
+  border: var(--lg-border);
+  border-radius: var(--lg-r-sm);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 4px 18px rgba(0, 0, 0, 0.25);
+  transition: transform var(--lg-fast) var(--lg-spring), border-color var(--lg-fast) var(--lg-ease);
+}
+.hero-stat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+/* ── City sections (directory) ── */
+.city-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.city-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+.city-meta .meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+  color: #cbd5e1;
+}
+.city-meta .meta-pill.emerald { color: var(--lg-emerald-bright); background: rgba(16, 185, 129, 0.10); border-color: rgba(16, 185, 129, 0.25); }
+.city-meta .meta-pill.gold { color: var(--lg-gold-bright); background: rgba(245, 158, 11, 0.10); border-color: rgba(245, 158, 11, 0.25); }
+.city-blurb {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin: 6px 0 0;
+  max-width: 720px;
+}
+
+/* ── Top-rated badge ── */
+.top-rated-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--lg-gold-bright);
+  background: var(--lg-glass-gold);
+  border: var(--lg-border-gold);
+  padding: 3px 9px;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ── FAQ accordion (directory) ── */
+.lg-faq details {
+  background: var(--lg-glass-bg);
+  border: var(--lg-border);
+  border-radius: var(--lg-r-sm);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color var(--lg-fast) var(--lg-ease);
+}
+.lg-faq details[open] {
+  border-color: rgba(16, 185, 129, 0.30);
+}
+.lg-faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: color var(--lg-fast) var(--lg-ease);
+}
+.lg-faq summary:hover { color: var(--lg-emerald-bright); }
+.lg-faq summary::-webkit-details-marker { display: none; }
+.lg-faq summary::after {
+  content: '+';
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--lg-emerald-bright);
+  transition: transform var(--lg-fast) var(--lg-spring);
+  flex-shrink: 0;
+}
+.lg-faq details[open] summary::after { transform: rotate(45deg); }
+.lg-faq .faq-body {
+  padding: 0 20px 18px;
+  color: #94a3b8;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+/* ── data.html dashboard surfaces (visual only) ── */
+.kpi-card,
+.chart-container {
+  background: var(--lg-glass-bg) !important;
+  border: var(--lg-border) !important;
+  box-shadow: var(--lg-specular), 0 6px 24px rgba(0, 0, 0, 0.30) !important;
+  transition:
+    transform var(--lg-fast) var(--lg-spring),
+    border-color var(--lg-fast) var(--lg-ease),
+    box-shadow var(--lg-fast) var(--lg-ease);
+}
+.kpi-card:hover,
+.chart-container:hover {
+  transform: translateY(-4px);
+  border-color: rgba(16, 185, 129, 0.30) !important;
+  box-shadow: var(--lg-specular), var(--lg-shadow-hover) !important;
+}
+
+/* ── Dispensary detail pages (info tiles, reviews) ── */
+.info-card,
+.review-item {
+  background: var(--lg-glass-bg);
+  border: var(--lg-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 6px 24px rgba(0, 0, 0, 0.25);
+  transition:
+    transform var(--lg-fast) var(--lg-spring),
+    border-color var(--lg-fast) var(--lg-ease),
+    box-shadow var(--lg-fast) var(--lg-ease);
+}
+.info-card:hover,
+.review-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--lg-shadow-hover);
+}
+
+/* ── Partner / partnership forms ── */
+.form-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color var(--lg-fast) var(--lg-ease), box-shadow var(--lg-fast) var(--lg-ease);
+}
+.form-input:focus {
+  border-color: rgba(16, 185, 129, 0.55) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* ── Home featured-card hover (JS-generated cards use .card-hover) ── */
+.card-hover {
+  transition:
+    transform var(--lg-fast) var(--lg-spring),
+    box-shadow var(--lg-fast) var(--lg-ease),
+    border-color var(--lg-fast) var(--lg-ease);
+}
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: var(--lg-shadow-hover);
+}
+
+/* ── Hero (home): transparent base so the global aurora shows through ── */
+.hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16, 185, 129, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(245, 158, 11, 0.07) 0%, transparent 60%);
+}
+
+/* ── Generic gradient-text helper ── */
+.lg-gradient-text {
+  background: linear-gradient(120deg, #e5f9f1 0%, #34d399 45%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* text-shadow paints over transparent-fill glyphs; use drop-shadow instead */
+  text-shadow: none;
+  filter: drop-shadow(0 0 28px rgba(16, 185, 129, 0.25));
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Fallbacks & motion preferences
+   ═══════════════════════════════════════════════════════════════════ */
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .lg-glass, .lg-glass-strong, .lg-glass-emerald,
+  #tgb-glass-header, .tgb-footer-card, .filter-bar,
+  .dispensary-card, .premium-card, .kpi-card, .chart-container {
+    background: rgba(18, 18, 18, 0.94) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+  .lg-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .lg-sheen::after { transition: none; }
+  .tgb-logo-sparkle { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  html { scroll-behavior: auto; }
+}

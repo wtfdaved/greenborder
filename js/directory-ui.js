@@ -41,6 +41,33 @@ function countWith(dispensaries, predicate) {
 }
 
 /**
+ * True only when we can positively determine the dispensary is open right
+ * now from structured hours. Records without parseable hours return false,
+ * so the "Open Now" filter never shows stores we can't verify.
+ */
+function isOpenNow(dsp) {
+  if (!dsp || !dsp.hours) return false;
+  const status = window.dispensaryService?.getOpenStatus?.(dsp.hours);
+  return !!(status && status.isOpen);
+}
+
+/** Average of genuine ratings only; null when no real ratings exist. */
+function averageRating(dispensaries) {
+  const rated = (dispensaries || []).filter(hasRealRating);
+  if (!rated.length) return null;
+  return rated.reduce((sum, d) => sum + d.rating, 0) / rated.length;
+}
+
+// Short, indexable context for each city section — distance/route notes
+// help visitors from El Paso plan the trip.
+const CITY_BLURBS = {
+  'Sunland Park': 'The closest legal cannabis to downtown El Paso — most shops sit just over the state line, about 10–15 minutes from the west side via McNutt Rd / NM-273.',
+  'Chaparral': 'A quick drive up War Road from Northeast El Paso, Chaparral serves the 79934/79938 corridor with late-night and 24-hour options.',
+  'Santa Teresa': 'Minutes from the Upper Valley and Artcraft Rd, Santa Teresa pairs dispensaries with an easy I-10 detour for west-side shoppers.',
+  'Anthony': 'Right off I-10 at the Texas/New Mexico line, Anthony is the natural stop for travelers heading toward Las Cruces.'
+};
+
+/**
  * Generate SVG star rating display with configurable styling
  * @param {number} rating - Rating value (0-5)
  * @param {boolean} isPremium - Whether to use gold styling for premium dispensaries
@@ -179,15 +206,36 @@ function renderDispensariesByCity(dispensaries, sortKey) {
       const sorted = sortDispensaries(items, sortKey);
       const cityId = `city-${(city || '').toLowerCase().replace(/[^\w]+/g, '-')}`;
 
+      // City-level insights: avg rating, open-now count, top-rated pick.
+      const avg = averageRating(items);
+      const openCount = countWith(items, isOpenNow);
+      const rated = items.filter(hasRealRating);
+      const topRated = rated.length >= 2
+        ? rated.reduce((best, d) => (d.rating > best.rating ? d : best))
+        : null;
+
+      const metaPills = [
+        avg !== null ? `<span class="meta-pill gold">★ ${avg.toFixed(1)} avg rating</span>` : '',
+        openCount > 0 ? `<span class="meta-pill emerald">● ${openCount} open now</span>` : '',
+        countWith(items, d => d.hasConsumption) > 0 ? `<span class="meta-pill">🛋️ ${countWith(items, d => d.hasConsumption)} lounge${countWith(items, d => d.hasConsumption) === 1 ? '' : 's'}</span>` : '',
+        countWith(items, d => d.deals) > 0 ? `<span class="meta-pill">🔥 ${countWith(items, d => d.deals)} deal${countWith(items, d => d.deals) === 1 ? '' : 's'}</span>` : ''
+      ].filter(Boolean).join('');
+
+      const blurb = CITY_BLURBS[city]
+        ? `<p class="city-blurb">${escapeHtml(CITY_BLURBS[city])}</p>`
+        : '';
+
       html += `<section class="city-section" id="${cityId}">
         <div class="city-header">
           <h2 class="city-title">${escapeHtml(city)}</h2>
           <span class="city-count">${items.length} dispensar${items.length === 1 ? 'y' : 'ies'}</span>
+          ${metaPills ? `<div class="city-meta">${metaPills}</div>` : ''}
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        ${blurb}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
           ${sorted.map(dsp => {
             try {
-              return createDispensaryCard(dsp);
+              return createDispensaryCard(dsp, { isTopRated: !!topRated && dsp.id === topRated.id });
             } catch (e) {
               console.error('Card render error:', e);
               return '';
@@ -214,7 +262,7 @@ function renderDispensariesByCity(dispensaries, sortKey) {
  * underlying data exists, so the same card works for a bare record or a fully
  * populated Airtable row.
  */
-function createDispensaryCard(dsp) {
+function createDispensaryCard(dsp, opts = {}) {
   try {
     if (!dsp) return '';
 
@@ -232,7 +280,10 @@ function createDispensaryCard(dsp) {
     if (hasRealRating(dsp)) {
       ratingBlock = `
         <div class="space-y-1.5">
-          ${generateStarRating(dsp.rating, premium)}
+          <div class="flex items-center gap-2 flex-wrap">
+            ${generateStarRating(dsp.rating, premium)}
+            ${opts.isTopRated ? '<span class="top-rated-badge">🏆 Top Rated</span>' : ''}
+          </div>
           <p class="text-gray-400 text-xs font-medium">${dsp.rating.toFixed(1)} • ${formatReviewCount(dsp.reviewCount)}</p>
         </div>`;
     }
@@ -271,7 +322,7 @@ function createDispensaryCard(dsp) {
       </div>`;
 
     return `
-      <div class="${cardClass} rounded-2xl overflow-hidden transition-all cursor-pointer group relative animate-fade-up"
+      <div class="${cardClass} lg-sheen rounded-2xl overflow-hidden transition-all cursor-pointer group relative animate-fade-up"
            onclick="try { openDispensaryDetail('${id}'); } catch(e) { console.error(e); }">
         ${premium ? '<div class="premium-badge">FEATURED ✨</div>' : ''}
 
@@ -334,17 +385,28 @@ function renderHeroStats(dispensaries) {
   if (!el) return;
   const data = dispensaries || window.dispensaryService?.data || [];
   const cities = new Set(data.map(d => d.city).filter(Boolean));
+  const avg = averageRating(data);
+  const openCount = countWith(data, isOpenNow);
+
   const stats = [
-    { value: data.length, label: 'Dispensaries' },
-    { value: cities.size, label: 'Cities' },
-    { value: countWith(data, d => d.hasConsumption), label: 'Lounges' },
-    { value: countWith(data, d => d.deals), label: 'Active Deals' }
+    { value: String(data.length), label: 'Dispensaries' },
+    { value: String(cities.size), label: 'Cities' },
+    ...(avg !== null ? [{ value: `${avg.toFixed(1)}★`, label: 'Avg Rating' }] : []),
+    ...(openCount > 0 ? [{ value: String(openCount), label: 'Open Now' }] : []),
+    { value: String(countWith(data, d => d.hasConsumption)), label: 'Lounges' },
+    { value: String(countWith(data, d => d.deals)), label: 'Active Deals' }
   ];
+
   el.innerHTML = stats.map(s => `
     <div class="hero-stat">
       <div class="hero-stat-value">${s.value}</div>
       <div class="hero-stat-label">${s.label}</div>
     </div>`).join('');
+
+  // Animate counts when the band scrolls into view (no-op without lg JS).
+  if (typeof window.lgCountUp === 'function') {
+    el.querySelectorAll('.hero-stat-value').forEach(v => window.lgCountUp(v));
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -476,6 +538,7 @@ function getFilteredResults() {
     else if (off === 'med') results = results.filter(d => d.hasMedical);
     else if (off === 'lounge') results = results.filter(d => d.hasConsumption);
     else if (off === 'deals') results = results.filter(d => d.deals);
+    else if (off === 'open') results = results.filter(isOpenNow);
   });
 
   return results;
