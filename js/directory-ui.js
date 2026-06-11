@@ -78,9 +78,9 @@ function generateStarRating(rating, isPremium = false) {
   if (!rating) rating = 4.0;
   const ratingNum = parseFloat(rating) || 4.0;
 
-  // Determine color: gold for premium, emerald for standard
-  const fillColor = isPremium ? '#fbbf24' : '#34d399';
-  const emptyColor = '#4b5563';
+  // Determine color: gold for premium, emerald for standard (light theme)
+  const fillColor = isPremium ? '#f59e0b' : '#10b981';
+  const emptyColor = '#c7d2cc';
 
   // Generate 5 star elements
   for (let i = 1; i <= 5; i++) {
