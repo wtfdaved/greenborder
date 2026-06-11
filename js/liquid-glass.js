@@ -38,7 +38,10 @@
           }
         });
       },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
+      // threshold 0: tall sections (one-column mobile grids) may never have
+      // 6% of their height inside a small viewport, which left them stuck at
+      // opacity 0 — any visible pixel should reveal the block.
+      { rootMargin: '0px 0px -8% 0px', threshold: 0 }
     );
 
     candidates.forEach((el, i) => {
@@ -55,6 +58,11 @@
         if (rect.top < window.innerHeight * 0.9) el.classList.add('is-visible');
       });
     });
+
+    // Fail-safe: never leave content invisible if the observer misfires.
+    setTimeout(() => {
+      candidates.forEach((el) => el.classList.add('is-visible'));
+    }, 1500);
   }
 
   /* ── Count-up numbers ──────────────────────────────────────────── */

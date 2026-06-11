@@ -331,7 +331,8 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      background: rgba(245, 158, 11, 0.2);
+      z-index: 2;
+      background: #2a2107;
       border: 1px solid rgba(245, 158, 11, 0.5);
       color: #fbbf24;
       padding: 6px 12px;
@@ -340,7 +341,6 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      backdrop-filter: blur(8px);
     }
 
     /* ── Badge ── */
@@ -584,18 +584,12 @@
       white-space: nowrap;
     }
 
-    /* ── Sticky filter bar (desktop only) ── */
+    /* ── Filter bar — scrolls away normally so it never covers the data ── */
     .filter-bar {
-      position: sticky;
-      top: 90px;
-      z-index: 20;
+      position: static;
     }
-    /* On phones/tablets the bar scrolls away normally and stays compact so it
-       never dominates the viewport or "follows" the user down the page. */
     @media (max-width: 900px) {
       .filter-bar {
-        position: static !important;
-        top: auto;
         padding: 1rem !important;
         margin-bottom: 1.5rem !important;
         border-radius: 1rem !important;
