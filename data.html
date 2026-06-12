@@ -496,12 +496,14 @@
 <section class="pt-40 pb-12 md:pb-16 px-4 text-center">
   <div class="max-w-3xl mx-auto">
     <span class="section-line mb-4 block mx-auto"></span>
-    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 font-display">Sales Data</h1>
-    <p class="text-gray-300 text-lg mb-4">Track cannabis sales trends, dispensary performance, and market insights across the 915 border region.</p>
-    <div class="text-slate-400 text-sm space-y-1">
-      <p class="font-medium">📊 15 months of historical data (Jan 2025 - Mar 2026) | 46+ active dispensaries | Multiple sales categories</p>
-      <p class="text-xs">Analyze revenue trends, market concentration, city-level performance, adult-use vs. medical splits, and MoM growth metrics</p>
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 font-display" style="background:linear-gradient(95deg,#6ee7b7 0%,#10b981 45%,#fbbf24 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#10b981;">Sales Data</h1>
+    <p class="text-gray-300 text-lg mb-5">Track cannabis sales trends, dispensary performance, and market insights across the 915 border region.</p>
+    <div class="flex flex-wrap justify-center gap-2 mb-3">
+      <span class="px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/30">📊 15 months of data · Jan 2025 – Mar 2026</span>
+      <span class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/30">🏪 46+ active dispensaries</span>
+      <span class="px-3 py-1.5 rounded-full text-xs font-semibold text-cyan-300 bg-cyan-500/10 border border-cyan-500/30">📈 MoM growth &amp; market share</span>
     </div>
+    <p class="text-slate-400 text-xs">Analyze revenue trends, market concentration, city-level performance, and adult-use vs. medical splits</p>
   </div>
 </section>
 
@@ -882,6 +884,60 @@
         /* Slightly tighter table cells on small screens */
         #tgb-tbody td, #tgb-ultra-dash thead th { padding-left: 10px !important; padding-right: 10px !important; }
     }
+
+    /* ── KPI Sparklines ── */
+    .kpi-spark { width: 100%; height: 28px; margin-top: 8px; display: block; overflow: visible; }
+    .kpi-spark polyline { vector-effect: non-scaling-stroke; }
+    @media (max-width: 640px) { .kpi-spark { height: 20px; margin-top: 5px; } }
+
+    /* ── Dashboard Section Headers ── */
+    .dash-section-head { display: flex; align-items: center; gap: 10px; margin: 6px 0 -10px; }
+    .dash-section-head h3 { margin: 0; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #065f46; white-space: nowrap; }
+    .dash-section-icon { width: 28px; height: 28px; border-radius: 9px; background: linear-gradient(135deg, #34d399, #059669); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; flex-shrink: 0; box-shadow: 0 3px 10px rgba(5, 150, 105, 0.28); }
+    .dash-section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(5, 150, 105, 0.35), transparent); }
+
+    /* ── Entrance animations (skipped for reduced-motion users) ── */
+    @keyframes tgbFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: no-preference) {
+        #tgb-ultra-dash .kpi-card, #tgb-ultra-dash .chart-container { animation: tgbFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        #tgb-ultra-dash .kpi-card:nth-child(2) { animation-delay: 0.05s; }
+        #tgb-ultra-dash .kpi-card:nth-child(3) { animation-delay: 0.10s; }
+        #tgb-ultra-dash .kpi-card:nth-child(4) { animation-delay: 0.15s; }
+        #tgb-ultra-dash .kpi-card:nth-child(5) { animation-delay: 0.20s; }
+        #tgb-ultra-dash .kpi-card:nth-child(6) { animation-delay: 0.25s; }
+    }
+
+    /* ── Mobile: leaderboard table becomes tappable cards ── */
+    @media (max-width: 640px) {
+        #tgb-ultra-dash .data-table-wrap table { min-width: 0 !important; width: 100%; }
+        #tgb-ultra-dash .data-table-wrap thead { display: none; }
+        #tgb-tbody { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 10px; }
+        #tgb-tbody tr {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: auto auto auto auto;
+            align-items: center;
+            gap: 4px 10px;
+            background: rgba(255, 255, 255, 0.68);
+            border: 1px solid rgba(13, 32, 23, 0.10) !important;
+            border-radius: 14px;
+            padding: 12px !important;
+            box-shadow: 0 4px 14px rgba(23, 46, 37, 0.06);
+        }
+        #tgb-tbody tr:nth-child(even):not(.active-row):not(.comparison-selected) { background: rgba(255, 255, 255, 0.68); }
+        #tgb-tbody tr.active-row { border-left: 3px solid #059669 !important; }
+        #tgb-tbody td { display: block; padding: 0 !important; border: 0 !important; white-space: normal !important; }
+        #tgb-tbody td:nth-child(1) { grid-column: 1; grid-row: 1; }
+        #tgb-tbody td:nth-child(2) { grid-column: 2; grid-row: 1; min-width: 0; }
+        #tgb-tbody td:nth-child(4) { grid-column: 3; grid-row: 1; text-align: right; }
+        #tgb-tbody td:nth-child(3) { grid-column: 2; grid-row: 2; min-width: 0; }
+        #tgb-tbody td:nth-child(5) { grid-column: 3; grid-row: 2; text-align: right; }
+        #tgb-tbody td:nth-child(6) { grid-column: 1 / 3; grid-row: 3; }
+        #tgb-tbody td:nth-child(6) > div { justify-content: flex-start !important; }
+        #tgb-tbody td:nth-child(6)::before { content: 'Adult / Medical'; display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7a73; margin-bottom: 2px; }
+        #tgb-tbody td:nth-child(7) { grid-column: 1 / -1; grid-row: 4; }
+        #tgb-tbody td[colspan] { grid-column: 1 / -1; text-align: center; }
+    }
 </style>
 
 <!-- Dashboard Container with Proper Spacing -->
@@ -1001,6 +1057,7 @@
     <div class="flex-1 overflow-y-auto overflow-x-hidden tgb-scroll p-6 lg:p-6 flex flex-col gap-6">
 
         <!-- KPI Cards -->
+        <div class="dash-section-head"><span class="dash-section-icon">⚡</span><h3>Market Pulse</h3><span class="dash-section-line"></span></div>
         <div class="grid grid-cols-2 lg:grid-cols-6 gap-5 shrink-0">
             <div class="kpi-card kpi-revenue lg-panel p-5 rounded-xl border border-emerald-600/25 shadow-lg flex flex-col justify-between pl-5" data-tooltip="Total sales revenue across all dispensaries for selected period">
                 <div class="flex justify-between items-center mb-2">
@@ -1010,6 +1067,7 @@
                 <div>
                     <span id="kpi-total" class="text-2xl md:text-3xl font-black text-emerald-300 tracking-tight block">--</span>
                     <span id="kpi-total-growth" class="text-[10px] text-emerald-400/80 font-semibold mt-1">↑ +0.0%</span>
+                    <svg id="spark-total" class="kpi-spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"></svg>
                 </div>
             </div>
             <div class="kpi-card kpi-adult lg-panel p-5 rounded-xl border border-blue-600/25 shadow-lg flex flex-col justify-between pl-5">
@@ -1020,6 +1078,7 @@
                 <div>
                     <span id="kpi-adult" class="text-2xl md:text-3xl font-black text-blue-300 tracking-tight block">--</span>
                     <span id="kpi-adult-growth" class="text-[10px] text-blue-400/80 font-semibold mt-1">↑ +0.0%</span>
+                    <svg id="spark-adult" class="kpi-spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"></svg>
                 </div>
             </div>
             <div class="kpi-card kpi-medical lg-panel p-5 rounded-xl border border-rose-600/25 shadow-lg flex flex-col justify-between pl-5">
@@ -1030,6 +1089,7 @@
                 <div>
                     <span id="kpi-medical" class="text-2xl md:text-3xl font-black text-rose-300 tracking-tight block">--</span>
                     <span id="kpi-medical-growth" class="text-[10px] text-rose-400/80 font-semibold mt-1">↑ +0.0%</span>
+                    <svg id="spark-medical" class="kpi-spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"></svg>
                 </div>
             </div>
             <div class="kpi-card kpi-dbas lg-panel p-5 rounded-xl border border-amber-600/25 shadow-lg flex flex-col justify-between pl-5">
@@ -1040,6 +1100,7 @@
                 <div>
                     <span id="kpi-stores" class="text-2xl md:text-3xl font-black text-amber-300 tracking-tight block">--</span>
                     <span id="kpi-stores-growth" class="text-[10px] text-amber-400/80 font-semibold mt-1">= 0</span>
+                    <svg id="spark-stores" class="kpi-spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"></svg>
                 </div>
             </div>
             <div class="kpi-card kpi-avg lg-panel p-5 rounded-xl border border-violet-600/25 shadow-lg flex flex-col justify-between pl-5">
@@ -1050,6 +1111,7 @@
                 <div>
                     <span id="kpi-avg-per-store" class="text-2xl md:text-3xl font-black text-violet-300 tracking-tight block">--</span>
                     <span id="kpi-avg-growth" class="text-[10px] text-violet-400/80 font-semibold mt-1">↑ +0.0%</span>
+                    <svg id="spark-avg" class="kpi-spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"></svg>
                 </div>
             </div>
             <div class="kpi-card kpi-concentration lg-panel p-5 rounded-xl border border-cyan-600/25 shadow-lg flex flex-col justify-between pl-5">
@@ -1060,11 +1122,13 @@
                 <div>
                     <span id="kpi-concentration" class="text-2xl md:text-3xl font-black text-cyan-300 tracking-tight block">--</span>
                     <span id="kpi-top3-share" class="text-[10px] text-cyan-400/80 font-semibold mt-1">Top 3</span>
+                    <svg id="spark-conc" class="kpi-spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"></svg>
                 </div>
             </div>
         </div>
 
         <!-- Charts Grid -->
+        <div class="dash-section-head"><span class="dash-section-icon">📈</span><h3>Trends &amp; Market Share</h3><span class="dash-section-line"></span></div>
         <div id="tgb-charts-section" class="grid grid-cols-1 lg:grid-cols-3 gap-5 shrink-0 min-h-[280px]">
             <!-- Market Share -->
             <div class="chart-container chart-market lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative col-span-1" data-tooltip="Click on legend items to focus on specific dispensaries">
@@ -1113,6 +1177,7 @@
         </div>
 
         <!-- New Visualizations Row 1 -->
+        <div class="dash-section-head"><span class="dash-section-icon">🚀</span><h3>Performance Deep-Dive</h3><span class="dash-section-line"></span></div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 shrink-0 min-h-[300px]">
             <!-- Market Positioning Scatter Plot -->
             <div class="chart-container chart-geography lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
@@ -1135,6 +1200,7 @@
         </div>
 
         <!-- Heatmap Row -->
+        <div class="dash-section-head"><span class="dash-section-icon">🗺️</span><h3>Geography &amp; Seasonality</h3><span class="dash-section-line"></span></div>
         <div class="grid grid-cols-1 gap-5 shrink-0">
             <!-- Monthly Sales Heatmap -->
             <div class="chart-container chart-geography lg-panel p-5 rounded-xl border border-slate-700 shadow-sm flex flex-col relative">
@@ -1248,8 +1314,9 @@
         </div>
 
         <!-- Data Table Container -->
+        <div class="dash-section-head"><span class="dash-section-icon">🏆</span><h3>Dispensary Leaderboard</h3><span class="dash-section-line"></span></div>
         <div class="lg-panel rounded-xl border border-slate-700 shadow-sm flex flex-col flex-1 overflow-hidden min-h-[400px]">
-            <div class="overflow-x-auto tgb-scroll flex-1">
+            <div class="overflow-x-auto tgb-scroll flex-1 data-table-wrap">
                 <table class="w-full text-left border-collapse min-w-[700px]">
                     <thead class="lg-panel-soft sticky top-0 z-10 border-b border-slate-700 shadow-sm">
                         <tr>
@@ -8703,6 +8770,74 @@
 
     // ---- 4. Rendering ----
 
+    // Animated count-up for KPI values (values come straight from the data
+    // aggregation; only the on-screen transition is animated)
+    const kpiAnimState = {};
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function animateKpi(id, value, formatter) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (prefersReducedMotion.matches || !isFinite(value)) {
+            el.textContent = formatter(value);
+            kpiAnimState[id] = value;
+            return;
+        }
+        const from = kpiAnimState[id] ?? 0;
+        kpiAnimState[id] = value;
+        const start = performance.now(), duration = 650;
+        function step(now) {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = formatter(from + (value - from) * eased);
+            if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    // Tiny 15-month sparklines inside each KPI card (respects city drill-down)
+    function renderKpiSparklines() {
+        const series = { total: [], adult: [], medical: [], stores: [], avg: [], conc: [] };
+        monthKeys.forEach(mk => {
+            let recs = rawData.filter(d => d.month === mk);
+            if (currentCity) recs = recs.filter(d => d.city === currentCity);
+            // Aggregate per-DBA so concentration matches the KPI calculation
+            const byDba = {};
+            recs.forEach(d => { byDba[d.dba] = (byDba[d.dba] || 0) + d.total; });
+            const totals = Object.values(byDba).sort((a, b) => b - a);
+            const t = totals.reduce((a, b) => a + b, 0);
+            const au = recs.reduce((a, b) => a + b.adultUse, 0);
+            const me = recs.reduce((a, b) => a + b.medical, 0);
+            const stores = totals.length;
+            const top3 = totals.slice(0, 3).reduce((a, b) => a + b, 0);
+            series.total.push(t);
+            series.adult.push(au);
+            series.medical.push(me);
+            series.stores.push(stores);
+            series.avg.push(stores ? t / stores : 0);
+            series.conc.push(t ? (top3 / t) * 100 : 0);
+        });
+        const sparkMap = {
+            'spark-total': ['total', '#059669'],
+            'spark-adult': ['adult', '#2563eb'],
+            'spark-medical': ['medical', '#e11d48'],
+            'spark-stores': ['stores', '#d97706'],
+            'spark-avg': ['avg', '#7c3aed'],
+            'spark-conc': ['conc', '#0891b2']
+        };
+        Object.entries(sparkMap).forEach(([id, [key, color]]) => {
+            const svg = document.getElementById(id);
+            if (!svg) return;
+            const vals = series[key];
+            const min = Math.min(...vals), max = Math.max(...vals), span = (max - min) || 1;
+            const pts = vals.map((v, i) =>
+                `${((i / (vals.length - 1)) * 100).toFixed(1)},${(26 - ((v - min) / span) * 22).toFixed(1)}`
+            ).join(' ');
+            svg.innerHTML =
+                `<polyline points="0,28 ${pts} 100,28" fill="${color}" opacity="0.10" stroke="none"/>` +
+                `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>`;
+        });
+    }
+
     function updateKPIs() {
         const sumTotal = aggregatedTableData.reduce((a, b) => a + b.total, 0);
         const sumAdult = aggregatedTableData.reduce((a, b) => a + b.adultUse, 0);
@@ -8737,27 +8872,29 @@
         const concentration = sumTotal > 0 ? (top3Total / sumTotal) * 100 : 0;
 
         // Update DOM
-        document.getElementById('kpi-total').textContent = fmt(sumTotal, true);
+        animateKpi('kpi-total', sumTotal, v => fmt(v, true));
         document.getElementById('kpi-total-growth').textContent = `${totalGrowth > 0 ? '↑' : totalGrowth < 0 ? '↓' : '='} ${Math.abs(totalGrowth).toFixed(1)}%`;
         document.getElementById('kpi-total-growth').style.color = totalGrowth > 0 ? '#059669' : totalGrowth < 0 ? '#dc2626' : '#67776f';
 
-        document.getElementById('kpi-adult').textContent = fmt(sumAdult, true);
+        animateKpi('kpi-adult', sumAdult, v => fmt(v, true));
         document.getElementById('kpi-adult-growth').textContent = `${adultGrowth > 0 ? '↑' : adultGrowth < 0 ? '↓' : '='} ${Math.abs(adultGrowth).toFixed(1)}%`;
         document.getElementById('kpi-adult-growth').style.color = adultGrowth > 0 ? '#2563eb' : adultGrowth < 0 ? '#dc2626' : '#67776f';
 
-        document.getElementById('kpi-medical').textContent = fmt(sumMedical, true);
+        animateKpi('kpi-medical', sumMedical, v => fmt(v, true));
         document.getElementById('kpi-medical-growth').textContent = `${medicalGrowth > 0 ? '↑' : medicalGrowth < 0 ? '↓' : '='} ${Math.abs(medicalGrowth).toFixed(1)}%`;
         document.getElementById('kpi-medical-growth').style.color = medicalGrowth > 0 ? '#e11d48' : medicalGrowth < 0 ? '#dc2626' : '#67776f';
 
-        document.getElementById('kpi-stores').textContent = aggregatedTableData.length;
+        animateKpi('kpi-stores', aggregatedTableData.length, v => String(Math.round(v)));
         document.getElementById('kpi-stores-growth').textContent = `${aggregatedTableData.length - (prevMonthData ? prevMonthData.length : aggregatedTableData.length)}`;
 
-        document.getElementById('kpi-avg-per-store').textContent = fmt(avgPerStore, true);
+        animateKpi('kpi-avg-per-store', avgPerStore, v => fmt(v, true));
         document.getElementById('kpi-avg-growth').textContent = `${avgGrowth > 0 ? '↑' : avgGrowth < 0 ? '↓' : '='} ${Math.abs(avgGrowth).toFixed(1)}%`;
         document.getElementById('kpi-avg-growth').style.color = avgGrowth > 0 ? '#7c3aed' : avgGrowth < 0 ? '#dc2626' : '#67776f';
 
-        document.getElementById('kpi-concentration').textContent = concentration.toFixed(1) + '%';
+        animateKpi('kpi-concentration', concentration, v => v.toFixed(1) + '%');
         document.getElementById('kpi-top3-share').textContent = `Top 3: ${concentration.toFixed(0)}%`;
+
+        renderKpiSparklines();
     }
 
     function renderCharts() {
