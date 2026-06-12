@@ -938,6 +938,61 @@
         #tgb-tbody td:nth-child(7) { grid-column: 1 / -1; grid-row: 4; }
         #tgb-tbody td[colspan] { grid-column: 1 / -1; text-align: center; }
     }
+
+    /* ── Time Machine (interactive month scrubber) ── */
+    #time-machine { position: relative; overflow: hidden; }
+    #time-machine::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 140% at 0% 0%, rgba(16, 185, 129, 0.10), transparent 55%); }
+    #tm-play {
+        width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+        background: linear-gradient(135deg, #34d399, #059669) !important;
+        color: #fff !important; font-size: 15px; line-height: 1;
+        display: inline-flex; align-items: center; justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        box-shadow: 0 6px 18px rgba(5, 150, 105, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+    }
+    #tm-play:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(5, 150, 105, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+    #tm-play.playing { background: linear-gradient(135deg, #fbbf24, #d97706) !important; box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+    #tm-slider {
+        -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 999px;
+        background: linear-gradient(90deg, #10b981 100%, rgba(5, 150, 105, 0.15) 100%);
+        outline: none; cursor: pointer; min-height: 0 !important;
+    }
+    #tm-slider::-webkit-slider-thumb {
+        -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669);
+        border: 2px solid #fff; box-shadow: 0 2px 10px rgba(5, 150, 105, 0.5);
+        transition: transform 0.15s ease;
+    }
+    #tm-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    #tm-slider::-moz-range-thumb {
+        width: 22px; height: 22px; border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669);
+        border: 2px solid #fff; box-shadow: 0 2px 10px rgba(5, 150, 105, 0.5);
+    }
+    @media (max-width: 640px) {
+        #time-machine { flex-wrap: wrap; }
+        #tm-play { width: 52px; height: 52px; }
+    }
+
+    /* ── Dispensary modal lives on <body> (escapes the dashboard's
+       backdrop-filter containing block so position:fixed works when the
+       page is scrolled). Re-scope the light-theme text remaps here. ── */
+    .dispensary-modal .text-slate-100 { color: #0f172a; }
+    .dispensary-modal .text-slate-200 { color: #1e293b; }
+    .dispensary-modal .text-slate-300 { color: #334155; }
+    .dispensary-modal .text-slate-400 { color: #475569; }
+    .dispensary-modal .hover\:text-slate-200:hover { color: #0f172a; }
+    .dispensary-modal .text-blue-400 { color: #2563eb; }
+    .dispensary-modal .text-rose-400 { color: #e11d48; }
+    .dispensary-modal .border-slate-700, .dispensary-modal .border-slate-800 { border-color: rgba(13, 32, 23, 0.13); }
+    .dispensary-modal .divide-slate-800 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(13, 32, 23, 0.08); }
+    .dispensary-modal .hover\:bg-slate-800:hover { background-color: rgba(5, 150, 105, 0.10); }
+    .dispensary-modal .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
+    .dispensary-modal .rank-1 { background: rgba(251, 146, 60, 0.2); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4); }
+    .dispensary-modal .rank-2 { background: rgba(107, 114, 128, 0.14); color: #4b5a52; border: 1px solid rgba(107, 114, 128, 0.3); }
+    .dispensary-modal .rank-3 { background: rgba(249, 115, 22, 0.2); color: #ea580c; border: 1px solid rgba(249, 115, 22, 0.4); }
+    .dispensary-modal .rank-other { color: #6b7280; font-weight: 600; }
 </style>
 
 <!-- Dashboard Container with Proper Spacing -->
@@ -1055,6 +1110,26 @@
 
     <!-- Main Scrollable Content -->
     <div class="flex-1 overflow-y-auto overflow-x-hidden tgb-scroll p-6 lg:p-6 flex flex-col gap-6">
+
+        <!-- Time Machine: scrub or auto-play through the 15-month history -->
+        <div id="time-machine" class="lg-panel rounded-xl border border-emerald-600/25 shadow-sm p-4 flex items-center gap-4 shrink-0">
+            <button id="tm-play" aria-label="Play through months" title="Auto-play through all months">▶</button>
+            <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-baseline mb-2 gap-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">⏳ Time Machine</span>
+                    <span class="flex items-baseline gap-2 min-w-0">
+                        <span id="tm-label" class="text-sm font-black text-slate-100 truncate">March 2026</span>
+                        <span id="tm-total" class="text-xs font-bold text-emerald-400 whitespace-nowrap"></span>
+                    </span>
+                </div>
+                <input type="range" id="tm-slider" min="0" max="14" step="1" value="14" aria-label="Select month">
+                <div class="flex justify-between mt-1 text-[9px] font-semibold text-slate-500 uppercase tracking-wide">
+                    <span>Jan 2025</span>
+                    <span class="hidden sm:inline">Drag to scrub · press play to watch the market evolve</span>
+                    <span>Mar 2026</span>
+                </div>
+            </div>
+        </div>
 
         <!-- KPI Cards -->
         <div class="dash-section-head"><span class="dash-section-icon">⚡</span><h3>Market Pulse</h3><span class="dash-section-line"></span></div>
@@ -9892,12 +9967,76 @@
         renderCityDistribution();
         renderMarketInsights();
         renderTable();
+        tmSyncFromState();
     }
 
     document.getElementById('tgb-month').addEventListener('change', (e) => {
         currentMonth = e.target.value;
+        tmStopPlayback();
         runUpdate();
     });
+
+    // ---- Time Machine: scrub / auto-play through the month history ----
+    const tmSlider = document.getElementById('tm-slider');
+    const tmPlayBtn = document.getElementById('tm-play');
+    const tmMonthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let tmTimer = null;
+
+    function tmSync(idx) {
+        const [year, month] = monthKeys[idx].split('-');
+        document.getElementById('tm-label').textContent = `${tmMonthNames[+month - 1]} ${year}`;
+        document.getElementById('tm-total').textContent = fmt(getTrendData()[idx], true);
+        tmSlider.value = idx;
+        const pct = (idx / (monthKeys.length - 1)) * 100;
+        tmSlider.style.background = `linear-gradient(90deg, #10b981 ${pct}%, rgba(5, 150, 105, 0.15) ${pct}%)`;
+    }
+
+    function tmSyncFromState() {
+        const idx = monthKeys.indexOf(currentMonth);
+        if (idx >= 0) tmSync(idx);
+        else document.getElementById('tm-total').textContent = '';
+    }
+
+    function tmApply(idx) {
+        currentMonth = monthKeys[idx];
+        document.getElementById('tgb-month').value = currentMonth;
+        runUpdate();
+    }
+
+    function tmStopPlayback() {
+        if (!tmTimer) return;
+        clearInterval(tmTimer);
+        tmTimer = null;
+        tmPlayBtn.textContent = '▶';
+        tmPlayBtn.classList.remove('playing');
+        tmPlayBtn.title = 'Auto-play through all months';
+    }
+
+    tmSlider.addEventListener('input', (e) => {
+        tmStopPlayback();
+        tmApply(+e.target.value);
+    });
+
+    tmPlayBtn.addEventListener('click', () => {
+        if (tmTimer) { tmStopPlayback(); return; }
+        let idx = monthKeys.indexOf(currentMonth);
+        if (idx < 0 || idx >= monthKeys.length - 1) idx = -1; // restart from Jan 2025
+        tmPlayBtn.textContent = '❚❚';
+        tmPlayBtn.classList.add('playing');
+        tmPlayBtn.title = 'Pause playback';
+        const tick = () => {
+            idx++;
+            tmApply(idx);
+            if (idx >= monthKeys.length - 1) tmStopPlayback();
+        };
+        tick();
+        tmTimer = setInterval(tick, 1300);
+    });
+
+    // Re-parent the dispensary modal onto <body>: the dashboard container's
+    // backdrop-filter creates a containing block that traps position:fixed,
+    // mis-centering the modal once the page is scrolled (worst on mobile).
+    document.body.appendChild(document.getElementById('dispensary-modal'));
 
     document.getElementById('tgb-metric').addEventListener('change', (e) => {
         currentMetric = e.target.value;
