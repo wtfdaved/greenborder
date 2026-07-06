@@ -569,8 +569,39 @@
     #tgb-ultra-dash .rank-3 { background: rgba(249, 115, 22, 0.2); color: #ea580c; border: 1px solid rgba(249, 115, 22, 0.4); }
     #tgb-ultra-dash .rank-other { color: #6b7280; font-weight: 600; }
 
-    /* Dispensary Detail Modal */
-    .dispensary-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+    /* Mobile FAB menu — re-parented onto <body>, so styled here (frosted
+       light glass to match the page, not the dashboard's dark-slate classes) */
+    #fab-menu {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(247, 251, 248, 0.88) 100%) !important;
+        backdrop-filter: blur(20px) saturate(170%);
+        -webkit-backdrop-filter: blur(20px) saturate(170%);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 12px 32px rgba(23, 46, 37, 0.20);
+    }
+    #fab-menu button {
+        background: rgba(5, 150, 105, 0.08) !important;
+        color: #065f46 !important;
+    }
+    #fab-menu button:hover { background: rgba(5, 150, 105, 0.16) !important; }
+
+    /* Heatmap cells */
+    #tgb-ultra-dash .tgb-heat-cell {
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    #tgb-ultra-dash .tgb-heat-cell:hover {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 2px #059669, 0 4px 12px rgba(5, 150, 105, 0.25);
+        position: relative;
+        z-index: 5;
+    }
+    #tgb-ultra-dash .tgb-heat-active {
+        box-shadow: 0 0 0 2px #d97706;
+    }
+
+    /* Dispensary Detail Modal (sits above the fixed glass header, z 10000) */
+    .dispensary-modal { position: fixed; inset: 0; z-index: 20000; display: flex; align-items: center; justify-content: center; }
     .dispensary-modal.hidden { display: none; }
     .modal-overlay { position: absolute; inset: 0; background-color: rgba(20, 32, 26, 0.35); backdrop-filter: blur(8px) saturate(150%); -webkit-backdrop-filter: blur(8px) saturate(150%); }
     .modal-dialog { position: relative; z-index: 10000; width: 90%; max-width: 900px; max-height: 90vh; background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 251, 248, 0.84) 100%); backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 20px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 24px 64px rgba(23, 46, 37, 0.25); display: flex; flex-direction: column; animation: modalSlideIn 0.3s ease-out; }
@@ -1022,7 +1053,7 @@
             <!-- Time Range Quick Filters -->
             <div id="time-range-filters" class="flex items-center gap-1.5">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 hidden sm:inline pr-1">Period:</span>
-                <button id="time-all" class="px-2.5 py-1.5 rounded text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors" data-range="all" data-tooltip="Jan 2025 - Dec 2025">Last Year</button>
+                <button id="time-all" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="all" data-tooltip="Jan 2025 - Mar 2026">All Months</button>
                 <button id="time-last3" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last3m" data-tooltip="Jan 2026 - Mar 2026">Last 3M</button>
                 <button id="time-last6" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last6m" data-tooltip="Oct 2025 - Mar 2026">Last 6M</button>
                 <button id="time-ytd" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors hidden sm:inline-block" data-range="ytd" data-tooltip="Jan 2026 - Mar 2026">YTD</button>
@@ -1045,7 +1076,7 @@
 
             <!-- Controls -->
             <div class="relative flex-1 sm:flex-none">
-                <select id="tgb-month" class="w-full sm:w-40 appearance-none lg-panel-strong border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
+                <select id="tgb-month" class="w-full sm:w-52 appearance-none lg-panel-strong border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
                     <option value="all">All Data (2025-2026)</option>
                     <option value="2026-03" selected>March 2026 (Latest)</option>
                     <option value="2026-02">February 2026</option>
@@ -1425,7 +1456,7 @@
     </div>
 
     <!-- Floating Action Button (Mobile) -->
-    <div id="fab-container" class="fixed bottom-24 right-4 z-50 sm:hidden flex flex-col gap-2">
+    <div id="fab-container" class="fixed bottom-24 right-4 z-50 sm:hidden flex flex-col-reverse items-end gap-2">
         <button id="fab-main" class="w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg flex items-center justify-center transition-all" title="Quick Actions">
             <i data-lucide="filter" class="w-6 h-6"></i>
         </button>
@@ -8418,6 +8449,12 @@
         }
     ];
 
+    // The state export spells some city names inconsistently between months
+    // ("Chapparal" vs "Chaparral"), which would split one city into two rows
+    // in every city-level view and break cross-month matching keys.
+    const CITY_FIXES = { 'Chapparal': 'Chaparral' };
+    rawData.forEach(d => { if (CITY_FIXES[d.city]) d.city = CITY_FIXES[d.city]; });
+
     // Constants
     let currentMonth = '2026-03';
     let currentMetric = 'total';
@@ -8433,7 +8470,7 @@
 
     // Time range state
     let timeRangeMode = 'single'; // 'single' for individual month, 'range' for date ranges
-    let selectedTimeRange = 'all'; // 'all', 'last3m', 'last6m', 'ytd'
+    let selectedTimeRange = null; // null (single month), 'all', 'last3m', 'last6m', 'ytd'
 
     // Comparison mode state
     let comparisonMode = false;
@@ -8474,10 +8511,32 @@
     const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan 2026", "Feb 2026", "Mar 2026"];
     const monthKeys = ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"];
 
+    // Categorical palette for the top-10 charts. Ten brand-adjacent hues in a
+    // fixed order, validated for the light glass surface (lightness band,
+    // chroma floor, colorblind-safe adjacent separation, ≥3:1 contrast).
     const colors = [
-        '#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#ec4899', 
-        '#06b6d4', '#ef4444', '#84cc16', '#6366f1', '#f97316'
+        '#059669', '#2563eb', '#b45309', '#7c3aed', '#e11d48',
+        '#0891b2', '#4d7c0f', '#4338ca', '#ea580c', '#0d9488'
     ];
+
+    // One accent per metric, matching the KPI card accents, so the same
+    // entity keeps the same hue everywhere on the page.
+    const METRIC_COLORS = { total: '#059669', adultUse: '#2563eb', medical: '#e11d48' };
+
+    // Chart.js theme defaults for the light liquid-glass surface
+    if (window.Chart) {
+        Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+        Chart.defaults.color = '#44544c';
+        const tt = Chart.defaults.plugins.tooltip;
+        tt.backgroundColor = 'rgba(255, 255, 255, 0.96)';
+        tt.titleColor = '#0f172a';
+        tt.bodyColor = '#334155';
+        tt.borderColor = 'rgba(5, 150, 105, 0.3)';
+        tt.borderWidth = 1;
+        tt.cornerRadius = 8;
+        tt.padding = 10;
+        tt.boxPadding = 4;
+    }
 
     function fmt(num, compact = false) {
         if (compact) {
@@ -8507,9 +8566,19 @@
         return `${city}|${licenseeCore}`;
     }
 
+    // Secondary key: the street address is the most stable identifier across
+    // months (name flips like "MANGO - SUNLAND MCNUTT GROUP LLC" → "SUNLAND
+    // MCNUTT GROUP LLC" → "Mango Cannabis" all share one address).
+    function getAddressKey(record) {
+        const addr = (record.address || '').toUpperCase().replace(/[^A-Z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
+        return addr ? `${record.city}|${addr}` : null;
+    }
+
     // Build dispensary mapping for cross-month matching
     const dispensaryMap = {}; // Maps unique keys to sets of DBAs across months
     const dbaToKey = {}; // Maps each DBA to its unique key
+    const addressMap = {}; // Maps address keys to DBAs across months
+    const dbaToAddressKey = {}; // Maps each DBA to its address key
 
     rawData.forEach(record => {
         const key = getDispensaryKey(record);
@@ -8522,13 +8591,80 @@
             dispensaryMap[key][record.month] = dba;
         }
         dbaToKey[dba] = key;
+
+        const addrKey = getAddressKey(record);
+        if (addrKey) {
+            if (!addressMap[addrKey]) addressMap[addrKey] = {};
+            if (!addressMap[addrKey][record.month]) addressMap[addrKey][record.month] = dba;
+            dbaToAddressKey[dba] = addrKey;
+        }
     });
 
-    // Find the matching DBA in a different month for the same dispensary
+    // Find the matching DBA in a different month for the same dispensary.
+    // Tries the licensee-derived key first, then falls back to the address.
     function findMatchingDba(currentDba, targetMonth) {
         const key = dbaToKey[currentDba];
-        if (!key || !dispensaryMap[key]) return null;
-        return dispensaryMap[key][targetMonth] || null;
+        if (key && dispensaryMap[key] && dispensaryMap[key][targetMonth]) {
+            return dispensaryMap[key][targetMonth];
+        }
+        const addrKey = dbaToAddressKey[currentDba];
+        if (addrKey && addressMap[addrKey] && addressMap[addrKey][targetMonth]) {
+            return addressMap[addrKey][targetMonth];
+        }
+        return null;
+    }
+
+    // Canonical (most recent) display name for a dispensary — used when
+    // aggregating across months so name changes don't split one store into
+    // two table rows (e.g. "SUNLAND MCNUTT GROUP LLC…" → "Mango Cannabis").
+    const canonicalDbaCache = {};
+    function getCanonicalDba(dba) {
+        if (canonicalDbaCache[dba] !== undefined) return canonicalDbaCache[dba];
+        let canonical = dba;
+        for (let i = monthKeys.length - 1; i >= 0; i--) {
+            const match = findMatchingDba(dba, monthKeys[i]);
+            if (match) { canonical = match; break; }
+        }
+        canonicalDbaCache[dba] = canonical;
+        return canonical;
+    }
+
+    // Latest month in the current view plus its predecessor — the pair used
+    // for month-over-month momentum in the scatter and velocity charts (a
+    // multi-month range uses the momentum of its most recent month).
+    function getMomentumKeys() {
+        let baseKey;
+        if (currentMonth && currentMonth !== 'all') {
+            baseKey = currentMonth;
+        } else if (currentMonth === 'all') {
+            baseKey = monthKeys[monthKeys.length - 1];
+        } else {
+            const months = getMonthsForTimeRange(selectedTimeRange);
+            baseKey = months[months.length - 1];
+        }
+        const idx = monthKeys.indexOf(baseKey);
+        return { baseKey, prevKey: idx > 0 ? monthKeys[idx - 1] : null };
+    }
+
+    // MoM growth (%) per dispensary (canonical name) for the latest month in
+    // view. Stores with no prior-month data are omitted (they are new).
+    function getLatestGrowthMap() {
+        const { baseKey, prevKey } = getMomentumKeys();
+        if (!prevKey) return {};
+        const baseData = getAggregatedData(baseKey);
+        const prevData = getAggregatedData(prevKey);
+        const map = {};
+        baseData.forEach(d => {
+            let prev = prevData.find(p => p.dba === d.dba);
+            if (!prev) {
+                const matchingDba = findMatchingDba(d.dba, prevKey);
+                if (matchingDba) prev = prevData.find(p => p.dba === matchingDba);
+            }
+            if (prev && prev.value > 0) {
+                map[getCanonicalDba(d.dba)] = ((d.value - prev.value) / prev.value) * 100;
+            }
+        });
+        return map;
     }
 
     // Aggregates raw data based on the current timeframe and city filter
@@ -8539,14 +8675,18 @@
             records = records.filter(d => d.city === currentCity);
         }
         const map = {};
+        // Across multiple months, group by canonical name so a renamed store
+        // stays a single row; within one month names are already consistent.
+        const multiMonth = monthKey === 'all';
         records.forEach(d => {
-            if (!map[d.dba]) {
-                map[d.dba] = { dba: d.dba, licensee: d.licensee, city: d.city, address: d.address, total: 0, adultUse: 0, medical: 0 };
+            const name = multiMonth ? getCanonicalDba(d.dba) : d.dba;
+            if (!map[name]) {
+                map[name] = { dba: name, licensee: d.licensee, city: d.city, address: d.address, total: 0, adultUse: 0, medical: 0 };
             }
-            map[d.dba].total += d.total;
-            map[d.dba].adultUse += d.adultUse;
-            map[d.dba].medical += d.medical;
-            if (d.licensee.length > map[d.dba].licensee.length) map[d.dba].licensee = d.licensee;
+            map[name].total += d.total;
+            map[name].adultUse += d.adultUse;
+            map[name].medical += d.medical;
+            if (d.licensee.length > map[name].licensee.length) map[name].licensee = d.licensee;
         });
 
         return Object.values(map).map(d => {
@@ -8608,17 +8748,29 @@
         }).filter(d => d !== null);
     }
 
+    // Total market sales per month (cached — used for share calculations)
+    const monthTotals = {};
+    function getMonthTotal(month) {
+        if (monthTotals[month] === undefined) {
+            monthTotals[month] = rawData.filter(d => d.month === month).reduce((sum, d) => sum + d.total, 0);
+        }
+        return monthTotals[month];
+    }
+
     function getMarketShareForMonth(dba, month) {
-        const allData = rawData.filter(d => d.month === month);
-        const totalMarket = allData.reduce((sum, d) => sum + d.total, 0);
-        const dbaData = allData.filter(d => d.dba === dba);
-        const dbaSales = dbaData.reduce((sum, d) => sum + d.total, 0);
-        return totalMarket > 0 ? (dbaSales / totalMarket) * 100 : 0;
+        const totalMarket = getMonthTotal(month);
+        if (totalMarket <= 0) return 0;
+        // The dispensary may be listed under a different name in this month
+        const monthDba = rawData.some(d => d.month === month && d.dba === dba)
+            ? dba : findMatchingDba(dba, month);
+        if (!monthDba) return 0;
+        const dbaSales = rawData.filter(d => d.month === month && d.dba === monthDba)
+            .reduce((sum, d) => sum + d.total, 0);
+        return (dbaSales / totalMarket) * 100;
     }
 
     function getRankForMonth(dba, month) {
         const monthData = rawData.filter(d => d.month === month);
-        const uniqueDBAs = [...new Set(monthData.map(d => d.dba))];
         const aggregated = {};
 
         monthData.forEach(d => {
@@ -8626,8 +8778,12 @@
             aggregated[d.dba] += d.total;
         });
 
+        // Resolve naming variations before looking up the rank
+        const monthDba = aggregated[dba] !== undefined ? dba : findMatchingDba(dba, month);
+        if (!monthDba) return null;
+
         const sorted = Object.entries(aggregated).sort((a, b) => b[1] - a[1]);
-        return sorted.findIndex(([name]) => name === dba) + 1 || null;
+        return sorted.findIndex(([name]) => name === monthDba) + 1 || null;
     }
 
     function openDispensaryModal(dba) {
@@ -8748,7 +8904,7 @@
                     tension: 0.4,
                     pointRadius: 4,
                     pointBackgroundColor: '#059669',
-                    pointBorderColor: '#1a1a1a',
+                    pointBorderColor: '#ffffff',
                     pointBorderWidth: 2
                 }]
             },
@@ -8758,8 +8914,6 @@
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(10, 10, 10, 0.9)',
-                        padding: 8,
                         titleFont: { size: 11 },
                         bodyFont: { size: 10 },
                         callbacks: { label: (ctx) => ctx.parsed.y.toFixed(2) + '%' }
@@ -8791,6 +8945,8 @@
             const rank = getRankForMonth(dba, month);
             return rank || null;
         });
+        // Scale the (reversed) axis to the worst rank actually reached
+        const worstRank = Math.max(10, ...data.filter(r => r !== null));
 
         if (window.modalRankHistoryChart) window.modalRankHistoryChart.destroy();
         window.modalRankHistoryChart = new Chart(ctx, {
@@ -8807,7 +8963,7 @@
                     tension: 0.4,
                     pointRadius: 4,
                     pointBackgroundColor: '#2563eb',
-                    pointBorderColor: '#1a1a1a',
+                    pointBorderColor: '#ffffff',
                     pointBorderWidth: 2
                 }]
             },
@@ -8818,8 +8974,6 @@
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(10, 10, 10, 0.9)',
-                        padding: 8,
                         titleFont: { size: 11 },
                         bodyFont: { size: 10 },
                         callbacks: { label: (ctx) => '#' + ctx.parsed.y }
@@ -8830,7 +8984,7 @@
                         reverse: true,
                         beginAtZero: false,
                         min: 1,
-                        max: 30,
+                        max: worstRank + 1,
                         grid: { color: 'rgba(23, 46, 37, 0.08)' },
                         ticks: { color: '#5b6963', font: { size: 10 }, callback: (v) => '#' + v }
                     },
@@ -9000,11 +9154,31 @@
         } else {
             donutChartInstance = new Chart(ctxDonut, {
                 type: 'doughnut',
-                data: { labels: donutLabels, datasets: [{ data: donutValues, backgroundColor: donutBg, borderWidth: 2, borderColor: '#1a1a1a' }] },
+                data: { labels: donutLabels, datasets: [{ data: donutValues, backgroundColor: donutBg, borderWidth: 2, borderColor: 'rgba(255, 255, 255, 0.9)', hoverBorderColor: '#ffffff', hoverOffset: 6 }] },
                 options: {
                     responsive: true, maintainAspectRatio: false, cutout: '65%',
+                    onClick: (evt, elements) => {
+                        if (!elements.length) return;
+                        const label = donutChartInstance.data.labels[elements[0].index];
+                        if (label === 'Others') return;
+                        // Focus the 12-month trend on the clicked dispensary
+                        selectedDba = selectedDba === label ? null : label;
+                        renderCharts();
+                        renderTable();
+                    },
                     plugins: {
-                        legend: { position: 'right', labels: { boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#2c3a33' } },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 10 }, color: '#2c3a33',
+                                // Long licensee names blow out the legend column
+                                generateLabels: (chart) => {
+                                    const items = Chart.overrides.doughnut.plugins.legend.labels.generateLabels(chart);
+                                    items.forEach(i => { if (i.text && i.text.length > 18) i.text = i.text.slice(0, 17) + '…'; });
+                                    return items;
+                                }
+                            }
+                        },
                         tooltip: {
                             callbacks: { label: (ctx) => ` ${fmt(ctx.parsed)} (${((ctx.parsed / totalMarketValue) * 100).toFixed(1)}%)` }
                         }
@@ -9050,15 +9224,19 @@
                 tension: 0.3
             });
         } else {
-            // Overall market trend
+            // Overall market trend, tinted by the selected metric so the line
+            // matches the KPI card for that metric
             const trendData = getTrendData();
+            const trendColor = METRIC_COLORS[currentMetric] || '#059669';
             datasets.push({
                 label: 'Overall Market',
                 data: trendData,
-                borderColor: '#2563eb',
-                backgroundColor: '#2563eb20',
+                borderColor: trendColor,
+                backgroundColor: trendColor + '20',
                 borderWidth: 2,
-                pointBackgroundColor: '#2563eb',
+                pointBackgroundColor: trendColor,
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 1,
                 pointRadius: 3,
                 fill: true,
                 tension: 0.3
@@ -9150,10 +9328,12 @@
         displayData.forEach((row, index) => {
             const sharePct = ((row.value / totalMarketValue) * 100).toFixed(1);
 
-            // Calculate MoM growth with DBA name normalization
+            // Calculate MoM growth with DBA name normalization.
+            // Multi-month views have no single previous month, so show a dash
+            // rather than a misleading 0.0%.
             let momGrowth = 0;
             let isNewDispensary = false;
-            let momDisplay = '0.0%';
+            let momDisplay = prevMonthData ? '0.0%' : '—';
             let momColor = '#67776f';
 
             if (prevMonthData) {
@@ -9267,10 +9447,12 @@
 
         const ctxBar = document.getElementById('tgbBarChart')?.getContext('2d');
         if (ctxBar) {
+            const fullNames = top10.map(d => d.dba);
             if (barChartInstance) {
                 barChartInstance.data.labels = barLabels;
                 barChartInstance.data.datasets[0].data = barValues;
                 barChartInstance.data.datasets[0].backgroundColor = barColors;
+                barChartInstance.$fullNames = fullNames;
                 barChartInstance.update('none');
             } else {
                 barChartInstance = new Chart(ctxBar, {
@@ -9279,13 +9461,26 @@
                     options: {
                         indexAxis: 'y',
                         responsive: true, maintainAspectRatio: false,
-                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => fmt(ctx.parsed.x) } } },
+                        onClick: (evt, elements) => {
+                            if (!elements.length) return;
+                            // Focus the 12-month trend on the clicked dispensary
+                            const dba = barChartInstance.$fullNames?.[elements[0].index];
+                            if (!dba) return;
+                            selectedDba = selectedDba === dba ? null : dba;
+                            renderCharts();
+                            renderTable();
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { callbacks: { title: (items) => barChartInstance.$fullNames?.[items[0].dataIndex] || items[0].label, label: (ctx) => fmt(ctx.parsed.x) } }
+                        },
                         scales: {
                             x: { grid: { color: 'rgba(23, 46, 37, 0.10)' }, ticks: { font: { family: 'Inter', size: 10 }, callback: (v) => fmt(v, true), color: '#5b6963' }, beginAtZero: true },
                             y: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10 }, color: '#5b6963' } }
                         }
                     }
                 });
+                barChartInstance.$fullNames = fullNames;
             }
         }
 
@@ -9294,7 +9489,8 @@
         const medicalTotal = aggregatedTableData.reduce((a, b) => a + b.medical, 0);
         const breakdownLabels = ['Adult-Use', 'Medical'];
         const breakdownValues = [adultTotal, medicalTotal];
-        const breakdownColors = ['#2563eb', '#dc2626'];
+        // Match the Adult-Use (blue) and Medical (rose) KPI card accents
+        const breakdownColors = [METRIC_COLORS.adultUse, METRIC_COLORS.medical];
 
         const ctxBreakdown = document.getElementById('tgbBreakdownChart')?.getContext('2d');
         if (ctxBreakdown) {
@@ -9305,7 +9501,7 @@
             } else {
                 breakdownChartInstance = new Chart(ctxBreakdown, {
                     type: 'doughnut',
-                    data: { labels: breakdownLabels, datasets: [{ data: breakdownValues, backgroundColor: breakdownColors, borderWidth: 2, borderColor: '#1a1a1a' }] },
+                    data: { labels: breakdownLabels, datasets: [{ data: breakdownValues, backgroundColor: breakdownColors, borderWidth: 2, borderColor: 'rgba(255, 255, 255, 0.9)', hoverBorderColor: '#ffffff', hoverOffset: 6 }] },
                     options: {
                         responsive: true, maintainAspectRatio: false, cutout: '60%',
                         plugins: {
@@ -9384,19 +9580,21 @@
     function getAggregatedDataForRange(range) {
         // Aggregate data for a time range (all months in range)
         const months = getMonthsForTimeRange(range);
-        const records = rawData.filter(d => months.includes(d.month));
+        let records = rawData.filter(d => months.includes(d.month));
         if (currentCity) {
             records = records.filter(d => d.city === currentCity);
         }
         const map = {};
         records.forEach(d => {
-            if (!map[d.dba]) {
-                map[d.dba] = { dba: d.dba, licensee: d.licensee, city: d.city, address: d.address, total: 0, adultUse: 0, medical: 0 };
+            // Group by canonical name so a renamed store stays a single row
+            const name = getCanonicalDba(d.dba);
+            if (!map[name]) {
+                map[name] = { dba: name, licensee: d.licensee, city: d.city, address: d.address, total: 0, adultUse: 0, medical: 0 };
             }
-            map[d.dba].total += d.total;
-            map[d.dba].adultUse += d.adultUse;
-            map[d.dba].medical += d.medical;
-            if (d.licensee.length > map[d.dba].licensee.length) map[d.dba].licensee = d.licensee;
+            map[name].total += d.total;
+            map[name].adultUse += d.adultUse;
+            map[name].medical += d.medical;
+            if (d.licensee.length > map[name].licensee.length) map[name].licensee = d.licensee;
         });
 
         return Object.values(map).map(d => {
@@ -9438,6 +9636,7 @@
         comparisonMode = selectedForComparison.length > 0;
         updateComparisonPanel();
         renderCharts();
+        renderTable(); // keep row highlights in sync when removed via the panel
     }
 
     function updateComparisonPanel() {
@@ -9466,7 +9665,7 @@
                             <div class="text-xs font-bold text-slate-200 truncate">${dbaName}</div>
                             <div class="text-[10px] text-slate-500">${data.city}</div>
                         </div>
-                        <button class="text-slate-400 hover:text-rose-400 ml-2" onclick="toggleComparisonSelection('${dbaName.replace(/'/g, "\\'")}')">×</button>
+                        <button class="tgb-cmp-remove text-slate-400 hover:text-rose-400 ml-2" data-dba="${dbaName.replace(/"/g, '&quot;')}" aria-label="Remove from comparison">×</button>
                     </div>
                     <div class="space-y-2 mt-3 pt-3 border-t border-slate-800">
                         <div>
@@ -9493,6 +9692,12 @@
         });
 
         container.innerHTML = cards.join('');
+
+        // Inline onclick can't reach these module-scoped functions, so wire
+        // the remove buttons up here instead.
+        container.querySelectorAll('.tgb-cmp-remove').forEach(btn => {
+            btn.addEventListener('click', () => toggleComparisonSelection(btn.dataset.dba));
+        });
     }
 
     function clearComparison() {
@@ -9602,26 +9807,20 @@
         const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value);
         const totalMarket = aggregatedTableData.reduce((a, b) => a + b.value, 0);
 
-        // Get growth rates for each dispensary
-        const currentMonthKey = currentMonth === 'all' ? null : currentMonth;
-        let prevMonthKey = null;
-        if (currentMonthKey && currentMonthKey !== 'all') {
-            const idx = monthKeys.indexOf(currentMonthKey);
-            if (idx > 0) prevMonthKey = monthKeys[idx - 1];
-        }
-
-        const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : aggregatedTableData;
+        // MoM growth of the latest month in view (handles naming variations)
+        const growthMap = getLatestGrowthMap();
 
         const scatterData = sorted.map(d => {
             const marketShare = (d.value / totalMarket) * 100;
-            const prevData = prevMonthData.find(p => p.dba === d.dba);
-            const growth = prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
+            const growth = growthMap[getCanonicalDba(d.dba)];
             return {
                 x: d.value,
-                y: growth,
+                y: growth ?? 0,
                 r: Math.sqrt(marketShare) * 3,
                 label: d.dba,
-                backgroundColor: marketShare > 5 ? '#059669' : marketShare > 2 ? '#2563eb' : '#f59e0b'
+                share: marketShare,
+                isNew: growth === undefined,
+                backgroundColor: marketShare > 5 ? '#059669' : marketShare > 2 ? '#2563eb' : '#b45309'
             };
         });
 
@@ -9653,8 +9852,8 @@
                                         const item = scatterData[context.dataIndex];
                                         return [
                                             `Sales: ${fmt(item.x, true)}`,
-                                            `Growth: ${item.y.toFixed(1)}%`,
-                                            `Share: ${Math.sqrt(item.r / 3).toFixed(2)}%`
+                                            `Growth: ${item.isNew ? 'New ★' : item.y.toFixed(1) + '%'}`,
+                                            `Share: ${item.share.toFixed(1)}%`
                                         ];
                                     }
                                 }
@@ -9685,37 +9884,18 @@
         // Sales Velocity - MoM growth rates for top dispensaries
         const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value).slice(0, 8);
 
-        const currentMonthKey = currentMonth === 'all' ? null : currentMonth;
-        let prevMonthKey = null;
-        if (currentMonthKey && currentMonthKey !== 'all') {
-            const idx = monthKeys.indexOf(currentMonthKey);
-            if (idx > 0) prevMonthKey = monthKeys[idx - 1];
-        }
-
-        const prevMonthData = prevMonthKey ? getAggregatedData(prevMonthKey) : aggregatedTableData;
+        // MoM growth of the latest month in view (handles naming variations)
+        const growthMap = getLatestGrowthMap();
 
         const velocityLabels = sorted.map(d => d.dba.length > 15 ? d.dba.substring(0, 13) + '..' : d.dba);
-        const velocityValues = sorted.map(d => {
-            // Try exact match first
-            let prevData = prevMonthData.find(p => p.dba === d.dba);
-
-            // If no exact match, try finding matching DBA using dispensary key
-            if (!prevData && prevMonthKey) {
-                const matchingDba = findMatchingDba(d.dba, prevMonthKey);
-                if (matchingDba) {
-                    prevData = prevMonthData.find(p => p.dba === matchingDba);
-                }
-            }
-
-            return prevData && prevData.value > 0 ? ((d.value - prevData.value) / prevData.value) * 100 : 0;
-        });
+        const velocityValues = sorted.map(d => growthMap[getCanonicalDba(d.dba)] ?? 0);
 
         const ctxVelocity = document.getElementById('tgbVelocityChart')?.getContext('2d');
         if (ctxVelocity) {
             if (velocityChartInstance) {
                 velocityChartInstance.data.labels = velocityLabels;
                 velocityChartInstance.data.datasets[0].data = velocityValues;
-                velocityChartInstance.data.datasets[0].backgroundColor = velocityValues.map(v => v > 0 ? '#059669' : '#dc2626');
+                velocityChartInstance.data.datasets[0].backgroundColor = velocityValues.map(v => v > 0 ? '#059669' : v < 0 ? '#dc2626' : '#94a3b8');
                 velocityChartInstance.update('none');
             } else {
                 velocityChartInstance = new Chart(ctxVelocity, {
@@ -9725,7 +9905,7 @@
                         datasets: [{
                             label: 'MoM Growth %',
                             data: velocityValues,
-                            backgroundColor: velocityValues.map(v => v > 0 ? '#059669' : '#dc2626'),
+                            backgroundColor: velocityValues.map(v => v > 0 ? '#059669' : v < 0 ? '#dc2626' : '#94a3b8'),
                             borderRadius: 4,
                             borderSkipped: false
                         }]
@@ -9768,37 +9948,47 @@
 
         const months = monthKeys;
 
-        // Find min/max for color scaling
-        let minVal = Infinity, maxVal = -Infinity;
-        cities.forEach(city => {
-            months.forEach(month => {
-                const val = cityMonthData[city][month] || 0;
-                minVal = Math.min(minVal, val);
-                maxVal = Math.max(maxVal, val);
-            });
-        });
-
-        // Generate HTML for heatmap
-        let html = '<table class="w-full text-xs border-collapse"><thead><tr><th class="p-2 lg-panel-soft text-slate-400 text-left font-bold">City</th>';
+        // Single-hue emerald scale, shaded per city row: one market ($5M+)
+        // would otherwise wash out every smaller city's seasonality.
+        let html = '<table class="w-full text-xs" style="border-collapse: separate; border-spacing: 2px;"><thead><tr><th class="p-2 text-slate-400 text-left font-bold">City</th>';
         months.forEach(m => {
-            html += `<th class="p-2 lg-panel-soft text-slate-400 text-center font-bold">${monthLabels[monthKeys.indexOf(m)]}</th>`;
+            const active = m === currentMonth;
+            html += `<th class="p-2 text-center font-bold ${active ? 'text-emerald-700' : 'text-slate-400'}">${monthLabels[monthKeys.indexOf(m)]}</th>`;
         });
         html += '</tr></thead><tbody>';
 
         cities.forEach(city => {
-            html += `<tr><td class="p-2 font-bold text-slate-300 lg-panel-soft">${city}</td>`;
+            const rowMax = Math.max(...months.map(m => cityMonthData[city][m] || 0)) || 1;
+            html += `<tr><td class="p-2 font-bold text-slate-300 whitespace-nowrap">${city}</td>`;
             months.forEach(month => {
                 const val = cityMonthData[city][month] || 0;
-                const intensity = maxVal > minVal ? (val - minVal) / (maxVal - minVal) : 0;
-                const hue = 120 + (1 - intensity) * 120; // Green to Red
-                const color = `hsl(${hue}, 70%, ${40 + intensity * 20}%)`;
-                html += `<td class="p-2 text-center text-white font-semibold" style="background-color: ${color}; border: 1px solid #2a2a2a;">${fmt(val, true)}</td>`;
+                const intensity = val / rowMax;
+                const bg = `rgba(5, 150, 105, ${(0.06 + intensity * 0.84).toFixed(3)})`;
+                const ink = intensity > 0.55 ? '#ffffff' : '#065f46';
+                const active = month === currentMonth && (!currentCity || currentCity === city);
+                html += `<td class="tgb-heat-cell p-2 text-center font-semibold${active ? ' tgb-heat-active' : ''}"` +
+                    ` style="background-color: ${bg}; color: ${ink};"` +
+                    ` data-city="${city}" data-month="${month}"` +
+                    ` title="${city} · ${monthLabels[monthKeys.indexOf(month)]}: ${fmt(val)} — click to view">${fmt(val, true)}</td>`;
             });
             html += '</tr>';
         });
 
         html += '</tbody></table>';
+        html += '<div class="text-[10px] text-slate-500 mt-2">Shading is scaled within each city&rsquo;s own range · click a cell to jump to that city &amp; month</div>';
         container.innerHTML = html;
+
+        // Click a cell → drill into that city & month
+        container.querySelectorAll('.tgb-heat-cell').forEach(cell => {
+            cell.addEventListener('click', () => {
+                currentCity = cell.dataset.city;
+                currentMonth = cell.dataset.month;
+                selectedTimeRange = null;
+                tmStopPlayback();
+                document.getElementById('tgb-month').value = currentMonth;
+                runUpdate();
+            });
+        });
     }
 
     function renderCityDistribution() {
@@ -9817,7 +10007,7 @@
 
             container.innerHTML = '<div class="text-[11px] text-slate-400 mb-3 font-semibold uppercase">Dispensaries in ' + currentCity + '</div>' +
                 cityData.sort((a, b) => b.value - a.value).map(d => `
-                <div class="flex items-center justify-between p-3 lg-panel-soft rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-white/80 transition-all cursor-pointer" onclick="document.getElementById('tgb-tbody').scrollIntoView({behavior:'smooth'}); selectedDba='${d.dba}'; renderCharts(); document.querySelectorAll('#tgb-tbody tr').forEach((t,i) => t.classList.toggle('active-row', t.querySelector('td:nth-child(2)')?.textContent.includes('${d.dba}')));">
+                <div class="tgb-dist-store flex items-center justify-between p-3 lg-panel-soft rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-white/80 transition-all cursor-pointer" data-dba="${d.dba.replace(/"/g, '&quot;')}" title="Focus the 12-month trend on this dispensary">
                     <div class="flex-1 truncate">
                         <div class="text-xs font-bold text-slate-200 truncate">${d.dba}</div>
                         <div class="text-[10px] text-slate-500 truncate">${d.city}</div>
@@ -9828,6 +10018,16 @@
                     </div>
                 </div>
             `).join('');
+            // Inline onclick can't reach module-scoped state; wire up here
+            container.querySelectorAll('.tgb-dist-store').forEach(item => {
+                item.addEventListener('click', () => {
+                    const dba = item.dataset.dba;
+                    selectedDba = selectedDba === dba ? null : dba;
+                    renderCharts();
+                    renderTable();
+                    document.getElementById('tgbLineChart').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
             return;
         }
 
@@ -9844,7 +10044,7 @@
             .sort((a, b) => b.total - a.total);
 
         container.innerHTML = cities.map(c => `
-            <div class="flex items-center justify-between p-3 lg-panel-soft rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-white/80 transition-all cursor-pointer" onclick="drillDownToCity('${c.city}')">
+            <div class="tgb-dist-city flex items-center justify-between p-3 lg-panel-soft rounded-lg border border-slate-800 hover:border-emerald-600/50 hover:bg-white/80 transition-all cursor-pointer" data-city="${c.city}" title="Drill into ${c.city}">
                 <div class="flex-1">
                     <div class="text-xs font-bold text-slate-200">${c.city}</div>
                     <div class="text-[10px] text-slate-500">${c.count} stores</div>
@@ -9855,22 +10055,37 @@
                 </div>
             </div>
         `).join('');
+        // Inline onclick can't reach module-scoped drillDownToCity; wire up here
+        container.querySelectorAll('.tgb-dist-city').forEach(item => {
+            item.addEventListener('click', () => drillDownToCity(item.dataset.city));
+        });
     }
 
     function renderMarketInsights() {
         const sorted = [...aggregatedTableData].sort((a, b) => b.value - a.value);
         const top3 = sorted.slice(0, 3);
-        const bottom3 = sorted.slice(-3).reverse();
         const totalMarket = sorted.reduce((a, b) => a + b.value, 0);
 
         // Calculate volatility (simple metric)
         const avgStore = totalMarket / sorted.length;
         const volatility = sorted.reduce((a, b) => a + Math.pow(b.value - avgStore, 2), 0) / sorted.length;
 
+        // Emerging star: fastest MoM grower (latest month in view) with
+        // meaningful volume — not the smallest store, which is what this
+        // slot showed before.
+        const growthMap = getLatestGrowthMap();
+        let emergingStar = null;
+        aggregatedTableData.forEach(d => {
+            if (d.value < 10000) return; // ignore noise from tiny stores
+            const growth = growthMap[getCanonicalDba(d.dba)];
+            if (growth === undefined) return;
+            if (!emergingStar || growth > emergingStar.growth) emergingStar = { dba: d.dba, growth };
+        });
+
         const insights = [
             { label: 'Market Leader', value: top3[0]?.dba || '--', detail: fmt(top3[0]?.value || 0, true) },
-            { label: 'Emerging Star', value: bottom3[0]?.dba || '--', detail: fmt(bottom3[0]?.value || 0, true) },
-            { label: 'Market Diversity', value: (sorted.length > 0 ? Math.round((avgStore / sorted[0].value) * 100) : 0) + '%', detail: 'Avg vs Top Store' }
+            { label: 'Emerging Star', value: emergingStar?.dba || '--', detail: emergingStar ? `${emergingStar.growth >= 0 ? '+' : ''}${emergingStar.growth.toFixed(1)}% MoM` : 'No MoM data' },
+            { label: 'Market Diversity', value: (sorted.length > 0 ? Math.round((avgStore / sorted[0].value) * 100) : 0) + '%', detail: 'Avg store vs #1' }
         ];
 
         const container = document.getElementById('market-insights');
@@ -9972,6 +10187,8 @@
 
     document.getElementById('tgb-month').addEventListener('change', (e) => {
         currentMonth = e.target.value;
+        // Keep the quick-range chips in sync: only "All Months" maps to one
+        selectedTimeRange = currentMonth === 'all' ? 'all' : null;
         tmStopPlayback();
         runUpdate();
     });
@@ -9999,6 +10216,7 @@
 
     function tmApply(idx) {
         currentMonth = monthKeys[idx];
+        selectedTimeRange = null; // scrubbing to a single month leaves range mode
         document.getElementById('tgb-month').value = currentMonth;
         runUpdate();
     }
@@ -10033,10 +10251,11 @@
         tmTimer = setInterval(tick, 1300);
     });
 
-    // Re-parent the dispensary modal onto <body>: the dashboard container's
-    // backdrop-filter creates a containing block that traps position:fixed,
-    // mis-centering the modal once the page is scrolled (worst on mobile).
+    // Re-parent the dispensary modal and mobile FAB onto <body>: the dashboard
+    // container's backdrop-filter creates a containing block that traps
+    // position:fixed (and its overflow:hidden clips the FAB entirely).
     document.body.appendChild(document.getElementById('dispensary-modal'));
+    document.body.appendChild(document.getElementById('fab-container'));
 
     document.getElementById('tgb-metric').addEventListener('change', (e) => {
         currentMetric = e.target.value;
@@ -10065,6 +10284,16 @@
         const suggestionsContainer = document.getElementById('search-suggestions');
         const query = input.value.toLowerCase();
 
+        // Inline onclick can't reach module-scoped state; suggestions carry a
+        // data attribute and are wired up after render instead.
+        const applySuggestion = (value, remember) => {
+            input.value = value;
+            searchQuery = value.toLowerCase();
+            if (remember) addRecentSearch(value);
+            renderTable();
+            suggestionsContainer.classList.add('hidden');
+        };
+
         if (!query) {
             // Show recent searches
             if (recentSearches.length === 0) {
@@ -10072,14 +10301,13 @@
                 return;
             }
             suggestionsContainer.innerHTML = recentSearches.map(s => `
-                <div class="px-3 py-2 hover:bg-slate-700 cursor-pointer text-slate-400 hover:text-slate-200" onclick="document.getElementById('tgb-search').value='${s}'; searchQuery='${s}'; renderTable(); document.getElementById('search-suggestions').classList.add('hidden');">
+                <div class="tgb-suggestion px-3 py-2 hover:bg-slate-700 cursor-pointer text-slate-400 hover:text-slate-200" data-value="${s.replace(/"/g, '&quot;')}">
                     <i data-lucide="clock" class="w-3 h-3 inline mr-1"></i> ${s}
                 </div>
             `).join('');
             suggestionsContainer.classList.remove('hidden');
         } else {
             // Show fuzzy matched results
-            const matches = [];
             const dispensaryNames = [...new Set(aggregatedTableData.map(d => d.dba))];
             const cities = [...new Set(aggregatedTableData.map(d => d.city))];
 
@@ -10096,12 +10324,20 @@
             }
 
             suggestionsContainer.innerHTML = scored.map(item => `
-                <div class="px-3 py-2 hover:bg-slate-700 cursor-pointer text-slate-400 hover:text-slate-200" onclick="document.getElementById('tgb-search').value='${item.option}'; searchQuery='${item.option.toLowerCase()}'; addRecentSearch('${item.option}'); renderTable(); document.getElementById('search-suggestions').classList.add('hidden');">
+                <div class="tgb-suggestion px-3 py-2 hover:bg-slate-700 cursor-pointer text-slate-400 hover:text-slate-200" data-value="${item.option.replace(/"/g, '&quot;')}" data-remember="1">
                     ${item.option}
                 </div>
             `).join('');
             suggestionsContainer.classList.remove('hidden');
         }
+
+        suggestionsContainer.querySelectorAll('.tgb-suggestion').forEach(el => {
+            // mousedown so it fires before the input's blur hides the dropdown
+            el.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                applySuggestion(el.dataset.value, el.dataset.remember === '1');
+            });
+        });
     }
 
     function addRecentSearch(query) {
@@ -10214,57 +10450,35 @@
     });
 
     // Time range quick filter handlers
+    function runRangeUpdate(range) {
+        selectedTimeRange = range;
+        currentMonth = null; // range mode: no single active month
+        tmStopPlayback();
+        aggregatedTableData = getAggregatedDataForRange(range);
+        updateTimeRangeDisplay();
+        updateBreadcrumb();
+        updateCategoryButtons();
+        updateKPIs();
+        renderCharts();
+        renderAdditionalCharts();
+        renderScatterChart();
+        renderSalesVelocityChart();
+        renderCityDistribution();
+        renderMarketInsights();
+        renderTable();
+    }
+
     document.getElementById('time-all').addEventListener('click', () => {
         selectedTimeRange = 'all';
         currentMonth = 'all';
-        updateTimeRangeDisplay();
+        tmStopPlayback();
+        document.getElementById('tgb-month').value = 'all';
         runUpdate();
     });
 
-    document.getElementById('time-last3').addEventListener('click', () => {
-        selectedTimeRange = 'last3m';
-        currentMonth = null; // Use range mode
-        aggregatedTableData = getAggregatedDataForRange('last3m');
-        updateTimeRangeDisplay();
-        updateBreadcrumb();
-        updateCategoryButtons();
-        updateKPIs();
-        renderCharts();
-        renderAdditionalCharts();
-        renderCityDistribution();
-        renderMarketInsights();
-        renderTable();
-    });
-
-    document.getElementById('time-last6').addEventListener('click', () => {
-        selectedTimeRange = 'last6m';
-        currentMonth = null; // Use range mode
-        aggregatedTableData = getAggregatedDataForRange('last6m');
-        updateTimeRangeDisplay();
-        updateBreadcrumb();
-        updateCategoryButtons();
-        updateKPIs();
-        renderCharts();
-        renderAdditionalCharts();
-        renderCityDistribution();
-        renderMarketInsights();
-        renderTable();
-    });
-
-    document.getElementById('time-ytd').addEventListener('click', () => {
-        selectedTimeRange = 'ytd';
-        currentMonth = null; // Use range mode
-        aggregatedTableData = getAggregatedDataForRange('ytd');
-        updateTimeRangeDisplay();
-        updateBreadcrumb();
-        updateCategoryButtons();
-        updateKPIs();
-        renderCharts();
-        renderAdditionalCharts();
-        renderCityDistribution();
-        renderMarketInsights();
-        renderTable();
-    });
+    document.getElementById('time-last3').addEventListener('click', () => runRangeUpdate('last3m'));
+    document.getElementById('time-last6').addEventListener('click', () => runRangeUpdate('last6m'));
+    document.getElementById('time-ytd').addEventListener('click', () => runRangeUpdate('ytd'));
 
     // Sort handlers
     document.querySelectorAll('th[data-sort]').forEach(th => {

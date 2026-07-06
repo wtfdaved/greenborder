@@ -216,7 +216,7 @@ textarea:focus-visible,
 .text-rose-300, .text-rose-400, .text-red-400 { color: #be123c !important; }
 .text-blue-200, .text-blue-400 { color: #1d4ed8 !important; }
 .text-violet-400, .text-indigo-400 { color: #6d28d9 !important; }
-.text-cyan-400 { color: #0e7490 !important; }
+.text-cyan-300, .text-cyan-400 { color: #0e7490 !important; }
 
 /* Keep white text where it sits on solid emerald/gold fills */
 [class*="bg-emerald-5"].text-white, [class*="bg-emerald-6"].text-white, [class*="bg-emerald-7"].text-white,
