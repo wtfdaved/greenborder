@@ -503,6 +503,16 @@
       transform: translateY(-2px);
     }
 
+    /* ── Gold highlight button (primary CTA) ── */
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .btn-gold:hover {
+      box-shadow: 0 0 30px rgba(245,158,11,0.5);
+      transform: translateY(-2px);
+    }
+
     /* ── Scroll reveal ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -984,14 +994,14 @@
 
   <!-- CTAs -->
   <div class="flex flex-col sm:flex-row gap-4 animate-fade-up" style="animation-delay:0.3s;">
-    <a href="/directory.html" class="btn-primary px-8 py-3.5 rounded-xl text-white font-semibold text-base shadow-lg">
+    <a href="/data.html" class="btn-gold px-8 py-3.5 rounded-xl text-white font-semibold text-base shadow-lg">
+      📊 Sales Dashboard
+    </a>
+    <a href="/directory.html" class="px-8 py-3.5 rounded-xl font-semibold text-base bg-white/5 border border-emerald-500/30 text-emerald-400 hover:border-emerald-500/60 hover:text-emerald-300 hover:-translate-y-0.5 transition-all">
       🌿 Dispensary Directory
     </a>
-    <a href="#dispensaries" class="px-8 py-3.5 rounded-xl font-semibold text-base bg-white/5 border border-emerald-500/30 text-emerald-400 hover:border-emerald-500/60 hover:text-emerald-300 hover:-translate-y-0.5 transition-all">
+    <a href="#dispensaries" class="px-8 py-3.5 rounded-xl font-semibold text-base bg-white/5 border border-white/15 text-gray-300 hover:border-white/30 hover:text-white hover:-translate-y-0.5 transition-all">
       Browse Featured
-    </a>
-    <a href="/data.html" class="px-8 py-3.5 rounded-xl font-semibold text-base bg-white/5 border border-gold-500/30 text-gold-400 hover:border-gold-500/60 hover:text-gold-300 hover:-translate-y-0.5 transition-all">
-      Sales Dashboard
     </a>
   </div>
 
@@ -1589,6 +1599,21 @@ faqContainer.innerHTML = FAQS.map((f,i) => `
   </div>
 `).join('');
 
+// FAQPage structured data, generated from the same array so it can't drift
+// from the rendered accordion. Google processes JS-injected JSON-LD.
+const faqLd = document.createElement('script');
+faqLd.type = 'application/ld+json';
+faqLd.textContent = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQS.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+});
+document.head.appendChild(faqLd);
+
 document.querySelectorAll('.gb-faq-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     const body = this.nextElementSibling;
@@ -1655,6 +1680,44 @@ render();
     </div>
   </div>
 </div>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║              MARKET PULSE                    ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section id="market-pulse" class="section-pad px-4 max-w-6xl mx-auto" hidden>
+  <div class="text-center mb-10 reveal">
+    <span class="section-line mb-4 block mx-auto"></span>
+    <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Border Market Pulse</h2>
+    <p class="text-gray-400 max-w-xl mx-auto">Real dispensary sales reported to New Mexico, updated monthly — latest: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
+  </div>
+
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 reveal">
+    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+      <div id="mp-total" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+      <div class="text-xs text-gray-500 uppercase tracking-widest">Monthly Sales</div>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+      <div id="mp-locations" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">—</div>
+      <div class="text-xs text-gray-500 uppercase tracking-widest">Locations Reporting</div>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+      <div id="mp-mom" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+      <div class="text-xs text-gray-500 uppercase tracking-widest">Month over Month</div>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+      <div id="mp-region-share" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+      <div id="mp-region-label" class="text-xs text-gray-500 uppercase tracking-widest">Top Region</div>
+    </div>
+  </div>
+
+  <div class="text-center reveal">
+    <a href="/data.html" class="btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm shadow-lg">
+      Explore the Full Sales Dashboard
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
 
 
 <!-- ╔══════════════════════════════════════════════╗ -->
@@ -1866,6 +1929,54 @@ render();
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                JAVASCRIPT                    ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
+<script src="/sales-data-2026.js" defer></script>
+<script>
+  // ── Market Pulse (live stats from state sales data) ──
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof newSalesData2026 === 'undefined' || !Array.isArray(newSalesData2026)) return;
+    const data = newSalesData2026;
+    const months = [...new Set(data.map(d => d.month))].sort();
+    if (months.length === 0) return;
+
+    const latest = months[months.length - 1];
+    const prev = months.length > 1 ? months[months.length - 2] : null;
+    const rows = (m) => data.filter(d => d.month === m);
+    const total = (m) => rows(m).reduce((sum, d) => sum + (d.total || 0), 0);
+
+    const latestTotal = total(latest);
+    if (!latestTotal) return;
+
+    const [yr, mo] = latest.split('-');
+    const monthName = new Date(Number(yr), Number(mo) - 1, 1)
+      .toLocaleString('en-US', { month: 'long', year: 'numeric' });
+
+    const byCity = {};
+    rows(latest).forEach(d => { byCity[d.city] = (byCity[d.city] || 0) + (d.total || 0); });
+    const topRegion = Object.entries(byCity).sort((a, b) => b[1] - a[1])[0];
+
+    document.getElementById('mp-month').textContent = monthName;
+    document.getElementById('mp-total').textContent = '$' + (latestTotal / 1e6).toFixed(1) + 'M';
+    document.getElementById('mp-locations').textContent = String(rows(latest).length);
+    document.getElementById('mp-region-share').textContent = Math.round((topRegion[1] / latestTotal) * 100) + '%';
+    document.getElementById('mp-region-label').textContent = topRegion[0] + ' · Top Region';
+
+    const momEl = document.getElementById('mp-mom');
+    if (prev && total(prev) > 0) {
+      const mom = (latestTotal / total(prev) - 1) * 100;
+      momEl.textContent = (mom >= 0 ? '+' : '−') + Math.abs(mom).toFixed(1) + '%';
+      momEl.classList.add(mom >= 0 ? 'text-emerald-400' : 'text-rose-400');
+    } else {
+      momEl.textContent = 'New';
+      momEl.classList.add('text-gray-400');
+    }
+
+    const section = document.getElementById('market-pulse');
+    section.hidden = false;
+    if (window.lgCountUp) {
+      ['mp-total', 'mp-locations', 'mp-region-share'].forEach(id => window.lgCountUp(document.getElementById(id)));
+    }
+  });
+</script>
 <script>
   // ── Body padding for fixed header ────────────────
   // Measure the floating header instead of hard-coding 80px so the
