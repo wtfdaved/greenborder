@@ -978,7 +978,7 @@
   <div class="flex flex-wrap justify-center gap-3 mb-10 animate-fade-up" style="animation-delay:0.25s;">
     <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">
       <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-      38+ Dispensaries Mapped
+      <span id="pill-dispensary-count">38+</span>&nbsp;Dispensaries Mapped
     </span>
     <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">
       <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
@@ -1010,7 +1010,7 @@
   <!-- Stats strip -->
   <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden animate-fade-up max-w-2xl mx-auto" style="animation-delay:0.4s;">
     <div class="bg-white/5 text-center py-6 px-4">
-      <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>38</div>
+      <div id="stat-dispensary-count" class="font-display text-3xl font-bold text-emerald-400" data-lg-count>38</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Dispensaries</div>
     </div>
     <div class="bg-white/5 text-center py-6 px-4">
@@ -1074,14 +1074,14 @@
       <!-- Search -->
       <div class="relative flex-1 min-w-0">
         <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-linecap="round"/></svg>
-        <input id="gb-search" type="text" placeholder="Search by name, street, or vibe…"
+        <input id="gb-search" type="text" aria-label="Search dispensaries by name, street, or vibe" placeholder="Search by name, street, or vibe…"
           class="w-full pl-11 pr-10 py-3 text-sm bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500/50 placeholder-gray-600 transition-all text-gray-200">
-        <button id="gb-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 hover:text-gray-300 hidden transition-colors" onclick="document.getElementById('gb-search').value=''; document.getElementById('gb-search').dispatchEvent(new Event('input')); this.classList.add('hidden');">
+        <button id="gb-search-clear" aria-label="Clear search" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 hover:text-gray-300 hidden transition-colors" onclick="document.getElementById('gb-search').value=''; document.getElementById('gb-search').dispatchEvent(new Event('input')); this.classList.add('hidden');">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
       <!-- Region -->
-      <select id="gb-city" class="text-sm font-medium border border-white/10 rounded-2xl bg-[#1a1a1a] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-all min-w-[152px] text-gray-300">
+      <select id="gb-city" aria-label="Filter by region" class="text-sm font-medium border border-white/10 rounded-2xl bg-[#1a1a1a] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-all min-w-[152px] text-gray-300">
         <option value="All">All Regions</option>
         <option value="Sunland Park">Sunland Park</option>
         <option value="Chaparral">Chaparral</option>
@@ -1089,7 +1089,7 @@
         <option value="Anthony">Anthony</option>
       </select>
       <!-- Category -->
-      <select id="gb-vibe" class="text-sm font-medium border border-white/10 rounded-2xl bg-[#1a1a1a] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-all min-w-[172px] text-gray-300">
+      <select id="gb-vibe" aria-label="Filter by vibe or category" class="text-sm font-medium border border-white/10 rounded-2xl bg-[#1a1a1a] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-all min-w-[172px] text-gray-300">
         <option value="All">All Vibes</option>
         <option value="lounge">🛋️ Consumption Lounges</option>
         <option value="drive-thru">🚗 Drive-Thru &amp; Pickup</option>
@@ -1117,7 +1117,7 @@
 
     <!-- Results meta -->
   <div class="flex flex-wrap items-center justify-between gap-2 mb-6 px-2">
-    <p class="text-sm font-semibold text-gray-500" id="gb-count">Loading…</p>
+    <p class="text-sm font-semibold text-gray-500" id="gb-count" aria-live="polite">Loading…</p>
     <div class="flex items-center gap-2">
       <!-- Sort toggle -->
       <button id="gb-sort" class="flex items-center gap-1.5 text-[11px] text-gray-400 hover:text-emerald-400 tracking-wide transition-colors font-bold bg-white/5 px-3 py-1 rounded-full border border-white/10 hover:border-emerald-500/30" title="Sort order">
@@ -1144,6 +1144,41 @@
     <!-- ── CARD GRID ──────────────────────────────────── -->
   <!-- Set to exactly 2 columns on desktop to widen cards and prevent text squishing/stretching -->
   <div id="gb-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"></div>
+
+  <!-- ── MARKET PULSE ────────────────────────────────── -->
+  <section id="market-pulse" class="mt-20" hidden>
+    <div class="text-center mb-10 reveal">
+      <span class="section-line mb-4 block mx-auto"></span>
+      <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Border Market Pulse</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Real dispensary sales reported to New Mexico, updated monthly — latest: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 reveal">
+      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+        <div id="mp-total" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Monthly Sales</div>
+      </div>
+      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+        <div id="mp-locations" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">—</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Locations Reporting</div>
+      </div>
+      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+        <div id="mp-mom" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Month over Month</div>
+      </div>
+      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+        <div id="mp-region-share" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div id="mp-region-label" class="text-xs text-gray-500 uppercase tracking-widest">Top Region</div>
+      </div>
+    </div>
+
+    <div class="text-center reveal">
+      <a href="/data.html" class="btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm shadow-lg">
+        Explore the Full Sales Dashboard
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
 
   <!-- ── CTA BAND ────────────────────────────────────── -->
   <div class="mt-20 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 text-center">
@@ -1249,6 +1284,14 @@ const DATA = RAW_DATA.filter(d => !d.excluded).map(d => {
     rank: d.rank
   };
 });
+
+// Keep the hero counts honest: they come from the same data that renders
+// the grid, so adding or removing a dispensary can't leave them stale.
+// This runs during parse, before the deferred count-up script reads them.
+const heroStat = document.getElementById('stat-dispensary-count');
+if (heroStat) heroStat.textContent = String(DATA.length);
+const heroPill = document.getElementById('pill-dispensary-count');
+if (heroPill) heroPill.textContent = DATA.length + '+';
 
 /* ══════════════════════════════════════════════════════════
    STATE
@@ -1671,44 +1714,6 @@ render();
 
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║              MARKET PULSE                    ║ -->
-<!-- ╚══════════════════════════════════════════════╝ -->
-<section id="market-pulse" class="section-pad px-4 max-w-6xl mx-auto" hidden>
-  <div class="text-center mb-10 reveal">
-    <span class="section-line mb-4 block mx-auto"></span>
-    <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Border Market Pulse</h2>
-    <p class="text-gray-400 max-w-xl mx-auto">Real dispensary sales reported to New Mexico, updated monthly — latest: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
-  </div>
-
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 reveal">
-    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
-      <div id="mp-total" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
-      <div class="text-xs text-gray-500 uppercase tracking-widest">Monthly Sales</div>
-    </div>
-    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
-      <div id="mp-locations" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">—</div>
-      <div class="text-xs text-gray-500 uppercase tracking-widest">Locations Reporting</div>
-    </div>
-    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
-      <div id="mp-mom" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
-      <div class="text-xs text-gray-500 uppercase tracking-widest">Month over Month</div>
-    </div>
-    <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
-      <div id="mp-region-share" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
-      <div id="mp-region-label" class="text-xs text-gray-500 uppercase tracking-widest">Top Region</div>
-    </div>
-  </div>
-
-  <div class="text-center reveal">
-    <a href="/data.html" class="btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm shadow-lg">
-      Explore the Full Sales Dashboard
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-</section>
-
-
-<!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║             BORDER CROSSING BANNER           ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <div class="px-4 py-3 max-w-6xl mx-auto">
@@ -1779,7 +1784,7 @@ render();
         <p class="text-gray-400 text-sm leading-relaxed mb-4">Get the latest 915 cannabis news, deals, and dispensary updates delivered to your inbox.</p>
       </div>
       <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
-        <input type="email" placeholder="your@email.com" required class="w-full px-4 py-2.5 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
+        <input type="email" aria-label="Email address for newsletter" placeholder="your@email.com" required class="w-full px-4 py-2.5 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
         <button type="submit" class="w-full btn-primary py-2.5 rounded-xl text-white text-sm font-semibold">Subscribe Free</button>
       </form>
     </div>
@@ -2037,10 +2042,9 @@ render();
     }, 3000);
   }
 
-  // ── Scrolled state for header ────────────────────
-  window.addEventListener('scroll', () => {
-    document.body.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  // Header "scrolled" state is owned by /js/liquid-glass.js — a second
+  // listener here with a different threshold made the two fight and the
+  // glass header flicker between 40px and 100px of scroll.
 </script>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
