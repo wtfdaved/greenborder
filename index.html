@@ -188,6 +188,8 @@
     /* ── Base ── */
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    /* Keep anchored sections clear of the fixed glass header on jump links */
+    section[id] { scroll-margin-top: 6rem; }
     body {
       background-color: #0a0a0a;
       color: #e5e7eb;
@@ -1364,7 +1366,7 @@ function card(d) {
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-10l6-3m0 13l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4"/></svg>
             Directions
           </a>
-          <a href="/#about" target="_blank" rel="noopener noreferrer"
+          <a href="/partnerships.html"
              class="flex items-center justify-center text-emerald-500/60 hover:text-emerald-400 text-[11px] font-bold transition-colors px-3 py-2 border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-500/10 rounded-xl whitespace-nowrap shrink-0">
             Claim
           </a>
@@ -1669,20 +1671,6 @@ render();
 
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║             BORDER CROSSING BANNER           ║ -->
-<!-- ╚══════════════════════════════════════════════╝ -->
-<div class="px-4 py-3 max-w-6xl mx-auto">
-  <div class="rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(16,185,129,0.08));border:1px solid rgba(245,158,11,0.25);">
-    <span class="text-3xl">⚠️</span>
-    <div class="text-center sm:text-left">
-      <p class="text-yellow-300 font-semibold text-sm">Cannabis Stays on Your Side of the Border</p>
-      <p class="text-gray-400 text-xs mt-0.5">It is a <strong class="text-white">federal crime</strong> to transport cannabis across state or international borders. Consume legally — enjoy locally.</p>
-    </div>
-  </div>
-</div>
-
-
-<!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              MARKET PULSE                    ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <section id="market-pulse" class="section-pad px-4 max-w-6xl mx-auto" hidden>
@@ -1718,6 +1706,20 @@ render();
     </a>
   </div>
 </section>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║             BORDER CROSSING BANNER           ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="px-4 py-3 max-w-6xl mx-auto">
+  <div class="rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(16,185,129,0.08));border:1px solid rgba(245,158,11,0.25);">
+    <span class="text-3xl">⚠️</span>
+    <div class="text-center sm:text-left">
+      <p class="text-yellow-300 font-semibold text-sm">Cannabis Stays on Your Side of the Border</p>
+      <p class="text-gray-400 text-xs mt-0.5">It is a <strong class="text-white">federal crime</strong> to transport cannabis across state or international borders. Consume legally — enjoy locally.</p>
+    </div>
+  </div>
+</div>
 
 
 <!-- ╔══════════════════════════════════════════════╗ -->
