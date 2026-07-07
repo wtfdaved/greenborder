@@ -314,8 +314,21 @@ body.scrolled #tgb-glass-header {
   transform: translateY(-2px) scale(1.03);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 24px rgba(5, 150, 105, 0.40);
 }
+/* Keep the header a floating glass pill on small screens instead of a
+   square edge-to-edge bar — loaded after page styles, so this wins. */
 @media (max-width: 900px) {
-  #tgb-glass-header { border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
+  #tgb-glass-header {
+    width: calc(100% - 20px);
+    top: calc(10px + env(safe-area-inset-top, 0px));
+    border: var(--lg-border);
+    border-radius: 18px;
+  }
+  body.scrolled #tgb-glass-header {
+    top: calc(6px + env(safe-area-inset-top, 0px));
+    width: calc(100% - 12px);
+    border-radius: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  }
 }
 
 /* ── Glass footer ── */
@@ -467,16 +480,27 @@ body.scrolled #tgb-glass-header {
   border: var(--lg-border) !important;
   box-shadow: var(--lg-specular), var(--lg-shadow);
 }
+.filter-sticky {
+  background: var(--lg-glass-bg-strong) !important;
+  backdrop-filter: var(--lg-blur-strong) !important;
+  -webkit-backdrop-filter: var(--lg-blur-strong) !important;
+  border: var(--lg-border) !important;
+  box-shadow: var(--lg-specular), var(--lg-shadow) !important;
+}
 .filter-bar input,
-.filter-bar select {
+.filter-bar select,
+.filter-sticky input,
+.filter-sticky select {
   background: rgba(255, 255, 255, 0.7) !important;
   color: var(--lg-ink) !important;
   border-color: var(--lg-line) !important;
   box-shadow: inset 0 1px 2px rgba(23, 46, 37, 0.05);
   transition: border-color var(--lg-fast) var(--lg-ease), box-shadow var(--lg-fast) var(--lg-ease);
 }
-.filter-bar input::placeholder { color: var(--lg-ink-3); }
-.filter-bar select option { background: #ffffff; color: var(--lg-ink); }
+.filter-bar input::placeholder,
+.filter-sticky input::placeholder { color: var(--lg-ink-3); }
+.filter-bar select option,
+.filter-sticky select option { background: #ffffff; color: var(--lg-ink); }
 
 /* ── Chips, pills, actions ── */
 .offering-chip,
