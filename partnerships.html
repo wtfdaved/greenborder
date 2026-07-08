@@ -54,6 +54,11 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ── Fluid type scale ── */
+    .fluid-h1 { font-size: clamp(2.25rem, 5.5vw + 1rem, 4rem); line-height: 1.08; }
+    .fluid-h2 { font-size: clamp(1.6rem, 2.5vw + 0.8rem, 2.5rem); line-height: 1.15; }
+    .fluid-lead { font-size: clamp(1rem, 0.6vw + 0.85rem, 1.25rem); }
+
     /* ── Glass Header ── */
     #tgb-glass-header {
       position: fixed;
@@ -144,6 +149,7 @@
       text-decoration: none;
       box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
     .tgb-header-btn:hover {
       background: #14532d;
@@ -175,15 +181,56 @@
 
     /* ── Page Layout ── */
     .partnerships-hero {
-      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.18) 0%, transparent 65%),
-                  radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(245,158,11,0.07) 0%, transparent 60%),
-                  #0a0a0a;
-      min-height: 500px;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(52,211,153,0.20) 0%, transparent 65%),
+                  radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(251,191,36,0.12) 0%, transparent 60%);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: 120px;
-      padding-bottom: 80px;
+      padding-top: clamp(6.5rem, 14vw, 10rem);
+      padding-bottom: clamp(3rem, 7vw, 5rem);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #047857;
+      background: rgba(5, 150, 105, 0.10);
+      border: 1px solid rgba(5, 150, 105, 0.30);
+    }
+
+    /* ── Step cards ── */
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #047857;
+      background: rgba(5, 150, 105, 0.10);
+      border: 1px solid rgba(5, 150, 105, 0.30);
+      flex-shrink: 0;
+    }
+    .value-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      font-size: 1.4rem;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      flex-shrink: 0;
     }
 
     /* ── Forms ── */
@@ -198,7 +245,8 @@
       font-size: 15px;
     }
     .form-input,
-    .form-textarea {
+    .form-textarea,
+    .form-select {
       width: 100%;
       padding: 12px 16px;
       background: rgba(26, 26, 26, 0.6);
@@ -210,7 +258,8 @@
       transition: all 0.2s ease;
     }
     .form-input:focus,
-    .form-textarea:focus {
+    .form-textarea:focus,
+    .form-select:focus {
       outline: none;
       border-color: rgba(16, 185, 129, 0.5);
       background: rgba(26, 26, 26, 0.8);
@@ -236,6 +285,18 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
     }
+    .reassure-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #44544c;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(13, 32, 23, 0.10);
+    }
 
     /* ── Section divider ── */
     .section-line {
@@ -245,9 +306,158 @@
       border-radius: 9999px;
     }
 
-    /* ── Scroll reveal ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ── Glass Footer ── */
+    .tgb-glass-footer {
+        margin-top: clamp(2.5rem, 6vw, 5rem);
+        padding: 0 20px 40px 20px;
+        position: relative;
+        z-index: 10;
+    }
+    .tgb-footer-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background:
+          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
+          rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(16, 185, 129, 0.15);
+        box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
+        border-radius: 30px;
+        padding: clamp(1.75rem, 4vw, 3.125rem);
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .tgb-footer-cta {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(16,185,129,0.1);
+    }
+    .tgb-cta-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #34d399;
+        margin: 0 0 10px 0;
+    }
+    .tgb-cta-text {
+        font-size: 16px;
+        color: #cbd5e1;
+        margin: 0 auto 25px auto;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    .tgb-sub-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tgb-sub-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    .tgb-footer-nav {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .tgb-footer-link {
+        text-decoration: none;
+        color: #cbd5e1;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-legal-block {
+        background: rgba(16,185,129,0.05);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .tgb-disclaimer-text {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #94a3b8;
+        margin: 0 0 10px 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+    .tgb-copyright {
+        font-size: 12px;
+        color: #cbd5e1;
+        font-weight: 600;
+        margin-top: 15px;
+        opacity: 0.7;
+    }
+
+    /* ── Mobile Bottom Nav (floating glass pill) ── */
+    .tgb-mobile-nav { display: none; }
+    @media (max-width: 768px) {
+      body { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+      .tgb-footer-nav { gap: 15px; }
+      .tgb-mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        left: 50%;
+        transform: translateX(-50%);
+        width: 94%;
+        max-width: 420px;
+        background: rgba(10, 10, 10, 0.88);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+        border-radius: 50px;
+        z-index: 9999;
+        padding: 10px 0;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 65px;
+      }
+      .tgb-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #6b7280;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        width: 18%;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      .tgb-nav-icon {
+        font-size: 22px;
+        margin-bottom: 3px;
+        transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1);
+        filter: grayscale(0.3);
+      }
+      .tgb-nav-item.active { color: #34d399; transform: translateY(-2px); }
+      .tgb-nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        width: 4px;
+        height: 4px;
+        background: #34d399;
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(52,211,153,0.6);
+      }
+      .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.15); filter: grayscale(0); }
+      .tgb-nav-item:not(.active):hover { color: #d1d5db; }
+    }
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
@@ -275,61 +485,156 @@
   </nav>
 
   <div class="tgb-header-actions">
-    <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
+    <a href="#contact" class="tgb-header-btn">Become a Partner</a>
   </div>
 </header>
+
+<main>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              PARTNERSHIPS HERO               ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <section class="partnerships-hero">
-  <div class="text-center px-4 max-w-2xl mx-auto">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6" style="font-family:'Rajdhani',sans-serif;">
-      Partner With The <span class="text-emerald-400">Green Border</span>
+  <div class="text-center px-4 max-w-3xl mx-auto">
+    <span class="hero-badge mb-6">🤝 Partnerships &amp; Sponsorships</span>
+    <h1 class="fluid-h1 font-bold text-white mb-6 mt-6" style="font-family:'Rajdhani',sans-serif;">
+      Partner With <span class="lg-gradient-text">The Green Border</span>
     </h1>
-    <p class="text-lg text-gray-300 leading-relaxed">
-      Reach thousands of engaged cannabis consumers across El Paso, Sunland Park, and the surrounding 915 community.
+    <p class="fluid-lead text-gray-300 leading-relaxed max-w-2xl mx-auto mb-8">
+      Reach thousands of engaged cannabis consumers across El Paso, Sunland Park, and the surrounding 915 community — through the region's most trusted local cannabis guide.
     </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+      <a href="#contact" class="form-submit inline-block text-center no-underline">Start a Partnership</a>
+      <a href="/partner.html" class="inline-block text-center px-8 py-3.5 rounded-xl font-semibold bg-white/5 border border-emerald-500/30 text-emerald-400 hover:border-emerald-500/60 hover:-translate-y-0.5 transition-all no-underline">
+        🌿 Dispensary Plans
+      </a>
+    </div>
+
+    <!-- Social-proof stats -->
+    <div class="hero-stats">
+      <div class="hero-stat text-center py-4 px-3">
+        <div class="hero-stat-value font-bold text-2xl" style="font-family:'Rajdhani',sans-serif;" data-lg-count>38</div>
+        <div class="hero-stat-label text-[11px] uppercase tracking-widest font-semibold mt-1">Dispensaries Listed</div>
+      </div>
+      <div class="hero-stat text-center py-4 px-3">
+        <div class="hero-stat-value font-bold text-2xl" style="font-family:'Rajdhani',sans-serif;" data-lg-count>15+</div>
+        <div class="hero-stat-label text-[11px] uppercase tracking-widest font-semibold mt-1">Months of Market Data</div>
+      </div>
+      <div class="hero-stat text-center py-4 px-3">
+        <div class="hero-stat-value font-bold text-2xl" style="font-family:'Rajdhani',sans-serif;" data-lg-count>100%</div>
+        <div class="hero-stat-label text-[11px] uppercase tracking-widest font-semibold mt-1">Local 915 Audience</div>
+      </div>
+      <div class="hero-stat text-center py-4 px-3">
+        <div class="hero-stat-value font-bold text-2xl" style="font-family:'Rajdhani',sans-serif;" data-lg-count>2</div>
+        <div class="hero-stat-label text-[11px] uppercase tracking-widest font-semibold mt-1">Day Response Time</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║         PARTNERSHIPS CONTENT SECTION         ║ -->
+<!-- ║           WHY PARTNER — VALUE CARDS          ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="py-20 px-4 max-w-4xl mx-auto">
-  <div class="mb-16 reveal">
+<section class="py-14 md:py-20 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-10 md:mb-14">
     <span class="section-line mb-6 block mx-auto"></span>
-    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8 text-center" style="font-family:'Rajdhani',sans-serif;">Why Partner With Us?</h2>
+    <h2 class="fluid-h2 font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">Why Partner With Us?</h2>
+    <p class="text-gray-300 fluid-lead leading-relaxed max-w-3xl mx-auto">
+      The Green Border is the <strong>premier cannabis news and dispensary guide</strong> for the El Paso area and Sunland Park community. Our audience trusts us as their go-to resource — making a partnership the most direct way to reach local cannabis consumers.
+    </p>
+  </div>
 
-    <div class="prose prose-invert max-w-none">
-      <p class="text-gray-300 text-lg leading-relaxed mb-8">
-        The Green Border is the <strong>premier cannabis news and dispensary guide</strong> for the El Paso area and Sunland Park community. We've built a loyal, highly engaged audience of cannabis consumers who actively use our platform to discover dispensaries, learn about new products, and stay informed on local cannabis news and culture.
-      </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+    <div class="lg-glass lg-sheen rounded-2xl p-6 md:p-7">
+      <span class="value-icon mb-4">📣</span>
+      <h3 class="text-lg font-bold text-emerald-400 mb-2">Trusted Local Voice</h3>
+      <p class="text-gray-400 leading-relaxed">Readers come to us first for dispensary picks, deals, and cannabis news. Your brand gets introduced by a voice the 915 already trusts.</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-6 md:p-7">
+      <span class="value-icon mb-4">🎯</span>
+      <h3 class="text-lg font-bold text-emerald-400 mb-2">Engaged, Ready-to-Buy Audience</h3>
+      <p class="text-gray-400 leading-relaxed">Our visitors are actively researching where to shop — not passively scrolling. That intent turns impressions into foot traffic.</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-6 md:p-7 sm:col-span-2 lg:col-span-1">
+      <span class="value-icon mb-4">📊</span>
+      <h3 class="text-lg font-bold text-emerald-400 mb-2">Data-Backed Campaigns</h3>
+      <p class="text-gray-400 leading-relaxed">With 15+ months of regional sales data behind us, we help you target the right cities, products, and timing for your campaign.</p>
+    </div>
+  </div>
+</section>
 
-      <p class="text-gray-300 text-lg leading-relaxed mb-8">
-        If you're a cannabis brand, dispensary, or business looking to connect with local consumers in the 915, we offer the most direct and effective way to reach our community. Our audience trusts The Green Border as their go-to resource, making partnerships with us a powerful marketing channel.
-      </p>
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║             OUR AUDIENCE SECTION             ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="py-14 md:py-20 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-10 md:mb-14">
+    <span class="section-line mb-6 block mx-auto"></span>
+    <h2 class="fluid-h2 font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">Who You'll Reach</h2>
+    <p class="text-gray-300 fluid-lead max-w-2xl mx-auto">Thousands of monthly visitors actively searching for:</p>
+  </div>
 
-      <h3 class="text-2xl font-bold text-emerald-400 mb-4 mt-12">Our Audience</h3>
-      <p class="text-gray-300 text-lg leading-relaxed mb-8">
-        We connect with thousands of monthly visitors who are actively searching for:
-      </p>
-      <ul class="list-disc list-inside text-gray-300 text-lg mb-8 space-y-3">
-        <li>The best dispensaries in El Paso and Sunland Park</li>
-        <li>Current deals and daily specials</li>
-        <li>Cannabis education and consumption guides</li>
-        <li>Latest cannabis news and industry updates</li>
-        <li>Product recommendations and reviews</li>
-      </ul>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4">
+      <span class="value-icon">🏪</span>
+      <p class="text-gray-300 font-medium m-0">The best dispensaries in El Paso &amp; Sunland Park</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4">
+      <span class="value-icon">🏷️</span>
+      <p class="text-gray-300 font-medium m-0">Current deals and daily specials</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4">
+      <span class="value-icon">📚</span>
+      <p class="text-gray-300 font-medium m-0">Cannabis education and consumption guides</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4">
+      <span class="value-icon">📰</span>
+      <p class="text-gray-300 font-medium m-0">Latest cannabis news and industry updates</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4">
+      <span class="value-icon">⭐</span>
+      <p class="text-gray-300 font-medium m-0">Product recommendations and reviews</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4" style="border-color: rgba(245,158,11,0.3);">
+      <span class="value-icon" style="background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25);">✨</span>
+      <p class="text-gray-300 font-medium m-0">Your brand, featured where they're already looking</p>
+    </div>
+  </div>
+</section>
 
-      <h3 class="text-2xl font-bold text-emerald-400 mb-4 mt-12">Partnership Opportunities</h3>
-      <p class="text-gray-300 text-lg leading-relaxed mb-8">
-        We work with dispensaries, brands, and cannabis businesses to create custom sponsorship and advertising packages that meet your goals. Whether you're looking to increase foot traffic, launch a new product, or build brand awareness in the 915, we can help.
-      </p>
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║            HOW IT WORKS SECTION              ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<section class="py-14 md:py-20 px-4 max-w-6xl mx-auto">
+  <div class="text-center mb-10 md:mb-14">
+    <span class="section-line mb-6 block mx-auto"></span>
+    <h2 class="fluid-h2 font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">How Partnership Works</h2>
+    <p class="text-gray-300 fluid-lead max-w-3xl mx-auto">
+      We build custom sponsorship and advertising packages for dispensaries, brands, and cannabis businesses — whether you want more foot traffic, a product launch splash, or lasting brand awareness in the 915.
+    </p>
+  </div>
 
-      <p class="text-gray-300 text-lg leading-relaxed">
-        Fill out the form below to tell us about your business and partnership interests, and we'll connect with you to discuss how we can work together.
-      </p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+    <div class="lg-glass lg-sheen rounded-2xl p-6 md:p-7">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="step-number">1</span>
+        <h3 class="text-lg font-bold text-white m-0" style="font-family:'Rajdhani',sans-serif;">Tell Us Your Goals</h3>
+      </div>
+      <p class="text-gray-400 leading-relaxed">Fill out the short form below with what you're after — sponsorships, advertising, featured listings, or a product launch.</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-6 md:p-7">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="step-number">2</span>
+        <h3 class="text-lg font-bold text-white m-0" style="font-family:'Rajdhani',sans-serif;">Get a Custom Package</h3>
+      </div>
+      <p class="text-gray-400 leading-relaxed">We'll respond within 2 business days with placement options and pricing tailored to your goals and budget.</p>
+    </div>
+    <div class="lg-glass lg-sheen rounded-2xl p-6 md:p-7">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="step-number">3</span>
+        <h3 class="text-lg font-bold text-white m-0" style="font-family:'Rajdhani',sans-serif;">Launch &amp; Grow</h3>
+      </div>
+      <p class="text-gray-400 leading-relaxed">Your campaign goes live in front of the 915's most engaged cannabis audience — and we track how it performs.</p>
     </div>
   </div>
 </section>
@@ -337,84 +642,119 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║            CONTACT FORM SECTION              ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="py-20 px-4 max-w-2xl mx-auto mb-20">
-  <div class="text-center mb-12 reveal">
-    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">Get In Touch</h2>
-    <p class="text-gray-400 text-lg">Tell us about your partnership interest and we'll respond within 2 business days.</p>
+<section id="contact" class="py-14 md:py-20 px-4 max-w-2xl mx-auto scroll-mt-28">
+  <div class="text-center mb-10 md:mb-12">
+    <span class="section-line mb-6 block mx-auto"></span>
+    <h2 class="fluid-h2 font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">Get In Touch</h2>
+    <p class="text-gray-400 fluid-lead">Tell us about your partnership interest and we'll respond within 2 business days.</p>
   </div>
 
-  <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-2xl p-8 md:p-12 reveal">
+  <div class="lg-glass-strong lg-sheen rounded-2xl p-6 sm:p-8 md:p-12">
     <form action="https://formspree.io/f/mvzvapdo" method="POST" class="space-y-6">
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
         <div class="form-group">
           <label for="name" class="form-label">Full Name *</label>
-          <input type="text" id="name" name="name" class="form-input" required placeholder="John Doe">
+          <input type="text" id="name" name="name" class="form-input" required autocomplete="name" placeholder="John Doe">
         </div>
 
         <div class="form-group">
           <label for="email" class="form-label">Email Address *</label>
-          <input type="email" id="email" name="email" class="form-input" required placeholder="john@example.com">
+          <input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="john@example.com">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+        <div class="form-group">
+          <label for="company" class="form-label">Company / Business Name *</label>
+          <input type="text" id="company" name="company" class="form-input" required autocomplete="organization" placeholder="Your Business Name">
+        </div>
+
+        <div class="form-group">
+          <label for="interest" class="form-label">Partnership Type</label>
+          <select id="interest" name="interest" class="form-input form-select">
+            <option value="">Select one (optional)</option>
+            <option value="sponsorship">Sponsorship</option>
+            <option value="advertising">Advertising</option>
+            <option value="featured-listing">Featured Listing</option>
+            <option value="product-launch">Product Launch</option>
+            <option value="other">Something Else</option>
+          </select>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="company" class="form-label">Company / Business Name *</label>
-        <input type="text" id="company" name="company" class="form-input" required placeholder="Your Business Name">
-      </div>
-
-      <div class="form-group">
         <label for="message" class="form-label">Tell Us About Your Partnership Interest *</label>
-        <textarea id="message" name="message" class="form-textarea" required placeholder="Let us know what you're looking for — sponsorships, advertising, featured listings, product launches, etc."></textarea>
+        <textarea id="message" name="message" class="form-input form-textarea" required placeholder="Let us know what you're looking for — sponsorships, advertising, featured listings, product launches, etc."></textarea>
       </div>
 
       <button type="submit" class="form-submit w-full">
-        Send Partnership Inquiry
+        Send Partnership Inquiry →
       </button>
 
-      <p class="text-center text-gray-500 text-sm mt-4">
-        We'll be in touch soon. Check your email for our response.
-      </p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        <span class="reassure-pill">✓ Response within 2 business days</span>
+        <span class="reassure-pill">✓ No obligation</span>
+        <span class="reassure-pill">✓ Custom packages</span>
+      </div>
     </form>
   </div>
 </section>
 
+</main>
+
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              FOOTER SECTION                  ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<footer class="bg-white/2 border-t border-white/10 text-center py-16 px-4">
-  <p class="text-gray-400 text-sm mb-4">© 2026 The Green Border. All rights reserved.</p>
-  <p class="text-gray-500 text-xs">
-    <a href="/" class="hover:text-emerald-400 transition">Home</a>
-    •
-    <a href="/news.html" class="hover:text-emerald-400 transition">News</a>
-    •
-    <a href="/data.html" class="hover:text-emerald-400 transition">Sales Data</a>
-  </p>
+<footer class="tgb-glass-footer">
+    <div class="tgb-footer-card">
+
+        <div class="tgb-footer-cta">
+            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+            <p class="tgb-cta-text">
+                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
+            </p>
+            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
+        </div>
+
+        <nav class="tgb-footer-nav">
+            <a href="/" class="tgb-footer-link">Home</a>
+            <a href="/news.html" class="tgb-footer-link">News</a>
+            <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+            <a href="/#education" class="tgb-footer-link">Education</a>
+            <a href="/#about" class="tgb-footer-link">About</a>
+            <a href="/partner.html" class="tgb-footer-link">Dispensary Plans</a>
+        </nav>
+
+        <div class="tgb-legal-block">
+            <p class="tgb-disclaimer-text">
+                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
+            </p>
+            <p class="tgb-disclaimer-text">
+                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
+            </p>
+            <div class="tgb-copyright">
+                Powered by the 915 | Made with ❤ in El Paso, Texas
+                <br>
+                &copy; <span id="tgb-year"></span> The Green Border
+            </div>
+        </div>
+
+    </div>
 </footer>
 
+<!-- Mobile Navigation -->
+<nav class="tgb-mobile-nav" aria-label="Mobile navigation">
+  <a href="/" class="tgb-nav-item"><span class="tgb-nav-icon">🏠</span>Home</a>
+  <a href="/news.html" class="tgb-nav-item"><span class="tgb-nav-icon">📰</span>News</a>
+  <a href="/data.html" class="tgb-nav-item"><span class="tgb-nav-icon">📊</span>Data</a>
+  <a href="/directory.html" class="tgb-nav-item"><span class="tgb-nav-icon">🌿</span>Shops</a>
+  <a href="/partnerships.html" class="tgb-nav-item active"><span class="tgb-nav-icon">🤝</span>Partner</a>
+</nav>
+
 <script>
-// Scroll event for header styling
-window.addEventListener('scroll', function() {
-  const header = document.getElementById('tgb-glass-header');
-  if (window.scrollY > 20) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
-
-// Reveal animation on scroll
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-reveals.forEach(reveal => observer.observe(reveal));
+// Set year in footer
+document.getElementById('tgb-year').textContent = new Date().getFullYear();
 </script>
 
 </body>
