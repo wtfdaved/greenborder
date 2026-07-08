@@ -2108,10 +2108,16 @@ render();
     }
     const riserList = document.getElementById('mp-riser-list');
     if (riserList && prev) {
-      const prevByDba = {};
-      rows(prev).forEach(d => { prevByDba[d.dba] = (prevByDba[d.dba] || 0) + d.total; });
+      // One store = one row: never sum rows that happen to share a display
+      // name, and skip the comparison entirely if a name is ambiguous in
+      // either month (two CHADCOR licenses once collided onto "Top Crop").
+      const countByDba = {}, prevByDba = {};
+      latestRows.forEach(d => { countByDba[d.dba] = (countByDba[d.dba] || 0) + 1; });
+      rows(prev).forEach(d => {
+        prevByDba[d.dba] = d.dba in prevByDba ? null : d.total; // null = ambiguous
+      });
       const risers = latestRows
-        .filter(d => prevByDba[d.dba] >= 20000) // ignore tiny bases that make % noise
+        .filter(d => countByDba[d.dba] === 1 && prevByDba[d.dba] >= 20000) // ignore tiny bases that make % noise
         .map(d => ({ ...d, growth: (d.total / prevByDba[d.dba] - 1) * 100 }))
         .sort((a, b) => b.growth - a.growth)
         .slice(0, 3);

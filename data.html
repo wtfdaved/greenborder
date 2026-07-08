@@ -8522,7 +8522,7 @@
         {
                 'month': '2026-04',
                 'licensee': 'CHADCOR HOLDINGS NM, LLC',
-                'dba': 'Top Crop',
+                'dba': 'Dark Matter',
                 'total': 1009100.94,
                 'adultUse': 972335.64,
                 'medical': 36765.3,
@@ -8612,7 +8612,7 @@
         {
                 'month': '2026-04',
                 'licensee': 'GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER',
-                'dba': 'Garden of Dreams',
+                'dba': 'Garden of Dreams - Manufacturer',
                 'total': 28.06,
                 'adultUse': 0,
                 'medical': 28.06,
@@ -8702,7 +8702,7 @@
         {
                 'month': '2026-04',
                 'licensee': 'NEBRO 2 LLC-  FUTURITY DRIVE RETAIL',
-                'dba': 'Toke It Up',
+                'dba': 'Elevation 3789',
                 'total': 72723.2,
                 'adultUse': 71186.7,
                 'medical': 1536.5,
@@ -8822,7 +8822,7 @@
         {
                 'month': '2026-04',
                 'licensee': 'STATELINE CANNABIS NM LLC - ARCH ANGEL WAY RETAILER/CONSUMPTION',
-                'dba': 'Stateline Cannabis',
+                'dba': 'High Valley Cannabis',
                 'total': 231206.6,
                 'adultUse': 228689.56,
                 'medical': 2517.04,
@@ -8982,7 +8982,7 @@
         {
                 'month': '2026-05',
                 'licensee': 'CHADCOR HOLDINGS NM, LLC',
-                'dba': 'Top Crop',
+                'dba': 'Dark Matter',
                 'total': 939909.25,
                 'adultUse': 907075.9,
                 'medical': 32833.35,
@@ -9082,7 +9082,7 @@
         {
                 'month': '2026-05',
                 'licensee': 'GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER',
-                'dba': 'Garden of Dreams',
+                'dba': 'Garden of Dreams - Manufacturer',
                 'total': 16.55,
                 'adultUse': 0,
                 'medical': 16.55,
@@ -9172,7 +9172,7 @@
         {
                 'month': '2026-05',
                 'licensee': 'NEBRO 2 LLC-  FUTURITY DRIVE RETAIL',
-                'dba': 'Toke It Up',
+                'dba': 'Elevation 3789',
                 'total': 66510.23,
                 'adultUse': 65475.22,
                 'medical': 1035.01,
@@ -9292,7 +9292,7 @@
         {
                 'month': '2026-05',
                 'licensee': 'STATELINE CANNABIS NM LLC - ARCH ANGEL WAY RETAILER/CONSUMPTION',
-                'dba': 'Stateline Cannabis',
+                'dba': 'High Valley Cannabis',
                 'total': 233732.41,
                 'adultUse': 230975.12,
                 'medical': 2757.29,
@@ -9511,6 +9511,7 @@
     const dbaToKey = {}; // Maps each DBA to its unique key
     const addressMap = {}; // Maps address keys to DBAs across months
     const dbaToAddressKey = {}; // Maps each DBA to its address key
+    const monthDbaSet = {}; // Month -> Set of display names present that month
 
     rawData.forEach(record => {
         const key = getDispensaryKey(record);
@@ -9528,20 +9529,61 @@
         if (addrKey) {
             if (!addressMap[addrKey]) addressMap[addrKey] = {};
             if (!addressMap[addrKey][record.month]) addressMap[addrKey][record.month] = dba;
-            dbaToAddressKey[dba] = addrKey;
+            // First occurrence wins: a name is anchored to the address it first
+            // reported under. The state export sometimes drops a unit suffix
+            // later ("1999 Futurity Drive Unit A" → "1999 Futurity Drive"),
+            // which would otherwise re-anchor Elevation 3789 onto the address
+            // Toke It Up shares.
+            if (!dbaToAddressKey[dba]) dbaToAddressKey[dba] = addrKey;
         }
+
+        if (!monthDbaSet[record.month]) monthDbaSet[record.month] = new Set();
+        monthDbaSet[record.month].add(dba);
     });
 
+    // Two names that ever report in the same month are two different stores
+    // (one store files once per month), and so are two home addresses that
+    // were ever simultaneously active — a store that moves never overlaps
+    // itself. Any candidate match failing this test must be rejected, or
+    // multi-month views would combine two stores' numbers under one row
+    // (e.g. Cardiel Botanica's McNutt and Palomas locations, or Toke It Up
+    // and Elevation 3789 after the state dropped "Unit A" from the latter's
+    // shared 1999 Futurity Drive address).
+    function distinctStores(a, b) {
+        if (a === b) return false;
+        for (const m in monthDbaSet) {
+            if (monthDbaSet[m].has(a) && monthDbaSet[m].has(b)) return true;
+        }
+        const addrA = dbaToAddressKey[a], addrB = dbaToAddressKey[b];
+        if (addrA && addrB && addrA !== addrB && addressMap[addrA] && addressMap[addrB]) {
+            for (const m in addressMap[addrA]) {
+                if (addressMap[addrB][m]) return true;
+            }
+        }
+        return false;
+    }
+
     // Find the matching DBA in a different month for the same dispensary.
-    // Tries the licensee-derived key first, then falls back to the address.
+    // Order matters: (1) the same display name in the target month — names are
+    // unique within a month, so this is exact; (2) the street address; (3) the
+    // licensee-derived key. The key comes LAST because distinct stores can
+    // normalize to the same key — "CHADCOR HOLDINGS NM, LLC" (Dark Matter,
+    // 1615 Appaloosa) and "CHADCOR HOLDINGS NM- RETAIL" (Top Crop, 1621
+    // Appaloosa) — and a key-first match mixed those stores' numbers together.
+    // Every candidate must also pass the distinctStores test above.
     function findMatchingDba(currentDba, targetMonth) {
-        const key = dbaToKey[currentDba];
-        if (key && dispensaryMap[key] && dispensaryMap[key][targetMonth]) {
-            return dispensaryMap[key][targetMonth];
+        if (monthDbaSet[targetMonth] && monthDbaSet[targetMonth].has(currentDba)) {
+            return currentDba;
         }
         const addrKey = dbaToAddressKey[currentDba];
         if (addrKey && addressMap[addrKey] && addressMap[addrKey][targetMonth]) {
-            return addressMap[addrKey][targetMonth];
+            const candidate = addressMap[addrKey][targetMonth];
+            if (!distinctStores(currentDba, candidate)) return candidate;
+        }
+        const key = dbaToKey[currentDba];
+        if (key && dispensaryMap[key] && dispensaryMap[key][targetMonth]) {
+            const candidate = dispensaryMap[key][targetMonth];
+            if (!distinctStores(currentDba, candidate)) return candidate;
         }
         return null;
     }

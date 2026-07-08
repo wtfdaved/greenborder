@@ -1492,7 +1492,7 @@ const newSalesData2026 = [
   {
     "month": "2026-04",
     "licensee": "CHADCOR HOLDINGS NM, LLC",
-    "dba": "Top Crop",
+    "dba": "Dark Matter",
     "total": 1009100.94,
     "adultUse": 972335.64,
     "medical": 36765.3,
@@ -1572,7 +1572,7 @@ const newSalesData2026 = [
   {
     "month": "2026-04",
     "licensee": "GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER",
-    "dba": "Garden of Dreams",
+    "dba": "Garden of Dreams - Manufacturer",
     "total": 28.06,
     "adultUse": 0,
     "medical": 28.06,
@@ -1662,7 +1662,7 @@ const newSalesData2026 = [
   {
     "month": "2026-04",
     "licensee": "NEBRO 2 LLC-  FUTURITY DRIVE RETAIL",
-    "dba": "Toke It Up",
+    "dba": "Elevation 3789",
     "total": 72723.2,
     "adultUse": 71186.7,
     "medical": 1536.5,
@@ -1782,7 +1782,7 @@ const newSalesData2026 = [
   {
     "month": "2026-04",
     "licensee": "STATELINE CANNABIS NM LLC - ARCH ANGEL WAY RETAILER/CONSUMPTION",
-    "dba": "Stateline Cannabis",
+    "dba": "High Valley Cannabis",
     "total": 231206.6,
     "adultUse": 228689.56,
     "medical": 2517.04,
@@ -1952,7 +1952,7 @@ const newSalesData2026 = [
   {
     "month": "2026-05",
     "licensee": "CHADCOR HOLDINGS NM, LLC",
-    "dba": "Top Crop",
+    "dba": "Dark Matter",
     "total": 939909.25,
     "adultUse": 907075.9,
     "medical": 32833.35,
@@ -2042,7 +2042,7 @@ const newSalesData2026 = [
   {
     "month": "2026-05",
     "licensee": "GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER",
-    "dba": "Garden of Dreams",
+    "dba": "Garden of Dreams - Manufacturer",
     "total": 16.55,
     "adultUse": 0,
     "medical": 16.55,
@@ -2132,7 +2132,7 @@ const newSalesData2026 = [
   {
     "month": "2026-05",
     "licensee": "NEBRO 2 LLC-  FUTURITY DRIVE RETAIL",
-    "dba": "Toke It Up",
+    "dba": "Elevation 3789",
     "total": 66510.23,
     "adultUse": 65475.22,
     "medical": 1035.01,
@@ -2252,7 +2252,7 @@ const newSalesData2026 = [
   {
     "month": "2026-05",
     "licensee": "STATELINE CANNABIS NM LLC - ARCH ANGEL WAY RETAILER/CONSUMPTION",
-    "dba": "Stateline Cannabis",
+    "dba": "High Valley Cannabis",
     "total": 233732.41,
     "adultUse": 230975.12,
     "medical": 2757.29,
