@@ -9,7 +9,7 @@
 - **Styling**: Tailwind CSS with custom dark theme
 - **Charts**: Chart.js for data visualization
 - **Data**: Embedded CSV data parsed into JavaScript arrays
-- **Time Period**: January 2025 - March 2026 (15+ months of cannabis sales data)
+- **Time Period**: January 2025 - May 2026 (17 months of cannabis sales data)
 
 **Key Capabilities**:
 - Real-time filtering by month, city, and dispensary type

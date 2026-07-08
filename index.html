@@ -519,6 +519,28 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ── Market Pulse tiles & trend ── */
+    .mp-tile { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+    .mp-tile:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16,185,129,0.45);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35), 0 0 24px rgba(16,185,129,0.15);
+    }
+    #mp-spark svg { display: block; width: 100%; height: auto; }
+    .mp-row {
+      display: flex; align-items: baseline; gap: 8px;
+      font-size: 0.8rem; color: var(--lg-ink-2, #cbd5e1);
+      padding: 4px 6px; border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+    a.mp-row { text-decoration: none; }
+    .mp-row:hover { background: rgba(16,185,129,0.08); }
+    .mp-row .mp-name { color: var(--lg-ink, #e5e7eb); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .mp-row .mp-val { margin-left: auto; font-weight: 700; color: var(--lg-ink-3, #94a3b8); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .mp-row .mp-delta { font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+    .mp-delta-up { color: var(--lg-emerald-deep, #34d399); }
+    .mp-delta-down { color: #be123c; }
+
     /* ── Star rating ── */
     .stars { color: #f59e0b; letter-spacing: 2px; }
 
@@ -1007,6 +1029,9 @@
     </a>
   </div>
 
+  <!-- Live data freshness line (filled from sales-data-2026.js) -->
+  <p id="hero-fresh" class="mt-5 text-xs text-gray-400 tracking-wide animate-fade-up" style="animation-delay:0.35s;" hidden></p>
+
   <!-- Stats strip -->
   <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden animate-fade-up max-w-2xl mx-auto" style="animation-delay:0.4s;">
     <div class="bg-white/5 text-center py-6 px-4">
@@ -1150,25 +1175,47 @@
     <div class="text-center mb-10 reveal">
       <span class="section-line mb-4 block mx-auto"></span>
       <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Border Market Pulse</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Real dispensary sales reported to New Mexico, updated monthly — latest: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
+      <p class="text-gray-400 max-w-xl mx-auto">Every dollar below is real — dispensary sales reported to the State of New Mexico, refreshed monthly. Latest read: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 reveal">
-      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6 reveal">
+      <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Monthly sales — open the sales dashboard">
         <div id="mp-total" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Monthly Sales</div>
-      </div>
-      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+      </a>
+      <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Locations reporting — open the sales dashboard">
         <div id="mp-locations" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Locations Reporting</div>
-      </div>
-      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+      </a>
+      <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Month over month change — open the sales dashboard">
         <div id="mp-mom" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Month over Month</div>
-      </div>
-      <div class="lg-glass lg-sheen rounded-2xl p-6 text-center">
+      </a>
+      <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Top region — open the sales dashboard">
         <div id="mp-region-share" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
         <div id="mp-region-label" class="text-xs text-gray-500 uppercase tracking-widest">Top Region</div>
+      </a>
+    </div>
+
+    <!-- Trend + leaderboard -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-10 reveal">
+      <div class="lg-glass lg-sheen rounded-2xl p-6 lg:col-span-3 relative">
+        <div class="flex items-baseline justify-between gap-2 mb-4 flex-wrap">
+          <h3 class="text-sm font-bold text-white uppercase tracking-widest" style="font-family:'Rajdhani',sans-serif;">2026 Market Trend</h3>
+          <span class="text-[10px] text-gray-500 uppercase tracking-widest">Total monthly sales · all locations</span>
+        </div>
+        <div id="mp-spark" class="relative" aria-label="Monthly cannabis sales totals for 2026"></div>
+        <div id="mp-spark-tip" class="absolute z-10 hidden px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-black/80 border border-emerald-500/30 pointer-events-none whitespace-nowrap" role="status"></div>
+      </div>
+      <div class="lg-glass lg-sheen rounded-2xl p-6 lg:col-span-2">
+        <div class="flex items-baseline justify-between gap-2 mb-4 flex-wrap">
+          <h3 class="text-sm font-bold text-white uppercase tracking-widest" style="font-family:'Rajdhani',sans-serif;">Who's Hot Right Now</h3>
+          <span id="mp-board-month" class="text-[10px] text-gray-500 uppercase tracking-widest"></span>
+        </div>
+        <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-2">Top Performers</div>
+        <ol id="mp-top-list" class="space-y-1.5 mb-4"></ol>
+        <div class="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-2">Fastest Risers</div>
+        <ol id="mp-riser-list" class="space-y-1.5"></ol>
       </div>
     </div>
 
@@ -1177,6 +1224,7 @@
         Explore the Full Sales Dashboard
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>
+      <p class="text-gray-500 text-xs mt-3">17 months of history · every dispensary · city-by-city breakdowns</p>
     </div>
   </section>
 
@@ -1970,11 +2018,104 @@ render();
     const momEl = document.getElementById('mp-mom');
     if (prev && total(prev) > 0) {
       const mom = (latestTotal / total(prev) - 1) * 100;
-      momEl.textContent = (mom >= 0 ? '+' : '−') + Math.abs(mom).toFixed(1) + '%';
+      const arrow = mom >= 0 ? '▲' : '▼';
+      momEl.textContent = arrow + ' ' + Math.abs(mom).toFixed(1) + '%';
       momEl.classList.add(mom >= 0 ? 'text-emerald-400' : 'text-rose-400');
     } else {
       momEl.textContent = 'New';
       momEl.classList.add('text-gray-400');
+    }
+
+    // ── Hero freshness line ──
+    const heroFresh = document.getElementById('hero-fresh');
+    if (heroFresh) {
+      heroFresh.innerHTML = 'Fresh numbers: <span class="text-emerald-400 font-semibold">' + monthName +
+        '</span> · $' + (latestTotal / 1e6).toFixed(1) + 'M in tracked sales across ' + rows(latest).length + ' locations';
+      heroFresh.hidden = false;
+    }
+
+    // ── 2026 trend sparkline ──
+    const monthShort = (m) => {
+      const [y, mo] = m.split('-');
+      return new Date(Number(y), Number(mo) - 1, 1).toLocaleString('en-US', { month: 'short' });
+    };
+    const sparkEl = document.getElementById('mp-spark');
+    if (sparkEl && months.length > 1) {
+      const totals = months.map(total);
+      const W = 640, H = 180, padX = 26, padTop = 34, padBot = 30;
+      const min = Math.min(...totals), max = Math.max(...totals);
+      const span = (max - min) || 1;
+      const x = (i) => padX + i * (W - 2 * padX) / (months.length - 1);
+      const y = (v) => padTop + (1 - (v - min) / span) * (H - padTop - padBot);
+      const pts = totals.map((v, i) => [x(i), y(v)]);
+      const line = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+      const area = line + ' L' + pts[pts.length - 1][0].toFixed(1) + ' ' + (H - padBot + 8) +
+        ' L' + pts[0][0].toFixed(1) + ' ' + (H - padBot + 8) + ' Z';
+      const last = pts[pts.length - 1];
+      let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
+        months.map((m, i) => monthShort(m) + ' $' + (totals[i] / 1e6).toFixed(2) + 'M').join(', ') + '">' +
+        '<defs><linearGradient id="mp-fill" x1="0" y1="0" x2="0" y2="1">' +
+        '<stop offset="0%" stop-color="#10b981" stop-opacity="0.28"/>' +
+        '<stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>' +
+        '<path d="' + area + '" fill="url(#mp-fill)"/>' +
+        '<path d="' + line + '" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+      pts.forEach((p, i) => {
+        svg += '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11" fill="#67776f" font-weight="600">' + monthShort(months[i]) + '</text>';
+        svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.5" fill="#059669" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>';
+        svg += '<circle data-i="' + i + '" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="14" fill="transparent" style="cursor:pointer"/>';
+      });
+      svg += '<text x="' + last[0].toFixed(1) + '" y="' + (last[1] - 12).toFixed(1) + '" text-anchor="end" font-size="12" font-weight="700" style="fill:var(--lg-ink,#e5e7eb)">$' + (totals[totals.length - 1] / 1e6).toFixed(1) + 'M</text>';
+      svg += '</svg>';
+      sparkEl.innerHTML = svg;
+
+      const tip = document.getElementById('mp-spark-tip');
+      sparkEl.querySelectorAll('circle[data-i]').forEach(c => {
+        const show = () => {
+          const i = Number(c.dataset.i);
+          tip.textContent = monthShort(months[i]) + ' ' + months[i].split('-')[0] + ' · $' + (totals[i] / 1e6).toFixed(2) + 'M';
+          tip.classList.remove('hidden');
+          const host = sparkEl.closest('.lg-glass').getBoundingClientRect();
+          const dot = c.getBoundingClientRect();
+          tip.style.left = Math.max(8, dot.left - host.left + dot.width / 2 - tip.offsetWidth / 2) + 'px';
+          tip.style.top = (dot.top - host.top - tip.offsetHeight - 6) + 'px';
+        };
+        const hide = () => tip.classList.add('hidden');
+        c.addEventListener('mouseenter', show);
+        c.addEventListener('mouseleave', hide);
+        c.addEventListener('focus', show);
+        c.addEventListener('blur', hide);
+      });
+    }
+
+    // ── Top performers & fastest risers ──
+    const boardMonth = document.getElementById('mp-board-month');
+    if (boardMonth) boardMonth.textContent = monthName;
+    const fmtM = (v) => v >= 1e6 ? '$' + (v / 1e6).toFixed(2) + 'M' : '$' + Math.round(v / 1e3) + 'K';
+    const row = (r, delta) =>
+      '<li><a class="mp-row" href="/data.html" title="See ' + r.dba.replace(/"/g, '&quot;') + ' in the dashboard">' +
+      '<span class="mp-name">' + r.dba + '</span>' +
+      '<span class="text-[10px] text-gray-500 uppercase tracking-wide shrink-0 hidden sm:inline">' + r.city + '</span>' +
+      '<span class="mp-val">' + fmtM(r.total) + '</span>' +
+      (delta !== undefined
+        ? '<span class="mp-delta ' + (delta >= 0 ? 'mp-delta-up' : 'mp-delta-down') + '">' + (delta >= 0 ? '▲' : '▼') + Math.abs(delta).toFixed(0) + '%</span>'
+        : '') +
+      '</a></li>';
+
+    const latestRows = rows(latest);
+    const topList = document.getElementById('mp-top-list');
+    if (topList) {
+      topList.innerHTML = latestRows.slice().sort((a, b) => b.total - a.total).slice(0, 3).map(r => row(r)).join('');
+    }
+    const riserList = document.getElementById('mp-riser-list');
+    if (riserList && prev) {
+      const prevByDba = {};
+      rows(prev).forEach(d => { prevByDba[d.dba] = (prevByDba[d.dba] || 0) + d.total; });
+      const risers = latestRows
+        .filter(d => prevByDba[d.dba] >= 20000) // ignore tiny bases that make % noise
+        .map(d => ({ ...d, growth: (d.total / prevByDba[d.dba] - 1) * 100 }))
+        .sort((a, b) => b.growth - a.growth)
+        .slice(0, 3);
+      riserList.innerHTML = risers.map(r => row(r, r.growth)).join('');
     }
 
     const section = document.getElementById('market-pulse');

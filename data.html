@@ -35,7 +35,7 @@
       "@type": "Organization",
       "name": "The Green Border"
     },
-    "temporalCoverage": "2025-01-01/2026-03-31",
+    "temporalCoverage": "2025-01-01/2026-05-31",
     "keywords": ["cannabis sales data", "dispensary analytics", "915 sales trends", "New Mexico cannabis market"]
   }
   </script>
@@ -499,7 +499,7 @@
     <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 font-display" style="background:linear-gradient(95deg,#6ee7b7 0%,#10b981 45%,#fbbf24 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#10b981;">Sales Data</h1>
     <p class="text-gray-300 text-lg mb-5">Track cannabis sales trends, dispensary performance, and market insights across the 915 border region.</p>
     <div class="flex flex-wrap justify-center gap-2 mb-3">
-      <span class="px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/30">📊 15 months of data · Jan 2025 – Mar 2026</span>
+      <span class="px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/30">📊 17 months of data · Jan 2025 – May 2026</span>
       <span class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/30">🏪 46+ active dispensaries</span>
       <span class="px-3 py-1.5 rounded-full text-xs font-semibold text-cyan-300 bg-cyan-500/10 border border-cyan-500/30">📈 MoM growth &amp; market share</span>
     </div>
@@ -1053,10 +1053,10 @@
             <!-- Time Range Quick Filters -->
             <div id="time-range-filters" class="flex items-center gap-1.5">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 hidden sm:inline pr-1">Period:</span>
-                <button id="time-all" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="all" data-tooltip="Jan 2025 - Mar 2026">All Months</button>
-                <button id="time-last3" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last3m" data-tooltip="Jan 2026 - Mar 2026">Last 3M</button>
-                <button id="time-last6" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last6m" data-tooltip="Oct 2025 - Mar 2026">Last 6M</button>
-                <button id="time-ytd" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors hidden sm:inline-block" data-range="ytd" data-tooltip="Jan 2026 - Mar 2026">YTD</button>
+                <button id="time-all" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="all" data-tooltip="Jan 2025 - May 2026">All Months</button>
+                <button id="time-last3" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last3m" data-tooltip="Mar 2026 - May 2026">Last 3M</button>
+                <button id="time-last6" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors" data-range="last6m" data-tooltip="Dec 2025 - May 2026">Last 6M</button>
+                <button id="time-ytd" class="px-2.5 py-1.5 rounded text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors hidden sm:inline-block" data-range="ytd" data-tooltip="Jan 2026 - May 2026">YTD</button>
             </div>
 
             <!-- Export & Share Buttons -->
@@ -1078,7 +1078,9 @@
             <div class="relative flex-1 sm:flex-none">
                 <select id="tgb-month" class="w-full sm:w-52 appearance-none lg-panel-strong border border-slate-600 text-slate-100 py-1.5 pl-3 pr-8 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer transition-shadow">
                     <option value="all">All Data (2025-2026)</option>
-                    <option value="2026-03" selected>March 2026 (Latest)</option>
+                    <option value="2026-05" selected>May 2026 (Latest)</option>
+                    <option value="2026-04">April 2026</option>
+                    <option value="2026-03">March 2026</option>
                     <option value="2026-02">February 2026</option>
                     <option value="2026-01">January 2026</option>
                     <option value="2025-12">December 2025</option>
@@ -1142,22 +1144,22 @@
     <!-- Main Scrollable Content -->
     <div class="flex-1 overflow-y-auto overflow-x-hidden tgb-scroll p-6 lg:p-6 flex flex-col gap-6">
 
-        <!-- Time Machine: scrub or auto-play through the 15-month history -->
+        <!-- Time Machine: scrub or auto-play through the 17-month history -->
         <div id="time-machine" class="lg-panel rounded-xl border border-emerald-600/25 shadow-sm p-4 flex items-center gap-4 shrink-0">
             <button id="tm-play" aria-label="Play through months" title="Auto-play through all months">▶</button>
             <div class="flex-1 min-w-0">
                 <div class="flex justify-between items-baseline mb-2 gap-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">⏳ Time Machine</span>
                     <span class="flex items-baseline gap-2 min-w-0">
-                        <span id="tm-label" class="text-sm font-black text-slate-100 truncate">March 2026</span>
+                        <span id="tm-label" class="text-sm font-black text-slate-100 truncate">May 2026</span>
                         <span id="tm-total" class="text-xs font-bold text-emerald-400 whitespace-nowrap"></span>
                     </span>
                 </div>
-                <input type="range" id="tm-slider" min="0" max="14" step="1" value="14" aria-label="Select month">
+                <input type="range" id="tm-slider" min="0" max="16" step="1" value="16" aria-label="Select month">
                 <div class="flex justify-between mt-1 text-[9px] font-semibold text-slate-500 uppercase tracking-wide">
                     <span>Jan 2025</span>
                     <span class="hidden sm:inline">Drag to scrub · press play to watch the market evolve</span>
-                    <span>Mar 2026</span>
+                    <span>May 2026</span>
                 </div>
             </div>
         </div>
@@ -8446,6 +8448,936 @@
                 'medical': 5157.24,
                 'city': 'Sunland Park',
                 'address': '1500 Appaloosa Dr Bldg A Ste 140'
+        },
+        {
+                'month': '2026-04',
+                'licensee': '575 CANNABIS LLC- RETAIL 305 S COUNTY LINE',
+                'dba': 'Uforia',
+                'total': 2326.46,
+                'adultUse': 1135.51,
+                'medical': 1190.95,
+                'city': 'Chaparral',
+                'address': '305 S County Line Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'APOGEE THERAPEUTICS LLC - RETAIL',
+                'dba': 'Apogee Dispensary',
+                'total': 40107.62,
+                'adultUse': 36749.13,
+                'medical': 3358.49,
+                'city': 'Sunland Park',
+                'address': '1769 Victory Ln'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'AREA 54 DISPENSARY LLC- ANGELINA BLVD RETAIL',
+                'dba': 'Area 54',
+                'total': 31269.64,
+                'adultUse': 26755.78,
+                'medical': 4513.86,
+                'city': 'Chaparral',
+                'address': '764 Angelina blvd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL',
+                'dba': 'Astro Buds Consumption Lounge & Grill',
+                'total': 293587.51,
+                'adultUse': 280435.57,
+                'medical': 13151.94,
+                'city': 'Sunland Park',
+                'address': '1650 Appaloosa Drive'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'ASTRO BUDS LLC - MCCOMBS RD RETAIL',
+                'dba': 'Astro Buds Dispensary',
+                'total': 157266.14,
+                'adultUse': 147904.54,
+                'medical': 9361.6,
+                'city': 'Chaparral',
+                'address': '308 McCombs Rd Spc 2'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'BESOS LLC/ RETAIL FUTURITY DR',
+                'dba': 'Besos',
+                'total': 47952.72,
+                'adultUse': 46824.35,
+                'medical': 1128.37,
+                'city': 'Sunland Park',
+                'address': '1805 Futurity Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'BLUE WHALE SUNLAND - APPALOOSA ST RETAIL',
+                'dba': 'Cookies',
+                'total': 748086.17,
+                'adultUse': 700529.11,
+                'medical': 47557.06,
+                'city': 'Sunland Park',
+                'address': '1500 Appaloosa St Suite B'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'CHADCOR HOLDINGS NM, LLC',
+                'dba': 'Top Crop',
+                'total': 1009100.94,
+                'adultUse': 972335.64,
+                'medical': 36765.3,
+                'city': 'Sunland Park',
+                'address': '1615 Appaloosa Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'CHADCOR HOLDINGS NM- RETAIL',
+                'dba': 'Top Crop',
+                'total': 307492.77,
+                'adultUse': 294210.73,
+                'medical': 13282.04,
+                'city': 'Sunland Park',
+                'address': '1621 Appaloosa Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6',
+                'dba': 'Black Sheep',
+                'total': 10877.89,
+                'adultUse': 10776.89,
+                'medical': 101,
+                'city': 'Sunland Park',
+                'address': '1925 Appaloosa Ste 6'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'DISPENSARY NEAR ME SUNLAND PARK LLC- MCNUTT RETAIL/CONSUMPTION',
+                'dba': 'Dispensary Near Me',
+                'total': 66145.04,
+                'adultUse': 61671.53,
+                'medical': 4473.51,
+                'city': 'Sunland Park',
+                'address': '1290 McNutt Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'ELEVATED SOCIETY LLC/ RETAIL APPALOOSA DR',
+                'dba': 'Elevated Society',
+                'total': 3873.84,
+                'adultUse': 3816.1,
+                'medical': 57.74,
+                'city': 'Sunland Park',
+                'address': '1920 Appaloosa Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'FIELDS OF DREAMS - SUNLAND PARK RETAIL',
+                'dba': 'Field of Dreams',
+                'total': 1181559.3,
+                'adultUse': 1170217.42,
+                'medical': 11341.88,
+                'city': 'Sunland Park',
+                'address': '159 Sunland Park Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'FRESHIES LLC/ RETAIL MCNUTT RD',
+                'dba': 'Public Affair',
+                'total': 49253.79,
+                'adultUse': 44176.04,
+                'medical': 5077.75,
+                'city': 'Santa Teresa',
+                'address': '5325 McNutt Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'GANJIKA GARDENS LLC/ RETAIL RILEY WAY',
+                'dba': 'Ganjika Gardens',
+                'total': 18020.33,
+                'adultUse': 17043.9,
+                'medical': 976.43,
+                'city': 'Chaparral',
+                'address': '1245 Riley Way'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'GARDEN OF DREAMS CANNABIS LLC',
+                'dba': 'Garden of Dreams',
+                'total': 32358.07,
+                'adultUse': 29628.47,
+                'medical': 2729.6,
+                'city': 'Santa Teresa',
+                'address': '5300 Mcnutt Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER',
+                'dba': 'Garden of Dreams',
+                'total': 28.06,
+                'adultUse': 0,
+                'medical': 28.06,
+                'city': 'Santa Teresa',
+                'address': '5300 McNutt Suite 12'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'GREEN THERAPY DISPENSARY, LLC',
+                'dba': 'Green Therapy',
+                'total': 525637,
+                'adultUse': 495656,
+                'medical': 29981,
+                'city': 'Chaparral',
+                'address': '460 County Line Drive, Space F'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'GROTH INDUSTRIES LLC - SCHNEBERGER DR RETIAL',
+                'dba': 'Groth',
+                'total': 35087.77,
+                'adultUse': 32203.3,
+                'medical': 2884.47,
+                'city': 'Chaparral',
+                'address': '140 Schneberger Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'HEAVENLY SCENT - ANTHONY DR - RETAIL',
+                'dba': 'Heavenly Scent',
+                'total': 8150.27,
+                'adultUse': 7127.33,
+                'medical': 1022.94,
+                'city': 'Anthony',
+                'address': '138 Anthony Dr.'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'HI LIFE DISPENSARY LLC - MCNUTT RD - RETAIL',
+                'dba': 'Hi Life',
+                'total': 83591.5,
+                'adultUse': 67037.07,
+                'medical': 16554.43,
+                'city': 'Santa Teresa',
+                'address': '5620 McNutt Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'HOUSE OF FLOWERS ON THE BORDER LLC - RETAIL',
+                'dba': 'House of Flowers',
+                'total': 92675.79,
+                'adultUse': 85550.18,
+                'medical': 7125.61,
+                'city': 'Chaparral',
+                'address': '1042 State Line'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'J AND J LOAN COMPANY- MCNUTT RETAIL',
+                'dba': 'Empire Garden',
+                'total': 38838.52,
+                'adultUse': 38545.24,
+                'medical': 293.28,
+                'city': 'Sunland Park',
+                'address': '1144 McNutt'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'LEAFORO LLC- 5305 MCNUTT RETAIL',
+                'dba': 'Leaforo',
+                'total': 2181.46,
+                'adultUse': 2181.46,
+                'medical': 0,
+                'city': 'Santa Teresa',
+                'address': '5305 McNutt Road'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'MCMC - MILLER - RETAILER',
+                'dba': 'Milla Cero',
+                'total': 29690.65,
+                'adultUse': 26848.17,
+                'medical': 2842.48,
+                'city': 'Anthony',
+                'address': '103 Miller Street'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'NEBRO 2 LLC-  FUTURITY DRIVE RETAIL',
+                'dba': 'Toke It Up',
+                'total': 72723.2,
+                'adultUse': 71186.7,
+                'medical': 1536.5,
+                'city': 'Sunland Park',
+                'address': '1999 Futurity Drive'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'NEWBERRY FARMS LLC - MCNUTT RD. RETAIL',
+                'dba': 'Sun City Grow Stand',
+                'total': 11012.62,
+                'adultUse': 10636.75,
+                'medical': 375.87,
+                'city': 'Sunland Park',
+                'address': '1845 McNutt Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'NEW MEXICO TOP ORGANICS ULTRA HEALTH INC  SUNLAND PARK RETAIL',
+                'dba': 'Ultra Health',
+                'total': 28454.16,
+                'adultUse': 23962.21,
+                'medical': 4491.95,
+                'city': 'Sunland Park',
+                'address': '1155 McNutt Road'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'NUVES LLC - RANCH ROAD RETAIL',
+                'dba': 'Greens',
+                'total': 20815.18,
+                'adultUse': 20667.68,
+                'medical': 147.5,
+                'city': 'Sunland Park',
+                'address': '101 Maguey Suite 4'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'OBI WAN CANNABIS LLC',
+                'dba': 'Obi Wan Cannabis',
+                'total': 19496.98,
+                'adultUse': 17701.02,
+                'medical': 1795.96,
+                'city': 'Sunland Park',
+                'address': '2167 McNutt Rd suite A'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'OLD GODS CANNABIS INC/ RETAIL APPALOOSA UNIT7',
+                'dba': 'Old Gods',
+                'total': 137577.37,
+                'adultUse': 133630.37,
+                'medical': 3947,
+                'city': 'Sunland Park',
+                'address': '1541 Appaloosa Unit 7'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL',
+                'dba': 'Score 420',
+                'total': 26698.22,
+                'adultUse': 25105.62,
+                'medical': 1592.6,
+                'city': 'Sunland Park',
+                'address': '1925 Appaloosa Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'PROHIBITION 37 - MCNUTT RD RETAIL',
+                'dba': 'Prohibition 37',
+                'total': 116116.9,
+                'adultUse': 104804.82,
+                'medical': 11312.08,
+                'city': 'Sunland Park',
+                'address': '871 McNutt Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'RMC NM, INC - ANTHONY RETAIL',
+                'dba': 'Rocky Mountain Cannabis',
+                'total': 74395.89,
+                'adultUse': 62523.76,
+                'medical': 11872.13,
+                'city': 'Anthony',
+                'address': '816 Anthony Dr'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'ROUND HOUSE RESERVE, LLC - MCNUTT DR RETAIL',
+                'dba': 'Round House Reserve',
+                'total': 9488.56,
+                'adultUse': 8763.07,
+                'medical': 725.49,
+                'city': 'Sunland Park',
+                'address': '1165 McNutt Dr Unit C5'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'R R HEMPIRE LLC - ANGELINA BLVD RETAIL',
+                'dba': 'Richy Rich',
+                'total': 682.74,
+                'adultUse': 682.73,
+                'medical': 0.01,
+                'city': 'Chaparral',
+                'address': '101 Angelina Blvd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'SCORE 420 - MCNUTT RETAIL',
+                'dba': 'Score 420 - McNutt',
+                'total': 34290.45,
+                'adultUse': 30735.33,
+                'medical': 3555.12,
+                'city': 'Sunland Park',
+                'address': '2355 McNutt Road'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'STATELINE CANNABIS NM LLC - ARCH ANGEL WAY RETAILER/CONSUMPTION',
+                'dba': 'Stateline Cannabis',
+                'total': 231206.6,
+                'adultUse': 228689.56,
+                'medical': 2517.04,
+                'city': 'Chaparral',
+                'address': '100 Arch Angel Way'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'STATELINE CANNABIS NM LLC- STEPHANIE RETAIL',
+                'dba': 'Stateline Cannabis',
+                'total': 34552.25,
+                'adultUse': 33501.4,
+                'medical': 1050.85,
+                'city': 'Chaparral',
+                'address': '101 Stephanie'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'SUNLAND MCNUTT GROUP LLC- MCNUTT RD RETAIL',
+                'dba': 'Mango Cannabis',
+                'total': 1392761.93,
+                'adultUse': 1336690.03,
+                'medical': 56071.9,
+                'city': 'Sunland Park',
+                'address': '1051 McNutt Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'SUNSHINE ESSENTIALS/ RETAIL MCNUTT',
+                'dba': 'Sunshine Essentials',
+                'total': 4586.25,
+                'adultUse': 3883.39,
+                'medical': 702.86,
+                'city': 'Sunland Park',
+                'address': '267 Anapra Rd'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL',
+                'dba': 'Toke It Up',
+                'total': 20803.73,
+                'adultUse': 19599.22,
+                'medical': 1204.51,
+                'city': 'Sunland Park',
+                'address': '1999 Futurity Drive'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'TOP OF THE 8TH LLC - ANTHONY DRIVE RETAIL',
+                'dba': 'Top of the Eighth',
+                'total': 76373.75,
+                'adultUse': 64237.26,
+                'medical': 12136.49,
+                'city': 'Anthony',
+                'address': '401 Anthony Dr Ste B'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'URBAN WELLNESS - APPALOOSA DR RETAILER',
+                'dba': 'Urban Wellness',
+                'total': 108952.48,
+                'adultUse': 102279.52,
+                'medical': 6672.96,
+                'city': 'Sunland Park',
+                'address': '1500 Appaloosa Dr Bldg A Ste 140'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'VIREO HEALTH OF LC - APPALOOSA - RETAILER',
+                'dba': 'Vireo Health',
+                'total': 69125.07,
+                'adultUse': 63254.48,
+                'medical': 5870.59,
+                'city': 'Sunland Park',
+                'address': '1580 Appaloosa Dr., Suite 320'
+        },
+        {
+                'month': '2026-04',
+                'licensee': 'VIREO OF SANTA FE - APPALOOSA - RETAIL',
+                'dba': 'Vireo of Santa Fe',
+                'total': 89355.87,
+                'adultUse': 83423.18,
+                'medical': 5932.69,
+                'city': 'Sunland Park',
+                'address': '1541 Appaloosa Dr., Unit 2'
+        },
+        {
+                'month': '2026-05',
+                'licensee': '575 CANNABIS LLC- RETAIL 305 S COUNTY LINE',
+                'dba': 'Uforia',
+                'total': 1256,
+                'adultUse': 416,
+                'medical': 840,
+                'city': 'Chaparral',
+                'address': '305 S County Line Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'APOGEE THERAPEUTICS LLC - RETAIL',
+                'dba': 'Apogee Dispensary',
+                'total': 40604.64,
+                'adultUse': 37238.53,
+                'medical': 3366.11,
+                'city': 'Sunland Park',
+                'address': '1769 Victory Ln'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'AREA 54 DISPENSARY LLC- ANGELINA BLVD RETAIL',
+                'dba': 'Area 54',
+                'total': 34476.84,
+                'adultUse': 28887.36,
+                'medical': 5589.48,
+                'city': 'Chaparral',
+                'address': '764 Angelina blvd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL',
+                'dba': 'Astro Buds Consumption Lounge & Grill',
+                'total': 265906.54,
+                'adultUse': 256712.6,
+                'medical': 9193.94,
+                'city': 'Sunland Park',
+                'address': '1650 Appaloosa Drive'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'ASTRO BUDS LLC - MCCOMBS RD RETAIL',
+                'dba': 'Astro Buds Dispensary',
+                'total': 166492.72,
+                'adultUse': 159557.85,
+                'medical': 6934.87,
+                'city': 'Chaparral',
+                'address': '308 McCombs Rd Spc 2'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'BESOS LLC/ RETAIL FUTURITY DR',
+                'dba': 'Besos',
+                'total': 31425.38,
+                'adultUse': 30695.51,
+                'medical': 729.87,
+                'city': 'Sunland Park',
+                'address': '1805 Futurity Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'BLUE WHALE SUNLAND - APPALOOSA ST RETAIL',
+                'dba': 'Cookies',
+                'total': 792471.28,
+                'adultUse': 736024.68,
+                'medical': 56446.6,
+                'city': 'Sunland Park',
+                'address': '1500 Appaloosa St Suite B'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'CHADCOR HOLDINGS NM, LLC',
+                'dba': 'Top Crop',
+                'total': 939909.25,
+                'adultUse': 907075.9,
+                'medical': 32833.35,
+                'city': 'Sunland Park',
+                'address': '1615 Appaloosa Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'CHADCOR HOLDINGS NM- RETAIL',
+                'dba': 'Top Crop',
+                'total': 291296.87,
+                'adultUse': 280219.15,
+                'medical': 11077.72,
+                'city': 'Sunland Park',
+                'address': '1621 Appaloosa Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'COUTH FARMS LLC - ANTHONY DR RETAIL',
+                'dba': 'Couth Farms',
+                'total': 17.26,
+                'adultUse': 17.26,
+                'medical': 0,
+                'city': 'Anthony',
+                'address': '132 Anthony Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6',
+                'dba': 'Black Sheep',
+                'total': 10707.23,
+                'adultUse': 10637.07,
+                'medical': 70.16,
+                'city': 'Sunland Park',
+                'address': '1925 Appaloosa Ste 6'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'DISPENSARY NEAR ME SUNLAND PARK LLC- MCNUTT RETAIL/CONSUMPTION',
+                'dba': 'Dispensary Near Me',
+                'total': 71853.53,
+                'adultUse': 68362.89,
+                'medical': 3490.64,
+                'city': 'Sunland Park',
+                'address': '1290 McNutt Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'ELEVATED SOCIETY LLC/ RETAIL APPALOOSA DR',
+                'dba': 'Elevated Society',
+                'total': 11623.47,
+                'adultUse': 11283.29,
+                'medical': 340.18,
+                'city': 'Sunland Park',
+                'address': '1920 Appaloosa Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'FIELDS OF DREAMS - SUNLAND PARK RETAIL',
+                'dba': 'Field of Dreams',
+                'total': 1241104.47,
+                'adultUse': 1227033.25,
+                'medical': 14071.22,
+                'city': 'Sunland Park',
+                'address': '159 Sunland Park Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'FRESHIES LLC/ RETAIL MCNUTT RD',
+                'dba': 'Public Affair',
+                'total': 51098.92,
+                'adultUse': 46783.49,
+                'medical': 4315.43,
+                'city': 'Santa Teresa',
+                'address': '5325 McNutt Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'GANJIKA GARDENS LLC/ RETAIL RILEY WAY',
+                'dba': 'Ganjika Gardens',
+                'total': 17233.07,
+                'adultUse': 16527.75,
+                'medical': 705.32,
+                'city': 'Chaparral',
+                'address': '1245 Riley Way'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'GARDEN OF DREAMS CANNABIS LLC',
+                'dba': 'Garden of Dreams',
+                'total': 34797.01,
+                'adultUse': 32459.06,
+                'medical': 2337.95,
+                'city': 'Santa Teresa',
+                'address': '5300 Mcnutt Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER',
+                'dba': 'Garden of Dreams',
+                'total': 16.55,
+                'adultUse': 0,
+                'medical': 16.55,
+                'city': 'Santa Teresa',
+                'address': '5300 McNutt Suite 12'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'GREEN THERAPY DISPENSARY, LLC',
+                'dba': 'Green Therapy',
+                'total': 519514,
+                'adultUse': 491204,
+                'medical': 28310,
+                'city': 'Chaparral',
+                'address': '460 County Line Drive, Space F'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'GROTH INDUSTRIES LLC - SCHNEBERGER DR RETIAL',
+                'dba': 'Groth',
+                'total': 31983.81,
+                'adultUse': 29909.31,
+                'medical': 2074.5,
+                'city': 'Chaparral',
+                'address': '140 Schneberger Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'HEAVENLY SCENT - ANTHONY DR - RETAIL',
+                'dba': 'Heavenly Scent',
+                'total': 22629.91,
+                'adultUse': 19911.77,
+                'medical': 2718.14,
+                'city': 'Anthony',
+                'address': '138 Anthony Dr.'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'HI LIFE DISPENSARY LLC - MCNUTT RD - RETAIL',
+                'dba': 'Hi Life',
+                'total': 87101.81,
+                'adultUse': 68729.94,
+                'medical': 18371.87,
+                'city': 'Santa Teresa',
+                'address': '5620 McNutt Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'HOUSE OF FLOWERS ON THE BORDER LLC - RETAIL',
+                'dba': 'House of Flowers',
+                'total': 101777.68,
+                'adultUse': 94693.02,
+                'medical': 7084.66,
+                'city': 'Chaparral',
+                'address': '1042 State Line'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'J AND J LOAN COMPANY- MCNUTT RETAIL',
+                'dba': 'Empire Garden',
+                'total': 40356.67,
+                'adultUse': 40133.56,
+                'medical': 223.11,
+                'city': 'Sunland Park',
+                'address': '1144 McNutt'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'LEAFORO LLC- 5305 MCNUTT RETAIL',
+                'dba': 'Leaforo',
+                'total': 3358.09,
+                'adultUse': 3358.09,
+                'medical': 0,
+                'city': 'Santa Teresa',
+                'address': '5305 McNutt Road'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'MCMC - MILLER - RETAILER',
+                'dba': 'Milla Cero',
+                'total': 27567.9,
+                'adultUse': 25283.44,
+                'medical': 2284.46,
+                'city': 'Anthony',
+                'address': '103 Miller Street'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'NEBRO 2 LLC-  FUTURITY DRIVE RETAIL',
+                'dba': 'Toke It Up',
+                'total': 66510.23,
+                'adultUse': 65475.22,
+                'medical': 1035.01,
+                'city': 'Sunland Park',
+                'address': '1999 Futurity Drive'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'NEWBERRY FARMS LLC - MCNUTT RD. RETAIL',
+                'dba': 'Sun City Grow Stand',
+                'total': 9540.71,
+                'adultUse': 9074.23,
+                'medical': 466.48,
+                'city': 'Sunland Park',
+                'address': '1845 McNutt Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'NEW MEXICO TOP ORGANICS ULTRA HEALTH INC  SUNLAND PARK RETAIL',
+                'dba': 'Ultra Health',
+                'total': 26916.44,
+                'adultUse': 23104.24,
+                'medical': 3812.2,
+                'city': 'Sunland Park',
+                'address': '1155 McNutt Road'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'NUVES LLC - RANCH ROAD RETAIL',
+                'dba': 'Greens',
+                'total': 19649.49,
+                'adultUse': 19624.49,
+                'medical': 25,
+                'city': 'Sunland Park',
+                'address': '101 Maguey Suite 4'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'OBI WAN CANNABIS LLC',
+                'dba': 'Obi Wan Cannabis',
+                'total': 21853.97,
+                'adultUse': 19600.92,
+                'medical': 2253.05,
+                'city': 'Sunland Park',
+                'address': '2167 McNutt Rd suite A'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'OLD GODS CANNABIS INC/ RETAIL APPALOOSA UNIT7',
+                'dba': 'Old Gods',
+                'total': 130850.84,
+                'adultUse': 128540.86,
+                'medical': 2309.98,
+                'city': 'Sunland Park',
+                'address': '1541 Appaloosa Unit 7'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL',
+                'dba': 'Score 420',
+                'total': 22074.59,
+                'adultUse': 20209.73,
+                'medical': 1864.86,
+                'city': 'Sunland Park',
+                'address': '1925 Appaloosa Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'PROHIBITION 37 - MCNUTT RD RETAIL',
+                'dba': 'Prohibition 37',
+                'total': 112274.18,
+                'adultUse': 99514.13,
+                'medical': 12760.05,
+                'city': 'Sunland Park',
+                'address': '871 McNutt Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'RMC NM, INC - ANTHONY RETAIL',
+                'dba': 'Rocky Mountain Cannabis',
+                'total': 62334.36,
+                'adultUse': 54282.61,
+                'medical': 8051.75,
+                'city': 'Anthony',
+                'address': '816 Anthony Dr'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'ROUND HOUSE RESERVE, LLC - MCNUTT DR RETAIL',
+                'dba': 'Round House Reserve',
+                'total': 8073.99,
+                'adultUse': 7256.1,
+                'medical': 817.89,
+                'city': 'Sunland Park',
+                'address': '1165 McNutt Dr Unit C5'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'R R HEMPIRE LLC - MCCOMBS RETAIL',
+                'dba': 'Richy Rich',
+                'total': 2458.05,
+                'adultUse': 2349.77,
+                'medical': 108.28,
+                'city': 'Chaparral',
+                'address': '100 Mccombs'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'SCORE 420 - MCNUTT RETAIL',
+                'dba': 'Score 420 - McNutt',
+                'total': 31587.35,
+                'adultUse': 29988.09,
+                'medical': 1599.26,
+                'city': 'Sunland Park',
+                'address': '2355 McNutt Road'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'STATELINE CANNABIS NM LLC - ARCH ANGEL WAY RETAILER/CONSUMPTION',
+                'dba': 'Stateline Cannabis',
+                'total': 233732.41,
+                'adultUse': 230975.12,
+                'medical': 2757.29,
+                'city': 'Chaparral',
+                'address': '100 Arch Angel Way'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'STATELINE CANNABIS NM LLC- STEPHANIE RETAIL',
+                'dba': 'Stateline Cannabis',
+                'total': 45122.29,
+                'adultUse': 43254.49,
+                'medical': 1867.8,
+                'city': 'Chaparral',
+                'address': '101 Stephanie'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'SUNLAND MCNUTT GROUP LLC- MCNUTT RD RETAIL',
+                'dba': 'Mango Cannabis',
+                'total': 1317467.37,
+                'adultUse': 1268506.52,
+                'medical': 48960.86,
+                'city': 'Sunland Park',
+                'address': '1051 McNutt Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'SUNSHINE ESSENTIALS/ RETAIL MCNUTT',
+                'dba': 'Sunshine Essentials',
+                'total': 3577.69,
+                'adultUse': 3168.44,
+                'medical': 409.25,
+                'city': 'Sunland Park',
+                'address': '267 Anapra Rd'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL',
+                'dba': 'Toke It Up',
+                'total': 16712.8,
+                'adultUse': 16378.18,
+                'medical': 334.62,
+                'city': 'Sunland Park',
+                'address': '1999 Futurity Drive'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'TOP OF THE 8TH LLC - ANTHONY DRIVE RETAIL',
+                'dba': 'Top of the Eighth',
+                'total': 71664.5,
+                'adultUse': 60321.09,
+                'medical': 11343.41,
+                'city': 'Anthony',
+                'address': '401 Anthony Dr Ste B'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'URBAN WELLNESS - APPALOOSA DR RETAILER',
+                'dba': 'Urban Wellness',
+                'total': 110312.83,
+                'adultUse': 102763.77,
+                'medical': 7549.06,
+                'city': 'Sunland Park',
+                'address': '1500 Appaloosa Dr Bldg A Ste 140'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'VIREO HEALTH OF LC - APPALOOSA - RETAILER',
+                'dba': 'Vireo Health',
+                'total': 69392.64,
+                'adultUse': 65653.9,
+                'medical': 3738.74,
+                'city': 'Sunland Park',
+                'address': '1580 Appaloosa Dr., Suite 320'
+        },
+        {
+                'month': '2026-05',
+                'licensee': 'VIREO OF SANTA FE - APPALOOSA - RETAIL',
+                'dba': 'Vireo of Santa Fe',
+                'total': 82127.83,
+                'adultUse': 78015.99,
+                'medical': 4111.84,
+                'city': 'Sunland Park',
+                'address': '1541 Appaloosa Dr., Unit 2'
         }
     ];
 
@@ -8456,7 +9388,7 @@
     rawData.forEach(d => { if (CITY_FIXES[d.city]) d.city = CITY_FIXES[d.city]; });
 
     // Constants
-    let currentMonth = '2026-03';
+    let currentMonth = '2026-05';
     let currentMetric = 'total';
     let sortCol = 'value';
     let sortDir = 'desc';
@@ -8508,8 +9440,8 @@
     let barChartInstance = null;
     let aggregatedTableData = [];
 
-    const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan 2026", "Feb 2026", "Mar 2026"];
-    const monthKeys = ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"];
+    const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026"];
+    const monthKeys = ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05"];
 
     // Categorical palette for the top-10 charts. Ten brand-adjacent hues in a
     // fixed order, validated for the light glass surface (lightness band,
@@ -9561,19 +10493,19 @@
 
     function getMonthsForTimeRange(range) {
         // Returns array of months to include for the given time range
-        // monthKeys = ["2025-01", ..., "2026-03"] (indices 0-14)
-        // Indices: 0-11 = 2025, 12-14 = 2026
+        // monthKeys = ["2025-01", ..., "2026-05"] (indices 0-16)
+        // Indices: 0-11 = 2025, 12-16 = 2026
         switch(range) {
             case 'all':
-                return monthKeys.slice(0, 12); // Last Year: Jan 2025 - Dec 2025
+                return monthKeys.slice(); // All months: Jan 2025 - May 2026
             case 'last3m':
-                return monthKeys.slice(12, 15); // Last 3 months: Jan 2026 - Mar 2026
+                return monthKeys.slice(-3); // Last 3 months: Mar 2026 - May 2026
             case 'last6m':
-                return monthKeys.slice(9, 15); // Last 6 months: Oct 2025 - Mar 2026
+                return monthKeys.slice(-6); // Last 6 months: Dec 2025 - May 2026
             case 'ytd':
-                return monthKeys.slice(12, 15); // Year-to-Date 2026: Jan 2026 - Mar 2026
+                return monthKeys.slice(12); // Year-to-Date 2026: Jan 2026 - May 2026
             default:
-                return monthKeys.slice(0, 12);
+                return monthKeys.slice();
         }
     }
 
