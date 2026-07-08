@@ -541,6 +541,83 @@
     .mp-delta-up { color: var(--lg-emerald-deep, #34d399); }
     .mp-delta-down { color: #be123c; }
 
+    /* ── Hero stat pathways ── */
+    .hero-stat { transition: background 0.2s ease; }
+    .hero-stat:hover { background: rgba(16,185,129,0.12); }
+    .hero-stat:hover > div:first-child { color: #059669; }
+
+    /* ── Live market ticker ── */
+    .market-ticker {
+      max-width: 72rem;
+      margin: -3.5rem auto 0;
+      position: relative; z-index: 5;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .ticker-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.65rem 1.25rem;
+      text-decoration: none;
+    }
+    .ticker-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      flex-shrink: 0;
+      font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--lg-emerald-deep, #34d399);
+      white-space: nowrap;
+    }
+    .ticker-live-dot {
+      width: 7px; height: 7px; border-radius: 9999px;
+      background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16,185,129,0.5);
+      animation: ticker-pulse 2.4s ease-out infinite;
+    }
+    @keyframes ticker-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.45); }
+      70% { box-shadow: 0 0 0 7px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+    .ticker-viewport {
+      display: block; overflow: hidden; flex: 1; min-width: 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .ticker-track { display: inline-flex; white-space: nowrap; animation: ticker-scroll 45s linear infinite; }
+    .ticker-set { display: inline-flex; align-items: baseline; }
+    .market-ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-item {
+      font-size: 0.78rem; color: var(--lg-ink-2, #cbd5e1);
+    }
+    .ticker-item strong { color: var(--lg-ink, #e5e7eb); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .ticker-item strong.tk-up { color: var(--lg-emerald-deep, #34d399); }
+    .ticker-item strong.tk-down { color: #be123c; }
+    .ticker-dot { margin: 0 1.1rem; color: var(--lg-ink-3, #94a3b8); }
+    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+      .ticker-viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+      .ticker-live-dot { animation: none; }
+    }
+    @media (max-width: 640px) {
+      .market-ticker { margin-left: 1rem; margin-right: 1rem; }
+      .ticker-label { display: none; }
+    }
+
+    /* ── Sales-rank chip on directory cards ── */
+    .sales-rank-pill {
+      margin-left: 6px;
+      background: rgba(245,158,11,0.12);
+      color: #b45309;
+      border: 1px solid rgba(245,158,11,0.35);
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .sales-rank-pill:hover { background: rgba(245,158,11,0.22); transform: translateY(-1px); }
+
+    /* ── Live sales context on region headers ── */
+    .region-sales { color: inherit; opacity: 0.9; }
+
     /* ── Star rating ── */
     .stars { color: #f59e0b; letter-spacing: 2px; }
 
@@ -1032,24 +1109,24 @@
   <!-- Live data freshness line (filled from sales-data-2026.js) -->
   <p id="hero-fresh" class="mt-5 text-xs text-gray-400 tracking-wide animate-fade-up" style="animation-delay:0.35s;" hidden></p>
 
-  <!-- Stats strip -->
+  <!-- Stats strip — each stat is a pathway into the directory -->
   <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden animate-fade-up max-w-2xl mx-auto" style="animation-delay:0.4s;">
-    <div class="bg-white/5 text-center py-6 px-4">
+    <a href="#dispensaries" class="hero-stat bg-white/5 text-center py-6 px-4 no-underline" title="Browse all dispensaries">
       <div id="stat-dispensary-count" class="font-display text-3xl font-bold text-emerald-400" data-lg-count>38</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Dispensaries</div>
-    </div>
-    <div class="bg-white/5 text-center py-6 px-4">
+    </a>
+    <a href="#dispensaries" class="hero-stat bg-white/5 text-center py-6 px-4 no-underline" title="Jump to the four border regions">
       <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>4</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Regions</div>
-    </div>
-    <div class="bg-white/5 text-center py-6 px-4">
+    </a>
+    <a href="#dispensaries" class="hero-stat bg-white/5 text-center py-6 px-4 no-underline" data-hero-chip="lounge" title="Show consumption lounges">
       <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>3</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">Lounges</div>
-    </div>
-    <div class="bg-white/5 text-center py-6 px-4">
+    </a>
+    <a href="#dispensaries" class="hero-stat bg-white/5 text-center py-6 px-4 no-underline" data-hero-chip="open24" title="Show the 24-hour shop">
       <div class="font-display text-3xl font-bold text-emerald-400" data-lg-count>1</div>
       <div class="text-[10px] text-gray-500 tracking-widest uppercase mt-1 font-semibold">24-Hr Shop</div>
-    </div>
+    </a>
   </div>
 
   <!-- Scroll cue -->
@@ -1059,6 +1136,17 @@
   </a>
 
 </section>
+
+
+<!-- ── LIVE MARKET TICKER (filled from sales-data-2026.js) ── -->
+<div id="market-ticker" class="market-ticker lg-glass" hidden>
+  <a href="/data.html" class="ticker-link" aria-label="Latest border market numbers — open the sales dashboard">
+    <span class="ticker-label"><span class="ticker-live-dot" aria-hidden="true"></span>Market Pulse · <span id="ticker-month"></span></span>
+    <span class="ticker-viewport">
+      <span class="ticker-track" id="ticker-track"></span>
+    </span>
+  </a>
+</div>
 
 
 <!-- ╔══════════════════════════════════════════════╗ -->
@@ -1178,10 +1266,14 @@
       <p class="text-gray-400 max-w-xl mx-auto">Every dollar below is real — dispensary sales reported to the State of New Mexico, refreshed monthly. Latest read: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6 reveal">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 reveal">
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Monthly sales — open the sales dashboard">
         <div id="mp-total" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Monthly Sales</div>
+      </a>
+      <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Year over year change — open the sales dashboard" id="mp-yoy-tile" hidden>
+        <div id="mp-yoy" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest">Year over Year</div>
       </a>
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Locations reporting — open the sales dashboard">
         <div id="mp-locations" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">—</div>
@@ -1201,10 +1293,10 @@
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-10 reveal">
       <div class="lg-glass lg-sheen rounded-2xl p-6 lg:col-span-3 relative">
         <div class="flex items-baseline justify-between gap-2 mb-4 flex-wrap">
-          <h3 class="text-sm font-bold text-white uppercase tracking-widest" style="font-family:'Rajdhani',sans-serif;">2026 Market Trend</h3>
-          <span class="text-[10px] text-gray-500 uppercase tracking-widest">Total monthly sales · all locations</span>
+          <h3 class="text-sm font-bold text-white uppercase tracking-widest" style="font-family:'Rajdhani',sans-serif;">Market Trend</h3>
+          <span id="mp-trend-range" class="text-[10px] text-gray-500 uppercase tracking-widest">Total monthly sales · all locations</span>
         </div>
-        <div id="mp-spark" class="relative" aria-label="Monthly cannabis sales totals for 2026"></div>
+        <div id="mp-spark" class="relative" aria-label="Monthly cannabis sales totals"></div>
         <div id="mp-spark-tip" class="absolute z-10 hidden px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-black/80 border border-emerald-500/30 pointer-events-none whitespace-nowrap" role="status"></div>
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-6 lg:col-span-2">
@@ -1399,7 +1491,7 @@ function card(d) {
     : '';
 
   return `
-  <div class="relative bg-white/5 backdrop-blur-xl rounded-[2rem] border ${featBorder} flex flex-col h-full overflow-hidden card-hover lg-sheen" data-id="${d.id}">
+  <div class="relative bg-white/5 backdrop-blur-xl rounded-[2rem] border ${featBorder} flex flex-col h-full overflow-hidden card-hover lg-sheen" data-id="${d.id}" data-city="${d.city}">
     ${badgeHtml}
     <div class="p-5 sm:p-6 flex flex-col flex-1">
 
@@ -1579,6 +1671,11 @@ function render() {
   }
 
   grid.innerHTML = html;
+
+  // Re-attach the live sales extras (rank chips, region totals) that the
+  // Market Pulse script layers onto freshly rendered cards and headers.
+  if (window.applySalesBadges) window.applySalesBadges();
+  if (window.applyRegionSales) window.applyRegionSales();
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1617,6 +1714,15 @@ document.querySelectorAll('.gb-chip').forEach(btn => {
       this.classList.add('bg-emerald-500/20','text-emerald-300','border-emerald-500/50');
     }
     render();
+  });
+
+  // Hero stat tiles deep-link into the directory: "3 Lounges" applies the
+  // lounge quick-filter on the way down, "1 24-Hr Shop" the open24 one.
+  document.querySelectorAll('[data-hero-chip]').forEach(a => {
+    a.addEventListener('click', function () {
+      const chip = document.querySelector('.gb-chip[data-chip="' + this.dataset.heroChip + '"]');
+      if (chip && chipVal !== this.dataset.heroChip) chip.click();
+    });
   });
 });
 
@@ -2026,26 +2132,59 @@ render();
       momEl.classList.add('text-gray-400');
     }
 
+    // ── Year over year (same month, previous year) ──
+    // Enabled by the full Jan 2025 – May 2026 window in salesTotalsByMonth.
+    const series = (typeof salesTotalsByMonth !== 'undefined' && Array.isArray(salesTotalsByMonth) && salesTotalsByMonth.length > 1)
+      ? salesTotalsByMonth
+      : months.map(m => ({ month: m, total: total(m) }));
+    let yoyPct = null;
+    {
+      const lastYearKey = (Number(yr) - 1) + '-' + mo;
+      const prevYearRow = series.find(d => d.month === lastYearKey);
+      const yoyEl = document.getElementById('mp-yoy');
+      const yoyTile = document.getElementById('mp-yoy-tile');
+      if (prevYearRow && prevYearRow.total > 0 && yoyEl && yoyTile) {
+        yoyPct = (latestTotal / prevYearRow.total - 1) * 100;
+        yoyEl.textContent = (yoyPct >= 0 ? '▲ ' : '▼ ') + Math.abs(yoyPct).toFixed(1) + '%';
+        yoyEl.classList.add(yoyPct >= 0 ? 'text-emerald-400' : 'text-rose-400');
+        yoyTile.hidden = false;
+        yoyTile.title = monthName + ' vs ' + new Date(Number(yr) - 1, Number(mo) - 1, 1).toLocaleString('en-US', { month: 'long', year: 'numeric' });
+      }
+    }
+
     // ── Hero freshness line ──
     const heroFresh = document.getElementById('hero-fresh');
     if (heroFresh) {
       heroFresh.innerHTML = 'Fresh numbers: <span class="text-emerald-400 font-semibold">' + monthName +
-        '</span> · $' + (latestTotal / 1e6).toFixed(1) + 'M in tracked sales across ' + rows(latest).length + ' locations';
+        '</span> · $' + (latestTotal / 1e6).toFixed(1) + 'M in tracked sales across ' + rows(latest).length + ' locations · ' +
+        '<a href="#market-pulse" class="text-emerald-400 font-semibold hover:underline">see the pulse ↓</a>';
       heroFresh.hidden = false;
     }
 
-    // ── 2026 trend sparkline ──
+    // ── Market trend sparkline (whole tracked window) ──
     const monthShort = (m) => {
       const [y, mo] = m.split('-');
       return new Date(Number(y), Number(mo) - 1, 1).toLocaleString('en-US', { month: 'short' });
     };
     const sparkEl = document.getElementById('mp-spark');
-    if (sparkEl && months.length > 1) {
-      const totals = months.map(total);
+    const sMonths = series.map(d => d.month);
+    if (sparkEl && sMonths.length > 1) {
+      const totals = series.map(d => d.total);
+      const rangeEl = document.getElementById('mp-trend-range');
+      if (rangeEl) {
+        rangeEl.textContent = monthShort(sMonths[0]) + ' ' + sMonths[0].split('-')[0] +
+          ' – ' + monthShort(sMonths[sMonths.length - 1]) + ' ' + sMonths[sMonths.length - 1].split('-')[0] + ' · all locations';
+      }
+      // With 17 points, labelling every month gets cramped — label January
+      // (with its year), every third month, and the final point.
+      const showLabel = (i) => i === sMonths.length - 1 || sMonths[i].endsWith('-01') || i % 3 === 0;
+      const labelFor = (i) => sMonths[i].endsWith('-01')
+        ? monthShort(sMonths[i]) + ' ’' + sMonths[i].slice(2, 4)
+        : monthShort(sMonths[i]);
       const W = 640, H = 180, padX = 26, padTop = 34, padBot = 30;
       const min = Math.min(...totals), max = Math.max(...totals);
       const span = (max - min) || 1;
-      const x = (i) => padX + i * (W - 2 * padX) / (months.length - 1);
+      const x = (i) => padX + i * (W - 2 * padX) / (sMonths.length - 1);
       const y = (v) => padTop + (1 - (v - min) / span) * (H - padTop - padBot);
       const pts = totals.map((v, i) => [x(i), y(v)]);
       const line = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
@@ -2053,16 +2192,18 @@ render();
         ' L' + pts[0][0].toFixed(1) + ' ' + (H - padBot + 8) + ' Z';
       const last = pts[pts.length - 1];
       let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
-        months.map((m, i) => monthShort(m) + ' $' + (totals[i] / 1e6).toFixed(2) + 'M').join(', ') + '">' +
+        sMonths.map((m, i) => monthShort(m) + ' ' + m.split('-')[0] + ' $' + (totals[i] / 1e6).toFixed(2) + 'M').join(', ') + '">' +
         '<defs><linearGradient id="mp-fill" x1="0" y1="0" x2="0" y2="1">' +
         '<stop offset="0%" stop-color="#10b981" stop-opacity="0.28"/>' +
         '<stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>' +
         '<path d="' + area + '" fill="url(#mp-fill)"/>' +
         '<path d="' + line + '" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
       pts.forEach((p, i) => {
-        svg += '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11" fill="#67776f" font-weight="600">' + monthShort(months[i]) + '</text>';
-        svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.5" fill="#059669" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>';
-        svg += '<circle data-i="' + i + '" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="14" fill="transparent" style="cursor:pointer"/>';
+        if (showLabel(i)) {
+          svg += '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="#67776f" font-weight="600">' + labelFor(i) + '</text>';
+        }
+        svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="#059669" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>';
+        svg += '<circle data-i="' + i + '" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="12" fill="transparent" style="cursor:pointer"/>';
       });
       svg += '<text x="' + last[0].toFixed(1) + '" y="' + (last[1] - 12).toFixed(1) + '" text-anchor="end" font-size="12" font-weight="700" style="fill:var(--lg-ink,#e5e7eb)">$' + (totals[totals.length - 1] / 1e6).toFixed(1) + 'M</text>';
       svg += '</svg>';
@@ -2072,7 +2213,7 @@ render();
       sparkEl.querySelectorAll('circle[data-i]').forEach(c => {
         const show = () => {
           const i = Number(c.dataset.i);
-          tip.textContent = monthShort(months[i]) + ' ' + months[i].split('-')[0] + ' · $' + (totals[i] / 1e6).toFixed(2) + 'M';
+          tip.textContent = monthShort(sMonths[i]) + ' ' + sMonths[i].split('-')[0] + ' · $' + (totals[i] / 1e6).toFixed(2) + 'M';
           tip.classList.remove('hidden');
           const host = sparkEl.closest('.lg-glass').getBoundingClientRect();
           const dot = c.getBoundingClientRect();
@@ -2091,9 +2232,13 @@ render();
     const boardMonth = document.getElementById('mp-board-month');
     if (boardMonth) boardMonth.textContent = monthName;
     const fmtM = (v) => v >= 1e6 ? '$' + (v / 1e6).toFixed(2) + 'M' : '$' + Math.round(v / 1e3) + 'K';
+    // Multi-location brands carry a "(street address)" disambiguation suffix
+    // in the data; the city column already locates the store, so show just
+    // the brand name here.
+    const brandName = (dba) => dba.replace(/\s*\([^)]*\)\s*$/, '');
     const row = (r, delta) =>
       '<li><a class="mp-row" href="/data.html" title="See ' + r.dba.replace(/"/g, '&quot;') + ' in the dashboard">' +
-      '<span class="mp-name">' + r.dba + '</span>' +
+      '<span class="mp-name">' + brandName(r.dba) + '</span>' +
       '<span class="text-[10px] text-gray-500 uppercase tracking-wide shrink-0 hidden sm:inline">' + r.city + '</span>' +
       '<span class="mp-val">' + fmtM(r.total) + '</span>' +
       (delta !== undefined
@@ -2102,32 +2247,123 @@ render();
       '</a></li>';
 
     const latestRows = rows(latest);
+    const ranked = latestRows.slice().sort((a, b) => b.total - a.total);
     const topList = document.getElementById('mp-top-list');
     if (topList) {
-      topList.innerHTML = latestRows.slice().sort((a, b) => b.total - a.total).slice(0, 3).map(r => row(r)).join('');
+      topList.innerHTML = ranked.slice(0, 3).map(r => row(r)).join('');
     }
-    const riserList = document.getElementById('mp-riser-list');
-    if (riserList && prev) {
-      // One store = one row: never sum rows that happen to share a display
-      // name, and skip the comparison entirely if a name is ambiguous in
-      // either month (two CHADCOR licenses once collided onto "Top Crop").
+    // One store = one row: never sum rows that happen to share a display
+    // name, and skip the comparison entirely if a name is ambiguous in
+    // either month (two CHADCOR licenses once collided onto "Top Crop").
+    let risers = [];
+    if (prev) {
       const countByDba = {}, prevByDba = {};
       latestRows.forEach(d => { countByDba[d.dba] = (countByDba[d.dba] || 0) + 1; });
       rows(prev).forEach(d => {
         prevByDba[d.dba] = d.dba in prevByDba ? null : d.total; // null = ambiguous
       });
-      const risers = latestRows
+      risers = latestRows
         .filter(d => countByDba[d.dba] === 1 && prevByDba[d.dba] >= 20000) // ignore tiny bases that make % noise
         .map(d => ({ ...d, growth: (d.total / prevByDba[d.dba] - 1) * 100 }))
         .sort((a, b) => b.growth - a.growth)
         .slice(0, 3);
+    }
+    const riserList = document.getElementById('mp-riser-list');
+    if (riserList && risers.length) {
       riserList.innerHTML = risers.map(r => row(r, r.growth)).join('');
     }
+
+    // ── Live market ticker (below the hero) ──
+    const ticker = document.getElementById('market-ticker');
+    const track = document.getElementById('ticker-track');
+    if (ticker && track) {
+      const monthEl = document.getElementById('ticker-month');
+      if (monthEl) monthEl.textContent = monthName;
+      const up = (v) => v >= 0;
+      const items = [];
+      items.push('<span class="ticker-item"><strong>$' + (latestTotal / 1e6).toFixed(1) + 'M</strong> tracked sales</span>');
+      if (prev && total(prev) > 0) {
+        const mom = (latestTotal / total(prev) - 1) * 100;
+        items.push('<span class="ticker-item">MoM <strong class="' + (up(mom) ? 'tk-up' : 'tk-down') + '">' + (up(mom) ? '▲' : '▼') + Math.abs(mom).toFixed(1) + '%</strong></span>');
+      }
+      if (yoyPct !== null) {
+        items.push('<span class="ticker-item">vs last year <strong class="' + (up(yoyPct) ? 'tk-up' : 'tk-down') + '">' + (up(yoyPct) ? '▲' : '▼') + Math.abs(yoyPct).toFixed(1) + '%</strong></span>');
+      }
+      items.push('<span class="ticker-item"><strong>' + latestRows.length + '</strong> locations reporting</span>');
+      items.push('<span class="ticker-item">Top region <strong>' + topRegion[0] + '</strong> · ' + Math.round((topRegion[1] / latestTotal) * 100) + '%</span>');
+      ranked.slice(0, 3).forEach((r, i) => {
+        items.push('<span class="ticker-item">#' + (i + 1) + ' ' + brandName(r.dba) + ' <strong>' + fmtM(r.total) + '</strong></span>');
+      });
+      risers.forEach(r => {
+        items.push('<span class="ticker-item">' + brandName(r.dba) + ' <strong class="tk-up">▲' + Math.abs(r.growth).toFixed(0) + '%</strong></span>');
+      });
+      const half = '<span class="ticker-set">' + items.join('<span class="ticker-dot">·</span>') + '<span class="ticker-dot">·</span></span>';
+      // Two identical halves make the -50% translate loop seamless; the
+      // second is presentation only, so screen readers get one copy.
+      track.innerHTML = half + half.replace('<span class="ticker-set">', '<span class="ticker-set" aria-hidden="true">');
+      ticker.hidden = false;
+    }
+
+    // ── Sales-rank badges on the directory cards ──
+    // Connect the state sales data to the directory: the top-selling brands
+    // this month get a small rank chip on their card.
+    const normName = (s) => String(s).toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/).filter(Boolean).map(w => w.replace(/s$/, '')).join(' ');
+    const topSellers = ranked.slice(0, 10).map((r, i) => ({
+      rank: i + 1, name: brandName(r.dba), norm: normName(brandName(r.dba)), city: r.city,
+    }));
+    const monthTag = monthShort(latest);
+    window.applySalesBadges = function () {
+      document.querySelectorAll('#gb-grid [data-id]').forEach(cardEl => {
+        if (cardEl.querySelector('.sales-rank-pill')) return;
+        const nameEl = cardEl.querySelector('h3');
+        const tagWrap = cardEl.querySelector('.tag-pill') && cardEl.querySelector('.tag-pill').parentElement;
+        if (!nameEl || !tagWrap) return;
+        const cardNorm = normName(nameEl.textContent);
+        const cardCity = cardEl.getAttribute('data-city') || '';
+        const hit = topSellers.find(s =>
+          (s.norm === cardNorm ||
+            (s.norm.length >= 6 && cardNorm.startsWith(s.norm)) ||
+            (cardNorm.length >= 6 && s.norm.startsWith(cardNorm))) &&
+          (!cardCity || cardCity === s.city));
+        if (!hit) return;
+        const pill = document.createElement('a');
+        pill.href = '/data.html';
+        pill.className = 'tag-pill sales-rank-pill';
+        pill.title = 'Ranked #' + hit.rank + ' by reported ' + monthName + ' sales — see the dashboard';
+        pill.textContent = '📈 #' + hit.rank + ' seller · ' + monthTag;
+        tagWrap.appendChild(pill);
+      });
+    };
+    window.applySalesBadges();
+
+    // ── Live sales context on the region headers ──
+    const regionCity = {
+      'region-sunland': 'Sunland Park',
+      'region-chaparral': 'Chaparral',
+      'region-st': 'Santa Teresa',
+      'region-anthony': 'Anthony',
+    };
+    window.applyRegionSales = function () {
+      Object.entries(regionCity).forEach(([anchor, city]) => {
+        const host = document.getElementById(anchor);
+        if (!host || host.querySelector('.region-sales')) return;
+        const metaEl = host.querySelector('p');
+        const cityTotal = byCity[city];
+        if (!metaEl || !cityTotal) return;
+        const share = Math.round((cityTotal / latestTotal) * 100);
+        const span = document.createElement('span');
+        span.className = 'region-sales';
+        span.textContent = ' · ' + fmtM(cityTotal) + ' in ' + monthTag + ' sales' + (share >= 1 ? ' · ' + share + '% of the border market' : '');
+        metaEl.appendChild(span);
+      });
+    };
+    window.applyRegionSales();
 
     const section = document.getElementById('market-pulse');
     section.hidden = false;
     if (window.lgCountUp) {
-      ['mp-total', 'mp-locations', 'mp-region-share'].forEach(id => window.lgCountUp(document.getElementById(id)));
+      ['mp-total', 'mp-locations', 'mp-region-share', 'mp-yoy'].forEach(id => window.lgCountUp(document.getElementById(id)));
     }
   });
 </script>
