@@ -216,12 +216,13 @@ textarea:focus-visible,
 .text-rose-300, .text-rose-400, .text-red-400 { color: #be123c !important; }
 .text-blue-200, .text-blue-400 { color: #1d4ed8 !important; }
 .text-violet-400, .text-indigo-400 { color: #6d28d9 !important; }
-.text-cyan-400 { color: #0e7490 !important; }
+.text-cyan-300, .text-cyan-400 { color: #0e7490 !important; }
 
 /* Keep white text where it sits on solid emerald/gold fills */
 [class*="bg-emerald-5"].text-white, [class*="bg-emerald-6"].text-white, [class*="bg-emerald-7"].text-white,
 [class*="from-emerald"].text-white, [class*="from-gold"].text-white, [class*="from-amber"].text-white,
 .btn-primary, .btn-primary.text-white,
+.btn-gold, .btn-gold.text-white,
 [class*="from-emerald"] .text-white, [class*="from-gold"] .text-white,
 [class*="bg-emerald-5"] .text-white, [class*="bg-emerald-6"] .text-white {
   color: #ffffff !important;
@@ -314,8 +315,21 @@ body.scrolled #tgb-glass-header {
   transform: translateY(-2px) scale(1.03);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 24px rgba(5, 150, 105, 0.40);
 }
+/* Keep the header a floating glass pill on small screens instead of a
+   square edge-to-edge bar — loaded after page styles, so this wins. */
 @media (max-width: 900px) {
-  #tgb-glass-header { border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
+  #tgb-glass-header {
+    width: calc(100% - 20px);
+    top: calc(10px + env(safe-area-inset-top, 0px));
+    border: var(--lg-border);
+    border-radius: 18px;
+  }
+  body.scrolled #tgb-glass-header {
+    top: calc(6px + env(safe-area-inset-top, 0px));
+    width: calc(100% - 12px);
+    border-radius: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  }
 }
 
 /* ── Glass footer ── */
@@ -467,16 +481,27 @@ body.scrolled #tgb-glass-header {
   border: var(--lg-border) !important;
   box-shadow: var(--lg-specular), var(--lg-shadow);
 }
+.filter-sticky {
+  background: var(--lg-glass-bg-strong) !important;
+  backdrop-filter: var(--lg-blur-strong) !important;
+  -webkit-backdrop-filter: var(--lg-blur-strong) !important;
+  border: var(--lg-border) !important;
+  box-shadow: var(--lg-specular), var(--lg-shadow) !important;
+}
 .filter-bar input,
-.filter-bar select {
+.filter-bar select,
+.filter-sticky input,
+.filter-sticky select {
   background: rgba(255, 255, 255, 0.7) !important;
   color: var(--lg-ink) !important;
   border-color: var(--lg-line) !important;
   box-shadow: inset 0 1px 2px rgba(23, 46, 37, 0.05);
   transition: border-color var(--lg-fast) var(--lg-ease), box-shadow var(--lg-fast) var(--lg-ease);
 }
-.filter-bar input::placeholder { color: var(--lg-ink-3); }
-.filter-bar select option { background: #ffffff; color: var(--lg-ink); }
+.filter-bar input::placeholder,
+.filter-sticky input::placeholder { color: var(--lg-ink-3); }
+.filter-bar select option,
+.filter-sticky select option { background: #ffffff; color: var(--lg-ink); }
 
 /* ── Chips, pills, actions ── */
 .offering-chip,
@@ -676,6 +701,15 @@ section#education { background: linear-gradient(180deg, transparent 0%, rgba(5, 
 }
 .btn-primary:hover {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 30px rgba(5, 150, 105, 0.35);
+  transform: translateY(-2px);
+}
+.btn-gold {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 16px rgba(217, 119, 6, 0.30);
+  transition: transform var(--lg-fast) var(--lg-spring), box-shadow var(--lg-fast) var(--lg-ease);
+}
+.btn-gold:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 30px rgba(217, 119, 6, 0.40);
   transform: translateY(-2px);
 }
 .card-hover {
