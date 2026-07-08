@@ -64,6 +64,27 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://greenborder.org/articles/hemp-ban-2026.html",
+        "name": "The Hemp Store on Your Corner Could Be Gone by November. Here's Why."
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://greenborder.org/articles/texas-cannabis-legalization-march-2026.html",
+        "name": "Texas Just Voted 80% for Cannabis Legalization — So Why Is It Still Illegal Here?"
+      }
+    ]
+  }
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -78,9 +99,6 @@
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
             display: ['Rajdhani', 'Inter', 'sans-serif'],
-          },
-          backgroundImage: {
-            'hero-grid': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
           },
           animation: {
             'fade-up': 'fadeUp 0.6s ease-out forwards',
@@ -114,6 +132,21 @@
       color: #e5e7eb;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
+    }
+    /* Tailwind's .block otherwise beats the UA [hidden] rule */
+    [hidden] { display: none !important; }
+    /* Local fallbacks for CDN utilities the layout depends on */
+    .featured-card, .article-card { text-decoration: none; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ── Glass Header ── */
@@ -190,6 +223,8 @@
       transition: width 0.3s ease;
     }
     .tgb-header-link:hover::after { width: 100%; }
+    .tgb-header-link[aria-current="page"] { color: var(--lg-emerald-deep, #34d399); }
+    .tgb-header-link[aria-current="page"]::after { width: 100%; }
     .tgb-header-actions {
       display: flex;
       align-items: center;
@@ -249,7 +284,7 @@
       #tgb-glass-header { display: none; }
     }
 
-    /* ── Content ── */
+    /* ── Buttons ── */
     .btn-primary {
       background: linear-gradient(135deg, #10b981, #059669);
       color: white;
@@ -261,7 +296,161 @@
       transform: translateY(-2px);
     }
 
-    /* ── Cards ── */
+    /* ── Fluid section rhythm ── */
+    .news-block {
+      padding-left: clamp(1rem, 4vw, 1.5rem);
+      padding-right: clamp(1rem, 4vw, 1.5rem);
+      max-width: 72rem;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    /* ── Hero ── */
+    .news-hero-pad {
+      padding-top: clamp(8rem, 14vh + 3rem, 11rem);
+      margin-bottom: clamp(1.5rem, 4vw, 3rem);
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      /* Header is hidden on mobile (bottom nav takes over) — no dead zone */
+      .news-hero-pad { padding-top: clamp(3rem, 9vh, 5rem); }
+    }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lg-emerald-deep, #34d399);
+      background: var(--lg-glass-bg, rgba(16, 185, 129, 0.08));
+      border: var(--lg-border-emerald, 1px solid rgba(16, 185, 129, 0.25));
+      box-shadow: var(--lg-specular, none), 0 4px 18px rgba(23, 46, 37, 0.08);
+      margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    }
+    .news-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2.6rem, 2rem + 4vw, 4.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+    }
+    .news-sub {
+      font-size: clamp(1rem, 0.9rem + 0.6vw, 1.2rem);
+      line-height: 1.65;
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+    .hero-stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(8px, 1.5vw, 12px);
+      margin-top: clamp(1.25rem, 3vw, 2rem);
+    }
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--lg-ink-2, #cbd5e1);
+      background: var(--lg-glass-bg, rgba(255, 255, 255, 0.05));
+      border: var(--lg-border, 1px solid rgba(255, 255, 255, 0.1));
+      box-shadow: var(--lg-specular, none), 0 4px 14px rgba(23, 46, 37, 0.06);
+      transition: transform var(--lg-fast, 0.3s) var(--lg-spring, ease), border-color var(--lg-fast, 0.3s) ease;
+    }
+    .stat-pill:hover {
+      transform: translateY(-2px);
+      border-color: rgba(5, 150, 105, 0.35);
+    }
+    .stat-pill strong {
+      color: var(--lg-emerald-deep, #34d399);
+      font-weight: 800;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.05rem;
+    }
+
+    /* ── Category filters ── */
+    .filter-scroll {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    .category-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--lg-ink-2, #d1d5db);
+      background: var(--lg-glass-bg, rgba(255, 255, 255, 0.05));
+      border: var(--lg-border, 1px solid rgba(255, 255, 255, 0.1));
+      box-shadow: var(--lg-specular, none), 0 2px 10px rgba(23, 46, 37, 0.05);
+      transition:
+        transform var(--lg-fast, 0.3s) var(--lg-spring, ease),
+        background var(--lg-fast, 0.3s) ease,
+        border-color var(--lg-fast, 0.3s) ease,
+        color var(--lg-fast, 0.3s) ease,
+        box-shadow var(--lg-fast, 0.3s) ease;
+    }
+    .category-filter:hover {
+      transform: translateY(-2px);
+      color: var(--lg-emerald-deep, #34d399);
+      border-color: rgba(5, 150, 105, 0.4);
+    }
+    .category-filter.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 20px rgba(5, 150, 105, 0.35);
+    }
+    .category-filter .count {
+      font-size: 11px;
+      font-weight: 800;
+      min-width: 20px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      text-align: center;
+      color: var(--lg-emerald-deep, #34d399);
+      background: rgba(5, 150, 105, 0.12);
+    }
+    .category-filter.active .count {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.22);
+    }
+    /* Horizontal snap-scroll strip on small screens instead of wrapping */
+    @media (max-width: 640px) {
+      .filter-scroll {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 4px 1rem 12px;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .filter-scroll::-webkit-scrollbar { display: none; }
+      .category-filter {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+    }
+
+    /* ── Cards (glass recipe refined by liquid-glass.css) ── */
     .news-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -273,75 +462,218 @@
       transform: translateY(-4px);
     }
 
-    .article-content {
-      line-height: 1.8;
-      color: #d1d5db;
-    }
-    .article-content h2 {
-      color: #ffffff;
-      font-size: 1.875rem;
-      font-weight: 700;
-      margin: 1.5rem 0 1rem;
-      font-family: 'Rajdhani', sans-serif;
-    }
-    .article-content h3 {
-      color: #ffffff;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 1.25rem 0 0.75rem;
-    }
-    .article-content p {
-      margin-bottom: 1rem;
-    }
-    .article-content ul {
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .article-content li {
-      margin-bottom: 0.5rem;
-      color: #d1d5db;
-    }
-
-    /* ── Section Line ── */
-    .section-line {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, #10b981, #ca8a04);
-    }
-
-    /* ── Tag ── */
+    /* ── Tags ── */
     .tag {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.06em;
+    }
+    /* Near-opaque fills: backdrop-filter inside a hover-transformed card
+       rasterizes and blurs the text, so tags avoid it. */
+    .tag-featured {
+      color: var(--lg-gold-deep, #fbbf24);
+      background: rgba(254, 243, 199, 0.92);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      box-shadow: 0 2px 10px rgba(23, 46, 37, 0.15);
+    }
+    .tag-policy {
+      color: var(--lg-emerald-deep, #34d399);
+      background: rgba(236, 253, 245, 0.92);
+      border: 1px solid rgba(5, 150, 105, 0.30);
+      box-shadow: 0 2px 10px rgba(23, 46, 37, 0.15);
+    }
+    .tag-research { color: #1d4ed8; background: rgba(239, 246, 255, 0.92); border: 1px solid rgba(29, 78, 216, 0.30); }
+    .tag-legal    { color: #6d28d9; background: rgba(245, 243, 255, 0.92); border: 1px solid rgba(109, 40, 217, 0.30); }
+    .tag-culture  { color: var(--lg-gold-deep, #fbbf24); background: rgba(255, 251, 235, 0.92); border: 1px solid rgba(217, 119, 6, 0.30); }
+
+    /* ── Featured story ── */
+    .featured-card { border-radius: var(--lg-r-lg, 28px); overflow: hidden; }
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 820px) {
+      .featured-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+    }
+    .featured-media {
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+    }
+    .featured-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+      transition: transform 0.7s var(--lg-ease, ease);
+    }
+    @media (min-width: 820px) {
+      .featured-media img {
+        position: absolute;
+        inset: 0;
+        aspect-ratio: auto;
+      }
+    }
+    .featured-card:hover .featured-media img { transform: scale(1.05); }
+    .featured-media .tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+    }
+    .featured-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+    .featured-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.6rem, 1.2rem + 2.2vw, 2.5rem);
+      line-height: 1.1;
+      margin-bottom: clamp(0.75rem, 2vw, 1rem);
+    }
+    .featured-excerpt {
+      font-size: clamp(0.95rem, 0.9rem + 0.4vw, 1.1rem);
+      line-height: 1.65;
+      margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
     }
 
-    /* ── News-specific Styles ── */
-    .news-hero {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(202, 138, 4, 0.05));
-      border: 1px solid rgba(16, 185, 129, 0.2);
+    /* ── Articles grid ── */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+    .article-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--lg-r-md, 20px);
+      overflow: hidden;
+    }
+    .card-media {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+    }
+    .card-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 16 / 10;
+      transition: transform 0.6s var(--lg-ease, ease);
+    }
+    .article-card:hover .card-media img { transform: scale(1.06); }
+    .card-media .tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: clamp(1.1rem, 2.5vw, 1.5rem);
+    }
+    .card-body h3 {
+      font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.3rem);
+      line-height: 1.3;
+      margin-bottom: 0.65rem;
+    }
+    .card-excerpt {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .read-more { margin-top: auto; }
+    .read-more svg {
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      transition: transform var(--lg-fast, 0.3s) var(--lg-spring, ease);
+    }
+    .article-card:hover .read-more svg,
+    .featured-card:hover .read-more svg { transform: translateX(5px); }
+
+    /* Filter entrance animation */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(14px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .card-in { animation: cardIn 0.4s var(--lg-ease, ease-out) backwards; }
+
+    /* ── Coming soon / empty state ── */
+    .coming-soon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.5rem;
+      min-height: 280px;
+      padding: clamp(1.25rem, 3vw, 2rem);
+      border-radius: var(--lg-r-md, 20px);
+      background: var(--lg-glass-emerald, rgba(16, 185, 129, 0.06));
+      border: 1.5px dashed rgba(5, 150, 105, 0.35);
+      transition: border-color var(--lg-fast, 0.3s) ease, transform var(--lg-fast, 0.3s) var(--lg-spring, ease);
+    }
+    .coming-soon-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(5, 150, 105, 0.55);
+    }
+    .filter-empty {
+      text-align: center;
+      padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
+      border-radius: var(--lg-r-md, 20px);
+      background: var(--lg-glass-bg, rgba(255, 255, 255, 0.04));
+      border: var(--lg-border, 1px solid rgba(255, 255, 255, 0.1));
+      box-shadow: var(--lg-specular, none), var(--lg-shadow, none);
     }
 
-    .category-filter {
-      padding: 8px 16px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #d1d5db;
+    /* ── Newsletter ── */
+    .newsletter-card { border-radius: var(--lg-r-lg, 28px); }
+    .newsletter-inner {
+      max-width: 34rem;
+      margin: 0 auto;
+      text-align: center;
+      padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2rem);
     }
-    .category-filter:hover,
-    .category-filter.active {
-      background: rgba(16, 185, 129, 0.2);
-      border-color: rgba(16, 185, 129, 0.5);
-      color: #34d399;
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    @media (min-width: 480px) {
+      .newsletter-form { flex-direction: row; }
+      .newsletter-form input { flex: 1; }
+    }
+    .newsletter-note {
+      margin-top: 0.85rem;
+      font-size: 12px;
+      color: var(--lg-ink-3, #94a3b8);
+    }
+    .newsletter-success {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      color: var(--lg-emerald-deep, #34d399);
+      background: rgba(5, 150, 105, 0.12);
+      border: 1px solid rgba(5, 150, 105, 0.35);
+      animation: cardIn 0.4s var(--lg-ease, ease-out) backwards;
     }
 
     /* ── Glass Footer ── */
@@ -461,9 +793,10 @@
       left: 0;
       right: 0;
       display: none;
-      flex-justify: space-around;
+      justify-content: space-around;
       align-items: center;
-      height: 70px;
+      height: calc(70px + env(safe-area-inset-bottom, 0px));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
       background: rgba(10, 10, 10, 0.95);
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       z-index: 9999;
@@ -485,7 +818,7 @@
     .tgb-nav-item:active, .tgb-nav-item:hover { color: #34d399; }
     @media (max-width: 768px) {
       .tgb-mobile-nav { display: flex; }
-      body { padding-bottom: 70px; }
+      body { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
       .tgb-footer-card { padding: 30px 20px; }
       .tgb-footer-nav { flex-direction: column; gap: 15px; }
     }
@@ -508,7 +841,7 @@
 
   <nav class="tgb-desktop-nav">
     <a href="/"             class="tgb-header-link">Home</a>
-    <a href="/news.html"    class="tgb-header-link">News</a>
+    <a href="/news.html"    class="tgb-header-link" aria-current="page">News</a>
     <a href="/data.html"    class="tgb-header-link">Sales Data</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
     <a href="/#education"    class="tgb-header-link">Education</a>
@@ -526,48 +859,57 @@
   </div>
 </header>
 
+<main>
+
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║            NEWS HERO SECTION                ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="pt-40 pb-16 px-4 max-w-6xl mx-auto">
-  <div class="text-center mb-12">
-    <span class="section-line mb-4 block mx-auto"></span>
-    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">The Green Border News</h1>
-    <p class="text-gray-400 text-lg max-w-2xl mx-auto">Cannabis news, policy updates, and culture for the 915 and beyond. Stay informed on what's happening in El Paso, Sunland Park, and the border community.</p>
+<section class="news-block news-hero-pad">
+  <div class="text-center">
+    <span class="hero-kicker">📰 Fresh from the 915</span>
+    <h1 class="news-title font-bold text-white">The Green Border <span class="lg-gradient-text">News</span></h1>
+    <p class="news-sub text-gray-400">Cannabis news, policy updates, and culture for the 915 and beyond. Stay informed on what's happening in El Paso, Sunland Park, and the border community.</p>
+
+    <div class="hero-stat-row">
+      <span class="stat-pill"><strong id="stat-story-count" data-lg-count>2</strong> Stories</span>
+      <span class="stat-pill"><strong data-lg-count>4</strong> Categories</span>
+      <span class="stat-pill">🗓️ Updated March 2026</span>
+    </div>
   </div>
 
   <!-- Category Filters -->
-  <div class="flex flex-wrap justify-center gap-3 mb-12">
-    <button class="category-filter active" onclick="filterArticles('all')">All Articles</button>
-    <button class="category-filter" onclick="filterArticles('policy')">Policy</button>
-    <button class="category-filter" onclick="filterArticles('research')">Research</button>
-    <button class="category-filter" onclick="filterArticles('legal')">Legal</button>
-    <button class="category-filter" onclick="filterArticles('culture')">Culture</button>
+  <div class="filter-scroll" role="group" aria-label="Filter articles by category">
+    <button class="category-filter active" data-filter="all" aria-pressed="true">All Articles <span class="count"></span></button>
+    <button class="category-filter" data-filter="policy" aria-pressed="false">Policy <span class="count"></span></button>
+    <button class="category-filter" data-filter="research" aria-pressed="false">Research <span class="count"></span></button>
+    <button class="category-filter" data-filter="legal" aria-pressed="false">Legal <span class="count"></span></button>
+    <button class="category-filter" data-filter="culture" aria-pressed="false">Culture <span class="count"></span></button>
   </div>
 </section>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║          FEATURED ARTICLE                   ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="px-4 max-w-6xl mx-auto mb-16">
-  <a href="/articles/hemp-ban-2026.html" class="news-card lg-sheen rounded-3xl overflow-hidden news-hero block no-underline transition hover:transform hover:translate-y-[-4px]">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
-      <div class="h-64 md:h-auto relative overflow-hidden rounded-2xl">
-        <img src="https://images.unsplash.com/photo-1681857240171-7408cd66c75e?w=1200&q=80" alt="Hemp products" class="w-full h-full object-cover">
+<section class="news-block" id="featured-section" data-category="policy">
+  <a href="/articles/hemp-ban-2026.html" class="news-card lg-sheen featured-card block no-underline">
+    <div class="featured-grid">
+      <div class="featured-media">
+        <img src="https://images.unsplash.com/photo-1681857240171-7408cd66c75e?w=1200&q=80" alt="Shelves of hemp-derived THC products in a smoke shop" width="1200" height="675" fetchpriority="high" decoding="async">
+        <span class="tag tag-featured">★ Featured</span>
       </div>
-      <div class="flex flex-col justify-center">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="tag" style="background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);">Featured</span>
+      <div class="featured-body">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
           <span class="text-xs text-gray-500">March 5, 2026</span>
           <span class="w-1 h-1 rounded-full bg-gray-600"></span>
           <span class="text-xs text-red-400 font-medium">Hemp &amp; Policy</span>
-        </div>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" style="font-family:'Rajdhani',sans-serif;">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h2>
-        <p class="text-gray-400 mb-6 text-lg">A federal law tucked inside last year's government shutdown deal will ban most hemp-derived THC products in America by November 12, 2026. In Texas, that means 6,350 businesses, 40,000 jobs, and $7.5 billion in economic activity are on the clock.</p>
-        <div class="flex items-center gap-4">
-          <span class="text-sm text-gray-500">By El Paso Cannabis Club</span>
           <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-          <span class="text-sm text-gray-500">6 min read</span>
+          <span class="text-xs text-gray-500">6 min read</span>
+        </div>
+        <h2 class="featured-title font-bold text-white">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h2>
+        <p class="featured-excerpt text-gray-400">A federal law tucked inside last year's government shutdown deal will ban most hemp-derived THC products in America by November 12, 2026. In Texas, that means 6,350 businesses, 40,000 jobs, and $7.5 billion in economic activity are on the clock.</p>
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="text-sm text-gray-500">By El Paso Cannabis Club</span>
+          <span class="read-more text-emerald-400 font-semibold text-sm flex items-center gap-1">Read the Story <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
         </div>
       </div>
     </div>
@@ -577,43 +919,61 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║          ARTICLES GRID                      ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="px-4 max-w-6xl mx-auto pb-16">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="articles-grid">
+<section class="news-block">
+  <div class="articles-grid" id="articles-grid">
 
     <!-- Article 1: Texas Cannabis Legalization -->
-    <a href="/articles/texas-cannabis-legalization-march-2026.html" class="news-card lg-sheen rounded-2xl overflow-hidden block no-underline transition hover:transform hover:translate-y-[-4px]" data-category="policy">
-      <div class="h-48 relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1655129786334-d6fa7a68057b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3cwfDF8c2VhcmNofDI2fHx0ZXhhcyUyMGZsYWd8ZW58MHx8fHwxNzcyNjU5NDgyfDA&ixlib=rb-4.1.0&q=80&w=2000" alt="Texas flag" class="w-full h-full object-cover">
-      </div>
-      <div class="p-6">
+    <a href="/articles/texas-cannabis-legalization-march-2026.html" class="news-card lg-sheen article-card no-underline" data-category="policy">
+      <figure class="card-media">
+        <img src="https://images.unsplash.com/photo-1655129786334-d6fa7a68057b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3cwfDF8c2VhcmNofDI2fHx0ZXhhcyUyMGZsYWd8ZW58MHx8fHwxNzcyNjU5NDgyfDA&ixlib=rb-4.1.0&q=80&w=1200" alt="Texas flag waving against a blue sky" width="1200" height="750" loading="lazy" decoding="async">
+        <span class="tag tag-policy">Policy</span>
+      </figure>
+      <div class="card-body">
         <div class="flex items-center gap-3 mb-3">
           <span class="text-xs text-gray-500">Mar 4, 2026</span>
           <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-          <span class="text-xs text-emerald-400 font-medium">Texas &amp; Policy</span>
+          <span class="text-xs text-gray-500">5 min read</span>
         </div>
-        <h3 class="text-white font-semibold text-xl mb-3">Texas Just Voted 80% for Cannabis Legalization — So Why Is It Still Illegal Here?</h3>
-        <p class="text-gray-500 text-sm mb-4">Texas Democratic primary voters approved cannabis legalization by 80%. What does this mean for El Paso and the path forward?</p>
-        <span class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+        <h3 class="text-white font-semibold">Texas Just Voted 80% for Cannabis Legalization — So Why Is It Still Illegal Here?</h3>
+        <p class="card-excerpt text-gray-500 text-sm">Texas Democratic primary voters approved cannabis legalization by 80%. What does this mean for El Paso and the path forward?</p>
+        <span class="read-more text-emerald-400 font-semibold text-sm flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
       </div>
     </a>
 
     <!-- Article 2: Hemp Ban -->
-    <a href="/articles/hemp-ban-2026.html" class="news-card lg-sheen rounded-2xl overflow-hidden block no-underline transition hover:transform hover:translate-y-[-4px]" data-category="policy">
-      <div class="h-48 relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1681857240171-7408cd66c75e?w=1200&q=80" alt="Hemp products" class="w-full h-full object-cover">
-      </div>
-      <div class="p-6">
+    <a href="/articles/hemp-ban-2026.html" class="news-card lg-sheen article-card no-underline" data-category="policy">
+      <figure class="card-media">
+        <img src="https://images.unsplash.com/photo-1681857240171-7408cd66c75e?w=800&q=80" alt="Hemp-derived products displayed on store shelves" width="800" height="500" loading="lazy" decoding="async">
+        <span class="tag tag-policy">Policy</span>
+      </figure>
+      <div class="card-body">
         <div class="flex items-center gap-3 mb-3">
           <span class="text-xs text-gray-500">Mar 5, 2026</span>
           <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-          <span class="text-xs text-red-400 font-medium">Hemp &amp; Policy</span>
+          <span class="text-xs text-gray-500">6 min read</span>
         </div>
-        <h3 class="text-white font-semibold text-xl mb-3">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h3>
-        <p class="text-gray-500 text-sm mb-4">A federal law will ban most hemp-derived THC products by November 12, 2026. In Texas, that means 6,350 businesses and 40,000 jobs are on the clock.</p>
-        <span class="text-emerald-400 font-semibold text-sm hover:underline flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+        <h3 class="text-white font-semibold">The Hemp Store on Your Corner Could Be Gone by November. Here's Why.</h3>
+        <p class="card-excerpt text-gray-500 text-sm">A federal law will ban most hemp-derived THC products by November 12, 2026. In Texas, that means 6,350 businesses and 40,000 jobs are on the clock.</p>
+        <span class="read-more text-emerald-400 font-semibold text-sm flex items-center gap-1">Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
       </div>
     </a>
 
+    <!-- Coming soon teaser -->
+    <div class="coming-soon-card" id="coming-soon-card">
+      <div class="text-4xl mb-1">🌱</div>
+      <h3 class="text-white font-semibold text-lg">More stories on the way</h3>
+      <p class="text-gray-500 text-sm max-w-xs">We're digging into new dispensary openings, strain reviews, and border-community coverage.</p>
+      <a href="#newsletter" class="text-emerald-400 font-semibold text-sm mt-2">Get notified →</a>
+    </div>
+
+  </div>
+
+  <!-- Empty state when a category has no articles yet -->
+  <div class="filter-empty" id="filter-empty" hidden>
+    <div class="text-4xl mb-3">🔍</div>
+    <h3 class="text-white font-semibold text-xl mb-2">No <span id="filter-empty-label">stories</span> yet</h3>
+    <p class="text-gray-500 text-sm mb-6 max-w-md mx-auto">We haven't published anything in this category — but new coverage lands regularly. Check back soon.</p>
+    <button class="btn-primary px-6 py-3 rounded-xl text-white font-semibold" id="filter-reset">Show All Articles</button>
   </div>
 </section>
 
@@ -621,19 +981,24 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║         NEWSLETTER CTA                      ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section class="px-4 max-w-6xl mx-auto mb-20">
-  <div class="news-card lg-sheen rounded-2xl p-8 md:p-12" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border:1px solid rgba(16,185,129,0.2);">
-    <div class="max-w-2xl">
+<section class="news-block" id="newsletter">
+  <div class="news-card lg-sheen newsletter-card">
+    <div class="newsletter-inner">
       <div class="text-4xl mb-4">📬</div>
       <h2 class="text-3xl font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Stay in the Loop</h2>
       <p class="text-gray-400 mb-6">Get the latest 915 cannabis news, deals, and dispensary updates delivered to your inbox every week.</p>
-      <form class="flex flex-col sm:flex-row gap-3">
-        <input type="email" placeholder="your@email.com" required class="flex-1 px-4 py-3 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
+      <form class="newsletter-form" id="newsletter-form">
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input type="email" id="newsletter-email" name="email" placeholder="your@email.com" required autocomplete="email" class="px-4 py-3 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
         <button type="submit" class="btn-primary px-6 py-3 rounded-xl text-white font-semibold whitespace-nowrap">Subscribe</button>
       </form>
+      <p class="newsletter-success" id="newsletter-success" hidden role="status">✓ You're on the list — welcome to the club!</p>
+      <p class="newsletter-note">No spam, ever. Unsubscribe anytime.</p>
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                   FOOTER                     ║ -->
@@ -685,37 +1050,91 @@
 <!-- Mobile Navigation -->
 <nav class="tgb-mobile-nav">
   <a href="/" class="tgb-nav-item" id="nav-home">🏠 Home</a>
-  <a href="/news.html" class="tgb-nav-item" id="nav-news">📰 News</a>
+  <a href="/news.html" class="tgb-nav-item active" id="nav-news">📰 News</a>
   <a href="/data.html" class="tgb-nav-item" id="nav-data">📊 Data</a>
   <a href="/#education" class="tgb-nav-item" id="nav-edu">📚 Education</a>
   <a href="/#about" class="tgb-nav-item" id="nav-about">ℹ️ About</a>
 </nav>
 
 <script>
-  // Set year in footer
-  document.getElementById('tgb-year').textContent = new Date().getFullYear();
+  (function () {
+    'use strict';
 
-  // Header scroll effect
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('tgb-glass-header');
-    header.classList.toggle('scrolled', window.scrollY > 100);
-  });
+    // Set year in footer
+    document.getElementById('tgb-year').textContent = new Date().getFullYear();
 
-  // Article filtering (for future use when more articles are added)
-  function filterArticles(category) {
+    /* ── Category filtering ─────────────────────────────────────── */
     const buttons = document.querySelectorAll('.category-filter');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    const gridCards = document.querySelectorAll('#articles-grid .article-card');
+    const featuredSection = document.getElementById('featured-section');
+    const comingSoon = document.getElementById('coming-soon-card');
+    const emptyState = document.getElementById('filter-empty');
+    const emptyLabel = document.getElementById('filter-empty-label');
+    const storyCount = document.getElementById('stat-story-count');
 
-    const articles = document.querySelectorAll('[data-category]');
-    articles.forEach(article => {
-      if (category === 'all' || article.dataset.category === category) {
-        article.style.display = 'block';
-      } else {
-        article.style.display = 'none';
-      }
+    if (storyCount) storyCount.textContent = gridCards.length;
+
+    // Live counts on the filter chips (grid articles only; the featured
+    // story duplicates one of them).
+    buttons.forEach((btn) => {
+      const cat = btn.dataset.filter;
+      const n = cat === 'all'
+        ? gridCards.length
+        : document.querySelectorAll('#articles-grid .article-card[data-category="' + cat + '"]').length;
+      const badge = btn.querySelector('.count');
+      if (badge) badge.textContent = n;
     });
-  }
+
+    function applyFilter(cat, label) {
+      buttons.forEach((btn) => {
+        const on = btn.dataset.filter === cat;
+        btn.classList.toggle('active', on);
+        btn.setAttribute('aria-pressed', String(on));
+      });
+
+      let visible = 0;
+      gridCards.forEach((card) => {
+        const show = cat === 'all' || card.dataset.category === cat;
+        card.toggleAttribute('hidden', !show);
+        if (show) {
+          visible++;
+          // Restart the entrance animation on each filter change.
+          card.classList.remove('card-in');
+          void card.offsetWidth;
+          card.classList.add('card-in');
+        }
+      });
+
+      if (featuredSection) {
+        const showFeatured = cat === 'all' || featuredSection.dataset.category === cat;
+        featuredSection.toggleAttribute('hidden', !showFeatured);
+      }
+      if (comingSoon) comingSoon.toggleAttribute('hidden', cat !== 'all');
+
+      emptyState.hidden = visible > 0;
+      if (visible === 0) emptyLabel.textContent = (label || 'stories').toLowerCase() + ' stories';
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        applyFilter(btn.dataset.filter, btn.textContent.replace(/\d+/g, '').trim());
+      });
+    });
+
+    document.getElementById('filter-reset').addEventListener('click', () => applyFilter('all'));
+
+    /* ── Newsletter (client-side confirmation) ──────────────────── */
+    const form = document.getElementById('newsletter-form');
+    const success = document.getElementById('newsletter-success');
+    if (form && success) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        form.hidden = true;
+        success.hidden = false;
+      });
+    }
+  })();
 </script>
 
 </body>
