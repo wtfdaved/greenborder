@@ -55,16 +55,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Cardiel",
-    "total": 282619.72,
-    "adultUse": 268963.87,
-    "medical": 13655.85,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
-  },
-  {
-    "month": "2026-01",
     "licensee": "BLUE WHALE SUNLAND - APPALOOSA ST RETAIL",
     "dba": "Cookies",
     "total": 694853.82,
@@ -435,6 +425,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Top Crop",
+    "total": 282619.72,
+    "adultUse": 268963.87,
+    "medical": 13655.85,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
+  },
+  {
+    "month": "2026-01",
     "licensee": "TOP OF THE 8TH LLC - ANTHONY DRIVE RETAIL",
     "dba": "Top of the Eighth (401 Anthony Dr)",
     "total": 64674.26,
@@ -532,16 +532,6 @@ const newSalesData2026 = [
     "medical": 36.01,
     "city": "Sunland Park",
     "address": "1925 Appaloosa Ste 6"
-  },
-  {
-    "month": "2026-02",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Cardiel",
-    "total": 261359.63,
-    "adultUse": 250379.12,
-    "medical": 10980.51,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-02",
@@ -915,6 +905,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Top Crop",
+    "total": 261359.63,
+    "adultUse": 250379.12,
+    "medical": 10980.51,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
+  },
+  {
+    "month": "2026-02",
     "licensee": "TOP OF THE 8TH LLC - ANTHONY DRIVE RETAIL",
     "dba": "Top of the Eighth (401 Anthony Dr)",
     "total": 76443.8,
@@ -1012,16 +1012,6 @@ const newSalesData2026 = [
     "medical": 6,
     "city": "Sunland Park",
     "address": "1925 Appaloosa Ste 6"
-  },
-  {
-    "month": "2026-03",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Cardiel",
-    "total": 292510.85,
-    "adultUse": 280033.28,
-    "medical": 12477.57,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-03",
@@ -1395,6 +1385,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Top Crop",
+    "total": 292510.85,
+    "adultUse": 280033.28,
+    "medical": 12477.57,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
+  },
+  {
+    "month": "2026-03",
     "licensee": "TOP OF THE 8TH LLC - ANTHONY DRIVE RETAIL",
     "dba": "Top of the Eighth (401 Anthony Dr)",
     "total": 76961.49,
@@ -1502,16 +1502,6 @@ const newSalesData2026 = [
     "medical": 1022.94,
     "city": "Anthony",
     "address": "138 Anthony Dr."
-  },
-  {
-    "month": "2026-04",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Cardiel",
-    "total": 307492.77,
-    "adultUse": 294210.73,
-    "medical": 13282.04,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-04",
@@ -1855,6 +1845,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Top Crop",
+    "total": 307492.77,
+    "adultUse": 294210.73,
+    "medical": 13282.04,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
+  },
+  {
+    "month": "2026-04",
     "licensee": "TOP OF THE 8TH LLC - ANTHONY DRIVE RETAIL",
     "dba": "Top of the Eighth (401 Anthony Dr)",
     "total": 76373.75,
@@ -1962,16 +1962,6 @@ const newSalesData2026 = [
     "medical": 2718.14,
     "city": "Anthony",
     "address": "138 Anthony Dr."
-  },
-  {
-    "month": "2026-05",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Cardiel",
-    "total": 291296.87,
-    "adultUse": 280219.15,
-    "medical": 11077.72,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-05",
@@ -2322,6 +2312,16 @@ const newSalesData2026 = [
     "medical": 334.62,
     "city": "Sunland Park",
     "address": "1999 Futurity Drive"
+  },
+  {
+    "month": "2026-05",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Top Crop",
+    "total": 291296.87,
+    "adultUse": 280219.15,
+    "medical": 11077.72,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-05",
