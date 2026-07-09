@@ -5,13 +5,13 @@
 const newSalesData2026 = [
   {
     "month": "2026-01",
-    "licensee": "PURLIFE - 900 COUNTRY CLUB RD RETAIL",
+    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
     "dba": "Apogee",
-    "total": 68924.63,
-    "adultUse": 62695.63,
-    "medical": 6229,
+    "total": 38600.64,
+    "adultUse": 36058.57,
+    "medical": 2542.07,
     "city": "Sunland Park",
-    "address": "900 Country Club Rd"
+    "address": "1769 Victory Ln"
   },
   {
     "month": "2026-01",
@@ -45,13 +45,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
+    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
     "dba": "Black Sheep",
-    "total": 15430.78,
-    "adultUse": 13716.44,
-    "medical": 1714.34,
+    "total": 8503.27,
+    "adultUse": 8479.27,
+    "medical": 24,
     "city": "Sunland Park",
-    "address": "1999 Futurity Drive"
+    "address": "1925 Appaloosa Ste 6"
+  },
+  {
+    "month": "2026-01",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Cardiel",
+    "total": 282619.72,
+    "adultUse": 268963.87,
+    "medical": 13655.85,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-01",
@@ -75,18 +85,8 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "STATELINE CANNABIS NM LLC-STEPHANIE RETAIL/CONS",
-    "dba": "Dispensary Near Me (101)",
-    "total": 2566.14,
-    "adultUse": 2545.18,
-    "medical": 20.96,
-    "city": "Chaparral",
-    "address": "101 Stephanie"
-  },
-  {
-    "month": "2026-01",
     "licensee": "DISPENSARY NEAR ME SUNLAND PARK LLC- MCNUTT RETAIL/CONSUMPTION",
-    "dba": "Dispensary Near Me (1290 McNutt Rd)",
+    "dba": "Dispensary Near Me",
     "total": 67659.06,
     "adultUse": 64337.31,
     "medical": 3321.75,
@@ -96,7 +96,7 @@ const newSalesData2026 = [
   {
     "month": "2026-01",
     "licensee": "NEBRO, LLC",
-    "dba": "Elevation 3789 (1999 Futurity Drive)",
+    "dba": "Elevation 3789",
     "total": 80478.27,
     "adultUse": 78176.77,
     "medical": 2301.5,
@@ -106,7 +106,7 @@ const newSalesData2026 = [
   {
     "month": "2026-01",
     "licensee": "J AND J LOAN COMPANY- MCNUTT RETAIL",
-    "dba": "Empire Garden (1144 McNutt)",
+    "dba": "Empire Garden",
     "total": 49825.18,
     "adultUse": 49485.68,
     "medical": 339.5,
@@ -116,7 +116,7 @@ const newSalesData2026 = [
   {
     "month": "2026-01",
     "licensee": "EVEREST APOTHECARY",
-    "dba": "Everest (1580 Appaloosa Dr)",
+    "dba": "Everest",
     "total": 76590.93,
     "adultUse": 71395.57,
     "medical": 5195.36,
@@ -146,7 +146,7 @@ const newSalesData2026 = [
   {
     "month": "2026-01",
     "licensee": "GARDEN OF DREAMS CANNABIS LLC",
-    "dba": "Garden of Dreams (5300 Mcnutt Rd)",
+    "dba": "Garden of Dreams",
     "total": 35289.82,
     "adultUse": 31819.8,
     "medical": 3470.02,
@@ -216,22 +216,12 @@ const newSalesData2026 = [
   {
     "month": "2026-01",
     "licensee": "HOUSE OF FLOWERS ON THE BORDER LLC - RETAIL",
-    "dba": "House of Flowers (1042 State Line)",
+    "dba": "House of Flowers",
     "total": 91354.47,
     "adultUse": 84920.52,
     "medical": 6433.95,
     "city": "Chaparral",
     "address": "1042 State Line"
-  },
-  {
-    "month": "2026-01",
-    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
-    "dba": "House of Flowers (1925 Appaloosa)",
-    "total": 8503.27,
-    "adultUse": 8479.27,
-    "medical": 24,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Ste 6"
   },
   {
     "month": "2026-01",
@@ -325,13 +315,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "licensee": "PURLIFE - 900 COUNTRY CLUB RD RETAIL",
     "dba": "PurLife",
-    "total": 10335.81,
-    "adultUse": 9364.12,
-    "medical": 971.69,
-    "city": "Chaparral",
-    "address": "101 Stephanie"
+    "total": 68924.63,
+    "adultUse": 62695.63,
+    "medical": 6229,
+    "city": "Sunland Park",
+    "address": "900 Country Club Rd"
   },
   {
     "month": "2026-01",
@@ -395,13 +385,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
-    "dba": "Stateline Cannabis (305 S County Line Dr)",
-    "total": 6081.78,
-    "adultUse": 5604.16,
-    "medical": 477.62,
+    "licensee": "STATELINE CANNABIS NM LLC-STEPHANIE RETAIL/CONS",
+    "dba": "Stateline Cannabis",
+    "total": 2566.14,
+    "adultUse": 2545.18,
+    "medical": 20.96,
     "city": "Chaparral",
-    "address": "305 S County Line Dr"
+    "address": "101 Stephanie"
+  },
+  {
+    "month": "2026-01",
+    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "dba": "Stateline Cannabis (New License)",
+    "total": 10335.81,
+    "adultUse": 9364.12,
+    "medical": 971.69,
+    "city": "Chaparral",
+    "address": "101 Stephanie"
   },
   {
     "month": "2026-01",
@@ -425,23 +425,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
+    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
     "dba": "Toke It Up",
-    "total": 110567.17,
-    "adultUse": 104914.73,
-    "medical": 5652.44,
+    "total": 15430.78,
+    "adultUse": 13716.44,
+    "medical": 1714.34,
     "city": "Sunland Park",
-    "address": "1500 Appaloosa Dr Bldg A Ste 140"
-  },
-  {
-    "month": "2026-01",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Top Crop",
-    "total": 282619.72,
-    "adultUse": 268963.87,
-    "medical": 13655.85,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
+    "address": "1999 Futurity Drive"
   },
   {
     "month": "2026-01",
@@ -455,6 +445,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
+    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
+    "dba": "Uforia",
+    "total": 6081.78,
+    "adultUse": 5604.16,
+    "medical": 477.62,
+    "city": "Chaparral",
+    "address": "305 S County Line Dr"
+  },
+  {
+    "month": "2026-01",
     "licensee": "NEW MEXICO TOP ORGANICS ULTRA HEALTH INC  SUNLAND PARK RETAIL",
     "dba": "Ultra Health",
     "total": 30700.44,
@@ -465,23 +465,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
+    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
     "dba": "Urban Wellness",
-    "total": 38600.64,
-    "adultUse": 36058.57,
-    "medical": 2542.07,
+    "total": 110567.17,
+    "adultUse": 104914.73,
+    "medical": 5652.44,
     "city": "Sunland Park",
-    "address": "1769 Victory Ln"
+    "address": "1500 Appaloosa Dr Bldg A Ste 140"
   },
   {
     "month": "2026-02",
-    "licensee": "PURLIFE - 900 COUNTRY CLUB RD RETAIL",
+    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
     "dba": "Apogee",
-    "total": 76012,
-    "adultUse": 68580,
-    "medical": 7432,
+    "total": 30883.28,
+    "adultUse": 29478.89,
+    "medical": 1404.39,
     "city": "Sunland Park",
-    "address": "900 Country Club Rd"
+    "address": "1769 Victory Ln"
   },
   {
     "month": "2026-02",
@@ -495,16 +495,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
-    "licensee": "MCMC - MILLER - RETAILER",
-    "dba": "Astro Buds Consumption Lounge & Grill",
-    "total": 5589.4,
-    "adultUse": 4651.27,
-    "medical": 938.13,
-    "city": "Anthony",
-    "address": "103 Miller Street"
-  },
-  {
-    "month": "2026-02",
     "licensee": "ASTRO BUDS LLC - MCCOMBS RD RETAIL",
     "dba": "Astro Buds Dispensary",
     "total": 140280.66,
@@ -512,6 +502,16 @@ const newSalesData2026 = [
     "medical": 6542.2,
     "city": "Chaparral",
     "address": "308 McCombs Rd Spc 2"
+  },
+  {
+    "month": "2026-02",
+    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
+    "dba": "Astro Buds Dispensary & Lounge",
+    "total": 160692.06,
+    "adultUse": 152212.48,
+    "medical": 8479.58,
+    "city": "Sunland Park",
+    "address": "1650 Appaloosa Drive"
   },
   {
     "month": "2026-02",
@@ -525,13 +525,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
-    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
+    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
     "dba": "Black Sheep",
-    "total": 16773.59,
-    "adultUse": 15771.81,
-    "medical": 1001.78,
+    "total": 3859.04,
+    "adultUse": 3823.03,
+    "medical": 36.01,
     "city": "Sunland Park",
-    "address": "1999 Futurity Drive"
+    "address": "1925 Appaloosa Ste 6"
+  },
+  {
+    "month": "2026-02",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Cardiel",
+    "total": 261359.63,
+    "adultUse": 250379.12,
+    "medical": 10980.51,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-02",
@@ -556,7 +566,7 @@ const newSalesData2026 = [
   {
     "month": "2026-02",
     "licensee": "DISPENSARY NEAR ME SUNLAND PARK LLC- MCNUTT RETAIL/CONSUMPTION",
-    "dba": "Dispensary Near Me (1290 McNutt Rd)",
+    "dba": "Dispensary Near Me",
     "total": 64234.1,
     "adultUse": 60381.19,
     "medical": 3852.91,
@@ -566,7 +576,7 @@ const newSalesData2026 = [
   {
     "month": "2026-02",
     "licensee": "NEBRO, LLC",
-    "dba": "Elevation 3789 (1999 Futurity Drive)",
+    "dba": "Elevation 3789",
     "total": 64914.21,
     "adultUse": 63233.21,
     "medical": 1681,
@@ -576,7 +586,7 @@ const newSalesData2026 = [
   {
     "month": "2026-02",
     "licensee": "J AND J LOAN COMPANY- MCNUTT RETAIL",
-    "dba": "Empire Garden (1144 McNutt)",
+    "dba": "Empire Garden",
     "total": 45534.07,
     "adultUse": 44989.64,
     "medical": 544.43,
@@ -586,7 +596,7 @@ const newSalesData2026 = [
   {
     "month": "2026-02",
     "licensee": "EVEREST APOTHECARY",
-    "dba": "Everest (1580 Appaloosa Dr)",
+    "dba": "Everest",
     "total": 67907.97,
     "adultUse": 63667.05,
     "medical": 4240.92,
@@ -616,7 +626,7 @@ const newSalesData2026 = [
   {
     "month": "2026-02",
     "licensee": "GARDEN OF DREAMS CANNABIS LLC",
-    "dba": "Garden of Dreams (5300 Mcnutt Rd)",
+    "dba": "Garden of Dreams",
     "total": 29640.08,
     "adultUse": 27512.76,
     "medical": 2127.32,
@@ -686,22 +696,12 @@ const newSalesData2026 = [
   {
     "month": "2026-02",
     "licensee": "HOUSE OF FLOWERS ON THE BORDER LLC - RETAIL",
-    "dba": "House of Flowers (1042 State Line)",
+    "dba": "House of Flowers",
     "total": 90438.85,
     "adultUse": 85517.9,
     "medical": 4920.95,
     "city": "Chaparral",
     "address": "1042 State Line"
-  },
-  {
-    "month": "2026-02",
-    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
-    "dba": "House of Flowers (1925 Appaloosa)",
-    "total": 3859.04,
-    "adultUse": 3823.03,
-    "medical": 36.01,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Ste 6"
   },
   {
     "month": "2026-02",
@@ -732,6 +732,16 @@ const newSalesData2026 = [
     "medical": 2303.9,
     "city": "Anthony",
     "address": "103 Miller St"
+  },
+  {
+    "month": "2026-02",
+    "licensee": "MCMC - MILLER - RETAILER",
+    "dba": "Milla Cero (New License)",
+    "total": 5589.4,
+    "adultUse": 4651.27,
+    "medical": 938.13,
+    "city": "Anthony",
+    "address": "103 Miller Street"
   },
   {
     "month": "2026-02",
@@ -795,13 +805,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
-    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "licensee": "PURLIFE - 900 COUNTRY CLUB RD RETAIL",
     "dba": "PurLife",
-    "total": 14669.88,
-    "adultUse": 14025.7,
-    "medical": 644.18,
-    "city": "Chaparral",
-    "address": "101 Stephanie"
+    "total": 76012,
+    "adultUse": 68580,
+    "medical": 7432,
+    "city": "Sunland Park",
+    "address": "900 Country Club Rd"
   },
   {
     "month": "2026-02",
@@ -865,23 +875,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
-    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
-    "dba": "Stateline Cannabis (1650 Appaloosa Drive)",
-    "total": 160692.06,
-    "adultUse": 152212.48,
-    "medical": 8479.58,
-    "city": "Sunland Park",
-    "address": "1650 Appaloosa Drive"
-  },
-  {
-    "month": "2026-02",
-    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
-    "dba": "Stateline Cannabis (305 S County Line Dr)",
-    "total": 5082.18,
-    "adultUse": 4466.14,
-    "medical": 616.04,
+    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "dba": "Stateline Cannabis",
+    "total": 14669.88,
+    "adultUse": 14025.7,
+    "medical": 644.18,
     "city": "Chaparral",
-    "address": "305 S County Line Dr"
+    "address": "101 Stephanie"
   },
   {
     "month": "2026-02",
@@ -905,23 +905,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
-    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
+    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
     "dba": "Toke It Up",
-    "total": 92541.06,
-    "adultUse": 87190.63,
-    "medical": 5350.43,
+    "total": 16773.59,
+    "adultUse": 15771.81,
+    "medical": 1001.78,
     "city": "Sunland Park",
-    "address": "1500 Appaloosa Dr Bldg A Ste 140"
-  },
-  {
-    "month": "2026-02",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Top Crop",
-    "total": 261359.63,
-    "adultUse": 250379.12,
-    "medical": 10980.51,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
+    "address": "1999 Futurity Drive"
   },
   {
     "month": "2026-02",
@@ -935,6 +925,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
+    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
+    "dba": "Uforia",
+    "total": 5082.18,
+    "adultUse": 4466.14,
+    "medical": 616.04,
+    "city": "Chaparral",
+    "address": "305 S County Line Dr"
+  },
+  {
+    "month": "2026-02",
     "licensee": "NEW MEXICO TOP ORGANICS ULTRA HEALTH INC  SUNLAND PARK RETAIL",
     "dba": "Ultra Health",
     "total": 28778.06,
@@ -945,23 +945,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
-    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
+    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
     "dba": "Urban Wellness",
-    "total": 30883.28,
-    "adultUse": 29478.89,
-    "medical": 1404.39,
+    "total": 92541.06,
+    "adultUse": 87190.63,
+    "medical": 5350.43,
     "city": "Sunland Park",
-    "address": "1769 Victory Ln"
+    "address": "1500 Appaloosa Dr Bldg A Ste 140"
   },
   {
     "month": "2026-03",
-    "licensee": "PURLIFE - 900 COUNTRY CLUB RD RETAIL",
+    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
     "dba": "Apogee",
-    "total": 46690.5,
-    "adultUse": 43311.5,
-    "medical": 3379,
+    "total": 33276.92,
+    "adultUse": 31972.6,
+    "medical": 1304.32,
     "city": "Sunland Park",
-    "address": "900 Country Club Rd"
+    "address": "1769 Victory Ln"
   },
   {
     "month": "2026-03",
@@ -975,16 +975,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "MCMC - MILLER - RETAILER",
-    "dba": "Astro Buds Consumption Lounge & Grill",
-    "total": 26668.34,
-    "adultUse": 23476.61,
-    "medical": 3191.73,
-    "city": "Anthony",
-    "address": "103 Miller Street"
-  },
-  {
-    "month": "2026-03",
     "licensee": "ASTRO BUDS LLC - MCCOMBS RD RETAIL",
     "dba": "Astro Buds Dispensary",
     "total": 132269.2,
@@ -992,6 +982,16 @@ const newSalesData2026 = [
     "medical": 8233.24,
     "city": "Chaparral",
     "address": "308 McCombs Rd Spc 2"
+  },
+  {
+    "month": "2026-03",
+    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
+    "dba": "Astro Buds Dispensary & Lounge",
+    "total": 277727.78,
+    "adultUse": 265598.08,
+    "medical": 12129.7,
+    "city": "Sunland Park",
+    "address": "1650 Appaloosa Drive"
   },
   {
     "month": "2026-03",
@@ -1005,13 +1005,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
+    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
     "dba": "Black Sheep",
-    "total": 17867.4,
-    "adultUse": 17268.75,
-    "medical": 598.65,
+    "total": 8848.69,
+    "adultUse": 8842.69,
+    "medical": 6,
     "city": "Sunland Park",
-    "address": "1999 Futurity Drive"
+    "address": "1925 Appaloosa Ste 6"
+  },
+  {
+    "month": "2026-03",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Cardiel",
+    "total": 292510.85,
+    "adultUse": 280033.28,
+    "medical": 12477.57,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-03",
@@ -1036,7 +1046,7 @@ const newSalesData2026 = [
   {
     "month": "2026-03",
     "licensee": "DISPENSARY NEAR ME SUNLAND PARK LLC- MCNUTT RETAIL/CONSUMPTION",
-    "dba": "Dispensary Near Me (1290 McNutt Rd)",
+    "dba": "Dispensary Near Me",
     "total": 67660.19,
     "adultUse": 64607.86,
     "medical": 3052.33,
@@ -1046,7 +1056,7 @@ const newSalesData2026 = [
   {
     "month": "2026-03",
     "licensee": "NEBRO, LLC",
-    "dba": "Elevation 3789 (1999 Futurity Drive)",
+    "dba": "Elevation 3789",
     "total": 75869.33,
     "adultUse": 74321.33,
     "medical": 1548,
@@ -1056,7 +1066,7 @@ const newSalesData2026 = [
   {
     "month": "2026-03",
     "licensee": "J AND J LOAN COMPANY- MCNUTT RETAIL",
-    "dba": "Empire Garden (1144 McNutt)",
+    "dba": "Empire Garden",
     "total": 47797.49,
     "adultUse": 47474.49,
     "medical": 323,
@@ -1065,23 +1075,33 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "VIREO OF SANTA FE - APPALOOSA - RETAIL",
-    "dba": "Everest (1541 Appaloosa Dr)",
-    "total": 15454.64,
-    "adultUse": 14656.98,
-    "medical": 797.66,
-    "city": "Sunland Park",
-    "address": "1541 Appaloosa Dr., Unit 2"
-  },
-  {
-    "month": "2026-03",
     "licensee": "EVEREST APOTHECARY",
-    "dba": "Everest (1580 Appaloosa Dr)",
+    "dba": "Everest",
     "total": 60396.65,
     "adultUse": 56226.02,
     "medical": 4170.63,
     "city": "Sunland Park",
     "address": "1580 Appaloosa Dr Ste 320"
+  },
+  {
+    "month": "2026-03",
+    "licensee": "VIREO HEALTH OF LC - APPALOOSA - RETAILER",
+    "dba": "Everest (New License)",
+    "total": 11585.95,
+    "adultUse": 10900.75,
+    "medical": 685.2,
+    "city": "Sunland Park",
+    "address": "1580 Appaloosa Dr., Suite 320"
+  },
+  {
+    "month": "2026-03",
+    "licensee": "VIREO OF SANTA FE - APPALOOSA - RETAIL",
+    "dba": "Everyday Weed",
+    "total": 15454.64,
+    "adultUse": 14656.98,
+    "medical": 797.66,
+    "city": "Sunland Park",
+    "address": "1541 Appaloosa Dr., Unit 2"
   },
   {
     "month": "2026-03",
@@ -1106,7 +1126,7 @@ const newSalesData2026 = [
   {
     "month": "2026-03",
     "licensee": "GARDEN OF DREAMS CANNABIS LLC",
-    "dba": "Garden of Dreams (5300 Mcnutt Rd)",
+    "dba": "Garden of Dreams",
     "total": 34220.27,
     "adultUse": 31054.37,
     "medical": 3165.9,
@@ -1166,22 +1186,12 @@ const newSalesData2026 = [
   {
     "month": "2026-03",
     "licensee": "HOUSE OF FLOWERS ON THE BORDER LLC - RETAIL",
-    "dba": "House of Flowers (1042 State Line)",
+    "dba": "House of Flowers",
     "total": 99288.21,
     "adultUse": 92292.53,
     "medical": 6995.68,
     "city": "Chaparral",
     "address": "1042 State Line"
-  },
-  {
-    "month": "2026-03",
-    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
-    "dba": "House of Flowers (1925 Appaloosa)",
-    "total": 8848.69,
-    "adultUse": 8842.69,
-    "medical": 6,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Ste 6"
   },
   {
     "month": "2026-03",
@@ -1205,13 +1215,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "VIREO HEALTH OF LC - APPALOOSA - RETAILER",
+    "licensee": "MCMC - MILLER - RETAILER",
     "dba": "Milla Cero",
-    "total": 11585.95,
-    "adultUse": 10900.75,
-    "medical": 685.2,
-    "city": "Sunland Park",
-    "address": "1580 Appaloosa Dr., Suite 320"
+    "total": 26668.34,
+    "adultUse": 23476.61,
+    "medical": 3191.73,
+    "city": "Anthony",
+    "address": "103 Miller Street"
   },
   {
     "month": "2026-03",
@@ -1275,13 +1285,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "licensee": "PURLIFE - 900 COUNTRY CLUB RD RETAIL",
     "dba": "PurLife",
-    "total": 24560.19,
-    "adultUse": 23439.66,
-    "medical": 1120.53,
-    "city": "Chaparral",
-    "address": "101 Stephanie"
+    "total": 46690.5,
+    "adultUse": 43311.5,
+    "medical": 3379,
+    "city": "Sunland Park",
+    "address": "900 Country Club Rd"
   },
   {
     "month": "2026-03",
@@ -1345,23 +1355,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
-    "dba": "Stateline Cannabis (1650 Appaloosa Drive)",
-    "total": 277727.78,
-    "adultUse": 265598.08,
-    "medical": 12129.7,
-    "city": "Sunland Park",
-    "address": "1650 Appaloosa Drive"
-  },
-  {
-    "month": "2026-03",
-    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
-    "dba": "Stateline Cannabis (305 S County Line Dr)",
-    "total": 3489.12,
-    "adultUse": 2545.08,
-    "medical": 944.04,
+    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "dba": "Stateline Cannabis",
+    "total": 24560.19,
+    "adultUse": 23439.66,
+    "medical": 1120.53,
     "city": "Chaparral",
-    "address": "305 S County Line Dr"
+    "address": "101 Stephanie"
   },
   {
     "month": "2026-03",
@@ -1385,23 +1385,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
+    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
     "dba": "Toke It Up",
-    "total": 101377.81,
-    "adultUse": 96220.57,
-    "medical": 5157.24,
+    "total": 17867.4,
+    "adultUse": 17268.75,
+    "medical": 598.65,
     "city": "Sunland Park",
-    "address": "1500 Appaloosa Dr Bldg A Ste 140"
-  },
-  {
-    "month": "2026-03",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Top Crop",
-    "total": 292510.85,
-    "adultUse": 280033.28,
-    "medical": 12477.57,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
+    "address": "1999 Futurity Drive"
   },
   {
     "month": "2026-03",
@@ -1415,6 +1405,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
+    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
+    "dba": "Uforia",
+    "total": 3489.12,
+    "adultUse": 2545.08,
+    "medical": 944.04,
+    "city": "Chaparral",
+    "address": "305 S County Line Dr"
+  },
+  {
+    "month": "2026-03",
     "licensee": "NEW MEXICO TOP ORGANICS ULTRA HEALTH INC  SUNLAND PARK RETAIL",
     "dba": "Ultra Health",
     "total": 29968.19,
@@ -1425,11 +1425,21 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
+    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
     "dba": "Urban Wellness",
-    "total": 33276.92,
-    "adultUse": 31972.6,
-    "medical": 1304.32,
+    "total": 101377.81,
+    "adultUse": 96220.57,
+    "medical": 5157.24,
+    "city": "Sunland Park",
+    "address": "1500 Appaloosa Dr Bldg A Ste 140"
+  },
+  {
+    "month": "2026-04",
+    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
+    "dba": "Apogee",
+    "total": 40107.62,
+    "adultUse": 36749.13,
+    "medical": 3358.49,
     "city": "Sunland Park",
     "address": "1769 Victory Ln"
   },
@@ -1445,16 +1455,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "MCMC - MILLER - RETAILER",
-    "dba": "Astro Buds Consumption Lounge & Grill",
-    "total": 29690.65,
-    "adultUse": 26848.17,
-    "medical": 2842.48,
-    "city": "Anthony",
-    "address": "103 Miller Street"
-  },
-  {
-    "month": "2026-04",
     "licensee": "ASTRO BUDS LLC - MCCOMBS RD RETAIL",
     "dba": "Astro Buds Dispensary",
     "total": 157266.14,
@@ -1462,6 +1462,16 @@ const newSalesData2026 = [
     "medical": 9361.6,
     "city": "Chaparral",
     "address": "308 McCombs Rd Spc 2"
+  },
+  {
+    "month": "2026-04",
+    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
+    "dba": "Astro Buds Dispensary & Lounge",
+    "total": 293587.51,
+    "adultUse": 280435.57,
+    "medical": 13151.94,
+    "city": "Sunland Park",
+    "address": "1650 Appaloosa Drive"
   },
   {
     "month": "2026-04",
@@ -1475,23 +1485,33 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
+    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
     "dba": "Black Sheep",
-    "total": 20803.73,
-    "adultUse": 19599.22,
-    "medical": 1204.51,
+    "total": 10877.89,
+    "adultUse": 10776.89,
+    "medical": 101,
     "city": "Sunland Park",
-    "address": "1999 Futurity Drive"
+    "address": "1925 Appaloosa Ste 6"
   },
   {
     "month": "2026-04",
-    "licensee": "LEAFORO LLC- 5305 MCNUTT RETAIL",
+    "licensee": "HEAVENLY SCENT - ANTHONY DR - RETAIL",
     "dba": "Calidad Cannabis",
-    "total": 2181.46,
-    "adultUse": 2181.46,
-    "medical": 0,
-    "city": "Santa Teresa",
-    "address": "5305 McNutt Road"
+    "total": 8150.27,
+    "adultUse": 7127.33,
+    "medical": 1022.94,
+    "city": "Anthony",
+    "address": "138 Anthony Dr."
+  },
+  {
+    "month": "2026-04",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Cardiel",
+    "total": 307492.77,
+    "adultUse": 294210.73,
+    "medical": 13282.04,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-04",
@@ -1516,7 +1536,7 @@ const newSalesData2026 = [
   {
     "month": "2026-04",
     "licensee": "DISPENSARY NEAR ME SUNLAND PARK LLC- MCNUTT RETAIL/CONSUMPTION",
-    "dba": "Dispensary Near Me (1290 McNutt Rd)",
+    "dba": "Dispensary Near Me",
     "total": 66145.04,
     "adultUse": 61671.53,
     "medical": 4473.51,
@@ -1525,8 +1545,18 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
+    "licensee": "NEBRO 2 LLC-  FUTURITY DRIVE RETAIL",
+    "dba": "Elevation 3789",
+    "total": 72723.2,
+    "adultUse": 71186.7,
+    "medical": 1536.5,
+    "city": "Sunland Park",
+    "address": "1999 Futurity Drive"
+  },
+  {
+    "month": "2026-04",
     "licensee": "J AND J LOAN COMPANY- MCNUTT RETAIL",
-    "dba": "Empire Garden (1144 McNutt)",
+    "dba": "Empire Garden",
     "total": 38838.52,
     "adultUse": 38545.24,
     "medical": 293.28,
@@ -1535,23 +1565,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
+    "licensee": "VIREO HEALTH OF LC - APPALOOSA - RETAILER",
+    "dba": "Everest",
+    "total": 69125.07,
+    "adultUse": 63254.48,
+    "medical": 5870.59,
+    "city": "Sunland Park",
+    "address": "1580 Appaloosa Dr., Suite 320"
+  },
+  {
+    "month": "2026-04",
     "licensee": "VIREO OF SANTA FE - APPALOOSA - RETAIL",
-    "dba": "Everest (1541 Appaloosa Dr)",
+    "dba": "Everyday Weed",
     "total": 89355.87,
     "adultUse": 83423.18,
     "medical": 5932.69,
     "city": "Sunland Park",
     "address": "1541 Appaloosa Dr., Unit 2"
-  },
-  {
-    "month": "2026-04",
-    "licensee": "ELEVATED SOCIETY LLC/ RETAIL APPALOOSA DR",
-    "dba": "Everyday Weed",
-    "total": 3873.84,
-    "adultUse": 3816.1,
-    "medical": 57.74,
-    "city": "Sunland Park",
-    "address": "1920 Appaloosa Dr"
   },
   {
     "month": "2026-04",
@@ -1575,23 +1605,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "HEAVENLY SCENT - ANTHONY DR - RETAIL",
-    "dba": "Garden of Dreams (138 Anthony Dr)",
-    "total": 8150.27,
-    "adultUse": 7127.33,
-    "medical": 1022.94,
-    "city": "Anthony",
-    "address": "138 Anthony Dr."
-  },
-  {
-    "month": "2026-04",
     "licensee": "GARDEN OF DREAMS CANNABIS LLC",
-    "dba": "Garden of Dreams (5300 Mcnutt Rd)",
+    "dba": "Garden of Dreams",
     "total": 32358.07,
     "adultUse": 29628.47,
     "medical": 2729.6,
     "city": "Santa Teresa",
     "address": "5300 Mcnutt Rd"
+  },
+  {
+    "month": "2026-04",
+    "licensee": "GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER",
+    "dba": "Garden of Dreams (Manufacturing)",
+    "total": 28.06,
+    "adultUse": 0,
+    "medical": 28.06,
+    "city": "Santa Teresa",
+    "address": "5300 McNutt Suite 12"
   },
   {
     "month": "2026-04",
@@ -1645,33 +1675,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER",
+    "licensee": "ELEVATED SOCIETY LLC/ RETAIL APPALOOSA DR",
     "dba": "Hii Experience",
-    "total": 28.06,
-    "adultUse": 0,
-    "medical": 28.06,
-    "city": "Santa Teresa",
-    "address": "5300 McNutt Suite 12"
+    "total": 3873.84,
+    "adultUse": 3816.1,
+    "medical": 57.74,
+    "city": "Sunland Park",
+    "address": "1920 Appaloosa Dr"
   },
   {
     "month": "2026-04",
     "licensee": "HOUSE OF FLOWERS ON THE BORDER LLC - RETAIL",
-    "dba": "House of Flowers (1042 State Line)",
+    "dba": "House of Flowers",
     "total": 92675.79,
     "adultUse": 85550.18,
     "medical": 7125.61,
     "city": "Chaparral",
     "address": "1042 State Line"
-  },
-  {
-    "month": "2026-04",
-    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
-    "dba": "House of Flowers (1925 Appaloosa)",
-    "total": 10877.89,
-    "adultUse": 10776.89,
-    "medical": 101,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Ste 6"
   },
   {
     "month": "2026-04",
@@ -1685,13 +1705,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "VIREO HEALTH OF LC - APPALOOSA - RETAILER",
+    "licensee": "MCMC - MILLER - RETAILER",
     "dba": "Milla Cero",
-    "total": 69125.07,
-    "adultUse": 63254.48,
-    "medical": 5870.59,
-    "city": "Sunland Park",
-    "address": "1580 Appaloosa Dr., Suite 320"
+    "total": 29690.65,
+    "adultUse": 26848.17,
+    "medical": 2842.48,
+    "city": "Anthony",
+    "address": "103 Miller Street"
   },
   {
     "month": "2026-04",
@@ -1745,16 +1765,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
-    "dba": "PurLife",
-    "total": 34552.25,
-    "adultUse": 33501.4,
-    "medical": 1050.85,
-    "city": "Chaparral",
-    "address": "101 Stephanie"
-  },
-  {
-    "month": "2026-04",
     "licensee": "R R HEMPIRE LLC - ANGELINA BLVD RETAIL",
     "dba": "Richy Rich",
     "total": 682.74,
@@ -1795,33 +1805,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "NEBRO 2 LLC-  FUTURITY DRIVE RETAIL",
+    "licensee": "LEAFORO LLC- 5305 MCNUTT RETAIL",
     "dba": "St. Canapa",
-    "total": 72723.2,
-    "adultUse": 71186.7,
-    "medical": 1536.5,
-    "city": "Sunland Park",
-    "address": "1999 Futurity Drive"
+    "total": 2181.46,
+    "adultUse": 2181.46,
+    "medical": 0,
+    "city": "Santa Teresa",
+    "address": "5305 McNutt Road"
   },
   {
     "month": "2026-04",
-    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
-    "dba": "Stateline Cannabis (1650 Appaloosa Drive)",
-    "total": 293587.51,
-    "adultUse": 280435.57,
-    "medical": 13151.94,
-    "city": "Sunland Park",
-    "address": "1650 Appaloosa Drive"
-  },
-  {
-    "month": "2026-04",
-    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
-    "dba": "Stateline Cannabis (305 S County Line Dr)",
-    "total": 2326.46,
-    "adultUse": 1135.51,
-    "medical": 1190.95,
+    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "dba": "Stateline Cannabis",
+    "total": 34552.25,
+    "adultUse": 33501.4,
+    "medical": 1050.85,
     "city": "Chaparral",
-    "address": "305 S County Line Dr"
+    "address": "101 Stephanie"
   },
   {
     "month": "2026-04",
@@ -1845,23 +1845,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
+    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
     "dba": "Toke It Up",
-    "total": 108952.48,
-    "adultUse": 102279.52,
-    "medical": 6672.96,
+    "total": 20803.73,
+    "adultUse": 19599.22,
+    "medical": 1204.51,
     "city": "Sunland Park",
-    "address": "1500 Appaloosa Dr Bldg A Ste 140"
-  },
-  {
-    "month": "2026-04",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Top Crop",
-    "total": 307492.77,
-    "adultUse": 294210.73,
-    "medical": 13282.04,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
+    "address": "1999 Futurity Drive"
   },
   {
     "month": "2026-04",
@@ -1875,6 +1865,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
+    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
+    "dba": "Uforia",
+    "total": 2326.46,
+    "adultUse": 1135.51,
+    "medical": 1190.95,
+    "city": "Chaparral",
+    "address": "305 S County Line Dr"
+  },
+  {
+    "month": "2026-04",
     "licensee": "NEW MEXICO TOP ORGANICS ULTRA HEALTH INC  SUNLAND PARK RETAIL",
     "dba": "Ultra Health",
     "total": 28454.16,
@@ -1885,11 +1885,21 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
+    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
     "dba": "Urban Wellness",
-    "total": 40107.62,
-    "adultUse": 36749.13,
-    "medical": 3358.49,
+    "total": 108952.48,
+    "adultUse": 102279.52,
+    "medical": 6672.96,
+    "city": "Sunland Park",
+    "address": "1500 Appaloosa Dr Bldg A Ste 140"
+  },
+  {
+    "month": "2026-05",
+    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
+    "dba": "Apogee",
+    "total": 40604.64,
+    "adultUse": 37238.53,
+    "medical": 3366.11,
     "city": "Sunland Park",
     "address": "1769 Victory Ln"
   },
@@ -1905,16 +1915,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "MCMC - MILLER - RETAILER",
-    "dba": "Astro Buds Consumption Lounge & Grill",
-    "total": 27567.9,
-    "adultUse": 25283.44,
-    "medical": 2284.46,
-    "city": "Anthony",
-    "address": "103 Miller Street"
-  },
-  {
-    "month": "2026-05",
     "licensee": "ASTRO BUDS LLC - MCCOMBS RD RETAIL",
     "dba": "Astro Buds Dispensary",
     "total": 166492.72,
@@ -1922,6 +1922,16 @@ const newSalesData2026 = [
     "medical": 6934.87,
     "city": "Chaparral",
     "address": "308 McCombs Rd Spc 2"
+  },
+  {
+    "month": "2026-05",
+    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
+    "dba": "Astro Buds Dispensary & Lounge",
+    "total": 265906.54,
+    "adultUse": 256712.6,
+    "medical": 9193.94,
+    "city": "Sunland Park",
+    "address": "1650 Appaloosa Drive"
   },
   {
     "month": "2026-05",
@@ -1935,23 +1945,33 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
+    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
     "dba": "Black Sheep",
-    "total": 16712.8,
-    "adultUse": 16378.18,
-    "medical": 334.62,
+    "total": 10707.23,
+    "adultUse": 10637.07,
+    "medical": 70.16,
     "city": "Sunland Park",
-    "address": "1999 Futurity Drive"
+    "address": "1925 Appaloosa Ste 6"
   },
   {
     "month": "2026-05",
-    "licensee": "LEAFORO LLC- 5305 MCNUTT RETAIL",
+    "licensee": "HEAVENLY SCENT - ANTHONY DR - RETAIL",
     "dba": "Calidad Cannabis",
-    "total": 3358.09,
-    "adultUse": 3358.09,
-    "medical": 0,
-    "city": "Santa Teresa",
-    "address": "5305 McNutt Road"
+    "total": 22629.91,
+    "adultUse": 19911.77,
+    "medical": 2718.14,
+    "city": "Anthony",
+    "address": "138 Anthony Dr."
+  },
+  {
+    "month": "2026-05",
+    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
+    "dba": "Cardiel",
+    "total": 291296.87,
+    "adultUse": 280219.15,
+    "medical": 11077.72,
+    "city": "Sunland Park",
+    "address": "1621 Appaloosa Dr"
   },
   {
     "month": "2026-05",
@@ -1965,13 +1985,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "R R HEMPIRE LLC - MCCOMBS RETAIL",
+    "licensee": "COUTH FARMS LLC - ANTHONY DR RETAIL",
     "dba": "Couth",
-    "total": 2458.05,
-    "adultUse": 2349.77,
-    "medical": 108.28,
-    "city": "Chaparral",
-    "address": "100 Mccombs"
+    "total": 17.26,
+    "adultUse": 17.26,
+    "medical": 0,
+    "city": "Anthony",
+    "address": "132 Anthony Dr"
   },
   {
     "month": "2026-05",
@@ -1986,7 +2006,7 @@ const newSalesData2026 = [
   {
     "month": "2026-05",
     "licensee": "DISPENSARY NEAR ME SUNLAND PARK LLC- MCNUTT RETAIL/CONSUMPTION",
-    "dba": "Dispensary Near Me (1290 McNutt Rd)",
+    "dba": "Dispensary Near Me",
     "total": 71853.53,
     "adultUse": 68362.89,
     "medical": 3490.64,
@@ -1995,18 +2015,18 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "COUTH FARMS LLC - ANTHONY DR RETAIL",
-    "dba": "Elevation 3789 (132 Anthony Dr)",
-    "total": 17.26,
-    "adultUse": 17.26,
-    "medical": 0,
-    "city": "Anthony",
-    "address": "132 Anthony Dr"
+    "licensee": "NEBRO 2 LLC-  FUTURITY DRIVE RETAIL",
+    "dba": "Elevation 3789",
+    "total": 66510.23,
+    "adultUse": 65475.22,
+    "medical": 1035.01,
+    "city": "Sunland Park",
+    "address": "1999 Futurity Drive"
   },
   {
     "month": "2026-05",
     "licensee": "J AND J LOAN COMPANY- MCNUTT RETAIL",
-    "dba": "Empire Garden (1144 McNutt)",
+    "dba": "Empire Garden",
     "total": 40356.67,
     "adultUse": 40133.56,
     "medical": 223.11,
@@ -2015,23 +2035,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
+    "licensee": "VIREO HEALTH OF LC - APPALOOSA - RETAILER",
+    "dba": "Everest",
+    "total": 69392.64,
+    "adultUse": 65653.9,
+    "medical": 3738.74,
+    "city": "Sunland Park",
+    "address": "1580 Appaloosa Dr., Suite 320"
+  },
+  {
+    "month": "2026-05",
     "licensee": "VIREO OF SANTA FE - APPALOOSA - RETAIL",
-    "dba": "Everest (1541 Appaloosa Dr)",
+    "dba": "Everyday Weed",
     "total": 82127.83,
     "adultUse": 78015.99,
     "medical": 4111.84,
     "city": "Sunland Park",
     "address": "1541 Appaloosa Dr., Unit 2"
-  },
-  {
-    "month": "2026-05",
-    "licensee": "ELEVATED SOCIETY LLC/ RETAIL APPALOOSA DR",
-    "dba": "Everyday Weed",
-    "total": 11623.47,
-    "adultUse": 11283.29,
-    "medical": 340.18,
-    "city": "Sunland Park",
-    "address": "1920 Appaloosa Dr"
   },
   {
     "month": "2026-05",
@@ -2055,23 +2075,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "HEAVENLY SCENT - ANTHONY DR - RETAIL",
-    "dba": "Garden of Dreams (138 Anthony Dr)",
-    "total": 22629.91,
-    "adultUse": 19911.77,
-    "medical": 2718.14,
-    "city": "Anthony",
-    "address": "138 Anthony Dr."
-  },
-  {
-    "month": "2026-05",
     "licensee": "GARDEN OF DREAMS CANNABIS LLC",
-    "dba": "Garden of Dreams (5300 Mcnutt Rd)",
+    "dba": "Garden of Dreams",
     "total": 34797.01,
     "adultUse": 32459.06,
     "medical": 2337.95,
     "city": "Santa Teresa",
     "address": "5300 Mcnutt Rd"
+  },
+  {
+    "month": "2026-05",
+    "licensee": "GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER",
+    "dba": "Garden of Dreams (Manufacturing)",
+    "total": 16.55,
+    "adultUse": 0,
+    "medical": 16.55,
+    "city": "Santa Teresa",
+    "address": "5300 McNutt Suite 12"
   },
   {
     "month": "2026-05",
@@ -2125,33 +2145,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "GARDEN OF DREAMS CANNABIS LLC- MCNUTT MANUFACTURER",
+    "licensee": "ELEVATED SOCIETY LLC/ RETAIL APPALOOSA DR",
     "dba": "Hii Experience",
-    "total": 16.55,
-    "adultUse": 0,
-    "medical": 16.55,
-    "city": "Santa Teresa",
-    "address": "5300 McNutt Suite 12"
+    "total": 11623.47,
+    "adultUse": 11283.29,
+    "medical": 340.18,
+    "city": "Sunland Park",
+    "address": "1920 Appaloosa Dr"
   },
   {
     "month": "2026-05",
     "licensee": "HOUSE OF FLOWERS ON THE BORDER LLC - RETAIL",
-    "dba": "House of Flowers (1042 State Line)",
+    "dba": "House of Flowers",
     "total": 101777.68,
     "adultUse": 94693.02,
     "medical": 7084.66,
     "city": "Chaparral",
     "address": "1042 State Line"
-  },
-  {
-    "month": "2026-05",
-    "licensee": "DIABLO BUDS GROW 1 LLC - APPALOOSA STE 6",
-    "dba": "House of Flowers (1925 Appaloosa)",
-    "total": 10707.23,
-    "adultUse": 10637.07,
-    "medical": 70.16,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Ste 6"
   },
   {
     "month": "2026-05",
@@ -2165,13 +2175,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "VIREO HEALTH OF LC - APPALOOSA - RETAILER",
+    "licensee": "MCMC - MILLER - RETAILER",
     "dba": "Milla Cero",
-    "total": 69392.64,
-    "adultUse": 65653.9,
-    "medical": 3738.74,
-    "city": "Sunland Park",
-    "address": "1580 Appaloosa Dr., Suite 320"
+    "total": 27567.9,
+    "adultUse": 25283.44,
+    "medical": 2284.46,
+    "city": "Anthony",
+    "address": "103 Miller Street"
   },
   {
     "month": "2026-05",
@@ -2225,13 +2235,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
-    "dba": "PurLife",
-    "total": 45122.29,
-    "adultUse": 43254.49,
-    "medical": 1867.8,
+    "licensee": "R R HEMPIRE LLC - MCCOMBS RETAIL",
+    "dba": "Richy Rich",
+    "total": 2458.05,
+    "adultUse": 2349.77,
+    "medical": 108.28,
     "city": "Chaparral",
-    "address": "101 Stephanie"
+    "address": "100 Mccombs"
   },
   {
     "month": "2026-05",
@@ -2265,33 +2275,23 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "NEBRO 2 LLC-  FUTURITY DRIVE RETAIL",
+    "licensee": "LEAFORO LLC- 5305 MCNUTT RETAIL",
     "dba": "St. Canapa",
-    "total": 66510.23,
-    "adultUse": 65475.22,
-    "medical": 1035.01,
-    "city": "Sunland Park",
-    "address": "1999 Futurity Drive"
+    "total": 3358.09,
+    "adultUse": 3358.09,
+    "medical": 0,
+    "city": "Santa Teresa",
+    "address": "5305 McNutt Road"
   },
   {
     "month": "2026-05",
-    "licensee": "ASTRO BUDS LLC - APPALOOSA DRIVE CONSUMPTION / RETAIL",
-    "dba": "Stateline Cannabis (1650 Appaloosa Drive)",
-    "total": 265906.54,
-    "adultUse": 256712.6,
-    "medical": 9193.94,
-    "city": "Sunland Park",
-    "address": "1650 Appaloosa Drive"
-  },
-  {
-    "month": "2026-05",
-    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
-    "dba": "Stateline Cannabis (305 S County Line Dr)",
-    "total": 1256,
-    "adultUse": 416,
-    "medical": 840,
+    "licensee": "STATELINE CANNABIS NM LLC- STEPHANIE RETAIL",
+    "dba": "Stateline Cannabis",
+    "total": 45122.29,
+    "adultUse": 43254.49,
+    "medical": 1867.8,
     "city": "Chaparral",
-    "address": "305 S County Line Dr"
+    "address": "101 Stephanie"
   },
   {
     "month": "2026-05",
@@ -2315,23 +2315,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
+    "licensee": "TOKE IT UP DISPENSARY AND LOUNGE LLC- FUTURITY DRIVE RETAIL",
     "dba": "Toke It Up",
-    "total": 110312.83,
-    "adultUse": 102763.77,
-    "medical": 7549.06,
+    "total": 16712.8,
+    "adultUse": 16378.18,
+    "medical": 334.62,
     "city": "Sunland Park",
-    "address": "1500 Appaloosa Dr Bldg A Ste 140"
-  },
-  {
-    "month": "2026-05",
-    "licensee": "CHADCOR HOLDINGS NM- RETAIL",
-    "dba": "Top Crop",
-    "total": 291296.87,
-    "adultUse": 280219.15,
-    "medical": 11077.72,
-    "city": "Sunland Park",
-    "address": "1621 Appaloosa Dr"
+    "address": "1999 Futurity Drive"
   },
   {
     "month": "2026-05",
@@ -2345,6 +2335,16 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
+    "licensee": "575 CANNABIS LLC- RETAIL 305 S COUNTY LINE",
+    "dba": "Uforia",
+    "total": 1256,
+    "adultUse": 416,
+    "medical": 840,
+    "city": "Chaparral",
+    "address": "305 S County Line Dr"
+  },
+  {
+    "month": "2026-05",
     "licensee": "NEW MEXICO TOP ORGANICS ULTRA HEALTH INC  SUNLAND PARK RETAIL",
     "dba": "Ultra Health",
     "total": 26916.44,
@@ -2355,13 +2355,13 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "APOGEE THERAPEUTICS LLC - RETAIL",
+    "licensee": "URBAN WELLNESS - APPALOOSA DR RETAILER",
     "dba": "Urban Wellness",
-    "total": 40604.64,
-    "adultUse": 37238.53,
-    "medical": 3366.11,
+    "total": 110312.83,
+    "adultUse": 102763.77,
+    "medical": 7549.06,
     "city": "Sunland Park",
-    "address": "1769 Victory Ln"
+    "address": "1500 Appaloosa Dr Bldg A Ste 140"
   }
 ];
 const salesTotalsByMonth = [
