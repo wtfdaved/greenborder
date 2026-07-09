@@ -604,6 +604,36 @@
       .ticker-label { display: none; }
     }
 
+    /* ── Hero quick-search ── */
+    .hero-search-box:focus-within { border-color: rgba(16,185,129,0.5); box-shadow: 0 0 0 3px rgba(16,185,129,0.12); }
+
+    /* ── Market Pulse story chips ── */
+    .mp-chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 12px; border-radius: 9999px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em;
+      color: var(--lg-ink-2, #cbd5e1);
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.2);
+      white-space: nowrap;
+    }
+    .mp-chip .tk-up, .tk-up { color: var(--lg-emerald-deep, #34d399); }
+    .tk-down { color: #be123c; }
+
+    /* ── Per-store 2026 trend row on directory cards ── */
+    .card-trend {
+      display: flex; align-items: center; gap: 8px;
+      margin: -8px 0 16px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(16,185,129,0.05);
+      border: 1px solid rgba(16,185,129,0.12);
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .card-trend:hover { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); }
+    .card-trend svg { flex-shrink: 0; display: block; }
+
     /* ── Sales-rank chip on directory cards ── */
     .sales-rank-pill {
       margin-left: 6px;
@@ -1106,6 +1136,16 @@
     </a>
   </div>
 
+  <!-- Quick search: filters the directory below as you land -->
+  <form id="hero-search" class="mt-6 w-full max-w-md mx-auto flex items-center gap-2 animate-fade-up" style="animation-delay:0.35s;" role="search" aria-label="Find a dispensary">
+    <div class="hero-search-box flex items-center flex-1 gap-2 bg-white/5 border border-white/15 rounded-2xl px-4 py-3 backdrop-blur-xl transition-colors">
+      <svg class="w-4 h-4 shrink-0 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/></svg>
+      <input id="hero-search-input" type="search" placeholder="Find a dispensary, street, or vibe…" autocomplete="off"
+             class="flex-1 min-w-0 bg-transparent outline-none text-sm text-gray-200 placeholder-gray-500" />
+    </div>
+    <button type="submit" class="shrink-0 px-5 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white text-sm font-bold transition-colors">Go</button>
+  </form>
+
   <!-- Live data freshness line (filled from sales-data-2026.js) -->
   <p id="hero-fresh" class="mt-5 text-xs text-gray-400 tracking-wide animate-fade-up" style="animation-delay:0.35s;" hidden></p>
 
@@ -1287,6 +1327,13 @@
         <div id="mp-region-share" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
         <div id="mp-region-label" class="text-xs text-gray-500 uppercase tracking-widest">Top Region</div>
       </a>
+    </div>
+
+    <!-- Auto-written monthly story (filled from sales-data-2026.js) -->
+    <div id="mp-story" class="lg-glass lg-sheen rounded-2xl px-6 py-5 mb-6 reveal" hidden>
+      <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-2" style="font-family:'Rajdhani',sans-serif;">This Month on the Border</div>
+      <p id="mp-story-text" class="text-sm leading-relaxed text-gray-400 mb-3"></p>
+      <div id="mp-story-chips" class="flex flex-wrap gap-2"></div>
     </div>
 
     <!-- Trend + leaderboard -->
@@ -1716,6 +1763,19 @@ document.querySelectorAll('.gb-chip').forEach(btn => {
     render();
   });
 
+  // Hero quick-search: hands its query to the directory's live filter and
+  // scrolls down to the results.
+  const heroForm = document.getElementById('hero-search');
+  if (heroForm) {
+    heroForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const q = document.getElementById('hero-search-input').value.trim();
+      searchEl.value = q;
+      searchEl.dispatchEvent(new Event('input'));
+      document.getElementById('dispensaries').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
   // Hero stat tiles deep-link into the directory: "3 Lounges" applies the
   // lounge quick-filter on the way down, "1 24-Hr Shop" the open24 one.
   document.querySelectorAll('[data-hero-chip]').forEach(a => {
@@ -1942,6 +2002,18 @@ render();
         <button type="submit" class="w-full btn-primary py-2.5 rounded-xl text-white text-sm font-semibold">Subscribe Free</button>
       </form>
     </div>
+
+    <!-- Auto-generated data brief (filled from sales-data-2026.js) -->
+    <a id="news-databrief" href="/data.html" class="news-card lg-sheen rounded-2xl p-6 reveal lg:col-span-2 block no-underline transition hover:transform hover:translate-y-[-4px]" hidden>
+      <div class="flex items-center gap-3 mb-3">
+        <span class="tag" style="background:rgba(245,158,11,0.15);color:#b45309;border:1px solid rgba(245,158,11,0.3);">Data Brief</span>
+        <span class="text-xs text-gray-500">Auto-generated from state sales data</span>
+      </div>
+      <h3 id="news-databrief-title" class="text-white font-semibold text-xl leading-snug mb-3"></h3>
+      <p id="news-databrief-text" class="text-gray-500 text-sm leading-relaxed mb-4"></p>
+      <div id="news-databrief-stats" class="flex flex-wrap gap-2 mb-4"></div>
+      <span class="text-emerald-400 font-semibold text-sm hover:underline inline-flex items-center gap-1">Open the Sales Dashboard <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+    </a>
 
   </div>
 </section>
@@ -2304,35 +2376,106 @@ render();
       ticker.hidden = false;
     }
 
-    // ── Sales-rank badges on the directory cards ──
-    // Connect the state sales data to the directory: the top-selling brands
-    // this month get a small rank chip on their card.
-    const normName = (s) => String(s).toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
-      .split(/\s+/).filter(Boolean).map(w => w.replace(/s$/, '')).join(' ');
+    // ── Sales data on the directory cards ──
+    // Connect the state sales data to the directory: top-10 brands get a
+    // rank chip, and every matched card gets its 2026 revenue sparkline.
+    // Names match on normalized word subsets ("Astro Buds Dispensary &
+    // Lounge" ⊂ "Astro Buds Dispensary, Consumption Lounge & Grill"),
+    // scoped to the card's city so multi-location brands stay distinct.
+    const tokens = (s) => String(s).toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/).filter(Boolean).map(w => w.replace(/s$/, ''));
+    const nameMatch = (a, b) => {
+      const ta = tokens(a), tb = tokens(b);
+      const [small, big] = ta.length <= tb.length ? [ta, tb] : [tb, ta];
+      if (small.length < 2 && small.join('').length < 6) return false;
+      return small.every(w => big.includes(w));
+    };
+
+    // Whole-brand monthly series per (brand, city) across 2026. Summing the
+    // brand's licenses folds manufacturing pennies and license-handoff
+    // months into one honest store series; brands with two true locations
+    // in one city (none today) are skipped as ambiguous.
+    const brandSeries = {};
+    months.forEach((m, mi) => {
+      rows(m).forEach(d => {
+        const key = brandName(d.dba) + '|' + d.city;
+        const e = (brandSeries[key] = brandSeries[key] || { brand: brandName(d.dba), city: d.city, vals: Array(months.length).fill(0), streets: new Set() });
+        e.vals[mi] += d.total;
+        const st = (String(d.address).match(/\d+/) || [''])[0];
+        if (st && !/\((Manufacturing|New License)\)/.test(d.dba)) e.streets.add(st + '|' + m);
+      });
+    });
+    const ambiguous = new Set();
+    Object.values(brandSeries).forEach(e => {
+      const perMonth = {};
+      e.streets.forEach(s => { const [st, m] = s.split('|'); (perMonth[m] = perMonth[m] || new Set()).add(st); });
+      if (Object.values(perMonth).some(set => set.size > 1)) ambiguous.add(e.brand + '|' + e.city);
+    });
+
     const topSellers = ranked.slice(0, 10).map((r, i) => ({
-      rank: i + 1, name: brandName(r.dba), norm: normName(brandName(r.dba)), city: r.city,
+      rank: i + 1, name: brandName(r.dba), city: r.city,
     }));
     const monthTag = monthShort(latest);
+
+    const sparkSvgFor = (vals) => {
+      const w = 76, h = 22, n = vals.length;
+      const present = vals.map((v, i) => [v, i]).filter(p => p[0] > 0);
+      if (present.length < 3) return null;
+      const max = Math.max(...vals), min = Math.min(...present.map(p => p[0]));
+      const span = (max - min) || 1;
+      const x = i => 2 + i * (w - 4) / (n - 1);
+      const y = v => 2 + (1 - (v - min) / span) * (h - 4);
+      const d = present.map(([v, i], k) => (k ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
+      const [lv, li] = present[present.length - 1];
+      return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" aria-hidden="true">' +
+        '<path d="' + d + '" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<circle cx="' + x(li).toFixed(1) + '" cy="' + y(lv).toFixed(1) + '" r="2.4" fill="#059669"/></svg>';
+    };
+
     window.applySalesBadges = function () {
       document.querySelectorAll('#gb-grid [data-id]').forEach(cardEl => {
-        if (cardEl.querySelector('.sales-rank-pill')) return;
         const nameEl = cardEl.querySelector('h3');
         const tagWrap = cardEl.querySelector('.tag-pill') && cardEl.querySelector('.tag-pill').parentElement;
         if (!nameEl || !tagWrap) return;
-        const cardNorm = normName(nameEl.textContent);
         const cardCity = cardEl.getAttribute('data-city') || '';
-        const hit = topSellers.find(s =>
-          (s.norm === cardNorm ||
-            (s.norm.length >= 6 && cardNorm.startsWith(s.norm)) ||
-            (cardNorm.length >= 6 && s.norm.startsWith(cardNorm))) &&
-          (!cardCity || cardCity === s.city));
-        if (!hit) return;
-        const pill = document.createElement('a');
-        pill.href = '/data.html';
-        pill.className = 'tag-pill sales-rank-pill';
-        pill.title = 'Ranked #' + hit.rank + ' by reported ' + monthName + ' sales — see the dashboard';
-        pill.textContent = '📈 #' + hit.rank + ' seller · ' + monthTag;
-        tagWrap.appendChild(pill);
+
+        if (!cardEl.querySelector('.sales-rank-pill')) {
+          const hit = topSellers.find(s => nameMatch(s.name, nameEl.textContent) && (!cardCity || cardCity === s.city));
+          if (hit) {
+            const pill = document.createElement('a');
+            pill.href = '/data.html';
+            pill.className = 'tag-pill sales-rank-pill';
+            pill.title = 'Ranked #' + hit.rank + ' by reported ' + monthName + ' sales — see the dashboard';
+            pill.textContent = '📈 #' + hit.rank + ' seller · ' + monthTag;
+            tagWrap.appendChild(pill);
+          }
+        }
+
+        if (!cardEl.querySelector('.card-trend')) {
+          const entry = Object.values(brandSeries).find(e =>
+            (!cardCity || e.city === cardCity) &&
+            !ambiguous.has(e.brand + '|' + e.city) &&
+            nameMatch(e.brand, nameEl.textContent));
+          if (entry) {
+            const svg = sparkSvgFor(entry.vals);
+            const vals = entry.vals;
+            const lastIdx = vals.length - 1;
+            if (svg && vals[lastIdx] > 0) {
+              const momPct = vals[lastIdx - 1] > 0 ? (vals[lastIdx] / vals[lastIdx - 1] - 1) * 100 : null;
+              const momHtml = momPct === null ? '' :
+                '<span class="' + (momPct >= 0 ? 'tk-up' : 'tk-down') + ' font-bold">' + (momPct >= 0 ? '▲' : '▼') + Math.abs(momPct).toFixed(0) + '%</span>';
+              const div = document.createElement('a');
+              div.href = '/data.html';
+              div.className = 'card-trend';
+              div.title = 'Reported 2026 monthly sales — open the dashboard';
+              div.innerHTML = svg +
+                '<span class="text-[11px] text-gray-500">' + monthTag + ' ' + fmtM(vals[lastIdx]) + '</span>' +
+                '<span class="text-[11px]">' + momHtml + '</span>' +
+                '<span class="text-[9px] uppercase tracking-widest text-gray-500 ml-auto">2026 sales</span>';
+              tagWrap.insertAdjacentElement('afterend', div);
+            }
+          }
+        }
       });
     };
     window.applySalesBadges();
@@ -2359,6 +2502,60 @@ render();
       });
     };
     window.applyRegionSales();
+
+    // ── Auto-written monthly story + insight chips ──
+    const pct = (v) => Math.abs(v).toFixed(1) + '%';
+    const storyEl = document.getElementById('mp-story');
+    const storyText = document.getElementById('mp-story-text');
+    if (storyEl && storyText) {
+      const momV = (prev && total(prev) > 0) ? (latestTotal / total(prev) - 1) * 100 : null;
+      const prevName = prev ? new Date(Number(prev.split('-')[0]), Number(prev.split('-')[1]) - 1, 1).toLocaleString('en-US', { month: 'long' }) : '';
+      let s = 'Border dispensaries rang up <strong class="text-gray-300">$' + (latestTotal / 1e6).toFixed(1) + 'M</strong> in ' + monthName;
+      if (momV !== null && yoyPct !== null) {
+        s += ' — ' + (momV >= 0 ? 'up ' + pct(momV) : 'down ' + pct(momV)) + ' from ' + prevName +
+          (yoyPct >= 0 ? ', but up ' : ', and down ') + pct(yoyPct) + ' on a year ago';
+      }
+      s += '. ' + topRegion[0] + ' takes ' + Math.round((topRegion[1] / latestTotal) * 100) + '¢ of every dollar';
+      if (risers.length) {
+        s += '; <strong class="text-gray-300">' + brandName(risers[0].dba) + '</strong> was the month\'s fastest riser (▲' + risers[0].growth.toFixed(0) + '%)';
+      }
+      s += '.';
+      storyText.innerHTML = s;
+
+      const chipsEl = document.getElementById('mp-story-chips');
+      if (chipsEl) {
+        const best = series.reduce((a, b) => (b.total > a.total ? b : a));
+        const bestName = (m) => monthShort(m) + ' ' + m.split('-')[0];
+        const allTime = series.reduce((s2, d) => s2 + d.total, 0);
+        const chips = [];
+        chips.push(best.month === latest
+          ? '🏆 Best month on record'
+          : '🏆 Record: ' + bestName(best.month) + ' · $' + (best.total / 1e6).toFixed(1) + 'M');
+        chips.push('💵 $' + (allTime / 1e6).toFixed(0) + 'M tracked since Jan 2025');
+        chips.push('📅 ' + series.length + ' months of state data');
+        chipsEl.innerHTML = chips.map(c => '<span class="mp-chip">' + c + '</span>').join('');
+      }
+      storyEl.hidden = false;
+    }
+
+    // ── Auto-generated "Data Brief" news card ──
+    const brief = document.getElementById('news-databrief');
+    if (brief) {
+      const bTitle = document.getElementById('news-databrief-title');
+      const bText = document.getElementById('news-databrief-text');
+      const bStats = document.getElementById('news-databrief-stats');
+      bTitle.textContent = monthName + ' Numbers Are In: $' + (latestTotal / 1e6).toFixed(1) + 'M Across the Green Border';
+      bText.textContent = 'The state\'s latest dispensary report covers ' + latestRows.length + ' locations across Sunland Park, Chaparral, Santa Teresa, and Anthony. ' +
+        brandName(ranked[0].dba) + ' led the month at ' + fmtM(ranked[0].total) +
+        (risers.length ? ', while ' + brandName(risers[0].dba) + ' grew fastest at ▲' + risers[0].growth.toFixed(0) + '%.' : '.') +
+        ' Dig into every store, city, and month in the dashboard.';
+      const stats = [];
+      stats.push('<span class="mp-chip">💰 $' + (latestTotal / 1e6).toFixed(1) + 'M total</span>');
+      if (yoyPct !== null) stats.push('<span class="mp-chip">' + (yoyPct >= 0 ? '▲' : '▼') + ' ' + pct(yoyPct) + ' vs last year</span>');
+      stats.push('<span class="mp-chip">🏬 ' + latestRows.length + ' locations</span>');
+      bStats.innerHTML = stats.join('');
+      brief.hidden = false;
+    }
 
     const section = document.getElementById('market-pulse');
     section.hidden = false;
