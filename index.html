@@ -619,6 +619,16 @@
     }
     .mp-chip .tk-up, .tk-up { color: var(--lg-emerald-deep, #34d399); }
     .tk-down { color: #be123c; }
+    a.mp-move {
+      gap: 6px; text-decoration: none;
+      background: rgba(245,158,11,0.08);
+      border-color: rgba(245,158,11,0.25);
+      transition: background 0.2s ease, transform 0.2s ease;
+      white-space: normal; /* long "Old Name → New Name" pairs wrap on phones */
+      flex-wrap: wrap; max-width: 100%;
+    }
+    a.mp-move:hover { background: rgba(245,158,11,0.16); transform: translateY(-1px); }
+    a.mp-move strong { color: var(--lg-ink, #e5e7eb); }
 
     /* ── Per-store 2026 trend row on directory cards ── */
     .card-trend {
@@ -1323,7 +1333,7 @@
         <div id="mp-mom" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Month over Month</div>
       </a>
-      <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Top region — open the sales dashboard">
+      <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline col-span-2 sm:col-span-1" aria-label="Top region — open the sales dashboard">
         <div id="mp-region-share" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
         <div id="mp-region-label" class="text-xs text-gray-500 uppercase tracking-widest">Top Region</div>
       </a>
@@ -1334,6 +1344,11 @@
       <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-2" style="font-family:'Rajdhani',sans-serif;">This Month on the Border</div>
       <p id="mp-story-text" class="text-sm leading-relaxed text-gray-400 mb-3"></p>
       <div id="mp-story-chips" class="flex flex-wrap gap-2"></div>
+      <!-- Border Moves: name/ownership changes detected in the state data -->
+      <div id="mp-moves" class="mt-4 pt-4" style="border-top:1px solid rgba(16,185,129,0.12);" hidden>
+        <div class="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-2" style="font-family:'Rajdhani',sans-serif;">Border Moves · Who Changed Hands</div>
+        <div id="mp-moves-list" class="flex flex-wrap gap-2"></div>
+      </div>
     </div>
 
     <!-- Trend + leaderboard -->
@@ -1688,6 +1703,12 @@ function render() {
     if (sortVal === 'alpha') {
       return [...items].sort((a,b) => a.name.localeCompare(b.name));
     }
+    if (sortVal === 'sales' && window.getCardSales) {
+      // Highest reported sales first; stores without state data keep their
+      // curated order after the ranked ones.
+      const val = (d) => { const v = window.getCardSales(d.name, d.city); return v === null ? -1 : v; };
+      return [...items].sort((a,b) => (val(b) - val(a)) || (a.rank - b.rank));
+    }
     // default: featured first, then rank
     return [...items].sort((a,b) => {
       if (b.featured !== a.featured) return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
@@ -1799,13 +1820,15 @@ function gbReset() {
 }
 window.gbReset = gbReset;
 
-// Sort toggle
+// Sort toggle: Default → A–Z → Top Sellers (live sales data) → Default
 document.getElementById('gb-sort').addEventListener('click', function() {
-  sortVal = sortVal === 'default' ? 'alpha' : 'default';
-  document.getElementById('gb-sort-label').textContent = sortVal === 'alpha' ? 'A–Z' : 'Default';
-  this.classList.toggle('text-emerald-400', sortVal === 'alpha');
-  this.classList.toggle('border-emerald-500/30', sortVal === 'alpha');
-  this.classList.toggle('bg-emerald-500/10', sortVal === 'alpha');
+  const cycle = { 'default': 'alpha', 'alpha': 'sales', 'sales': 'default' };
+  sortVal = cycle[sortVal] || 'default';
+  const labels = { 'default': 'Default', 'alpha': 'A–Z', 'sales': '📈 Top Sellers' };
+  document.getElementById('gb-sort-label').textContent = labels[sortVal];
+  this.classList.toggle('text-emerald-400', sortVal !== 'default');
+  this.classList.toggle('border-emerald-500/30', sortVal !== 'default');
+  this.classList.toggle('bg-emerald-500/10', sortVal !== 'default');
   render();
 });
 
@@ -2369,6 +2392,10 @@ render();
       risers.forEach(r => {
         items.push('<span class="ticker-item">' + brandName(r.dba) + ' <strong class="tk-up">▲' + Math.abs(r.growth).toFixed(0) + '%</strong></span>');
       });
+      if (typeof brandTransitions !== 'undefined' && brandTransitions.length) {
+        const t = brandTransitions[0];
+        items.push('<span class="ticker-item">🔁 ' + t.from + ' is now <strong>' + t.to + '</strong></span>');
+      }
       const half = '<span class="ticker-set">' + items.join('<span class="ticker-dot">·</span>') + '<span class="ticker-dot">·</span></span>';
       // Two identical halves make the -50% translate loop seamless; the
       // second is presentation only, so screen readers get one copy.
@@ -2389,6 +2416,14 @@ render();
       const [small, big] = ta.length <= tb.length ? [ta, tb] : [tb, ta];
       if (small.length < 2 && small.join('').length < 6) return false;
       return small.every(w => big.includes(w));
+    };
+    // Exact token equality beats a subset match, so the "Score 420" card
+    // pairs with the Score 420 McNutt series even though "Score 420
+    // Appaloosa" also contains its tokens.
+    const nameExact = (a, b) => tokens(a).join(' ') === tokens(b).join(' ');
+    const bestEntry = (list, name, get) => {
+      const pool = list.filter(e => nameMatch(get(e), name));
+      return pool.find(e => nameExact(get(e), name)) || pool[0] || null;
     };
 
     // Whole-brand monthly series per (brand, city) across 2026. Summing the
@@ -2440,7 +2475,7 @@ render();
         const cardCity = cardEl.getAttribute('data-city') || '';
 
         if (!cardEl.querySelector('.sales-rank-pill')) {
-          const hit = topSellers.find(s => nameMatch(s.name, nameEl.textContent) && (!cardCity || cardCity === s.city));
+          const hit = bestEntry(topSellers.filter(s => !cardCity || cardCity === s.city), nameEl.textContent, s => s.name);
           if (hit) {
             const pill = document.createElement('a');
             pill.href = '/data.html';
@@ -2452,10 +2487,10 @@ render();
         }
 
         if (!cardEl.querySelector('.card-trend')) {
-          const entry = Object.values(brandSeries).find(e =>
-            (!cardCity || e.city === cardCity) &&
-            !ambiguous.has(e.brand + '|' + e.city) &&
-            nameMatch(e.brand, nameEl.textContent));
+          const entry = bestEntry(
+            Object.values(brandSeries).filter(e =>
+              (!cardCity || e.city === cardCity) && !ambiguous.has(e.brand + '|' + e.city)),
+            nameEl.textContent, e => e.brand);
           if (entry) {
             const svg = sparkSvgFor(entry.vals);
             const vals = entry.vals;
@@ -2480,6 +2515,16 @@ render();
     };
     window.applySalesBadges();
 
+    // Latest-month reported sales for a directory card, used by the
+    // "Top Sellers" sort. Returns null when no series matches.
+    window.getCardSales = function (name, city) {
+      const entry = bestEntry(
+        Object.values(brandSeries).filter(e =>
+          (!city || e.city === city) && !ambiguous.has(e.brand + '|' + e.city)),
+        name, e => e.brand);
+      return entry ? entry.vals[entry.vals.length - 1] : null;
+    };
+
     // ── Live sales context on the region headers ──
     const regionCity = {
       'region-sunland': 'Sunland Park',
@@ -2487,6 +2532,8 @@ render();
       'region-st': 'Santa Teresa',
       'region-anthony': 'Anthony',
     };
+    const prevByCity = {};
+    if (prev) rows(prev).forEach(d => { prevByCity[d.city] = (prevByCity[d.city] || 0) + (d.total || 0); });
     window.applyRegionSales = function () {
       Object.entries(regionCity).forEach(([anchor, city]) => {
         const host = document.getElementById(anchor);
@@ -2497,7 +2544,13 @@ render();
         const share = Math.round((cityTotal / latestTotal) * 100);
         const span = document.createElement('span');
         span.className = 'region-sales';
-        span.textContent = ' · ' + fmtM(cityTotal) + ' in ' + monthTag + ' sales' + (share >= 1 ? ' · ' + share + '% of the border market' : '');
+        let txt = ' · ' + fmtM(cityTotal) + ' in ' + monthTag + ' sales';
+        if (prevByCity[city] > 0) {
+          const mom = (cityTotal / prevByCity[city] - 1) * 100;
+          txt += ' · ' + (mom >= 0 ? '▲' : '▼') + Math.abs(mom).toFixed(0) + '% MoM';
+        }
+        if (share >= 1) txt += ' · ' + share + '% of the border market';
+        span.textContent = txt;
         metaEl.appendChild(span);
       });
     };
@@ -2534,6 +2587,18 @@ render();
         chips.push('💵 $' + (allTime / 1e6).toFixed(0) + 'M tracked since Jan 2025');
         chips.push('📅 ' + series.length + ' months of state data');
         chipsEl.innerHTML = chips.map(c => '<span class="mp-chip">' + c + '</span>').join('');
+      }
+
+      // Border Moves: rebrands and ownership changes the data caught
+      const movesWrap = document.getElementById('mp-moves');
+      const movesList = document.getElementById('mp-moves-list');
+      if (movesWrap && movesList && typeof brandTransitions !== 'undefined' && brandTransitions.length) {
+        const when = (m) => monthShort(m) + ' ’' + m.slice(2, 4);
+        movesList.innerHTML = brandTransitions.slice(0, 5).map(t =>
+          '<a class="mp-chip mp-move" href="/data.html" title="' + t.address.replace(/"/g, '&quot;') + ', ' + t.city + ' — see both names\' history in the dashboard">' +
+          '<span class="text-gray-500">' + t.from + '</span><span aria-hidden="true">→</span><strong>' + t.to + '</strong>' +
+          '<span class="text-gray-500">· ' + when(t.month) + '</span></a>').join('');
+        movesWrap.hidden = false;
       }
       storyEl.hidden = false;
     }

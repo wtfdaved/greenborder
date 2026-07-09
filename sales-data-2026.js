@@ -1,7 +1,8 @@
 // Generated from "Clean Data as of 7-8-26.csv" — NM CCD monthly sales,
 // standardized DBA names. Consumed by the home page Border Market Pulse
 // section: per-store records for 2026, plus whole-window monthly totals
-// for the trend chart and year-over-year comparison.
+// for the trend chart and year-over-year comparison, plus detected
+// per-store brand changes for the "Border Moves" feed.
 const newSalesData2026 = [
   {
     "month": "2026-01",
@@ -265,16 +266,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-01",
-    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
-    "dba": "Pecos Valley Production",
-    "total": 39535.05,
-    "adultUse": 37858.57,
-    "medical": 1676.48,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Dr"
-  },
-  {
-    "month": "2026-01",
     "licensee": "PROHIBITION 37 - MCNUTT RD RETAIL",
     "dba": "Prohibition 37",
     "total": 104662.67,
@@ -362,6 +353,16 @@ const newSalesData2026 = [
     "medical": 3219.57,
     "city": "Sunland Park",
     "address": "2355 McNutt Road"
+  },
+  {
+    "month": "2026-01",
+    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
+    "dba": "Score 420 Appaloosa",
+    "total": 39535.05,
+    "adultUse": 37858.57,
+    "medical": 1676.48,
+    "city": "Sunland Park",
+    "address": "1925 Appaloosa Dr"
   },
   {
     "month": "2026-01",
@@ -755,16 +756,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-02",
-    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
-    "dba": "Pecos Valley Production",
-    "total": 35708.78,
-    "adultUse": 33600.99,
-    "medical": 2107.79,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Dr"
-  },
-  {
-    "month": "2026-02",
     "licensee": "PROHIBITION 37 - MCNUTT RD RETAIL",
     "dba": "Prohibition 37",
     "total": 105149.02,
@@ -852,6 +843,16 @@ const newSalesData2026 = [
     "medical": 3335.24,
     "city": "Sunland Park",
     "address": "2355 McNutt Road"
+  },
+  {
+    "month": "2026-02",
+    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
+    "dba": "Score 420 Appaloosa",
+    "total": 35708.78,
+    "adultUse": 33600.99,
+    "medical": 2107.79,
+    "city": "Sunland Park",
+    "address": "1925 Appaloosa Dr"
   },
   {
     "month": "2026-02",
@@ -1235,16 +1236,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-03",
-    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
-    "dba": "Pecos Valley Production",
-    "total": 36920.13,
-    "adultUse": 34825.67,
-    "medical": 2094.46,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Dr"
-  },
-  {
-    "month": "2026-03",
     "licensee": "PROHIBITION 37 - MCNUTT RD RETAIL",
     "dba": "Prohibition 37",
     "total": 120299.01,
@@ -1332,6 +1323,16 @@ const newSalesData2026 = [
     "medical": 2464.15,
     "city": "Sunland Park",
     "address": "2355 McNutt Road"
+  },
+  {
+    "month": "2026-03",
+    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
+    "dba": "Score 420 Appaloosa",
+    "total": 36920.13,
+    "adultUse": 34825.67,
+    "medical": 2094.46,
+    "city": "Sunland Park",
+    "address": "1925 Appaloosa Dr"
   },
   {
     "month": "2026-03",
@@ -1725,16 +1726,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-04",
-    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
-    "dba": "Pecos Valley Production",
-    "total": 26698.22,
-    "adultUse": 25105.62,
-    "medical": 1592.6,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Dr"
-  },
-  {
-    "month": "2026-04",
     "licensee": "PROHIBITION 37 - MCNUTT RD RETAIL",
     "dba": "Prohibition 37",
     "total": 116116.9,
@@ -1792,6 +1783,16 @@ const newSalesData2026 = [
     "medical": 3555.12,
     "city": "Sunland Park",
     "address": "2355 McNutt Road"
+  },
+  {
+    "month": "2026-04",
+    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
+    "dba": "Score 420 Appaloosa",
+    "total": 26698.22,
+    "adultUse": 25105.62,
+    "medical": 1592.6,
+    "city": "Sunland Park",
+    "address": "1925 Appaloosa Dr"
   },
   {
     "month": "2026-04",
@@ -2195,16 +2196,6 @@ const newSalesData2026 = [
   },
   {
     "month": "2026-05",
-    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
-    "dba": "Pecos Valley Production",
-    "total": 22074.59,
-    "adultUse": 20209.73,
-    "medical": 1864.86,
-    "city": "Sunland Park",
-    "address": "1925 Appaloosa Dr"
-  },
-  {
-    "month": "2026-05",
     "licensee": "PROHIBITION 37 - MCNUTT RD RETAIL",
     "dba": "Prohibition 37",
     "total": 112274.18,
@@ -2262,6 +2253,16 @@ const newSalesData2026 = [
     "medical": 1599.26,
     "city": "Sunland Park",
     "address": "2355 McNutt Road"
+  },
+  {
+    "month": "2026-05",
+    "licensee": "PECOS VALLEY PRODUCTION INC - APPALOOSA DR RETAIL",
+    "dba": "Score 420 Appaloosa",
+    "total": 22074.59,
+    "adultUse": 20209.73,
+    "medical": 1864.86,
+    "city": "Sunland Park",
+    "address": "1925 Appaloosa Dr"
   },
   {
     "month": "2026-05",
@@ -2449,5 +2450,35 @@ const salesTotalsByMonth = [
     "month": "2026-05",
     "total": 7300815.46,
     "locations": 47
+  }
+];
+const brandTransitions = [
+  {
+    "month": "2026-04",
+    "city": "Anthony",
+    "from": "Rocky Mountain Cannabis",
+    "to": "Calidad Cannabis",
+    "address": "138 Anthony Dr."
+  },
+  {
+    "month": "2026-04",
+    "city": "Sunland Park",
+    "from": "Toke It Up",
+    "to": "Elevation 3789",
+    "address": "1999 Futurity Drive"
+  },
+  {
+    "month": "2026-01",
+    "city": "Anthony",
+    "from": "GreenGo",
+    "to": "Rocky Mountain Cannabis",
+    "address": "816 Anthony Dr"
+  },
+  {
+    "month": "2025-07",
+    "city": "Sunland Park",
+    "from": "Pecos Valley Production",
+    "to": "Score 420 Appaloosa",
+    "address": "1925 Appaloosa Dr"
   }
 ];
