@@ -2454,27 +2454,6 @@ const salesTotalsByMonth = [
 ];
 const brandTransitions = [
   {
-    "month": "2026-04",
-    "city": "Anthony",
-    "from": "Rocky Mountain Cannabis",
-    "to": "Calidad Cannabis",
-    "address": "138 Anthony Dr."
-  },
-  {
-    "month": "2026-04",
-    "city": "Sunland Park",
-    "from": "Toke It Up",
-    "to": "Elevation 3789",
-    "address": "1999 Futurity Drive"
-  },
-  {
-    "month": "2026-01",
-    "city": "Anthony",
-    "from": "GreenGo",
-    "to": "Rocky Mountain Cannabis",
-    "address": "816 Anthony Dr"
-  },
-  {
     "month": "2025-07",
     "city": "Sunland Park",
     "from": "Pecos Valley Production",

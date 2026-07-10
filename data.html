@@ -2496,6 +2496,37 @@
         return canonical;
     }
 
+    // Confirmed renames: the same licensee reporting under a new display
+    // name month over month (Pecos Valley Production -> Score 420 Appaloosa
+    // in July 2025, license name unchanged). Address timelines are not
+    // trusted for this — the state export drops suite numbers, so two
+    // different shops can collide on one address. Keyed by the new name;
+    // formatMonthLabel(month) is the first month under the new name.
+    const confirmedRenames = {};
+    function formatMonthLabel(m) {
+        const i = monthKeys.indexOf(m);
+        if (i < 0) return m;
+        // 2025 labels are bare month names ("Jul"); always carry the year here
+        return /\d{4}/.test(monthLabels[i]) ? monthLabels[i] : monthLabels[i] + ' ' + m.slice(0, 4);
+    }
+    (function detectConfirmedRenames() {
+        const baseName = (dba) => dba.replace(/\s*\((Manufacturing|New License)\)\s*$/, '');
+        const byLicense = {};
+        rawData.forEach(r => {
+            const k = r.licensee.toUpperCase().replace(/\s+/g, ' ').trim() + '|' + r.city;
+            const e = (byLicense[k] = byLicense[k] || {});
+            if (!e[r.month] || e[r.month].total < r.total) e[r.month] = { dba: baseName(r.dba), total: r.total };
+        });
+        Object.values(byLicense).forEach(tl => {
+            const ms = Object.keys(tl).sort();
+            for (let i = 1; i < ms.length; i++) {
+                if (tl[ms[i - 1]].dba !== tl[ms[i]].dba) {
+                    confirmedRenames[tl[ms[i]].dba] = { from: tl[ms[i - 1]].dba, month: ms[i] };
+                }
+            }
+        });
+    })();
+
     // Latest month in the current view plus its predecessor — the pair used
     // for month-over-month momentum in the scatter and velocity charts (a
     // multi-month range uses the momentum of its most recent month).
@@ -2665,6 +2696,22 @@
 
         document.getElementById('modal-dispensary-name').textContent = dba;
         document.getElementById('modal-city').textContent = currentData.city || 'N/A';
+
+        // Confirmed renames: show "Formerly …" so the unbroken history in
+        // this modal is transparent about the name change.
+        const nameEl = document.getElementById('modal-dispensary-name');
+        let formerEl = document.getElementById('modal-formerly');
+        if (!formerEl) {
+            formerEl = document.createElement('div');
+            formerEl.id = 'modal-formerly';
+            formerEl.style.cssText = 'font-size:0.72rem;color:#b45309;font-weight:600;margin-top:2px;';
+            nameEl.insertAdjacentElement('afterend', formerEl);
+        }
+        const rename = confirmedRenames[dba];
+        formerEl.textContent = rename
+            ? 'Formerly ' + rename.from + ' · renamed ' + formatMonthLabel(rename.month)
+            : '';
+        formerEl.style.display = rename ? '' : 'none';
 
         const rankBadge = document.getElementById('modal-rank-badge');
         rankBadge.textContent = currentRank || 'N/A';
@@ -4368,6 +4415,23 @@
         // Mark data nav item as active on this page
         const navData = document.getElementById('nav-data');
         if (navData) navData.classList.add('active');
+
+        // Deep link: /data.html?store=NAME opens that store's detail modal
+        // (the home page's leaderboards, rank chips, and Border Moves feed
+        // link here). Falls back to a substring match so brand names find
+        // their suffixed store rows ("Kushology 101 (1600 E OHara Rd)").
+        const storeParam = new URLSearchParams(location.search).get('store');
+        if (storeParam) {
+            const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const target = norm(storeParam);
+            if (target) {
+                const names = [...new Set(rawData.map(r => getCanonicalDba(r.dba)))];
+                const hit = names.find(n => norm(n) === target) ||
+                    names.find(n => norm(n).startsWith(target)) ||
+                    names.find(n => norm(n).includes(target));
+                if (hit) setTimeout(() => openDispensaryModal(hit), 350);
+            }
+        }
     });
 
 })();
