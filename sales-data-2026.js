@@ -2454,6 +2454,13 @@ const salesTotalsByMonth = [
 ];
 const brandTransitions = [
   {
+    "month": "2026-06",
+    "city": "Sunland Park",
+    "from": "R Greenleaf",
+    "to": "Everyday Weed",
+    "address": "1541 Appaloosas Unit 1, 2, Crossing Offices"
+  },
+  {
     "month": "2025-07",
     "city": "Sunland Park",
     "from": "Pecos Valley Production",

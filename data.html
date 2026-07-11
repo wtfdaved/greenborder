@@ -2503,11 +2503,28 @@
     // different shops can collide on one address. Keyed by the new name;
     // formatMonthLabel(month) is the first month under the new name.
     const confirmedRenames = {};
+    // Renames announced after the data window (no reported month carries the
+    // new name yet), keyed by the CURRENT name in the data. Auto-detection
+    // replaces these once a month arrives under the new name.
+    const upcomingRenames = {
+        'R Greenleaf': { to: 'Everyday Weed', month: '2026-06', website: 'https://everydayweed.com' },
+    };
     function formatMonthLabel(m) {
         const i = monthKeys.indexOf(m);
-        if (i < 0) return m;
+        if (i < 0) {
+            const [y, mo] = m.split('-').map(Number);
+            return (y && mo) ? new Date(y, mo - 1, 1).toLocaleString('en-US', { month: 'short', year: 'numeric' }) : m;
+        }
         // 2025 labels are bare month names ("Jul"); always carry the year here
         return /\d{4}/.test(monthLabels[i]) ? monthLabels[i] : monthLabels[i] + ' ' + m.slice(0, 4);
+    }
+    // Old and announced names count as search hits ("Pecos Valley" finds
+    // Score 420 Appaloosa; "Everyday Weed" finds R Greenleaf).
+    function searchAliases(dba) {
+        let s = '';
+        const r = confirmedRenames[dba]; if (r) s += ' ' + r.from;
+        const u = upcomingRenames[dba]; if (u) s += ' ' + u.to;
+        return s.toLowerCase();
     }
     (function detectConfirmedRenames() {
         const baseName = (dba) => dba.replace(/\s*\((Manufacturing|New License)\)\s*$/, '');
@@ -2525,6 +2542,11 @@
                 }
             }
         });
+        // Curated: confirmed outside the data (the license also changed, so
+        // the automatic same-licensee rule can't see it). R Greenleaf's
+        // Appaloosa store rebranded publicly as Everyday Weed in June 2026;
+        // its reporting moved to a Vireo of Santa Fe license in March.
+        confirmedRenames['Everyday Weed'] = { from: 'R Greenleaf', month: '2026-06' };
     })();
 
     // Latest month in the current view plus its predecessor — the pair used
@@ -2708,10 +2730,27 @@
             nameEl.insertAdjacentElement('afterend', formerEl);
         }
         const rename = confirmedRenames[dba];
-        formerEl.textContent = rename
-            ? 'Formerly ' + rename.from + ' · renamed ' + formatMonthLabel(rename.month)
-            : '';
-        formerEl.style.display = rename ? '' : 'none';
+        const upcoming = upcomingRenames[dba];
+        if (rename) {
+            formerEl.textContent = 'Formerly ' + rename.from + ' · renamed ' + formatMonthLabel(rename.month);
+        } else if (upcoming) {
+            formerEl.innerHTML = 'Now <strong>' + upcoming.to + '</strong> · renamed ' + formatMonthLabel(upcoming.month) +
+                (upcoming.website ? ' · <a href="' + upcoming.website + '" target="_blank" rel="noopener noreferrer" style="color:#047857;text-decoration:underline;">' + upcoming.website.replace(/^https?:\/\//, '') + '</a>' : '');
+        } else {
+            formerEl.textContent = '';
+        }
+        formerEl.style.display = (rename || upcoming) ? '' : 'none';
+
+        // Cross link: find this store on the home page directory
+        let dirLink = document.getElementById('modal-dir-link');
+        if (!dirLink) {
+            dirLink = document.createElement('a');
+            dirLink.id = 'modal-dir-link';
+            dirLink.style.cssText = 'font-size:0.72rem;font-weight:700;color:#047857;text-decoration:none;display:inline-block;margin-top:4px;';
+            formerEl.insertAdjacentElement('afterend', dirLink);
+        }
+        dirLink.href = '/?find=' + encodeURIComponent(upcoming ? upcoming.to : dba) + '#dispensaries';
+        dirLink.textContent = 'View in the directory →';
 
         const rankBadge = document.getElementById('modal-rank-badge');
         rankBadge.textContent = currentRank || 'N/A';
@@ -3203,6 +3242,7 @@
         // Filter & Sort
         let displayData = aggregatedTableData.filter(d =>
             d.dba.toLowerCase().includes(searchQuery) ||
+            searchAliases(d.dba).includes(searchQuery) ||
             d.city.toLowerCase().includes(searchQuery) ||
             d.licensee.toLowerCase().includes(searchQuery)
         );
@@ -3311,11 +3351,22 @@
                 ? `<span class="mom-new">${momDisplay}</span>`
                 : `<span class="text-xs font-bold" style="color: ${momColor}">${momDisplay}</span>`;
 
+            // Renamed stores get a marker so the change is visible without
+            // opening the detail modal.
+            let renameMark = '';
+            const rowRename = confirmedRenames[row.dba];
+            const rowUpcoming = upcomingRenames[row.dba];
+            if (rowRename) {
+                renameMark = ` <span title="Formerly ${rowRename.from} · renamed ${formatMonthLabel(rowRename.month)}" style="cursor:help;">🔁</span>`;
+            } else if (rowUpcoming) {
+                renameMark = ` <span title="Now ${rowUpcoming.to} · renamed ${formatMonthLabel(rowUpcoming.month)}" style="cursor:help;">🔁</span>`;
+            }
+
             tr.innerHTML = `
                 <td class="px-4 py-3 whitespace-nowrap text-center">${rankHtml}</td>
                 <td class="px-4 py-3 whitespace-nowrap">
                     <div class="flex flex-col">
-                        <span class="text-xs font-bold text-slate-100">${row.dba}</span>
+                        <span class="text-xs font-bold text-slate-100">${row.dba}${renameMark}</span>
                         <span class="text-[9px] text-slate-500 uppercase tracking-wide truncate max-w-[180px]" title="${row.licensee}">${row.licensee}</span>
                     </div>
                 </td>
@@ -3638,6 +3689,7 @@
         // Data rows
         let displayData = aggregatedTableData.filter(d =>
             d.dba.toLowerCase().includes(searchQuery) ||
+            searchAliases(d.dba).includes(searchQuery) ||
             d.city.toLowerCase().includes(searchQuery) ||
             d.licensee.toLowerCase().includes(searchQuery)
         );
@@ -4426,11 +4478,19 @@
             const target = norm(storeParam);
             if (target) {
                 const names = [...new Set(rawData.map(r => getCanonicalDba(r.dba)))];
-                const hit = names.find(n => norm(n) === target) ||
+                let hit = names.find(n => norm(n) === target) ||
                     names.find(n => norm(n).startsWith(target)) ||
                     names.find(n => norm(n).includes(target));
-                if (hit) setTimeout(() => openDispensaryModal(hit), 350);
+                // An announced new name with no data rows yet resolves to
+                // the store's current name in the data.
+                if (!hit) {
+                    for (const [cur, up] of Object.entries(upcomingRenames)) {
+                        if (norm(up.to) === target) { hit = cur; break; }
+                    }
+                }
+                if (hit) openAfterLoad(hit);
             }
+            function openAfterLoad(name) { setTimeout(() => openDispensaryModal(name), 350); }
         }
     });
 

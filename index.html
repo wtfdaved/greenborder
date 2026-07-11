@@ -655,6 +655,15 @@
     }
     .sales-rank-pill:hover { background: rgba(245,158,11,0.22); transform: translateY(-1px); }
 
+    /* ── "Formerly …" chip on renamed stores ── */
+    .formerly-pill {
+      margin-left: 6px;
+      background: rgba(100,116,139,0.1);
+      color: #64748b;
+      border: 1px solid rgba(100,116,139,0.25);
+      cursor: help;
+    }
+
     /* ── Live sales context on region headers ── */
     .region-sales { color: inherit; opacity: 0.9; }
 
@@ -1486,7 +1495,8 @@ const DATA = RAW_DATA.filter(d => !d.excluded).map(d => {
     features: d.tags.slice(0, 4), // Keep cards clean with top 4 tags
     website: d.website,
     featured: d.featured,
-    rank: d.rank
+    rank: d.rank,
+    formerly: d.formerly || null
   };
 });
 
@@ -1578,7 +1588,7 @@ function card(d) {
 
       <!-- Tag -->
       <div class="mb-5">
-        <span class="tag-pill border ${tagBg}">${d.tag}</span>
+        <span class="tag-pill border ${tagBg}">${d.tag}</span>${d.formerly ? `<span class="tag-pill formerly-pill" title="Renamed — same location and license">🔁 Formerly ${d.formerly}</span>` : ''}
       </div>
 
       <!-- Vibe (Tightened spacing to reduce vertical bloat) -->
@@ -1679,7 +1689,8 @@ function render() {
   function match(d) {
     const cat = chipVal || (vibeVal !== 'All' ? vibeVal : null);
     if (searchVal) {
-      const hay = [d.name, d.address, d.city, d.tag, d.vibe, d.love, ...d.features].join(' ').toLowerCase();
+      // Former names stay searchable ("R. Greenleaf" finds Everyday Weed)
+      const hay = [d.name, d.formerly || '', d.address, d.city, d.tag, d.vibe, d.love, ...d.features].join(' ').toLowerCase();
       if (!hay.includes(searchVal.toLowerCase())) return false;
     }
     if (cityVal !== 'All' && d.city !== cityVal) return false;
@@ -1786,6 +1797,17 @@ document.querySelectorAll('.gb-chip').forEach(btn => {
     }
     render();
   });
+
+  // Deep link: /?find=NAME pre-filters the directory (the dashboard's store
+  // modal links here), mirroring data.html?store=NAME in the other direction.
+  const findParam = new URLSearchParams(location.search).get('find');
+  if (findParam) {
+    searchVal = findParam.trim();
+    searchEl.value = searchVal;
+    clearBtn.classList.toggle('hidden', !searchVal);
+    render();
+    setTimeout(() => document.getElementById('dispensaries').scrollIntoView({ behavior: 'smooth' }), 400);
+  }
 
   // Hero quick-search: hands its query to the directory's live filter and
   // scrolls down to the results. The datalist suggests real store names.
@@ -2428,11 +2450,27 @@ render();
     };
     // Exact token equality beats a subset match, so the "Score 420" card
     // pairs with the Score 420 McNutt series even though "Score 420
-    // Appaloosa" also contains its tokens.
+    // Appaloosa" also contains its tokens. Known renames are tried as
+    // aliases, so the "Everyday Weed" card still finds its sales history
+    // recorded under "R Greenleaf".
     const nameExact = (a, b) => tokens(a).join(' ') === tokens(b).join(' ');
+    const aliasesFor = (name) => {
+      const out = [name];
+      if (typeof brandTransitions !== 'undefined') {
+        brandTransitions.forEach(t => {
+          if (nameMatch(t.to, name)) out.push(t.from);
+          if (nameMatch(t.from, name)) out.push(t.to);
+        });
+      }
+      return out;
+    };
     const bestEntry = (list, name, get) => {
-      const pool = list.filter(e => nameMatch(get(e), name));
-      return pool.find(e => nameExact(get(e), name)) || pool[0] || null;
+      for (const alias of aliasesFor(name)) {
+        const pool = list.filter(e => nameMatch(get(e), alias));
+        const hit = pool.find(e => nameExact(get(e), alias)) || pool[0];
+        if (hit) return hit;
+      }
+      return null;
     };
 
     // Whole-brand monthly series per (brand, city) across 2026. Summing the
