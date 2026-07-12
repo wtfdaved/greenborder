@@ -53,22 +53,29 @@
 
   <!-- Education Guides -->
   <url>
+    <loc>https://greenborder.org/education/</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html</loc>
-    <lastmod>2026-03-05</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

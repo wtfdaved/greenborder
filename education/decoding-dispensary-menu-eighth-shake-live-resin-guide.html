@@ -36,23 +36,69 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "EducationalContent",
+    "@type": "Article",
     "headline": "Decoding the Menu: What's an Eighth, Shake, and Live Resin?",
     "description": "Master dispensary terminology. Learn cannabis measurements, flower types, and extract methods.",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "Guide",
+    "image": "https://greenborder.org/og-image.jpg",
     "author": {
       "@type": "Organization",
-      "name": "The Green Border"
+      "name": "The Green Border",
+      "url": "https://greenborder.org"
     },
     "publisher": {
       "@type": "Organization",
       "name": "The Green Border",
       "url": "https://greenborder.org"
     },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html"
+    },
     "url": "https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html",
     "datePublished": "2026-03-27",
-    "keywords": ["cannabis terminology", "eighth", "shake", "live resin", "cannabis measurements"]
+    "dateModified": "2026-07-12",
+    "keywords": "cannabis terminology, eighth, shake, live resin, cannabis measurements"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many grams are in an eighth of weed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An eighth is 3.5 grams of cannabis flower — one eighth of an ounce (28 grams). It is the most popular dispensary purchase size and typically rolls about 5-7 joints."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is shake lower quality than regular buds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not necessarily. Shake is made of small pieces that break off larger buds of the same flower, so potency is often similar. It carries slightly fewer intact trichomes than premium nugs, which is why it is priced lower — making it a great budget option for rolling joints or packing bowls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between live resin and live rosin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both start with flash-frozen cannabis plants that preserve the natural terpene profile. Live resin is extracted using chemical solvents like butane, while live rosin uses only ice, water, heat, and pressure — no solvents. Live rosin is considered the cleanest, most premium option and usually costs more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many joints can you roll with an eighth?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An eighth (3.5 grams) typically rolls about 5-7 average-sized joints, depending on how much flower you use per joint. A standard joint contains roughly 0.5 grams of flower."
+        }
+      }
+    ]
   }
   </script>
 
@@ -250,7 +296,7 @@
     .article-container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 130px 20px 40px 20px;
     }
     .article-header {
       margin-bottom: 40px;
@@ -401,8 +447,154 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
     }
+
+    /* ── Reading Progress Bar ── */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #10b981, #fbbf24);
+      z-index: 10001;
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb-nav {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .breadcrumb-nav a {
+      color: #34d399;
+      text-decoration: none;
+    }
+    .breadcrumb-nav a:hover { text-decoration: underline; }
+    .breadcrumb-nav .sep { color: #4b5563; }
+
+    /* ── Table of Contents ── */
+    .toc-box {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    .toc-box h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #34d399;
+      margin: 0 0 14px 0;
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .toc-box ol {
+      margin: 0 0 0 20px;
+      line-height: 2;
+    }
+    .toc-box li { margin: 0; }
+    .toc-box a {
+      color: #d1d5db;
+      text-decoration: none;
+    }
+    .toc-box a:hover { color: #34d399; text-decoration: underline; }
+
+    /* ── FAQ Accordion ── */
+    .faq-section { margin: 40px 0; }
+    .faq-item {
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background: rgba(16, 185, 129, 0.03);
+      overflow: hidden;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      padding: 18px 20px;
+      font-weight: 600;
+      color: #e5e7eb;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      color: #34d399;
+      font-size: 1.3rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item summary:hover { color: #34d399; }
+    .faq-item .faq-answer {
+      padding: 0 20px 18px 20px;
+      color: #d1d5db;
+      line-height: 1.7;
+    }
+
+    /* ── Related Guides ── */
+    .related-section {
+      margin: 50px 0 20px 0;
+      padding-top: 30px;
+      border-top: 1px solid rgba(16, 185, 129, 0.1);
+    }
+    .related-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      font-family: 'Rajdhani', sans-serif;
+      margin-bottom: 20px;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .related-card {
+      display: block;
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .related-card:hover {
+      border-color: rgba(16, 185, 129, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.1);
+    }
+    .related-card .related-emoji { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+    .related-card h3 {
+      color: #e5e7eb;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .related-card p {
+      color: #9ca3af;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .related-card .related-cta {
+      color: #34d399;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 10px;
+      display: inline-block;
+    }
     @media (max-width: 768px) {
       body { padding-top: 60px; }
+      .article-container { padding-top: 30px; }
       .article-title { font-size: 1.8rem; }
       .article-content h2 { font-size: 1.5rem; }
       .measurements-table th, .measurements-table td { padding: 12px; font-size: 0.9rem; }
@@ -411,6 +603,8 @@
 </head>
 
 <body>
+
+<div id="reading-progress" aria-hidden="true"></div>
 
 <!-- Header -->
 <header id="tgb-glass-header">
@@ -424,7 +618,7 @@
     <a href="/news.html"    class="tgb-header-link">News</a>
     <a href="/data.html"    class="tgb-header-link">Sales Data</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
-    <a href="/#education"    class="tgb-header-link">Education</a>
+    <a href="/education/"    class="tgb-header-link">Education</a>
     <a href="/#about"        class="tgb-header-link">About</a>
   </nav>
 
@@ -442,11 +636,19 @@
 <!-- Article Content -->
 <main class="article-container">
   <article>
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <a href="/education/">Education</a>
+      <span class="sep">›</span>
+      <span>Decoding the Dispensary Menu</span>
+    </nav>
     <div class="article-header">
       <h1 class="article-title">Decoding the Menu: What's an Eighth, Shake, and Live Resin?</h1>
       <div class="article-meta">
         <div class="article-meta-item">📅 March 27, 2026</div>
         <div class="article-meta-item">✍️ Greenborder Education Team</div>
+        <div class="article-meta-item">⏱️ 5 min read</div>
       </div>
       <div class="article-tags">
         <span class="article-tag">Dispensary Guide</span>
@@ -457,10 +659,21 @@
     </div>
 
     <div class="article-content">
-      <h2>Navigating the Dispensary Menu Without a Translator</h2>
+      <div class="toc-box">
+        <h2>In This Guide</h2>
+        <ol>
+          <li><a href="#intro">Navigating the Dispensary Menu Without a Translator</a></li>
+          <li><a href="#weed-math">'Weed Math': Understanding Cannabis Weights</a></li>
+          <li><a href="#bud-shake-trim">The Anatomy of the Jar: Bud vs. Shake vs. Trim</a></li>
+          <li><a href="#extracts">Decoding Extracts: Distillate vs. Live Resin vs. Live Rosin</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+        </ol>
+      </div>
+
+      <h2 id="intro">Navigating the Dispensary Menu Without a Translator</h2>
       <p>Walking up to a dispensary counter for the first time can feel like you accidentally enrolled in a foreign language class. The budtender asks if you want an <strong>eighth of premium flower</strong>, some <strong>shake for pre-rolls</strong>, or a <strong>live rosin cart</strong>—and suddenly, you're lost. Understanding dispensary terminology is the key to buying cannabis with confidence and getting exactly what you want for your budget. Let's break down the jargon, simplify 'weed math,' and decode the extraction methods.</p>
 
-      <h2>'Weed Math': Understanding Cannabis Weights</h2>
+      <h2 id="weed-math">'Weed Math': Understanding Cannabis Weights</h2>
       <p>Cannabis flower is measured in terms that blend the metric and imperial systems. Everything starts at a gram and scales up to an ounce. Here is the standard breakdown of what these cannabis measurements mean.</p>
 
       <table class="measurements-table">
@@ -500,7 +713,7 @@
         </tbody>
       </table>
 
-      <h2>The Anatomy of the Jar: Bud vs. Shake vs. Trim</h2>
+      <h2 id="bud-shake-trim">The Anatomy of the Jar: Bud vs. Shake vs. Trim</h2>
       <p>Not all flower on the menu is priced the same, and that usually comes down to the physical structure of the plant material you are buying.</p>
 
       <div class="extract-box">
@@ -518,7 +731,7 @@
         <p>The leaves clipped off the plant after harvest. It has far fewer trichomes than buds or shake. <strong>Best for:</strong> Making your own cannabutter or topicals, rather than smoking.</p>
       </div>
 
-      <h2>Decoding Extracts: Distillate vs. Live Resin vs. Live Rosin</h2>
+      <h2 id="extracts">Decoding Extracts: Distillate vs. Live Resin vs. Live Rosin</h2>
       <p>If you are buying vape cartridges or dabs, you will encounter the world of cannabis concentrates. The names tell you exactly how the oil was extracted from the plant.</p>
 
       <div class="extract-box">
@@ -548,11 +761,59 @@
       <h2>Shop Like a Pro</h2>
       <p>Next time you look at a dispensary menu, you won't need to guess. Whether you are grabbing a budget-friendly quarter of shake for a weekend baking project or treating yourself to a premium live rosin vape, you now speak the language.</p>
 
+      <section class="faq-section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <details class="faq-item">
+          <summary>How many grams are in an eighth of weed?</summary>
+          <div class="faq-answer">An eighth is <strong>3.5 grams</strong> of cannabis flower — one eighth of an ounce (28 grams). It is the most popular dispensary purchase size and typically rolls about 5-7 joints.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is shake lower quality than regular buds?</summary>
+          <div class="faq-answer">Not necessarily. Shake is made of small pieces that break off larger buds of the same flower, so potency is often similar. It carries slightly fewer intact trichomes than premium nugs, which is why it is priced lower — making it a great budget option for rolling joints or packing bowls.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is the difference between live resin and live rosin?</summary>
+          <div class="faq-answer">Both start with flash-frozen cannabis plants that preserve the natural terpene profile. <strong>Live resin</strong> is extracted using chemical solvents like butane, while <strong>live rosin</strong> uses only ice, water, heat, and pressure — no solvents. Live rosin is considered the cleanest, most premium option and usually costs more.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How many joints can you roll with an eighth?</summary>
+          <div class="faq-answer">An eighth (3.5 grams) typically rolls about <strong>5-7 average-sized joints</strong>, depending on how much flower you use per joint. A standard joint contains roughly 0.5 grams of flower.</div>
+        </details>
+      </section>
+
       <div class="cta-box">
         <p><strong>Want to put your new vocabulary to the test?</strong></p>
         <p>Browse a live dispensary menu and filter by weights and extract types to see what's in stock today!</p>
-        <a href="https://greenborder.org/" class="cta-btn">Browse Education Articles</a>
+        <a href="/#dispensaries" class="cta-btn">Find a Dispensary</a>
       </div>
+
+      <section class="related-section">
+        <h2>Keep Learning</h2>
+        <div class="related-grid">
+          <a href="/education/edibles-101-start-low-go-slow-desert-survival-guide.html" class="related-card">
+            <span class="related-emoji">🍬</span>
+            <h3>Edibles 101: Start Low, Go Slow</h3>
+            <p>Master edible dosing, timing, and safety — and learn why 10mg eaten hits harder than 10mg inhaled.</p>
+            <span class="related-cta">Read the guide →</span>
+          </a>
+          <a href="/education/vapes-dabs-flower-perfect-consumption-method.html" class="related-card">
+            <span class="related-emoji">💨</span>
+            <h3>Vapes, Dabs, or Flower?</h3>
+            <p>Compare consumption methods and find the perfect fit for your tolerance, environment, and lifestyle.</p>
+            <span class="related-cta">Read the guide →</span>
+          </a>
+          <a href="/education/" class="related-card">
+            <span class="related-emoji">📚</span>
+            <h3>All Education Guides</h3>
+            <p>Browse the full Green Border education library — practical cannabis guides for the 915 community.</p>
+            <span class="related-cta">Browse all guides →</span>
+          </a>
+        </div>
+      </section>
     </div>
   </article>
 </main>
@@ -575,8 +836,11 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  const progressBar = document.getElementById('reading-progress');
   window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 40);
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0) + '%';
   }, { passive: true });
 </script>
 

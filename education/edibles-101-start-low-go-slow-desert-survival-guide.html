@@ -36,23 +36,69 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "EducationalContent",
+    "@type": "Article",
     "headline": "Edibles 101: The 'Start Low, Go Slow' Desert Survival Guide",
     "description": "Master cannabis edibles with our complete guide to dosing, timing, and safety.",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "Guide",
+    "image": "https://greenborder.org/og-image.jpg",
     "author": {
       "@type": "Organization",
-      "name": "The Green Border"
+      "name": "The Green Border",
+      "url": "https://greenborder.org"
     },
     "publisher": {
       "@type": "Organization",
       "name": "The Green Border",
       "url": "https://greenborder.org"
     },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html"
+    },
     "url": "https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html",
     "datePublished": "2026-03-27",
-    "keywords": ["edibles guide", "THC dosing", "cannabis edibles", "start low go slow"]
+    "dateModified": "2026-07-12",
+    "keywords": "edibles guide, THC dosing, cannabis edibles, start low go slow"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long do edibles take to kick in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Edibles can take anywhere from 45 minutes to 3 full hours to take effect, depending on your metabolism and whether you have eaten recently. Never take a second dose before the first one has had time to fully kick in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many mg of edibles should a beginner take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "First-timers should start with 1-2.5mg of THC (a micro-dose) and wait at least two hours before considering more. 5mg is a standard starting dose for those with some experience, while 10mg can be overwhelming for novices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do edibles feel stronger than smoking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When you eat cannabis, your liver converts Delta-9 THC into 11-hydroxy-THC, a more potent compound that crosses the blood-brain barrier more easily. That is why a 10mg edible feels significantly heavier than a 10mg inhaled dose, and why effects last much longer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I do if I get too high from an edible?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stay calm — the feeling will pass. A dose of CBD-only oil or a CBD gummy can help modulate THC's psychoactive effects. Drink water, move to a comfortable space, and try sniffing or chewing black peppercorns, an old-school trick for grounding yourself during an uncomfortable high."
+        }
+      }
+    ]
   }
   </script>
 
@@ -250,7 +296,7 @@
     .article-container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 130px 20px 40px 20px;
     }
     .article-header {
       margin-bottom: 40px;
@@ -395,8 +441,154 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
     }
+
+    /* ── Reading Progress Bar ── */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #10b981, #fbbf24);
+      z-index: 10001;
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb-nav {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .breadcrumb-nav a {
+      color: #34d399;
+      text-decoration: none;
+    }
+    .breadcrumb-nav a:hover { text-decoration: underline; }
+    .breadcrumb-nav .sep { color: #4b5563; }
+
+    /* ── Table of Contents ── */
+    .toc-box {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    .toc-box h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #34d399;
+      margin: 0 0 14px 0;
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .toc-box ol {
+      margin: 0 0 0 20px;
+      line-height: 2;
+    }
+    .toc-box li { margin: 0; }
+    .toc-box a {
+      color: #d1d5db;
+      text-decoration: none;
+    }
+    .toc-box a:hover { color: #34d399; text-decoration: underline; }
+
+    /* ── FAQ Accordion ── */
+    .faq-section { margin: 40px 0; }
+    .faq-item {
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background: rgba(16, 185, 129, 0.03);
+      overflow: hidden;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      padding: 18px 20px;
+      font-weight: 600;
+      color: #e5e7eb;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      color: #34d399;
+      font-size: 1.3rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item summary:hover { color: #34d399; }
+    .faq-item .faq-answer {
+      padding: 0 20px 18px 20px;
+      color: #d1d5db;
+      line-height: 1.7;
+    }
+
+    /* ── Related Guides ── */
+    .related-section {
+      margin: 50px 0 20px 0;
+      padding-top: 30px;
+      border-top: 1px solid rgba(16, 185, 129, 0.1);
+    }
+    .related-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      font-family: 'Rajdhani', sans-serif;
+      margin-bottom: 20px;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .related-card {
+      display: block;
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .related-card:hover {
+      border-color: rgba(16, 185, 129, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.1);
+    }
+    .related-card .related-emoji { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+    .related-card h3 {
+      color: #e5e7eb;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .related-card p {
+      color: #9ca3af;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .related-card .related-cta {
+      color: #34d399;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 10px;
+      display: inline-block;
+    }
     @media (max-width: 768px) {
       body { padding-top: 60px; }
+      .article-container { padding-top: 30px; }
       .article-title { font-size: 1.8rem; }
       .article-content h2 { font-size: 1.5rem; }
       .dosage-table th, .dosage-table td { padding: 12px; font-size: 0.9rem; }
@@ -405,6 +597,8 @@
 </head>
 
 <body>
+
+<div id="reading-progress" aria-hidden="true"></div>
 
 <!-- Header -->
 <header id="tgb-glass-header">
@@ -418,7 +612,7 @@
     <a href="/news.html"    class="tgb-header-link">News</a>
     <a href="/data.html"    class="tgb-header-link">Sales Data</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
-    <a href="/#education"    class="tgb-header-link">Education</a>
+    <a href="/education/"    class="tgb-header-link">Education</a>
     <a href="/#about"        class="tgb-header-link">About</a>
   </nav>
 
@@ -436,11 +630,19 @@
 <!-- Article Content -->
 <main class="article-container">
   <article>
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <a href="/education/">Education</a>
+      <span class="sep">›</span>
+      <span>Edibles 101</span>
+    </nav>
     <div class="article-header">
       <h1 class="article-title">Edibles 101: The 'Start Low, Go Slow' Desert Survival Guide</h1>
       <div class="article-meta">
         <div class="article-meta-item">📅 March 27, 2026</div>
         <div class="article-meta-item">✍️ Greenborder Education Team</div>
+        <div class="article-meta-item">⏱️ 4 min read</div>
       </div>
       <div class="article-tags">
         <span class="article-tag">Edibles</span>
@@ -452,10 +654,21 @@
     </div>
 
     <div class="article-content">
-      <h2>Welcome to the Mojave of the Mind</h2>
+      <div class="toc-box">
+        <h2>In This Guide</h2>
+        <ol>
+          <li><a href="#intro">Welcome to the Mojave of the Mind</a></li>
+          <li><a href="#digestion-detour">The Great Digestion Detour</a></li>
+          <li><a href="#milligram-map">The Milligram Map</a></li>
+          <li><a href="#survival-rule">Final Survival Rule</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+        </ol>
+      </div>
+
+      <h2 id="intro">Welcome to the Mojave of the Mind</h2>
       <p>So, you've decided to trade the immediate puff-puff-pass for a tasty treat. Smart move—your lungs will thank you. But venturing into the world of edibles without a map is like wandering into the Sahara with nothing but a saltine cracker and a dream. Edibles are a different beast entirely. They don't just tap on the door; they move in, rearrange the furniture, and stay for a long weekend. This guide is your canteen. Drink deep, and let's make sure your journey is more 'peaceful oasis' and less 'hallucinating a talking lizard.'</p>
 
-      <h2>The Great Digestion Detour</h2>
+      <h2 id="digestion-detour">The Great Digestion Detour</h2>
       <p>When you inhale cannabis, it goes straight to the lungs and hits the bloodstream in seconds. When you eat it, the THC has to run an obstacle course through your digestive system and stop by the liver for a makeover. Your liver converts Delta-9 THC into 11-hydroxy-THC. This version is more potent and crosses the blood-brain barrier with way more enthusiasm. This is why a 10mg edible feels significantly heavier than a 10mg hit from a vape. It's not just a high; it's a biological upgrade.</p>
 
       <div class="warning-box">
@@ -463,7 +676,7 @@
         <p>It is the most famous last words in history. You eat a gummy. Thirty minutes pass. Nothing. An hour passes. You feel slightly more interested in the texture of your couch, but that's it. You think, 'I must have a high tolerance,' and reach for a second dose. <strong>Stop right there.</strong> Edibles can take anywhere from 45 minutes to 3 full hours to kick in depending on your metabolism and what you had for lunch. If you double down before the first wave hits, you aren't doubling your fun—you're booking a one-way ticket to a six-hour existential crisis.</p>
       </div>
 
-      <h2>The Milligram Map</h2>
+      <h2 id="milligram-map">The Milligram Map</h2>
       <table class="dosage-table">
         <thead>
           <tr>
@@ -496,14 +709,62 @@
         <p>If you find yourself accidentally trying to communicate with your houseplants, don't panic. This is where CBD (Cannabidiol) comes in. Think of CBD as the safety brake. It can help modulate the psychoactive effects of THC by blocking those receptors. If the 'high' gets too 'high,' a heavy dose of CBD-only oil or a gummy can help level the flight. Also, keep water and black peppercorns nearby—sniffing or chewing a few peppercorns is an old-school trick to help ground you during a THC-induced spiral.</p>
       </div>
 
-      <h2>Final Survival Rule</h2>
+      <h2 id="survival-rule">Final Survival Rule</h2>
       <p>You can always add more, but you can never add less. Start with 2.5mg, wait at least two hours, and enjoy the scenery. The desert is beautiful when you aren't running from imaginary scorpions. Stay safe, stay hydrated, and welcome to the Greenborder.</p>
+
+      <section class="faq-section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <details class="faq-item">
+          <summary>How long do edibles take to kick in?</summary>
+          <div class="faq-answer">Edibles can take anywhere from <strong>45 minutes to 3 full hours</strong> to take effect, depending on your metabolism and whether you have eaten recently. Never take a second dose before the first one has had time to fully kick in.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How many mg of edibles should a beginner take?</summary>
+          <div class="faq-answer">First-timers should start with <strong>1-2.5mg of THC</strong> (a micro-dose) and wait at least two hours before considering more. 5mg is a standard starting dose for those with some experience, while 10mg can be overwhelming for novices.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why do edibles feel stronger than smoking?</summary>
+          <div class="faq-answer">When you eat cannabis, your liver converts Delta-9 THC into <strong>11-hydroxy-THC</strong>, a more potent compound that crosses the blood-brain barrier more easily. That is why a 10mg edible feels significantly heavier than a 10mg inhaled dose, and why effects last much longer.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What should I do if I get too high from an edible?</summary>
+          <div class="faq-answer">Stay calm — the feeling will pass. A dose of <strong>CBD-only oil or a CBD gummy</strong> can help modulate THC's psychoactive effects. Drink water, move to a comfortable space, and try sniffing or chewing black peppercorns, an old-school trick for grounding yourself during an uncomfortable high.</div>
+        </details>
+      </section>
 
       <div class="cta-box">
         <p><strong>Ready to map out your next session?</strong></p>
-        <p>Check out our 'Edible Dosage Calculator' coming soon to find your perfect starting point.</p>
-        <a href="https://greenborder.org/" class="cta-btn">Browse Education Articles</a>
+        <p>Find a dispensary near you and ask the budtenders about low-dose edible options to start your journey.</p>
+        <a href="/#dispensaries" class="cta-btn">Find a Dispensary</a>
       </div>
+
+      <section class="related-section">
+        <h2>Keep Learning</h2>
+        <div class="related-grid">
+          <a href="/education/vapes-dabs-flower-perfect-consumption-method.html" class="related-card">
+            <span class="related-emoji">💨</span>
+            <h3>Vapes, Dabs, or Flower?</h3>
+            <p>Compare consumption methods and find the perfect fit for your tolerance, environment, and lifestyle.</p>
+            <span class="related-cta">Read the guide →</span>
+          </a>
+          <a href="/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html" class="related-card">
+            <span class="related-emoji">📖</span>
+            <h3>Dispensary Menu 101</h3>
+            <p>What's an eighth? Shake vs. buds? Live resin vs. distillate? Master dispensary jargon like a pro.</p>
+            <span class="related-cta">Read the guide →</span>
+          </a>
+          <a href="/education/" class="related-card">
+            <span class="related-emoji">📚</span>
+            <h3>All Education Guides</h3>
+            <p>Browse the full Green Border education library — practical cannabis guides for the 915 community.</p>
+            <span class="related-cta">Browse all guides →</span>
+          </a>
+        </div>
+      </section>
     </div>
   </article>
 </main>
@@ -526,8 +787,11 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  const progressBar = document.getElementById('reading-progress');
   window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 40);
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0) + '%';
   }, { passive: true });
 </script>
 
