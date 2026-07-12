@@ -20,6 +20,7 @@
   <meta property="og:description" content="Master dispensary terminology. Learn what an eighth is, the difference between shake and buds, and how extract types affect your cannabis experience." />
   <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
   <meta property="article:published_time" content="2026-03-27" />
+  <meta property="article:modified_time" content="2026-07-12" />
   <meta property="article:author" content="Greenborder Education Team" />
 
   <!-- Twitter Card -->
@@ -127,26 +128,6 @@
       }
     ]
   }
-  </script>
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
-            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Rajdhani', 'Inter', 'sans-serif'],
-          },
-        }
-      }
-    }
   </script>
 
   <!-- Google AdSense -->
@@ -592,6 +573,95 @@
       margin-top: 10px;
       display: inline-block;
     }
+
+    /* ── Share Bar ── */
+    .share-bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .share-label { color: #6b7280; font-size: 0.85rem; font-weight: 600; }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #cbd5e1;
+      background: rgba(16, 185, 129, 0.05);
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .share-btn:hover { border-color: rgba(16, 185, 129, 0.6); color: #34d399; }
+
+    /* ── Author Box ── */
+    .author-box {
+      display: flex;
+      gap: 16px;
+      background: rgba(16, 185, 129, 0.04);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      border-radius: 12px;
+      padding: 22px;
+      margin: 40px 0 0 0;
+      align-items: flex-start;
+    }
+    .author-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981, #047857);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .author-box h3 { color: #e5e7eb; font-weight: 700; margin-bottom: 6px; font-size: 1rem; }
+    .author-box p { color: #9ca3af; font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+    /* ── Up Next ── */
+    .upnext-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.04));
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0 0 0;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .upnext-card:hover {
+      border-color: rgba(16, 185, 129, 0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(16, 185, 129, 0.15);
+    }
+    .upnext-card .upnext-label {
+      color: #fbbf24;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .upnext-card .upnext-title {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.15rem;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .upnext-card .upnext-arrow { color: #34d399; font-size: 1.6rem; flex-shrink: 0; }
+
     @media (max-width: 768px) {
       body { padding-top: 60px; }
       .article-container { padding-top: 30px; }
@@ -649,12 +719,20 @@
         <div class="article-meta-item">📅 March 27, 2026</div>
         <div class="article-meta-item">✍️ Greenborder Education Team</div>
         <div class="article-meta-item">⏱️ 5 min read</div>
+        <div class="article-meta-item">🔄 Updated July 12, 2026</div>
       </div>
       <div class="article-tags">
         <span class="article-tag">Dispensary Guide</span>
         <span class="article-tag">Measurements</span>
         <span class="article-tag">Cannabis Extracts</span>
         <span class="article-tag">Beginner Guide</span>
+      </div>
+      <div class="share-bar">
+        <span class="share-label">Share:</span>
+        <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgreenborder.org%2Feducation%2Fdecoding-dispensary-menu-eighth-shake-live-resin-guide.html&text=Decoding%20the%20Menu%3A%20What%27s%20an%20Eighth%2C%20Shake%2C%20and%20Live%20Resin%3F" target="_blank" rel="noopener">𝕏 Post</a>
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgreenborder.org%2Feducation%2Fdecoding-dispensary-menu-eighth-shake-live-resin-guide.html" target="_blank" rel="noopener">Facebook</a>
+        <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fgreenborder.org%2Feducation%2Fdecoding-dispensary-menu-eighth-shake-live-resin-guide.html&title=Decoding%20the%20Menu%3A%20What%27s%20an%20Eighth%2C%20Shake%2C%20and%20Live%20Resin%3F" target="_blank" rel="noopener">Reddit</a>
+        <button class="share-btn" id="copy-link-btn" type="button">🔗 Copy Link</button>
       </div>
     </div>
 
@@ -791,6 +869,22 @@
         <a href="/#dispensaries" class="cta-btn">Find a Dispensary</a>
       </div>
 
+      <div class="author-box">
+        <div class="author-avatar">🌵</div>
+        <div>
+          <h3>Greenborder Education Team</h3>
+          <p>Practical cannabis guides written for the 915 border community. Our education content is checked against current New Mexico and Texas regulations and is provided for informational purposes only — it is not medical or legal advice.</p>
+        </div>
+      </div>
+
+      <a href="/education/thc-vs-cbd-difference-explained.html" class="upnext-card">
+        <span>
+          <span class="upnext-label">Up Next</span>
+          <span class="upnext-title">THC vs CBD: What's the Difference and Which Is Right for You?</span>
+        </span>
+        <span class="upnext-arrow">→</span>
+      </a>
+
       <section class="related-section">
         <h2>Keep Learning</h2>
         <div class="related-grid">
@@ -837,11 +931,33 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   const progressBar = document.getElementById('reading-progress');
+  let markedRead = false;
   window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 40);
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    progressBar.style.width = (scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0) + '%';
+    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progressBar.style.width = pct + '%';
+    if (!markedRead && pct >= 60) {
+      markedRead = true;
+      try {
+        const read = JSON.parse(localStorage.getItem('tgb-guides-read') || '[]');
+        const slug = location.pathname.split('/').pop();
+        if (!read.includes(slug)) {
+          read.push(slug);
+          localStorage.setItem('tgb-guides-read', JSON.stringify(read));
+        }
+      } catch (e) {}
+    }
   }, { passive: true });
+  const copyBtn = document.getElementById('copy-link-btn');
+  if (copyBtn) copyBtn.addEventListener('click', () => {
+    const canonical = document.querySelector('link[rel=canonical]');
+    const url = canonical ? canonical.href : location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      copyBtn.textContent = '✓ Copied!';
+      setTimeout(() => { copyBtn.textContent = '🔗 Copy Link'; }, 2000);
+    }).catch(() => {});
+  });
 </script>
 
 </body>
