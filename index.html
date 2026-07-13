@@ -99,49 +99,49 @@
         "position": 1,
         "name": "Astro Buds Dispensary, Consumption Lounge & Grill",
         "description": "Sunland Park's first Lounge and Grill with fully tailored menu and amazing food in one spot",
-        "url": "https://elpaso.fyi/astro-buds.html"
+        "url": "https://greenborder.org/astro-buds.html"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Old Gods Dispensary",
         "description": "Boutique cannabis dispensary with expert staff and curated selection in Sunland Park",
-        "url": "https://elpaso.fyi/old-gods-dispensary.html"
+        "url": "https://greenborder.org/old-gods.html"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "Mango Cannabis",
         "description": "High energy dispensary with massive inventory and curbside pickup in Sunland Park",
-        "url": "https://elpaso.fyi/mango-cannabis.html"
+        "url": "https://greenborder.org/mango-cannabis.html"
       },
       {
         "@type": "ListItem",
         "position": 4,
         "name": "High Valley Cannabis",
         "description": "24-hour dispensary with consumption lounge in Chaparral",
-        "url": "https://elpaso.fyi/high-valley-cannabis.html"
+        "url": "https://greenborder.org/directory.html"
       },
       {
         "@type": "ListItem",
         "position": 5,
         "name": "Astro Buds",
         "description": "Organic, soil-grown flower with terpene-rich, beautifully cured cannabis in Chaparral",
-        "url": "https://elpaso.fyi/astro-buds-chaparral.html"
+        "url": "https://greenborder.org/directory.html"
       },
       {
         "@type": "ListItem",
         "position": 6,
         "name": "St. Canapa",
         "description": "Refined, stress-free environment with top-shelf flower and expert staff in Santa Teresa",
-        "url": "https://elpaso.fyi/st-canapa.html"
+        "url": "https://greenborder.org/directory.html"
       },
       {
         "@type": "ListItem",
         "position": 7,
         "name": "Kushology 101",
         "description": "Large inventory with weekly specials right off I-10 in Anthony",
-        "url": "https://elpaso.fyi/kushology-101.html"
+        "url": "https://greenborder.org/directory.html"
       }
     ]
   }
@@ -160,7 +160,7 @@
           },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Rajdhani', 'Inter', 'sans-serif'],
+            display: ['Fraunces', 'Georgia', 'serif'],
           },
           backgroundImage: {
             'hero-grid': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
@@ -186,7 +186,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ── Base ── */
@@ -415,12 +415,12 @@
     #tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
 
     /* ── Fluid type & spacing ── */
-    .hero-title   { font-size: clamp(2.6rem, 1rem + 8.5vw, 6.5rem); }
+    .hero-title   { font-size: clamp(2.6rem, 1rem + 8.5vw, 6.25rem); }
     .hero-sub     { font-size: clamp(1.02rem, 0.9rem + 0.9vw, 1.3rem); }
-    .section-title{ font-size: clamp(1.85rem, 1.3rem + 2.2vw, 2.5rem); }
+    .section-title{ font-size: clamp(1.95rem, 1.35rem + 2.4vw, 2.8rem); }
     .section-pad  {
-      padding-top: clamp(3.5rem, 2rem + 6vw, 5.5rem);
-      padding-bottom: clamp(3.5rem, 2rem + 6vw, 5.5rem);
+      padding-top: clamp(4rem, 2.25rem + 6.5vw, 6.5rem);
+      padding-bottom: clamp(4rem, 2.25rem + 6.5vw, 6.5rem);
     }
     @supports (min-height: 100svh) {
       section.hero-gradient { min-height: 100svh; }
@@ -951,9 +951,9 @@
     }
 
     /* ── Dispensary Directory ── */
-    .font-display { font-family: 'Rajdhani', 'Inter', sans-serif; }
+    .font-display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
     .font-body    { font-family: 'Inter', system-ui, sans-serif; }
-    .font-mono-dir{ font-family: 'Rajdhani', monospace; letter-spacing: 0.05em; }
+    .font-mono-dir{ font-family: 'Inter', system-ui, sans-serif; letter-spacing: 0.12em; }
     .card-hover   { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
     .tag-pill     { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
@@ -1050,9 +1050,136 @@
   <!-- Liquid Glass design system (must load after the inline styles above) -->
   <link rel="stylesheet" href="/css/liquid-glass.css" />
   <script src="/js/liquid-glass.js" defer></script>
+
+  <!-- ── Premium "Editorial Glass" layer (homepage) ──
+       Loaded after liquid-glass.css so these refinements win by source
+       order. Typography: Fraunces serif for display, Inter for UI. -->
+  <style id="premium-overrides">
+    /* ── Display typography ── */
+    .hero-title,
+    .section-title,
+    .tgb-cta-title {
+      font-family: 'Fraunces', Georgia, serif;
+      letter-spacing: -0.015em;
+      text-wrap: balance;
+    }
+    .hero-title { font-weight: 700; line-height: 1.04; }
+    .section-title { font-weight: 700; line-height: 1.12; }
+    .tgb-cta-title { font-size: 28px; font-weight: 700; }
+    .hero-accent { font-style: italic; }
+    h3 { text-wrap: balance; }
+
+    /* Big display numerals (hero stats, Market Pulse tiles, About tiles) */
+    .stat-display {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      font-variant-numeric: lining-nums;
+    }
+
+    /* ── Section header pattern: eyebrow → serif title → lede ── */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lg-emerald-deep, #047857);
+    }
+    .eyebrow::before,
+    .eyebrow::after {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.55));
+    }
+    .eyebrow::after { background: linear-gradient(90deg, rgba(5, 150, 105, 0.55), transparent); }
+    .eyebrow.eyebrow-left::after { content: none; }
+    .eyebrow.eyebrow-left::before { background: rgba(5, 150, 105, 0.55); }
+    .section-lede {
+      color: var(--lg-ink-2, #44544c);
+      line-height: 1.7;
+      text-wrap: pretty;
+    }
+
+    /* ── Button hierarchy ──
+       Tier 1: .btn-gold (single highlight CTA) · Tier 2: .btn-glass
+       (frosted pill) · Tier 3: text link. Standalone CTAs are pills. */
+    .btn-pill { border-radius: 9999px !important; }
+    .btn-glass {
+      background: var(--lg-glass-bg-strong, rgba(255, 255, 255, 0.75));
+      backdrop-filter: var(--lg-blur-soft, blur(14px));
+      -webkit-backdrop-filter: var(--lg-blur-soft, blur(14px));
+      border: var(--lg-border, 1px solid rgba(255, 255, 255, 0.72)) !important;
+      color: var(--lg-ink, #16211c) !important;
+      box-shadow: var(--lg-specular), 0 4px 18px rgba(23, 46, 37, 0.10);
+      transition: transform var(--lg-fast, 0.3s) var(--lg-spring, ease),
+                  border-color var(--lg-fast, 0.3s) var(--lg-ease, ease),
+                  box-shadow var(--lg-fast, 0.3s) var(--lg-ease, ease);
+    }
+    .btn-glass:hover {
+      transform: translateY(-2px);
+      border-color: rgba(5, 150, 105, 0.4) !important;
+      box-shadow: var(--lg-specular), 0 10px 28px rgba(23, 46, 37, 0.14);
+      color: var(--lg-emerald-deep, #047857) !important;
+    }
+    .btn-glass svg { color: var(--lg-emerald-deep, #047857); }
+
+    /* ── Hero trust strip (data provenance) ── */
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px 22px;
+      margin-top: 1.75rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--lg-ink-3, #67776f);
+    }
+    .hero-trust span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-trust svg { width: 15px; height: 15px; color: var(--lg-emerald-deep, #047857); flex-shrink: 0; }
+
+    /* ── Skip link (visible on keyboard focus only) ── */
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100000;
+      transform: translateY(-200%);
+      background: var(--lg-glass-bg-strong, rgba(255, 255, 255, 0.9));
+      backdrop-filter: var(--lg-blur, blur(26px));
+      -webkit-backdrop-filter: var(--lg-blur, blur(26px));
+      border: var(--lg-border, 1px solid rgba(255, 255, 255, 0.72));
+      border-radius: 9999px;
+      box-shadow: var(--lg-shadow, 0 8px 32px rgba(23, 46, 37, 0.1));
+      color: var(--lg-emerald-deep, #047857);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+    .skip-link:focus-visible { transform: translateY(0); }
+
+    /* ── SVG icons in chrome (region pills, mobile nav, banners) ── */
+    .tag-pill svg { width: 12px; height: 12px; flex-shrink: 0; }
+    .tgb-nav-icon svg { width: 22px; height: 22px; display: block; }
+    .tgb-nav-icon { filter: none; }
+
+    /* ── Refinements ── */
+    .hero-sub { line-height: 1.75; }
+    .region-header-btn h2 { letter-spacing: -0.01em; }
+    .gb-faq-btn span.font-display { font-size: 1.05rem; }
+  </style>
 </head>
 
 <body>
+
+<a class="skip-link" href="#dispensaries">Skip to dispensaries</a>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              GLASS HEADER                    ║ -->
@@ -1116,9 +1243,9 @@
   </div>
 
   <!-- Headline -->
-  <h1 class="hero-glow font-display hero-title font-bold text-white leading-none tracking-tight mb-4 animate-fade-up" style="font-family:'Rajdhani',sans-serif;font-weight:700;animation-delay:0.1s;">
+  <h1 class="hero-glow hero-title font-bold text-white tracking-tight mb-4 animate-fade-up" style="animation-delay:0.1s;">
     El Paso<br />
-    <span class="lg-gradient-text">Dispensaries</span> Guide
+    <span class="lg-gradient-text hero-accent">Dispensaries</span> Guide
   </h1>
 
   <!-- Sub-headline -->
@@ -1147,15 +1274,18 @@
   </div>
 
   <!-- CTAs -->
-  <div class="flex flex-col sm:flex-row gap-4 animate-fade-up" style="animation-delay:0.3s;">
-    <a href="/data.html" class="btn-gold px-8 py-3.5 rounded-xl text-white font-semibold text-base shadow-lg">
-      📊 Sales Dashboard
+  <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 animate-fade-up" style="animation-delay:0.3s;">
+    <a href="/data.html" class="btn-gold btn-pill inline-flex items-center justify-center gap-2.5 px-8 py-3.5 text-white font-semibold text-base shadow-lg">
+      <svg class="w-4.5 h-4.5 shrink-0" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v16a2 2 0 002 2h16"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 14l4-4 3 3 5-6"/></svg>
+      Sales Dashboard
     </a>
-    <a href="/directory.html" class="px-8 py-3.5 rounded-xl font-semibold text-base bg-white/5 border border-emerald-500/30 text-emerald-400 hover:border-emerald-500/60 hover:text-emerald-300 hover:-translate-y-0.5 transition-all">
-      🌿 Dispensary Directory
+    <a href="/directory.html" class="btn-glass btn-pill inline-flex items-center justify-center gap-2.5 px-8 py-3.5 font-semibold text-base">
+      <svg class="shrink-0" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      Dispensary Directory
     </a>
-    <a href="#dispensaries" class="px-8 py-3.5 rounded-xl font-semibold text-base bg-white/5 border border-white/15 text-gray-300 hover:border-white/30 hover:text-white hover:-translate-y-0.5 transition-all">
+    <a href="#dispensaries" class="btn-glass btn-pill inline-flex items-center justify-center gap-2.5 px-8 py-3.5 font-semibold text-base">
       Browse Featured
+      <svg class="shrink-0" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
     </a>
   </div>
 
@@ -1193,6 +1323,22 @@
     </a>
   </div>
 
+  <!-- Trust & provenance strip -->
+  <div class="hero-trust animate-fade-up" style="animation-delay:0.45s;">
+    <span>
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      Built on official New Mexico state sales data
+    </span>
+    <span>
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Updated monthly
+    </span>
+    <span>
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      Independent &mdash; no paid rankings
+    </span>
+  </div>
+
   <!-- Scroll cue -->
   <a href="#dispensaries" class="hero-scroll-cue text-gray-500 hover:text-emerald-400" aria-label="Scroll to featured dispensaries">
     <span>Explore</span>
@@ -1218,9 +1364,9 @@
 <!-- ╚══════════════════════════════════════════════╝ -->
 <section id="dispensaries" class="section-pad px-4 max-w-6xl mx-auto">
   <div class="text-center mb-14 reveal">
-    <span class="section-line mb-4 block mx-auto"></span>
-    <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Featured Dispensaries</h2>
-    <p class="text-gray-400 max-w-xl mx-auto">Legal, licensed, and local — the best spots across the green border.</p>
+    <span class="eyebrow mb-4">Curated &amp; Licensed</span>
+    <h2 class="section-title font-bold text-white mb-4">Featured Dispensaries</h2>
+    <p class="section-lede text-gray-400 max-w-xl mx-auto">Legal, licensed, and local — the best spots across the green border.</p>
   </div>
 
   <!-- Directory -->
@@ -1228,10 +1374,10 @@
 
   <!-- Quick-jump regions -->
   <div class="flex flex-wrap justify-center gap-2 mb-8">
-    <a href="#region-sunland"   class="tag-pill bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-all">📍 Sunland Park</a>
-    <a href="#region-chaparral" class="tag-pill bg-sky-500/15 text-sky-400 border border-sky-500/30 hover:bg-sky-500/25 transition-all">📍 Chaparral</a>
-    <a href="#region-st"        class="tag-pill bg-violet-500/15 text-violet-400 border border-violet-500/30 hover:bg-violet-500/25 transition-all">📍 Santa Teresa</a>
-    <a href="#region-anthony"   class="tag-pill bg-amber-500/15 text-amber-400 border border-amber-500/30 hover:bg-amber-500/25 transition-all">📍 Anthony</a>
+    <a href="#region-sunland"   class="tag-pill bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-all"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Sunland Park</a>
+    <a href="#region-chaparral" class="tag-pill bg-sky-500/15 text-sky-400 border border-sky-500/30 hover:bg-sky-500/25 transition-all"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Chaparral</a>
+    <a href="#region-st"        class="tag-pill bg-violet-500/15 text-violet-400 border border-violet-500/30 hover:bg-violet-500/25 transition-all"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Santa Teresa</a>
+    <a href="#region-anthony"   class="tag-pill bg-amber-500/15 text-amber-400 border border-amber-500/30 hover:bg-amber-500/25 transition-all"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Anthony</a>
   </div>
 
   <!-- ── WARNING BANNER ────────────────────────────── -->
@@ -1312,7 +1458,9 @@
 
   <!-- No results -->
   <div id="gb-no-results" class="hidden py-24 text-center rounded-[2rem] border border-white/10 bg-white/5">
-    <div class="text-6xl mb-5 opacity-60">🔍</div>
+    <div class="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center bg-white/10 border border-white/20">
+      <svg class="w-7 h-7 text-emerald-500 opacity-70" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/></svg>
+    </div>
     <p class="font-display text-2xl text-white mb-2">No dispensaries found</p>
     <p class="text-sm text-gray-500 mb-6">Try a different search term or clear your filters.</p>
     <button onclick="gbReset()" class="text-sm font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-6 py-2.5 rounded-xl border border-emerald-500/20">Clear filters</button>
@@ -1325,42 +1473,42 @@
   <!-- ── MARKET PULSE ────────────────────────────────── -->
   <section id="market-pulse" class="mt-20" hidden>
     <div class="text-center mb-10 reveal">
-      <span class="section-line mb-4 block mx-auto"></span>
-      <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Border Market Pulse</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Every dollar below is real — dispensary sales reported to the State of New Mexico, refreshed monthly. Latest read: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
+      <span class="eyebrow mb-4">Official State Data</span>
+      <h2 class="section-title font-bold text-white mb-4">Border Market Pulse</h2>
+      <p class="section-lede text-gray-400 max-w-xl mx-auto">Every dollar below is real — dispensary sales reported to the State of New Mexico, refreshed monthly. Latest read: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 reveal">
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Monthly sales — open the sales dashboard">
-        <div id="mp-total" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div id="mp-total" class="stat-display text-3xl text-emerald-400 mb-1">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Monthly Sales</div>
       </a>
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Year over year change — open the sales dashboard" id="mp-yoy-tile" hidden>
-        <div id="mp-yoy" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div id="mp-yoy" class="stat-display text-3xl mb-1">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Year over Year</div>
       </a>
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Locations reporting — open the sales dashboard">
-        <div id="mp-locations" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">—</div>
+        <div id="mp-locations" class="stat-display text-3xl mb-1" style="color:#fbbf24;">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Locations Reporting</div>
       </a>
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Month over month change — open the sales dashboard">
-        <div id="mp-mom" class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div id="mp-mom" class="stat-display text-3xl mb-1">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Month over Month</div>
       </a>
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline col-span-2 sm:col-span-1" aria-label="Top region — open the sales dashboard">
-        <div id="mp-region-share" class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">—</div>
+        <div id="mp-region-share" class="stat-display text-3xl text-emerald-400 mb-1">—</div>
         <div id="mp-region-label" class="text-xs text-gray-500 uppercase tracking-widest">Top Region</div>
       </a>
     </div>
 
     <!-- Auto-written monthly story (filled from sales-data-2026.js) -->
     <div id="mp-story" class="lg-glass lg-sheen rounded-2xl px-6 py-5 mb-6 reveal" hidden>
-      <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-2" style="font-family:'Rajdhani',sans-serif;">This Month on the Border</div>
+      <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-2">This Month on the Border</div>
       <p id="mp-story-text" class="text-sm leading-relaxed text-gray-400 mb-3"></p>
       <div id="mp-story-chips" class="flex flex-wrap gap-2"></div>
       <!-- Border Moves: name/ownership changes detected in the state data -->
       <div id="mp-moves" class="mt-4 pt-4" style="border-top:1px solid rgba(16,185,129,0.12);" hidden>
-        <div class="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-2" style="font-family:'Rajdhani',sans-serif;">Border Moves · Who Changed Hands</div>
+        <div class="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-2">Border Moves · Who Changed Hands</div>
         <div id="mp-moves-list" class="flex flex-wrap gap-2"></div>
       </div>
       <!-- Provenance + freshness (filled from sales-data-2026.js) -->
@@ -1371,7 +1519,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-10 reveal">
       <div class="lg-glass lg-sheen rounded-2xl p-6 lg:col-span-3 relative">
         <div class="flex items-baseline justify-between gap-2 mb-4 flex-wrap">
-          <h3 class="text-sm font-bold text-white uppercase tracking-widest" style="font-family:'Rajdhani',sans-serif;">Market Trend</h3>
+          <h3 class="text-sm font-bold text-white uppercase tracking-widest">Market Trend</h3>
           <span id="mp-trend-range" class="text-[10px] text-gray-500 uppercase tracking-widest">Total monthly sales · all locations</span>
         </div>
         <div id="mp-spark" class="relative" aria-label="Monthly cannabis sales totals"></div>
@@ -1379,7 +1527,7 @@
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-6 lg:col-span-2">
         <div class="flex items-baseline justify-between gap-2 mb-4 flex-wrap">
-          <h3 class="text-sm font-bold text-white uppercase tracking-widest" style="font-family:'Rajdhani',sans-serif;">Who's Hot Right Now</h3>
+          <h3 class="text-sm font-bold text-white uppercase tracking-widest">Who's Hot Right Now</h3>
           <span id="mp-board-month" class="text-[10px] text-gray-500 uppercase tracking-widest"></span>
         </div>
         <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-2">Top Performers</div>
@@ -1390,7 +1538,7 @@
     </div>
 
     <div class="text-center reveal">
-      <a href="/data.html" class="btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm shadow-lg">
+      <a href="/data.html" class="btn-gold btn-pill inline-flex items-center gap-2 px-8 py-4 text-white font-bold text-sm shadow-lg">
         Explore the Full Sales Dashboard
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>
@@ -1405,11 +1553,12 @@
     <p class="text-gray-400 text-base leading-relaxed max-w-xl mx-auto mb-8">Our curated guide is the #1 resource for El Paso locals crossing to shop. Claim your listing, run featured placements, and drive measurable foot traffic.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="/partnerships.html"
-         class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-emerald-900/20 transition-all hover:-translate-y-1">
-        Become a Partner →
+         class="btn-primary btn-pill inline-flex items-center justify-center gap-2 px-8 py-4 text-white text-sm font-bold shadow-lg">
+        Become a Partner
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </a>
       <a href="/#about"
-         class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/15 hover:bg-white/10 text-white text-sm font-bold rounded-2xl transition-all hover:-translate-y-1">
+         class="btn-glass btn-pill inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-bold">
         Join the Cannabis Club
       </a>
     </div>
@@ -1990,7 +2139,9 @@ render();
 <!-- ╚══════════════════════════════════════════════╝ -->
 <div class="px-4 py-3 max-w-6xl mx-auto">
   <div class="rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(16,185,129,0.08));border:1px solid rgba(245,158,11,0.25);">
-    <span class="text-3xl">⚠️</span>
+    <span class="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,0.14);border:1px solid rgba(245,158,11,0.3);">
+      <svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    </span>
     <div class="text-center sm:text-left">
       <p class="text-yellow-300 font-semibold text-sm">Cannabis Stays on Your Side of the Border</p>
       <p class="text-gray-400 text-xs mt-0.5">It is a <strong class="text-white">federal crime</strong> to transport cannabis across state or international borders. Consume legally — enjoy locally.</p>
@@ -2004,9 +2155,9 @@ render();
 <!-- ╚══════════════════════════════════════════════╝ -->
 <section id="news" class="section-pad px-4 max-w-6xl mx-auto">
   <div class="text-center mb-14 reveal">
-    <span class="section-line mb-4 block mx-auto"></span>
-    <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Latest from The Green Border</h2>
-    <p class="text-gray-400 max-w-xl mx-auto">Cannabis news, policy updates, and culture for the 915 and beyond.</p>
+    <span class="eyebrow mb-4">News &amp; Culture</span>
+    <h2 class="section-title font-bold text-white mb-4">Latest from The Green Border</h2>
+    <p class="section-lede text-gray-400 max-w-xl mx-auto">Cannabis news, policy updates, and culture for the 915 and beyond.</p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2083,9 +2234,9 @@ render();
 <section id="education" class="section-pad px-4" style="background:linear-gradient(180deg,#0a0a0a 0%,#0f0f0f 50%,#0a0a0a 100%);">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14 reveal">
-      <span class="section-line mb-4 block mx-auto"></span>
-      <h2 class="section-title font-bold text-white mb-3" style="font-family:'Rajdhani',sans-serif;">Cannabis Education</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Know before you go. Practical guides for 915 first-timers and seasoned consumers alike.</p>
+      <span class="eyebrow mb-4">Know Before You Go</span>
+      <h2 class="section-title font-bold text-white mb-4">Cannabis Education</h2>
+      <p class="section-lede text-gray-400 max-w-xl mx-auto">Practical guides for 915 first-timers and seasoned consumers alike.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -2149,8 +2300,8 @@ render();
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
     <div class="reveal">
-      <span class="section-line mb-5 block"></span>
-      <h2 class="section-title font-bold text-white mb-5" style="font-family:'Rajdhani',sans-serif;">About The Green Border</h2>
+      <span class="eyebrow eyebrow-left mb-5">Independent Media</span>
+      <h2 class="section-title font-bold text-white mb-5">About The Green Border</h2>
       <p class="text-gray-400 leading-relaxed mb-4">
         The Green Border was built for the <span class="text-white font-medium">915 community</span> — the El Paso residents, the Sunland Park locals, and the border-crossers navigating two states with very different cannabis laws.
       </p>
@@ -2173,19 +2324,19 @@ render();
     <!-- Stats card -->
     <div class="grid grid-cols-2 gap-4 reveal">
       <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
-        <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">915</div>
+        <div class="stat-display text-3xl text-emerald-400 mb-1">915</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Area Code</div>
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
-        <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">2</div>
+        <div class="stat-display text-3xl mb-1" style="color:#fbbf24;">2</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">States Covered</div>
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
-        <div class="text-3xl font-bold text-emerald-400 mb-1" style="font-family:'Rajdhani',sans-serif;">Free</div>
+        <div class="stat-display text-3xl text-emerald-400 mb-1">Free</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Always</div>
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
-        <div class="text-3xl font-bold mb-1" style="font-family:'Rajdhani',sans-serif;color:#fbbf24;">100%</div>
+        <div class="stat-display text-3xl mb-1" style="color:#fbbf24;">100%</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Independent</div>
       </div>
     </div>
@@ -2201,11 +2352,11 @@ render();
     <div class="tgb-footer-card">
 
         <div class="tgb-footer-cta">
-            <h3 class="tgb-cta-title"><a href="https://www.instagram.com/ep.canna" target="_blank">Join the Cannabis Club</a></h3>
+            <h3 class="tgb-cta-title"><a href="https://www.instagram.com/ep.canna" target="_blank" rel="noopener noreferrer">Join the Cannabis Club</a></h3>
             <p class="tgb-cta-text">
                 Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
             </p>
-            <a href="https://www.instagram.com/ep.canna" target="_blank" class="tgb-sub-btn">Subscribe Free</a>
+            <a href="https://www.instagram.com/ep.canna" target="_blank" rel="noopener noreferrer" class="tgb-sub-btn">Subscribe Free</a>
         </div>
 
         <nav class="tgb-footer-nav">
@@ -2221,7 +2372,7 @@ render();
         <div class="tgb-favorites-section">
             <span class="tgb-favorites-title">Our Favorites</span>
             <nav class="tgb-footer-nav" style="margin-bottom: 0;">
-                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
+                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" rel="noopener noreferrer" class="tgb-footer-link">El Paso Firewood</a>
             </nav>
         </div>
 
@@ -2790,23 +2941,23 @@ render();
         <span>Menu</span>
     </div>
     <a href="/" class="tgb-nav-item" id="nav-home">
-        <span class="tgb-nav-icon">🏠</span>
+        <span class="tgb-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10"/></svg></span>
         <span>Home</span>
     </a>
     <a href="/news.html" class="tgb-nav-item" id="nav-news">
-        <span class="tgb-nav-icon">📰</span>
+        <span class="tgb-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg></span>
         <span>News</span>
     </a>
     <a href="/data.html" class="tgb-nav-item" id="nav-data">
-        <span class="tgb-nav-icon">📊</span>
+        <span class="tgb-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v16a2 2 0 002 2h16"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 14l4-4 3 3 5-6"/></svg></span>
         <span>Data</span>
     </a>
     <a href="/#education" class="tgb-nav-item" id="nav-edu">
-        <span class="tgb-nav-icon">📚</span>
+        <span class="tgb-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></span>
         <span>Education</span>
     </a>
     <a href="/#about" class="tgb-nav-item" id="nav-about">
-        <span class="tgb-nav-icon">ℹ️</span>
+        <span class="tgb-nav-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
         <span>About</span>
     </a>
 </div>
