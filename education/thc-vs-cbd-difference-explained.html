@@ -12,13 +12,17 @@
   <meta name="robots" content="index, follow" />
   <meta name="publish_date" content="2026-07-12" />
   <link rel="canonical" href="https://greenborder.org/education/thc-vs-cbd-difference-explained.html" />
+  <link rel="alternate" type="application/rss+xml" title="The Green Border — Guides &amp; News" href="https://greenborder.org/feed.xml" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://greenborder.org/education/thc-vs-cbd-difference-explained.html" />
   <meta property="og:title" content="THC vs CBD: What's the Difference and Which Is Right for You?" />
   <meta property="og:description" content="THC vs CBD explained: how each cannabinoid works in your body, what they feel like, what ratio products like 1:1 mean, and how to pick the right product at a New Mexico dispensary." />
-  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+  <meta property="og:image" content="https://greenborder.org/og/thc-vs-cbd-difference-explained.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="THC vs CBD: What's the Difference and Which Is Right for You? — The Green Border education guide" />
   <meta property="article:published_time" content="2026-07-12" />
   <meta property="article:modified_time" content="2026-07-12" />
   <meta property="article:author" content="Greenborder Education Team" />
@@ -27,7 +31,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="THC vs CBD: What's the Difference?" />
   <meta name="twitter:description" content="How the two most famous cannabinoids work, what they feel like, and how to choose between them at the dispensary." />
-  <meta name="twitter:image" content="https://greenborder.org/og-image.jpg" />
+  <meta name="twitter:image" content="https://greenborder.org/og/thc-vs-cbd-difference-explained.jpg" />
 
   <!-- Additional Meta Tags -->
   <meta http-equiv="content-language" content="en-US" />
@@ -40,7 +44,7 @@
   "@type": "Article",
   "headline": "THC vs CBD: What's the Difference and Which Is Right for You?",
   "description": "THC vs CBD explained: how each cannabinoid works in your body, what they feel like, what ratio products like 1:1 mean, and how to pick the right product at a New Mexico dispensary.",
-  "image": "https://greenborder.org/og-image.jpg",
+  "image": "https://greenborder.org/og/thc-vs-cbd-difference-explained.jpg",
   "author": {
     "@type": "Organization",
     "name": "The Green Border",
@@ -662,6 +666,54 @@
     }
     .upnext-card .upnext-arrow { color: #34d399; font-size: 1.6rem; flex-shrink: 0; }
 
+
+    /* ── Accessibility ── */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: #10b981;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 0 0 8px 0;
+      z-index: 10002;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus { left: 0; }
+    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+      outline: 2px solid #34d399;
+      outline-offset: 2px;
+    }
+
+    /* ── Scroll-spy TOC ── */
+    .toc-box a.active { color: #34d399; font-weight: 600; }
+
+    /* ── Back to Top ── */
+    #back-to-top {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      background: rgba(26, 26, 26, 0.92);
+      color: #34d399;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      z-index: 9999;
+    }
+    #back-to-top.visible { opacity: 1; visibility: visible; }
+    #back-to-top:hover { border-color: #10b981; transform: translateY(-2px); }
+
+    /* ── FAQ cross-link ── */
+    .faq-more { font-size: 0.95rem; }
+    .faq-more a { color: #34d399; }
+
     @media (max-width: 768px) {
       body { padding-top: 60px; }
       .article-container { padding-top: 30px; }
@@ -673,6 +725,8 @@
 </head>
 
 <body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <div id="reading-progress" aria-hidden="true"></div>
 
@@ -704,7 +758,7 @@
 </header>
 
 <!-- Article Content -->
-<main class="article-container">
+<main class="article-container" id="main-content">
   <article>
     <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="/">Home</a>
@@ -716,7 +770,7 @@
     <div class="article-header">
       <h1 class="article-title">THC vs CBD: What's the Difference and Which Is Right for You?</h1>
       <div class="article-meta">
-        <div class="article-meta-item">📅 July 12, 2026</div>
+        <div class="article-meta-item">📅 <time datetime="2026-07-12">July 12, 2026</time></div>
         <div class="article-meta-item">✍️ Greenborder Education Team</div>
         <div class="article-meta-item">⏱️ 5 min read</div>
       </div>
@@ -726,7 +780,7 @@
         <span class="article-tag">CBD</span>
         <span class="article-tag">Beginner Guide</span>
       </div>
-      <div class="share-bar">
+      <div class="share-bar" role="group" aria-label="Share this guide">
         <span class="share-label">Share:</span>
         <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgreenborder.org%2Feducation%2Fthc-vs-cbd-difference-explained.html&text=THC%20vs%20CBD%3A%20What%27s%20the%20Difference%20and%20Which%20Is%20Right%20for%20You%3F" target="_blank" rel="noopener">𝕏 Post</a>
         <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgreenborder.org%2Feducation%2Fthc-vs-cbd-difference-explained.html" target="_blank" rel="noopener">Facebook</a>
@@ -823,6 +877,7 @@
 
       <section class="faq-section" id="faq">
         <h2>Frequently Asked Questions</h2>
+        <p class="faq-more">Want more quick answers? Browse the <a href="/education/cannabis-faq.html">full Cannabis FAQ</a>.</p>
 
         <details class="faq-item">
           <summary>Does CBD get you high?</summary>
@@ -910,6 +965,8 @@
   </div>
 </footer>
 
+<button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   const progressBar = document.getElementById('reading-progress');
@@ -940,6 +997,31 @@
       setTimeout(() => { copyBtn.textContent = '🔗 Copy Link'; }, 2000);
     }).catch(() => {});
   });
+
+  // Scroll-spy: highlight the TOC entry for the section in view
+  const tocLinks = document.querySelectorAll('.toc-box a[href^="#"]');
+  if (tocLinks.length) {
+    const spyTargets = [];
+    tocLinks.forEach(l => {
+      const el = document.getElementById(l.getAttribute('href').slice(1));
+      if (el) spyTargets.push([el, l]);
+    });
+    const updateSpy = () => {
+      const line = window.scrollY + window.innerHeight * 0.3;
+      let current = null;
+      spyTargets.forEach(pair => { if (pair[0].offsetTop <= line) current = pair[1]; });
+      spyTargets.forEach(pair => pair[1].classList.toggle('active', pair[1] === current));
+    };
+    window.addEventListener('scroll', updateSpy, { passive: true });
+    updateSpy();
+  }
+  const backBtn = document.getElementById('back-to-top');
+  if (backBtn) {
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 </script>
 
 </body>

@@ -11,19 +11,23 @@
   <meta name="author" content="Greenborder Education Team" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://greenborder.org/education/" />
+  <link rel="alternate" type="application/rss+xml" title="The Green Border — Guides &amp; News" href="https://greenborder.org/feed.xml" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenborder.org/education/" />
   <meta property="og:title" content="Cannabis Education Guides for the 915 | The Green Border" />
   <meta property="og:description" content="Know before you go. Practical cannabis guides for 915 first-timers and seasoned consumers alike — edibles, consumption methods, dispensary terminology, border laws, and more." />
-  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+  <meta property="og:image" content="https://greenborder.org/og/education-hub.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Cannabis Education Guides — The Green Border" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cannabis Education Guides for the 915" />
   <meta name="twitter:description" content="Practical cannabis guides for beginners and seasoned consumers — edibles, consumption methods, dispensary terminology, border laws, and more." />
-  <meta name="twitter:image" content="https://greenborder.org/og-image.jpg" />
+  <meta name="twitter:image" content="https://greenborder.org/og/education-hub.jpg" />
 
   <!-- Additional Meta Tags -->
   <meta http-equiv="content-language" content="en-US" />
@@ -104,6 +108,23 @@
         "item": "https://greenborder.org/education/"
       }
     ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "The Green Border",
+    "url": "https://greenborder.org/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://greenborder.org/education/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
 
@@ -636,6 +657,7 @@
     <h2>Ready to Put It Into Practice?</h2>
     <p>Browse dispensaries near El Paso and Sunland Park, check the latest cannabis news, or dig into New Mexico sales data.</p>
     <a href="/#dispensaries" class="cta-btn">Find a Dispensary</a>
+    <p style="margin: 18px 0 0 0;"><a href="/education/cannabis-faq.html" style="color: #34d399; font-weight: 600; text-decoration: none;">Or get quick answers in the Cannabis FAQ →</a></p>
   </div>
 </main>
 
@@ -705,6 +727,12 @@
     });
   });
   searchInput.addEventListener('input', applyFilters);
+
+  // Deep link: /education/?q=term pre-fills the search box
+  try {
+    const q = new URLSearchParams(location.search).get('q');
+    if (q) { searchInput.value = q; applyFilters(); }
+  } catch (e) {}
 </script>
 
 </body>

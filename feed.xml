@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Green Border — Guides &amp; News</title>
+    <link>https://greenborder.org/</link>
+    <description>Cannabis education guides and news for the El Paso &amp; Sunland Park border community — the 915 Cannabis Guide.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Jul 2026 12:00:00 -0600</lastBuildDate>
+    <atom:link href="https://greenborder.org/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>Cannabis FAQ: Quick Answers for the 915</title>
+      <link>https://greenborder.org/education/cannabis-faq.html</link>
+      <guid>https://greenborder.org/education/cannabis-faq.html</guid>
+      <pubDate>Sun, 12 Jul 2026 12:00:00 -0600</pubDate>
+      <description>Every question from our education guides in one place — edible dosing, THC vs CBD, border laws, dispensary etiquette, measurements, and more.</description>
+      <category>Education</category>
+    </item>
+
+    <item>
+      <title>Your First Dispensary Visit: What to Expect + Step-by-Step Checklist</title>
+      <link>https://greenborder.org/education/first-dispensary-visit-checklist-what-to-expect.html</link>
+      <guid>https://greenborder.org/education/first-dispensary-visit-checklist-what-to-expect.html</guid>
+      <pubDate>Sun, 12 Jul 2026 11:00:00 -0600</pubDate>
+      <description>What to bring, how check-in works, what to ask the budtender, and the five rookie mistakes that trip up every first-timer at a New Mexico dispensary.</description>
+      <category>Education</category>
+    </item>
+
+    <item>
+      <title>Cannabis Laws on the Border: What's Legal in New Mexico vs. Texas</title>
+      <link>https://greenborder.org/education/new-mexico-vs-texas-cannabis-laws-border-guide.html</link>
+      <guid>https://greenborder.org/education/new-mexico-vs-texas-cannabis-laws-border-guide.html</guid>
+      <pubDate>Sun, 12 Jul 2026 10:00:00 -0600</pubDate>
+      <description>One metro area, two rulebooks. New Mexico possession limits, Texas penalties, federal checkpoints, and the five golden rules every 915 resident should know.</description>
+      <category>Education</category>
+    </item>
+
+    <item>
+      <title>THC vs CBD: What's the Difference and Which Is Right for You?</title>
+      <link>https://greenborder.org/education/thc-vs-cbd-difference-explained.html</link>
+      <guid>https://greenborder.org/education/thc-vs-cbd-difference-explained.html</guid>
+      <pubDate>Sun, 12 Jul 2026 09:00:00 -0600</pubDate>
+      <description>How the two most famous cannabinoids work in your body, what they feel like, what 1:1 ratio products mean, and how to choose at the counter.</description>
+      <category>Education</category>
+    </item>
+
+    <item>
+      <title>Decoding the Menu: What's an Eighth, Shake, and Live Resin?</title>
+      <link>https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html</link>
+      <guid>https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html</guid>
+      <pubDate>Fri, 27 Mar 2026 12:00:00 -0600</pubDate>
+      <description>Decode cannabis terminology like a pro: weed math (grams, eighths, quarters, zips), shake vs. premium buds, and what distillate, live resin, and live rosin actually mean.</description>
+      <category>Education</category>
+    </item>
+
+    <item>
+      <title>Edibles 101: The 'Start Low, Go Slow' Desert Survival Guide</title>
+      <link>https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html</link>
+      <guid>https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html</guid>
+      <pubDate>Fri, 27 Mar 2026 11:00:00 -0600</pubDate>
+      <description>Master cannabis edibles with our complete guide to dosing, timing, and safety — and learn why 10mg eaten hits harder than 10mg inhaled.</description>
+      <category>Education</category>
+    </item>
+
+    <item>
+      <title>Vapes, Dabs, or Flower? Finding Your Perfect Consumption Method</title>
+      <link>https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html</link>
+      <guid>https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html</guid>
+      <pubDate>Fri, 27 Mar 2026 10:00:00 -0600</pubDate>
+      <description>Compare the big three consumption methods and find the perfect fit for your tolerance, living situation, and lifestyle.</description>
+      <category>Education</category>
+    </item>
+
+    <item>
+      <title>Texas Cannabis Legalization: March 2026 Primary Results</title>
+      <link>https://greenborder.org/articles/texas-cannabis-legalization-march-2026.html</link>
+      <guid>https://greenborder.org/articles/texas-cannabis-legalization-march-2026.html</guid>
+      <pubDate>Thu, 26 Mar 2026 12:00:00 -0600</pubDate>
+      <description>Texas Democratic primary voters overwhelmingly backed cannabis legalization. What the result means for the path forward in the Lone Star State.</description>
+      <category>News</category>
+    </item>
+
+    <item>
+      <title>The Hemp Store on Your Corner Could Be Gone by November</title>
+      <link>https://greenborder.org/articles/hemp-ban-2026.html</link>
+      <guid>https://greenborder.org/articles/hemp-ban-2026.html</guid>
+      <pubDate>Fri, 20 Mar 2026 12:00:00 -0600</pubDate>
+      <description>A federal hemp ban takes effect November 12, 2026. What it means for El Paso's hemp shops and the Texas hemp industry.</description>
+      <category>News</category>
+    </item>
+
+  </channel>
+</rss>
