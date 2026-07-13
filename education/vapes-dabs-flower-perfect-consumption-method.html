@@ -13,9 +13,17 @@
   <meta name="publish_date" content="2026-03-27" />
   <link rel="canonical" href="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
   <link rel="alternate" type="application/rss+xml" title="The Green Border — Guides &amp; News" href="https://greenborder.org/feed.xml" />
+  <link rel="alternate" hreflang="en" href="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
+  <link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/vapeo-dabs-o-flor-metodo-de-consumo.html" />
+  <link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="es_MX" />
   <meta property="og:url" content="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
   <meta property="og:title" content="Vapes, Dabs, or Flower? Finding Your Perfect Consumption Method" />
   <meta property="og:description" content="A comprehensive lifestyle guide to cannabis consumption methods. Find the right way to consume based on your living situation, tolerance, and preferences." />
@@ -714,6 +722,47 @@
     .faq-more { font-size: 0.95rem; }
     .faq-more a { color: #34d399; }
 
+
+    /* ── Section anchor links ── */
+    .article-content h2 .anchor-link {
+      opacity: 0;
+      margin-left: 10px;
+      color: #34d399;
+      text-decoration: none;
+      font-size: 1.05rem;
+      vertical-align: middle;
+      transition: opacity 0.15s ease;
+    }
+    .article-content h2:hover .anchor-link,
+    .article-content h2 .anchor-link:focus { opacity: 1; }
+
+    /* ── Language switcher ── */
+    .lang-switch {
+      margin-left: auto;
+      color: #34d399;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .lang-switch:hover { text-decoration: underline; }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #ffffff !important; color: #111111; }
+      #tgb-glass-header, #reading-progress, .share-bar, .upnext-card, .related-section,
+      .cta-box, #back-to-top, .toc-box, .skip-link, .lang-switch, .faq-more, footer,
+      .breadcrumb-nav, .anchor-link, .hub-controls, .hub-cta, .faq-cta { display: none !important; }
+      .article-container, .faq-container, .hub-container { padding: 0 !important; max-width: 100% !important; }
+      .article-title, .article-content h2, .article-content h3, .faq-topic h2, .faq-hero h1 { color: #000000 !important; }
+      .article-content p, .article-content li, .article-content td,
+      .faq-item .faq-answer, .faq-item summary { color: #222222 !important; }
+      .article-content strong, .faq-item .faq-answer strong { color: #047857 !important; }
+      .faq-item, .extract-box, table { page-break-inside: avoid; }
+      .faq-item summary::after { display: none; }
+      .faq-item, .extract-box { border-color: #cccccc !important; background: #f8f8f8 !important; }
+      a { color: #047857 !important; }
+    }
+
     @media (max-width: 768px) {
       body { padding-top: 60px; }
       .article-container { padding-top: 30px; }
@@ -766,6 +815,7 @@
       <a href="/education/">Education</a>
       <span class="sep">›</span>
       <span>Vapes, Dabs, or Flower?</span>
+      <a class="lang-switch" href="/education/es/vapeo-dabs-o-flor-metodo-de-consumo.html" lang="es" hreflang="es">🌐 Español</a>
     </nav>
     <div class="article-header">
       <h1 class="article-title">Vapes, Dabs, or Flower? Finding Your Perfect Consumption Method</h1>
@@ -1017,6 +1067,30 @@
     }, { passive: true });
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
+
+  // Expand FAQ accordions when printing
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('details').forEach(d => {
+      d.dataset.wasOpen = d.open ? '1' : '';
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', () => {
+    document.querySelectorAll('details').forEach(d => { d.open = d.dataset.wasOpen === '1'; });
+  });
+
+  // Copy-link anchors on section headings
+  document.querySelectorAll('.article-content h2[id]').forEach(h => {
+    const a = document.createElement('a');
+    a.className = 'anchor-link';
+    a.href = '#' + h.id;
+    a.textContent = '#';
+    a.setAttribute('aria-label', 'Copy link to this section');
+    a.addEventListener('click', () => {
+      try { navigator.clipboard.writeText(location.origin + location.pathname + '#' + h.id); } catch (e) {}
+    });
+    h.appendChild(a);
+  });
 </script>
 
 </body>

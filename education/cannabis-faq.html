@@ -13,9 +13,17 @@
   <meta name="publish_date" content="2026-07-12" />
   <link rel="canonical" href="https://greenborder.org/education/cannabis-faq.html" />
   <link rel="alternate" type="application/rss+xml" title="The Green Border — Guides &amp; News" href="https://greenborder.org/feed.xml" />
+  <link rel="alternate" hreflang="en" href="https://greenborder.org/education/cannabis-faq.html" />
+  <link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/preguntas-frecuentes-cannabis.html" />
+  <link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/cannabis-faq.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="es_MX" />
   <meta property="og:url" content="https://greenborder.org/education/cannabis-faq.html" />
   <meta property="og:title" content="Cannabis FAQ: Quick Answers for the 915" />
   <meta property="og:description" content="Every question from our education guides in one place — dosing, laws, products, and dispensary basics." />
@@ -462,6 +470,29 @@
       transition: all 0.2s ease;
     }
     .faq-toc a:hover { border-color: rgba(16, 185, 129, 0.55); color: #34d399; }
+    .faq-search {
+      display: block;
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto 30px auto;
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 50px;
+      padding: 13px 22px;
+      color: #e5e7eb;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .faq-search::placeholder { color: #6b7280; }
+    .faq-search:focus { border-color: rgba(16, 185, 129, 0.6); }
+    .faq-no-results {
+      display: none;
+      text-align: center;
+      color: #6b7280;
+      padding: 30px 0;
+    }
     .faq-topic { margin-bottom: 46px; }
     .faq-topic h2 {
       font-size: 1.6rem;
@@ -548,6 +579,47 @@
     }
     .skip-link:focus { left: 0; }
     a:focus-visible, summary:focus-visible { outline: 2px solid #34d399; outline-offset: 2px; }
+
+    /* ── Section anchor links ── */
+    .article-content h2 .anchor-link {
+      opacity: 0;
+      margin-left: 10px;
+      color: #34d399;
+      text-decoration: none;
+      font-size: 1.05rem;
+      vertical-align: middle;
+      transition: opacity 0.15s ease;
+    }
+    .article-content h2:hover .anchor-link,
+    .article-content h2 .anchor-link:focus { opacity: 1; }
+
+    /* ── Language switcher ── */
+    .lang-switch {
+      margin-left: auto;
+      color: #34d399;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .lang-switch:hover { text-decoration: underline; }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #ffffff !important; color: #111111; }
+      #tgb-glass-header, #reading-progress, .share-bar, .upnext-card, .related-section,
+      .cta-box, #back-to-top, .toc-box, .skip-link, .lang-switch, .faq-more, footer,
+      .breadcrumb-nav, .anchor-link, .hub-controls, .hub-cta, .faq-cta { display: none !important; }
+      .article-container, .faq-container, .hub-container { padding: 0 !important; max-width: 100% !important; }
+      .article-title, .article-content h2, .article-content h3, .faq-topic h2, .faq-hero h1 { color: #000000 !important; }
+      .article-content p, .article-content li, .article-content td,
+      .faq-item .faq-answer, .faq-item summary { color: #222222 !important; }
+      .article-content strong, .faq-item .faq-answer strong { color: #047857 !important; }
+      .faq-item, .extract-box, table { page-break-inside: avoid; }
+      .faq-item summary::after { display: none; }
+      .faq-item, .extract-box { border-color: #cccccc !important; background: #f8f8f8 !important; }
+      a { color: #047857 !important; }
+    }
+
     @media (max-width: 768px) {
       .faq-container { padding-top: 100px; }
       .faq-hero h1 { font-size: 1.9rem; }
@@ -593,12 +665,15 @@
     <a href="/education/">Education</a>
     <span class="sep">›</span>
     <span>Cannabis FAQ</span>
+      <a class="lang-switch" href="/education/es/preguntas-frecuentes-cannabis.html" lang="es" hreflang="es">🌐 Español</a>
   </nav>
 
   <div class="faq-hero">
     <h1>Cannabis FAQ: Quick Answers for the 915</h1>
     <p>Every question from our education guides, in one place. Tap a topic to jump straight there — and follow the link under each section for the full guide.</p>
   </div>
+
+  <input type="search" id="faq-search" class="faq-search" placeholder="Search all 24 questions…" aria-label="Search questions" />
 
   <nav class="faq-toc" aria-label="FAQ topics">
     <a href="#visiting-a-dispensary">✅ Visiting a Dispensary</a>
@@ -759,6 +834,8 @@
     <p class="topic-source">From the guide: <a href="/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html">Decoding the Menu: What's an Eighth, Shake, and Live Resin?</a></p>
   </section>
 
+  <p class="faq-no-results" id="faq-no-results">No questions match your search.</p>
+
   <div class="faq-cta">
     <h2>Didn't Find Your Answer?</h2>
     <p>Dig into the full guides, or head to a local dispensary and ask a budtender — answering questions is their job.</p>
@@ -787,6 +864,55 @@
   window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
+
+  // Live question search (supports ?q= deep links)
+  const faqSearch = document.getElementById('faq-search');
+  const faqItems = document.querySelectorAll('.faq-item');
+  const faqTopics = document.querySelectorAll('.faq-topic');
+  const faqNoResults = document.getElementById('faq-no-results');
+  const faqFilter = () => {
+    const q = faqSearch.value.trim().toLowerCase();
+    let visible = 0;
+    faqItems.forEach(item => {
+      const show = !q || item.textContent.toLowerCase().includes(q);
+      item.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    faqTopics.forEach(topic => {
+      const any = Array.from(topic.querySelectorAll('.faq-item')).some(i => i.style.display !== 'none');
+      topic.style.display = any ? '' : 'none';
+    });
+    faqNoResults.style.display = visible === 0 ? 'block' : 'none';
+  };
+  faqSearch.addEventListener('input', faqFilter);
+  try {
+    const q = new URLSearchParams(location.search).get('q');
+    if (q) { faqSearch.value = q; faqFilter(); }
+  } catch (e) {}
+
+  // Expand FAQ accordions when printing
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('details').forEach(d => {
+      d.dataset.wasOpen = d.open ? '1' : '';
+      d.open = true;
+    });
+  });
+  window.addEventListener('afterprint', () => {
+    document.querySelectorAll('details').forEach(d => { d.open = d.dataset.wasOpen === '1'; });
+  });
+
+  // Copy-link anchors on section headings
+  document.querySelectorAll('.article-content h2[id]').forEach(h => {
+    const a = document.createElement('a');
+    a.className = 'anchor-link';
+    a.href = '#' + h.id;
+    a.textContent = '#';
+    a.setAttribute('aria-label', 'Copy link to this section');
+    a.addEventListener('click', () => {
+      try { navigator.clipboard.writeText(location.origin + location.pathname + '#' + h.id); } catch (e) {}
+    });
+    h.appendChild(a);
+  });
 </script>
 
 </body>

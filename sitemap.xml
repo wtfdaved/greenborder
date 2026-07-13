@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Main Pages -->
   <url>
     <loc>https://greenborder.org/</loc>
@@ -54,6 +55,9 @@
   <!-- Education Guides -->
   <url>
     <loc>https://greenborder.org/education/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -61,6 +65,9 @@
 
   <url>
     <loc>https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/descifrando-el-menu-octavo-shake-live-resin.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -68,6 +75,9 @@
 
   <url>
     <loc>https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/comestibles-101-empieza-bajo-y-lento.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -75,6 +85,9 @@
 
   <url>
     <loc>https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/vapeo-dabs-o-flor-metodo-de-consumo.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -82,6 +95,9 @@
 
   <url>
     <loc>https://greenborder.org/education/thc-vs-cbd-difference-explained.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/thc-vs-cbd-difference-explained.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/thc-vs-cbd-cual-es-la-diferencia.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/thc-vs-cbd-difference-explained.html" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -89,6 +105,9 @@
 
   <url>
     <loc>https://greenborder.org/education/new-mexico-vs-texas-cannabis-laws-border-guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/new-mexico-vs-texas-cannabis-laws-border-guide.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/leyes-de-cannabis-frontera-nuevo-mexico-vs-texas.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/new-mexico-vs-texas-cannabis-laws-border-guide.html" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -96,6 +115,9 @@
 
   <url>
     <loc>https://greenborder.org/education/first-dispensary-visit-checklist-what-to-expect.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/first-dispensary-visit-checklist-what-to-expect.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/primera-visita-al-dispensario-que-esperar.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/first-dispensary-visit-checklist-what-to-expect.html" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -103,8 +125,93 @@
 
   <url>
     <loc>https://greenborder.org/education/cannabis-faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/cannabis-faq.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/preguntas-frecuentes-cannabis.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/cannabis-faq.html" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Guías en Español -->
+  <url>
+    <loc>https://greenborder.org/education/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/education/es/preguntas-frecuentes-cannabis.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/cannabis-faq.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/preguntas-frecuentes-cannabis.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/cannabis-faq.html" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/education/es/descifrando-el-menu-octavo-shake-live-resin.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/descifrando-el-menu-octavo-shake-live-resin.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/decoding-dispensary-menu-eighth-shake-live-resin-guide.html" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/education/es/comestibles-101-empieza-bajo-y-lento.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/comestibles-101-empieza-bajo-y-lento.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/edibles-101-start-low-go-slow-desert-survival-guide.html" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/education/es/vapeo-dabs-o-flor-metodo-de-consumo.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/vapeo-dabs-o-flor-metodo-de-consumo.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/vapes-dabs-flower-perfect-consumption-method.html" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/education/es/thc-vs-cbd-cual-es-la-diferencia.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/thc-vs-cbd-difference-explained.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/thc-vs-cbd-cual-es-la-diferencia.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/thc-vs-cbd-difference-explained.html" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/education/es/leyes-de-cannabis-frontera-nuevo-mexico-vs-texas.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/new-mexico-vs-texas-cannabis-laws-border-guide.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/leyes-de-cannabis-frontera-nuevo-mexico-vs-texas.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/new-mexico-vs-texas-cannabis-laws-border-guide.html" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/education/es/primera-visita-al-dispensario-que-esperar.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://greenborder.org/education/first-dispensary-visit-checklist-what-to-expect.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://greenborder.org/education/es/primera-visita-al-dispensario-que-esperar.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://greenborder.org/education/first-dispensary-visit-checklist-what-to-expect.html" />
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
+
