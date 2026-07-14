@@ -786,6 +786,137 @@ section#education { background: linear-gradient(180deg, transparent 0%, rgba(5, 
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   Premium "Editorial Glass" layer — shared across all pages
+   Typography: Fraunces serif for display type, Inter for body/UI.
+   Components: eyebrow labels, display numerals, glass buttons,
+   skip link, trust strip.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Display typography ── */
+.hero-title,
+.section-title,
+.tgb-cta-title,
+.font-display {
+  font-family: 'Fraunces', Georgia, serif !important;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.hero-title { font-weight: 700; line-height: 1.04; }
+.section-title { font-weight: 700; line-height: 1.12; }
+.tgb-cta-title { font-size: 28px; font-weight: 700; }
+.hero-accent { font-style: italic; }
+h3 { text-wrap: balance; }
+/* Safety net: any straggling inline Rajdhani styling becomes serif */
+[style*="Rajdhani"] { font-family: 'Fraunces', Georgia, serif !important; }
+
+/* Big display numerals (hero stats, Market Pulse tiles, About tiles) */
+.stat-display {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variant-numeric: lining-nums;
+}
+
+/* ── Section header pattern: eyebrow → serif title → lede ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lg-emerald-deep);
+}
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.55));
+}
+.eyebrow::after { background: linear-gradient(90deg, rgba(5, 150, 105, 0.55), transparent); }
+.eyebrow.eyebrow-left::after { content: none; }
+.eyebrow.eyebrow-left::before { background: rgba(5, 150, 105, 0.55); }
+.section-lede {
+  color: var(--lg-ink-2);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* ── Button hierarchy ──
+   Tier 1: .btn-gold (single highlight CTA) · Tier 2: .btn-glass
+   (frosted pill) · Tier 3: text link. Standalone CTAs are pills. */
+.btn-pill { border-radius: 9999px !important; }
+.btn-glass {
+  background: var(--lg-glass-bg-strong);
+  backdrop-filter: var(--lg-blur-soft);
+  -webkit-backdrop-filter: var(--lg-blur-soft);
+  border: var(--lg-border) !important;
+  color: var(--lg-ink) !important;
+  box-shadow: var(--lg-specular), 0 4px 18px rgba(23, 46, 37, 0.10);
+  transition: transform var(--lg-fast) var(--lg-spring),
+              border-color var(--lg-fast) var(--lg-ease),
+              box-shadow var(--lg-fast) var(--lg-ease);
+}
+.btn-glass:hover {
+  transform: translateY(-2px);
+  border-color: rgba(5, 150, 105, 0.4) !important;
+  box-shadow: var(--lg-specular), 0 10px 28px rgba(23, 46, 37, 0.14);
+  color: var(--lg-emerald-deep) !important;
+}
+.btn-glass svg { color: var(--lg-emerald-deep); }
+
+/* ── Hero trust strip (data provenance) ── */
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 22px;
+  margin-top: 1.75rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--lg-ink-3);
+}
+.hero-trust span { display: inline-flex; align-items: center; gap: 7px; }
+.hero-trust svg { width: 15px; height: 15px; color: var(--lg-emerald-deep); flex-shrink: 0; }
+
+/* ── Skip link ──
+   Parked off-screen with `top` (not transform) so it can never leak
+   into view on mobile Safari; slides in on keyboard focus only. */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  left: 12px;
+  z-index: 100000;
+  background: var(--lg-glass-bg-strong);
+  backdrop-filter: var(--lg-blur);
+  -webkit-backdrop-filter: var(--lg-blur);
+  border: var(--lg-border);
+  border-radius: 9999px;
+  box-shadow: var(--lg-shadow);
+  color: var(--lg-emerald-deep);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus-visible { top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+/* ── SVG icons in chrome (region pills, mobile nav, banners) ── */
+.tag-pill svg { width: 12px; height: 12px; flex-shrink: 0; }
+.tgb-nav-icon svg { width: 22px; height: 22px; display: block; }
+.tgb-nav-icon { filter: none; }
+
+/* ── Refinements ── */
+.hero-sub { line-height: 1.75; }
+.region-header-btn h2 { letter-spacing: -0.01em; }
+.gb-faq-btn span.font-display { font-size: 1.05rem; }
+
+/* ═══════════════════════════════════════════════════════════════════
    Fallbacks & motion preferences
    ═══════════════════════════════════════════════════════════════════ */
 
