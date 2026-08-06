@@ -917,6 +917,210 @@ h3 { text-wrap: balance; }
 .gb-faq-btn span.font-display { font-size: 1.05rem; }
 
 /* ═══════════════════════════════════════════════════════════════════
+   Mobile chrome — one bottom nav + back-to-top for every page
+   Markup is injected by /js/liquid-glass.js; these rules are the single
+   source of truth and deliberately re-declare every property the old
+   per-page nav variants used, so the shared nav renders identically
+   everywhere (equal specificity, later file → these win).
+   ═══════════════════════════════════════════════════════════════════ */
+
+.tgb-mobile-nav { display: none; }
+
+#tgb-scroll-btn {
+  position: fixed;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  right: 24px;
+  z-index: 9990;
+  width: 48px;
+  height: 48px;
+  background: var(--lg-glass-bg-strong);
+  backdrop-filter: var(--lg-blur);
+  -webkit-backdrop-filter: var(--lg-blur);
+  border: var(--lg-border);
+  border-radius: 50%;
+  box-shadow: var(--lg-specular), 0 8px 32px rgba(23, 46, 37, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--lg-fast) var(--lg-ease), visibility var(--lg-fast) var(--lg-ease),
+              transform var(--lg-fast) var(--lg-ease);
+  cursor: pointer;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+#tgb-scroll-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+#tgb-scroll-btn:hover { transform: translateY(-3px); }
+#tgb-scroll-arrow {
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid var(--lg-emerald-deep);
+  border-right: 3px solid var(--lg-emerald-deep);
+  transform: rotate(-45deg);
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  /* Keep page content clear of the floating nav */
+  body { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+
+  .tgb-mobile-nav {
+    display: flex;
+    position: fixed;
+    top: auto;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(94%, 430px);
+    max-width: 430px;
+    height: 64px;
+    padding: 8px 6px;
+    padding-bottom: 8px;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 9999px;
+    border: var(--lg-border);
+    border-top: var(--lg-border);
+    background: var(--lg-glass-bg-strong);
+    backdrop-filter: var(--lg-blur-strong);
+    -webkit-backdrop-filter: var(--lg-blur-strong);
+    box-shadow: var(--lg-specular), 0 12px 40px rgba(23, 46, 37, 0.20);
+    z-index: 99999;
+    transition: transform 0.35s var(--lg-ease), opacity 0.35s var(--lg-ease);
+  }
+  /* Slides away on scroll-down, returns on scroll-up (JS toggles) */
+  .tgb-mobile-nav.nav-hidden {
+    transform: translate(-50%, calc(100% + 20px + env(safe-area-inset-bottom, 0px)));
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .tgb-nav-item {
+    display: flex;
+    flex: 1 1 0;
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    position: relative;
+    text-decoration: none;
+    color: var(--lg-ink-3);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    opacity: 1;
+    transition: color 0.25s var(--lg-ease), transform 0.25s var(--lg-ease);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tgb-nav-icon {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 0;
+    filter: none;
+    transition: transform 0.2s var(--lg-spring);
+  }
+  .tgb-nav-item.active { color: var(--lg-emerald-deep); transform: translateY(-1px); }
+  .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.12); }
+  .tgb-nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 4px;
+    height: 4px;
+    background: var(--lg-emerald);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(5, 150, 105, 0.5);
+  }
+  .tgb-nav-item:not(.active):hover { color: var(--lg-ink); }
+  .tgb-nav-item:active .tgb-nav-icon { transform: scale(0.9); }
+
+  /* Back-to-top floats above the nav on phones */
+  #tgb-scroll-btn {
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Touch ergonomics — phones & tablets
+   ═══════════════════════════════════════════════════════════════════ */
+
+a, button, select, label { touch-action: manipulation; }
+a, button { -webkit-tap-highlight-color: rgba(5, 150, 105, 0.10); }
+
+@media (max-width: 768px) {
+  /* 16px floor stops iOS Safari from auto-zooming into focused fields */
+  input, select, textarea { font-size: 16px !important; }
+
+  /* Comfortable tap targets for filter chips and pills */
+  .gb-chip { padding: 9px 16px !important; min-height: 38px; }
+  .tag-pill { min-height: 30px; padding-top: 6px; padding-bottom: 6px; }
+  .lg-faq summary, .gb-faq-btn { min-height: 48px; }
+
+  /* Chip rails glide and settle on a chip edge */
+  .scroll-x {
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-x > * { scroll-snap-align: start; }
+}
+
+/* Press feedback replaces hover states on touch screens */
+@media (hover: none) {
+  .dispensary-card:active,
+  .premium-card:active,
+  .news-card:active,
+  .mp-tile:active,
+  .hero-stat:active,
+  .info-card:active,
+  .card-hover:active {
+    transform: scale(0.985);
+    transition-duration: 0.08s;
+  }
+  .btn-primary:active,
+  .btn-gold:active,
+  .btn-glass:active,
+  .tgb-header-btn:active,
+  .tgb-sub-btn:active,
+  .card-action:active,
+  .gb-chip:active,
+  .offering-chip:active {
+    transform: scale(0.96);
+    transition-duration: 0.08s;
+  }
+  /* Pointer-tracked sheen is meaningless without a pointer */
+  .lg-sheen::after { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mobile performance — calmer pixels, faster first paint
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  /* Aurora stays as a static wash; continuous blurred-blob animation
+     costs real battery/jank on phones */
+  body::before, body::after { animation: none; }
+
+  /* Below-the-fold sections skip layout/paint until scrolled near */
+  section#education, section#about, .tgb-glass-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
+
+  /* Decorative hero orbs are invisible work on small screens */
+  .hero-orb { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    Fallbacks & motion preferences
    ═══════════════════════════════════════════════════════════════════ */
 
