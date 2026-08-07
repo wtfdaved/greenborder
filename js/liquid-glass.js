@@ -226,6 +226,13 @@
       window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
     });
 
+    // The dashboard has its own floating action button pinned to the same
+    // corner at the same offset, so back-to-top landed exactly on top of
+    // it and swallowed the tap. Flag the page and let CSS stack them.
+    if (document.querySelector('#fab-container')) {
+      document.body.classList.add('has-corner-fab');
+    }
+
     // Hide nav on scroll-down, reveal on scroll-up / near page edges.
     let lastY = window.scrollY;
     let ticking = false;
@@ -261,6 +268,7 @@
     initSpecular();
     initHeaderState();
     initMobileChrome();
+    initAgeGateFocus();
 
     // Static stat values opt in to count-up with a data attribute.
     document.querySelectorAll('[data-lg-count]').forEach(lgCountUp);
@@ -274,6 +282,61 @@
     });
     const grid = document.getElementById('dispensary-grid-by-city');
     if (grid) rescan.observe(grid, { childList: true });
+  }
+
+  /* ── Age gate focus containment ─────────────────────────────────── */
+  // The gate is a blocking aria-modal dialog, but nothing moved focus into
+  // it, so a keyboard or screen-reader user landed on the page behind the
+  // overlay and could tab straight through the content it exists to gate.
+  // Escape deliberately does nothing — this is a legal wall, not a dismissible
+  // dialog — so the trap has no escape hatch other than answering it.
+  function initAgeGateFocus() {
+    const overlay = document.getElementById('tgb-age-overlay');
+    if (!overlay) return;
+
+    const focusables = () =>
+      Array.from(
+        overlay.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      ).filter((el) => el.offsetParent !== null);
+
+    const isOpen = () => getComputedStyle(overlay).display !== 'none';
+
+    function focusFirst() {
+      const yes = overlay.querySelector('.tgb-age-btn-yes') || focusables()[0];
+      if (yes) yes.focus({ preventScroll: true });
+    }
+
+    // The page's own script flips display to open the gate, so watch for it.
+    if (isOpen()) {
+      focusFirst();
+    } else {
+      const watch = new MutationObserver(() => {
+        if (isOpen()) { focusFirst(); watch.disconnect(); }
+      });
+      watch.observe(overlay, { attributes: true, attributeFilter: ['style', 'class'] });
+      // Nothing to guard once the visitor has already been let through.
+      setTimeout(() => watch.disconnect(), 5000);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !isOpen()) return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (!overlay.contains(active)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus({ preventScroll: true });
+      } else if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+    });
   }
 
   if (document.readyState === 'loading') {

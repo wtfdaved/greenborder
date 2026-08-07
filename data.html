@@ -442,8 +442,8 @@
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=a73c5819" />
-  <script src="/js/liquid-glass.js?v=fead4f54" defer></script>
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faad67f0" />
+  <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -501,8 +501,11 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║         SALES DATA DASHBOARD                 ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Pinned on purpose. Both were floating on "latest", so an upstream
+     release could change or break the dashboard with no commit here.
+     Both are deferred: nothing touches them before DOMContentLoaded. -->
+<script src="https://unpkg.com/lucide@1.29.0/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" defer></script>
 
 <style>
     /* Liquid-glass dashboard styles (light frosted theme) */
@@ -976,6 +979,28 @@
         -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 999px;
         background: linear-gradient(90deg, #558203 100%, rgba(71, 109, 3, 0.15) 100%);
         outline: none; cursor: pointer; min-height: 0 !important;
+    }
+    /* The visible track stays 8px, but an 8px drag target is unusable with
+       a thumb. Pad the control out to a 44px hit area and pull the layout
+       back in so nothing moves. */
+    @media (pointer: coarse) {
+        #tm-slider {
+            height: 44px;
+            background: none;
+            margin: -18px 0;
+            padding: 0;
+        }
+        #tm-slider::-webkit-slider-runnable-track {
+            height: 8px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #558203 100%, rgba(71, 109, 3, 0.15) 100%);
+        }
+        #tm-slider::-moz-range-track {
+            height: 8px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #558203 100%, rgba(71, 109, 3, 0.15) 100%);
+        }
+        #tm-slider::-webkit-slider-thumb { margin-top: -7px; }
     }
     #tm-slider::-webkit-slider-thumb {
         -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%;
@@ -4643,7 +4668,7 @@
   document.getElementById('tgb-year').textContent = new Date().getFullYear();
 </script>
 
-<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js?v=fead4f54 -->
+<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js?v=096b2ab6 -->
 
 </body>
 </html>
