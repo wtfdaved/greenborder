@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Brand palette tokens — single source of truth for site color -->
+  <link rel="stylesheet" href="/css/brand.css?v=1" />
   <title>Texas Just Voted 80% for Cannabis Legalization | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -30,7 +32,7 @@
 
   <!-- Additional Meta Tags -->
   <meta http-equiv="content-language" content="en-US" />
-  <meta name="theme-color" content="#10b981" />
+  <meta name="theme-color" content="#558203" />
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -85,23 +87,7 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
-            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Fraunces', 'Georgia', 'serif'],
-          },
-        }
-      }
-    }
-  </script>
+  <script src="/js/tailwind-brand.js?v=1"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
@@ -134,8 +120,8 @@
       background: rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(16, 185, 129, 0.15);
-      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(85, 130, 3, 0.15);
+      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
       border-radius: 20px;
       padding: 12px 30px;
       display: flex;
@@ -147,7 +133,7 @@
       top: 0;
       width: 100%;
       border-radius: 0;
-      border-bottom: 1px solid rgba(16,185,129,0.1);
+      border-bottom: 1px solid rgba(85, 130, 3,0.1);
     }
     .tgb-logo-container {
       text-decoration: none;
@@ -159,13 +145,13 @@
       font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: 28px;
-      color: #34d399;
+      color: #7fab16;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
       transition: transform 0.2s ease;
     }
     .tgb-logo-sparkle {
-      color: #ca8a04;
+      color: #8a7c2e;
       font-size: 24px;
       animation: tgb-spin-slow 10s linear infinite;
     }
@@ -184,7 +170,7 @@
       position: relative;
       transition: color 0.2s ease;
     }
-    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link:hover { color: #7fab16; }
     .tgb-header-link::after {
       content: '';
       position: absolute;
@@ -192,7 +178,7 @@
       height: 2px;
       bottom: -4px;
       left: 0;
-      background-color: #ca8a04;
+      background-color: #8a7c2e;
       transition: width 0.3s ease;
     }
     .tgb-header-link:hover::after { width: 100%; }
@@ -202,15 +188,15 @@
       gap: 15px;
     }
     .tgb-search-icon {
-      color: #34d399;
+      color: #7fab16;
       cursor: pointer;
       padding: 8px;
       border-radius: 50%;
       transition: background 0.2s;
     }
-    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
     .tgb-header-btn {
-      background: #1a4d2e;
+      background: #375302;
       color: white;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
@@ -218,13 +204,13 @@
       padding: 10px 24px;
       border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
       transition: all 0.2s ease;
     }
     .tgb-header-btn:hover {
-      background: #14532d;
+      background: #2a3f02;
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
     }
     @keyframes tgb-spin-slow {
       from { transform: rotate(0deg); }
@@ -239,7 +225,7 @@
         top: 0;
         border-radius: 0;
         border: none;
-        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
         padding: 12px 16px;
         max-width: none;
       }
@@ -302,7 +288,7 @@
       margin-top: 4rem;
       padding: 3rem 1.5rem;
       background: rgba(26, 26, 26, 0.7);
-      border-top: 1px solid rgba(16, 185, 129, 0.1);
+      border-top: 1px solid rgba(85, 130, 3, 0.1);
       backdrop-filter: blur(12px);
     }
     .tgb-footer-card {
@@ -319,7 +305,7 @@
     .tgb-cta-title {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #34d399;
+      color: #7fab16;
       margin-bottom: 0.5rem;
     }
     .tgb-cta-text {
@@ -329,7 +315,7 @@
     .tgb-sub-btn {
       display: inline-block;
       padding: 10px 24px;
-      background: linear-gradient(135deg, #10b981, #059669);
+      background: linear-gradient(135deg, #558203, #476d03);
       color: white;
       border-radius: 8px;
       font-weight: 600;
@@ -337,7 +323,7 @@
       transition: all 0.3s ease;
     }
     .tgb-sub-btn:hover {
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 20px rgba(85, 130, 3, 0.4);
       transform: translateY(-2px);
     }
     .tgb-footer-nav {
@@ -352,7 +338,7 @@
       font-size: 14px;
       transition: color 0.2s ease;
     }
-    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-footer-link:hover { color: #7fab16; }
     .tgb-favorites-title {
       display: block;
       color: #cbd5e1;
@@ -363,7 +349,7 @@
     .tgb-legal-block {
       grid-column: 1 / -1;
       padding-top: 2rem;
-      border-top: 1px solid rgba(16, 185, 129, 0.1);
+      border-top: 1px solid rgba(85, 130, 3, 0.1);
     }
     .tgb-disclaimer-text {
       font-size: 12px;
@@ -386,7 +372,7 @@
       right: 0;
       background: rgba(26, 26, 26, 0.95);
       backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(16, 185, 129, 0.1);
+      border-top: 1px solid rgba(85, 130, 3, 0.1);
       display: none;
       gap: 0;
       padding: 8px 0;
@@ -407,13 +393,15 @@
     }
     .tgb-nav-item:hover,
     .tgb-nav-item.active {
-      color: #34d399;
-      background: rgba(16, 185, 129, 0.05);
-      border-top-color: #34d399;
+      color: #7fab16;
+      background: rgba(85, 130, 3, 0.05);
+      border-top-color: #7fab16;
     }
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║            GLASS HEADER NAV                 ║ -->
@@ -447,15 +435,15 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║             ARTICLE CONTENT                 ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<main class="pt-32 pb-20 px-4 md:px-6">
+<main id="main-content" tabindex="-1" class="pt-32 pb-20 px-4 md:px-6">
   <article class="max-w-4xl mx-auto">
     <!-- Article Header -->
     <header class="mb-12">
       <div class="flex items-center gap-3 mb-4">
-        <span class="tag" style="background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Texas &amp; Policy</span>
-        <span class="text-xs text-gray-500">March 4, 2026</span>
+        <span class="tag" style="background:rgba(85, 130, 3,0.2);color:#7fab16;border:1px solid rgba(85, 130, 3,0.3);">Texas &amp; Policy</span>
+        <span class="text-xs text-gray-400">March 4, 2026</span>
         <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-        <span class="text-xs text-gray-500">5 min read</span>
+        <span class="text-xs text-gray-400">5 min read</span>
       </div>
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" style="font-family:'Fraunces',Georgia,serif;">Texas Just Voted 80% for Cannabis Legalization — So Why Is It Still Illegal Here?</h1>
       <p class="text-gray-400 text-lg">By El Paso Cannabis Club</p>
@@ -464,7 +452,7 @@
     <!-- Featured Image -->
     <div class="mb-12 rounded-2xl overflow-hidden">
       <img src="https://images.unsplash.com/photo-1655129786334-d6fa7a68057b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3cwfDF8c2VhcmNofDI2fHx0ZXhhcyUyMGZsYWd8ZW58MHx8fHwxNzcyNjU5NDgyfDA&ixlib=rb-4.1.0&q=80&w=2000" alt="Texas flag" class="w-full h-auto">
-      <p class="text-xs text-gray-500 mt-2">Photo by Unsplash</p>
+      <p class="text-xs text-gray-400 mt-2">Photo by Unsplash</p>
     </div>
 
     <!-- Article Content -->

@@ -1,0 +1,139 @@
+/* ═══════════════════════════════════════════════════════════════════
+   The Green Border — Brand Tokens
+   Single source of truth for the site palette. Loaded FIRST on every
+   page (before each page's inline <style> and before liquid-glass.css)
+   so every layer can consume the same variables.
+
+   The scheme is two brand colors:
+     • Olive green  #558203  — the "Green" in Green Border
+     • Desert cream #FFF8B9  — the warm light that pairs with it
+
+   Everything else in this file is a tint/shade of those two hues,
+   generated so that each role has a variant that clears WCAG AA.
+
+   Contrast (vs. the light canvas ≈ #FFFDF0):
+     --gb-green-500 #558203  4.4:1   large text, icons, fills
+     --gb-green-600 #476D03  5.9:1   AA for all text
+     --gb-green-700 #375302  8.4:1   AA for all text
+     --gb-cream-700 #6B6224  5.9:1   AA for all text (the old "gold" role)
+   Contrast (vs. the dark canvas #0A0A0A):
+     --gb-cream-200 #FFF8B9 18.4:1
+     --gb-green-300 #AFD456 11.4:1
+     --gb-green-400 #7FAB16  6.9:1
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Olive green scale (hue 81°) ── */
+  --gb-green-50:  #f5fae6;
+  --gb-green-100: #e7f3c4;
+  --gb-green-200: #d0e693;
+  --gb-green-300: #afd456;
+  --gb-green-400: #7fab16;
+  --gb-green-500: #558203; /* BRAND */
+  --gb-green-600: #476d03;
+  --gb-green-700: #375302;
+  --gb-green-800: #2a3f02;
+  --gb-green-900: #1c2a01;
+
+  /* ── Desert cream scale (hue 53°) ── */
+  --gb-cream-50:  #fffdf0;
+  --gb-cream-100: #fffbdc;
+  --gb-cream-200: #fff8b9; /* BRAND */
+  --gb-cream-300: #f2e895;
+  --gb-cream-400: #dccf6e;
+  --gb-cream-500: #b9ab47;
+  --gb-cream-600: #8a7c2e;
+  --gb-cream-700: #6b6224;
+  --gb-cream-800: #4a431a;
+
+  /* ── Warm neutral ink (olive-tinted grays) ── */
+  --gb-ink-900: #22280f;
+  --gb-ink-700: #31371c;
+  --gb-ink-500: #4b5233;
+  --gb-ink-300: #6d7457;
+
+  /* ── Semantic roles ──
+     Use these, not the raw scales, in page-level CSS. */
+  --gb-brand: var(--gb-green-500);
+  --gb-brand-text: var(--gb-green-700);   /* brand color at body-text size */
+  --gb-brand-on-dark: var(--gb-green-400);
+  --gb-accent: var(--gb-cream-200);
+  --gb-accent-text: var(--gb-cream-700);  /* cream at body-text size */
+  --gb-accent-on-dark: var(--gb-cream-200);
+
+  --gb-surface: var(--gb-cream-50);
+  --gb-surface-alt: var(--gb-cream-100);
+  --gb-on-brand: var(--gb-cream-100);     /* text on a green fill */
+  --gb-on-accent: var(--gb-green-800);    /* text on a cream fill */
+
+  /* Status colors stay outside the brand: growth/decline and warnings
+     must not read as decoration. */
+  --gb-positive: var(--gb-green-600);
+  --gb-negative: #be123c;
+  --gb-warning: var(--gb-cream-700);
+
+  /* ── Data-viz ramp ──
+     Ordered for categorical series; alternates value and hue so the
+     series stay separable in grayscale and for color-vision deficiency. */
+  --gb-viz-1: #558203;
+  --gb-viz-2: #dccf6e;
+  --gb-viz-3: #2a3f02;
+  --gb-viz-4: #afd456;
+  --gb-viz-5: #8a7c2e;
+  --gb-viz-6: #7fab16;
+  --gb-viz-7: #6b6224;
+  --gb-viz-8: #d0e693;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Baseline accessibility — shared by every page, including the ones
+   that don't load the liquid-glass design system.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Skip link ──
+   Off-screen until focused, then pinned to the top-left. Pages that
+   define their own .skip-link later in the cascade still win; this is
+   the floor, not an override. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10050;
+  background: var(--gb-green-700, #375302);
+  color: var(--gb-cream-100, #fffbdc);
+  padding: 10px 18px;
+  border-radius: 0 0 8px 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* The skip target is given tabindex="-1" so focus actually lands there;
+   clear the resulting outline and keep it out from under the fixed
+   glass header. */
+#main-content {
+  scroll-margin-top: 7rem;
+}
+#main-content:focus {
+  outline: none;
+}
+
+/* ── Reduced motion ──
+   The site leans on drifting aurora, reveal transitions, and a spinning
+   logo sparkle. Honor the OS setting everywhere, not just on the pages
+   that happen to load liquid-glass.css. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

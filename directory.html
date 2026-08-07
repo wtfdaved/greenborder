@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Brand palette tokens — single source of truth for site color -->
+  <link rel="stylesheet" href="/css/brand.css?v=1" />
   <title>Cannabis Dispensary Directory | The Green Border</title>
 
   <meta name="description" content="Find cannabis dispensaries in Southern New Mexico near El Paso. Search by location, type, hours, and ratings." />
@@ -16,50 +18,17 @@
   <meta property="og:url" content="https://greenborder.org/directory.html" />
   <meta property="og:title" content="Cannabis Dispensary Directory | The Green Border" />
   <meta property="og:description" content="Find cannabis dispensaries in Southern New Mexico near El Paso. Search by location, type, hours, and ratings." />
+  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://greenborder.org/og-image.jpg" />
 
   <!-- Additional Meta Tags -->
   <meta http-equiv="content-language" content="en-US" />
-  <meta name="theme-color" content="#10b981" />
+  <meta name="theme-color" content="#558203" />
 
   <!-- Tailwind CSS (production-safe version) -->
   <script src="https://cdn.tailwindcss.com/"></script>
-  <script>
-    // Suppress Tailwind development warning - CSS is being served via CDN in production
-    // For true production deployment, use: npm run build:css && serve ./css/tailwind.min.css
-    if (window.console && window.console.warn) {
-      const originalWarn = window.console.warn;
-      window.console.warn = function(...args) {
-        if (args[0]?.includes?.('cdn.tailwindcss.com')) return;
-        originalWarn.apply(window.console, args);
-      };
-    }
-
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
-            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Fraunces', 'Georgia', 'serif'],
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.6s ease-out forwards',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            fadeUp: {
-              '0%':   { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <script src="/js/tailwind-brand.js?v=1"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,7 +41,7 @@
     html { scroll-behavior: smooth; }
     body {
       background-color: #0a0a0a;
-      color: #e5e7eb;
+      color: #31371c;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
@@ -89,8 +58,8 @@
       background: rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(16, 185, 129, 0.15);
-      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(85, 130, 3, 0.15);
+      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
       border-radius: 20px;
       padding: 12px 30px;
       display: flex;
@@ -102,7 +71,7 @@
       top: 0;
       width: 100%;
       border-radius: 0;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
     }
     .tgb-logo-container {
       text-decoration: none;
@@ -114,13 +83,13 @@
       font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: 28px;
-      color: #34d399;
+      color: #375302;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
       transition: transform 0.2s ease;
     }
     .tgb-logo-sparkle {
-      color: #ca8a04;
+      color: #8a7c2e;
       font-size: 24px;
       animation: tgb-spin-slow 10s linear infinite;
     }
@@ -133,13 +102,13 @@
     .tgb-header-link {
       font-family: 'Inter', sans-serif;
       text-decoration: none;
-      color: #cbd5e1;
+      color: #4b5233;
       font-weight: 600;
       font-size: 15px;
       position: relative;
       transition: color 0.2s ease;
     }
-    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link:hover { color: #375302; }
     .tgb-header-link::after {
       content: '';
       position: absolute;
@@ -147,7 +116,7 @@
       height: 2px;
       bottom: -4px;
       left: 0;
-      background-color: #ca8a04;
+      background-color: #8a7c2e;
       transition: width 0.3s ease;
     }
     .tgb-header-link:hover::after { width: 100%; }
@@ -157,15 +126,15 @@
       gap: 15px;
     }
     .tgb-search-icon {
-      color: #34d399;
+      color: #375302;
       cursor: pointer;
       padding: 8px;
       border-radius: 50%;
       transition: background 0.2s;
     }
-    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
     .tgb-header-btn {
-      background: #1a4d2e;
+      background: #375302;
       color: white;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
@@ -173,13 +142,13 @@
       padding: 10px 24px;
       border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
       transition: all 0.2s ease;
     }
     .tgb-header-btn:hover {
-      background: #14532d;
+      background: #2a3f02;
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
     }
     @keyframes tgb-spin-slow {
       from { transform: rotate(0deg); }
@@ -194,7 +163,7 @@
         top: 0;
         border-radius: 0;
         border: none;
-        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
         padding: 12px 16px;
         max-width: none;
       }
@@ -219,12 +188,12 @@
       max-width: 900px;
       margin: 0 auto;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 130, 3,0.1) 0%, transparent 65%),
         rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(16, 185, 129, 0.15);
-      box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
+      border: 1px solid rgba(85, 130, 3, 0.15);
+      box-shadow: 0 -10px 40px rgba(85, 130, 3,0.05), 0 20px 40px rgba(85, 130, 3,0.1);
       border-radius: 30px;
       padding: 50px;
       text-align: center;
@@ -234,36 +203,36 @@
     .tgb-footer-cta {
       margin-bottom: 40px;
       padding-bottom: 40px;
-      border-bottom: 1px solid rgba(16,185,129,0.1);
+      border-bottom: 1px solid rgba(85, 130, 3,0.1);
     }
     .tgb-cta-title {
       font-size: 24px;
       font-weight: 800;
-      color: #34d399;
+      color: #375302;
       margin: 0 0 10px 0;
     }
     .tgb-cta-text {
       font-size: 16px;
-      color: #cbd5e1;
+      color: #4b5233;
       margin: 0 auto 25px auto;
       max-width: 600px;
       line-height: 1.5;
     }
     .tgb-sub-btn {
       display: inline-block;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: linear-gradient(135deg, #558203 0%, #476d03 100%);
       color: white;
       text-decoration: none;
       padding: 14px 32px;
       border-radius: 50px;
       font-weight: 600;
       font-size: 16px;
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 4px 15px rgba(85, 130, 3, 0.3);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .tgb-sub-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
     }
     .tgb-footer-nav {
       display: flex;
@@ -274,14 +243,14 @@
     }
     .tgb-footer-link {
       text-decoration: none;
-      color: #cbd5e1;
+      color: #4b5233;
       font-weight: 600;
       font-size: 15px;
       transition: color 0.2s ease;
     }
-    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-footer-link:hover { color: #375302; }
     .tgb-legal-block {
-      background: rgba(16,185,129,0.05);
+      background: rgba(85, 130, 3,0.05);
       border-radius: 16px;
       padding: 20px;
       margin-top: 20px;
@@ -289,14 +258,14 @@
     .tgb-disclaimer-text {
       font-size: 11px;
       line-height: 1.5;
-      color: #94a3b8;
+      color: #6d7457;
       margin: 0 0 10px 0;
       text-align: justify;
       text-align-last: center;
     }
     .tgb-copyright {
       font-size: 12px;
-      color: #cbd5e1;
+      color: #4b5233;
       font-weight: 600;
       margin-top: 15px;
       opacity: 0.7;
@@ -309,32 +278,32 @@
     /* ── Cards ── */
     .dispensary-card {
       background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-      border: 1px solid rgba(16,185,129,0.12);
+      border: 1px solid rgba(85, 130, 3,0.12);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .dispensary-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(16,185,129,0.5);
-      box-shadow: 0 20px 60px rgba(16,185,129,0.12), 0 0 0 1px rgba(16,185,129,0.1);
+      border-color: rgba(85, 130, 3,0.5);
+      box-shadow: 0 20px 60px rgba(85, 130, 3,0.12), 0 0 0 1px rgba(85, 130, 3,0.1);
     }
     .premium-card {
       background: linear-gradient(135deg, #242424 0%, #1a1a1a 100%);
-      border: 1px solid rgba(16,185,129,0.25);
-      box-shadow: 0 0 30px rgba(16,185,129,0.25), inset 0 0 25px rgba(16,185,129,0.08);
+      border: 1px solid rgba(85, 130, 3,0.25);
+      box-shadow: 0 0 30px rgba(85, 130, 3,0.25), inset 0 0 25px rgba(85, 130, 3,0.08);
       position: relative;
     }
     .premium-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 0 50px rgba(16,185,129,0.35), inset 0 0 30px rgba(16,185,129,0.12);
+      box-shadow: 0 0 50px rgba(85, 130, 3,0.35), inset 0 0 30px rgba(85, 130, 3,0.12);
     }
     .premium-badge {
       position: absolute;
       top: 12px;
       right: 12px;
       z-index: 2;
-      background: #2a2107;
-      border: 1px solid rgba(245, 158, 11, 0.5);
-      color: #fbbf24;
+      background: #4a431a;
+      border: 1px solid rgba(242, 232, 149, 0.5);
+      color: #6b6224;
       padding: 6px 12px;
       border-radius: 20px;
       font-size: 11px;
@@ -344,57 +313,57 @@
     }
 
     /* ── Badge ── */
-    .badge-rec { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
-    .badge-med { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
-    .badge-new { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+    .badge-rec { background: rgba(85, 130, 3,0.15); color: #375302; border: 1px solid rgba(85, 130, 3,0.3); }
+    .badge-med { background: rgba(242, 232, 149,0.12); color: #6b6224; border: 1px solid rgba(242, 232, 149,0.3); }
+    .badge-new { background: rgba(85,130,3,0.18); color: #d0e693; border: 1px solid rgba(85,130,3,0.35); }
 
     /* ── Glass Badge (Emoji-style) ── */
     .badge-rec-emoji {
-      background: rgba(16,185,129,0.15);
-      color: #34d399;
-      border: 1px solid rgba(16,185,129,0.3);
+      background: rgba(85, 130, 3,0.15);
+      color: #375302;
+      border: 1px solid rgba(85, 130, 3,0.3);
       backdrop-filter: blur(4px);
       transition: all 0.2s ease;
     }
     .badge-rec-emoji:hover {
-      background: rgba(16,185,129,0.25);
-      border-color: rgba(16,185,129,0.5);
+      background: rgba(85, 130, 3,0.25);
+      border-color: rgba(85, 130, 3,0.5);
     }
 
     .badge-med-emoji {
-      background: rgba(245,158,11,0.15);
-      color: #fbbf24;
-      border: 1px solid rgba(245,158,11,0.3);
+      background: rgba(242, 232, 149,0.15);
+      color: #6b6224;
+      border: 1px solid rgba(242, 232, 149,0.3);
       backdrop-filter: blur(4px);
       transition: all 0.2s ease;
     }
     .badge-med-emoji:hover {
-      background: rgba(245,158,11,0.25);
-      border-color: rgba(245,158,11,0.5);
+      background: rgba(242, 232, 149,0.25);
+      border-color: rgba(242, 232, 149,0.5);
     }
 
     .badge-lounge-emoji {
-      background: rgba(99,102,241,0.15);
-      color: #a5b4fc;
-      border: 1px solid rgba(99,102,241,0.3);
+      background: rgba(85,130,3,0.18);
+      color: #d0e693;
+      border: 1px solid rgba(85,130,3,0.35);
       backdrop-filter: blur(4px);
       transition: all 0.2s ease;
     }
     .badge-lounge-emoji:hover {
-      background: rgba(99,102,241,0.25);
-      border-color: rgba(99,102,241,0.5);
+      background: rgba(85,130,3,0.28);
+      border-color: rgba(85,130,3,0.5);
     }
 
     /* ── Glass Header ── */
     .card-header-glass {
-      background: rgba(16,185,129,0.08);
+      background: rgba(85, 130, 3,0.08);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       transition: all 0.3s ease;
     }
     .dispensary-card:hover .card-header-glass,
     .premium-card:hover .card-header-glass {
-      background: rgba(16,185,129,0.12);
+      background: rgba(85, 130, 3,0.12);
     }
 
     /* ── City sections ── */
@@ -411,7 +380,7 @@
       gap: 12px;
       margin-bottom: 1.25rem;
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(16,185,129,0.15);
+      border-bottom: 1px solid rgba(85, 130, 3,0.15);
     }
     .city-title {
       font-family: 'Fraunces', Georgia, serif;
@@ -421,9 +390,9 @@
     }
     .city-count {
       font-size: 0.8rem;
-      color: #34d399;
-      background: rgba(16,185,129,0.12);
-      border: 1px solid rgba(16,185,129,0.25);
+      color: #375302;
+      background: rgba(85, 130, 3,0.12);
+      border: 1px solid rgba(85, 130, 3,0.25);
       padding: 2px 10px;
       border-radius: 999px;
       font-weight: 600;
@@ -438,8 +407,8 @@
       margin: 1.5rem auto 0;
     }
     .hero-stat {
-      background: rgba(16,185,129,0.06);
-      border: 1px solid rgba(16,185,129,0.18);
+      background: rgba(85, 130, 3,0.06);
+      border: 1px solid rgba(85, 130, 3,0.18);
       border-radius: 16px;
       padding: 14px 8px;
       text-align: center;
@@ -448,12 +417,12 @@
       font-family: 'Fraunces', Georgia, serif;
       font-size: 1.75rem;
       font-weight: 700;
-      color: #34d399;
+      color: #375302;
       line-height: 1;
     }
     .hero-stat-label {
       font-size: 0.72rem;
-      color: #94a3b8;
+      color: #6d7457;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-top: 4px;
@@ -475,7 +444,7 @@
       gap: 6px;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #4b5233;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       padding: 6px 14px;
@@ -484,13 +453,13 @@
       transition: all 0.2s ease;
     }
     .city-chip:hover {
-      color: #34d399;
-      border-color: rgba(16,185,129,0.4);
-      background: rgba(16,185,129,0.08);
+      color: #375302;
+      border-color: rgba(85, 130, 3,0.4);
+      background: rgba(85, 130, 3,0.08);
     }
     .city-chip-count {
       font-size: 0.7rem;
-      color: #94a3b8;
+      color: #6d7457;
     }
 
     /* ── Offering toggle chips ── */
@@ -500,7 +469,7 @@
       gap: 6px;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #4b5233;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       padding: 8px 16px;
@@ -509,11 +478,11 @@
       transition: all 0.2s ease;
       user-select: none;
     }
-    .offering-chip:hover { border-color: rgba(16,185,129,0.4); }
+    .offering-chip:hover { border-color: rgba(85, 130, 3,0.4); }
     .offering-chip[data-active="true"] {
-      color: #34d399;
-      background: rgba(16,185,129,0.15);
-      border-color: rgba(16,185,129,0.5);
+      color: #375302;
+      background: rgba(85, 130, 3,0.15);
+      border-color: rgba(85, 130, 3,0.5);
     }
 
     /* ── Card extras ── */
@@ -531,7 +500,7 @@
       gap: 5px;
       font-size: 0.78rem;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #4b5233;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
       padding: 6px 12px;
@@ -540,18 +509,18 @@
       transition: all 0.2s ease;
     }
     .card-action:hover {
-      color: #34d399;
-      border-color: rgba(16,185,129,0.4);
-      background: rgba(16,185,129,0.08);
+      color: #375302;
+      border-color: rgba(85, 130, 3,0.4);
+      background: rgba(85, 130, 3,0.08);
     }
     .card-action.accent {
-      color: #fbbf24;
-      background: rgba(245,158,11,0.12);
-      border-color: rgba(245,158,11,0.3);
+      color: #6b6224;
+      background: rgba(242, 232, 149,0.12);
+      border-color: rgba(242, 232, 149,0.3);
     }
     .card-action.accent:hover {
-      background: rgba(245,158,11,0.2);
-      border-color: rgba(245,158,11,0.5);
+      background: rgba(242, 232, 149,0.2);
+      border-color: rgba(242, 232, 149,0.5);
     }
 
     /* ── Open-now pill ── */
@@ -562,9 +531,9 @@
       padding: 4px 10px;
       border-radius: 999px;
     }
-    .open-pill.open { color: #34d399; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); }
+    .open-pill.open { color: #375302; background: rgba(85, 130, 3,0.15); border: 1px solid rgba(85, 130, 3,0.3); }
     .open-pill.closed { color: #f87171; background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.3); }
-    .open-pill.neutral { color: #cbd5e1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+    .open-pill.neutral { color: #4b5233; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
 
     /* ── Deal banner ── */
     .deal-banner {
@@ -572,15 +541,15 @@
       align-items: center;
       gap: 8px;
       font-size: 0.8rem;
-      color: #fde68a;
-      background: rgba(245,158,11,0.1);
-      border: 1px solid rgba(245,158,11,0.25);
+      color: #6b6224;
+      background: rgba(242, 232, 149,0.1);
+      border: 1px solid rgba(242, 232, 149,0.25);
       border-radius: 12px;
       padding: 8px 12px;
     }
     .deal-tag {
       font-weight: 700;
-      color: #fbbf24;
+      color: #6b6224;
       white-space: nowrap;
     }
 
@@ -673,6 +642,8 @@
 </head>
 
 <body class="bg-charcoal-900" id="tgb-body">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- Glass Header -->
   <header id="tgb-glass-header">
     <a href="/" class="tgb-logo-container">
@@ -700,7 +671,7 @@
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 pt-20 md:pt-32 pb-20">
+  <main id="main-content" tabindex="-1" class="max-w-7xl mx-auto px-4 pt-20 md:pt-32 pb-20">
 
     <!-- Title Section -->
     <div class="text-center mb-8">

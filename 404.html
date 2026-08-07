@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Brand palette tokens — single source of truth for site color -->
+  <link rel="stylesheet" href="/css/brand.css?v=1" />
+  <meta name="theme-color" content="#558203" />
   <title>Page Not Found | The Green Border</title>
   <meta name="description" content="The page you're looking for doesn't exist. Return to The Green Border — 915 Cannabis Guide for El Paso & Sunland Park." />
   <meta name="robots" content="noindex, follow" />
@@ -11,23 +14,7 @@
   <link rel="apple-touch-icon" href="/icons/icon-180.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' },
-            gold:    { 400: '#fbbf24', 500: '#f59e0b' },
-            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a' },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Fraunces', 'Georgia', 'serif'],
-          },
-        },
-      },
-    };
-  </script>
+  <script src="/js/tailwind-brand.js?v=1"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -40,8 +27,10 @@
   <script src="/js/liquid-glass.js?v=4" defer></script>
 </head>
 <body class="min-h-screen bg-charcoal-900 text-white font-sans flex flex-col items-center justify-center px-4">
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <div class="lg-glass-strong lg-sheen relative z-10 text-center max-w-lg w-full px-8 py-12 sm:px-12">
+
+  <div id="main-content" tabindex="-1" class="lg-glass-strong lg-sheen relative z-10 text-center max-w-lg w-full px-8 py-12 sm:px-12">
     <!-- Logo mark -->
     <div class="mb-6 flex justify-center">
       <span class="text-emerald-500 font-display font-bold text-2xl tracking-widest uppercase">The Green Border</span>
