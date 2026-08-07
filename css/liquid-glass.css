@@ -365,6 +365,63 @@ body.scrolled #tgb-glass-header {
   }
 }
 
+/* ── Phone header: one compact row ──
+   At 390px the wordmark and the CTA both wrapped to two lines, which
+   doubled the bar's height on load. The 8px of extra width the scrolled
+   state gets was enough to un-wrap them on some devices, so the header
+   appeared to "fix itself" on scroll. Pin everything to a single line
+   and let the wordmark scale with the viewport instead. */
+@media (max-width: 640px) {
+  #tgb-glass-header {
+    padding: 6px 12px;
+    gap: 8px;
+    min-height: 0;
+  }
+  /* Every control in the bar clears 44px without the bar itself growing:
+     the padding shrinks by the same amount the controls gain. */
+  .tgb-logo-container {
+    min-width: 0;
+    gap: 6px;
+    min-height: 44px;
+    align-items: center;
+  }
+  .tgb-header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+  .tgb-logo-text {
+    font-size: clamp(15px, 4.3vw, 19px);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  /* Purely decorative, and it costs ~28px of a very tight row */
+  .tgb-logo-sparkle { display: none; }
+  .tgb-header-actions { gap: 8px; flex-shrink: 0; }
+  .tgb-header-btn {
+    white-space: nowrap;
+    padding: 9px 14px;
+    font-size: 12.5px;
+    line-height: 1.15;
+  }
+  /* Keep the icon visually small but give it a real 44px tap target */
+  .tgb-search-icon {
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    margin: -5px;
+  }
+}
+/* Very narrow phones (SE-class): trade the button label for the essentials */
+@media (max-width: 359px) {
+  .tgb-header-btn { padding: 9px 11px; font-size: 12px; }
+}
+
 /* ── Glass footer ── */
 .tgb-glass-footer { color: var(--lg-ink-2); }
 .tgb-footer-card {
@@ -1260,6 +1317,30 @@ h3 { text-wrap: balance; }
     right: 16px;
     width: 44px;
     height: 44px;
+  }
+}
+
+/* ── Corner collision ──
+   The sales dashboard pins its own filter FAB to bottom:96px / right:16px
+   — the exact slot back-to-top uses — so the arrow sat on top of the FAB
+   and ate the tap. Where that button exists (flagged by liquid-glass.js),
+   stack back-to-top above it. Scoped to the widths where the FAB is
+   actually rendered; it is sm:hidden from 640px up. */
+@media (max-width: 639px) {
+  body.has-corner-fab #tgb-scroll-btn {
+    bottom: calc(164px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ── Touch target floor ──
+   Footer nav links rendered 23px tall, under the 24px WCAG 2.5.8 floor
+   and well under a comfortable thumb. Give them real height without
+   changing the type. */
+@media (pointer: coarse) {
+  .tgb-footer-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 }
 

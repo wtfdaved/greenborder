@@ -871,7 +871,7 @@
 
     /* ── Mobile Bottom Nav & Back-to-Top ──
        Markup is injected and styled by the shared Liquid Glass system
-       (/js/liquid-glass.js?v=fead4f54 + /css/liquid-glass.css?v=a73c5819) so every page gets
+       (/js/liquid-glass.js?v=096b2ab6 + /css/liquid-glass.css?v=faad67f0) so every page gets
        the identical chrome. Only page-layout tweaks remain here. */
     @media (max-width: 768px) {
         .tgb-footer-card { padding: 30px 20px; }
@@ -979,12 +979,12 @@
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=a73c5819" />
-  <script src="/js/liquid-glass.js?v=fead4f54" defer></script>
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faad67f0" />
+  <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
 
   <!-- Premium "Editorial Glass" components (eyebrow, stat-display, btn-glass,
        skip-link, hero-trust, display typography) live in the shared
-       /css/liquid-glass.css?v=a73c5819 so every page stays consistent. -->
+       /css/liquid-glass.css?v=faad67f0 so every page stays consistent. -->
 </head>
 
 <body>
@@ -2811,13 +2811,13 @@ render();
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 
-  // Header "scrolled" state is owned by /js/liquid-glass.js?v=fead4f54 — a second
+  // Header "scrolled" state is owned by /js/liquid-glass.js?v=096b2ab6 — a second
   // listener here with a different threshold made the two fight and the
   // glass header flicker between 40px and 100px of scroll.
 </script>
 
 <!-- Mobile bottom nav + back-to-top button are injected on every page by
-     the shared /js/liquid-glass.js?v=fead4f54 (styled in /css/liquid-glass.css?v=a73c5819). -->
+     the shared /js/liquid-glass.js?v=096b2ab6 (styled in /css/liquid-glass.css?v=faad67f0). -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Footer year
