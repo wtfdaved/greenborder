@@ -556,7 +556,7 @@
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=5dcbb807" />
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=a73c5819" />
   <script src="/js/liquid-glass.js?v=fead4f54" defer></script>
 </head>
 
@@ -595,17 +595,30 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║               AGE GATE                       ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<div id="tgb-age-overlay">
+<div id="tgb-age-overlay" role="dialog" aria-modal="true" aria-labelledby="tgb-age-title" aria-describedby="tgb-age-desc">
   <div class="tgb-age-card">
-    <div class="tgb-age-logo" style="background: linear-gradient(135deg, #375302 0%, #476d03 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">The Green Border</div>
-    <h2 class="tgb-age-title">Age Verification</h2>
-    <p class="tgb-age-text">
-      You must be 21 years or older to view information about cannabis dispensaries in New Mexico.
-    </p>
-    <button class="tgb-age-btn-yes" onclick="tgbVerifyAge()">
-      Yes, I am 21+
-    </button>
-    <a href="https://www.google.com" class="tgb-age-btn-no">I am under 21</a>
+    <!-- Header band: the checkpoint sign -->
+    <div class="tgb-age-band">
+      <span class="tgb-age-crest" aria-hidden="true">🌵</span>
+      <span class="tgb-age-brand">The Green Border</span>
+      <span class="tgb-age-kicker">Checkpoint · NM</span>
+    </div>
+
+    <div class="tgb-age-body">
+      <span class="tgb-age-stamp" aria-hidden="true"><span>21+</span></span>
+      <h2 id="tgb-age-title" class="tgb-age-title">Are you 21 or older?</h2>
+      <p id="tgb-age-desc" class="tgb-age-text">
+        New Mexico dispensary menus, hours, and sales data are adults&#8209;only.
+        Confirm your age to cross.
+      </p>
+
+      <button class="tgb-age-btn-yes" onclick="tgbVerifyAge()">
+        Yes — I&rsquo;m 21 or older
+      </button>
+      <a href="https://www.google.com" class="tgb-age-btn-no">No, take me back</a>
+
+      <p class="tgb-age-fine">Sunland&nbsp;Park · Chaparral · Anthony · Santa&nbsp;Teresa</p>
+    </div>
   </div>
 </div>
 

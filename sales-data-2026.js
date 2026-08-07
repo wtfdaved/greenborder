@@ -3,6 +3,17 @@
 // section: per-store records for 2026, plus whole-window monthly totals
 // for the trend chart and year-over-year comparison, plus detected
 // per-store brand changes for the "Border Moves" feed.
+// ── Release metadata ──
+// Bumped whenever a new month is folded in. The home page uses this to
+// show a "just published" badge and to date the provenance note, instead
+// of anyone hand-editing month names into the markup.
+const dataRelease = {
+  latestMonth: "2026-07",
+  publishedOn: "2026-08-07",
+  addedMonths: ["2026-06", "2026-07"],
+  source: "New Mexico Cannabis Control Division monthly retailer reports"
+};
+
 const newSalesData2026 = [
   {
     "month": "2026-01",
