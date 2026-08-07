@@ -399,6 +399,32 @@
       section.hero-gradient { min-height: 100svh; }
     }
 
+    /* ── Hero clearance for the floating header ──
+       #tgb-glass-header is fixed, so it floats over the hero and takes up
+       no layout space. Two things are needed to keep the "Trusted Source"
+       badge and the headline out from under it.
+
+       1. Reserve the bar's footprint as top padding. The desktop bar is
+          20px offset + 12px padding + ~44px of content + 12px padding
+          ≈ 88px tall; the mobile bar is shorter and sits higher.
+
+       2. Center *safely*. The section is `justify-center`, and whenever the
+          hero content is taller than the section — which happens on short
+          or wide viewports, and as soon as Fraunces/Inter load at their
+          real metrics — plain `center` overflows in BOTH directions, so
+          the top of the content spills above the padding edge and lands
+          behind the header (measured at -61px). `safe center` falls back
+          to start-alignment in exactly that case, so the padding always
+          holds. Browsers without `safe` ignore the declaration and keep
+          the padding, which is still a large improvement. */
+    section.hero-gradient {
+      padding-top: calc(5.25rem + env(safe-area-inset-top, 0px));
+      justify-content: safe center;
+    }
+    @media (min-width: 901px) {
+      section.hero-gradient { padding-top: 7.5rem; }
+    }
+
     /* ── Mobile hero: tighter rhythm so content arrives sooner ── */
     @media (max-width: 640px) {
       .hero-title { margin-bottom: 0.75rem; }
@@ -1278,7 +1304,7 @@
         Explore the Full Sales Dashboard
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>
-      <p class="text-gray-500 text-xs mt-3">17 months of history · every dispensary · city-by-city breakdowns</p>
+      <p class="text-gray-500 text-xs mt-3">19 months of history · every dispensary · city-by-city breakdowns</p>
     </div>
   </section>
 
@@ -2176,7 +2202,7 @@ render();
     }
 
     // ── Year over year (same month, previous year) ──
-    // Enabled by the full Jan 2025 – May 2026 window in salesTotalsByMonth.
+    // Enabled by the full Jan 2025 – Jul 2026 window in salesTotalsByMonth.
     const series = (typeof salesTotalsByMonth !== 'undefined' && Array.isArray(salesTotalsByMonth) && salesTotalsByMonth.length > 1)
       ? salesTotalsByMonth
       : months.map(m => ({ month: m, total: total(m) }));
