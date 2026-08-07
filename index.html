@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Brand palette tokens — single source of truth for site color -->
+  <link rel="stylesheet" href="/css/brand.css?v=1" />
   <title>El Paso Cannabis Guide & Dispensary Directory | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -30,7 +32,7 @@
 
   <!-- Additional Meta Tags -->
   <meta http-equiv="content-language" content="en-US" />
-  <meta name="theme-color" content="#10b981" />
+  <meta name="theme-color" content="#558203" />
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -149,36 +151,7 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
-            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Fraunces', 'Georgia', 'serif'],
-          },
-          backgroundImage: {
-            'hero-grid': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.6s ease-out forwards',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            fadeUp: {
-              '0%':   { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <script src="/js/tailwind-brand.js?v=1"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
@@ -196,7 +169,7 @@
     section[id] { scroll-margin-top: 6rem; }
     body {
       background-color: #0a0a0a;
-      color: #e5e7eb;
+      color: #31371c;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
@@ -213,8 +186,8 @@
       background: rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(16, 185, 129, 0.15);
-      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(85, 130, 3, 0.15);
+      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
       border-radius: 20px;
       padding: 12px 30px;
       display: flex;
@@ -226,7 +199,7 @@
       top: 0;
       width: 100%;
       border-radius: 0;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
     }
     .tgb-logo-container {
       text-decoration: none;
@@ -238,13 +211,13 @@
       font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: 28px;
-      color: #34d399;
+      color: #375302;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
       transition: transform 0.2s ease;
     }
     .tgb-logo-sparkle {
-      color: #ca8a04;
+      color: #8a7c2e;
       font-size: 24px;
       animation: tgb-spin-slow 10s linear infinite;
     }
@@ -257,13 +230,13 @@
     .tgb-header-link {
       font-family: 'Inter', sans-serif;
       text-decoration: none;
-      color: #cbd5e1;
+      color: #4b5233;
       font-weight: 600;
       font-size: 15px;
       position: relative;
       transition: color 0.2s ease;
     }
-    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link:hover { color: #375302; }
     .tgb-header-link::after {
       content: '';
       position: absolute;
@@ -271,7 +244,7 @@
       height: 2px;
       bottom: -4px;
       left: 0;
-      background-color: #ca8a04;
+      background-color: #8a7c2e;
       transition: width 0.3s ease;
     }
     .tgb-header-link:hover::after { width: 100%; }
@@ -281,15 +254,15 @@
       gap: 15px;
     }
     .tgb-search-icon {
-      color: #34d399;
+      color: #375302;
       cursor: pointer;
       padding: 8px;
       border-radius: 50%;
       transition: background 0.2s;
     }
-    .tgb-search-icon:hover { background: rgba(52, 211, 153, 0.1); }
+    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
     .tgb-header-btn {
-      background: #1a4d2e;
+      background: #375302;
       color: white;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
@@ -297,13 +270,13 @@
       padding: 10px 24px;
       border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
       transition: all 0.2s ease;
     }
     .tgb-header-btn:hover {
-      background: #14532d;
+      background: #2a3f02;
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
     }
     @keyframes tgb-spin-slow {
       from { transform: rotate(0deg); }
@@ -350,7 +323,7 @@
       transition: opacity 0.4s ease;
     }
     .tgb-age-card {
-      background: linear-gradient(145deg, rgba(255,255,255,1) 30%, rgba(246,248,252,0.95) 100%);
+      background: linear-gradient(145deg, rgba(255,255,255,1) 30%, rgba(255,251,220,0.95) 100%);
       box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.8);
       border-radius: 24px;
       padding: 40px;
@@ -391,16 +364,16 @@
       font-weight: 600;
       color: white;
       text-decoration: none;
-      background: linear-gradient(135deg, #1a4d2e 0%, #2a7d4e 100%);
+      background: linear-gradient(135deg, #375302 0%, #476d03 100%);
       border: none;
       border-radius: 14px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.25);
+      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.25);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .tgb-age-btn-yes:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.35);
+      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.35);
     }
     .tgb-age-btn-no {
       display: inline-block;
@@ -472,65 +445,65 @@
     /* ── Hero ── */
     .hero-gradient {
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.18) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(245,158,11,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(85, 130, 3,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(242, 232, 149,0.07) 0%, transparent 60%),
         #0a0a0a;
     }
     .hero-glow {
-      text-shadow: 0 0 60px rgba(16,185,129,0.4), 0 0 120px rgba(16,185,129,0.15);
+      text-shadow: 0 0 60px rgba(85, 130, 3,0.4), 0 0 120px rgba(85, 130, 3,0.15);
     }
 
     /* ── Cards ── */
     .dispensary-card {
       background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-      border: 1px solid rgba(16,185,129,0.12);
+      border: 1px solid rgba(85, 130, 3,0.12);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .dispensary-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(16,185,129,0.5);
-      box-shadow: 0 20px 60px rgba(16,185,129,0.12), 0 0 0 1px rgba(16,185,129,0.1);
+      border-color: rgba(85, 130, 3,0.5);
+      box-shadow: 0 20px 60px rgba(85, 130, 3,0.12), 0 0 0 1px rgba(85, 130, 3,0.1);
     }
     .news-card {
-      background: linear-gradient(135deg, #111111 0%, #181818 100%);
+      background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
       border: 1px solid rgba(255,255,255,0.06);
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
     .news-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(245,158,11,0.35);
+      border-color: rgba(242, 232, 149,0.35);
     }
 
     /* ── Badge ── */
-    .badge-rec { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
-    .badge-med { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
-    .badge-new { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+    .badge-rec { background: rgba(85, 130, 3,0.15); color: #375302; border: 1px solid rgba(85, 130, 3,0.3); }
+    .badge-med { background: rgba(242, 232, 149,0.12); color: #6b6224; border: 1px solid rgba(242, 232, 149,0.3); }
+    .badge-new { background: rgba(85,130,3,0.18); color: #d0e693; border: 1px solid rgba(85,130,3,0.35); }
 
     /* ── Section divider ── */
     .section-line {
       display: inline-block;
       width: 48px; height: 3px;
-      background: linear-gradient(90deg, #10b981, #f59e0b);
+      background: linear-gradient(90deg, #558203, #f2e895);
       border-radius: 9999px;
     }
 
     /* ── Emerald glow button ── */
     .btn-primary {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: linear-gradient(135deg, #558203 0%, #476d03 100%);
       transition: box-shadow 0.3s ease, transform 0.2s ease;
     }
     .btn-primary:hover {
-      box-shadow: 0 0 30px rgba(16,185,129,0.5);
+      box-shadow: 0 0 30px rgba(85, 130, 3,0.5);
       transform: translateY(-2px);
     }
 
     /* ── Gold highlight button (primary CTA) ── */
     .btn-gold {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      background: linear-gradient(135deg, #f2e895 0%, #dccf6e 100%);
       transition: box-shadow 0.3s ease, transform 0.2s ease;
     }
     .btn-gold:hover {
-      box-shadow: 0 0 30px rgba(245,158,11,0.5);
+      box-shadow: 0 0 30px rgba(242, 232, 149,0.5);
       transform: translateY(-2px);
     }
 
@@ -542,8 +515,8 @@
     .mp-tile { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
     .mp-tile:hover {
       transform: translateY(-4px);
-      border-color: rgba(16,185,129,0.45);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.35), 0 0 24px rgba(16,185,129,0.15);
+      border-color: rgba(85, 130, 3,0.45);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35), 0 0 24px rgba(85, 130, 3,0.15);
     }
     #mp-spark svg { display: block; width: 100%; height: auto; }
     .mp-row {
@@ -553,17 +526,17 @@
       transition: background 0.2s ease;
     }
     a.mp-row { text-decoration: none; }
-    .mp-row:hover { background: rgba(16,185,129,0.08); }
+    .mp-row:hover { background: rgba(85, 130, 3,0.08); }
     .mp-row .mp-name { color: var(--lg-ink, #e5e7eb); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .mp-row .mp-val { margin-left: auto; font-weight: 700; color: var(--lg-ink-3, #94a3b8); white-space: nowrap; font-variant-numeric: tabular-nums; }
     .mp-row .mp-delta { font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
-    .mp-delta-up { color: var(--lg-emerald-deep, #34d399); }
+    .mp-delta-up { color: var(--lg-emerald-deep, #7fab16); }
     .mp-delta-down { color: #be123c; }
 
     /* ── Hero stat pathways ── */
     .hero-stat { transition: background 0.2s ease; }
-    .hero-stat:hover { background: rgba(16,185,129,0.12); }
-    .hero-stat:hover > div:first-child { color: #059669; }
+    .hero-stat:hover { background: rgba(85, 130, 3,0.12); }
+    .hero-stat:hover > div:first-child { color: #476d03; }
 
     /* ── Live market ticker ── */
     /* Sits fully below the hero: a negative top margin used to pull it up
@@ -586,19 +559,19 @@
       flex-shrink: 0;
       font-size: 0.66rem; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--lg-emerald-deep, #34d399);
+      color: var(--lg-emerald-deep, #7fab16);
       white-space: nowrap;
     }
     .ticker-live-dot {
       width: 7px; height: 7px; border-radius: 9999px;
-      background: #10b981;
-      box-shadow: 0 0 0 0 rgba(16,185,129,0.5);
+      background: #558203;
+      box-shadow: 0 0 0 0 rgba(85, 130, 3,0.5);
       animation: ticker-pulse 2.4s ease-out infinite;
     }
     @keyframes ticker-pulse {
-      0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.45); }
-      70% { box-shadow: 0 0 0 7px rgba(16,185,129,0); }
-      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+      0% { box-shadow: 0 0 0 0 rgba(85, 130, 3,0.45); }
+      70% { box-shadow: 0 0 0 7px rgba(85, 130, 3,0); }
+      100% { box-shadow: 0 0 0 0 rgba(85, 130, 3,0); }
     }
     .ticker-viewport {
       display: block; overflow: hidden; flex: 1; min-width: 0;
@@ -612,7 +585,7 @@
       font-size: 0.78rem; color: var(--lg-ink-2, #cbd5e1);
     }
     .ticker-item strong { color: var(--lg-ink, #e5e7eb); font-weight: 700; font-variant-numeric: tabular-nums; }
-    .ticker-item strong.tk-up { color: var(--lg-emerald-deep, #34d399); }
+    .ticker-item strong.tk-up { color: var(--lg-emerald-deep, #7fab16); }
     .ticker-item strong.tk-down { color: #be123c; }
     .ticker-dot { margin: 0 1.1rem; color: var(--lg-ink-3, #94a3b8); }
     @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -627,7 +600,7 @@
     }
 
     /* ── Hero quick-search ── */
-    .hero-search-box:focus-within { border-color: rgba(16,185,129,0.5); box-shadow: 0 0 0 3px rgba(16,185,129,0.12); }
+    .hero-search-box:focus-within { border-color: rgba(85, 130, 3,0.5); box-shadow: 0 0 0 3px rgba(85, 130, 3,0.12); }
 
     /* ── Market Pulse story chips ── */
     .mp-chip {
@@ -635,21 +608,21 @@
       padding: 3px 12px; border-radius: 9999px;
       font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em;
       color: var(--lg-ink-2, #cbd5e1);
-      background: rgba(16,185,129,0.08);
-      border: 1px solid rgba(16,185,129,0.2);
+      background: rgba(85, 130, 3,0.08);
+      border: 1px solid rgba(85, 130, 3,0.2);
       white-space: nowrap;
     }
-    .mp-chip .tk-up, .tk-up { color: var(--lg-emerald-deep, #34d399); }
+    .mp-chip .tk-up, .tk-up { color: var(--lg-emerald-deep, #7fab16); }
     .tk-down { color: #be123c; }
     a.mp-move {
       gap: 6px; text-decoration: none;
-      background: rgba(245,158,11,0.08);
-      border-color: rgba(245,158,11,0.25);
+      background: rgba(242, 232, 149,0.08);
+      border-color: rgba(242, 232, 149,0.25);
       transition: background 0.2s ease, transform 0.2s ease;
       white-space: normal; /* long "Old Name → New Name" pairs wrap on phones */
       flex-wrap: wrap; max-width: 100%;
     }
-    a.mp-move:hover { background: rgba(245,158,11,0.16); transform: translateY(-1px); }
+    a.mp-move:hover { background: rgba(242, 232, 149,0.16); transform: translateY(-1px); }
     a.mp-move strong { color: var(--lg-ink, #e5e7eb); }
 
     /* ── Per-store 2026 trend row on directory cards ── */
@@ -658,31 +631,31 @@
       margin: -8px 0 16px;
       padding: 6px 10px;
       border-radius: 12px;
-      background: rgba(16,185,129,0.05);
-      border: 1px solid rgba(16,185,129,0.12);
+      background: rgba(85, 130, 3,0.05);
+      border: 1px solid rgba(85, 130, 3,0.12);
       text-decoration: none;
       transition: background 0.2s ease, border-color 0.2s ease;
     }
-    .card-trend:hover { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); }
+    .card-trend:hover { background: rgba(85, 130, 3,0.1); border-color: rgba(85, 130, 3,0.3); }
     .card-trend svg { flex-shrink: 0; display: block; }
 
     /* ── Sales-rank chip on directory cards ── */
     .sales-rank-pill {
       margin-left: 6px;
-      background: rgba(245,158,11,0.12);
-      color: #b45309;
-      border: 1px solid rgba(245,158,11,0.35);
+      background: rgba(242, 232, 149,0.12);
+      color: #6b6224;
+      border: 1px solid rgba(242, 232, 149,0.35);
       text-decoration: none;
       transition: background 0.2s ease, transform 0.2s ease;
     }
-    .sales-rank-pill:hover { background: rgba(245,158,11,0.22); transform: translateY(-1px); }
+    .sales-rank-pill:hover { background: rgba(242, 232, 149,0.22); transform: translateY(-1px); }
 
     /* ── "Formerly …" chip on renamed stores ── */
     .formerly-pill {
       margin-left: 6px;
-      background: rgba(100,116,139,0.1);
-      color: #64748b;
-      border: 1px solid rgba(100,116,139,0.25);
+      background: rgba(109, 116, 87, 0.12);
+      color: #6d7457;
+      border: 1px solid rgba(109, 116, 87, 0.28);
       cursor: help;
     }
 
@@ -690,7 +663,7 @@
     .region-sales { color: inherit; opacity: 0.9; }
 
     /* ── Star rating ── */
-    .stars { color: #f59e0b; letter-spacing: 2px; }
+    .stars { color: #6b6224; letter-spacing: 2px; }
 
     /* ── Tag strip ── */
     .tag {
@@ -708,8 +681,8 @@
       width: 52px; height: 52px;
       border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(16,185,129,0.1);
-      border: 1px solid rgba(16,185,129,0.2);
+      background: rgba(85, 130, 3,0.1);
+      border: 1px solid rgba(85, 130, 3,0.2);
       font-size: 1.5rem;
     }
     /* ── Glass Footer ── */
@@ -724,12 +697,12 @@
         max-width: 900px;
         margin: 0 auto;
         background:
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
+          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 130, 3,0.1) 0%, transparent 65%),
           rgba(26, 26, 26, 0.85);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(16, 185, 129, 0.15);
-        box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
+        border: 1px solid rgba(85, 130, 3, 0.15);
+        box-shadow: 0 -10px 40px rgba(85, 130, 3,0.05), 0 20px 40px rgba(85, 130, 3,0.1);
         border-radius: 30px;
         padding: 50px;
         text-align: center;
@@ -739,36 +712,36 @@
     .tgb-footer-cta {
         margin-bottom: 40px;
         padding-bottom: 40px;
-        border-bottom: 1px solid rgba(16,185,129,0.1);
+        border-bottom: 1px solid rgba(85, 130, 3,0.1);
     }
     .tgb-cta-title {
         font-size: 24px;
         font-weight: 800;
-        color: #34d399;
+        color: #375302;
         margin: 0 0 10px 0;
     }
     .tgb-cta-text {
         font-size: 16px;
-        color: #cbd5e1;
+        color: #4b5233;
         margin: 0 auto 25px auto;
         max-width: 600px;
         line-height: 1.5;
     }
     .tgb-sub-btn {
         display: inline-block;
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        background: linear-gradient(135deg, #558203 0%, #476d03 100%);
         color: white;
         text-decoration: none;
         padding: 14px 32px;
         border-radius: 50px;
         font-weight: 600;
         font-size: 16px;
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 4px 15px rgba(85, 130, 3, 0.3);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .tgb-sub-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
     }
     .tgb-footer-nav {
         display: flex;
@@ -779,29 +752,29 @@
     }
     .tgb-footer-link {
         text-decoration: none;
-        color: #cbd5e1;
+        color: #4b5233;
         font-weight: 600;
         font-size: 15px;
         transition: color 0.2s ease;
     }
-    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-footer-link:hover { color: #375302; }
     .tgb-favorites-section {
         margin-top: 10px;
         margin-bottom: 30px;
         padding-top: 20px;
-        border-top: 1px solid rgba(16,185,129,0.1);
+        border-top: 1px solid rgba(85, 130, 3,0.1);
     }
     .tgb-favorites-title {
         font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: 700;
-        color: #94a3b8;
+        color: #6d7457;
         margin: 0 0 15px 0;
         display: block;
     }
     .tgb-legal-block {
-        background: rgba(16,185,129,0.05);
+        background: rgba(85, 130, 3,0.05);
         border-radius: 16px;
         padding: 20px;
         margin-top: 20px;
@@ -809,14 +782,14 @@
     .tgb-disclaimer-text {
         font-size: 11px;
         line-height: 1.5;
-        color: #94a3b8;
+        color: #6d7457;
         margin: 0 0 10px 0;
         text-align: justify;
         text-align-last: center;
     }
     .tgb-copyright {
         font-size: 12px;
-        color: #cbd5e1;
+        color: #4b5233;
         font-weight: 600;
         margin-top: 15px;
         opacity: 0.7;
@@ -851,6 +824,9 @@
       font-family: 'Inter', sans-serif; backdrop-filter: blur(4px);
       box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
     }
+    /* The cream ribbon is a light fill — white on it is unreadable, so
+       the "Top Pick" variant takes deep green ink instead. */
+    .ribbon.bg-amber-500\/90 { color: #2a3f02; }
     .scroll-x { overflow-x: auto; scrollbar-width: none; }
     .scroll-x::-webkit-scrollbar { display: none; }
 
@@ -974,7 +950,7 @@
 <!-- ╚══════════════════════════════════════════════╝ -->
 <div id="tgb-age-overlay">
   <div class="tgb-age-card">
-    <div class="tgb-age-logo" style="background: linear-gradient(135deg, #1a4d2e 0%, #2a7d4e 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">The Green Border</div>
+    <div class="tgb-age-logo" style="background: linear-gradient(135deg, #375302 0%, #476d03 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">The Green Border</div>
     <h2 class="tgb-age-title">Age Verification</h2>
     <p class="tgb-age-text">
       You must be 21 years or older to view information about cannabis dispensaries in New Mexico.
@@ -993,8 +969,8 @@
 <section class="hero-gradient bg-hero-grid min-h-screen flex flex-col items-center justify-center text-center px-4 pb-20 relative overflow-hidden">
 
   <!-- Ambient orbs (hidden on phones — pure decoration, real GPU cost) -->
-  <div class="hero-orb absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10 animate-pulse-slow" style="background:radial-gradient(circle, #10b981, transparent 70%);filter:blur(60px);pointer-events:none;"></div>
-  <div class="hero-orb absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-8 animate-pulse-slow" style="background:radial-gradient(circle, #f59e0b, transparent 70%);filter:blur(60px);pointer-events:none;animation-delay:2s;"></div>
+  <div class="hero-orb absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10 animate-pulse-slow" style="background:radial-gradient(circle, #558203, transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+  <div class="hero-orb absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-8 animate-pulse-slow" style="background:radial-gradient(circle, #f2e895, transparent 70%);filter:blur(60px);pointer-events:none;animation-delay:2s;"></div>
 
   <!-- Badge -->
   <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 border border-emerald-500/30 text-emerald-400 bg-emerald-500/10 animate-fade-up">
@@ -1248,7 +1224,7 @@
         <div class="text-xs text-gray-500 uppercase tracking-widest">Year over Year</div>
       </a>
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Locations reporting — open the sales dashboard">
-        <div id="mp-locations" class="stat-display text-3xl mb-1" style="color:#fbbf24;">—</div>
+        <div id="mp-locations" class="stat-display text-3xl mb-1" style="color: #6b6224;">—</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Locations Reporting</div>
       </a>
       <a href="/data.html" class="mp-tile lg-glass lg-sheen rounded-2xl p-6 text-center block no-underline" aria-label="Month over month change — open the sales dashboard">
@@ -1267,7 +1243,7 @@
       <p id="mp-story-text" class="text-sm leading-relaxed text-gray-400 mb-3"></p>
       <div id="mp-story-chips" class="flex flex-wrap gap-2"></div>
       <!-- Border Moves: name/ownership changes detected in the state data -->
-      <div id="mp-moves" class="mt-4 pt-4" style="border-top:1px solid rgba(16,185,129,0.12);" hidden>
+      <div id="mp-moves" class="mt-4 pt-4" style="border-top:1px solid rgba(85, 130, 3,0.12);" hidden>
         <div class="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-2">Border Moves · Who Changed Hands</div>
         <div id="mp-moves-list" class="flex flex-wrap gap-2"></div>
       </div>
@@ -1454,7 +1430,7 @@ function card(d) {
   const badgeHtml = d.badge
     ? `<div class="ribbon ${d.tagColor === 'gold' ? 'bg-amber-500/90' : d.tagColor === 'green' ? 'bg-emerald-600/90' : 'bg-slate-700/90'}">${d.badge}</div>`
     : '';
-  const featBorder = d.featured ? 'border-emerald-500/40 ring-[3px] ring-emerald-400/20 shadow-[0_8px_30px_rgba(16,185,129,0.2)]' : 'border-white/10 hover:border-white/25';
+  const featBorder = d.featured ? 'border-emerald-500/40 ring-[3px] ring-emerald-400/20 shadow-[0_8px_30px_rgba(85,130,3,0.28)]' : 'border-white/10 hover:border-white/25';
   
   // Adjusted button classes for flex-1 sharing to prevent squishing out of bounds
   const detailsLinks = {
@@ -1898,8 +1874,8 @@ render();
 <!-- ║             BORDER CROSSING BANNER           ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
 <div class="px-4 py-3 max-w-6xl mx-auto">
-  <div class="rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(16,185,129,0.08));border:1px solid rgba(245,158,11,0.25);">
-    <span class="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,0.14);border:1px solid rgba(245,158,11,0.3);">
+  <div class="rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 reveal" style="background:linear-gradient(135deg,rgba(242, 232, 149,0.1),rgba(85, 130, 3,0.08));border:1px solid rgba(242, 232, 149,0.25);">
+    <span class="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center" style="background:rgba(242, 232, 149,0.14);border:1px solid rgba(242, 232, 149,0.3);">
       <svg class="w-5 h-5 text-yellow-300" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
     </span>
     <div class="text-center sm:text-left">
@@ -1927,7 +1903,7 @@ render();
       <div class="h-52 relative overflow-hidden">
         <img src="https://images.unsplash.com/photo-1655129786334-d6fa7a68057b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3cwfDF8c2VhcmNofDI2fHx0ZXhhcyUyMGZsYWd8ZW58MHx8fHwxNzcyNjU5NDgyfDA&ixlib=rb-4.1.0&q=80&w=2000" alt="Texas flag" class="w-full h-full object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-4 left-4">
-          <span class="tag" style="background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.3);">Featured</span>
+          <span class="tag" style="background:rgba(85, 130, 3,0.2);color: #375302;border:1px solid rgba(85, 130, 3,0.3);">Featured</span>
         </div>
       </div>
       <div class="p-6">
@@ -1944,7 +1920,7 @@ render();
 
     <!-- CTA: View All Articles -->
     <div class="news-card lg-sheen rounded-2xl overflow-hidden reveal flex flex-col">
-      <div class="h-40 relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(245,158,11,0.08));">
+      <div class="h-40 relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,rgba(85, 130, 3,0.15),rgba(242, 232, 149,0.08));">
         <div class="text-6xl opacity-30">📰</div>
       </div>
       <div class="p-5 flex flex-col flex-1">
@@ -1960,7 +1936,7 @@ render();
     </div>
 
     <!-- Newsletter CTA -->
-    <div class="news-card lg-sheen rounded-2xl p-6 flex flex-col justify-between reveal" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(245,158,11,0.04));border-color:rgba(16,185,129,0.2);">
+    <div class="news-card lg-sheen rounded-2xl p-6 flex flex-col justify-between reveal" style="background:linear-gradient(135deg,rgba(85, 130, 3,0.07),rgba(242, 232, 149,0.04));border-color:rgba(85, 130, 3,0.2);">
       <div>
         <div class="text-2xl mb-3">📬</div>
         <h3 class="text-white font-semibold text-lg mb-2">Stay in the Loop</h3>
@@ -1975,7 +1951,7 @@ render();
     <!-- Auto-generated data brief (filled from sales-data-2026.js) -->
     <a id="news-databrief" href="/data.html" class="news-card lg-sheen rounded-2xl p-6 reveal lg:col-span-2 block no-underline transition hover:transform hover:translate-y-[-4px]" hidden>
       <div class="flex items-center gap-3 mb-3">
-        <span class="tag" style="background:rgba(245,158,11,0.15);color:#b45309;border:1px solid rgba(245,158,11,0.3);">Data Brief</span>
+        <span class="tag" style="background:rgba(242, 232, 149,0.15);color:#6b6224;border:1px solid rgba(242, 232, 149,0.3);">Data Brief</span>
         <span class="text-xs text-gray-500">Auto-generated from state sales data</span>
       </div>
       <h3 id="news-databrief-title" class="text-white font-semibold text-xl leading-snug mb-3"></h3>
@@ -1991,7 +1967,7 @@ render();
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              EDUCATION SECTION               ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section id="education" class="section-pad px-4" style="background:linear-gradient(180deg,#0a0a0a 0%,#0f0f0f 50%,#0a0a0a 100%);">
+<section id="education" class="section-pad px-4" style="background:linear-gradient(180deg,#0a0a0a 0%,#111111 50%,#0a0a0a 100%);">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14 reveal">
       <span class="eyebrow mb-4">Know Before You Go</span>
@@ -2088,7 +2064,7 @@ render();
         <div class="text-xs text-gray-500 uppercase tracking-widest">Area Code</div>
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
-        <div class="stat-display text-3xl mb-1" style="color:#fbbf24;">2</div>
+        <div class="stat-display text-3xl mb-1" style="color: #6b6224;">2</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">States Covered</div>
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
@@ -2096,7 +2072,7 @@ render();
         <div class="text-xs text-gray-500 uppercase tracking-widest">Always</div>
       </div>
       <div class="lg-glass lg-sheen rounded-2xl p-5 text-center">
-        <div class="stat-display text-3xl mb-1" style="color:#fbbf24;">100%</div>
+        <div class="stat-display text-3xl mb-1" style="color: #6b6224;">100%</div>
         <div class="text-xs text-gray-500 uppercase tracking-widest">Independent</div>
       </div>
     </div>
@@ -2261,15 +2237,15 @@ render();
       let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
         sMonths.map((m, i) => monthShort(m) + ' ' + m.split('-')[0] + ' $' + (totals[i] / 1e6).toFixed(2) + 'M').join(', ') + '">' +
         '<defs><linearGradient id="mp-fill" x1="0" y1="0" x2="0" y2="1">' +
-        '<stop offset="0%" stop-color="#10b981" stop-opacity="0.28"/>' +
-        '<stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>' +
+        '<stop offset="0%" stop-color="#558203" stop-opacity="0.28"/>' +
+        '<stop offset="100%" stop-color="#558203" stop-opacity="0"/></linearGradient></defs>' +
         '<path d="' + area + '" fill="url(#mp-fill)"/>' +
-        '<path d="' + line + '" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        '<path d="' + line + '" fill="none" stroke="#476d03" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
       pts.forEach((p, i) => {
         if (showLabel(i)) {
-          svg += '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="#67776f" font-weight="600">' + labelFor(i) + '</text>';
+          svg += '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="#6d7457" font-weight="600">' + labelFor(i) + '</text>';
         }
-        svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="#059669" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>';
+        svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="#476d03" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>';
         svg += '<circle data-i="' + i + '" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="12" fill="transparent" style="cursor:pointer"/>';
       });
       svg += '<text x="' + last[0].toFixed(1) + '" y="' + (last[1] - 12).toFixed(1) + '" text-anchor="end" font-size="12" font-weight="700" style="fill:var(--lg-ink,#e5e7eb)">$' + (totals[totals.length - 1] / 1e6).toFixed(1) + 'M</text>';
@@ -2451,8 +2427,8 @@ render();
       const d = present.map(([v, i], k) => (k ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
       const [lv, li] = present[present.length - 1];
       return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" aria-hidden="true">' +
-        '<path d="' + d + '" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '<circle cx="' + x(li).toFixed(1) + '" cy="' + y(lv).toFixed(1) + '" r="2.4" fill="#059669"/></svg>';
+        '<path d="' + d + '" fill="none" stroke="#476d03" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<circle cx="' + x(li).toFixed(1) + '" cy="' + y(lv).toFixed(1) + '" r="2.4" fill="#476d03"/></svg>';
     };
 
     window.applySalesBadges = function () {
@@ -2679,7 +2655,7 @@ render();
     e.preventDefault();
     const btn = e.target.querySelector('button');
     btn.textContent = '✓ Subscribed!';
-    btn.style.background = 'linear-gradient(135deg,#047857,#065f46)';
+    btn.style.background = 'linear-gradient(135deg,#375302,#2a3f02)';
     e.target.querySelector('input').value = '';
     setTimeout(() => {
       btn.textContent = 'Subscribe Free';

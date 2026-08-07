@@ -165,11 +165,16 @@ const findMatchingDba = (currentDba, targetMonth) => {
 - `monthLabels`: Human-readable names ("January 2025", "February 2026", etc.)
 - `monthKeys`: Machine-readable keys ("2025-01", "2025-02", etc.)
 
-**Color Scheme**:
-- Primary Emerald: `#10b981`, `#34d399`
-- Secondary Gold: `#f59e0b`, `#fbbf24`
-- Accent Colors: Blue, Rose, Amber, Violet, Cyan
-- MoM Colors: Green (`#34d399`), Red (`#f87171`), Gold (`#fbbf24`), Gray (`#94a3b8`)
+**Color Scheme** — two brand colors, defined once in `css/brand.css`:
+- Olive green `#558203` (`--gb-green-500`) with its 50–900 scale
+- Desert cream `#FFF8B9` (`--gb-cream-200`) with its 50–900 scale
+- KPI / chart accents: six AA-legible steps of those two hues
+- MoM colors: green `#476d03` up, rose `#be123c` down, ink `#4b5233` flat
+
+Never add a raw hex to a page. Use a `--gb-*` token, or the `emerald-*` /
+`gold-*` Tailwind names (they resolve to the brand scales via
+`js/tailwind-brand.js`). `npm run check:colors` fails the build on
+off-palette values.
 
 ---
 
@@ -482,11 +487,16 @@ localStorage.setItem('recentSearches', JSON.stringify(searches));
 
 ### Color Hierarchy
 
-- **Primary**: Emerald (#10b981) - Main accents, hover effects
-- **Secondary**: Gold (#f59e0b) - New indicators, secondary accents
-- **Metric Colors**: Blue, Rose, Amber, Violet, Cyan (KPI cards)
-- **Text**: Light gray (#e5e7eb, #cbd5e1) on dark backgrounds
-- **Background**: Charcoal (#0a0a0a to #242424)
+- **Primary**: Olive green (#558203) - main accents, fills, hover effects
+- **Secondary**: Desert cream (#FFF8B9) - highlights, badges, surface tints
+- **Metric Colors**: six steps of the two brand hues (KPI cards), each
+  verified at ≥4.5:1 on the light glass because the labels are 10px
+- **Text**: warm olive ink (#22280f, #4b5233) on the cream canvas;
+  cream (#fff8b9) and green-400 (#7fab16) on the dark education pages
+- **Background**: cream canvas (#fffdf0 → #f7f3e2) on the main site,
+  charcoal (#0a0a0a to #242424) on education/articles
+- **Status only** (deliberately outside the brand): #be123c decline,
+  #dc2626 error
 
 ---
 

@@ -94,8 +94,8 @@ function generateStarRating(rating, isPremium = false) {
   const ratingNum = parseFloat(rating) || 4.0;
 
   // Determine color: gold for premium, emerald for standard (light theme)
-  const fillColor = isPremium ? '#f59e0b' : '#10b981';
-  const emptyColor = '#c7d2cc';
+  const fillColor = isPremium ? '#f2e895' : '#558203';
+  const emptyColor = '#e6e1c4';
 
   // Generate 5 star elements
   for (let i = 1; i <= 5; i++) {
@@ -120,7 +120,7 @@ function generateStarRating(rating, isPremium = false) {
           </linearGradient>
         </defs>
         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              fill="url(#${starId})" stroke="${isPremium ? '#d97706' : '#047857'}" stroke-width="0.5"/>
+              fill="url(#${starId})" stroke="${isPremium ? '#dccf6e' : '#375302'}" stroke-width="0.5"/>
       </svg>
     `;
     stars.push(svg);

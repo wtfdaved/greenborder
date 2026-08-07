@@ -37,6 +37,35 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://greenborder.org/directory.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Dispensary Profiles -->
+  <url>
+    <loc>https://greenborder.org/astro-buds.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/mango-cannabis.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://greenborder.org/old-gods.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- News Articles -->
   <url>
     <loc>https://greenborder.org/articles/texas-cannabis-legalization-march-2026.html</loc>

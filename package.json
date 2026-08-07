@@ -6,7 +6,8 @@
   "scripts": {
     "build:css": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind.min.css --minify",
     "watch:css": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind.min.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check:colors": "node tools/check-colors.mjs",
+    "test": "node tools/check-colors.mjs && node tests/data-services.test.mjs"
   },
   "repository": {
     "type": "git",

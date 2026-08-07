@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Brand palette tokens — single source of truth for site color -->
+  <link rel="stylesheet" href="/css/brand.css?v=1" />
+  <meta name="theme-color" content="#558203" />
   <title>Partnerships & Sponsorships | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -17,26 +20,13 @@
   <meta property="og:url" content="https://greenborder.org/partnerships.html" />
   <meta property="og:title" content="Partnerships | The Green Border" />
   <meta property="og:description" content="Become a partner and reach thousands of engaged cannabis consumers in El Paso and Sunland Park." />
+  <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://greenborder.org/og-image.jpg" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            gold:    { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
-            charcoal:{ 900: '#0a0a0a', 800: '#111111', 700: '#1a1a1a', 600: '#242424', 500: '#2e2e2e' },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Fraunces', 'Georgia', 'serif'],
-          },
-        }
-      }
-    }
-  </script>
+  <script src="/js/tailwind-brand.js?v=1"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,7 +39,7 @@
     html { scroll-behavior: smooth; }
     body {
       background-color: #0a0a0a;
-      color: #e5e7eb;
+      color: #31371c;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
@@ -71,8 +61,8 @@
       background: rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(16, 185, 129, 0.15);
-      box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(85, 130, 3, 0.15);
+      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
       border-radius: 20px;
       padding: 12px 30px;
       display: flex;
@@ -84,7 +74,7 @@
       top: 0;
       width: 100%;
       border-radius: 0;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
     }
     .tgb-logo-container {
       text-decoration: none;
@@ -96,13 +86,13 @@
       font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: 28px;
-      color: #34d399;
+      color: #375302;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(52, 211, 153, 0.15);
+      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
       transition: transform 0.2s ease;
     }
     .tgb-logo-sparkle {
-      color: #ca8a04;
+      color: #8a7c2e;
       font-size: 24px;
       animation: tgb-spin-slow 10s linear infinite;
     }
@@ -115,13 +105,13 @@
     .tgb-header-link {
       font-family: 'Inter', sans-serif;
       text-decoration: none;
-      color: #cbd5e1;
+      color: #4b5233;
       font-weight: 600;
       font-size: 15px;
       position: relative;
       transition: color 0.2s ease;
     }
-    .tgb-header-link:hover { color: #34d399; }
+    .tgb-header-link:hover { color: #375302; }
     .tgb-header-link::after {
       content: '';
       position: absolute;
@@ -129,7 +119,7 @@
       height: 2px;
       bottom: -4px;
       left: 0;
-      background-color: #ca8a04;
+      background-color: #8a7c2e;
       transition: width 0.3s ease;
     }
     .tgb-header-link:hover::after { width: 100%; }
@@ -139,7 +129,7 @@
       gap: 15px;
     }
     .tgb-header-btn {
-      background: #1a4d2e;
+      background: #375302;
       color: white;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
@@ -147,14 +137,14 @@
       padding: 10px 24px;
       border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
       transition: all 0.2s ease;
       white-space: nowrap;
     }
     .tgb-header-btn:hover {
-      background: #14532d;
+      background: #2a3f02;
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
+      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
     }
     @keyframes tgb-spin-slow {
       from { transform: rotate(0deg); }
@@ -169,7 +159,7 @@
         top: 0;
         border-radius: 0;
         border: none;
-        border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
         padding: 12px 16px;
         max-width: none;
       }
@@ -181,8 +171,8 @@
 
     /* ── Page Layout ── */
     .partnerships-hero {
-      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(52,211,153,0.20) 0%, transparent 65%),
-                  radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(251,191,36,0.12) 0%, transparent 60%);
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(127, 171, 22,0.20) 0%, transparent 65%),
+                  radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(255, 248, 185,0.12) 0%, transparent 60%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -199,9 +189,9 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #047857;
-      background: rgba(5, 150, 105, 0.10);
-      border: 1px solid rgba(5, 150, 105, 0.30);
+      color: #375302;
+      background: rgba(71, 109, 3, 0.10);
+      border: 1px solid rgba(71, 109, 3, 0.30);
     }
 
     /* ── Step cards ── */
@@ -215,9 +205,9 @@
       font-family: 'Fraunces', Georgia, serif;
       font-size: 1.35rem;
       font-weight: 700;
-      color: #047857;
-      background: rgba(5, 150, 105, 0.10);
-      border: 1px solid rgba(5, 150, 105, 0.30);
+      color: #375302;
+      background: rgba(71, 109, 3, 0.10);
+      border: 1px solid rgba(71, 109, 3, 0.30);
       flex-shrink: 0;
     }
     .value-icon {
@@ -228,8 +218,8 @@
       height: 48px;
       border-radius: 14px;
       font-size: 1.4rem;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.22);
+      background: rgba(85, 130, 3, 0.1);
+      border: 1px solid rgba(85, 130, 3, 0.22);
       flex-shrink: 0;
     }
 
@@ -241,7 +231,7 @@
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
-      color: #e5e7eb;
+      color: #31371c;
       font-size: 15px;
     }
     .form-input,
@@ -250,9 +240,9 @@
       width: 100%;
       padding: 12px 16px;
       background: rgba(26, 26, 26, 0.6);
-      border: 1px solid rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(85, 130, 3, 0.2);
       border-radius: 12px;
-      color: #e5e7eb;
+      color: #31371c;
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       transition: all 0.2s ease;
@@ -261,16 +251,16 @@
     .form-textarea:focus,
     .form-select:focus {
       outline: none;
-      border-color: rgba(16, 185, 129, 0.5);
+      border-color: rgba(85, 130, 3, 0.5);
       background: rgba(26, 26, 26, 0.8);
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      box-shadow: 0 0 0 3px rgba(85, 130, 3, 0.1);
     }
     .form-textarea {
       resize: vertical;
       min-height: 150px;
     }
     .form-submit {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: linear-gradient(135deg, #558203 0%, #476d03 100%);
       color: white;
       padding: 14px 32px;
       border: none;
@@ -279,11 +269,11 @@
       font-size: 16px;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 4px 12px rgba(85, 130, 3, 0.3);
     }
     .form-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
     }
     .reassure-pill {
       display: inline-flex;
@@ -293,16 +283,16 @@
       border-radius: 999px;
       font-size: 0.78rem;
       font-weight: 600;
-      color: #44544c;
+      color: #4b5233;
       background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(13, 32, 23, 0.10);
+      border: 1px solid rgba(28, 42, 1, 0.10);
     }
 
     /* ── Section divider ── */
     .section-line {
       display: inline-block;
       width: 48px; height: 3px;
-      background: linear-gradient(90deg, #10b981, #f59e0b);
+      background: linear-gradient(90deg, #558203, #f2e895);
       border-radius: 9999px;
     }
 
@@ -317,12 +307,12 @@
         max-width: 900px;
         margin: 0 auto;
         background:
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 65%),
+          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 130, 3,0.1) 0%, transparent 65%),
           rgba(26, 26, 26, 0.85);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(16, 185, 129, 0.15);
-        box-shadow: 0 -10px 40px rgba(16,185,129,0.05), 0 20px 40px rgba(16,185,129,0.1);
+        border: 1px solid rgba(85, 130, 3, 0.15);
+        box-shadow: 0 -10px 40px rgba(85, 130, 3,0.05), 0 20px 40px rgba(85, 130, 3,0.1);
         border-radius: 30px;
         padding: clamp(1.75rem, 4vw, 3.125rem);
         text-align: center;
@@ -332,36 +322,36 @@
     .tgb-footer-cta {
         margin-bottom: 40px;
         padding-bottom: 40px;
-        border-bottom: 1px solid rgba(16,185,129,0.1);
+        border-bottom: 1px solid rgba(85, 130, 3,0.1);
     }
     .tgb-cta-title {
         font-size: 24px;
         font-weight: 800;
-        color: #34d399;
+        color: #375302;
         margin: 0 0 10px 0;
     }
     .tgb-cta-text {
         font-size: 16px;
-        color: #cbd5e1;
+        color: #4b5233;
         margin: 0 auto 25px auto;
         max-width: 600px;
         line-height: 1.5;
     }
     .tgb-sub-btn {
         display: inline-block;
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        background: linear-gradient(135deg, #558203 0%, #476d03 100%);
         color: white;
         text-decoration: none;
         padding: 14px 32px;
         border-radius: 50px;
         font-weight: 600;
         font-size: 16px;
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 4px 15px rgba(85, 130, 3, 0.3);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .tgb-sub-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
     }
     .tgb-footer-nav {
         display: flex;
@@ -372,14 +362,14 @@
     }
     .tgb-footer-link {
         text-decoration: none;
-        color: #cbd5e1;
+        color: #4b5233;
         font-weight: 600;
         font-size: 15px;
         transition: color 0.2s ease;
     }
-    .tgb-footer-link:hover { color: #34d399; }
+    .tgb-footer-link:hover { color: #375302; }
     .tgb-legal-block {
-        background: rgba(16,185,129,0.05);
+        background: rgba(85, 130, 3,0.05);
         border-radius: 16px;
         padding: 20px;
         margin-top: 20px;
@@ -387,14 +377,14 @@
     .tgb-disclaimer-text {
         font-size: 11px;
         line-height: 1.5;
-        color: #94a3b8;
+        color: #6d7457;
         margin: 0 0 10px 0;
         text-align: justify;
         text-align-last: center;
     }
     .tgb-copyright {
         font-size: 12px;
-        color: #cbd5e1;
+        color: #4b5233;
         font-weight: 600;
         margin-top: 15px;
         opacity: 0.7;
@@ -444,19 +434,19 @@
         transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1);
         filter: grayscale(0.3);
       }
-      .tgb-nav-item.active { color: #34d399; transform: translateY(-2px); }
+      .tgb-nav-item.active { color: #375302; transform: translateY(-2px); }
       .tgb-nav-item.active::after {
         content: '';
         position: absolute;
         bottom: -6px;
         width: 4px;
         height: 4px;
-        background: #34d399;
+        background: #7fab16;
         border-radius: 50%;
-        box-shadow: 0 0 6px rgba(52,211,153,0.6);
+        box-shadow: 0 0 6px rgba(127, 171, 22,0.6);
       }
       .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.15); filter: grayscale(0); }
-      .tgb-nav-item:not(.active):hover { color: #d1d5db; }
+      .tgb-nav-item:not(.active):hover { color: #4b5233; }
     }
   </style>
 
@@ -466,6 +456,8 @@
 </head>
 
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              GLASS HEADER                    ║ -->
@@ -489,7 +481,7 @@
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              PARTNERSHIPS HERO               ║ -->
@@ -595,8 +587,8 @@
       <span class="value-icon">⭐</span>
       <p class="text-gray-300 font-medium m-0">Product recommendations and reviews</p>
     </div>
-    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4" style="border-color: rgba(245,158,11,0.3);">
-      <span class="value-icon" style="background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25);">✨</span>
+    <div class="lg-glass lg-sheen rounded-2xl p-5 flex items-center gap-4" style="border-color: rgba(242, 232, 149,0.3);">
+      <span class="value-icon" style="background: rgba(242, 232, 149,0.1); border-color: rgba(242, 232, 149,0.25);">✨</span>
       <p class="text-gray-300 font-medium m-0">Your brand, featured where they're already looking</p>
     </div>
   </div>
