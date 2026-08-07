@@ -109,15 +109,19 @@
     },
   };
 
+  // Browser first: a page that happens to define a global `module`
+  // (some UMD bundles do) must still get its Tailwind theme.
+  // Tolerate the CDN failing to load too — the page then renders with
+  // its own stylesheet instead of throwing on an undefined global.
+  if (typeof window !== 'undefined' && window.document) {
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = config;
+    return;
+  }
+
   // Node (tailwind.config.js / build:css) reads the same object, so the
   // CDN theme and the built stylesheet can never drift apart.
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = config;
-    return;
   }
-
-  // Tolerate the CDN failing to load: the page still renders with its
-  // own stylesheet instead of throwing on an undefined global.
-  window.tailwind = window.tailwind || {};
-  window.tailwind.config = config;
 })();

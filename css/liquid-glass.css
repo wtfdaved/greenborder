@@ -304,6 +304,11 @@ textarea:focus-visible,
 [style*="color:#f2e895"], [style*="color: #f2e895"] { color: var(--lg-gold-deep) !important; }
 [style*="color:#f87171"], [style*="color: #f87171"] { color: #be123c !important; }
 [style*="color:#d0e693"], [style*="color: #d0e693"] { color: var(--gb-green-800, #2a3f02) !important; }
+/* Muted grays inlined for the dark theme — too pale on the cream canvas */
+[style*="color:#94a3b8"], [style*="color: #94a3b8"],
+[style*="color:#9ca3af"], [style*="color: #9ca3af"] { color: var(--lg-ink-3) !important; }
+[style*="color:#cbd5e1"], [style*="color: #cbd5e1"],
+[style*="color:#d1d5db"], [style*="color: #d1d5db"] { color: var(--lg-ink-2) !important; }
 
 /* ═══════════════════════════════════════════════════════════════════
    Overrides of existing site classes — the cross-page reskin
@@ -778,6 +783,15 @@ section#education { background: linear-gradient(180deg, transparent 0%, rgba(71,
 .info-value { color: var(--lg-ink); }
 .review-text { color: var(--lg-ink-2); }
 .review-author { color: var(--lg-ink-3); }
+/* The detail pages' own CSS is authored dark, so these accents arrive
+   bright. On the cream canvas they land at 2-3:1 — retarget the deep
+   tones here rather than editing the pages, which would break their
+   dark surfaces (age gate, hero, header). */
+.info-value a { color: var(--lg-emerald-deep); }
+.info-value a:hover { color: var(--lg-emerald); }
+.stars { color: var(--lg-gold-deep); }
+.rating-text { color: var(--lg-ink-2); }
+.tags-container .tag { color: var(--lg-emerald-deep); }
 
 /* ── Partner / partnership forms ── */
 .form-label { color: var(--lg-ink-2) !important; }

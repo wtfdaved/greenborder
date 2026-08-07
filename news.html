@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=1" />
+  <link rel="stylesheet" href="/css/brand.css?v=3cd47891" />
   <title>News | The Green Border – 915 Cannabis News & Culture</title>
 
   <!-- SEO Meta Tags -->
@@ -93,7 +93,7 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/js/tailwind-brand.js?v=1"></script>
+  <script src="/js/tailwind-brand.js?v=5b1bb248"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8626644983261966" crossorigin="anonymous"></script>
@@ -109,7 +109,7 @@
     html { scroll-behavior: smooth; }
     body {
       background-color: #0a0a0a;
-      color: #31371c;
+      color: #e5e7eb;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
@@ -166,7 +166,7 @@
       font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: 28px;
-      color: #375302;
+      color: #7fab16;
       letter-spacing: -0.5px;
       text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
       transition: transform 0.2s ease;
@@ -185,13 +185,13 @@
     .tgb-header-link {
       font-family: 'Inter', sans-serif;
       text-decoration: none;
-      color: #4b5233;
+      color: #cbd5e1;
       font-weight: 600;
       font-size: 15px;
       position: relative;
       transition: color 0.2s ease;
     }
-    .tgb-header-link:hover { color: #375302; }
+    .tgb-header-link:hover { color: #7fab16; }
     .tgb-header-link::after {
       content: '';
       position: absolute;
@@ -203,7 +203,7 @@
       transition: width 0.3s ease;
     }
     .tgb-header-link:hover::after { width: 100%; }
-    .tgb-header-link[aria-current="page"] { color: var(--lg-emerald-deep, #7fab16); }
+    .tgb-header-link[aria-current="page"] { color: var(--lg-emerald-deep, #375302); }
     .tgb-header-link[aria-current="page"]::after { width: 100%; }
     .tgb-header-actions {
       display: flex;
@@ -211,7 +211,7 @@
       gap: 15px;
     }
     .tgb-search-icon {
-      color: #375302;
+      color: #7fab16;
       cursor: pointer;
       padding: 8px;
       border-radius: 50%;
@@ -306,7 +306,7 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--lg-emerald-deep, #7fab16);
+      color: var(--lg-emerald-deep, #375302);
       background: var(--lg-glass-bg, rgba(85, 130, 3, 0.08));
       border: var(--lg-border-emerald, 1px solid rgba(85, 130, 3, 0.25));
       box-shadow: var(--lg-specular, none), 0 4px 18px rgba(45, 48, 20, 0.08);
@@ -351,7 +351,7 @@
       border-color: rgba(71, 109, 3, 0.35);
     }
     .stat-pill strong {
-      color: var(--lg-emerald-deep, #7fab16);
+      color: var(--lg-emerald-deep, #375302);
       font-weight: 800;
       font-family: 'Fraunces', Georgia, serif;
       font-size: 1.05rem;
@@ -387,7 +387,7 @@
     }
     .category-filter:hover {
       transform: translateY(-2px);
-      color: var(--lg-emerald-deep, #7fab16);
+      color: var(--lg-emerald-deep, #375302);
       border-color: rgba(71, 109, 3, 0.4);
     }
     .category-filter.active {
@@ -403,7 +403,7 @@
       padding: 2px 6px;
       border-radius: 999px;
       text-align: center;
-      color: var(--lg-emerald-deep, #7fab16);
+      color: var(--lg-emerald-deep, #375302);
       background: rgba(71, 109, 3, 0.12);
     }
     .category-filter.active .count {
@@ -457,20 +457,20 @@
     /* Near-opaque fills: backdrop-filter inside a hover-transformed card
        rasterizes and blurs the text, so tags avoid it. */
     .tag-featured {
-      color: var(--lg-gold-deep, #fff8b9);
+      color: var(--lg-gold-deep, #6b6224);
       background: rgba(255, 251, 220, 0.92);
       border: 1px solid rgba(220, 207, 110, 0.35);
       box-shadow: 0 2px 10px rgba(45, 48, 20, 0.15);
     }
     .tag-policy {
-      color: var(--lg-emerald-deep, #7fab16);
+      color: var(--lg-emerald-deep, #375302);
       background: rgba(245, 250, 230, 0.92);
       border: 1px solid rgba(71, 109, 3, 0.30);
       box-shadow: 0 2px 10px rgba(45, 48, 20, 0.15);
     }
     .tag-research { color: #375302; background: rgba(255, 253, 240, 0.92); border: 1px solid rgba(55, 83, 2, 0.30); }
     .tag-legal    { color: #6b6224; background: rgba(255, 251, 220, 0.92); border: 1px solid rgba(107, 98, 36, 0.30); }
-    .tag-culture  { color: var(--lg-gold-deep, #fff8b9); background: rgba(255, 253, 240, 0.92); border: 1px solid rgba(220, 207, 110, 0.30); }
+    .tag-culture  { color: var(--lg-gold-deep, #6b6224); background: rgba(255, 253, 240, 0.92); border: 1px solid rgba(220, 207, 110, 0.30); }
 
     /* ── Featured story ── */
     .featured-card { border-radius: var(--lg-r-lg, 28px); overflow: hidden; }
@@ -650,7 +650,7 @@
       padding: 12px 22px;
       border-radius: 999px;
       font-weight: 600;
-      color: var(--lg-emerald-deep, #7fab16);
+      color: var(--lg-emerald-deep, #375302);
       background: rgba(71, 109, 3, 0.12);
       border: 1px solid rgba(71, 109, 3, 0.35);
       animation: cardIn 0.4s var(--lg-ease, ease-out) backwards;
@@ -688,12 +688,12 @@
     .tgb-cta-title {
         font-size: 24px;
         font-weight: 800;
-        color: #375302;
+        color: #7fab16;
         margin: 0 0 10px 0;
     }
     .tgb-cta-text {
         font-size: 16px;
-        color: #4b5233;
+        color: #cbd5e1;
         margin: 0 auto 25px auto;
         max-width: 600px;
         line-height: 1.5;
@@ -723,12 +723,12 @@
     }
     .tgb-footer-link {
         text-decoration: none;
-        color: #4b5233;
+        color: #cbd5e1;
         font-weight: 600;
         font-size: 15px;
         transition: color 0.2s ease;
     }
-    .tgb-footer-link:hover { color: #375302; }
+    .tgb-footer-link:hover { color: #7fab16; }
     .tgb-favorites-section {
         margin-top: 10px;
         margin-bottom: 30px;
@@ -740,7 +740,7 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: 700;
-        color: #6d7457;
+        color: #94a3b8;
         margin: 0 0 15px 0;
         display: block;
     }
@@ -753,14 +753,14 @@
     .tgb-disclaimer-text {
         font-size: 11px;
         line-height: 1.5;
-        color: #6d7457;
+        color: #94a3b8;
         margin: 0 0 10px 0;
         text-align: justify;
         text-align-last: center;
     }
     .tgb-copyright {
         font-size: 12px;
-        color: #4b5233;
+        color: #cbd5e1;
         font-weight: 600;
         margin-top: 15px;
         opacity: 0.7;
@@ -788,14 +788,14 @@
       justify-content: center;
       gap: 4px;
       font-size: 11px;
-      color: #6d7457;
+      color: #9ca3af;
       text-decoration: none;
       flex: 1;
       height: 100%;
       transition: all 0.2s ease;
       font-weight: 500;
     }
-    .tgb-nav-item:active, .tgb-nav-item:hover { color: #375302; }
+    .tgb-nav-item:active, .tgb-nav-item:hover { color: #7fab16; }
     @media (max-width: 768px) {
       .tgb-mobile-nav { display: flex; }
       body { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
@@ -805,8 +805,8 @@
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=4" />
-  <script src="/js/liquid-glass.js?v=4" defer></script>
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=5dcbb807" />
+  <script src="/js/liquid-glass.js?v=fead4f54" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1029,7 +1029,7 @@
     </div>
 </footer>
 
-<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js -->
+<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js?v=fead4f54 -->
 
 <script>
   (function () {
