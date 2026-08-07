@@ -537,6 +537,54 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ── "New data published" badges ──
+       Both are driven by dataRelease in sales-data-2026.js, so they age
+       out on their own rather than claiming to be new indefinitely. */
+    .release-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 16px 7px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--gb-green-800, #2a3f02);
+      background: linear-gradient(135deg, rgba(255, 248, 185, 0.95), rgba(220, 207, 110, 0.55));
+      border: 1px solid rgba(85, 130, 3, 0.35);
+      box-shadow: 0 2px 12px rgba(85, 130, 3, 0.16);
+    }
+    .release-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gb-green-500, #558203);
+      box-shadow: 0 0 0 0 rgba(85, 130, 3, 0.55);
+      flex-shrink: 0;
+    }
+    #mp-release.is-new .release-dot { animation: release-ping 2.4s ease-out infinite; }
+    @keyframes release-ping {
+      0%   { box-shadow: 0 0 0 0 rgba(85, 130, 3, 0.55); }
+      70%  { box-shadow: 0 0 0 9px rgba(85, 130, 3, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(85, 130, 3, 0); }
+    }
+    .fresh-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      margin-right: 4px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--gb-green-900, #1c2a01);
+      background: var(--gb-cream-200, #fff8b9);
+      border: 1px solid rgba(85, 130, 3, 0.4);
+      vertical-align: 1px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #mp-release.is-new .release-dot { animation: none; }
+    }
+
     /* ── Market Pulse tiles & trend ── */
     .mp-tile { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
     .mp-tile:hover {
@@ -823,7 +871,7 @@
 
     /* ── Mobile Bottom Nav & Back-to-Top ──
        Markup is injected and styled by the shared Liquid Glass system
-       (/js/liquid-glass.js?v=fead4f54 + /css/liquid-glass.css?v=5dcbb807) so every page gets
+       (/js/liquid-glass.js?v=fead4f54 + /css/liquid-glass.css?v=a73c5819) so every page gets
        the identical chrome. Only page-layout tweaks remain here. */
     @media (max-width: 768px) {
         .tgb-footer-card { padding: 30px 20px; }
@@ -931,12 +979,12 @@
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=5dcbb807" />
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=a73c5819" />
   <script src="/js/liquid-glass.js?v=fead4f54" defer></script>
 
   <!-- Premium "Editorial Glass" components (eyebrow, stat-display, btn-glass,
        skip-link, hero-trust, display typography) live in the shared
-       /css/liquid-glass.css?v=5dcbb807 so every page stays consistent. -->
+       /css/liquid-glass.css?v=a73c5819 so every page stays consistent. -->
 </head>
 
 <body>
@@ -974,17 +1022,30 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║               AGE GATE                       ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<div id="tgb-age-overlay">
+<div id="tgb-age-overlay" role="dialog" aria-modal="true" aria-labelledby="tgb-age-title" aria-describedby="tgb-age-desc">
   <div class="tgb-age-card">
-    <div class="tgb-age-logo" style="background: linear-gradient(135deg, #375302 0%, #476d03 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">The Green Border</div>
-    <h2 class="tgb-age-title">Age Verification</h2>
-    <p class="tgb-age-text">
-      You must be 21 years or older to view information about cannabis dispensaries in New Mexico.
-    </p>
-    <button class="tgb-age-btn-yes" onclick="tgbVerifyAge()">
-      Yes, I am 21+
-    </button>
-    <a href="https://www.google.com" class="tgb-age-btn-no">I am under 21</a>
+    <!-- Header band: the checkpoint sign -->
+    <div class="tgb-age-band">
+      <span class="tgb-age-crest" aria-hidden="true">🌵</span>
+      <span class="tgb-age-brand">The Green Border</span>
+      <span class="tgb-age-kicker">Checkpoint · NM</span>
+    </div>
+
+    <div class="tgb-age-body">
+      <span class="tgb-age-stamp" aria-hidden="true"><span>21+</span></span>
+      <h2 id="tgb-age-title" class="tgb-age-title">Are you 21 or older?</h2>
+      <p id="tgb-age-desc" class="tgb-age-text">
+        New Mexico dispensary menus, hours, and sales data are adults&#8209;only.
+        Confirm your age to cross.
+      </p>
+
+      <button class="tgb-age-btn-yes" onclick="tgbVerifyAge()">
+        Yes — I&rsquo;m 21 or older
+      </button>
+      <a href="https://www.google.com" class="tgb-age-btn-no">No, take me back</a>
+
+      <p class="tgb-age-fine">Sunland&nbsp;Park · Chaparral · Anthony · Santa&nbsp;Teresa</p>
+    </div>
   </div>
 </div>
 
@@ -1237,6 +1298,13 @@
     <div class="text-center mb-10 reveal">
       <span class="eyebrow mb-4">Official State Data</span>
       <h2 class="section-title font-bold text-white mb-4">Border Market Pulse</h2>
+      <!-- Release badge (filled from dataRelease in sales-data-2026.js) -->
+      <p id="mp-release" class="mb-4" hidden>
+        <span class="release-pill">
+          <span class="release-dot" aria-hidden="true"></span>
+          <span id="mp-release-text"></span>
+        </span>
+      </p>
       <p class="section-lede text-gray-400 max-w-xl mx-auto">Every dollar below is real — dispensary sales reported to the State of New Mexico, refreshed monthly. Latest read: <span id="mp-month" class="text-emerald-400 font-semibold"></span></p>
     </div>
 
@@ -1961,17 +2029,35 @@ render();
       </div>
     </div>
 
-    <!-- Newsletter CTA -->
-    <div class="news-card lg-sheen rounded-2xl p-6 flex flex-col justify-between reveal" style="background:linear-gradient(135deg,rgba(85, 130, 3,0.07),rgba(242, 232, 149,0.04));border-color:rgba(85, 130, 3,0.2);">
+    <!-- Follow CTA — every route here is one we actually run today. There
+         is no mailing list yet, so nothing asks for an email address. -->
+    <div id="follow-the-border" class="news-card lg-sheen rounded-2xl p-6 flex flex-col justify-between reveal scroll-mt-32" style="background:linear-gradient(135deg,rgba(85, 130, 3,0.07),rgba(242, 232, 149,0.04));border-color:rgba(85, 130, 3,0.2);">
       <div>
-        <div class="text-2xl mb-3">📬</div>
-        <h3 class="text-white font-semibold text-lg mb-2">Stay in the Loop</h3>
-        <p class="text-gray-400 text-sm leading-relaxed mb-4">Get the latest 915 cannabis news, deals, and dispensary updates delivered to your inbox.</p>
+        <div class="text-2xl mb-3">🌵</div>
+        <h3 class="text-white font-semibold text-lg mb-2">Follow the Border</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">New sales numbers land here every month. Follow along wherever you already read things.</p>
       </div>
-      <form id="newsletter-form" onsubmit="handleNewsletterSubmit(event)" class="space-y-2 scroll-mt-32">
-        <input type="email" aria-label="Email address for newsletter" placeholder="your@email.com" required class="w-full px-4 py-2.5 rounded-xl text-sm text-white outline-none focus:ring-2 focus:ring-emerald-500/50 transition" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" />
-        <button type="submit" class="w-full btn-primary py-2.5 rounded-xl text-white text-sm font-semibold">Subscribe Free</button>
-      </form>
+      <div class="space-y-2">
+        <a href="https://www.instagram.com/ep.canna" target="_blank" rel="noopener noreferrer"
+           class="w-full btn-primary py-2.5 rounded-xl text-white text-sm font-semibold flex items-center justify-center gap-2 no-underline">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Follow on Instagram
+        </a>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="/feed.xml"
+             class="btn-glass py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-1.5 no-underline transition text-emerald-400"
+             title="Subscribe in any RSS reader">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
+            RSS
+          </a>
+          <a href="/data.html"
+             class="btn-glass py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-1.5 no-underline transition text-emerald-400"
+             title="See every month of reported sales">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 19V5M4 19h16"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 15l3.5-4 3 2.5L20 8"/></svg>
+            The data
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- Auto-generated data brief (filled from sales-data-2026.js) -->
@@ -2222,12 +2308,57 @@ render();
     }
 
     // ── Hero freshness line ──
+    // ── Release freshness ──
+    // dataRelease records when the newest month was folded in, so the
+    // "just published" treatment expires on its own instead of sitting
+    // there claiming to be new six months from now.
+    const release = (typeof dataRelease !== 'undefined' && dataRelease) ? dataRelease : null;
+    let released = null;
+    if (release && release.publishedOn && release.latestMonth === latest) {
+      // Anchor to the start of the publish day. publishedOn carries no
+      // timezone, so a reader west of the build machine can legitimately
+      // be a few hours "before" it — hence the -1 day of slack.
+      const on = new Date(release.publishedOn + 'T00:00:00');
+      if (!isNaN(on)) {
+        const days = Math.floor((Date.now() - on) / 86400000);
+        released = {
+          on,
+          days,
+          isNew: days >= -1 && days <= 30,
+          when: days <= 0 ? 'today'
+              : days === 1 ? 'yesterday'
+              : days < 7 ? days + ' days ago'
+              : on.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        };
+      }
+    }
+
     const heroFresh = document.getElementById('hero-fresh');
     if (heroFresh) {
-      heroFresh.innerHTML = 'Fresh numbers: <span class="text-emerald-400 font-semibold">' + monthName +
+      heroFresh.innerHTML =
+        (released && released.isNew ? '<span class="fresh-pill">Just published</span> ' : '') +
+        'Fresh numbers: <span class="text-emerald-400 font-semibold">' + monthName +
         '</span> · $' + (latestTotal / 1e6).toFixed(1) + 'M in tracked sales across ' + rows(latest).length + ' locations · ' +
         '<a href="#market-pulse" class="text-emerald-400 font-semibold hover:underline">see the pulse ↓</a>';
       heroFresh.hidden = false;
+    }
+
+    // ── "New data published" badge above the pulse ──
+    const releaseEl = document.getElementById('mp-release');
+    const releaseText = document.getElementById('mp-release-text');
+    if (releaseEl && releaseText && released) {
+      const added = (release.addedMonths || []).filter(m => months.includes(m));
+      const addedNames = added.map(m => {
+        const [y, mm] = m.split('-');
+        return new Date(Number(y), Number(mm) - 1, 1).toLocaleString('en-US', { month: 'long' });
+      });
+      const what = addedNames.length > 1
+        ? addedNames.slice(0, -1).join(', ') + ' and ' + addedNames.slice(-1) + ' ' + yr + ' are live'
+        : monthName + ' is live';
+      releaseText.textContent = (released.isNew ? 'New data published ' : 'Data last updated ') +
+        released.when + ' · ' + what;
+      releaseEl.hidden = false;
+      if (released.isNew) releaseEl.classList.add('is-new');
     }
 
     // ── Market trend sparkline (whole tracked window) ──
@@ -2598,8 +2729,11 @@ render();
         const nextName = nextDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
         const expected = new Date(Number(yr), Number(mo) + 1, 1) // reports land the following month
           .toLocaleString('en-US', { month: 'long' });
-        provEl.innerHTML = 'Source: New Mexico Cannabis Control Division monthly retailer reports · Data through <strong class="text-gray-400">' +
-          monthName + '</strong> · ' + nextName + ' numbers expected mid-' + expected + ' — check back or <a href="#newsletter-form" class="text-emerald-400 hover:underline">join the club</a> to get them first.';
+        provEl.innerHTML = 'Source: ' + ((release && release.source) || 'New Mexico Cannabis Control Division monthly retailer reports') +
+          ' · Data through <strong class="text-gray-400">' + monthName + '</strong>' +
+          (released ? ' · published ' + released.when : '') +
+          ' · ' + nextName + ' numbers expected mid-' + expected +
+          ' — <a href="#follow-the-border" class="text-emerald-400 hover:underline">follow along</a> and they show up here.';
         provEl.hidden = false;
       }
       storyEl.hidden = false;
@@ -2676,18 +2810,6 @@ render();
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── Newsletter form ──────────────────────────────
-  function handleNewsletterSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    btn.textContent = '✓ Subscribed!';
-    btn.style.background = 'linear-gradient(135deg,#375302,#2a3f02)';
-    e.target.querySelector('input').value = '';
-    setTimeout(() => {
-      btn.textContent = 'Subscribe Free';
-      btn.style.background = '';
-    }, 3000);
-  }
 
   // Header "scrolled" state is owned by /js/liquid-glass.js?v=fead4f54 — a second
   // listener here with a different threshold made the two fight and the
@@ -2695,7 +2817,7 @@ render();
 </script>
 
 <!-- Mobile bottom nav + back-to-top button are injected on every page by
-     the shared /js/liquid-glass.js?v=fead4f54 (styled in /css/liquid-glass.css?v=5dcbb807). -->
+     the shared /js/liquid-glass.js?v=fead4f54 (styled in /css/liquid-glass.css?v=a73c5819). -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Footer year

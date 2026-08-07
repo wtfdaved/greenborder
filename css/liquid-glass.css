@@ -419,19 +419,191 @@ body.scrolled #tgb-glass-header {
 }
 .tgb-menu-toggler, .tgb-menu-toggler span { color: #ffffff !important; }
 
-/* ── Age gate ── */
+/* ═══════════════════════════════════════════════════════════════════
+   Age gate — "border checkpoint"
+   The site is named for a border, so the 21+ wall is styled as a
+   crossing: a signed header band, a pressed ink stamp, and a dashed
+   customs rule. Class names and the onclick contract are unchanged —
+   tgbVerifyAge(), the .active transition, and the localStorage key all
+   still drive it; this is purely the skin.
+   ═══════════════════════════════════════════════════════════════════ */
 #tgb-age-overlay {
-  background: rgba(247, 243, 226, 0.55) !important;
+  /* Deep olive wash so the cream card reads as lit from within */
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(42, 63, 2, 0.55) 0%, rgba(28, 42, 1, 0.78) 100%) !important;
+  backdrop-filter: blur(18px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+  padding: 20px;
 }
 .tgb-age-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 251, 220, 0.82) 100%);
-  backdrop-filter: var(--lg-blur);
-  -webkit-backdrop-filter: var(--lg-blur);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+  padding: 0 !important;
+  max-width: 420px;
+  border-radius: 26px !important;
+  text-align: center;
+  background: var(--gb-cream-50, #fffdf0);
+  border: 1px solid rgba(85, 130, 3, 0.28);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 24px 60px -12px rgba(45, 48, 20, 0.30),
-    0 0 60px rgba(71, 109, 3, 0.10);
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 32px 70px -18px rgba(28, 42, 1, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.35);
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+/* Faint paper grain so the cream does not read as flat fill */
+.tgb-age-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(rgba(85, 130, 3, 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* ── Header band: the checkpoint sign ── */
+.tgb-age-band {
+  position: relative;
+  padding: 20px 24px 18px;
+  background: linear-gradient(135deg, #375302 0%, #2a3f02 100%);
+  color: var(--gb-cream-200, #fff8b9);
+}
+/* Dashed customs rule along the bottom of the sign */
+.tgb-age-band::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--gb-cream-200, #fff8b9) 0 10px,
+    transparent 10px 20px
+  );
+  opacity: 0.55;
+}
+.tgb-age-crest {
+  display: block;
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.tgb-age-brand {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--gb-cream-200, #fff8b9);
+}
+.tgb-age-kicker {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gb-green-300, #afd456);
+}
+
+/* ── Body ── */
+.tgb-age-body {
+  position: relative;
+  z-index: 1;
+  padding: 30px 30px 26px;
+}
+/* Pressed ink stamp, tilted like a real one */
+.tgb-age-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 74px;
+  height: 74px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  transform: rotate(-11deg);
+  border: 3px double var(--gb-green-500, #558203);
+  color: var(--gb-green-600, #476d03);
+  opacity: 0.9;
+}
+.tgb-age-stamp > span {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.tgb-age-card .tgb-age-title {
+  font-family: 'Fraunces', Georgia, serif !important;
+  font-size: 25px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  opacity: 1 !important;
+  color: var(--gb-ink-900, #22280f) !important;
+  margin: 0 0 10px !important;
+}
+.tgb-age-card .tgb-age-text {
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  color: var(--gb-ink-500, #4b5233) !important;
+  margin: 0 auto 24px !important;
+  max-width: 30ch;
+}
+.tgb-age-card .tgb-age-btn-yes {
+  background: linear-gradient(135deg, #476d03 0%, #375302 100%) !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  padding: 15px !important;
+  font-size: 15.5px !important;
+  letter-spacing: 0.01em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 8px 20px rgba(55, 83, 2, 0.32) !important;
+}
+.tgb-age-card .tgb-age-btn-yes:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 12px 26px rgba(55, 83, 2, 0.42) !important;
+}
+.tgb-age-card .tgb-age-btn-no {
+  margin-top: 16px !important;
+  font-size: 13px !important;
+  color: var(--gb-ink-300, #6d7457) !important;
+  border-bottom-color: rgba(109, 116, 87, 0.5) !important;
+}
+.tgb-age-card .tgb-age-btn-no:hover { color: var(--gb-green-700, #375302) !important; }
+.tgb-age-fine {
+  margin: 22px 0 0;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(85, 130, 3, 0.3);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gb-ink-300, #6d7457);
+}
+
+/* ── Entrance ── */
+#tgb-age-overlay .tgb-age-card {
+  transform: translateY(14px) scale(0.96);
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+}
+#tgb-age-overlay.active .tgb-age-card { transform: translateY(0) scale(1); }
+/* The stamp lands a beat after the card, like it was pressed on */
+#tgb-age-overlay.active .tgb-age-stamp { animation: tgb-stamp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s backwards; }
+@keyframes tgb-stamp {
+  0%   { transform: rotate(-24deg) scale(1.5); opacity: 0; }
+  60%  { transform: rotate(-8deg) scale(0.94); opacity: 0.9; }
+  100% { transform: rotate(-11deg) scale(1); opacity: 0.9; }
+}
+
+@media (max-width: 420px) {
+  .tgb-age-body { padding: 26px 22px 22px; }
+  .tgb-age-stamp { width: 64px; height: 64px; }
+  .tgb-age-card .tgb-age-title { font-size: 22px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #tgb-age-overlay .tgb-age-card { transform: none; transition: opacity 0.2s ease; }
+  #tgb-age-overlay.active .tgb-age-stamp { animation: none; }
 }
 
 /* ── Dispensary cards ── */
