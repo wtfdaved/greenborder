@@ -24,11 +24,21 @@
   <meta property="og:title" content="El Paso Cannabis Guide & Dispensary Directory | The Green Border" />
   <meta property="og:description" content="Discover the best recreational dispensaries, cannabis stores, and consumption lounges just minutes from El Paso. Legal, licensed dispensaries with menus, hours, and reviews." />
   <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Green Border — El Paso and Sunland Park cannabis guide" />
+  <meta property="og:site_name" content="The Green Border" />
+  <meta property="og:locale" content="en_US" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="The Green Border | 915 Cannabis Guide" />
   <meta name="twitter:description" content="El Paso & Sunland Park's premier cannabis guide for the 915 border community." />
+  <!-- Without an image the homepage shared as a bare text card, while every
+       inner page (partnerships, articles) rendered the full-bleed one. -->
+  <meta name="twitter:image" content="https://greenborder.org/og-image.jpg" />
+  <meta name="twitter:image:alt" content="The Green Border — El Paso and Sunland Park cannabis guide" />
+  <meta name="twitter:url" content="https://greenborder.org/" />
 
   <!-- Additional Meta Tags -->
   <meta http-equiv="content-language" content="en-US" />
@@ -1003,14 +1013,14 @@ a.mp-move strong { color: var(--lg-ink, #e5e7eb); }
     <!-- Feature chips -->
     <div class="scroll-x mt-4 flex gap-2 pb-1">
       <span class="text-[9px] text-gray-600 tracking-widest uppercase self-center shrink-0 mr-1 font-bold">Quick filter:</span>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="lounge">🛋️ Lounge</button>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="drive-thru">🚗 Drive-Thru</button>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="open24">🌙 24 Hrs</button>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="medical">🏥 Medical</button>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="boutique">💎 Boutique</button>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="budget">🔥 Best Deals</button>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="organic">🌱 Organic / Craft</button>
-      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" data-chip="premium">⭐ Premium</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="lounge">🛋️ Lounge</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="drive-thru">🚗 Drive-Thru</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="open24">🌙 24 Hrs</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="medical">🏥 Medical</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="boutique">💎 Boutique</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="budget">🔥 Best Deals</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="organic">🌱 Organic / Craft</button>
+      <button class="gb-chip shrink-0 tag-pill bg-white/5 text-gray-400 border border-white/10 hover:bg-emerald-500/15 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer" aria-pressed="false" data-chip="premium">⭐ Premium</button>
     </div>
   </div>
 
@@ -1131,9 +1141,9 @@ a.mp-move strong { color: var(--lg-ink, #e5e7eb); }
 
   <!-- ── CTA BAND ────────────────────────────────────── -->
   <div class="mt-20 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 text-center">
-    <div class="text-[10px] tracking-[0.2em] uppercase text-emerald-400 font-bold mb-4">Own a Dispensary?</div>
+    <div class="text-[10px] tracking-[0.2em] uppercase text-emerald-400 font-bold mb-4">Run a Cannabis Brand?</div>
     <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">Get In Front of Thousands<br class="hidden sm:block"> of Border-Area Shoppers</h3>
-    <p class="text-gray-400 text-base leading-relaxed max-w-xl mx-auto mb-8">Our curated guide is the #1 resource for El Paso locals crossing to shop. Claim your listing, run featured placements, and drive measurable foot traffic.</p>
+    <p class="text-gray-400 text-base leading-relaxed max-w-xl mx-auto mb-8">Dispensaries, cultivators, manufacturers, and service brands all reach the same audience here — the #1 resource for El Paso locals crossing to shop. Claim your listing, run featured placements, and drive measurable foot traffic.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="/partnerships.html"
          class="btn-primary btn-pill inline-flex items-center justify-center gap-2 px-8 py-4 text-white text-sm font-bold shadow-lg">
@@ -1461,7 +1471,7 @@ function card(d) {
             Directions
           </a>
           ${callBtn}
-          <a href="/partner.html?claim=${encodeURIComponent(d.id)}"
+          <a href="/partnerships.html"
              class="flex items-center justify-center text-emerald-500/60 hover:text-emerald-400 text-[11px] font-bold transition-colors px-3 py-2 border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-500/10 rounded-xl whitespace-nowrap shrink-0">
             Claim
           </a>
@@ -1479,8 +1489,8 @@ function adCard() {
   return `
   <div class="relative bg-gradient-to-br from-emerald-900/20 to-teal-900/10 rounded-[2rem] border border-dashed border-emerald-500/30 flex flex-col items-center justify-center text-center p-8">
     <div class="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-2xl mb-5">✦</div>
-    <h4 class="font-display text-xl font-bold text-emerald-900 mb-2 leading-tight">Your Dispensary Here</h4>
-    <p class="text-sm text-emerald-400/70 leading-relaxed mb-6 max-w-[220px]">Put your shop in front of thousands of active shoppers along the border.</p>
+    <h4 class="font-display text-xl font-bold text-emerald-900 mb-2 leading-tight">Your Brand Here</h4>
+    <p class="text-sm text-emerald-400/70 leading-relaxed mb-6 max-w-[240px]">Dispensary, grower, manufacturer, or service brand — put your name in front of thousands of active cannabis shoppers along the border.</p>
     <a href="/partnerships.html"
        class="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:-translate-y-0.5">
       Get Featured →
@@ -1672,7 +1682,7 @@ function openDetail(id) {
       </div>
 
       <div class="border-t border-gray-700 pt-4">
-        <a href="/partner.html?claim=${encodeURIComponent(d.id)}"
+        <a href="/partnerships.html"
            class="block px-4 py-2 bg-gold-500 hover:bg-gold-400 text-green-900 font-semibold rounded-xl transition text-center">
           ✓ Is this your dispensary? Claim the listing
         </a>
@@ -1729,10 +1739,17 @@ const cityEl = document.getElementById('gb-city');
 // Filter state lives in the URL so a filtered view can be linked and
 // shared — ?find= (kept, the sales dashboard links here with it), plus
 // ?q= and ?city= inherited from the retired /directory.html.
+// Category and sort ride along too, so "24-hour shops in Chaparral, sorted
+// by top sellers" is a link someone can send, not a view they have to
+// rebuild by hand. A chip and the dropdown are the same filter wearing two
+// hats, so they share one ?vibe= param.
 function syncUrl() {
   const p = new URLSearchParams(location.search);
   searchVal ? p.set('find', searchVal) : p.delete('find');
   cityVal !== 'All' ? p.set('city', cityVal) : p.delete('city');
+  const cat = chipVal || (vibeVal !== 'All' ? vibeVal : '');
+  cat ? p.set('vibe', cat) : p.delete('vibe');
+  sortVal !== 'default' ? p.set('sort', sortVal) : p.delete('sort');
   p.delete('q'); // normalize the old directory param onto ?find=
   const qs = p.toString();
   history.replaceState(null, '', qs ? `${location.pathname}?${qs}${location.hash}` : location.pathname + location.hash);
@@ -1748,78 +1765,134 @@ searchEl.addEventListener('input', function() {
 cityEl.addEventListener('change', function() {
   cityVal = this.value; render(); syncUrl();
 });
+// One place that paints a chip's pressed state, so the class list and the
+// aria-pressed a screen reader announces can never disagree.
+const chipEls = document.querySelectorAll('.gb-chip');
+function paintChips() {
+  chipEls.forEach(c => {
+    const on = c.dataset.chip === chipVal;
+    c.classList.toggle('bg-emerald-500/20', on);
+    c.classList.toggle('text-emerald-300', on);
+    c.classList.toggle('border-emerald-500/50', on);
+    c.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+
 document.getElementById('gb-vibe').addEventListener('change', function() {
   vibeVal = this.value;
   // clear chip when dropdown used
   chipVal = null;
-  document.querySelectorAll('.gb-chip').forEach(c => c.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50'));
+  paintChips();
   render();
+  syncUrl();
 });
 
-document.querySelectorAll('.gb-chip').forEach(btn => {
+chipEls.forEach(btn => {
   btn.addEventListener('click', function() {
     const v = this.dataset.chip;
     if (chipVal === v) {
       chipVal = null;
-      this.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50');
     } else {
       chipVal = v;
       vibeVal = 'All';
       document.getElementById('gb-vibe').value = 'All';
-      document.querySelectorAll('.gb-chip').forEach(c => c.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50'));
-      this.classList.add('bg-emerald-500/20','text-emerald-300','border-emerald-500/50');
     }
+    paintChips();
     render();
+    syncUrl();
   });
+});
 
-  // Deep links into the directory. ?find= is the dashboard's store modal
-  // (mirroring data.html?store=NAME); ?q= and ?city= are what the retired
-  // /directory.html used, and its redirect stub still forwards them.
+// Sort label + pressed styling in one place, so a ?sort= deep link and the
+// toggle button leave the control looking identical.
+const SORT_LABELS = { 'default': 'Default', 'alpha': 'A–Z', 'sales': '📈 Top Sellers' };
+function paintSort() {
+  const btn = document.getElementById('gb-sort');
+  document.getElementById('gb-sort-label').textContent = SORT_LABELS[sortVal] || SORT_LABELS.default;
+  const on = sortVal !== 'default';
+  btn.classList.toggle('text-emerald-400', on);
+  btn.classList.toggle('border-emerald-500/30', on);
+  btn.classList.toggle('bg-emerald-500/10', on);
+}
+
+// Deep links into the directory. ?find= is the dashboard's store modal
+// (mirroring data.html?store=NAME); ?q= and ?city= are what the retired
+// /directory.html used, and its redirect stub still forwards them; ?vibe=
+// and ?sort= are what this page now writes back as you filter.
+//
+// This whole block used to sit inside the chip forEach above, which ran it
+// once per quick-filter chip — eight duplicate hero-search submit handlers,
+// eight scroll timers, eight rebuilds of the suggestion list.
+(function initDeepLinks() {
   const params = new URLSearchParams(location.search);
   const findParam = params.get('find') || params.get('q');
   const cityParam = params.get('city');
-  if (findParam || cityParam) {
-    if (findParam) {
-      searchVal = findParam.trim();
-      searchEl.value = searchVal;
-      clearBtn.classList.toggle('hidden', !searchVal);
+  const vibeParam = params.get('vibe');
+  const sortParam = params.get('sort');
+  let restored = false;
+
+  if (findParam) {
+    searchVal = findParam.trim();
+    searchEl.value = searchVal;
+    clearBtn.classList.toggle('hidden', !searchVal);
+    restored = true;
+  }
+  // Only honor a city the filter actually offers.
+  if (cityParam && [...cityEl.options].some(o => o.value === cityParam)) {
+    cityVal = cityParam;
+    cityEl.value = cityParam;
+    restored = true;
+  }
+  if (vibeParam) {
+    const vibeEl = document.getElementById('gb-vibe');
+    if ([...chipEls].some(c => c.dataset.chip === vibeParam)) {
+      chipVal = vibeParam;
+      paintChips();
+      restored = true;
+    } else if ([...vibeEl.options].some(o => o.value === vibeParam)) {
+      vibeVal = vibeParam;
+      vibeEl.value = vibeParam;
+      restored = true;
     }
-    // Only honor a city the filter actually offers.
-    if (cityParam && [...cityEl.options].some(o => o.value === cityParam)) {
-      cityVal = cityParam;
-      cityEl.value = cityParam;
-    }
+  }
+  if (sortParam && SORT_LABELS[sortParam]) {
+    sortVal = sortParam;
+    paintSort();
+    restored = true;
+  }
+
+  if (restored) {
     render();
     syncUrl();
     setTimeout(() => document.getElementById('dispensaries').scrollIntoView({ behavior: 'smooth' }), 400);
   }
+})();
 
-  // Hero quick-search: hands its query to the directory's live filter and
-  // scrolls down to the results. The datalist suggests real store names.
-  const heroSuggestions = document.getElementById('hero-suggestions');
-  if (heroSuggestions) {
-    heroSuggestions.innerHTML = DATA
-      .map(d => d.name).sort((a, b) => a.localeCompare(b))
-      .map(n => '<option value="' + n.replace(/"/g, '&quot;') + '"></option>').join('');
-  }
-  const heroForm = document.getElementById('hero-search');
-  if (heroForm) {
-    heroForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const q = document.getElementById('hero-search-input').value.trim();
-      searchEl.value = q;
-      searchEl.dispatchEvent(new Event('input'));
-      document.getElementById('dispensaries').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
+// Hero quick-search: hands its query to the directory's live filter and
+// scrolls down to the results. The datalist suggests real store names.
+const heroSuggestions = document.getElementById('hero-suggestions');
+if (heroSuggestions) {
+  heroSuggestions.innerHTML = DATA
+    .map(d => d.name).sort((a, b) => a.localeCompare(b))
+    .map(n => '<option value="' + n.replace(/"/g, '&quot;') + '"></option>').join('');
+}
+const heroForm = document.getElementById('hero-search');
+if (heroForm) {
+  heroForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const q = document.getElementById('hero-search-input').value.trim();
+    searchEl.value = q;
+    searchEl.dispatchEvent(new Event('input'));
+    document.getElementById('dispensaries').scrollIntoView({ behavior: 'smooth' });
+  });
+}
 
-  // Hero stat tiles deep-link into the directory: "3 Lounges" applies the
-  // lounge quick-filter on the way down, "1 24-Hr Shop" the open24 one.
-  document.querySelectorAll('[data-hero-chip]').forEach(a => {
-    a.addEventListener('click', function () {
-      const chip = document.querySelector('.gb-chip[data-chip="' + this.dataset.heroChip + '"]');
-      if (chip && chipVal !== this.dataset.heroChip) chip.click();
-    });
+// Hero stat tiles deep-link into the directory: "3 Lounges" applies the
+// lounge quick-filter on the way down, "1 24-Hr Shop" the open24 one.
+document.querySelectorAll('[data-hero-chip]').forEach(a => {
+  a.addEventListener('click', function () {
+    const chip = document.querySelector('.gb-chip[data-chip="' + this.dataset.heroChip + '"]');
+    if (chip && chipVal !== this.dataset.heroChip) chip.click();
   });
 });
 
@@ -1831,7 +1904,7 @@ function gbReset() {
   clearBtn.classList.add('hidden');
   document.getElementById('gb-city').value = 'All';
   document.getElementById('gb-vibe').value = 'All';
-  document.querySelectorAll('.gb-chip').forEach(c => c.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50'));
+  paintChips();
   render();
   syncUrl();
 }
@@ -1841,12 +1914,9 @@ window.gbReset = gbReset;
 document.getElementById('gb-sort').addEventListener('click', function() {
   const cycle = { 'default': 'alpha', 'alpha': 'sales', 'sales': 'default' };
   sortVal = cycle[sortVal] || 'default';
-  const labels = { 'default': 'Default', 'alpha': 'A–Z', 'sales': '📈 Top Sellers' };
-  document.getElementById('gb-sort-label').textContent = labels[sortVal];
-  this.classList.toggle('text-emerald-400', sortVal !== 'default');
-  this.classList.toggle('border-emerald-500/30', sortVal !== 'default');
-  this.classList.toggle('bg-emerald-500/10', sortVal !== 'default');
+  paintSort();
   render();
+  syncUrl();
 });
 
 // Filter hide/show toggle
