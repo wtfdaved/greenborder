@@ -782,12 +782,16 @@ the build when a page drifts from them.
 | `css/longform.css` | The reading experience on guides, FAQ, hubs and articles |
 | `js/liquid-glass.js` | Mobile bottom nav, back-to-top, scroll reveals, header state, footer year |
 | `partials/header.html`, `partials/footer.html` | The header and footer markup, for every page |
+| `data/dispensaries.js` | Every dispensary — the pages in `dispensaries/` are generated from it |
 
 Two rules follow from that:
 
 - **Never edit a header or footer inside a page.** They are generated.
   Edit the partial and run `npm run sync:chrome -- --fix`; `npm test`
   fails if any page has drifted.
+- **Never edit a page under `dispensaries/`.** All 41 of them are
+  generated from `data/dispensaries.js`. Edit the data (or the template
+  in `tools/build-dispensary-pages.mjs`) and run `npm run build:pages`.
 - **A shared component owns its layout, not just its colors.** The
   chrome used to be skinned centrally but laid out by a copy of the CSS
   pasted into every page, which meant deleting a page's copy silently
@@ -798,10 +802,38 @@ Two rules follow from that:
 
 | Command | Checks |
 |---------|--------|
-| `npm test` | palette, white-on-cream, cache-bust hashes, chrome drift, data |
-| `npm run check:contrast` | renders all 28 pages in Chromium and fails on any text under WCAG AA (needs a browser, so it is not in `npm test`) |
+| `npm test` | palette, white-on-cream, cache-bust hashes, chrome drift, data, SEO metadata |
+| `npm run check:contrast` | renders every page in Chromium and fails on any text under WCAG AA (needs a browser, so it is not in `npm test`) |
 | `npm run check:assets -- --fix` | rewrites `?v=` hashes after any shared asset changes |
 | `npm run sync:chrome -- --fix` | renders `partials/` into every page |
+| `npm run check:seo` | title/description length, canonical vs. path, og tags, one `<h1>`, JSON-LD parses, sitemap agrees |
+| `npm run build:pages` | the full page pipeline: dispensary pages → chrome → asset hashes → sitemap |
+
+### SEO — how discovery actually works here
+
+The directory on the home page is rendered in the browser, so for a
+crawler it is empty. That was fine when the site was a dashboard and
+fatal once the goal became ranking for `El Paso cannabis`,
+`weed near El Paso` and every dispensary's own name. Three pieces fix
+it, and they have to stay in step:
+
+1. **A real page per dispensary.** `tools/build-dispensary-pages.mjs`
+   writes `dispensaries/<name>-<city>.html` for all 43 shops (the three
+   hand-built profiles keep their original URLs and are linked, not
+   duplicated) plus the static `dispensaries/index.html` hub. Each page
+   carries `Store`, `BreadcrumbList` and `FAQPage` JSON-LD.
+2. **A keyword hub.** `el-paso-cannabis.html` is the pillar page for the
+   head terms, and every dispensary page links back to it.
+3. **Generated sitemap + a guard.** `npm run build:sitemap` derives
+   `sitemap.xml` from each page's own canonical; `npm run check:seo`
+   fails the build when a page and the sitemap disagree.
+
+The slug rule (`<name>-<city>`, lowercased, non-alphanumerics to `-`)
+lives in **two** places: `slugFor()` in the builder, and `profileUrl()`
+in `index.html`, which is what makes the browser-rendered cards link to
+the generated pages. Change one and you must change the other — the
+Playwright-free way to check is that every card link resolves to a file
+on disk.
 
 ### HTML/CSS/JS Sections
 

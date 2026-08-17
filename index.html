@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Brand palette tokens — single source of truth for site color -->
   <link rel="stylesheet" href="/css/brand.css?v=49849bb7" />
-  <title>El Paso Cannabis Guide & Dispensary Directory | The Green Border</title>
+  <title>El Paso Cannabis Guide — Dispensaries &amp; Weed Near El Paso</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Discover the best recreational dispensaries, cannabis stores, and consumption lounges just minutes from El Paso. Legal, licensed dispensaries with menus, hours, and reviews." />
-  <meta name="keywords" content="El Paso dispensaries, 915 cannabis, Sunland Park dispensaries, New Mexico cannabis, El Paso weed, The Green Border, border cannabis guide, 915 weed, NMDOH dispensary, cannabis El Paso TX" />
+  <meta name="description" content="El Paso cannabis, mapped. All 43 licensed dispensaries near El Paso — Sunland Park, Chaparral, Santa Teresa and Anthony, NM — with addresses, ratings, drive times and what Texans can legally buy 15 minutes across the line." />
+  <meta name="keywords" content="El Paso cannabis, weed near El Paso, cannabis near El Paso, dispensaries near El Paso, dispensary near El Paso, El Paso dispensaries, El Paso weed, closest dispensary to El Paso, 915 cannabis, Sunland Park dispensaries, Chaparral dispensary, Santa Teresa dispensary, Anthony NM dispensary, New Mexico cannabis, The Green Border" />
   <meta name="author" content="The Green Border" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://greenborder.org/" />
@@ -21,8 +21,8 @@
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenborder.org/" />
-  <meta property="og:title" content="El Paso Cannabis Guide & Dispensary Directory | The Green Border" />
-  <meta property="og:description" content="Discover the best recreational dispensaries, cannabis stores, and consumption lounges just minutes from El Paso. Legal, licensed dispensaries with menus, hours, and reviews." />
+  <meta property="og:title" content="El Paso Cannabis Guide — Dispensaries &amp; Weed Near El Paso" />
+  <meta property="og:description" content="All 43 licensed dispensaries near El Paso — Sunland Park, Chaparral, Santa Teresa and Anthony, NM — with addresses, ratings, drive times and what Texans can legally buy across the line." />
   <meta property="og:image" content="https://greenborder.org/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -32,8 +32,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Green Border | 915 Cannabis Guide" />
-  <meta name="twitter:description" content="El Paso & Sunland Park's premier cannabis guide for the 915 border community." />
+  <meta name="twitter:title" content="Cannabis Near El Paso | The Green Border" />
+  <meta name="twitter:description" content="43 licensed dispensaries, 15 minutes from downtown El Paso. Addresses, ratings, drive times and the border rules." />
   <!-- Without an image the homepage shared as a bare text card, while every
        inner page (partnerships, articles) rendered the full-bleed one. -->
   <meta name="twitter:image" content="https://greenborder.org/og-image.jpg" />
@@ -43,6 +43,13 @@
   <!-- Additional Meta Tags -->
   <meta http-equiv="content-language" content="en-US" />
   <meta name="theme-color" content="#558203" />
+
+  <!-- Local search signals. The site covers one metro and one state line;
+       these say so explicitly rather than leaving it to inference. -->
+  <meta name="geo.region" content="US-TX" />
+  <meta name="geo.placename" content="El Paso, Texas" />
+  <meta name="geo.position" content="31.7619;-106.4850" />
+  <meta name="ICBM" content="31.7619, -106.4850" />
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -132,28 +139,72 @@
         "position": 4,
         "name": "High Valley Cannabis",
         "description": "24-hour dispensary with consumption lounge in Chaparral",
-        "url": "https://greenborder.org/#dispensaries"
+        "url": "https://greenborder.org/dispensaries/high-valley-cannabis-chaparral.html"
       },
       {
         "@type": "ListItem",
         "position": 5,
         "name": "Astro Buds",
         "description": "Organic, soil-grown flower with terpene-rich, beautifully cured cannabis in Chaparral",
-        "url": "https://greenborder.org/#dispensaries"
+        "url": "https://greenborder.org/dispensaries/astro-buds-chaparral.html"
       },
       {
         "@type": "ListItem",
         "position": 6,
         "name": "St. Canapa",
         "description": "Refined, stress-free environment with top-shelf flower and expert staff in Santa Teresa",
-        "url": "https://greenborder.org/#dispensaries"
+        "url": "https://greenborder.org/dispensaries/st-canapa-santa-teresa.html"
       },
       {
         "@type": "ListItem",
         "position": 7,
         "name": "Kushology 101",
         "description": "Large inventory with weekly specials right off I-10 in Anthony",
-        "url": "https://greenborder.org/#dispensaries"
+        "url": "https://greenborder.org/dispensaries/kushology-101-anthony.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- The four questions every El Paso search actually means. Answered
+       in the page copy above the directory as well as here — schema
+       that is not on the page is schema Google drops. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are there cannabis dispensaries in El Paso, Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Texas has not legalized cannabis sales, so there are no dispensaries inside El Paso. The closest legal dispensaries are across the New Mexico state line — Sunland Park is about 15 minutes from downtown El Paso, and there are 43 licensed shops within a short drive of the 915."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is the closest dispensary to El Paso?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sunland Park, New Mexico. It borders El Paso's west side and holds 24 licensed dispensaries, most of them on McNutt Road and Appaloosa Drive, roughly 15 minutes from downtown. From northeast El Paso and Fort Bliss, Chaparral is the shorter drive at about 30 minutes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I buy weed near El Paso with a Texas ID?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. New Mexico's adult-use law applies to any adult 21 or older with a valid government photo ID, including a Texas driver's license. There is no residency requirement and no medical card needed for recreational purchases."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I bring cannabis back into El Paso?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Carrying cannabis across the state line into Texas is a criminal offense under Texas law and a federal offense as interstate transport. Anything bought in New Mexico must be consumed in New Mexico — licensed consumption lounges in Sunland Park are the legal option for visitors."
+        }
       }
     ]
   }
@@ -951,8 +1002,28 @@ a.mp-move strong { color: var(--lg-ink, #e5e7eb); }
 <section id="dispensaries" class="section-pad px-4 max-w-6xl mx-auto">
   <div class="text-center mb-14 reveal">
     <span class="eyebrow mb-4">Curated &amp; Licensed</span>
-    <h2 class="section-title font-bold text-white mb-4">Featured Dispensaries</h2>
+    <h2 class="section-title font-bold text-white mb-4">Dispensaries Near El Paso</h2>
     <p class="section-lede text-gray-400 max-w-xl mx-auto">Legal, licensed, and local — the best spots across the green border.</p>
+  </div>
+
+  <!-- Static answer block. The directory below is rendered in the
+       browser, so this is the part a crawler (and a visitor with a slow
+       connection) reads first, and it links out to the pages that carry
+       the detail. -->
+  <div class="max-w-3xl mx-auto mb-14 text-center reveal">
+    <p class="section-lede text-gray-400 mb-6">
+      There are no dispensaries in El&nbsp;Paso — Texas has not legalized cannabis sales. Every shop below is
+      in New Mexico, and the closest of them is about <strong class="text-gray-300">15 minutes from downtown</strong>.
+      Any adult 21+ can buy with a Texas ID; what you buy has to stay in New Mexico.
+      <a href="/el-paso-cannabis.html" class="text-emerald-400 hover:text-emerald-300 underline">Read the full cannabis near El Paso guide →</a>
+    </p>
+    <div class="flex flex-wrap justify-center gap-2">
+      <a href="/dispensaries/" class="tag-pill bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-all">All 43 dispensaries</a>
+      <a href="/dispensaries/#sunland-park" class="tag-pill bg-white/10 text-gray-300 border border-white/20 hover:bg-white/15 transition-all">Sunland Park (24) · ~15 min</a>
+      <a href="/dispensaries/#chaparral" class="tag-pill bg-white/10 text-gray-300 border border-white/20 hover:bg-white/15 transition-all">Chaparral (11) · ~30 min</a>
+      <a href="/dispensaries/#santa-teresa" class="tag-pill bg-white/10 text-gray-300 border border-white/20 hover:bg-white/15 transition-all">Santa Teresa (4) · ~20 min</a>
+      <a href="/dispensaries/#anthony" class="tag-pill bg-white/10 text-gray-300 border border-white/20 hover:bg-white/15 transition-all">Anthony (4) · ~25 min</a>
+    </div>
   </div>
 
   <!-- Directory -->
@@ -1348,6 +1419,31 @@ const REGION_COLORS = {
 };
 
 /* ══════════════════════════════════════════════════════════
+   PROFILE URLS
+
+   Every dispensary has a real, indexable page. Three were built by
+   hand and keep their original URLs; the rest are generated into
+   /dispensaries/ by tools/build-dispensary-pages.mjs. The slug rule
+   below MUST match slugFor() in that builder — it is the only thing
+   tying the cards to the pages.
+   ══════════════════════════════════════════════════════════ */
+const LEGACY_PROFILES = {
+  'custom_1772668487748': '/astro-buds.html',
+  'sp2': '/mango-cannabis.html',
+  'sp6': '/old-gods.html'
+};
+
+const slugPart = s => String(s)
+  .toLowerCase()
+  .replace(/&/g, ' and ')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+
+function profileUrl(d) {
+  return LEGACY_PROFILES[d.id] || `/dispensaries/${slugPart(d.name)}-${slugPart(d.city)}.html`;
+}
+
+/* ══════════════════════════════════════════════════════════
    CARD TEMPLATE
    ══════════════════════════════════════════════════════════ */
 function card(d) {
@@ -1361,11 +1457,7 @@ function card(d) {
   const featBorder = d.featured ? 'border-emerald-500/40 ring-[3px] ring-emerald-400/20 shadow-[0_8px_30px_rgba(85,130,3,0.28)]' : 'border-white/10 hover:border-white/25';
   
   // Adjusted button classes for flex-1 sharing to prevent squishing out of bounds
-  const detailsLinks = {
-    'custom_1772668487748': '/astro-buds.html',
-    'sp2': '/mango-cannabis.html',
-    'sp6': '/old-gods.html'
-  };
+  const detailsLinks = LEGACY_PROFILES;
   const detailsBtn = detailsLinks[d.id]
     ? `<a href="${detailsLinks[d.id]}"
           class="flex-1 flex items-center justify-center gap-2 bg-violet-900/90 hover:bg-violet-700 text-white text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap shadow-sm">
@@ -1421,7 +1513,12 @@ function card(d) {
         </div>
         <div class="min-w-0 flex-1 pt-1">
           <!-- Added break-words whitespace-normal to guarantee it wraps fully -->
-          <h3 class="font-display text-[1.25rem] font-bold text-white leading-tight mb-1 break-words whitespace-normal">${d.name}</h3>
+          <!-- The name links to the store's own page. The directory is
+               rendered in the browser, so without a real anchor here
+               nothing but the home page was crawlable. -->
+          <h3 class="font-display text-[1.25rem] font-bold text-white leading-tight mb-1 break-words whitespace-normal">
+            <a href="${escapeHtml(profileUrl(d))}" class="hover:text-emerald-400 transition-colors">${d.name}</a>
+          </h3>
           <a href="${map}" target="_blank" rel="noopener noreferrer"
              class="inline-flex items-start gap-1 mt-1 text-[11px] text-gray-500 hover:text-emerald-400 transition-colors leading-snug">
             <svg class="w-3 h-3 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
@@ -1681,7 +1778,11 @@ function openDetail(id) {
         </div>
       </div>
 
-      <div class="border-t border-gray-700 pt-4">
+      <div class="border-t border-gray-700 pt-4 space-y-3">
+        <a href="${escapeHtml(profileUrl(d))}"
+           class="block px-4 py-2 bg-emerald-900/90 hover:bg-emerald-700 text-white font-semibold rounded-xl transition text-center">
+          Full profile, hours &amp; directions →
+        </a>
         <a href="/partnerships.html"
            class="block px-4 py-2 bg-gold-500 hover:bg-gold-400 text-green-900 font-semibold rounded-xl transition text-center">
           ✓ Is this your dispensary? Claim the listing
@@ -2294,7 +2395,8 @@ render();
 
     <nav class="tgb-footer-nav" aria-label="Footer">
       <a href="/" class="tgb-footer-link">Home</a>
-      <a href="/#dispensaries" class="tgb-footer-link">Dispensaries</a>
+      <a href="/dispensaries/" class="tgb-footer-link">Dispensaries</a>
+      <a href="/el-paso-cannabis.html" class="tgb-footer-link">Cannabis Near El Paso</a>
       <a href="/news.html" class="tgb-footer-link">News</a>
       <a href="/data.html" class="tgb-footer-link">Sales Data</a>
       <a href="/#education" class="tgb-footer-link">Education</a>

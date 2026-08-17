@@ -7,7 +7,11 @@
     "check:colors": "node tools/check-colors.mjs",
     "check:assets": "node tools/check-assets.mjs",
     "check:data": "node tools/check-data.mjs",
-    "test": "node tools/check-colors.mjs && node tools/check-assets.mjs && node tools/sync-chrome.mjs && node tools/check-data.mjs && node tests/data-services.test.mjs",
+    "check:seo": "node tools/check-seo.mjs",
+    "build:dispensaries": "node tools/build-dispensary-pages.mjs",
+    "build:sitemap": "node tools/build-sitemap.mjs",
+    "build:pages": "npm run build:dispensaries && npm run sync:chrome -- --fix && npm run check:assets -- --fix && npm run build:sitemap",
+    "test": "node tools/check-colors.mjs && node tools/check-assets.mjs && node tools/sync-chrome.mjs && node tools/check-data.mjs && node tools/check-seo.mjs && node tests/data-services.test.mjs",
     "check:contrast": "node tools/check-contrast.mjs",
     "sync:chrome": "node tools/sync-chrome.mjs"
   },

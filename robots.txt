@@ -1,24 +1,24 @@
 User-agent: *
 Allow: /
-Allow: /articles/
-Allow: /education/
-Allow: /partnerships.html
-Allow: /partner.html
 
+# Not pages: build inputs, source data and scaffolding.
 Disallow: /.git/
 Disallow: /.claude/
 Disallow: /csv/
 Disallow: /public/
+Disallow: /tools/
 
-Sitemap: https://greenborder.org/sitemap.xml
+# The old standalone directory is a redirect stub. It is noindex in the
+# page itself; leaving it crawlable is what lets Google see that and
+# fold its history into the home page.
+Allow: /directory.html
 
-# Crawl delay for Googlebot (1 second between requests)
-User-agent: Googlebot
-Crawl-delay: 1
+# Crawl-delay is ignored by Google and honored by the bots we care
+# least about, so it is set only where it does something.
+User-agent: MJ12bot
+Crawl-delay: 10
 
-# Block bad bots
 User-agent: BadBot
 Disallow: /
 
-User-agent: MJ12bot
-Crawl-delay: 10
+Sitemap: https://greenborder.org/sitemap.xml
