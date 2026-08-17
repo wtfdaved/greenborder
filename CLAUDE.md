@@ -169,7 +169,19 @@ const findMatchingDba = (currentDba, targetMonth) => {
 - Olive green `#558203` (`--gb-green-500`) with its 50–900 scale
 - Desert cream `#FFF8B9` (`--gb-cream-200`) with its 50–900 scale
 - KPI / chart accents: six AA-legible steps of those two hues
-- MoM colors: green `#476d03` up, rose `#be123c` down, ink `#4b5233` flat
+- MoM colors: green `#476d03` up, rose `#be123c` down, ink `#5f6749` flat
+
+**Two rules the palette cannot enforce on its own:**
+
+1. **A cream fill never carries white text.** White on `cream-400`
+   (`#dccf6e`) is 1.6:1. Cream fills take `--gb-on-accent`
+   (`text-green-900`); only `cream-700` and deeper can hold white. This
+   is checked in markup — `npm run check:colors` fails the build if
+   `text-white` lands on a light gold/amber/yellow/violet fill.
+2. **Contrast is measured against `#F7F3E2`, the darkest stop of the
+   canvas gradient** — not `#FFFDF0`. The lightest stop flatters every
+   ratio by ~8%, which is enough to let a color pass in review and fail
+   at the bottom of a long page.
 
 Never add a raw hex to a page. Use a `--gb-*` token, or the `emerald-*` /
 `gold-*` Tailwind names (they resolve to the brand scales via
@@ -491,10 +503,15 @@ localStorage.setItem('recentSearches', JSON.stringify(searches));
 - **Secondary**: Desert cream (#FFF8B9) - highlights, badges, surface tints
 - **Metric Colors**: six steps of the two brand hues (KPI cards), each
   verified at ≥4.5:1 on the light glass because the labels are 10px
-- **Text**: warm olive ink (#22280f, #4b5233) on the cream canvas;
-  cream (#fff8b9) and green-400 (#7fab16) on the dark education pages
+- **Text**: warm olive ink on the cream canvas — #22280f body, #4b5233
+  secondary, #5f6749 muted (the lightest ink allowed to carry text; it
+  is the point where AA still holds at the dark end of the canvas)
+- **Text on dark**: cream (#fff8b9) and green-400 (#7fab16) headings,
+  #9aa383 muted, #7d8465 separators and meta
 - **Background**: cream canvas (#fffdf0 → #f7f3e2) on the main site,
   charcoal (#0a0a0a to #242424) on education/articles
+- **Accent CTA** (`.btn-gold`): cream fill, green-900 label — never the
+  reverse
 - **Status only** (deliberately outside the brand): #be123c decline,
   #dc2626 error
 

@@ -16,7 +16,7 @@
   /* Ink (text) — warm olive-tinted neutrals */
   --lg-ink: var(--gb-ink-900, #22280f);
   --lg-ink-2: var(--gb-ink-500, #4b5233);
-  --lg-ink-3: var(--gb-ink-300, #6d7457);
+  --lg-ink-3: var(--gb-ink-300, #5f6749);
 
   /* Brand accents tuned for light backgrounds (both clear WCAG AA) */
   --lg-emerald: var(--gb-green-600, #476d03);
@@ -212,7 +212,7 @@ textarea:focus-visible,
 .text-gray-300, .text-slate-300 { color: var(--lg-ink-2) !important; }
 .text-gray-400, .text-slate-400 { color: #5d6448 !important; }
 .text-gray-500, .text-slate-500 { color: var(--lg-ink-3) !important; }
-.text-gray-600, .text-slate-600 { color: #6d7457 !important; }
+.text-gray-600, .text-slate-600 { color: #5f6749 !important; }
 /* Accent text. Every variant actually used on the site is listed,
    including the /NN opacity modifiers — a translucent accent over the
    cream canvas drops below AA, so they are pinned to the solid deep
@@ -222,6 +222,18 @@ textarea:focus-visible,
 .text-emerald-500\/60, .text-emerald-500\/70,
 .text-emerald-700 { color: var(--lg-emerald-deep) !important; }
 .text-emerald-100, .text-emerald-200 { color: #2a3f02 !important; }
+/* …and one step deeper again when that accent sits on an emerald wash
+   rather than the bare canvas. A `bg-emerald-500/10` tint costs about
+   0.2 of the ratio, which is exactly enough to drop 12px labels — the
+   hero's "Trusted Source" chip measured 4.31:1 — under AA. */
+[class*="bg-emerald-4\/"].text-emerald-300, [class*="bg-emerald-4\/"].text-emerald-400,
+[class*="bg-emerald-4\/"].text-emerald-500,
+[class*="bg-emerald-5\/"].text-emerald-300, [class*="bg-emerald-5\/"].text-emerald-400,
+[class*="bg-emerald-5\/"].text-emerald-500,
+[class*="bg-emerald-6\/"].text-emerald-300, [class*="bg-emerald-6\/"].text-emerald-400,
+[class*="bg-emerald-6\/"].text-emerald-500,
+[class*="bg-emerald-4\/"] .text-emerald-400, [class*="bg-emerald-5\/"] .text-emerald-400,
+[class*="bg-emerald-6\/"] .text-emerald-400 { color: #2a3f02 !important; }
 .text-gold-400, .text-gold-300, .text-amber-400, .text-amber-300,
 .text-amber-500, .text-amber-500\/70, .text-amber-400\/80,
 .text-yellow-300, .text-yellow-400 { color: var(--lg-gold-deep) !important; }
@@ -236,12 +248,16 @@ textarea:focus-visible,
 .text-cyan-300, .text-cyan-400, .text-cyan-400\/80,
 .text-cyan-500 { color: var(--gb-green-700, #375302) !important; }
 
-/* Keep white text where it sits on solid emerald/gold fills */
+/* Keep white text where — and only where — the fill underneath is dark
+   enough to carry it. That means green-500 and deeper (white on #558203
+   is 4.6:1). The cream/gold fills that used to be listed here are gone
+   on purpose: white on cream-400 #dccf6e is 1.6:1 and on cream-500
+   #b9ab47 is 2.3:1, so those fills take ink instead — see the rule
+   below. */
 [class*="bg-emerald-5"].text-white, [class*="bg-emerald-6"].text-white, [class*="bg-emerald-7"].text-white,
-[class*="from-emerald"].text-white, [class*="from-gold"].text-white, [class*="from-amber"].text-white,
+[class*="from-emerald"].text-white,
 .btn-primary, .btn-primary.text-white,
-.btn-gold, .btn-gold.text-white,
-[class*="from-emerald"] .text-white, [class*="from-gold"] .text-white,
+[class*="from-emerald"] .text-white,
 [class*="bg-emerald-5"] .text-white, [class*="bg-emerald-6"] .text-white,
 /* Deep brand fills that stay dark in the light theme — their labels
    must stay white, not fall through to the dark ink default. The /30
@@ -258,6 +274,51 @@ textarea:focus-visible,
 [class*="from-emerald"] .text-emerald-100,
 [class*="bg-emerald-5"] .text-emerald-100, [class*="bg-emerald-6"] .text-emerald-100 {
   color: #e7f3c4 !important;
+}
+
+/* Pale washes beat the broad rules above by coming later at equal
+   specificity. A `/NN` opacity modifier turns a deep fill into a
+   near-white tint on the cream canvas, so its label has to stay ink —
+   the `from-emerald-900/20` ad card was rendering white on a near-white
+   wash at 1.1:1, i.e. an invisible heading.
+
+   Scoped to the washed element itself, never its descendants: a card
+   with a pale wash routinely contains a button with its own deep fill,
+   and that button's label still has to be white. */
+[class*="emerald-900\/2"].text-white,
+[class*="emerald-900\/1"].text-white,
+[class*="emerald-800\/2"].text-white,
+[class*="emerald-800\/1"].text-white {
+  color: var(--lg-ink) !important;
+}
+
+/* Cream fills take ink, never white — the single rule that keeps the
+   brand's second color usable. Covers the light half of every alias
+   that resolves to the cream scale (gold/amber/yellow 300–600 and
+   violet/indigo/purple 100–500); the deeper steps stay out of it
+   because #6b6224 and darker do carry white. */
+.btn-gold, .btn-gold.text-white, .btn-gold .text-white,
+[class*="bg-gold-3"].text-white, [class*="bg-gold-4"].text-white,
+[class*="bg-gold-5"].text-white, [class*="bg-gold-6"].text-white,
+[class*="bg-amber-3"].text-white, [class*="bg-amber-4"].text-white,
+[class*="bg-amber-5"].text-white, [class*="bg-amber-6"].text-white,
+[class*="bg-yellow-3"].text-white, [class*="bg-yellow-4"].text-white,
+[class*="bg-yellow-5"].text-white, [class*="bg-yellow-6"].text-white,
+[class*="bg-violet-3"].text-white, [class*="bg-violet-4"].text-white,
+[class*="bg-violet-5"].text-white,
+[class*="from-gold"].text-white, [class*="from-amber"].text-white,
+[class*="from-yellow"].text-white,
+[class*="bg-gold-3"] .text-white, [class*="bg-gold-4"] .text-white,
+[class*="bg-gold-5"] .text-white, [class*="bg-gold-6"] .text-white,
+[class*="bg-amber-3"] .text-white, [class*="bg-amber-4"] .text-white,
+[class*="bg-amber-5"] .text-white, [class*="bg-amber-6"] .text-white,
+[class*="bg-yellow-3"] .text-white, [class*="bg-yellow-4"] .text-white,
+[class*="bg-yellow-5"] .text-white, [class*="bg-yellow-6"] .text-white,
+[class*="bg-violet-3"] .text-white, [class*="bg-violet-4"] .text-white,
+[class*="bg-violet-5"] .text-white,
+[class*="from-gold"] .text-white, [class*="from-amber"] .text-white,
+[class*="from-yellow"] .text-white {
+  color: var(--gb-on-accent, #1c2a01) !important;
 }
 
 /* Surfaces */
@@ -343,8 +404,11 @@ body.scrolled #tgb-glass-header {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(71, 109, 3, 0.30);
   transition: transform var(--lg-fast) var(--lg-spring), box-shadow var(--lg-fast) var(--lg-ease);
 }
+/* Hover lifts the fill one step, but not past the point where its white
+   label still clears AA — the old top stop put the label at 3.3:1, so
+   the button got harder to read exactly when you aimed at it. */
 .tgb-header-btn:hover {
-  background: linear-gradient(135deg, #6b9c04 0%, #476d03 100%);
+  background: linear-gradient(135deg, #527f10 0%, #476d03 100%);
   transform: translateY(-2px) scale(1.03);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 24px rgba(71, 109, 3, 0.40);
 }
@@ -623,8 +687,8 @@ body.scrolled #tgb-glass-header {
 .tgb-age-card .tgb-age-btn-no {
   margin-top: 16px !important;
   font-size: 13px !important;
-  color: var(--gb-ink-300, #6d7457) !important;
-  border-bottom-color: rgba(109, 116, 87, 0.5) !important;
+  color: var(--gb-ink-300, #5f6749) !important;
+  border-bottom-color: rgba(95, 103, 73, 0.5) !important;
 }
 .tgb-age-card .tgb-age-btn-no:hover { color: var(--gb-green-700, #375302) !important; }
 .tgb-age-fine {
@@ -635,7 +699,7 @@ body.scrolled #tgb-glass-header {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gb-ink-300, #6d7457);
+  color: var(--gb-ink-300, #5f6749);
 }
 
 /* ── Entrance ── */
@@ -965,15 +1029,25 @@ section#education { background: linear-gradient(180deg, transparent 0%, rgba(71,
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 30px rgba(71, 109, 3, 0.35);
   transform: translateY(-2px);
 }
+/* The accent CTA. It used to be a cream→brown gradient carrying white
+   text, which landed at 2.9:1 and read as mud. It is now what the brand
+   actually calls for: the desert cream itself, with deep olive ink on
+   top (9.6:1 at the darkest end of the fill) and a cream-700 rim so the
+   pill still has an edge against the light canvas. */
 .btn-gold {
-  background: linear-gradient(135deg, #dccf6e 0%, #6b6224 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 16px rgba(220, 207, 110, 0.30);
+  background: linear-gradient(135deg, #fff8b9 0%, #dccf6e 100%);
+  color: var(--gb-on-accent, #1c2a01) !important;
+  border: 1px solid rgba(107, 98, 36, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 4px 16px rgba(138, 124, 46, 0.22);
   transition: transform var(--lg-fast) var(--lg-spring), box-shadow var(--lg-fast) var(--lg-ease);
 }
 .btn-gold:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 30px rgba(220, 207, 110, 0.40);
+  background: linear-gradient(135deg, #fffbdc 0%, #f2e895 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 10px 30px rgba(138, 124, 46, 0.30);
   transform: translateY(-2px);
 }
+/* Icons and sub-labels inside the pill inherit the same ink. */
+.btn-gold svg { color: currentColor; }
 .card-hover {
   transition:
     transform var(--lg-fast) var(--lg-spring),
