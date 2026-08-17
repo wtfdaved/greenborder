@@ -122,28 +122,28 @@
         "position": 4,
         "name": "High Valley Cannabis",
         "description": "24-hour dispensary with consumption lounge in Chaparral",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       },
       {
         "@type": "ListItem",
         "position": 5,
         "name": "Astro Buds",
         "description": "Organic, soil-grown flower with terpene-rich, beautifully cured cannabis in Chaparral",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       },
       {
         "@type": "ListItem",
         "position": 6,
         "name": "St. Canapa",
         "description": "Refined, stress-free environment with top-shelf flower and expert staff in Santa Teresa",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       },
       {
         "@type": "ListItem",
         "position": 7,
         "name": "Kushology 101",
         "description": "Large inventory with weekly specials right off I-10 in Anthony",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       }
     ]
   }
@@ -870,7 +870,7 @@
 
     /* ── Mobile Bottom Nav & Back-to-Top ──
        Markup is injected and styled by the shared Liquid Glass system
-       (/js/liquid-glass.js?v=096b2ab6 + /css/liquid-glass.css?v=d9816ee6) so every page gets
+       (/js/liquid-glass.js?v=32321289 + /css/liquid-glass.css?v=d9816ee6) so every page gets
        the identical chrome. Only page-layout tweaks remain here. */
     @media (max-width: 768px) {
         .tgb-footer-card { padding: 30px 20px; }
@@ -979,7 +979,7 @@
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
   <link rel="stylesheet" href="/css/liquid-glass.css?v=d9816ee6" />
-  <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
+  <script src="/js/liquid-glass.js?v=32321289" defer></script>
 
   <!-- Premium "Editorial Glass" components (eyebrow, stat-display, btn-glass,
        skip-link, hero-trust, display typography) live in the shared
@@ -1002,7 +1002,7 @@
   <nav class="tgb-desktop-nav">
     <a href="/news.html"    class="tgb-header-link">News</a>
     <a href="/data.html"    class="tgb-header-link">Sales Data</a>
-    <a href="/directory.html" class="tgb-header-link">Dispensaries</a>
+    <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
     <a href="#education"    class="tgb-header-link">Education</a>
     <a href="#about"        class="tgb-header-link">About</a>
   </nav>
@@ -1101,7 +1101,7 @@
       <svg class="w-4.5 h-4.5 shrink-0" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v16a2 2 0 002 2h16"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 14l4-4 3 3 5-6"/></svg>
       Sales Dashboard
     </a>
-    <a href="/directory.html" class="btn-glass btn-pill inline-flex items-center justify-center gap-2.5 px-8 py-3.5 font-semibold text-base">
+    <a href="#dispensaries" class="btn-glass btn-pill inline-flex items-center justify-center gap-2.5 px-8 py-3.5 font-semibold text-base">
       <svg class="shrink-0" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
       Dispensary Directory
     </a>
@@ -2458,7 +2458,7 @@ render();
 
         <nav class="tgb-footer-nav">
             <a href="/" class="tgb-footer-link">Home</a>
-            <a href="/directory.html" class="tgb-footer-link">Directory</a>
+            <a href="/#dispensaries" class="tgb-footer-link">Directory</a>
             <a href="/news.html" class="tgb-footer-link">News</a>
             <a href="/data.html" class="tgb-footer-link">Sales Data</a>
             <a href="/#education" class="tgb-footer-link">Education</a>
@@ -3060,12 +3060,12 @@ render();
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 
-  // Header "scrolled" state is owned by /js/liquid-glass.js?v=096b2ab6 — a second
+  // Header "scrolled" state is owned by /js/liquid-glass.js?v=32321289 — a second
   // listener here with a different threshold made the two fight and the
   // glass header flicker between 40px and 100px of scroll.
 </script>
 
-<!-- Dispensary detail modal. Skinned by /css/liquid-glass.css (#dispensary-modal),
+<!-- Dispensary detail modal. Skinned by /css/liquid-glass.css?v=d9816ee6 (#dispensary-modal),
      filled by the directory script above. -->
 <div id="dispensary-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4"
      role="dialog" aria-modal="true" aria-labelledby="dispensary-modal-title">
@@ -3079,7 +3079,7 @@ render();
 </div>
 
 <!-- Mobile bottom nav + back-to-top button are injected on every page by
-     the shared /js/liquid-glass.js?v=096b2ab6 (styled in /css/liquid-glass.css?v=d9816ee6). -->
+     the shared /js/liquid-glass.js?v=32321289 (styled in /css/liquid-glass.css?v=d9816ee6). -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Footer year

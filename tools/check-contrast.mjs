@@ -66,8 +66,11 @@ const serve = () =>
     const server = createServer((req, res) => {
       const path = decodeURIComponent(req.url.split('?')[0]);
       // normalize() collapses any ../ before it can escape the repo
-      const file = join(ROOT, normalize(path).replace(/^(\.\.[/\\])+/, ''));
-      if (!existsSync(file) || statSync(file).isDirectory()) {
+      let file = join(ROOT, normalize(path).replace(/^(\.\.[/\\])+/, ''));
+      // Directory → index.html, the way GitHub Pages serves it. The
+      // /directory.html stub redirects to "/", so this has to resolve.
+      if (existsSync(file) && statSync(file).isDirectory()) file = join(file, 'index.html');
+      if (!existsSync(file)) {
         res.writeHead(404).end('not found');
         return;
       }

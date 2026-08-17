@@ -1,7 +1,7 @@
 // ============================================
 // CANONICAL DISPENSARY DATA
 // ============================================
-// Single source of truth for all pages (directory.html, index.html).
+// Single source of truth for the dispensary directory on index.html.
 // Merged from: index.html RAW_DATA (editorial: vibe, tags, icon, rank)
 //          and dispensaries-fallback.json (operational: phone, offerings, rating)
 // Update this file to add/edit dispensaries — no other files need changing.
