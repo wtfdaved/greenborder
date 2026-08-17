@@ -11,15 +11,29 @@
    Everything else in this file is a tint/shade of those two hues,
    generated so that each role has a variant that clears WCAG AA.
 
-   Contrast (vs. the light canvas ≈ #FFFDF0):
-     --gb-green-500 #558203  4.4:1   large text, icons, fills
-     --gb-green-600 #476D03  5.9:1   AA for all text
-     --gb-green-700 #375302  8.4:1   AA for all text
-     --gb-cream-700 #6B6224  5.9:1   AA for all text (the old "gold" role)
+   The light canvas is a gradient (#FFFDF0 → #FBF6E0 → #F7F3E2), so every
+   ratio below is measured against its DARKEST stop, #F7F3E2 — the worst
+   case a reader can actually land on. Measuring against #FFFDF0 flatters
+   the numbers by ~8% and lets borderline colors pass on paper while
+   failing at the bottom of the page.
+
+   Contrast (vs. the darkest light-canvas stop #F7F3E2):
+     --gb-green-500 #558203  4.1:1   large text, icons, fills only
+     --gb-green-600 #476D03  5.5:1   AA for all text
+     --gb-green-700 #375302  7.9:1   AA for all text
+     --gb-cream-700 #6B6224  5.6:1   AA for all text (the old "gold" role)
+     --gb-ink-300   #5F6749  5.2:1   AA for the muted/secondary text role
    Contrast (vs. the dark canvas #0A0A0A):
-     --gb-cream-200 #FFF8B9 18.4:1
-     --gb-green-300 #AFD456 11.4:1
-     --gb-green-400 #7FAB16  6.9:1
+     --gb-cream-200 #FFF8B9 18.3:1
+     --gb-green-300 #AFD456 11.7:1
+     --gb-green-400 #7FAB16  7.3:1
+     --gb-ink-on-dark      #9AA383  7.5:1   muted text on dark
+     --gb-ink-on-dark-soft #7D8465  5.1:1   separators, meta text on dark
+
+   Two rules that the palette cannot enforce on its own:
+     • A cream fill (cream-50…cream-500) NEVER takes white text — white
+       on #DCCF6E is 1.6:1. Cream fills take --gb-on-accent.
+     • A green fill only takes white text at green-500 and deeper.
    ═══════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -46,11 +60,20 @@
   --gb-cream-700: #6b6224;
   --gb-cream-800: #4a431a;
 
-  /* ── Warm neutral ink (olive-tinted grays) ── */
+  /* ── Warm neutral ink (olive-tinted grays) ──
+     ink-300 is the lightest ink allowed to carry text. It sits at the
+     point where it still clears 4.5:1 on the darkest canvas stop; the
+     previous, lighter value measured 4.4:1 there and took every muted
+     label on the site — footers, chart ticks, nav — down with it. */
   --gb-ink-900: #22280f;
   --gb-ink-700: #31371c;
   --gb-ink-500: #4b5233;
-  --gb-ink-300: #6d7457;
+  --gb-ink-300: #5f6749;
+
+  /* Ink for the dark pages (education, articles, 404). Warm olive-grays
+     rather than the stock cool slates, so the two themes share a hue. */
+  --gb-ink-on-dark: #9aa383;
+  --gb-ink-on-dark-soft: #7d8465;
 
   /* ── Semantic roles ──
      Use these, not the raw scales, in page-level CSS. */
@@ -63,8 +86,12 @@
 
   --gb-surface: var(--gb-cream-50);
   --gb-surface-alt: var(--gb-cream-100);
+  --gb-canvas-top: var(--gb-cream-50);   /* lightest stop of the canvas */
+  --gb-canvas-end: #f7f3e2;              /* darkest stop — the AA baseline */
   --gb-on-brand: var(--gb-cream-100);     /* text on a green fill */
-  --gb-on-accent: var(--gb-green-800);    /* text on a cream fill */
+  /* Text on a cream fill. green-900 rather than green-800 so it still
+     clears AA on cream-500, the darkest fill in the accent's range. */
+  --gb-on-accent: var(--gb-green-900);
 
   /* Status colors stay outside the brand: growth/decline and warnings
      must not read as decoration. */
@@ -89,6 +116,26 @@
    Baseline accessibility — shared by every page, including the ones
    that don't load the liquid-glass design system.
    ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Focus visibility ──
+   The floor for every page, including the dark education/article pages
+   that don't load liquid-glass.css — several of them styled only
+   `a:focus-visible`, leaving buttons, inputs and <details> with no
+   visible ring at all. green-500 is the one brand tone that clears the
+   3:1 non-text minimum on BOTH the cream canvas (4.1:1) and the
+   charcoal one (4.3:1). Pages that set their own ring still win: this
+   rule is unqualified and every page's CSS loads after it. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+details:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gb-green-500, #558203);
+  outline-offset: 2px;
+}
 
 /* ── Skip link ──
    Off-screen until focused, then pinned to the top-left. Pages that

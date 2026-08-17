@@ -93,8 +93,13 @@ function generateStarRating(rating, isPremium = false) {
   if (!rating) rating = 4.0;
   const ratingNum = parseFloat(rating) || 4.0;
 
-  // Determine color: gold for premium, emerald for standard (light theme)
-  const fillColor = isPremium ? '#f2e895' : '#558203';
+  // Determine color: gold for premium, emerald for standard (light theme).
+  // Both fills are dark enough to clear the 3:1 minimum for graphics on
+  // the cream canvas, and — the part that actually matters for a rating
+  // — far enough from emptyColor that a partly-filled star still reads
+  // as partly filled. The old premium cream (#f2e895, 1.25:1) rendered
+  // filled and empty stars as the same pale smudge.
+  const fillColor = isPremium ? '#8a7c2e' : '#558203';
   const emptyColor = '#e6e1c4';
 
   // Generate 5 star elements
@@ -120,7 +125,7 @@ function generateStarRating(rating, isPremium = false) {
           </linearGradient>
         </defs>
         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              fill="url(#${starId})" stroke="${isPremium ? '#dccf6e' : '#375302'}" stroke-width="0.5"/>
+              fill="url(#${starId})" stroke="${isPremium ? '#4a431a' : '#375302'}" stroke-width="0.5"/>
       </svg>
     `;
     stars.push(svg);
@@ -364,7 +369,7 @@ function createDispensaryCard(dsp, opts = {}) {
           ${badges}
           ${actions}
           <a href="/partner.html?claim=${encodeURIComponent(dsp.id)}" onclick="event.stopPropagation()"
-             class="mt-2 block w-full text-center px-3 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-white text-sm font-bold rounded-lg transition transform hover:scale-105">
+             class="mt-2 block w-full text-center px-3 py-2.5 bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-300 text-green-900 text-sm font-bold rounded-lg transition transform hover:scale-105">
             ✓ Claim Listing
           </a>
         </div>
@@ -515,7 +520,7 @@ function openDispensaryDetail(dispensaryId) {
 
       <div class="border-t border-gray-700 pt-4">
         <a href="/partner.html?claim=${encodeURIComponent(dispensary.id)}"
-           class="block px-4 py-2 bg-gold-600 hover:bg-gold-500 text-white font-semibold rounded transition text-center">
+           class="block px-4 py-2 bg-gold-500 hover:bg-gold-400 text-green-900 font-semibold rounded transition text-center">
           ✓ Is This Your Dispensary? Claim Listing
         </a>
       </div>

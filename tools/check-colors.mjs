@@ -30,10 +30,11 @@ const BRAND = {
   '#34300f': 'cream-900',
   // ramp steps used by the ranked dashboard bars
   '#33500a': 'ramp', '#3d5f0d': 'ramp', '#527f10': 'ramp', '#5d8c1c': 'ramp',
-  '#7a7029': 'ramp', '#998a35': 'ramp', '#6b9c04': 'ramp',
+  '#7a7029': 'ramp', '#998a35': 'ramp',
   // warm ink neutrals
   '#22280f': 'ink-900', '#31371c': 'ink-700', '#4b5233': 'ink-500',
-  '#6d7457': 'ink-300', '#5d6448': 'ink', '#7d8465': 'ink',
+  '#5f6749': 'ink-300', '#5d6448': 'ink', '#7d8465': 'ink-on-dark-soft',
+  '#9aa383': 'ink-on-dark',
   '#2d3014': 'shadow ink', '#232712': 'ink', '#e6e1c4': 'empty-state fill',
   '#fbf6e0': 'canvas', '#f7f3e2': 'canvas',
 };
@@ -61,16 +62,45 @@ const ALLOWED = new Set([
 ]);
 
 // ── WCAG AA pairings we promise in css/brand.css ───────────────────
+// The light canvas is a gradient, so text is checked against its
+// DARKEST stop (#f7f3e2). Checking against the lightest one flatters
+// every ratio by ~8% and lets borderline colors pass here while failing
+// at the bottom of a long page.
+const CANVAS = '#f7f3e2';
+const DARK = '#0a0a0a';
+
 const PAIRS = [
-  ['#375302', '#fffdf0', 4.5, 'brand text on the light canvas'],
-  ['#476d03', '#fffdf0', 4.5, 'green-600 on the light canvas'],
-  ['#6b6224', '#fffdf0', 4.5, 'cream-700 (accent text) on the light canvas'],
-  ['#22280f', '#fffdf0', 4.5, 'body ink on the light canvas'],
+  ['#375302', CANVAS, 4.5, 'brand text on the light canvas'],
+  ['#476d03', CANVAS, 4.5, 'green-600 on the light canvas'],
+  ['#6b6224', CANVAS, 4.5, 'cream-700 (accent text) on the light canvas'],
+  ['#22280f', CANVAS, 4.5, 'body ink on the light canvas'],
+  ['#4b5233', CANVAS, 4.5, 'ink-500 (secondary text) on the light canvas'],
+  ['#5f6749', CANVAS, 4.5, 'ink-300 (muted text) on the light canvas'],
   ['#fffbdc', '#375302', 4.5, 'skip-link text on its green fill'],
-  ['#fff8b9', '#0a0a0a', 4.5, 'brand cream on the dark canvas'],
-  ['#7fab16', '#0a0a0a', 4.5, 'green-400 on the dark canvas'],
-  ['#558203', '#fffdf0', 3.0, 'brand green as a large/graphical element'],
+  ['#ffffff', '#476d03', 4.5, 'button label on the primary green fill'],
+  // The accent CTA: cream fill, deep olive label. Checked against the
+  // fill's lightest AND darkest stop so the gradient is safe end to end.
+  ['#1c2a01', '#fff8b9', 4.5, 'accent-button label on brand cream'],
+  ['#1c2a01', '#dccf6e', 4.5, 'accent-button label on cream-400'],
+  ['#1c2a01', '#b9ab47', 4.5, 'accent-button label on cream-500'],
+  ['#fff8b9', DARK, 4.5, 'brand cream on the dark canvas'],
+  ['#7fab16', DARK, 4.5, 'green-400 on the dark canvas'],
+  ['#9aa383', DARK, 4.5, 'muted ink on the dark canvas'],
+  ['#7d8465', DARK, 4.5, 'separators and meta text on the dark canvas'],
+  ['#558203', CANVAS, 3.0, 'brand green as a large/graphical element'],
+  ['#8a7c2e', CANVAS, 3.0, 'cream-600 as a graphical element (premium stars)'],
+  // A rating only reads if a filled star is clearly not an empty one.
+  ['#8a7c2e', '#e6e1c4', 3.0, 'filled vs empty star, premium'],
+  ['#558203', '#e6e1c4', 3.0, 'filled vs empty star, standard'],
+  ['#558203', DARK, 3.0, 'focus ring on the dark canvas'],
 ];
+
+// ── Fills that must never carry white text ─────────────────────────
+// White on cream-400 is 1.6:1. This is the mistake the palette itself
+// cannot catch, so it is checked in the markup: any element that puts
+// `text-white` on a light cream fill fails the build.
+const CREAM_FILLS =
+  /\b(?:bg|from|via|to)-(?:gold|amber|yellow)-(?:50|100|200|300|400|500|600)\b|\b(?:bg|from|via|to)-(?:violet|indigo|purple)-(?:50|100|200|300|400|500)\b|\bbg-sand-(?:50|100|200|300|400|500)\b/;
 
 const luminance = (hex) => {
   const c = [1, 3, 5]
@@ -96,9 +126,25 @@ const toHex = (r, g, b) =>
   '#' + [r, g, b].map((n) => Number(n).toString(16).padStart(2, '0')).join('');
 
 const offenders = [];
+const whiteOnCream = [];
 
 for (const file of files) {
   const lines = readFileSync(file, 'utf8').split('\n');
+
+  // Every class list on the line, whether it came from a static
+  // `class="…"` attribute or a template literal inside a renderer.
+  lines.forEach((line, i) => {
+    for (const m of line.matchAll(/class=["'`]([^"'`]*)["'`]/g)) {
+      const classes = m[1];
+      if (/\btext-white\b/.test(classes) && CREAM_FILLS.test(classes)) {
+        whiteOnCream.push({
+          file,
+          line: i + 1,
+          fill: classes.match(CREAM_FILLS)[0],
+        });
+      }
+    }
+  });
 
   lines.forEach((line, i) => {
     const found = new Set();
@@ -136,6 +182,20 @@ if (offenders.length) {
   );
 } else {
   console.log(`✔ palette clean across ${files.length} files`);
+}
+
+if (whiteOnCream.length) {
+  failed = true;
+  console.error(`\n✖ ${whiteOnCream.length} white label(s) on a cream fill:\n`);
+  for (const o of whiteOnCream) {
+    console.error(`  ${o.file}:${o.line}  text-white over ${o.fill}`);
+  }
+  console.error(
+    '\n  Cream fills carry ink, not white — white on cream-400 is 1.6:1.\n' +
+      '  Use text-green-900 (or a deeper fill, gold-700 and darker).\n'
+  );
+} else {
+  console.log('✔ no white text sitting on a cream fill');
 }
 
 const failures = PAIRS.filter(([fg, bg, min]) => contrast(fg, bg) < min);

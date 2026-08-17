@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=3cd47891" />
+  <link rel="stylesheet" href="/css/brand.css?v=8a066688" />
   <title>El Paso Cannabis Guide & Dispensary Directory | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -727,9 +727,9 @@
     /* ── "Formerly …" chip on renamed stores ── */
     .formerly-pill {
       margin-left: 6px;
-      background: rgba(109, 116, 87, 0.12);
-      color: #6d7457;
-      border: 1px solid rgba(109, 116, 87, 0.28);
+      background: rgba(95, 103, 73, 0.12);
+      color: #5f6749;
+      border: 1px solid rgba(95, 103, 73, 0.28);
       cursor: help;
     }
 
@@ -866,12 +866,11 @@
         color: #cbd5e1;
         font-weight: 600;
         margin-top: 15px;
-        opacity: 0.7;
     }
 
     /* ── Mobile Bottom Nav & Back-to-Top ──
        Markup is injected and styled by the shared Liquid Glass system
-       (/js/liquid-glass.js?v=096b2ab6 + /css/liquid-glass.css?v=faad67f0) so every page gets
+       (/js/liquid-glass.js?v=096b2ab6 + /css/liquid-glass.css?v=d9816ee6) so every page gets
        the identical chrome. Only page-layout tweaks remain here. */
     @media (max-width: 768px) {
         .tgb-footer-card { padding: 30px 20px; }
@@ -884,7 +883,7 @@
     .font-mono-dir{ font-family: 'Inter', system-ui, sans-serif; letter-spacing: 0.12em; }
     .card-hover   { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-    .tag-pill     { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
+    .tag-pill     { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
     .filter-sticky{ transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
     .filter-sticky.filter-hidden { max-height: 0; overflow: hidden; opacity: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; border-color: transparent; pointer-events: none; box-shadow: none; }
     #gb-filter-toggle { transition: all 0.3s ease; }
@@ -979,12 +978,12 @@
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=faad67f0" />
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=d9816ee6" />
   <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
 
   <!-- Premium "Editorial Glass" components (eyebrow, stat-display, btn-glass,
        skip-link, hero-trust, display typography) live in the shared
-       /css/liquid-glass.css?v=faad67f0 so every page stays consistent. -->
+       /css/liquid-glass.css?v=d9816ee6 so every page stays consistent. -->
 </head>
 
 <body>
@@ -1625,7 +1624,7 @@ function adCard() {
   return `
   <div class="relative bg-gradient-to-br from-emerald-900/20 to-teal-900/10 rounded-[2rem] border border-dashed border-emerald-500/30 flex flex-col items-center justify-center text-center p-8">
     <div class="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-2xl mb-5">✦</div>
-    <h4 class="font-display text-xl font-bold text-white mb-2 leading-tight">Your Dispensary Here</h4>
+    <h4 class="font-display text-xl font-bold text-emerald-900 mb-2 leading-tight">Your Dispensary Here</h4>
     <p class="text-sm text-emerald-400/70 leading-relaxed mb-6 max-w-[220px]">Put your shop in front of thousands of active shoppers along the border.</p>
     <a href="/partnerships.html"
        class="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:-translate-y-0.5">
@@ -2400,7 +2399,7 @@ render();
         '<path d="' + line + '" fill="none" stroke="#476d03" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
       pts.forEach((p, i) => {
         if (showLabel(i)) {
-          svg += '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="#6d7457" font-weight="600">' + labelFor(i) + '</text>';
+          svg += '<text x="' + p[0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="#5f6749" font-weight="600">' + labelFor(i) + '</text>';
         }
         svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="#476d03" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>';
         svg += '<circle data-i="' + i + '" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="12" fill="transparent" style="cursor:pointer"/>';
@@ -2817,7 +2816,7 @@ render();
 </script>
 
 <!-- Mobile bottom nav + back-to-top button are injected on every page by
-     the shared /js/liquid-glass.js?v=096b2ab6 (styled in /css/liquid-glass.css?v=faad67f0). -->
+     the shared /js/liquid-glass.js?v=096b2ab6 (styled in /css/liquid-glass.css?v=d9816ee6). -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Footer year

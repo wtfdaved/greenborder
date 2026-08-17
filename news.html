@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=3cd47891" />
+  <link rel="stylesheet" href="/css/brand.css?v=8a066688" />
   <title>News | The Green Border – 915 Cannabis News & Culture</title>
 
   <!-- SEO Meta Tags -->
@@ -406,9 +406,12 @@
       color: var(--lg-emerald-deep, #375302);
       background: rgba(71, 109, 3, 0.12);
     }
+    /* Darken the badge instead of lightening it: a white veil over the
+       active pill's green left the count at 4.3:1, while sinking it into
+       the fill reads as a well and clears 9:1. */
     .category-filter.active .count {
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.22);
+      background: rgba(28, 42, 1, 0.42);
     }
     /* Horizontal snap-scroll strip on small screens instead of wrapping */
     @media (max-width: 640px) {
@@ -763,7 +766,6 @@
         color: #cbd5e1;
         font-weight: 600;
         margin-top: 15px;
-        opacity: 0.7;
     }
 
     /* ── Mobile Nav ── */
@@ -805,7 +807,7 @@
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=faad67f0" />
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=d9816ee6" />
   <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
 </head>
 <body>
