@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=8a066688" />
+  <link rel="stylesheet" href="/css/brand.css?v=49849bb7" />
   <title>Vapes, Dabs, or Flower? Finding Your Perfect Consumption Method | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -152,627 +152,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: #0a0a0a;
-      color: #e5e7eb;
-      font-family: 'Inter', system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Glass Header ── */
-    #tgb-glass-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      max-width: 1200px;
-      z-index: 10000;
-      background: rgba(26, 26, 26, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(85, 130, 3, 0.15);
-      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
-      border-radius: 20px;
-      padding: 12px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-    }
-    body.scrolled #tgb-glass-header {
-      top: 0;
-      width: 100%;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-logo-container {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tgb-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: #7fab16;
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
-      transition: transform 0.2s ease;
-    }
-    .tgb-logo-sparkle {
-      color: #8a7c2e;
-      font-size: 24px;
-      animation: tgb-spin-slow 10s linear infinite;
-    }
-    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
-    .tgb-desktop-nav {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    .tgb-header-link {
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      color: #cbd5e1;
-      font-weight: 600;
-      font-size: 15px;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    .tgb-header-link:hover { color: #7fab16; }
-    .tgb-header-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #8a7c2e;
-      transition: width 0.3s ease;
-    }
-    .tgb-header-link:hover::after { width: 100%; }
-    .tgb-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .tgb-search-icon {
-      color: #7fab16;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
-    .tgb-header-btn {
-      background: #476d03;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
-      transition: all 0.2s ease;
-    }
-    .tgb-header-btn:hover {
-      background: #375302;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
-    }
-    @keyframes tgb-spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @media (max-width: 900px) {
-      .tgb-desktop-nav { display: none; }
-      .tgb-logo-text { font-size: 20px; }
-      .tgb-logo-sparkle { font-size: 20px; }
-      #tgb-glass-header {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-        padding: 12px 16px;
-        max-width: none;
-      }
-      .tgb-header-btn { padding: 8px 16px; font-size: 12px; }
-    }
-
-    /* ── Article Content ── */
-    .article-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 130px 20px 40px 20px;
-    }
-    .article-header {
-      margin-bottom: 40px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-    }
-    .article-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: #ffffff;
-      font-family: 'Fraunces', Georgia, serif;
-    }
-    .article-meta {
-      display: flex;
-      gap: 20px;
-      font-size: 0.9rem;
-      color: #9ca3af;
-      flex-wrap: wrap;
-    }
-    .article-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .article-tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-    .article-tag {
-      display: inline-block;
-      background: rgba(85, 130, 3, 0.1);
-      border: 1px solid rgba(85, 130, 3, 0.3);
-      color: #7fab16;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-    }
-    .article-content h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin: 40px 0 20px 0;
-      color: #ffffff;
-      font-family: 'Fraunces', Georgia, serif;
-    }
-    .article-content h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin: 30px 0 15px 0;
-      color: #7fab16;
-    }
-    .article-content p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 20px;
-      color: #d1d5db;
-    }
-    .article-content strong {
-      color: #7fab16;
-    }
-    .article-content ul, .article-content ol {
-      margin: 20px 0 20px 30px;
-      line-height: 1.8;
-    }
-    .article-content li {
-      margin-bottom: 12px;
-      color: #d1d5db;
-    }
-    .method-box {
-      background: rgba(85, 130, 3, 0.05);
-      border-left: 4px solid #7fab16;
-      padding: 20px;
-      margin: 30px 0;
-      border-radius: 4px;
-    }
-    .method-box h4 {
-      color: #7fab16;
-      font-weight: 700;
-      margin-bottom: 15px;
-      font-size: 1.2rem;
-    }
-    .method-box ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .method-box li {
-      margin-bottom: 12px;
-      padding-left: 20px;
-      position: relative;
-    }
-    .method-box li:before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: #7fab16;
-      font-weight: bold;
-    }
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 30px 0;
-      border: 1px solid rgba(85, 130, 3, 0.2);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .comparison-table th {
-      background: rgba(85, 130, 3, 0.1);
-      padding: 16px;
-      text-align: left;
-      border-bottom: 1px solid rgba(85, 130, 3, 0.2);
-      color: #7fab16;
-      font-weight: 600;
-    }
-    .comparison-table td {
-      padding: 16px;
-      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-      color: #d1d5db;
-    }
-    .comparison-table tr:last-child td {
-      border-bottom: none;
-    }
-    .cta-box {
-      background: rgba(85, 130, 3, 0.08);
-      border: 1px solid rgba(85, 130, 3, 0.3);
-      padding: 30px;
-      text-align: center;
-      border-radius: 12px;
-      margin: 40px 0;
-    }
-    .cta-box p {
-      margin-bottom: 20px;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #558203, #375302);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(85, 130, 3, 0.3);
-    }
-
-    /* ── Reading Progress Bar ── */
-    #reading-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, #558203, #fff8b9);
-      z-index: 10001;
-    }
-
-    /* ── Breadcrumb ── */
-    .breadcrumb-nav {
-      font-size: 0.85rem;
-      color: #9ca3af;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .breadcrumb-nav a {
-      color: #7fab16;
-      text-decoration: none;
-    }
-    .breadcrumb-nav a:hover { text-decoration: underline; }
-    .breadcrumb-nav .sep { color: var(--gb-ink-on-dark-soft, #7d8465); }
-
-    /* ── Table of Contents ── */
-    .toc-box {
-      background: rgba(85, 130, 3, 0.05);
-      border: 1px solid rgba(85, 130, 3, 0.2);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 30px 0;
-    }
-    .toc-box h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #7fab16;
-      margin: 0 0 14px 0;
-      font-family: 'Fraunces', Georgia, serif;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .toc-box ol {
-      margin: 0 0 0 20px;
-      line-height: 2;
-    }
-    .toc-box li { margin: 0; }
-    .toc-box a {
-      color: #d1d5db;
-      text-decoration: none;
-    }
-    .toc-box a:hover { color: #7fab16; text-decoration: underline; }
-
-    /* ── FAQ Accordion ── */
-    .faq-section { margin: 40px 0; }
-    .faq-item {
-      border: 1px solid rgba(85, 130, 3, 0.2);
-      border-radius: 10px;
-      margin-bottom: 12px;
-      background: rgba(85, 130, 3, 0.03);
-      overflow: hidden;
-    }
-    .faq-item summary {
-      cursor: pointer;
-      padding: 18px 20px;
-      font-weight: 600;
-      color: #e5e7eb;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after {
-      content: '+';
-      color: #7fab16;
-      font-size: 1.3rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .faq-item[open] summary::after { content: '−'; }
-    .faq-item summary:hover { color: #7fab16; }
-    .faq-item .faq-answer {
-      padding: 0 20px 18px 20px;
-      color: #d1d5db;
-      line-height: 1.7;
-    }
-
-    /* ── Related Guides ── */
-    .related-section {
-      margin: 50px 0 20px 0;
-      padding-top: 30px;
-      border-top: 1px solid rgba(85, 130, 3, 0.1);
-    }
-    .related-section h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #ffffff;
-      font-family: 'Fraunces', Georgia, serif;
-      margin-bottom: 20px;
-    }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-    .related-card {
-      display: block;
-      background: rgba(85, 130, 3, 0.05);
-      border: 1px solid rgba(85, 130, 3, 0.2);
-      border-radius: 12px;
-      padding: 20px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .related-card:hover {
-      border-color: rgba(85, 130, 3, 0.5);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(85, 130, 3, 0.1);
-    }
-    .related-card .related-emoji { font-size: 1.6rem; margin-bottom: 10px; display: block; }
-    .related-card h3 {
-      color: #e5e7eb;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-    .related-card p {
-      color: #9ca3af;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      margin: 0;
-    }
-    .related-card .related-cta {
-      color: #7fab16;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 10px;
-      display: inline-block;
-    }
-
-    /* ── Share Bar ── */
-    .share-bar {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .share-label { color: #9ca3af; font-size: 0.85rem; font-weight: 600; }
-    .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1px solid rgba(85, 130, 3, 0.3);
-      color: #cbd5e1;
-      background: rgba(85, 130, 3, 0.05);
-      padding: 7px 14px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: inherit;
-    }
-    .share-btn:hover { border-color: rgba(85, 130, 3, 0.6); color: #7fab16; }
-
-    /* ── Author Box ── */
-    .author-box {
-      display: flex;
-      gap: 16px;
-      background: rgba(85, 130, 3, 0.04);
-      border: 1px solid rgba(85, 130, 3, 0.15);
-      border-radius: 12px;
-      padding: 22px;
-      margin: 40px 0 0 0;
-      align-items: flex-start;
-    }
-    .author-avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #558203, #375302);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-    .author-box h3 { color: #e5e7eb; font-weight: 700; margin-bottom: 6px; font-size: 1rem; }
-    .author-box p { color: #9ca3af; font-size: 0.9rem; line-height: 1.6; margin: 0; }
-
-    /* ── Up Next ── */
-    .upnext-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      background: linear-gradient(135deg, rgba(85, 130, 3, 0.12), rgba(85, 130, 3, 0.04));
-      border: 1px solid rgba(85, 130, 3, 0.35);
-      border-radius: 14px;
-      padding: 22px 26px;
-      margin: 30px 0 0 0;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-    .upnext-card:hover {
-      border-color: rgba(85, 130, 3, 0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 26px rgba(85, 130, 3, 0.15);
-    }
-    .upnext-card .upnext-label {
-      color: #fff8b9;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      display: block;
-    }
-    .upnext-card .upnext-title {
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 1.15rem;
-      font-family: 'Fraunces', Georgia, serif;
-    }
-    .upnext-card .upnext-arrow { color: #7fab16; font-size: 1.6rem; flex-shrink: 0; }
-
-
-    /* ── Accessibility ── */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      background: #558203;
-      color: #ffffff;
-      padding: 10px 18px;
-      border-radius: 0 0 8px 0;
-      z-index: 10002;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .skip-link:focus { left: 0; }
-    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
-      outline: 2px solid #7fab16;
-      outline-offset: 2px;
-    }
-
-    /* ── Scroll-spy TOC ── */
-    .toc-box a.active { color: #7fab16; font-weight: 600; }
-
-    /* ── Back to Top ── */
-    #back-to-top {
-      position: fixed;
-      bottom: 26px;
-      right: 26px;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid rgba(85, 130, 3, 0.4);
-      background: rgba(26, 26, 26, 0.92);
-      color: #7fab16;
-      font-size: 1.2rem;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.25s ease;
-      z-index: 9999;
-    }
-    #back-to-top.visible { opacity: 1; visibility: visible; }
-    #back-to-top:hover { border-color: #558203; transform: translateY(-2px); }
-
-    /* ── FAQ cross-link ── */
-    .faq-more { font-size: 0.95rem; }
-    .faq-more a { color: #7fab16; }
-
-
-    /* ── Section anchor links ── */
-    .article-content h2 .anchor-link {
-      opacity: 0;
-      margin-left: 10px;
-      color: #7fab16;
-      text-decoration: none;
-      font-size: 1.05rem;
-      vertical-align: middle;
-      transition: opacity 0.15s ease;
-    }
-    .article-content h2:hover .anchor-link,
-    .article-content h2 .anchor-link:focus { opacity: 1; }
-
-    /* ── Language switcher ── */
-    .lang-switch {
-      margin-left: auto;
-      color: #7fab16;
-      text-decoration: none;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .lang-switch:hover { text-decoration: underline; }
-
-    /* ── Print ── */
-    @media print {
-      body { background: #ffffff !important; color: #111111; }
-      #tgb-glass-header, #reading-progress, .share-bar, .upnext-card, .related-section,
-      .cta-box, #back-to-top, .toc-box, .skip-link, .lang-switch, .faq-more, footer,
-      .breadcrumb-nav, .anchor-link, .hub-controls, .hub-cta, .faq-cta { display: none !important; }
-      .article-container, .faq-container, .hub-container { padding: 0 !important; max-width: 100% !important; }
-      .article-title, .article-content h2, .article-content h3, .faq-topic h2, .faq-hero h1 { color: #000000 !important; }
-      .article-content p, .article-content li, .article-content td,
-      .faq-item .faq-answer, .faq-item summary { color: #222222 !important; }
-      .article-content strong, .faq-item .faq-answer strong { color: #375302 !important; }
-      .faq-item, .extract-box, table { page-break-inside: avoid; }
-      .faq-item summary::after { display: none; }
-      .faq-item, .extract-box { border-color: #cccccc !important; background: #f8f8f8 !important; }
-      a { color: #375302 !important; }
-    }
-
-    @media (max-width: 768px) {
-      body { padding-top: 60px; }
-      .article-container { padding-top: 30px; }
-      .article-title { font-size: 1.8rem; }
-      .article-content h2 { font-size: 1.5rem; }
-      .comparison-table th, .comparison-table td { padding: 12px; font-size: 0.9rem; }
-    }
-  </style>
+  <!-- Theme. brand.css holds the tokens; liquid-glass.css paints the cream
+       canvas and the shared header/footer chrome; longform.css is the
+       reading experience these pages share. This page used to carry its
+       own ~600-line copy of that last one, inline and dark. -->
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faf0e90e" />
+  <link rel="stylesheet" href="/css/longform.css?v=2caeb3da" />
+  <script src="/js/liquid-glass.js?v=ed2cc218" defer></script>
 </head>
 
 <body>
@@ -782,24 +168,25 @@
 <div id="reading-progress" aria-hidden="true"></div>
 
 <!-- Header -->
+<!-- BEGIN:header — generated from partials/header.html, do not edit here -->
 <header id="tgb-glass-header">
   <a href="/" class="tgb-logo-container">
     <span class="tgb-logo-text">The Green Border</span>
-    <span class="tgb-logo-sparkle">✦</span>
+    <span class="tgb-logo-sparkle" aria-hidden="true">✦</span>
   </a>
 
-  <nav class="tgb-desktop-nav">
-    <a href="/"             class="tgb-header-link">Home</a>
-    <a href="/news.html"    class="tgb-header-link">News</a>
-    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
+  <nav class="tgb-desktop-nav" aria-label="Primary">
+    <a href="/" class="tgb-header-link">Home</a>
+    <a href="/news.html" class="tgb-header-link">News</a>
+    <a href="/data.html" class="tgb-header-link">Sales Data</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
-    <a href="/education/"    class="tgb-header-link">Education</a>
-    <a href="/#about"        class="tgb-header-link">About</a>
+    <a href="/#education" class="tgb-header-link" aria-current="page">Education</a>
+    <a href="/#about" class="tgb-header-link">About</a>
   </nav>
 
   <div class="tgb-header-actions">
-    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search dispensaries">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
@@ -807,6 +194,7 @@
     <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
   </div>
 </header>
+<!-- END:header -->
 
 <!-- Article Content -->
 <main class="article-container" id="main-content" tabindex="-1">
@@ -997,25 +385,62 @@
 </main>
 
 <!-- Footer -->
-<footer style="background: linear-gradient(180deg, rgba(10, 10, 10, 0.5), #0a0a0a); border-top: 1px solid rgba(85, 130, 3, 0.1); padding: 40px 20px; margin-top: 60px;">
-  <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-    <p style="color: #9ca3af; margin-bottom: 20px;">
-      <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
-    </p>
-    <p style="color: #9ca3af; margin-bottom: 20px;">
-      <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
-    </p>
-    <p style="color: #9ca3af;">
-      Powered by the 915 | Made with ❤ in El Paso, Texas<br>
-      &copy; <span id="year"></span> The Green Border
-    </p>
+<!-- BEGIN:footer — generated from partials/footer.html, do not edit here -->
+<footer class="tgb-glass-footer">
+  <div class="tgb-footer-card">
+
+    <!-- Border ridge: the Franklins and the Potrillos, the two ranges
+         this border sits between. Decorative, so it is hidden from
+         assistive tech and drawn from brand tokens rather than raw hex. -->
+    <svg class="tgb-ridge" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="tgb-ridge-far" d="M0,0 H1200 V44 L1130,58 L1050,38 L960,60 L870,40 L780,62 L690,38 L600,58 L510,36 L420,60 L330,40 L240,62 L150,42 L70,60 L0,46 Z"/>
+      <path class="tgb-ridge-near" d="M0,0 H1200 V28 L1120,40 L1040,22 L950,44 L860,26 L770,46 L680,24 L590,42 L500,20 L410,44 L320,26 L230,46 L140,28 L60,44 L0,30 Z"/>
+    </svg>
+
+    <div class="tgb-crest">
+      <span class="tgb-crest-mark">The Green Border</span>
+      <span class="tgb-crest-seal" aria-hidden="true">915</span>
+    </div>
+
+    <div class="tgb-footer-cta">
+      <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+      <p class="tgb-cta-text">Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.</p>
+      <a href="/news.html" class="tgb-sub-btn">Read the Latest</a>
+    </div>
+
+    <nav class="tgb-footer-nav" aria-label="Footer">
+      <a href="/" class="tgb-footer-link">Home</a>
+      <a href="/#dispensaries" class="tgb-footer-link">Dispensaries</a>
+      <a href="/news.html" class="tgb-footer-link">News</a>
+      <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+      <a href="/#education" class="tgb-footer-link">Education</a>
+      <a href="/#about" class="tgb-footer-link">About</a>
+      <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
+    </nav>
+
+    <div class="tgb-favorites-section">
+      <span class="tgb-favorites-title">Our Favorites</span>
+      <nav class="tgb-footer-nav" style="margin-bottom: 0;" aria-label="Our Favorites">
+        <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" rel="noopener noreferrer" class="tgb-footer-link">El Paso Firewood</a>
+      </nav>
+    </div>
+
+    <div class="tgb-legal-block">
+      <p class="tgb-disclaimer-text"><strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.</p>
+      <p class="tgb-disclaimer-text"><strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.</p>
+      <div class="tgb-copyright">
+        Powered by the 915 | Made with ❤ in El Paso, Texas
+        <br />
+        &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; El Paso, TX &nbsp;·&nbsp; v0.5
+      </div>
+    </div>
+
   </div>
 </footer>
+<!-- END:footer -->
 
-<button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
   const progressBar = document.getElementById('reading-progress');
   let markedRead = false;
   window.addEventListener('scroll', () => {
@@ -1061,13 +486,6 @@
     };
     window.addEventListener('scroll', updateSpy, { passive: true });
     updateSpy();
-  }
-  const backBtn = document.getElementById('back-to-top');
-  if (backBtn) {
-    window.addEventListener('scroll', () => {
-      backBtn.classList.toggle('visible', window.scrollY > 600);
-    }, { passive: true });
-    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
   // Expand FAQ accordions when printing

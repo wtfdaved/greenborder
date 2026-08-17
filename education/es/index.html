@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=8a066688" />
+  <link rel="stylesheet" href="/css/brand.css?v=49849bb7" />
   <title>Guías educativas de cannabis para el 915 | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -130,414 +130,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: #0a0a0a;
-      color: #e5e7eb;
-      font-family: 'Inter', system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Glass Header ── */
-    #tgb-glass-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      max-width: 1200px;
-      z-index: 10000;
-      background: rgba(26, 26, 26, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(85, 130, 3, 0.15);
-      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
-      border-radius: 20px;
-      padding: 12px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-    }
-    body.scrolled #tgb-glass-header {
-      top: 0;
-      width: 100%;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-logo-container {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tgb-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: #7fab16;
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
-      transition: transform 0.2s ease;
-    }
-    .tgb-logo-sparkle {
-      color: #8a7c2e;
-      font-size: 24px;
-      animation: tgb-spin-slow 10s linear infinite;
-    }
-    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
-    .tgb-desktop-nav {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    .tgb-header-link {
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      color: #cbd5e1;
-      font-weight: 600;
-      font-size: 15px;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    .tgb-header-link:hover { color: #7fab16; }
-    .tgb-header-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #8a7c2e;
-      transition: width 0.3s ease;
-    }
-    .tgb-header-link:hover::after { width: 100%; }
-    .tgb-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .tgb-search-icon {
-      color: #7fab16;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
-    .tgb-header-btn {
-      background: #476d03;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
-      transition: all 0.2s ease;
-    }
-    .tgb-header-btn:hover {
-      background: #375302;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
-    }
-    @keyframes tgb-spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @media (max-width: 900px) {
-      .tgb-desktop-nav { display: none; }
-      .tgb-logo-text { font-size: 20px; }
-      .tgb-logo-sparkle { font-size: 20px; }
-      #tgb-glass-header {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-        padding: 12px 16px;
-        max-width: none;
-      }
-      .tgb-header-btn { padding: 8px 16px; font-size: 12px; }
-    }
-
-    /* ── Accessibility ── */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      background: #558203;
-      color: #ffffff;
-      padding: 10px 18px;
-      border-radius: 0 0 8px 0;
-      z-index: 10002;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .skip-link:focus { left: 0; }
-    a:focus-visible, button:focus-visible, input:focus-visible {
-      outline: 2px solid #7fab16;
-      outline-offset: 2px;
-    }
-
-    /* ── Hub Layout ── */
-    .hub-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 140px 20px 40px 20px;
-    }
-    .breadcrumb-nav {
-      font-size: 0.85rem;
-      color: #9ca3af;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .breadcrumb-nav a {
-      color: #7fab16;
-      text-decoration: none;
-    }
-    .breadcrumb-nav a:hover { text-decoration: underline; }
-    .breadcrumb-nav .sep { color: var(--gb-ink-on-dark-soft, #7d8465); }
-    .hub-hero {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-    .hub-hero h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #ffffff;
-      font-family: 'Fraunces', Georgia, serif;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-    .hub-hero p {
-      color: #9ca3af;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    /* ── Search & Filters ── */
-    .hub-controls {
-      margin-bottom: 34px;
-    }
-    .hub-search {
-      display: block;
-      width: 100%;
-      max-width: 460px;
-      margin: 0 auto 18px auto;
-      background: rgba(85, 130, 3, 0.05);
-      border: 1px solid rgba(85, 130, 3, 0.25);
-      border-radius: 50px;
-      padding: 13px 22px;
-      color: #e5e7eb;
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-    .hub-search::placeholder { color: #9ca3af; }
-    .hub-search:focus { border-color: rgba(85, 130, 3, 0.6); }
-    .filter-chips {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .filter-chip {
-      background: rgba(85, 130, 3, 0.05);
-      border: 1px solid rgba(85, 130, 3, 0.25);
-      color: #cbd5e1;
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .filter-chip:hover { border-color: rgba(85, 130, 3, 0.55); color: #7fab16; }
-    .filter-chip.active {
-      background: rgba(85, 130, 3, 0.18);
-      border-color: #558203;
-      color: #7fab16;
-    }
-    .no-results {
-      display: none;
-      text-align: center;
-      color: #9ca3af;
-      padding: 40px 0;
-      font-size: 1rem;
-    }
-
-    /* ── Guide Grid ── */
-    .guide-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 60px;
-    }
-    .guide-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      background: rgba(85, 130, 3, 0.04);
-      border: 1px solid rgba(85, 130, 3, 0.2);
-      border-radius: 16px;
-      padding: 28px;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-    .guide-card:hover {
-      border-color: rgba(85, 130, 3, 0.5);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(85, 130, 3, 0.12);
-    }
-    .guide-card.hidden { display: none; }
-    .guide-card .guide-emoji { font-size: 2.2rem; margin-bottom: 16px; }
-    .guide-card h2 {
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 1.25rem;
-      font-family: 'Fraunces', Georgia, serif;
-      margin-bottom: 10px;
-      line-height: 1.3;
-    }
-    .guide-card p {
-      color: #9ca3af;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
-      flex-grow: 1;
-    }
-    .guide-meta {
-      display: flex;
-      gap: 14px;
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-    .guide-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .guide-tag {
-      background: rgba(85, 130, 3, 0.1);
-      border: 1px solid rgba(85, 130, 3, 0.3);
-      color: #7fab16;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-    }
-    .guide-card .guide-cta {
-      color: #7fab16;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    .read-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(255, 248, 185, 0.12);
-      border: 1px solid rgba(255, 248, 185, 0.4);
-      color: #fff8b9;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    /* ── CTA ── */
-    .hub-cta {
-      background: rgba(85, 130, 3, 0.08);
-      border: 1px solid rgba(85, 130, 3, 0.3);
-      padding: 36px;
-      text-align: center;
-      border-radius: 14px;
-    }
-    .hub-cta h2 {
-      color: #ffffff;
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .hub-cta p {
-      color: #9ca3af;
-      margin-bottom: 22px;
-      line-height: 1.6;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #558203, #375302);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(85, 130, 3, 0.3);
-    }
-
-    /* ── Section anchor links ── */
-    .article-content h2 .anchor-link {
-      opacity: 0;
-      margin-left: 10px;
-      color: #7fab16;
-      text-decoration: none;
-      font-size: 1.05rem;
-      vertical-align: middle;
-      transition: opacity 0.15s ease;
-    }
-    .article-content h2:hover .anchor-link,
-    .article-content h2 .anchor-link:focus { opacity: 1; }
-
-    /* ── Language switcher ── */
-    .lang-switch {
-      margin-left: auto;
-      color: #7fab16;
-      text-decoration: none;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .lang-switch:hover { text-decoration: underline; }
-
-    /* ── Print ── */
-    @media print {
-      body { background: #ffffff !important; color: #111111; }
-      #tgb-glass-header, #reading-progress, .share-bar, .upnext-card, .related-section,
-      .cta-box, #back-to-top, .toc-box, .skip-link, .lang-switch, .faq-more, footer,
-      .breadcrumb-nav, .anchor-link, .hub-controls, .hub-cta, .faq-cta { display: none !important; }
-      .article-container, .faq-container, .hub-container { padding: 0 !important; max-width: 100% !important; }
-      .article-title, .article-content h2, .article-content h3, .faq-topic h2, .faq-hero h1 { color: #000000 !important; }
-      .article-content p, .article-content li, .article-content td,
-      .faq-item .faq-answer, .faq-item summary { color: #222222 !important; }
-      .article-content strong, .faq-item .faq-answer strong { color: #375302 !important; }
-      .faq-item, .extract-box, table { page-break-inside: avoid; }
-      .faq-item summary::after { display: none; }
-      .faq-item, .extract-box { border-color: #cccccc !important; background: #f8f8f8 !important; }
-      a { color: #375302 !important; }
-    }
-
-    @media (max-width: 768px) {
-      .hub-container { padding-top: 100px; }
-      .hub-hero h1 { font-size: 2rem; }
-    }
-  </style>
+  <!-- Theme. brand.css holds the tokens; liquid-glass.css paints the cream
+       canvas and the shared header/footer chrome; longform.css is the
+       reading experience these pages share. This page used to carry its
+       own ~600-line copy of that last one, inline and dark. -->
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faf0e90e" />
+  <link rel="stylesheet" href="/css/longform.css?v=2caeb3da" />
+  <script src="/js/liquid-glass.js?v=ed2cc218" defer></script>
 </head>
 
 <body>
@@ -545,24 +144,25 @@
 <a class="skip-link" href="#main-content">Saltar al contenido</a>
 
 <!-- Header -->
+<!-- BEGIN:header — generated from partials/header.html, do not edit here -->
 <header id="tgb-glass-header">
   <a href="/" class="tgb-logo-container">
     <span class="tgb-logo-text">The Green Border</span>
-    <span class="tgb-logo-sparkle">✦</span>
+    <span class="tgb-logo-sparkle" aria-hidden="true">✦</span>
   </a>
 
-  <nav class="tgb-desktop-nav">
-    <a href="/"             class="tgb-header-link">Inicio</a>
-    <a href="/news.html"    class="tgb-header-link">Noticias</a>
-    <a href="/data.html"    class="tgb-header-link">Datos de Ventas</a>
+  <nav class="tgb-desktop-nav" aria-label="Principal">
+    <a href="/" class="tgb-header-link">Inicio</a>
+    <a href="/news.html" class="tgb-header-link">Noticias</a>
+    <a href="/data.html" class="tgb-header-link">Datos de Ventas</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensarios</a>
-    <a href="/education/es/"    class="tgb-header-link">Educación</a>
-    <a href="/#about"        class="tgb-header-link">Acerca de</a>
+    <a href="/#education" class="tgb-header-link" aria-current="page">Educación</a>
+    <a href="/#about" class="tgb-header-link">Acerca de</a>
   </nav>
 
   <div class="tgb-header-actions">
-    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Buscar">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Buscar dispensarios">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
@@ -570,6 +170,7 @@
     <a href="/#dispensaries" class="tgb-header-btn">Buscar Dispensario</a>
   </div>
 </header>
+<!-- END:header -->
 
 <main class="hub-container" id="main-content" tabindex="-1">
   <nav class="breadcrumb-nav" aria-label="Ruta de navegación">
@@ -714,28 +315,66 @@
     <h2>¿Listo para ponerlo en práctica?</h2>
     <p>Explora dispensarios cerca de El Paso y Sunland Park, revisa las últimas noticias de cannabis o consulta los datos de ventas de Nuevo México.</p>
     <a href="/#dispensaries" class="cta-btn">Encuentra un dispensario</a>
-    <p style="margin: 18px 0 0 0;"><a href="/education/es/preguntas-frecuentes-cannabis.html" style="color: #7fab16; font-weight: 600; text-decoration: none;">O consulta respuestas rápidas en las preguntas frecuentes →</a></p>
+    <p style="margin: 18px 0 0 0;"><a href="/education/es/preguntas-frecuentes-cannabis.html" style="color: #375302; font-weight: 600; text-decoration: none;">O consulta respuestas rápidas en las preguntas frecuentes →</a></p>
   </div>
 </main>
 
 <!-- Footer -->
-<footer style="background: linear-gradient(180deg, rgba(10, 10, 10, 0.5), #0a0a0a); border-top: 1px solid rgba(85, 130, 3, 0.1); padding: 40px 20px; margin-top: 60px;">
-  <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-    <p style="color: #9ca3af; margin-bottom: 20px;">
-      <strong>AVISO DE LA FDA:</strong> Las declaraciones sobre estos productos no han sido evaluadas por la Administración de Alimentos y Medicamentos (FDA). La eficacia de estos productos no ha sido confirmada por investigaciones aprobadas por la FDA. Estos productos no están destinados a diagnosticar, tratar, curar ni prevenir ninguna enfermedad.
-    </p>
-    <p style="color: #9ca3af; margin-bottom: 20px;">
-      <strong>ADVERTENCIA DE EDAD:</strong> El contenido de este sitio está dirigido exclusivamente a mayores de 21 años. Los productos de cannabis en Nuevo México son solo para adultos de 21 años o más. Manténgalos fuera del alcance de los niños. Es ilegal conducir un vehículo bajo la influencia del cannabis. Cruzar líneas estatales con productos de cannabis es una violación de la ley federal.
-    </p>
-    <p style="color: #9ca3af;">
-      Impulsado por el 915 | Hecho con ❤ en El Paso, Texas<br>
-      &copy; <span id="year"></span> The Green Border
-    </p>
+<!-- BEGIN:footer — generated from partials/footer.html, do not edit here -->
+<footer class="tgb-glass-footer">
+  <div class="tgb-footer-card">
+
+    <!-- Border ridge: the Franklins and the Potrillos, the two ranges
+         this border sits between. Decorative, so it is hidden from
+         assistive tech and drawn from brand tokens rather than raw hex. -->
+    <svg class="tgb-ridge" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="tgb-ridge-far" d="M0,0 H1200 V44 L1130,58 L1050,38 L960,60 L870,40 L780,62 L690,38 L600,58 L510,36 L420,60 L330,40 L240,62 L150,42 L70,60 L0,46 Z"/>
+      <path class="tgb-ridge-near" d="M0,0 H1200 V28 L1120,40 L1040,22 L950,44 L860,26 L770,46 L680,24 L590,42 L500,20 L410,44 L320,26 L230,46 L140,28 L60,44 L0,30 Z"/>
+    </svg>
+
+    <div class="tgb-crest">
+      <span class="tgb-crest-mark">The Green Border</span>
+      <span class="tgb-crest-seal" aria-hidden="true">915</span>
+    </div>
+
+    <div class="tgb-footer-cta">
+      <h3 class="tgb-cta-title">Únete al Cannabis Club</h3>
+      <p class="tgb-cta-text">Recibe primicias sobre nuevas cepas, aperturas de dispensarios y descuentos exclusivos cerca de la frontera.</p>
+      <a href="/news.html" class="tgb-sub-btn">Lee lo más reciente</a>
+    </div>
+
+    <nav class="tgb-footer-nav" aria-label="Pie de página">
+      <a href="/" class="tgb-footer-link">Inicio</a>
+      <a href="/#dispensaries" class="tgb-footer-link">Dispensarios</a>
+      <a href="/news.html" class="tgb-footer-link">Noticias</a>
+      <a href="/data.html" class="tgb-footer-link">Datos de Ventas</a>
+      <a href="/#education" class="tgb-footer-link">Educación</a>
+      <a href="/#about" class="tgb-footer-link">Acerca de</a>
+      <a href="/partnerships.html" class="tgb-footer-link">Colaboraciones</a>
+    </nav>
+
+    <div class="tgb-favorites-section">
+      <span class="tgb-favorites-title">Nuestros Favoritos</span>
+      <nav class="tgb-footer-nav" style="margin-bottom: 0;" aria-label="Nuestros Favoritos">
+        <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" rel="noopener noreferrer" class="tgb-footer-link">El Paso Firewood</a>
+      </nav>
+    </div>
+
+    <div class="tgb-legal-block">
+      <p class="tgb-disclaimer-text"><strong>AVISO DE LA FDA:</strong> Las declaraciones sobre estos productos no han sido evaluadas por la Administración de Alimentos y Medicamentos. La eficacia de estos productos no ha sido confirmada por investigaciones aprobadas por la FDA. Estos productos no están destinados a diagnosticar, tratar, curar ni prevenir ninguna enfermedad.</p>
+      <p class="tgb-disclaimer-text"><strong>ADVERTENCIA DE EDAD:</strong> El contenido de este sitio está destinado únicamente a mayores de 21 años. Los productos de cannabis en Nuevo México son para uso exclusivo de adultos de 21 años o más. Manténgase fuera del alcance de los niños. Es ilegal conducir un vehículo bajo la influencia del cannabis. Cruzar las fronteras estatales con productos de cannabis es una violación de la ley federal.</p>
+      <div class="tgb-copyright">
+        Impulsado por el 915 | Hecho con ❤ en El Paso, Texas
+        <br />
+        &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; El Paso, TX &nbsp;·&nbsp; v0.5
+      </div>
+    </div>
+
   </div>
 </footer>
+<!-- END:footer -->
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
   window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });

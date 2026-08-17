@@ -375,6 +375,261 @@ textarea:focus-visible,
    Overrides of existing site classes — the cross-page reskin
    ═══════════════════════════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════════════════════════════
+   Chrome structure
+
+   The header and footer used to be skinned here but laid out by a copy
+   of the same ~240 lines pasted into every page's inline <style>. That
+   made the shared sheet a paint job over markup it didn't own: strip a
+   page's inline copy and the header collapsed into unstyled links.
+
+   The layout now lives here, with the paint, so the chrome is one
+   component. Pages that still carry their inline copy are unaffected —
+   the values are the same and this file loads last.
+   ═══════════════════════════════════════════════════════════════════ */
+#tgb-glass-header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1200px;
+  z-index: 10000;
+  padding: 12px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body.scrolled #tgb-glass-header {
+  top: 0;
+  width: 100%;
+  border-radius: 0;
+}
+.tgb-logo-container {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tgb-logo-text {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  transition: transform 0.2s ease;
+}
+.tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
+.tgb-logo-sparkle {
+  color: #8a7c2e;
+  font-size: 24px;
+  animation: tgb-spin-slow 10s linear infinite;
+}
+@keyframes tgb-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.tgb-desktop-nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.tgb-header-link {
+  font-family: 'Inter', system-ui, sans-serif;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+.tgb-header-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #8a7c2e;
+  transition: width 0.3s ease;
+}
+.tgb-header-link:hover::after { width: 100%; }
+.tgb-header-link[aria-current="page"] { color: var(--lg-emerald-deep); }
+.tgb-header-link[aria-current="page"]::after { width: 100%; }
+.tgb-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.tgb-search-icon {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.tgb-header-btn {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .tgb-desktop-nav { display: none; }
+  .tgb-logo-text { font-size: 20px; }
+  .tgb-logo-sparkle { font-size: 20px; }
+  .tgb-header-btn { padding: 8px 16px; font-size: 12px; }
+}
+
+/* Footer structure */
+.tgb-glass-footer {
+  margin-top: 80px;
+  padding: 0 20px 40px 20px;
+  font-family: 'Inter', system-ui, sans-serif;
+  position: relative;
+  z-index: 10;
+}
+.tgb-footer-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+/* ── The border ridge ──
+   The footer's one piece of ornament, and the only place the site draws
+   its own name. Two overlapping desert ridgelines pinned to the top
+   edge of the card, the near one darker so the range reads as having
+   depth. The card's overflow:hidden clips them to its radius. */
+.tgb-ridge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 58px;
+  display: block;
+  pointer-events: none;
+}
+.tgb-ridge-far {
+  fill: var(--gb-green-500, #558203);
+  opacity: 0.18;
+}
+.tgb-ridge-near {
+  fill: var(--gb-green-700, #375302);
+  opacity: 0.24;
+}
+.tgb-crest {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 34px;
+  padding-top: 8px;
+}
+.tgb-crest-mark {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: 0.01em;
+  color: var(--lg-emerald-deep);
+}
+/* The area code, set like a stamp. Cream fill, deep olive figures. */
+.tgb-crest-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gb-cream-200, #fff8b9);
+  border: 1px solid rgba(107, 98, 36, 0.45);
+  color: var(--gb-on-accent, #1c2a01);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+@media (max-width: 768px) {
+  .tgb-ridge { height: 42px; }
+  .tgb-crest { margin-bottom: 26px; }
+  .tgb-crest-mark { font-size: 16px; }
+}
+
+.tgb-footer-cta {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(85, 130, 3, 0.12);
+}
+.tgb-cta-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+}
+.tgb-cta-text {
+  font-size: 16px;
+  margin: 0 auto 25px auto;
+  max-width: 600px;
+  line-height: 1.5;
+}
+.tgb-sub-btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+}
+.tgb-footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.tgb-footer-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+.tgb-favorites-section {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(85, 130, 3, 0.12);
+}
+.tgb-favorites-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  display: block;
+}
+.tgb-legal-block {
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.tgb-disclaimer-text {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0 0 10px 0;
+  text-align: justify;
+  text-align-last: center;
+}
+.tgb-copyright {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+@media (max-width: 768px) {
+  .tgb-footer-card { padding: 30px 20px; }
+  .tgb-footer-nav { flex-direction: column; gap: 15px; }
+}
+
 /* ── Glass header ── */
 #tgb-glass-header {
   background: var(--lg-glass-bg-strong);
@@ -400,6 +655,10 @@ body.scrolled #tgb-glass-header {
 .tgb-search-icon:hover { background: rgba(71, 109, 3, 0.10); }
 .tgb-header-btn {
   background: linear-gradient(135deg, #476d03 0%, #375302 100%);
+  /* The label color belongs with the fill. It used to live in each
+     page's inline CSS, so pages that dropped their copy fell through to
+     the browser's default link blue on a dark green pill. */
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px rgba(71, 109, 3, 0.30);
   transition: transform var(--lg-fast) var(--lg-spring), box-shadow var(--lg-fast) var(--lg-ease);
@@ -506,6 +765,9 @@ body.scrolled #tgb-glass-header {
 .tgb-favorites-title { color: var(--lg-ink-3); }
 .tgb-sub-btn {
   background: linear-gradient(135deg, #476d03 0%, #375302 100%);
+  /* As with .tgb-header-btn: the label color lives with the fill, not in
+     each page's inline copy. */
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 15px rgba(71, 109, 3, 0.30);
   transition: transform var(--lg-fast) var(--lg-spring), box-shadow var(--lg-fast) var(--lg-ease);
@@ -538,7 +800,6 @@ body.scrolled #tgb-glass-header {
   background: linear-gradient(135deg, #476d03 0%, #375302 100%) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
 }
-.tgb-menu-toggler, .tgb-menu-toggler span { color: #ffffff !important; }
 
 /* ═══════════════════════════════════════════════════════════════════
    Age gate — "border checkpoint"
@@ -549,6 +810,19 @@ body.scrolled #tgb-glass-header {
    still drive it; this is purely the skin.
    ═══════════════════════════════════════════════════════════════════ */
 #tgb-age-overlay {
+  /* Structure as well as skin. The layout used to live in four pages'
+     inline CSS, so a page without its copy rendered the gate as a card
+     floating at the top-left over an uncovered page — the one thing a
+     legal gate must not do. The JS toggles display:flex, so the closed
+     state stays display:none here. */
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
   /* Deep olive wash so the cream card reads as lit from within */
   background:
     radial-gradient(120% 80% at 50% 0%, rgba(42, 63, 2, 0.55) 0%, rgba(28, 42, 1, 0.78) 100%) !important;
@@ -556,11 +830,16 @@ body.scrolled #tgb-glass-header {
   -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
   padding: 20px;
 }
+#tgb-age-overlay.active { opacity: 1; }
+#tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
 .tgb-age-card {
   position: relative;
   overflow: hidden;
   padding: 0 !important;
+  width: 100%;
   max-width: 420px;
+  transform: scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 26px !important;
   text-align: center;
   background: var(--gb-cream-50, #fffdf0);
@@ -671,7 +950,16 @@ body.scrolled #tgb-glass-header {
   margin: 0 auto 24px !important;
   max-width: 30ch;
 }
+/* Structure, not just paint — these two are siblings with no layout
+   container, so without display/width the confirm button and the
+   decline link end up side by side and overlapping. */
 .tgb-age-card .tgb-age-btn-yes {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: linear-gradient(135deg, #476d03 0%, #375302 100%) !important;
   color: #ffffff !important;
   border-radius: 14px !important;
@@ -685,6 +973,9 @@ body.scrolled #tgb-glass-header {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 12px 26px rgba(55, 83, 2, 0.42) !important;
 }
 .tgb-age-card .tgb-age-btn-no {
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
   margin-top: 16px !important;
   font-size: 13px !important;
   color: var(--gb-ink-300, #5f6749) !important;
@@ -797,7 +1088,7 @@ body.scrolled #tgb-glass-header {
 /* ── Badges (offering pills on cards) ── */
 .badge-rec, .badge-rec-emoji { background: rgba(71, 109, 3, 0.12); color: var(--lg-emerald-deep); border: 1px solid rgba(71, 109, 3, 0.28); }
 .badge-med, .badge-med-emoji { background: rgba(220, 207, 110, 0.12); color: var(--lg-gold-deep); border: 1px solid rgba(220, 207, 110, 0.28); }
-.badge-new, .badge-lounge-emoji { background: rgba(85, 130, 3, 0.14); color: var(--gb-green-800, #2a3f02); border: 1px solid rgba(85, 130, 3, 0.32); }
+.badge-lounge-emoji { background: rgba(85, 130, 3, 0.14); color: var(--gb-green-800, #2a3f02); border: 1px solid rgba(85, 130, 3, 0.32); }
 
 /* ── Filter bar (directory) — beats inline Tailwind utilities ── */
 .filter-bar {

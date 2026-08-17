@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=8a066688" />
+  <link rel="stylesheet" href="/css/brand.css?v=49849bb7" />
   <title>Sales Data | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -76,327 +76,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: #0a0a0a;
+/* ── Base ── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
       color: #e5e7eb;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Glass Header ── */
-    #tgb-glass-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      max-width: 1200px;
-      z-index: 10000;
-      background: rgba(26, 26, 26, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(85, 130, 3, 0.15);
-      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
-      border-radius: 20px;
-      padding: 12px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-    }
-    body.scrolled #tgb-glass-header {
-      top: 0;
-      width: 100%;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-    }
-    .tgb-logo-container {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tgb-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: #7fab16;
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
-      transition: transform 0.2s ease;
-    }
-    .tgb-logo-sparkle {
-      color: #8a7c2e;
-      font-size: 24px;
-      animation: tgb-spin-slow 10s linear infinite;
-    }
-    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
-    .tgb-desktop-nav {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    .tgb-header-link {
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      color: #cbd5e1;
-      font-weight: 600;
-      font-size: 15px;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    .tgb-header-link:hover { color: #7fab16; }
-    .tgb-header-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #8a7c2e;
-      transition: width 0.3s ease;
-    }
-    .tgb-header-link:hover::after { width: 100%; }
-    .tgb-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .tgb-search-icon {
-      color: #7fab16;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
-    .tgb-header-btn {
-      background: #375302;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
-      transition: all 0.2s ease;
-    }
-    .tgb-header-btn:hover {
-      background: #2a3f02;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
-    }
-    @keyframes tgb-spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @media (max-width: 900px) {
-      .tgb-desktop-nav { display: none; }
-      .tgb-logo-text { font-size: 20px; }
-      .tgb-logo-sparkle { font-size: 20px; }
-      #tgb-glass-header {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-        padding: 12px 16px;
-        max-width: none;
-      }
-      .tgb-header-btn {
-        padding: 8px 20px;
-        font-size: 13px;
-      }
-      .tgb-search-icon {
-        padding: 6px;
-      }
-    }
 
-    /* ── Section divider ── */
-    .section-line {
-      display: inline-block;
-      width: 48px; height: 3px;
-      background: linear-gradient(90deg, #558203, #f2e895);
-      border-radius: 9999px;
-    }
 
-    /* ── Glass Footer ── */
-    .tgb-glass-footer {
-        margin-top: 80px;
-        padding: 0 20px 40px 20px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        position: relative;
-        z-index: 10;
-    }
-    .tgb-footer-card {
-        max-width: 900px;
-        margin: 0 auto;
-        background:
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 130, 3,0.1) 0%, transparent 65%),
-          rgba(26, 26, 26, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(85, 130, 3, 0.15);
-        box-shadow: 0 -10px 40px rgba(85, 130, 3,0.05), 0 20px 40px rgba(85, 130, 3,0.1);
-        border-radius: 30px;
-        padding: 50px;
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-    .tgb-footer-cta {
-        margin-bottom: 40px;
-        padding-bottom: 40px;
-        border-bottom: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-cta-title {
-        font-size: 24px;
-        font-weight: 800;
-        color: #7fab16;
-        margin: 0 0 10px 0;
-    }
-    .tgb-cta-text {
-        font-size: 16px;
-        color: #cbd5e1;
-        margin: 0 auto 25px auto;
-        max-width: 600px;
-        line-height: 1.5;
-    }
-    .tgb-sub-btn {
-        display: inline-block;
-        background: linear-gradient(135deg, #558203 0%, #476d03 100%);
-        color: white;
-        text-decoration: none;
-        padding: 14px 32px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 16px;
-        box-shadow: 0 4px 15px rgba(85, 130, 3, 0.3);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .tgb-sub-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
-    }
-    .tgb-footer-nav {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-    .tgb-footer-link {
-        text-decoration: none;
-        color: #cbd5e1;
-        font-weight: 600;
-        font-size: 15px;
-        transition: color 0.2s ease;
-    }
-    .tgb-footer-link:hover { color: #7fab16; }
-    .tgb-favorites-section {
-        margin-top: 10px;
-        margin-bottom: 30px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-favorites-title {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 700;
-        color: #94a3b8;
-        margin: 0 0 15px 0;
-        display: block;
-    }
-    .tgb-legal-block {
-        background: rgba(85, 130, 3,0.05);
-        border-radius: 16px;
-        padding: 20px;
-        margin-top: 20px;
-    }
-    .tgb-disclaimer-text {
-        font-size: 11px;
-        line-height: 1.5;
-        color: #94a3b8;
-        margin: 0 0 10px 0;
-        text-align: justify;
-        text-align-last: center;
-    }
-    .tgb-copyright {
-        font-size: 12px;
-        color: #cbd5e1;
-        font-weight: 600;
-        margin-top: 15px;
-    }
+/* ── Mobile Bottom Nav ── */
 
-    /* ── Mobile Bottom Nav ── */
-    .tgb-mobile-nav { display: none; }
-    @media (max-width: 768px) {
-        body { padding-bottom: 100px; }
-        .tgb-footer-card { padding: 30px 20px; }
-        .tgb-footer-nav { flex-direction: column; gap: 15px; }
-        .tgb-mobile-nav {
-            display: flex;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 94%;
-            max-width: 420px;
-            background: rgba(10, 10, 10, 0.88);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-            border-radius: 50px;
-            z-index: 99999;
-            padding: 10px 0;
-            justify-content: space-evenly;
-            align-items: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-            height: 65px;
-        }
-        .tgb-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #6b7280;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            width: 20%;
-            position: relative;
-            transition: all 0.3s ease;
-            opacity: 1;
-        }
-        .tgb-nav-item.active { color: #7fab16; transform: translateY(-2px); }
-        .tgb-nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            width: 4px;
-            height: 4px;
-            background: #7fab16;
-            border-radius: 50%;
-        }
-        .tgb-nav-icon { font-size: 20px; margin-bottom: 2px; }
-    }
+@media (max-width: 768px) {
+  body { padding-bottom: 100px; }
+}
 
-    /* ── Content Section ── */
-    .dashboard-container {
+/* ── Content Section ── */
+
+.dashboard-container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 40px 20px;
       min-height: 60vh;
     }
 
-    .dashboard-placeholder {
+.dashboard-placeholder {
       background: linear-gradient(135deg, rgba(85, 130, 3,0.1) 0%, rgba(242, 232, 149,0.05) 100%);
       border: 2px dashed rgba(85, 130, 3,0.3);
       border-radius: 20px;
@@ -405,7 +114,7 @@
       color: #cbd5e1;
     }
 
-    .dashboard-placeholder h2 {
+.dashboard-placeholder h2 {
       font-size: 28px;
       font-weight: 700;
       color: #7fab16;
@@ -413,7 +122,7 @@
       font-family: 'Fraunces', Georgia, serif;
     }
 
-    .dashboard-placeholder p {
+.dashboard-placeholder p {
       font-size: 16px;
       color: #9ca3af;
       margin-bottom: 20px;
@@ -422,10 +131,11 @@
       margin-right: auto;
     }
 
-    /* Authored for the old dark theme: a black scrim with pale green
+/* Authored for the old dark theme: a black scrim with pale green
        type, which on the cream canvas came out at ~1.9:1. It is now a
        light panel with ink on it. */
-    .code-hint {
+
+.code-hint {
       background: rgba(255, 255, 255, 0.72);
       border: 1px solid rgba(85, 130, 3,0.2);
       border-radius: 12px;
@@ -438,14 +148,14 @@
       color: #31371c;
     }
 
-    .code-hint code {
+.code-hint code {
       color: #375302;
     }
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=d9816ee6" />
-  <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faf0e90e" />
+  <script src="/js/liquid-glass.js?v=ed2cc218" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -454,24 +164,25 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║               HEADER / NAV                   ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
+<!-- BEGIN:header — generated from partials/header.html, do not edit here -->
 <header id="tgb-glass-header">
   <a href="/" class="tgb-logo-container">
     <span class="tgb-logo-text">The Green Border</span>
-    <span class="tgb-logo-sparkle">✦</span>
+    <span class="tgb-logo-sparkle" aria-hidden="true">✦</span>
   </a>
 
-  <nav class="tgb-desktop-nav">
-    <a href="/"             class="tgb-header-link">Home</a>
-    <a href="/news.html"    class="tgb-header-link">News</a>
-    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
+  <nav class="tgb-desktop-nav" aria-label="Primary">
+    <a href="/" class="tgb-header-link">Home</a>
+    <a href="/news.html" class="tgb-header-link">News</a>
+    <a href="/data.html" class="tgb-header-link" aria-current="page">Sales Data</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
-    <a href="/#education"    class="tgb-header-link">Education</a>
-    <a href="/#about"        class="tgb-header-link">About</a>
+    <a href="/#education" class="tgb-header-link">Education</a>
+    <a href="/#about" class="tgb-header-link">About</a>
   </nav>
 
   <div class="tgb-header-actions">
-    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search dispensaries">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
@@ -479,6 +190,7 @@
     <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
   </div>
 </header>
+<!-- END:header -->
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║           PAGE TITLE & INTRO                 ║ -->
@@ -4612,49 +4324,59 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                  FOOTER                      ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
+<!-- BEGIN:footer — generated from partials/footer.html, do not edit here -->
 <footer class="tgb-glass-footer">
-    <div class="tgb-footer-card">
+  <div class="tgb-footer-card">
 
-        <div class="tgb-footer-cta">
-            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
-            <p class="tgb-cta-text">
-                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
-            </p>
-            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
-        </div>
+    <!-- Border ridge: the Franklins and the Potrillos, the two ranges
+         this border sits between. Decorative, so it is hidden from
+         assistive tech and drawn from brand tokens rather than raw hex. -->
+    <svg class="tgb-ridge" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="tgb-ridge-far" d="M0,0 H1200 V44 L1130,58 L1050,38 L960,60 L870,40 L780,62 L690,38 L600,58 L510,36 L420,60 L330,40 L240,62 L150,42 L70,60 L0,46 Z"/>
+      <path class="tgb-ridge-near" d="M0,0 H1200 V28 L1120,40 L1040,22 L950,44 L860,26 L770,46 L680,24 L590,42 L500,20 L410,44 L320,26 L230,46 L140,28 L60,44 L0,30 Z"/>
+    </svg>
 
-        <nav class="tgb-footer-nav">
-            <a href="/" class="tgb-footer-link">Home</a>
-            <a href="/news.html" class="tgb-footer-link">News</a>
-            <a href="/data.html" class="tgb-footer-link">Sales Data</a>
-            <a href="/#education" class="tgb-footer-link">Education</a>
-            <a href="/#about" class="tgb-footer-link">About</a>
-            <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
-        </nav>
-
-        <div class="tgb-favorites-section">
-            <span class="tgb-favorites-title">Our Favorites</span>
-            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
-                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
-            </nav>
-        </div>
-
-        <div class="tgb-legal-block">
-            <p class="tgb-disclaimer-text">
-                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
-            </p>
-            <p class="tgb-disclaimer-text">
-                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
-            </p>
-            <div class="tgb-copyright">
-                Powered by the 915 | Made with ❤ in El Paso, Texas
-                <br>
-                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.4
-            </div>
-        </div>
-
+    <div class="tgb-crest">
+      <span class="tgb-crest-mark">The Green Border</span>
+      <span class="tgb-crest-seal" aria-hidden="true">915</span>
     </div>
+
+    <div class="tgb-footer-cta">
+      <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+      <p class="tgb-cta-text">Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.</p>
+      <a href="/news.html" class="tgb-sub-btn">Read the Latest</a>
+    </div>
+
+    <nav class="tgb-footer-nav" aria-label="Footer">
+      <a href="/" class="tgb-footer-link">Home</a>
+      <a href="/#dispensaries" class="tgb-footer-link">Dispensaries</a>
+      <a href="/news.html" class="tgb-footer-link">News</a>
+      <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+      <a href="/#education" class="tgb-footer-link">Education</a>
+      <a href="/#about" class="tgb-footer-link">About</a>
+      <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
+    </nav>
+
+    <div class="tgb-favorites-section">
+      <span class="tgb-favorites-title">Our Favorites</span>
+      <nav class="tgb-footer-nav" style="margin-bottom: 0;" aria-label="Our Favorites">
+        <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" rel="noopener noreferrer" class="tgb-footer-link">El Paso Firewood</a>
+      </nav>
+    </div>
+
+    <div class="tgb-legal-block">
+      <p class="tgb-disclaimer-text"><strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.</p>
+      <p class="tgb-disclaimer-text"><strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.</p>
+      <div class="tgb-copyright">
+        Powered by the 915 | Made with ❤ in El Paso, Texas
+        <br />
+        &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; El Paso, TX &nbsp;·&nbsp; v0.5
+      </div>
+    </div>
+
+  </div>
 </footer>
+<!-- END:footer -->
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                JAVASCRIPT                    ║ -->
@@ -4669,10 +4391,9 @@
   }, { passive: true });
 
   // ── Update year in footer ────────────────────────
-  document.getElementById('tgb-year').textContent = new Date().getFullYear();
 </script>
 
-<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js?v=096b2ab6 -->
+<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js?v=ed2cc218 -->
 
 </body>
 </html>

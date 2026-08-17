@@ -164,17 +164,20 @@
 
   /* ── Mobile chrome: bottom nav + back-to-top ───────────────────── */
   // One standardized thumb-reach bottom nav for every page. Replaces the
-  // per-page hardcoded variants (which were missing on the directory and
-  // dispensary detail pages entirely). Hides on scroll-down, returns on
-  // scroll-up, and is safe-area aware for notched phones.
+  // per-page hardcoded variants (which were missing on the dispensary
+  // detail pages entirely). Hides on scroll-down, returns on scroll-up,
+  // and is safe-area aware for notched phones.
   const NAV_ITEMS = [
     {
       href: '/', label: 'Home', match: ['/', '/index.html'],
       icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10"/>'
     },
     {
-      href: '/directory.html', label: 'Shops',
-      match: ['/directory.html', '/astro-buds.html', '/old-gods.html', '/mango-cannabis.html'],
+      // The directory lives on the homepage now. Home owns '/' as the
+      // current page, so Shops claims only the store profile pages —
+      // two items marked aria-current="page" would be a lie.
+      href: '/#dispensaries', label: 'Shops',
+      match: ['/astro-buds.html', '/old-gods.html', '/mango-cannabis.html'],
       icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>'
     },
     {
@@ -262,6 +265,15 @@
     update();
   }
 
+  /* ── Footer year ───────────────────────────────────────────────── */
+  // The footer is generated from partials/footer.html into every page,
+  // so the one line that fills its year belongs here rather than being
+  // pasted into 28 inline scripts.
+  function initFooterYear() {
+    const el = document.getElementById('tgb-year');
+    if (el) el.textContent = new Date().getFullYear();
+  }
+
   /* ── Boot ──────────────────────────────────────────────────────── */
   function boot() {
     initReveals();
@@ -269,6 +281,7 @@
     initHeaderState();
     initMobileChrome();
     initAgeGateFocus();
+    initFooterYear();
 
     // Static stat values opt in to count-up with a data attribute.
     document.querySelectorAll('[data-lg-count]').forEach(lgCountUp);

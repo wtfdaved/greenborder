@@ -1,5 +1,17 @@
 # Dispensary Directory: Implementation Guide
 
+> **Superseded — August 2026.** This document planned a standalone
+> `/directory.html` page. That page was built, then retired: the
+> homepage directory absorbed everything it could do (star ratings,
+> detail modal, call links, `?q=`/`?city=` deep links), and
+> `/directory.html` is now a redirect stub kept only so existing
+> inbound links resolve. `js/directory-ui.js` and the service stack it
+> describes are gone from the browser; `data/dispensaries.js` remains
+> the single source of dispensary data. Kept as a record of the
+> original design, not as a guide to the current code — see CLAUDE.md
+> for that.
+
+
 Quick-start guide for adding the dynamic dispensary directory to greenborder.org.
 
 ---

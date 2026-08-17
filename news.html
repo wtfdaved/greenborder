@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=8a066688" />
+  <link rel="stylesheet" href="/css/brand.css?v=49849bb7" />
   <title>News | The Green Border – 915 Cannabis News & Culture</title>
 
   <!-- SEO Meta Tags -->
@@ -104,20 +104,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: #0a0a0a;
+/* ── Base ── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
       color: #e5e7eb;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
-    /* Tailwind's .block otherwise beats the UA [hidden] rule */
-    [hidden] { display: none !important; }
-    /* Local fallbacks for CDN utilities the layout depends on */
-    .featured-card, .article-card { text-decoration: none; }
-    .sr-only {
+
+/* Tailwind's .block otherwise beats the UA [hidden] rule */
+
+[hidden] { display: none !important; }
+
+/* Local fallbacks for CDN utilities the layout depends on */
+
+.featured-card, .article-card { text-decoration: none; }
+
+.sr-only {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -129,155 +136,23 @@
       border: 0;
     }
 
-    /* ── Glass Header ── */
-    #tgb-glass-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      max-width: 1200px;
-      z-index: 10000;
-      background: rgba(26, 26, 26, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(85, 130, 3, 0.15);
-      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
-      border-radius: 20px;
-      padding: 12px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-    }
-    body.scrolled #tgb-glass-header {
-      top: 0;
-      width: 100%;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-    }
-    .tgb-logo-container {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tgb-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: #7fab16;
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
-      transition: transform 0.2s ease;
-    }
-    .tgb-logo-sparkle {
-      color: #8a7c2e;
-      font-size: 24px;
-      animation: tgb-spin-slow 10s linear infinite;
-    }
-    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
-    .tgb-desktop-nav {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    .tgb-header-link {
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      color: #cbd5e1;
-      font-weight: 600;
-      font-size: 15px;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    .tgb-header-link:hover { color: #7fab16; }
-    .tgb-header-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #8a7c2e;
-      transition: width 0.3s ease;
-    }
-    .tgb-header-link:hover::after { width: 100%; }
-    .tgb-header-link[aria-current="page"] { color: var(--lg-emerald-deep, #375302); }
-    .tgb-header-link[aria-current="page"]::after { width: 100%; }
-    .tgb-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .tgb-search-icon {
-      color: #7fab16;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
-    .tgb-header-btn {
-      background: #375302;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
-      transition: all 0.2s ease;
-    }
-    .tgb-header-btn:hover {
-      background: #2a3f02;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
-    }
-    @keyframes tgb-spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @media (max-width: 900px) {
-      .tgb-desktop-nav { display: none; }
-      .tgb-logo-text { font-size: 20px; }
-      .tgb-logo-sparkle { font-size: 20px; }
-      #tgb-glass-header {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-        padding: 12px 16px;
-        max-width: none;
-      }
-      .tgb-header-btn {
-        padding: 8px 20px;
-        font-size: 13px;
-      }
-      .tgb-search-icon {
-        padding: 6px;
-      }
-    }
-    @media (max-width: 768px) {
-      #tgb-glass-header { display: none; }
-    }
+/* ── Buttons ── */
 
-    /* ── Buttons ── */
-    .btn-primary {
+.btn-primary {
       background: linear-gradient(135deg, #558203, #476d03);
       color: white;
       border: none;
       transition: all 0.3s ease;
     }
-    .btn-primary:hover {
+
+.btn-primary:hover {
       box-shadow: 0 0 20px rgba(85, 130, 3, 0.4);
       transform: translateY(-2px);
     }
 
-    /* ── Fluid section rhythm ── */
-    .news-block {
+/* ── Fluid section rhythm ── */
+
+.news-block {
       padding-left: clamp(1rem, 4vw, 1.5rem);
       padding-right: clamp(1rem, 4vw, 1.5rem);
       max-width: 72rem;
@@ -286,17 +161,20 @@
       margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
     }
 
-    /* ── Hero ── */
-    .news-hero-pad {
+/* ── Hero ── */
+
+.news-hero-pad {
       padding-top: clamp(8rem, 14vh + 3rem, 11rem);
       margin-bottom: clamp(1.5rem, 4vw, 3rem);
       text-align: center;
     }
-    @media (max-width: 768px) {
-      /* Header is hidden on mobile (bottom nav takes over) — no dead zone */
-      .news-hero-pad { padding-top: clamp(3rem, 9vh, 5rem); }
-    }
-    .hero-kicker {
+
+@media (max-width: 768px) {
+  /* Header is hidden on mobile (bottom nav takes over) — no dead zone */
+  .news-hero-pad { padding-top: clamp(3rem, 9vh, 5rem); }
+}
+
+.hero-kicker {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -312,27 +190,31 @@
       box-shadow: var(--lg-specular, none), 0 4px 18px rgba(45, 48, 20, 0.08);
       margin-bottom: clamp(1rem, 3vw, 1.5rem);
     }
-    .news-title {
+
+.news-title {
       font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(2.6rem, 2rem + 4vw, 4.25rem);
       line-height: 1.02;
       letter-spacing: -0.01em;
       margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
     }
-    .news-sub {
+
+.news-sub {
       font-size: clamp(1rem, 0.9rem + 0.6vw, 1.2rem);
       line-height: 1.65;
       max-width: 42rem;
       margin: 0 auto;
     }
-    .hero-stat-row {
+
+.hero-stat-row {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: clamp(8px, 1.5vw, 12px);
       margin-top: clamp(1.25rem, 3vw, 2rem);
     }
-    .stat-pill {
+
+.stat-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -346,26 +228,30 @@
       box-shadow: var(--lg-specular, none), 0 4px 14px rgba(45, 48, 20, 0.06);
       transition: transform var(--lg-fast, 0.3s) var(--lg-spring, ease), border-color var(--lg-fast, 0.3s) ease;
     }
-    .stat-pill:hover {
+
+.stat-pill:hover {
       transform: translateY(-2px);
       border-color: rgba(71, 109, 3, 0.35);
     }
-    .stat-pill strong {
+
+.stat-pill strong {
       color: var(--lg-emerald-deep, #375302);
       font-weight: 800;
       font-family: 'Fraunces', Georgia, serif;
       font-size: 1.05rem;
     }
 
-    /* ── Category filters ── */
-    .filter-scroll {
+/* ── Category filters ── */
+
+.filter-scroll {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
       margin-top: clamp(1.5rem, 4vw, 2.5rem);
     }
-    .category-filter {
+
+.category-filter {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -385,18 +271,21 @@
         color var(--lg-fast, 0.3s) ease,
         box-shadow var(--lg-fast, 0.3s) ease;
     }
-    .category-filter:hover {
+
+.category-filter:hover {
       transform: translateY(-2px);
       color: var(--lg-emerald-deep, #375302);
       border-color: rgba(71, 109, 3, 0.4);
     }
-    .category-filter.active {
+
+.category-filter.active {
       color: #ffffff;
       background: linear-gradient(135deg, #476d03 0%, #375302 100%);
       border-color: rgba(255, 255, 255, 0.35);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 20px rgba(71, 109, 3, 0.35);
     }
-    .category-filter .count {
+
+.category-filter .count {
       font-size: 11px;
       font-weight: 800;
       min-width: 20px;
@@ -406,47 +295,54 @@
       color: var(--lg-emerald-deep, #375302);
       background: rgba(71, 109, 3, 0.12);
     }
-    /* Darken the badge instead of lightening it: a white veil over the
+
+/* Darken the badge instead of lightening it: a white veil over the
        active pill's green left the count at 4.3:1, while sinking it into
        the fill reads as a well and clears 9:1. */
-    .category-filter.active .count {
+
+.category-filter.active .count {
       color: #ffffff;
       background: rgba(28, 42, 1, 0.42);
     }
-    /* Horizontal snap-scroll strip on small screens instead of wrapping */
-    @media (max-width: 640px) {
-      .filter-scroll {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding: 4px 1rem 12px;
-        margin-left: -1rem;
-        margin-right: -1rem;
-        scroll-snap-type: x proximity;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .filter-scroll::-webkit-scrollbar { display: none; }
-      .category-filter {
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-      }
-    }
 
-    /* ── Cards (glass recipe refined by liquid-glass.css) ── */
-    .news-card {
+/* Horizontal snap-scroll strip on small screens instead of wrapping */
+
+@media (max-width: 640px) {
+  .filter-scroll {
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          overflow-x: auto;
+          padding: 4px 1rem 12px;
+          margin-left: -1rem;
+          margin-right: -1rem;
+          scroll-snap-type: x proximity;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+  .filter-scroll::-webkit-scrollbar { display: none; }
+  .category-filter {
+          flex: 0 0 auto;
+          scroll-snap-align: start;
+        }
+}
+
+/* ── Cards (glass recipe refined by liquid-glass.css) ── */
+
+.news-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.3s ease;
     }
-    .news-card:hover {
+
+.news-card:hover {
       background: rgba(255, 255, 255, 0.06);
       border-color: rgba(85, 130, 3, 0.3);
       transform: translateY(-4px);
     }
 
-    /* ── Tags ── */
-    .tag {
+/* ── Tags ── */
+
+.tag {
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -457,39 +353,44 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
-    /* Near-opaque fills: backdrop-filter inside a hover-transformed card
+
+/* Near-opaque fills: backdrop-filter inside a hover-transformed card
        rasterizes and blurs the text, so tags avoid it. */
-    .tag-featured {
+
+.tag-featured {
       color: var(--lg-gold-deep, #6b6224);
       background: rgba(255, 251, 220, 0.92);
       border: 1px solid rgba(220, 207, 110, 0.35);
       box-shadow: 0 2px 10px rgba(45, 48, 20, 0.15);
     }
-    .tag-policy {
+
+.tag-policy {
       color: var(--lg-emerald-deep, #375302);
       background: rgba(245, 250, 230, 0.92);
       border: 1px solid rgba(71, 109, 3, 0.30);
       box-shadow: 0 2px 10px rgba(45, 48, 20, 0.15);
     }
-    .tag-research { color: #375302; background: rgba(255, 253, 240, 0.92); border: 1px solid rgba(55, 83, 2, 0.30); }
-    .tag-legal    { color: #6b6224; background: rgba(255, 251, 220, 0.92); border: 1px solid rgba(107, 98, 36, 0.30); }
-    .tag-culture  { color: var(--lg-gold-deep, #6b6224); background: rgba(255, 253, 240, 0.92); border: 1px solid rgba(220, 207, 110, 0.30); }
 
-    /* ── Featured story ── */
-    .featured-card { border-radius: var(--lg-r-lg, 28px); overflow: hidden; }
-    .featured-grid {
+/* ── Featured story ── */
+
+.featured-card { border-radius: var(--lg-r-lg, 28px); overflow: hidden; }
+
+.featured-grid {
       display: grid;
       grid-template-columns: 1fr;
     }
-    @media (min-width: 820px) {
-      .featured-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
-    }
-    .featured-media {
+
+@media (min-width: 820px) {
+  .featured-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+}
+
+.featured-media {
       position: relative;
       overflow: hidden;
       min-height: 240px;
     }
-    .featured-media img {
+
+.featured-media img {
       display: block;
       width: 100%;
       height: 100%;
@@ -497,56 +398,66 @@
       aspect-ratio: 16 / 9;
       transition: transform 0.7s var(--lg-ease, ease);
     }
-    @media (min-width: 820px) {
-      .featured-media img {
-        position: absolute;
-        inset: 0;
-        aspect-ratio: auto;
-      }
-    }
-    .featured-card:hover .featured-media img { transform: scale(1.05); }
-    .featured-media .tag {
+
+@media (min-width: 820px) {
+  .featured-media img {
+          position: absolute;
+          inset: 0;
+          aspect-ratio: auto;
+        }
+}
+
+.featured-card:hover .featured-media img { transform: scale(1.05); }
+
+.featured-media .tag {
       position: absolute;
       top: 16px;
       left: 16px;
       z-index: 2;
     }
-    .featured-body {
+
+.featured-body {
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: clamp(1.5rem, 4vw, 3rem);
     }
-    .featured-title {
+
+.featured-title {
       font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(1.6rem, 1.2rem + 2.2vw, 2.5rem);
       line-height: 1.1;
       margin-bottom: clamp(0.75rem, 2vw, 1rem);
     }
-    .featured-excerpt {
+
+.featured-excerpt {
       font-size: clamp(0.95rem, 0.9rem + 0.4vw, 1.1rem);
       line-height: 1.65;
       margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
     }
 
-    /* ── Articles grid ── */
-    .articles-grid {
+/* ── Articles grid ── */
+
+.articles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
       gap: clamp(1.25rem, 3vw, 2rem);
     }
-    .article-card {
+
+.article-card {
       display: flex;
       flex-direction: column;
       border-radius: var(--lg-r-md, 20px);
       overflow: hidden;
     }
-    .card-media {
+
+.card-media {
       position: relative;
       overflow: hidden;
       margin: 0;
     }
-    .card-media img {
+
+.card-media img {
       display: block;
       width: 100%;
       height: 100%;
@@ -554,50 +465,61 @@
       aspect-ratio: 16 / 10;
       transition: transform 0.6s var(--lg-ease, ease);
     }
-    .article-card:hover .card-media img { transform: scale(1.06); }
-    .card-media .tag {
+
+.article-card:hover .card-media img { transform: scale(1.06); }
+
+.card-media .tag {
       position: absolute;
       top: 14px;
       left: 14px;
       z-index: 2;
     }
-    .card-body {
+
+.card-body {
       display: flex;
       flex-direction: column;
       flex: 1;
       padding: clamp(1.1rem, 2.5vw, 1.5rem);
     }
-    .card-body h3 {
+
+.card-body h3 {
       font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.3rem);
       line-height: 1.3;
       margin-bottom: 0.65rem;
     }
-    .card-excerpt {
+
+.card-excerpt {
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
       margin-bottom: 1rem;
     }
-    .read-more { margin-top: auto; }
-    .read-more svg {
+
+.read-more { margin-top: auto; }
+
+.read-more svg {
       width: 1rem;
       height: 1rem;
       flex-shrink: 0;
       transition: transform var(--lg-fast, 0.3s) var(--lg-spring, ease);
     }
-    .article-card:hover .read-more svg,
+
+.article-card:hover .read-more svg,
     .featured-card:hover .read-more svg { transform: translateX(5px); }
 
-    /* Filter entrance animation */
-    @keyframes cardIn {
+/* Filter entrance animation */
+
+@keyframes cardIn {
       from { opacity: 0; transform: translateY(14px) scale(0.98); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
-    .card-in { animation: cardIn 0.4s var(--lg-ease, ease-out) backwards; }
 
-    /* ── Coming soon / empty state ── */
-    .coming-soon-card {
+.card-in { animation: cardIn 0.4s var(--lg-ease, ease-out) backwards; }
+
+/* ── Coming soon / empty state ── */
+
+.coming-soon-card {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -611,11 +533,13 @@
       border: 1.5px dashed rgba(71, 109, 3, 0.35);
       transition: border-color var(--lg-fast, 0.3s) ease, transform var(--lg-fast, 0.3s) var(--lg-spring, ease);
     }
-    .coming-soon-card:hover {
+
+.coming-soon-card:hover {
       transform: translateY(-3px);
       border-color: rgba(71, 109, 3, 0.55);
     }
-    .filter-empty {
+
+.filter-empty {
       text-align: center;
       padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
       border-radius: var(--lg-r-md, 20px);
@@ -624,29 +548,35 @@
       box-shadow: var(--lg-specular, none), var(--lg-shadow, none);
     }
 
-    /* ── Newsletter ── */
-    .newsletter-card { border-radius: var(--lg-r-lg, 28px); }
-    .newsletter-inner {
+/* ── Newsletter ── */
+
+.newsletter-card { border-radius: var(--lg-r-lg, 28px); }
+
+.newsletter-inner {
       max-width: 34rem;
       margin: 0 auto;
       text-align: center;
       padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2rem);
     }
-    .newsletter-form {
+
+.newsletter-form {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-    @media (min-width: 480px) {
-      .newsletter-form { flex-direction: row; }
-      .newsletter-form input { flex: 1; }
-    }
-    .newsletter-note {
+
+@media (min-width: 480px) {
+  .newsletter-form { flex-direction: row; }
+  .newsletter-form input { flex: 1; }
+}
+
+.newsletter-note {
       margin-top: 0.85rem;
       font-size: 12px;
       color: var(--lg-ink-3, #94a3b8);
     }
-    .newsletter-success {
+
+.newsletter-success {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -659,156 +589,16 @@
       animation: cardIn 0.4s var(--lg-ease, ease-out) backwards;
     }
 
-    /* ── Glass Footer ── */
-    .tgb-glass-footer {
-        margin-top: 80px;
-        padding: 0 20px 40px 20px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        position: relative;
-        z-index: 10;
-    }
-    .tgb-footer-card {
-        max-width: 900px;
-        margin: 0 auto;
-        background:
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 130, 3,0.1) 0%, transparent 65%),
-          rgba(26, 26, 26, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(85, 130, 3, 0.15);
-        box-shadow: 0 -10px 40px rgba(85, 130, 3,0.05), 0 20px 40px rgba(85, 130, 3,0.1);
-        border-radius: 30px;
-        padding: 50px;
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-    .tgb-footer-cta {
-        margin-bottom: 40px;
-        padding-bottom: 40px;
-        border-bottom: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-cta-title {
-        font-size: 24px;
-        font-weight: 800;
-        color: #7fab16;
-        margin: 0 0 10px 0;
-    }
-    .tgb-cta-text {
-        font-size: 16px;
-        color: #cbd5e1;
-        margin: 0 auto 25px auto;
-        max-width: 600px;
-        line-height: 1.5;
-    }
-    .tgb-sub-btn {
-        display: inline-block;
-        background: linear-gradient(135deg, #558203 0%, #476d03 100%);
-        color: white;
-        text-decoration: none;
-        padding: 14px 32px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 16px;
-        box-shadow: 0 4px 15px rgba(85, 130, 3, 0.3);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .tgb-sub-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
-    }
-    .tgb-footer-nav {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-    .tgb-footer-link {
-        text-decoration: none;
-        color: #cbd5e1;
-        font-weight: 600;
-        font-size: 15px;
-        transition: color 0.2s ease;
-    }
-    .tgb-footer-link:hover { color: #7fab16; }
-    .tgb-favorites-section {
-        margin-top: 10px;
-        margin-bottom: 30px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-favorites-title {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 700;
-        color: #94a3b8;
-        margin: 0 0 15px 0;
-        display: block;
-    }
-    .tgb-legal-block {
-        background: rgba(85, 130, 3,0.05);
-        border-radius: 16px;
-        padding: 20px;
-        margin-top: 20px;
-    }
-    .tgb-disclaimer-text {
-        font-size: 11px;
-        line-height: 1.5;
-        color: #94a3b8;
-        margin: 0 0 10px 0;
-        text-align: justify;
-        text-align-last: center;
-    }
-    .tgb-copyright {
-        font-size: 12px;
-        color: #cbd5e1;
-        font-weight: 600;
-        margin-top: 15px;
-    }
+/* ── Mobile Nav ── */
 
-    /* ── Mobile Nav ── */
-    .tgb-mobile-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: none;
-      justify-content: space-around;
-      align-items: center;
-      height: calc(70px + env(safe-area-inset-bottom, 0px));
-      padding-bottom: env(safe-area-inset-bottom, 0px);
-      background: rgba(10, 10, 10, 0.95);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      z-index: 9999;
-    }
-    .tgb-nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      font-size: 11px;
-      color: #9ca3af;
-      text-decoration: none;
-      flex: 1;
-      height: 100%;
-      transition: all 0.2s ease;
-      font-weight: 500;
-    }
-    .tgb-nav-item:active, .tgb-nav-item:hover { color: #7fab16; }
-    @media (max-width: 768px) {
-      .tgb-mobile-nav { display: flex; }
-      body { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
-      .tgb-footer-card { padding: 30px 20px; }
-      .tgb-footer-nav { flex-direction: column; gap: 15px; }
-    }
+@media (max-width: 768px) {
+  body { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
+}
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=d9816ee6" />
-  <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faf0e90e" />
+  <script src="/js/liquid-glass.js?v=ed2cc218" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -817,24 +607,25 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║            GLASS HEADER / NAV               ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
+<!-- BEGIN:header — generated from partials/header.html, do not edit here -->
 <header id="tgb-glass-header">
   <a href="/" class="tgb-logo-container">
     <span class="tgb-logo-text">The Green Border</span>
-    <span class="tgb-logo-sparkle">✦</span>
+    <span class="tgb-logo-sparkle" aria-hidden="true">✦</span>
   </a>
 
-  <nav class="tgb-desktop-nav">
-    <a href="/"             class="tgb-header-link">Home</a>
-    <a href="/news.html"    class="tgb-header-link" aria-current="page">News</a>
-    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
+  <nav class="tgb-desktop-nav" aria-label="Primary">
+    <a href="/" class="tgb-header-link">Home</a>
+    <a href="/news.html" class="tgb-header-link" aria-current="page">News</a>
+    <a href="/data.html" class="tgb-header-link">Sales Data</a>
     <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
-    <a href="/#education"    class="tgb-header-link">Education</a>
-    <a href="/#about"        class="tgb-header-link">About</a>
+    <a href="/#education" class="tgb-header-link">Education</a>
+    <a href="/#about" class="tgb-header-link">About</a>
   </nav>
 
   <div class="tgb-header-actions">
-    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search dispensaries">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
@@ -842,6 +633,7 @@
     <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
   </div>
 </header>
+<!-- END:header -->
 
 <main id="main-content" tabindex="-1">
 
@@ -987,58 +779,67 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                   FOOTER                     ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
+<!-- BEGIN:footer — generated from partials/footer.html, do not edit here -->
 <footer class="tgb-glass-footer">
-    <div class="tgb-footer-card">
+  <div class="tgb-footer-card">
 
-        <div class="tgb-footer-cta">
-            <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
-            <p class="tgb-cta-text">
-                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
-            </p>
-            <a href="#/portal/signup" class="tgb-sub-btn">Subscribe Free</a>
-        </div>
+    <!-- Border ridge: the Franklins and the Potrillos, the two ranges
+         this border sits between. Decorative, so it is hidden from
+         assistive tech and drawn from brand tokens rather than raw hex. -->
+    <svg class="tgb-ridge" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="tgb-ridge-far" d="M0,0 H1200 V44 L1130,58 L1050,38 L960,60 L870,40 L780,62 L690,38 L600,58 L510,36 L420,60 L330,40 L240,62 L150,42 L70,60 L0,46 Z"/>
+      <path class="tgb-ridge-near" d="M0,0 H1200 V28 L1120,40 L1040,22 L950,44 L860,26 L770,46 L680,24 L590,42 L500,20 L410,44 L320,26 L230,46 L140,28 L60,44 L0,30 Z"/>
+    </svg>
 
-        <nav class="tgb-footer-nav">
-            <a href="/" class="tgb-footer-link">Home</a>
-            <a href="/news.html" class="tgb-footer-link">News</a>
-            <a href="/data.html" class="tgb-footer-link">Sales Data</a>
-            <a href="/#education" class="tgb-footer-link">Education</a>
-            <a href="/#about" class="tgb-footer-link">About</a>
-            <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
-        </nav>
-
-        <div class="tgb-favorites-section">
-            <span class="tgb-favorites-title">Our Favorites</span>
-            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
-                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" class="tgb-footer-link">El Paso Firewood</a>
-            </nav>
-        </div>
-
-        <div class="tgb-legal-block">
-            <p class="tgb-disclaimer-text">
-                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
-            </p>
-            <p class="tgb-disclaimer-text">
-                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
-            </p>
-            <div class="tgb-copyright">
-                Powered by the 915 | Made with ❤ in El Paso, Texas
-                <br>
-                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.4
-            </div>
-        </div>
-
+    <div class="tgb-crest">
+      <span class="tgb-crest-mark">The Green Border</span>
+      <span class="tgb-crest-seal" aria-hidden="true">915</span>
     </div>
-</footer>
 
-<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js?v=096b2ab6 -->
+    <div class="tgb-footer-cta">
+      <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+      <p class="tgb-cta-text">Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.</p>
+      <a href="/news.html" class="tgb-sub-btn">Read the Latest</a>
+    </div>
+
+    <nav class="tgb-footer-nav" aria-label="Footer">
+      <a href="/" class="tgb-footer-link">Home</a>
+      <a href="/#dispensaries" class="tgb-footer-link">Dispensaries</a>
+      <a href="/news.html" class="tgb-footer-link">News</a>
+      <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+      <a href="/#education" class="tgb-footer-link">Education</a>
+      <a href="/#about" class="tgb-footer-link">About</a>
+      <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
+    </nav>
+
+    <div class="tgb-favorites-section">
+      <span class="tgb-favorites-title">Our Favorites</span>
+      <nav class="tgb-footer-nav" style="margin-bottom: 0;" aria-label="Our Favorites">
+        <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" rel="noopener noreferrer" class="tgb-footer-link">El Paso Firewood</a>
+      </nav>
+    </div>
+
+    <div class="tgb-legal-block">
+      <p class="tgb-disclaimer-text"><strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.</p>
+      <p class="tgb-disclaimer-text"><strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.</p>
+      <div class="tgb-copyright">
+        Powered by the 915 | Made with ❤ in El Paso, Texas
+        <br />
+        &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; El Paso, TX &nbsp;·&nbsp; v0.5
+      </div>
+    </div>
+
+  </div>
+</footer>
+<!-- END:footer -->
+
+<!-- Mobile bottom nav is injected by the shared /js/liquid-glass.js?v=ed2cc218 -->
 
 <script>
   (function () {
     'use strict';
 
     // Set year in footer
-    document.getElementById('tgb-year').textContent = new Date().getFullYear();
 
     /* ── Category filtering ─────────────────────────────────────── */
     const buttons = document.querySelectorAll('.category-filter');

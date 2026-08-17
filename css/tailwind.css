@@ -1,3 +1,11 @@
+/* Tailwind entry point.
+
+   No page loads a built copy of this — every page pulls the Tailwind
+   Play CDN and configures it with js/tailwind-brand.js. This file
+   exists so tools/check-contrast.mjs can build the same utilities
+   locally and stand in for the CDN, which is why tailwindcss is pinned
+   to v3: that is what the Play CDN ships. */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

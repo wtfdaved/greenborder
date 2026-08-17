@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Brand palette tokens — single source of truth for site color -->
-  <link rel="stylesheet" href="/css/brand.css?v=8a066688" />
+  <link rel="stylesheet" href="/css/brand.css?v=49849bb7" />
   <title>El Paso Cannabis Guide & Dispensary Directory | The Green Border</title>
 
   <!-- SEO Meta Tags -->
@@ -122,28 +122,28 @@
         "position": 4,
         "name": "High Valley Cannabis",
         "description": "24-hour dispensary with consumption lounge in Chaparral",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       },
       {
         "@type": "ListItem",
         "position": 5,
         "name": "Astro Buds",
         "description": "Organic, soil-grown flower with terpene-rich, beautifully cured cannabis in Chaparral",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       },
       {
         "@type": "ListItem",
         "position": 6,
         "name": "St. Canapa",
         "description": "Refined, stress-free environment with top-shelf flower and expert staff in Santa Teresa",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       },
       {
         "@type": "ListItem",
         "position": 7,
         "name": "Kushology 101",
         "description": "Large inventory with weekly specials right off I-10 in Anthony",
-        "url": "https://greenborder.org/directory.html"
+        "url": "https://greenborder.org/#dispensaries"
       }
     ]
   }
@@ -162,244 +162,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    /* Keep anchored sections clear of the fixed glass header on jump links */
-    section[id] { scroll-margin-top: 6rem; }
-    body {
-      background-color: #0a0a0a;
+/* ── Base ── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* Keep anchored sections clear of the fixed glass header on jump links */
+
+section[id] { scroll-margin-top: 6rem; }
+
+body {
       color: #e5e7eb;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Glass Header ── */
-    #tgb-glass-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      max-width: 1200px;
-      z-index: 10000;
-      background: rgba(26, 26, 26, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(85, 130, 3, 0.15);
-      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
-      border-radius: 20px;
-      padding: 12px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-    }
-    body.scrolled #tgb-glass-header {
-      top: 0;
-      width: 100%;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-    }
-    .tgb-logo-container {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tgb-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: #7fab16;
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
-      transition: transform 0.2s ease;
-    }
-    .tgb-logo-sparkle {
-      color: #8a7c2e;
-      font-size: 24px;
-      animation: tgb-spin-slow 10s linear infinite;
-    }
-    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
-    .tgb-desktop-nav {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    .tgb-header-link {
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      color: #cbd5e1;
-      font-weight: 600;
-      font-size: 15px;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    .tgb-header-link:hover { color: #7fab16; }
-    .tgb-header-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #8a7c2e;
-      transition: width 0.3s ease;
-    }
-    .tgb-header-link:hover::after { width: 100%; }
-    .tgb-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .tgb-search-icon {
-      color: #7fab16;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-    .tgb-search-icon:hover { background: rgba(127, 171, 22, 0.1); }
-    .tgb-header-btn {
-      background: #375302;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
-      transition: all 0.2s ease;
-    }
-    .tgb-header-btn:hover {
-      background: #2a3f02;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
-    }
-    @keyframes tgb-spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @media (max-width: 900px) {
-      .tgb-desktop-nav { display: none; }
-      .tgb-logo-text { font-size: 20px; }
-      .tgb-logo-sparkle { font-size: 20px; }
-      #tgb-glass-header {
-        width: calc(100% - 20px);
-        top: calc(10px + env(safe-area-inset-top, 0px));
-        border-radius: 18px;
-        padding: 10px 16px;
-        max-width: none;
-      }
-      body.scrolled #tgb-glass-header {
-        top: calc(6px + env(safe-area-inset-top, 0px));
-        width: calc(100% - 12px);
-        border-radius: 16px;
-      }
-      .tgb-header-btn {
-        padding: 8px 20px;
-        font-size: 13px;
-      }
-      .tgb-search-icon {
-        padding: 6px;
-      }
-    }
 
-    /* ── Age Gate ── */
-    #tgb-age-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 999999;
-      background: rgba(10, 10, 10, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .tgb-age-card {
-      background: linear-gradient(145deg, rgba(255,255,255,1) 30%, rgba(255,251,220,0.95) 100%);
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.8);
-      border-radius: 24px;
-      padding: 40px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      transform: scale(0.95);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .tgb-age-logo {
-      display: block;
-      margin: 0 auto 20px auto;
-      max-width: 240px;
-      width: 100%;
-      height: auto;
-    }
-    .tgb-age-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0 0 10px 0;
-      color: #1d1d1f;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      opacity: 0.7;
-    }
-    .tgb-age-text {
-      font-size: 15px;
-      color: #6e6e73;
-      line-height: 1.5;
-      margin-bottom: 30px;
-    }
-    .tgb-age-btn-yes {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      font-size: 17px;
-      font-weight: 600;
-      color: white;
-      text-decoration: none;
-      background: linear-gradient(135deg, #375302 0%, #476d03 100%);
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .tgb-age-btn-yes:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.35);
-    }
-    .tgb-age-btn-no {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 13px;
-      color: #86868b;
-      text-decoration: none;
-      border-bottom: 1px dotted #86868b;
-    }
-    .tgb-age-btn-no:hover { color: #1d1d1f; }
-    #tgb-age-overlay.active { opacity: 1; }
-    #tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
+/* ── Fluid type & spacing ── */
 
-    /* ── Fluid type & spacing ── */
-    .hero-title   { font-size: clamp(2.6rem, 1rem + 8.5vw, 6.25rem); }
-    .hero-sub     { font-size: clamp(1.02rem, 0.9rem + 0.9vw, 1.3rem); }
-    .section-title{ font-size: clamp(1.95rem, 1.35rem + 2.4vw, 2.8rem); }
-    .section-pad  {
+.hero-title   { font-size: clamp(2.6rem, 1rem + 8.5vw, 6.25rem); }
+
+.hero-sub     { font-size: clamp(1.02rem, 0.9rem + 0.9vw, 1.3rem); }
+
+.section-title{ font-size: clamp(1.95rem, 1.35rem + 2.4vw, 2.8rem); }
+
+.section-pad  {
       padding-top: clamp(4rem, 2.25rem + 6.5vw, 6.5rem);
       padding-bottom: clamp(4rem, 2.25rem + 6.5vw, 6.5rem);
     }
-    @supports (min-height: 100svh) {
-      section.hero-gradient { min-height: 100svh; }
-    }
 
-    /* ── Hero clearance for the floating header ──
+@supports (min-height: 100svh) {
+  section.hero-gradient { min-height: 100svh; }
+}
+
+/* ── Hero clearance for the floating header ──
        #tgb-glass-header is fixed, so it floats over the hero and takes up
        no layout space. Two things are needed to keep the "Trusted Source"
        badge and the headline out from under it.
@@ -417,31 +214,35 @@
           to start-alignment in exactly that case, so the padding always
           holds. Browsers without `safe` ignore the declaration and keep
           the padding, which is still a large improvement. */
-    section.hero-gradient {
+
+section.hero-gradient {
       padding-top: calc(5.25rem + env(safe-area-inset-top, 0px));
       justify-content: safe center;
     }
-    @media (min-width: 901px) {
-      section.hero-gradient { padding-top: 7.5rem; }
-    }
 
-    /* ── Mobile hero: tighter rhythm so content arrives sooner ── */
-    @media (max-width: 640px) {
-      .hero-title { margin-bottom: 0.75rem; }
-      .hero-sub { margin-bottom: 1.1rem; line-height: 1.6; }
-      .hero-pills { gap: 6px !important; margin-bottom: 1.6rem !important; }
-      .hero-pills > span { padding: 5px 10px !important; font-size: 0.66rem !important; }
-      .hero-ctas { gap: 10px !important; width: 100%; max-width: 22rem; }
-      .hero-ctas a { padding-top: 0.8rem !important; padding-bottom: 0.8rem !important; }
-      #hero-search { margin-top: 1rem !important; }
-      .hero-stats-strip { margin-top: 2rem !important; gap: 8px !important; }
-      .hero-stats-strip .hero-stat { padding: 0.9rem 0.5rem !important; }
-      .hero-stats-strip .stat-display { font-size: 1.5rem !important; }
-      .hero-trust { margin-top: 1.25rem; gap: 6px 16px; font-size: 0.68rem; }
-    }
+@media (min-width: 901px) {
+  section.hero-gradient { padding-top: 7.5rem; }
+}
 
-    /* ── Hero scroll cue ── */
-    .hero-scroll-cue {
+/* ── Mobile hero: tighter rhythm so content arrives sooner ── */
+
+@media (max-width: 640px) {
+  .hero-title { margin-bottom: 0.75rem; }
+  .hero-sub { margin-bottom: 1.1rem; line-height: 1.6; }
+  .hero-pills { gap: 6px !important; margin-bottom: 1.6rem !important; }
+  .hero-pills > span { padding: 5px 10px !important; font-size: 0.66rem !important; }
+  .hero-ctas { gap: 10px !important; width: 100%; max-width: 22rem; }
+  .hero-ctas a { padding-top: 0.8rem !important; padding-bottom: 0.8rem !important; }
+  #hero-search { margin-top: 1rem !important; }
+  .hero-stats-strip { margin-top: 2rem !important; gap: 8px !important; }
+  .hero-stats-strip .hero-stat { padding: 0.9rem 0.5rem !important; }
+  .hero-stats-strip .stat-display { font-size: 1.5rem !important; }
+  .hero-trust { margin-top: 1.25rem; gap: 6px 16px; font-size: 0.68rem; }
+}
+
+/* ── Hero scroll cue ── */
+
+.hero-scroll-cue {
       position: absolute;
       bottom: clamp(12px, 3.5vh, 32px);
       left: 50%;
@@ -458,89 +259,68 @@
       opacity: 0.65;
       transition: opacity 0.3s ease;
     }
-    .hero-scroll-cue:hover { opacity: 1; }
-    .hero-scroll-cue svg { animation: cue-bob 2.2s ease-in-out infinite; }
-    @keyframes cue-bob {
+
+.hero-scroll-cue:hover { opacity: 1; }
+
+.hero-scroll-cue svg { animation: cue-bob 2.2s ease-in-out infinite; }
+
+@keyframes cue-bob {
       0%, 100% { transform: translateY(0); }
       50%      { transform: translateY(6px); }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-scroll-cue svg { animation: none; }
-    }
 
-    /* ── Hero ── */
-    .hero-gradient {
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue svg { animation: none; }
+}
+
+/* ── Hero ── */
+
+.hero-gradient {
       background:
         radial-gradient(ellipse 80% 60% at 50% -10%, rgba(85, 130, 3,0.18) 0%, transparent 65%),
         radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(242, 232, 149,0.07) 0%, transparent 60%),
-        #0a0a0a;
     }
-    .hero-glow {
+
+.hero-glow {
       text-shadow: 0 0 60px rgba(85, 130, 3,0.4), 0 0 120px rgba(85, 130, 3,0.15);
     }
 
-    /* ── Cards ── */
-    .dispensary-card {
-      background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-      border: 1px solid rgba(85, 130, 3,0.12);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .dispensary-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(85, 130, 3,0.5);
-      box-shadow: 0 20px 60px rgba(85, 130, 3,0.12), 0 0 0 1px rgba(85, 130, 3,0.1);
-    }
-    .news-card {
-      background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    .news-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(242, 232, 149,0.35);
-    }
 
-    /* ── Badge ── */
-    .badge-rec { background: rgba(85, 130, 3,0.15); color: #7fab16; border: 1px solid rgba(85, 130, 3,0.3); }
-    .badge-med { background: rgba(242, 232, 149,0.12); color: #fff8b9; border: 1px solid rgba(242, 232, 149,0.3); }
-    .badge-new { background: rgba(85,130,3,0.18); color: #d0e693; border: 1px solid rgba(85,130,3,0.35); }
+/* ── Emerald glow button ── */
 
-    /* ── Section divider ── */
-    .section-line {
-      display: inline-block;
-      width: 48px; height: 3px;
-      background: linear-gradient(90deg, #558203, #f2e895);
-      border-radius: 9999px;
-    }
-
-    /* ── Emerald glow button ── */
-    .btn-primary {
+.btn-primary {
       background: linear-gradient(135deg, #558203 0%, #476d03 100%);
       transition: box-shadow 0.3s ease, transform 0.2s ease;
     }
-    .btn-primary:hover {
+
+.btn-primary:hover {
       box-shadow: 0 0 30px rgba(85, 130, 3,0.5);
       transform: translateY(-2px);
     }
 
-    /* ── Gold highlight button (primary CTA) ── */
-    .btn-gold {
+/* ── Gold highlight button (primary CTA) ── */
+
+.btn-gold {
       background: linear-gradient(135deg, #f2e895 0%, #dccf6e 100%);
       transition: box-shadow 0.3s ease, transform 0.2s ease;
     }
-    .btn-gold:hover {
+
+.btn-gold:hover {
       box-shadow: 0 0 30px rgba(242, 232, 149,0.5);
       transform: translateY(-2px);
     }
 
-    /* ── Scroll reveal ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+/* ── Scroll reveal ── */
 
-    /* ── "New data published" badges ──
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── "New data published" badges ──
        Both are driven by dataRelease in sales-data-2026.js, so they age
        out on their own rather than claiming to be new indefinitely. */
-    .release-pill {
+
+.release-pill {
       display: inline-flex;
       align-items: center;
       gap: 9px;
@@ -554,20 +334,24 @@
       border: 1px solid rgba(85, 130, 3, 0.35);
       box-shadow: 0 2px 12px rgba(85, 130, 3, 0.16);
     }
-    .release-dot {
+
+.release-dot {
       width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--gb-green-500, #558203);
       box-shadow: 0 0 0 0 rgba(85, 130, 3, 0.55);
       flex-shrink: 0;
     }
-    #mp-release.is-new .release-dot { animation: release-ping 2.4s ease-out infinite; }
-    @keyframes release-ping {
+
+#mp-release.is-new .release-dot { animation: release-ping 2.4s ease-out infinite; }
+
+@keyframes release-ping {
       0%   { box-shadow: 0 0 0 0 rgba(85, 130, 3, 0.55); }
       70%  { box-shadow: 0 0 0 9px rgba(85, 130, 3, 0); }
       100% { box-shadow: 0 0 0 0 rgba(85, 130, 3, 0); }
     }
-    .fresh-pill {
+
+.fresh-pill {
       display: inline-block;
       padding: 2px 9px;
       margin-right: 4px;
@@ -581,54 +365,73 @@
       border: 1px solid rgba(85, 130, 3, 0.4);
       vertical-align: 1px;
     }
-    @media (prefers-reduced-motion: reduce) {
-      #mp-release.is-new .release-dot { animation: none; }
-    }
 
-    /* ── Market Pulse tiles & trend ── */
-    .mp-tile { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
-    .mp-tile:hover {
+@media (prefers-reduced-motion: reduce) {
+  #mp-release.is-new .release-dot { animation: none; }
+}
+
+/* ── Market Pulse tiles & trend ── */
+
+.mp-tile { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+
+.mp-tile:hover {
       transform: translateY(-4px);
       border-color: rgba(85, 130, 3,0.45);
       box-shadow: 0 12px 32px rgba(0,0,0,0.35), 0 0 24px rgba(85, 130, 3,0.15);
     }
-    #mp-spark svg { display: block; width: 100%; height: auto; }
-    .mp-row {
+
+#mp-spark svg { display: block; width: 100%; height: auto; }
+
+.mp-row {
       display: flex; align-items: baseline; gap: 8px;
       font-size: 0.8rem; color: var(--lg-ink-2, #cbd5e1);
       padding: 4px 6px; border-radius: 8px;
       transition: background 0.2s ease;
     }
-    a.mp-row { text-decoration: none; }
-    .mp-row:hover { background: rgba(85, 130, 3,0.08); }
-    .mp-row .mp-name { color: var(--lg-ink, #e5e7eb); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .mp-row .mp-val { margin-left: auto; font-weight: 700; color: var(--lg-ink-3, #94a3b8); white-space: nowrap; font-variant-numeric: tabular-nums; }
-    .mp-row .mp-delta { font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
-    .mp-delta-up { color: var(--lg-emerald-deep, #7fab16); }
-    .mp-delta-down { color: #be123c; }
 
-    /* ── Hero stat pathways ── */
-    .hero-stat { transition: background 0.2s ease; }
-    .hero-stat:hover { background: rgba(85, 130, 3,0.12); }
-    .hero-stat:hover > div:first-child { color: #476d03; }
+a.mp-row { text-decoration: none; }
 
-    /* ── Live market ticker ── */
-    /* Sits fully below the hero: a negative top margin used to pull it up
+.mp-row:hover { background: rgba(85, 130, 3,0.08); }
+
+.mp-row .mp-name { color: var(--lg-ink, #e5e7eb); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.mp-row .mp-val { margin-left: auto; font-weight: 700; color: var(--lg-ink-3, #94a3b8); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.mp-row .mp-delta { font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+
+.mp-delta-up { color: var(--lg-emerald-deep, #7fab16); }
+
+.mp-delta-down { color: #be123c; }
+
+/* ── Hero stat pathways ── */
+
+.hero-stat { transition: background 0.2s ease; }
+
+.hero-stat:hover { background: rgba(85, 130, 3,0.12); }
+
+.hero-stat:hover > div:first-child { color: #476d03; }
+
+/* ── Live market ticker ── */
+
+/* Sits fully below the hero: a negative top margin used to pull it up
        into the hero's bottom padding, where it collided with the scroll
        cue on phones. */
-    .market-ticker {
+
+.market-ticker {
       max-width: 72rem;
       margin: 0.75rem auto 0;
       position: relative; z-index: 5;
       border-radius: 9999px;
       overflow: hidden;
     }
-    .ticker-link {
+
+.ticker-link {
       display: flex; align-items: center; gap: 1rem;
       padding: 0.65rem 1.25rem;
       text-decoration: none;
     }
-    .ticker-label {
+
+.ticker-label {
       display: inline-flex; align-items: center; gap: 0.5rem;
       flex-shrink: 0;
       font-size: 0.66rem; font-weight: 700;
@@ -636,48 +439,64 @@
       color: var(--lg-emerald-deep, #7fab16);
       white-space: nowrap;
     }
-    .ticker-live-dot {
+
+.ticker-live-dot {
       width: 7px; height: 7px; border-radius: 9999px;
       background: #558203;
       box-shadow: 0 0 0 0 rgba(85, 130, 3,0.5);
       animation: ticker-pulse 2.4s ease-out infinite;
     }
-    @keyframes ticker-pulse {
+
+@keyframes ticker-pulse {
       0% { box-shadow: 0 0 0 0 rgba(85, 130, 3,0.45); }
       70% { box-shadow: 0 0 0 7px rgba(85, 130, 3,0); }
       100% { box-shadow: 0 0 0 0 rgba(85, 130, 3,0); }
     }
-    .ticker-viewport {
+
+.ticker-viewport {
       display: block; overflow: hidden; flex: 1; min-width: 0;
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
       mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     }
-    .ticker-track { display: inline-flex; white-space: nowrap; animation: ticker-scroll 45s linear infinite; }
-    .ticker-set { display: inline-flex; align-items: baseline; }
-    .market-ticker:hover .ticker-track { animation-play-state: paused; }
-    .ticker-item {
+
+.ticker-track { display: inline-flex; white-space: nowrap; animation: ticker-scroll 45s linear infinite; }
+
+.ticker-set { display: inline-flex; align-items: baseline; }
+
+.market-ticker:hover .ticker-track { animation-play-state: paused; }
+
+.ticker-item {
       font-size: 0.78rem; color: var(--lg-ink-2, #cbd5e1);
     }
-    .ticker-item strong { color: var(--lg-ink, #e5e7eb); font-weight: 700; font-variant-numeric: tabular-nums; }
-    .ticker-item strong.tk-up { color: var(--lg-emerald-deep, #7fab16); }
-    .ticker-item strong.tk-down { color: #be123c; }
-    .ticker-dot { margin: 0 1.1rem; color: var(--lg-ink-3, #94a3b8); }
-    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) {
-      .ticker-track { animation: none; }
-      .ticker-viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
-      .ticker-live-dot { animation: none; }
-    }
-    @media (max-width: 640px) {
-      .market-ticker { margin-left: 1rem; margin-right: 1rem; }
-      .ticker-label { display: none; }
-    }
 
-    /* ── Hero quick-search ── */
-    .hero-search-box:focus-within { border-color: rgba(85, 130, 3,0.5); box-shadow: 0 0 0 3px rgba(85, 130, 3,0.12); }
+.ticker-item strong { color: var(--lg-ink, #e5e7eb); font-weight: 700; font-variant-numeric: tabular-nums; }
 
-    /* ── Market Pulse story chips ── */
-    .mp-chip {
+.ticker-item strong.tk-up { color: var(--lg-emerald-deep, #7fab16); }
+
+.ticker-item strong.tk-down { color: #be123c; }
+
+.ticker-dot { margin: 0 1.1rem; color: var(--lg-ink-3, #94a3b8); }
+
+@keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+  .ticker-viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .ticker-live-dot { animation: none; }
+}
+
+@media (max-width: 640px) {
+  .market-ticker { margin-left: 1rem; margin-right: 1rem; }
+  .ticker-label { display: none; }
+}
+
+/* ── Hero quick-search ── */
+
+.hero-search-box:focus-within { border-color: rgba(85, 130, 3,0.5); box-shadow: 0 0 0 3px rgba(85, 130, 3,0.12); }
+
+/* ── Market Pulse story chips ── */
+
+.mp-chip {
       display: inline-flex; align-items: center; gap: 4px;
       padding: 3px 12px; border-radius: 9999px;
       font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em;
@@ -686,9 +505,12 @@
       border: 1px solid rgba(85, 130, 3,0.2);
       white-space: nowrap;
     }
-    .mp-chip .tk-up, .tk-up { color: var(--lg-emerald-deep, #7fab16); }
-    .tk-down { color: #be123c; }
-    a.mp-move {
+
+.mp-chip .tk-up, .tk-up { color: var(--lg-emerald-deep, #7fab16); }
+
+.tk-down { color: #be123c; }
+
+a.mp-move {
       gap: 6px; text-decoration: none;
       background: rgba(242, 232, 149,0.08);
       border-color: rgba(242, 232, 149,0.25);
@@ -696,11 +518,14 @@
       white-space: normal; /* long "Old Name → New Name" pairs wrap on phones */
       flex-wrap: wrap; max-width: 100%;
     }
-    a.mp-move:hover { background: rgba(242, 232, 149,0.16); transform: translateY(-1px); }
-    a.mp-move strong { color: var(--lg-ink, #e5e7eb); }
 
-    /* ── Per-store 2026 trend row on directory cards ── */
-    .card-trend {
+a.mp-move:hover { background: rgba(242, 232, 149,0.16); transform: translateY(-1px); }
+
+a.mp-move strong { color: var(--lg-ink, #e5e7eb); }
+
+/* ── Per-store 2026 trend row on directory cards ── */
+
+.card-trend {
       display: flex; align-items: center; gap: 8px;
       margin: -8px 0 16px;
       padding: 6px 10px;
@@ -710,11 +535,14 @@
       text-decoration: none;
       transition: background 0.2s ease, border-color 0.2s ease;
     }
-    .card-trend:hover { background: rgba(85, 130, 3,0.1); border-color: rgba(85, 130, 3,0.3); }
-    .card-trend svg { flex-shrink: 0; display: block; }
 
-    /* ── Sales-rank chip on directory cards ── */
-    .sales-rank-pill {
+.card-trend:hover { background: rgba(85, 130, 3,0.1); border-color: rgba(85, 130, 3,0.3); }
+
+.card-trend svg { flex-shrink: 0; display: block; }
+
+/* ── Sales-rank chip on directory cards ── */
+
+.sales-rank-pill {
       margin-left: 6px;
       background: rgba(242, 232, 149,0.12);
       color: #6b6224;
@@ -722,10 +550,12 @@
       text-decoration: none;
       transition: background 0.2s ease, transform 0.2s ease;
     }
-    .sales-rank-pill:hover { background: rgba(242, 232, 149,0.22); transform: translateY(-1px); }
 
-    /* ── "Formerly …" chip on renamed stores ── */
-    .formerly-pill {
+.sales-rank-pill:hover { background: rgba(242, 232, 149,0.22); transform: translateY(-1px); }
+
+/* ── "Formerly …" chip on renamed stores ── */
+
+.formerly-pill {
       margin-left: 6px;
       background: rgba(95, 103, 73, 0.12);
       color: #5f6749;
@@ -733,14 +563,17 @@
       cursor: help;
     }
 
-    /* ── Live sales context on region headers ── */
-    .region-sales { color: inherit; opacity: 0.9; }
+/* ── Live sales context on region headers ── */
 
-    /* ── Star rating ── */
-    .stars { color: #f2e895; letter-spacing: 2px; }
+.region-sales { color: inherit; opacity: 0.9; }
 
-    /* ── Tag strip ── */
-    .tag {
+/* ── Star rating ── */
+
+.stars { color: #f2e895; letter-spacing: 2px; }
+
+/* ── Tag strip ── */
+
+.tag {
       display: inline-block;
       padding: 2px 10px;
       border-radius: 9999px;
@@ -750,8 +583,9 @@
       text-transform: uppercase;
     }
 
-    /* ── Education icon box ── */
-    .edu-icon {
+/* ── Education icon box ── */
+
+.edu-icon {
       width: 52px; height: 52px;
       border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
@@ -759,152 +593,58 @@
       border: 1px solid rgba(85, 130, 3,0.2);
       font-size: 1.5rem;
     }
-    /* ── Glass Footer ── */
-    .tgb-glass-footer {
-        margin-top: 80px;
-        padding: 0 20px 40px 20px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        position: relative;
-        z-index: 10;
-    }
-    .tgb-footer-card {
-        max-width: 900px;
-        margin: 0 auto;
-        background:
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 130, 3,0.1) 0%, transparent 65%),
-          rgba(26, 26, 26, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(85, 130, 3, 0.15);
-        box-shadow: 0 -10px 40px rgba(85, 130, 3,0.05), 0 20px 40px rgba(85, 130, 3,0.1);
-        border-radius: 30px;
-        padding: 50px;
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-    .tgb-footer-cta {
-        margin-bottom: 40px;
-        padding-bottom: 40px;
-        border-bottom: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-cta-title {
-        font-size: 24px;
-        font-weight: 800;
-        color: #7fab16;
-        margin: 0 0 10px 0;
-    }
-    .tgb-cta-text {
-        font-size: 16px;
-        color: #cbd5e1;
-        margin: 0 auto 25px auto;
-        max-width: 600px;
-        line-height: 1.5;
-    }
-    .tgb-sub-btn {
-        display: inline-block;
-        background: linear-gradient(135deg, #558203 0%, #476d03 100%);
-        color: white;
-        text-decoration: none;
-        padding: 14px 32px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 16px;
-        box-shadow: 0 4px 15px rgba(85, 130, 3, 0.3);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .tgb-sub-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
-    }
-    .tgb-footer-nav {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-    .tgb-footer-link {
-        text-decoration: none;
-        color: #cbd5e1;
-        font-weight: 600;
-        font-size: 15px;
-        transition: color 0.2s ease;
-    }
-    .tgb-footer-link:hover { color: #7fab16; }
-    .tgb-favorites-section {
-        margin-top: 10px;
-        margin-bottom: 30px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-favorites-title {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 700;
-        color: #94a3b8;
-        margin: 0 0 15px 0;
-        display: block;
-    }
-    .tgb-legal-block {
-        background: rgba(85, 130, 3,0.05);
-        border-radius: 16px;
-        padding: 20px;
-        margin-top: 20px;
-    }
-    .tgb-disclaimer-text {
-        font-size: 11px;
-        line-height: 1.5;
-        color: #94a3b8;
-        margin: 0 0 10px 0;
-        text-align: justify;
-        text-align-last: center;
-    }
-    .tgb-copyright {
-        font-size: 12px;
-        color: #cbd5e1;
-        font-weight: 600;
-        margin-top: 15px;
-    }
 
-    /* ── Mobile Bottom Nav & Back-to-Top ──
+/* ── Mobile Bottom Nav & Back-to-Top ──
        Markup is injected and styled by the shared Liquid Glass system
-       (/js/liquid-glass.js?v=096b2ab6 + /css/liquid-glass.css?v=d9816ee6) so every page gets
+       (/js/liquid-glass.js?v=ed2cc218 + /css/liquid-glass.css?v=faf0e90e) so every page gets
        the identical chrome. Only page-layout tweaks remain here. */
-    @media (max-width: 768px) {
-        .tgb-footer-card { padding: 30px 20px; }
-        .tgb-footer-nav { flex-direction: column; gap: 15px; }
-    }
 
-    /* ── Dispensary Directory ── */
-    .font-display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
-    .font-body    { font-family: 'Inter', system-ui, sans-serif; }
-    .font-mono-dir{ font-family: 'Inter', system-ui, sans-serif; letter-spacing: 0.12em; }
-    .card-hover   { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-    .tag-pill     { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
-    .filter-sticky{ transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-    .filter-sticky.filter-hidden { max-height: 0; overflow: hidden; opacity: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; border-color: transparent; pointer-events: none; box-shadow: none; }
-    #gb-filter-toggle { transition: all 0.3s ease; }
-    #gb-filter-toggle svg { transition: transform 0.3s ease; }
-    #gb-filter-toggle.filter-is-hidden svg { transform: rotate(180deg); }
-    .anim-in      { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
-    .ribbon {
+/* ── Dispensary Directory ── */
+
+.font-display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
+
+.font-body    { font-family: 'Inter', system-ui, sans-serif; }
+
+.font-mono-dir{ font-family: 'Inter', system-ui, sans-serif; letter-spacing: 0.12em; }
+
+.card-hover   { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+.tag-pill     { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
+
+.filter-sticky{ transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+
+.filter-sticky.filter-hidden { max-height: 0; overflow: hidden; opacity: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; border-color: transparent; pointer-events: none; box-shadow: none; }
+
+#gb-filter-toggle { transition: all 0.3s ease; }
+
+#gb-filter-toggle svg { transition: transform 0.3s ease; }
+
+#gb-filter-toggle.filter-is-hidden svg { transform: rotate(180deg); }
+
+.anim-in      { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+.ribbon {
       position: absolute; top: 0; right: 0;
       color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
       padding: 6px 14px 6px 18px; border-radius: 0 24px 0 20px;
       font-family: 'Inter', sans-serif; backdrop-filter: blur(4px);
       box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
     }
-    /* The cream ribbon is a light fill — white on it is unreadable, so
-       the "Top Pick" variant takes deep green ink instead. */
-    .ribbon.bg-amber-500\/90 { color: #2a3f02; }
-    .scroll-x { overflow-x: auto; scrollbar-width: none; }
-    .scroll-x::-webkit-scrollbar { display: none; }
 
-    /* ── Region Collapse ── */
-    .region-header-btn {
+/* The cream ribbon is a light fill — white on it is unreadable, so
+       the "Top Pick" variant takes deep green ink instead. */
+
+.ribbon.bg-amber-500\/90 { color: #2a3f02; }
+
+.scroll-x { overflow-x: auto; scrollbar-width: none; }
+
+.scroll-x::-webkit-scrollbar { display: none; }
+
+/* ── Region Collapse ── */
+
+.region-header-btn {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -918,20 +658,24 @@
       user-select: none;
       -webkit-user-select: none;
     }
-    .region-header-btn:hover {
+
+.region-header-btn:hover {
       opacity: 0.85;
     }
-    .region-header-btn:active {
+
+.region-header-btn:active {
       transform: scale(0.98);
     }
-    .region-header-content {
+
+.region-header-content {
       flex: 1;
       text-align: left;
       display: flex;
       align-items: center;
       gap: 16px;
     }
-    .region-collapse-icon {
+
+.region-collapse-icon {
       width: 24px;
       height: 24px;
       display: flex;
@@ -941,49 +685,56 @@
       flex-shrink: 0;
       color: currentColor;
     }
-    .region-header-btn.collapsed .region-collapse-icon {
+
+.region-header-btn.collapsed .region-collapse-icon {
       transform: rotate(-90deg);
     }
-    .region-container {
+
+.region-container {
       display: grid;
       grid-column: 1 / -1;
       grid-template-columns: repeat(1, minmax(0, 1fr));
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
-    @media (min-width: 768px) {
-      .region-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (min-width: 1024px) {
-      .region-container { gap: 2rem; }
-    }
-    .region-container.collapsed {
+
+@media (min-width: 768px) {
+  .region-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .region-container { gap: 2rem; }
+}
+
+.region-container.collapsed {
       display: none;
     }
-    .region-meta-info {
+
+.region-meta-info {
       font-size: 0.875rem;
       color: inherit;
     }
-    .region-count {
+
+.region-count {
       display: inline-block;
       margin-left: 0.5rem;
       font-size: 0.875rem;
       opacity: 0.7;
     }
 
-    @media (max-width: 640px) {
-      .card-actions { flex-direction: column; }
-      .card-actions a { width: 100%; text-align: center; justify-content: center; }
-    }
+@media (max-width: 640px) {
+  .card-actions { flex-direction: column; }
+  .card-actions a { width: 100%; text-align: center; justify-content: center; }
+}
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=d9816ee6" />
-  <script src="/js/liquid-glass.js?v=096b2ab6" defer></script>
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faf0e90e" />
+  <script src="/js/liquid-glass.js?v=ed2cc218" defer></script>
 
   <!-- Premium "Editorial Glass" components (eyebrow, stat-display, btn-glass,
        skip-link, hero-trust, display typography) live in the shared
-       /css/liquid-glass.css?v=d9816ee6 so every page stays consistent. -->
+       /css/liquid-glass.css?v=faf0e90e so every page stays consistent. -->
 </head>
 
 <body>
@@ -993,30 +744,33 @@
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              GLASS HEADER                    ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
+<!-- BEGIN:header — generated from partials/header.html, do not edit here -->
 <header id="tgb-glass-header">
-  <a href="#" class="tgb-logo-container">
+  <a href="/" class="tgb-logo-container">
     <span class="tgb-logo-text">The Green Border</span>
-    <span class="tgb-logo-sparkle">✦</span>
+    <span class="tgb-logo-sparkle" aria-hidden="true">✦</span>
   </a>
 
-  <nav class="tgb-desktop-nav">
-    <a href="/news.html"    class="tgb-header-link">News</a>
-    <a href="/data.html"    class="tgb-header-link">Sales Data</a>
-    <a href="/directory.html" class="tgb-header-link">Dispensaries</a>
-    <a href="#education"    class="tgb-header-link">Education</a>
-    <a href="#about"        class="tgb-header-link">About</a>
+  <nav class="tgb-desktop-nav" aria-label="Primary">
+    <a href="/" class="tgb-header-link" aria-current="page">Home</a>
+    <a href="/news.html" class="tgb-header-link">News</a>
+    <a href="/data.html" class="tgb-header-link">Sales Data</a>
+    <a href="/#dispensaries" class="tgb-header-link">Dispensaries</a>
+    <a href="/#education" class="tgb-header-link">Education</a>
+    <a href="/#about" class="tgb-header-link">About</a>
   </nav>
 
   <div class="tgb-header-actions">
-    <a href="#dispensaries" class="tgb-search-icon" aria-label="Search">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="Search dispensaries">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
     </a>
-    <a href="#dispensaries" class="tgb-header-btn">Find Dispensary</a>
+    <a href="/#dispensaries" class="tgb-header-btn">Find Dispensary</a>
   </div>
 </header>
+<!-- END:header -->
 
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║               AGE GATE                       ║ -->
@@ -1101,7 +855,7 @@
       <svg class="w-4.5 h-4.5 shrink-0" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v16a2 2 0 002 2h16"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 14l4-4 3 3 5-6"/></svg>
       Sales Dashboard
     </a>
-    <a href="/directory.html" class="btn-glass btn-pill inline-flex items-center justify-center gap-2.5 px-8 py-3.5 font-semibold text-base">
+    <a href="#dispensaries" class="btn-glass btn-pill inline-flex items-center justify-center gap-2.5 px-8 py-3.5 font-semibold text-base">
       <svg class="shrink-0" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
       Dispensary Directory
     </a>
@@ -1478,9 +1232,80 @@ const DATA = RAW_DATA.filter(d => !d.excluded).map(d => {
     website: d.website,
     featured: d.featured,
     rank: d.rank,
-    formerly: d.formerly || null
+    formerly: d.formerly || null,
+    // Operational fields the card and detail modal read. These used to be
+    // dropped here, which is why ratings and phone numbers only existed on
+    // the old /directory.html.
+    phone: d.phone || '',
+    rating: d.rating || 0,
+    reviewCount: d.reviewCount || 0,
+    isPremium: !!d.isPremium,
+    description: d.description || '',
+    allTags: d.tags,
+    hasAdultUse: !!d.hasAdultUse,
+    hasMedical: !!d.hasMedical,
+    hasConsumption: !!d.hasConsumption
   };
 });
+
+/* ══════════════════════════════════════════════════════════
+   HELPERS
+   Lifted from the retired /directory.html so the one directory
+   on this page keeps everything that page could do.
+   ══════════════════════════════════════════════════════════ */
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+// http(s) only — a bare domain is upgraded, anything else is dropped, so
+// a stray `javascript:` in the data can never become an href.
+function safeUrl(url) {
+  const s = String(url || '').trim();
+  if (!s) return '';
+  if (/^https?:\/\//i.test(s)) return s;
+  if (/^[\w-]+(\.[\w-]+)+([/?#].*)?$/i.test(s)) return `https://${s}`;
+  return '';
+}
+
+function mapUrl(d) {
+  const q = [d.name, d.address, d.city, 'NM'].filter(Boolean).join(' ');
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+}
+
+// Only show stars we can stand behind: a rating with no reviews behind it
+// is decoration, not information.
+function hasRealRating(d) {
+  return !!d && d.rating > 0 && d.reviewCount > 0;
+}
+
+function formatReviewCount(count) {
+  const n = parseInt(count) || 0;
+  return `(${n.toLocaleString()} Google Review${n !== 1 ? 's' : ''})`;
+}
+
+// Partial-fill SVG stars. The two fills are dark enough to clear the 3:1
+// minimum for graphics on the cream canvas AND far enough from the empty
+// color that a half-filled star still reads as half filled.
+function starRating(rating, isPremium) {
+  const value = parseFloat(rating) || 0;
+  const fill = isPremium ? '#8a7c2e' : '#558203';
+  const empty = '#e6e1c4';
+  const stroke = isPremium ? '#4a431a' : '#375302';
+  let out = '';
+  for (let i = 1; i <= 5; i++) {
+    const pct = i <= value ? 100 : (i - 1 < value ? Math.round((value - (i - 1)) * 100) : 0);
+    const id = `star-${Math.random().toString(36).slice(2, 11)}`;
+    out += `<svg class="inline-block w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <defs><linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="${pct}%" stop-color="${fill}" /><stop offset="${pct}%" stop-color="${empty}" />
+      </linearGradient></defs>
+      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+            fill="url(#${id})" stroke="${stroke}" stroke-width="0.5"/></svg>`;
+  }
+  return `<div class="flex items-center gap-0.5">${out}</div>`;
+}
 
 // Keep the hero counts honest: they come from the same data that renders
 // the grid, so adding or removing a dispensary can't leave them stale.
@@ -1539,12 +1364,39 @@ function card(d) {
        </a>`
     : '';
 
-  const websiteBtn = d.website
-    ? `<a href="${d.website}" target="_blank" rel="noopener noreferrer"
+  // Stores without a hand-built profile page get the detail modal, so
+  // every card has a way in rather than only these three.
+  const detailsModalBtn = detailsLinks[d.id]
+    ? ''
+    : `<button type="button" data-detail="${escapeHtml(d.id)}"
+          class="flex-1 flex items-center justify-center gap-2 bg-violet-900/90 hover:bg-violet-700 text-white text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap shadow-sm">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Details
+       </button>`;
+
+  const site = safeUrl(d.website);
+  const websiteBtn = site
+    ? `<a href="${escapeHtml(site)}" target="_blank" rel="noopener noreferrer"
           class="flex-1 flex items-center justify-center gap-2 bg-emerald-900/90 hover:bg-emerald-700 text-white text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap shadow-sm">
           <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           Visit Site
        </a>`
+    : '';
+
+  const callBtn = d.phone
+    ? `<a href="tel:${escapeHtml(String(d.phone).replace(/[^\d+]/g, ''))}"
+          class="flex items-center justify-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap shrink-0"
+          aria-label="Call ${escapeHtml(d.name)}">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Call
+       </a>`
+    : '';
+
+  const ratingBlock = hasRealRating(d)
+    ? `<div class="flex items-center gap-2 mt-2">
+         ${starRating(d.rating, d.isPremium)}
+         <span class="text-[11px] text-gray-500 leading-none">${d.rating.toFixed(1)} · ${escapeHtml(formatReviewCount(d.reviewCount))}</span>
+       </div>`
     : '';
 
   return `
@@ -1565,6 +1417,7 @@ function card(d) {
             <svg class="w-3 h-3 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
             <span>${d.address}</span>
           </a>
+          ${ratingBlock}
         </div>
       </div>
 
@@ -1599,14 +1452,16 @@ function card(d) {
         </div>
 
         <!-- Actions: flex-wrap + flex-1 so buttons nicely sit next to each other -->
-        <div class="flex flex-wrap sm:flex-nowrap gap-2 sm:gap-3 card-actions pt-4 border-t border-white/10">
-          ${detailsBtn || websiteBtn}
+        <div class="flex flex-wrap gap-2 sm:gap-3 card-actions pt-4 border-t border-white/10">
+          ${detailsBtn || detailsModalBtn}
+          ${websiteBtn}
           <a href="${map}" target="_blank" rel="noopener noreferrer"
              class="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-[13px] font-bold py-3 px-4 rounded-xl transition-colors whitespace-nowrap">
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-10l6-3m0 13l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4"/></svg>
             Directions
           </a>
-          <a href="/partnerships.html"
+          ${callBtn}
+          <a href="/partner.html?claim=${encodeURIComponent(d.id)}"
              class="flex items-center justify-center text-emerald-500/60 hover:text-emerald-400 text-[11px] font-bold transition-colors px-3 py-2 border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-500/10 rounded-xl whitespace-nowrap shrink-0">
             Claim
           </a>
@@ -1713,8 +1568,21 @@ function render() {
   }
 
   if (!filterActive || cityVal !== 'All') {
-    // Show by region with headers
-    const regionsToShow = cityVal === 'All' ? REGIONS : REGIONS.filter(r => r.city === cityVal);
+    // Show by region with headers. REGIONS is a curated order, not the set
+    // of cities that exist — any city the data carries but the list doesn't
+    // name gets appended alphabetically rather than silently dropped.
+    const named = new Set(REGIONS.map(r => r.city));
+    const extraRegions = [...new Set(filtered.map(d => d.city))]
+      .filter(c => c && !named.has(c))
+      .sort()
+      .map(c => ({
+        id: 'other-' + c.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        city: c, emoji: '📍', label: c, meta: 'Borderland area',
+        color: 'emerald', anchor: 'region-' + c.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+      }));
+    const allRegions = [...REGIONS, ...extraRegions];
+
+    const regionsToShow = cityVal === 'All' ? allRegions : allRegions.filter(r => r.city === cityVal);
     regionsToShow.forEach((r, ri) => {
       const regionItems = filtered.filter(d => d.city === r.city);
       if (regionItems.length === 0) return;
@@ -1743,18 +1611,142 @@ function render() {
 }
 
 /* ══════════════════════════════════════════════════════════
+   DETAIL MODAL
+   For every store without a hand-built profile page.
+   ══════════════════════════════════════════════════════════ */
+// The modal markup lives at the end of <body>, after this script, so it
+// is looked up lazily rather than captured here as null.
+const modal = () => document.getElementById('dispensary-modal');
+let lastFocused = null;
+
+function openDetail(id) {
+  const d = DATA.find(x => x.id === id);
+  const modalEl = modal();
+  const modalBody = document.getElementById('modal-content');
+  if (!d || !modalEl || !modalBody) return;
+
+  const site = safeUrl(d.website);
+  const offerings = [
+    d.hasAdultUse ? 'Recreational' : '',
+    d.hasMedical ? 'Medical' : '',
+    d.hasConsumption ? 'Consumption Lounge' : ''
+  ].filter(Boolean);
+
+  modalBody.innerHTML = `
+    <div class="space-y-6">
+      <div class="border-b border-gray-700 pb-4 flex items-start gap-4">
+        <div class="shrink-0 w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-3xl">${escapeHtml(d.icon)}</div>
+        <div class="min-w-0">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-white leading-tight">${escapeHtml(d.name)}</h3>
+          <p class="text-gray-400 mt-1 text-sm">${escapeHtml(d.address)}</p>
+          ${hasRealRating(d) ? `<div class="mt-3 flex items-center gap-2">
+              ${starRating(d.rating, d.isPremium)}
+              <span class="text-gray-400 text-sm">${d.rating.toFixed(1)} · ${escapeHtml(formatReviewCount(d.reviewCount))}</span>
+            </div>` : ''}
+        </div>
+      </div>
+
+      ${d.description ? `<p class="text-gray-300 leading-relaxed">${escapeHtml(d.description)}</p>` : ''}
+
+      ${offerings.length ? `<div class="space-y-2">
+        <h4 class="font-semibold text-emerald-400">Products &amp; Services</h4>
+        <div class="flex flex-wrap gap-2">
+          ${offerings.map(o => `<span class="tag-pill bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">✓ ${escapeHtml(o)}</span>`).join('')}
+        </div>
+      </div>` : ''}
+
+      ${d.allTags && d.allTags.length ? `<div class="space-y-2">
+        <h4 class="font-semibold text-emerald-400">What it's known for</h4>
+        <div class="flex flex-wrap gap-2">
+          ${d.allTags.map(t => `<span class="tag-pill bg-white/5 text-gray-400 border border-white/10">${escapeHtml(t)}</span>`).join('')}
+        </div>
+      </div>` : ''}
+
+      <div class="space-y-2">
+        <h4 class="font-semibold text-emerald-400">Contact</h4>
+        <div class="flex flex-wrap gap-2">
+          <a href="${escapeHtml(mapUrl(d))}" target="_blank" rel="noopener noreferrer" class="card-action">📍 Directions</a>
+          ${site ? `<a href="${escapeHtml(site)}" target="_blank" rel="noopener noreferrer" class="card-action">🌐 Website</a>` : ''}
+          ${d.phone ? `<a href="tel:${escapeHtml(String(d.phone).replace(/[^\d+]/g, ''))}" class="card-action">📞 ${escapeHtml(d.phone)}</a>` : ''}
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-4">
+        <a href="/partner.html?claim=${encodeURIComponent(d.id)}"
+           class="block px-4 py-2 bg-gold-500 hover:bg-gold-400 text-green-900 font-semibold rounded-xl transition text-center">
+          ✓ Is this your dispensary? Claim the listing
+        </a>
+      </div>
+    </div>`;
+
+  lastFocused = document.activeElement;
+  modalEl.classList.remove('hidden');
+  document.getElementById('dispensary-modal-close').focus();
+}
+
+function closeDetail() {
+  const modalEl = modal();
+  if (!modalEl || modalEl.classList.contains('hidden')) return;
+  modalEl.classList.add('hidden');
+  if (lastFocused && lastFocused.focus) lastFocused.focus();
+}
+
+function initDetailModal() {
+  const modalEl = modal();
+  if (!modalEl) return;
+  document.getElementById('dispensary-modal-close').addEventListener('click', closeDetail);
+  // Click the scrim, not the dialog, to dismiss.
+  modalEl.addEventListener('click', (e) => { if (e.target === modalEl) closeDetail(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDetail(); });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDetailModal);
+} else {
+  initDetailModal();
+}
+
+// Delegated so it survives every re-render of the grid.
+document.getElementById('gb-grid').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-detail]');
+  if (btn) openDetail(btn.dataset.detail);
+});
+
+/* ══════════════════════════════════════════════════════════
    EVENT BINDING
    ══════════════════════════════════════════════════════════ */
 const searchEl = document.getElementById('gb-search');
 const clearBtn = document.getElementById('gb-search-clear');
+const cityEl = document.getElementById('gb-city');
+
+// The city dropdown is authored with the curated regions; anything else
+// the data carries is appended so the filter can reach it.
+(function () {
+  const listed = new Set([...cityEl.options].map(o => o.value));
+  [...new Set(DATA.map(d => d.city))].filter(c => c && !listed.has(c)).sort()
+    .forEach(c => cityEl.add(new Option(c, c)));
+})();
+
+// Filter state lives in the URL so a filtered view can be linked and
+// shared — ?find= (kept, the sales dashboard links here with it), plus
+// ?q= and ?city= inherited from the retired /directory.html.
+function syncUrl() {
+  const p = new URLSearchParams(location.search);
+  searchVal ? p.set('find', searchVal) : p.delete('find');
+  cityVal !== 'All' ? p.set('city', cityVal) : p.delete('city');
+  p.delete('q'); // normalize the old directory param onto ?find=
+  const qs = p.toString();
+  history.replaceState(null, '', qs ? `${location.pathname}?${qs}${location.hash}` : location.pathname + location.hash);
+}
+
 searchEl.addEventListener('input', function() {
   searchVal = this.value.trim();
   clearBtn.classList.toggle('hidden', !searchVal);
   render();
+  syncUrl();
 });
 
-document.getElementById('gb-city').addEventListener('change', function() {
-  cityVal = this.value; render();
+cityEl.addEventListener('change', function() {
+  cityVal = this.value; render(); syncUrl();
 });
 document.getElementById('gb-vibe').addEventListener('change', function() {
   vibeVal = this.value;
@@ -1780,14 +1772,25 @@ document.querySelectorAll('.gb-chip').forEach(btn => {
     render();
   });
 
-  // Deep link: /?find=NAME pre-filters the directory (the dashboard's store
-  // modal links here), mirroring data.html?store=NAME in the other direction.
-  const findParam = new URLSearchParams(location.search).get('find');
-  if (findParam) {
-    searchVal = findParam.trim();
-    searchEl.value = searchVal;
-    clearBtn.classList.toggle('hidden', !searchVal);
+  // Deep links into the directory. ?find= is the dashboard's store modal
+  // (mirroring data.html?store=NAME); ?q= and ?city= are what the retired
+  // /directory.html used, and its redirect stub still forwards them.
+  const params = new URLSearchParams(location.search);
+  const findParam = params.get('find') || params.get('q');
+  const cityParam = params.get('city');
+  if (findParam || cityParam) {
+    if (findParam) {
+      searchVal = findParam.trim();
+      searchEl.value = searchVal;
+      clearBtn.classList.toggle('hidden', !searchVal);
+    }
+    // Only honor a city the filter actually offers.
+    if (cityParam && [...cityEl.options].some(o => o.value === cityParam)) {
+      cityVal = cityParam;
+      cityEl.value = cityParam;
+    }
     render();
+    syncUrl();
     setTimeout(() => document.getElementById('dispensaries').scrollIntoView({ behavior: 'smooth' }), 400);
   }
 
@@ -1830,6 +1833,7 @@ function gbReset() {
   document.getElementById('gb-vibe').value = 'All';
   document.querySelectorAll('.gb-chip').forEach(c => c.classList.remove('bg-emerald-500/20','text-emerald-300','border-emerald-500/50'));
   render();
+  syncUrl();
 }
 window.gbReset = gbReset;
 
@@ -2078,7 +2082,7 @@ render();
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║              EDUCATION SECTION               ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
-<section id="education" class="section-pad px-4" style="background:linear-gradient(180deg,#0a0a0a 0%,#111111 50%,#0a0a0a 100%);">
+<section id="education" class="section-pad px-4">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14 reveal">
       <span class="eyebrow mb-4">Know Before You Go</span>
@@ -2195,50 +2199,59 @@ render();
 <!-- ╔══════════════════════════════════════════════╗ -->
 <!-- ║                   FOOTER                     ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
+<!-- BEGIN:footer — generated from partials/footer.html, do not edit here -->
 <footer class="tgb-glass-footer">
-    <div class="tgb-footer-card">
+  <div class="tgb-footer-card">
 
-        <div class="tgb-footer-cta">
-            <h3 class="tgb-cta-title"><a href="https://www.instagram.com/ep.canna" target="_blank" rel="noopener noreferrer">Join the Cannabis Club</a></h3>
-            <p class="tgb-cta-text">
-                Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.
-            </p>
-            <a href="https://www.instagram.com/ep.canna" target="_blank" rel="noopener noreferrer" class="tgb-sub-btn">Subscribe Free</a>
-        </div>
+    <!-- Border ridge: the Franklins and the Potrillos, the two ranges
+         this border sits between. Decorative, so it is hidden from
+         assistive tech and drawn from brand tokens rather than raw hex. -->
+    <svg class="tgb-ridge" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="tgb-ridge-far" d="M0,0 H1200 V44 L1130,58 L1050,38 L960,60 L870,40 L780,62 L690,38 L600,58 L510,36 L420,60 L330,40 L240,62 L150,42 L70,60 L0,46 Z"/>
+      <path class="tgb-ridge-near" d="M0,0 H1200 V28 L1120,40 L1040,22 L950,44 L860,26 L770,46 L680,24 L590,42 L500,20 L410,44 L320,26 L230,46 L140,28 L60,44 L0,30 Z"/>
+    </svg>
 
-        <nav class="tgb-footer-nav">
-            <a href="/" class="tgb-footer-link">Home</a>
-            <a href="/directory.html" class="tgb-footer-link">Directory</a>
-            <a href="/news.html" class="tgb-footer-link">News</a>
-            <a href="/data.html" class="tgb-footer-link">Sales Data</a>
-            <a href="/#education" class="tgb-footer-link">Education</a>
-            <a href="/#about" class="tgb-footer-link">About</a>
-            <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
-        </nav>
-
-        <div class="tgb-favorites-section">
-            <span class="tgb-favorites-title">Our Favorites</span>
-            <nav class="tgb-footer-nav" style="margin-bottom: 0;">
-                <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" rel="noopener noreferrer" class="tgb-footer-link">El Paso Firewood</a>
-            </nav>
-        </div>
-
-        <div class="tgb-legal-block">
-            <p class="tgb-disclaimer-text">
-                <strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.
-            </p>
-            <p class="tgb-disclaimer-text">
-                <strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.
-            </p>
-            <div class="tgb-copyright">
-                Powered by the 915 | Made with ❤ in El Paso, Texas
-                <br>
-                &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; v0.4
-            </div>
-        </div>
-
+    <div class="tgb-crest">
+      <span class="tgb-crest-mark">The Green Border</span>
+      <span class="tgb-crest-seal" aria-hidden="true">915</span>
     </div>
+
+    <div class="tgb-footer-cta">
+      <h3 class="tgb-cta-title">Join the Cannabis Club</h3>
+      <p class="tgb-cta-text">Get the inside scoop on new strains, dispensary openings, and members-only discounts near the border.</p>
+      <a href="/news.html" class="tgb-sub-btn">Read the Latest</a>
+    </div>
+
+    <nav class="tgb-footer-nav" aria-label="Footer">
+      <a href="/" class="tgb-footer-link">Home</a>
+      <a href="/#dispensaries" class="tgb-footer-link">Dispensaries</a>
+      <a href="/news.html" class="tgb-footer-link">News</a>
+      <a href="/data.html" class="tgb-footer-link">Sales Data</a>
+      <a href="/#education" class="tgb-footer-link">Education</a>
+      <a href="/#about" class="tgb-footer-link">About</a>
+      <a href="/partnerships.html" class="tgb-footer-link">Partnerships</a>
+    </nav>
+
+    <div class="tgb-favorites-section">
+      <span class="tgb-favorites-title">Our Favorites</span>
+      <nav class="tgb-footer-nav" style="margin-bottom: 0;" aria-label="Our Favorites">
+        <a href="https://www.elpasofirewood.com/?srsltid=AfmBOoovKrVNnZy7Utg43c9wAFFamQwoksyNMZ6Z3aBGWCSwvaXBl4Aw" target="_blank" rel="noopener noreferrer" class="tgb-footer-link">El Paso Firewood</a>
+      </nav>
+    </div>
+
+    <div class="tgb-legal-block">
+      <p class="tgb-disclaimer-text"><strong>FDA DISCLAIMER:</strong> The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.</p>
+      <p class="tgb-disclaimer-text"><strong>AGE WARNING:</strong> Content on this site is intended for audiences 21+ only. Cannabis products in New Mexico are for use only by adults 21 years of age and older. Keep out of reach of children. It is illegal to drive a motor vehicle while under the influence of cannabis. Crossing state lines with cannabis products is a violation of federal law.</p>
+      <div class="tgb-copyright">
+        Powered by the 915 | Made with ❤ in El Paso, Texas
+        <br />
+        &copy; <span id="tgb-year"></span> The Green Border &nbsp;·&nbsp; El Paso, TX &nbsp;·&nbsp; v0.5
+      </div>
+    </div>
+
+  </div>
 </footer>
+<!-- END:footer -->
 
 
 <!-- ╔══════════════════════════════════════════════╗ -->
@@ -2810,19 +2823,26 @@ render();
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 
-  // Header "scrolled" state is owned by /js/liquid-glass.js?v=096b2ab6 — a second
+  // Header "scrolled" state is owned by /js/liquid-glass.js?v=ed2cc218 — a second
   // listener here with a different threshold made the two fight and the
   // glass header flicker between 40px and 100px of scroll.
 </script>
 
+<!-- Dispensary detail modal. Skinned by /css/liquid-glass.css?v=faf0e90e (#dispensary-modal),
+     filled by the directory script above. -->
+<div id="dispensary-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4"
+     role="dialog" aria-modal="true" aria-labelledby="dispensary-modal-title">
+  <div class="bg-charcoal-700 rounded-t-2xl sm:rounded-2xl max-w-2xl w-full max-h-[92vh] sm:max-h-[80vh] overflow-y-auto">
+    <div class="sticky top-0 bg-charcoal-800 border-b border-gray-700 px-4 sm:px-6 py-4 flex items-center justify-between">
+      <h2 id="dispensary-modal-title" class="text-lg sm:text-xl font-bold text-white">Dispensary Details</h2>
+      <button type="button" id="dispensary-modal-close" class="text-gray-400 hover:text-white text-2xl leading-none px-2" aria-label="Close">✕</button>
+    </div>
+    <div id="modal-content" class="p-4 sm:p-6"></div>
+  </div>
+</div>
+
 <!-- Mobile bottom nav + back-to-top button are injected on every page by
-     the shared /js/liquid-glass.js?v=096b2ab6 (styled in /css/liquid-glass.css?v=d9816ee6). -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Footer year
-        document.getElementById("tgb-year").textContent = new Date().getFullYear();
-    });
-</script>
+     the shared /js/liquid-glass.js?v=ed2cc218 (styled in /css/liquid-glass.css?v=faf0e90e). -->
 
 </body>
 </html>
