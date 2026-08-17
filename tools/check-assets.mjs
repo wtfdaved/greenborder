@@ -24,6 +24,7 @@ import { execSync } from 'node:child_process';
 const ASSETS = [
   'css/brand.css',
   'css/liquid-glass.css',
+  'css/longform.css',
   'js/liquid-glass.js',
   'js/tailwind-brand.js',
 ];

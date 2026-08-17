@@ -33,8 +33,7 @@ const BRAND = {
   '#7a7029': 'ramp', '#998a35': 'ramp',
   // warm ink neutrals
   '#22280f': 'ink-900', '#31371c': 'ink-700', '#4b5233': 'ink-500',
-  '#5f6749': 'ink-300', '#5d6448': 'ink', '#7d8465': 'ink-on-dark-soft',
-  '#9aa383': 'ink-on-dark',
+  '#5f6749': 'ink-300', '#5d6448': 'ink',
   '#2d3014': 'shadow ink', '#232712': 'ink', '#e6e1c4': 'empty-state fill',
   '#fbf6e0': 'canvas', '#f7f3e2': 'canvas',
 };
@@ -85,8 +84,6 @@ const PAIRS = [
   ['#1c2a01', '#b9ab47', 4.5, 'accent-button label on cream-500'],
   ['#fff8b9', DARK, 4.5, 'brand cream on the dark canvas'],
   ['#7fab16', DARK, 4.5, 'green-400 on the dark canvas'],
-  ['#9aa383', DARK, 4.5, 'muted ink on the dark canvas'],
-  ['#7d8465', DARK, 4.5, 'separators and meta text on the dark canvas'],
   ['#558203', CANVAS, 3.0, 'brand green as a large/graphical element'],
   ['#8a7c2e', CANVAS, 3.0, 'cream-600 as a graphical element (premium stars)'],
   // A rating only reads if a filled star is clearly not an empty one.
