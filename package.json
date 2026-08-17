@@ -4,8 +4,6 @@
   "description": "**The premier cannabis guide for El Paso (915) and Sunland Park, NM**",
   "main": "dba-matcher.js",
   "scripts": {
-    "build:css": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind.min.css --minify",
-    "watch:css": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind.min.css --watch",
     "check:colors": "node tools/check-colors.mjs",
     "check:assets": "node tools/check-assets.mjs",
     "check:data": "node tools/check-data.mjs",

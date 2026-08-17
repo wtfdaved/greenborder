@@ -98,8 +98,10 @@ const current = (file) => {
   return null;
 };
 
-// The redirect stub has no chrome by design.
+// The redirect stub has no chrome by design, and the partials are the
+// templates — rendering them into themselves would destroy the tokens.
 const SKIP = new Set(['directory.html']);
+const skip = (f) => SKIP.has(f) || f.startsWith('partials/');
 
 // ── Render ─────────────────────────────────────────────────────────
 const NAV_KEYS = ['HOME', 'NEWS', 'DATA', 'SHOPS', 'EDU', 'ABOUT'];
@@ -144,7 +146,7 @@ const wrap = (name, html) =>
 const files = execSync("git ls-files '*.html'", { encoding: 'utf8' })
   .split('\n')
   .filter(Boolean)
-  .filter((f) => !SKIP.has(f));
+  .filter((f) => !skip(f));
 
 const headerTpl = readFileSync('partials/header.html', 'utf8');
 const footerTpl = readFileSync('partials/footer.html', 'utf8');

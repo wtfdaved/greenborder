@@ -800,7 +800,6 @@ body.scrolled #tgb-glass-header {
   background: linear-gradient(135deg, #476d03 0%, #375302 100%) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
 }
-.tgb-menu-toggler, .tgb-menu-toggler span { color: #ffffff !important; }
 
 /* ═══════════════════════════════════════════════════════════════════
    Age gate — "border checkpoint"
@@ -811,6 +810,19 @@ body.scrolled #tgb-glass-header {
    still drive it; this is purely the skin.
    ═══════════════════════════════════════════════════════════════════ */
 #tgb-age-overlay {
+  /* Structure as well as skin. The layout used to live in four pages'
+     inline CSS, so a page without its copy rendered the gate as a card
+     floating at the top-left over an uncovered page — the one thing a
+     legal gate must not do. The JS toggles display:flex, so the closed
+     state stays display:none here. */
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
   /* Deep olive wash so the cream card reads as lit from within */
   background:
     radial-gradient(120% 80% at 50% 0%, rgba(42, 63, 2, 0.55) 0%, rgba(28, 42, 1, 0.78) 100%) !important;
@@ -818,11 +830,16 @@ body.scrolled #tgb-glass-header {
   -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
   padding: 20px;
 }
+#tgb-age-overlay.active { opacity: 1; }
+#tgb-age-overlay.active .tgb-age-card { transform: scale(1); }
 .tgb-age-card {
   position: relative;
   overflow: hidden;
   padding: 0 !important;
+  width: 100%;
   max-width: 420px;
+  transform: scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 26px !important;
   text-align: center;
   background: var(--gb-cream-50, #fffdf0);
@@ -933,7 +950,16 @@ body.scrolled #tgb-glass-header {
   margin: 0 auto 24px !important;
   max-width: 30ch;
 }
+/* Structure, not just paint — these two are siblings with no layout
+   container, so without display/width the confirm button and the
+   decline link end up side by side and overlapping. */
 .tgb-age-card .tgb-age-btn-yes {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: linear-gradient(135deg, #476d03 0%, #375302 100%) !important;
   color: #ffffff !important;
   border-radius: 14px !important;
@@ -947,6 +973,9 @@ body.scrolled #tgb-glass-header {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 12px 26px rgba(55, 83, 2, 0.42) !important;
 }
 .tgb-age-card .tgb-age-btn-no {
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
   margin-top: 16px !important;
   font-size: 13px !important;
   color: var(--gb-ink-300, #5f6749) !important;
@@ -1059,7 +1088,7 @@ body.scrolled #tgb-glass-header {
 /* ── Badges (offering pills on cards) ── */
 .badge-rec, .badge-rec-emoji { background: rgba(71, 109, 3, 0.12); color: var(--lg-emerald-deep); border: 1px solid rgba(71, 109, 3, 0.28); }
 .badge-med, .badge-med-emoji { background: rgba(220, 207, 110, 0.12); color: var(--lg-gold-deep); border: 1px solid rgba(220, 207, 110, 0.28); }
-.badge-new, .badge-lounge-emoji { background: rgba(85, 130, 3, 0.14); color: var(--gb-green-800, #2a3f02); border: 1px solid rgba(85, 130, 3, 0.32); }
+.badge-lounge-emoji { background: rgba(85, 130, 3, 0.14); color: var(--gb-green-800, #2a3f02); border: 1px solid rgba(85, 130, 3, 0.32); }
 
 /* ── Filter bar (directory) — beats inline Tailwind utilities ── */
 .filter-bar {

@@ -506,10 +506,9 @@ localStorage.setItem('recentSearches', JSON.stringify(searches));
 - **Text**: warm olive ink on the cream canvas — #22280f body, #4b5233
   secondary, #5f6749 muted (the lightest ink allowed to carry text; it
   is the point where AA still holds at the dark end of the canvas)
-- **Text on dark**: cream (#fff8b9) and green-400 (#7fab16) headings,
-  #9aa383 muted, #7d8465 separators and meta
-- **Background**: cream canvas (#fffdf0 → #f7f3e2) on the main site,
-  charcoal (#0a0a0a to #242424) on education/articles
+- **Background**: the cream canvas (#fffdf0 → #f7f3e2), on every page.
+  The education and article pages used to be charcoal; they aren't
+  anymore, and there is no dark theme left to keep in sync
 - **Accent CTA** (`.btn-gold`): cream fill, green-900 label — never the
   reverse
 - **Status only** (deliberately outside the brand): #be123c decline,
@@ -769,6 +768,40 @@ const findMatchingDba = (currentDba, targetMonth) => {
 ---
 
 ## File Structure & Code Organization
+
+### Shared files — change these, not the pages
+
+There is no build step and no framework. What keeps 28 hand-authored
+pages consistent is a short list of shared files plus guards that fail
+the build when a page drifts from them.
+
+| File | Owns |
+|------|------|
+| `css/brand.css` | Palette tokens, focus ring, skip link, reduced motion |
+| `css/liquid-glass.css` | The cream canvas, and the header/footer/age-gate/mobile-nav chrome — **structure as well as paint** |
+| `css/longform.css` | The reading experience on guides, FAQ, hubs and articles |
+| `js/liquid-glass.js` | Mobile bottom nav, back-to-top, scroll reveals, header state, footer year |
+| `partials/header.html`, `partials/footer.html` | The header and footer markup, for every page |
+
+Two rules follow from that:
+
+- **Never edit a header or footer inside a page.** They are generated.
+  Edit the partial and run `npm run sync:chrome -- --fix`; `npm test`
+  fails if any page has drifted.
+- **A shared component owns its layout, not just its colors.** The
+  chrome used to be skinned centrally but laid out by a copy of the CSS
+  pasted into every page, which meant deleting a page's copy silently
+  broke it. If you add to the chrome, put the structure in
+  `liquid-glass.css` too.
+
+### Guards
+
+| Command | Checks |
+|---------|--------|
+| `npm test` | palette, white-on-cream, cache-bust hashes, chrome drift, data |
+| `npm run check:contrast` | renders all 28 pages in Chromium and fails on any text under WCAG AA (needs a browser, so it is not in `npm test`) |
+| `npm run check:assets -- --fix` | rewrites `?v=` hashes after any shared asset changes |
+| `npm run sync:chrome -- --fix` | renders `partials/` into every page |
 
 ### HTML/CSS/JS Sections
 

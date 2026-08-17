@@ -34,143 +34,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: #0a0a0a;
+/* ── Base ── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
       color: #e5e7eb;
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Fluid type scale ── */
-    .fluid-h1 { font-size: clamp(2.25rem, 5.5vw + 1rem, 4rem); line-height: 1.08; }
-    .fluid-h2 { font-size: clamp(1.6rem, 2.5vw + 0.8rem, 2.5rem); line-height: 1.15; }
-    .fluid-lead { font-size: clamp(1rem, 0.6vw + 0.85rem, 1.25rem); }
+/* ── Fluid type scale ── */
 
-    /* ── Glass Header ── */
-    #tgb-glass-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      max-width: 1200px;
-      z-index: 10000;
-      background: rgba(26, 26, 26, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(85, 130, 3, 0.15);
-      box-shadow: 0 4px 30px rgba(85, 130, 3, 0.05);
-      border-radius: 20px;
-      padding: 12px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-    }
-    body.scrolled #tgb-glass-header {
-      top: 0;
-      width: 100%;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-    }
-    .tgb-logo-container {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tgb-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: #7fab16;
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(127, 171, 22, 0.15);
-      transition: transform 0.2s ease;
-    }
-    .tgb-logo-sparkle {
-      color: #8a7c2e;
-      font-size: 24px;
-      animation: tgb-spin-slow 10s linear infinite;
-    }
-    .tgb-logo-container:hover .tgb-logo-text { transform: scale(1.02); }
-    .tgb-desktop-nav {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    .tgb-header-link {
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      color: #cbd5e1;
-      font-weight: 600;
-      font-size: 15px;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    .tgb-header-link:hover { color: #7fab16; }
-    .tgb-header-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #8a7c2e;
-      transition: width 0.3s ease;
-    }
-    .tgb-header-link:hover::after { width: 100%; }
-    .tgb-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .tgb-header-btn {
-      background: #375302;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(55, 83, 2, 0.2);
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-    .tgb-header-btn:hover {
-      background: #2a3f02;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(55, 83, 2, 0.3);
-    }
-    @keyframes tgb-spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @media (max-width: 900px) {
-      .tgb-desktop-nav { display: none; }
-      .tgb-logo-text { font-size: 20px; }
-      .tgb-logo-sparkle { font-size: 20px; }
-      #tgb-glass-header {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(85, 130, 3, 0.1);
-        padding: 12px 16px;
-        max-width: none;
-      }
-      .tgb-header-btn {
-        padding: 8px 20px;
-        font-size: 13px;
-      }
-    }
+.fluid-h1 { font-size: clamp(2.25rem, 5.5vw + 1rem, 4rem); line-height: 1.08; }
 
-    /* ── Page Layout ── */
-    .partnerships-hero {
+.fluid-h2 { font-size: clamp(1.6rem, 2.5vw + 0.8rem, 2.5rem); line-height: 1.15; }
+
+.fluid-lead { font-size: clamp(1rem, 0.6vw + 0.85rem, 1.25rem); }
+
+/* ── Page Layout ── */
+
+.partnerships-hero {
       background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(127, 171, 22,0.20) 0%, transparent 65%),
                   radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(255, 248, 185,0.12) 0%, transparent 60%);
       display: flex;
@@ -179,7 +65,8 @@
       padding-top: clamp(6.5rem, 14vw, 10rem);
       padding-bottom: clamp(3rem, 7vw, 5rem);
     }
-    .hero-badge {
+
+.hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -194,8 +81,9 @@
       border: 1px solid rgba(71, 109, 3, 0.30);
     }
 
-    /* ── Step cards ── */
-    .step-number {
+/* ── Step cards ── */
+
+.step-number {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -210,7 +98,8 @@
       border: 1px solid rgba(71, 109, 3, 0.30);
       flex-shrink: 0;
     }
-    .value-icon {
+
+.value-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -223,18 +112,21 @@
       flex-shrink: 0;
     }
 
-    /* ── Forms ── */
-    .form-group {
+/* ── Forms ── */
+
+.form-group {
       margin-bottom: 24px;
     }
-    .form-label {
+
+.form-label {
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
       color: #e5e7eb;
       font-size: 15px;
     }
-    .form-input,
+
+.form-input,
     .form-textarea,
     .form-select {
       width: 100%;
@@ -247,7 +139,8 @@
       font-size: 15px;
       transition: all 0.2s ease;
     }
-    .form-input:focus,
+
+.form-input:focus,
     .form-textarea:focus,
     .form-select:focus {
       outline: none;
@@ -255,11 +148,13 @@
       background: rgba(26, 26, 26, 0.8);
       box-shadow: 0 0 0 3px rgba(85, 130, 3, 0.1);
     }
-    .form-textarea {
+
+.form-textarea {
       resize: vertical;
       min-height: 150px;
     }
-    .form-submit {
+
+.form-submit {
       background: linear-gradient(135deg, #558203 0%, #476d03 100%);
       color: white;
       padding: 14px 32px;
@@ -271,11 +166,13 @@
       transition: all 0.2s ease;
       box-shadow: 0 4px 12px rgba(85, 130, 3, 0.3);
     }
-    .form-submit:hover {
+
+.form-submit:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
     }
-    .reassure-pill {
+
+.reassure-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -288,169 +185,16 @@
       border: 1px solid rgba(28, 42, 1, 0.10);
     }
 
-    /* ── Section divider ── */
-    .section-line {
-      display: inline-block;
-      width: 48px; height: 3px;
-      background: linear-gradient(90deg, #558203, #f2e895);
-      border-radius: 9999px;
-    }
 
-    /* ── Glass Footer ── */
-    .tgb-glass-footer {
-        margin-top: clamp(2.5rem, 6vw, 5rem);
-        padding: 0 20px 40px 20px;
-        position: relative;
-        z-index: 10;
-    }
-    .tgb-footer-card {
-        max-width: 900px;
-        margin: 0 auto;
-        background:
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 130, 3,0.1) 0%, transparent 65%),
-          rgba(26, 26, 26, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(85, 130, 3, 0.15);
-        box-shadow: 0 -10px 40px rgba(85, 130, 3,0.05), 0 20px 40px rgba(85, 130, 3,0.1);
-        border-radius: 30px;
-        padding: clamp(1.75rem, 4vw, 3.125rem);
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-    .tgb-footer-cta {
-        margin-bottom: 40px;
-        padding-bottom: 40px;
-        border-bottom: 1px solid rgba(85, 130, 3,0.1);
-    }
-    .tgb-cta-title {
-        font-size: 24px;
-        font-weight: 800;
-        color: #7fab16;
-        margin: 0 0 10px 0;
-    }
-    .tgb-cta-text {
-        font-size: 16px;
-        color: #cbd5e1;
-        margin: 0 auto 25px auto;
-        max-width: 600px;
-        line-height: 1.5;
-    }
-    .tgb-sub-btn {
-        display: inline-block;
-        background: linear-gradient(135deg, #558203 0%, #476d03 100%);
-        color: white;
-        text-decoration: none;
-        padding: 14px 32px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 16px;
-        box-shadow: 0 4px 15px rgba(85, 130, 3, 0.3);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .tgb-sub-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(85, 130, 3, 0.4);
-    }
-    .tgb-footer-nav {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-    .tgb-footer-link {
-        text-decoration: none;
-        color: #cbd5e1;
-        font-weight: 600;
-        font-size: 15px;
-        transition: color 0.2s ease;
-    }
-    .tgb-footer-link:hover { color: #7fab16; }
-    .tgb-legal-block {
-        background: rgba(85, 130, 3,0.05);
-        border-radius: 16px;
-        padding: 20px;
-        margin-top: 20px;
-    }
-    .tgb-disclaimer-text {
-        font-size: 11px;
-        line-height: 1.5;
-        color: #94a3b8;
-        margin: 0 0 10px 0;
-        text-align: justify;
-        text-align-last: center;
-    }
-    .tgb-copyright {
-        font-size: 12px;
-        color: #cbd5e1;
-        font-weight: 600;
-        margin-top: 15px;
-    }
+/* ── Mobile Bottom Nav (floating glass pill) ── */
 
-    /* ── Mobile Bottom Nav (floating glass pill) ── */
-    .tgb-mobile-nav { display: none; }
-    @media (max-width: 768px) {
-      body { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
-      .tgb-footer-nav { gap: 15px; }
-      .tgb-mobile-nav {
-        display: flex;
-        position: fixed;
-        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-        left: 50%;
-        transform: translateX(-50%);
-        width: 94%;
-        max-width: 420px;
-        background: rgba(10, 10, 10, 0.88);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-        border-radius: 50px;
-        z-index: 9999;
-        padding: 10px 0;
-        justify-content: space-evenly;
-        align-items: center;
-        height: 65px;
-      }
-      .tgb-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        color: #6b7280;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        width: 18%;
-        position: relative;
-        transition: all 0.3s ease;
-      }
-      .tgb-nav-icon {
-        font-size: 22px;
-        margin-bottom: 3px;
-        transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1);
-        filter: grayscale(0.3);
-      }
-      .tgb-nav-item.active { color: #7fab16; transform: translateY(-2px); }
-      .tgb-nav-item.active::after {
-        content: '';
-        position: absolute;
-        bottom: -6px;
-        width: 4px;
-        height: 4px;
-        background: #7fab16;
-        border-radius: 50%;
-        box-shadow: 0 0 6px rgba(127, 171, 22,0.6);
-      }
-      .tgb-nav-item.active .tgb-nav-icon { transform: scale(1.15); filter: grayscale(0); }
-      .tgb-nav-item:not(.active):hover { color: #d1d5db; }
-    }
+@media (max-width: 768px) {
+  body { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+}
   </style>
 
   <!-- Liquid Glass design system (must load after the inline styles above) -->
-  <link rel="stylesheet" href="/css/liquid-glass.css?v=a123dc24" />
+  <link rel="stylesheet" href="/css/liquid-glass.css?v=faf0e90e" />
   <script src="/js/liquid-glass.js?v=ed2cc218" defer></script>
 </head>
 

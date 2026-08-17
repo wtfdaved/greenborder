@@ -38,7 +38,10 @@ const want = Object.fromEntries(ASSETS.map((a) => [a, version(a)]));
 
 const files = execSync("git ls-files -- '*.html'", { encoding: 'utf8' })
   .split('\n')
-  .filter(Boolean);
+  .filter(Boolean)
+  // partials/ are chrome templates, not pages; sync-chrome.mjs renders
+  // them into the pages, which is where the asset refs actually live.
+  .filter((f) => !f.startsWith('partials/'));
 
 const stale = [];
 let fixed = 0;

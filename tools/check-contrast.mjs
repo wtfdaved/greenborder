@@ -205,6 +205,9 @@ const filter = process.argv[2];
 const pages = execSync("git ls-files '*.html'", { encoding: 'utf8' })
   .split('\n')
   .filter(Boolean)
+  // partials/ are chrome fragments, not pages — measuring one outside
+  // the page it gets rendered into says nothing about what a reader sees.
+  .filter((p) => !p.startsWith('partials/'))
   .filter((p) => !filter || p.includes(filter));
 
 const twCss = buildTailwind();
