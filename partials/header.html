@@ -1,0 +1,36 @@
+<!-- ═══════════════════════════════════════════════════════════════════
+     Site header — the single source of truth.
+
+     Do not edit this markup inside a page. Edit it here and run:
+         npm run sync:chrome -- --fix
+     `npm test` fails if any page has drifted from this file.
+
+     {{TOKENS}} are filled in by tools/sync-chrome.mjs: labels come from
+     its per-language table, and {{CUR_*}} expands to aria-current on
+     whichever nav item matches the page.
+     ═══════════════════════════════════════════════════════════════════ -->
+<header id="tgb-glass-header">
+  <a href="/" class="tgb-logo-container">
+    <span class="tgb-logo-text">The Green Border</span>
+    <span class="tgb-logo-sparkle" aria-hidden="true">✦</span>
+  </a>
+
+  <nav class="tgb-desktop-nav" aria-label="{{L_PRIMARY_NAV}}">
+    <a href="/" class="tgb-header-link"{{CUR_HOME}}>{{L_HOME}}</a>
+    <a href="/news.html" class="tgb-header-link"{{CUR_NEWS}}>{{L_NEWS}}</a>
+    <a href="/data.html" class="tgb-header-link"{{CUR_DATA}}>{{L_DATA}}</a>
+    <a href="/#dispensaries" class="tgb-header-link"{{CUR_SHOPS}}>{{L_SHOPS}}</a>
+    <a href="/#education" class="tgb-header-link"{{CUR_EDU}}>{{L_EDU}}</a>
+    <a href="/#about" class="tgb-header-link"{{CUR_ABOUT}}>{{L_ABOUT}}</a>
+  </nav>
+
+  <div class="tgb-header-actions">
+    <a href="/#dispensaries" class="tgb-search-icon" aria-label="{{L_SEARCH}}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </a>
+    <a href="{{CTA_HREF}}" class="tgb-header-btn">{{CTA_LABEL}}</a>
+  </div>
+</header>

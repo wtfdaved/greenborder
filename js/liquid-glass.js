@@ -265,6 +265,15 @@
     update();
   }
 
+  /* ── Footer year ───────────────────────────────────────────────── */
+  // The footer is generated from partials/footer.html into every page,
+  // so the one line that fills its year belongs here rather than being
+  // pasted into 28 inline scripts.
+  function initFooterYear() {
+    const el = document.getElementById('tgb-year');
+    if (el) el.textContent = new Date().getFullYear();
+  }
+
   /* ── Boot ──────────────────────────────────────────────────────── */
   function boot() {
     initReveals();
@@ -272,6 +281,7 @@
     initHeaderState();
     initMobileChrome();
     initAgeGateFocus();
+    initFooterYear();
 
     // Static stat values opt in to count-up with a data attribute.
     document.querySelectorAll('[data-lg-count]').forEach(lgCountUp);

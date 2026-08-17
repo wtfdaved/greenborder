@@ -9,8 +9,9 @@
     "check:colors": "node tools/check-colors.mjs",
     "check:assets": "node tools/check-assets.mjs",
     "check:data": "node tools/check-data.mjs",
-    "test": "node tools/check-colors.mjs && node tools/check-assets.mjs && node tools/check-data.mjs && node tests/data-services.test.mjs",
-    "check:contrast": "node tools/check-contrast.mjs"
+    "test": "node tools/check-colors.mjs && node tools/check-assets.mjs && node tools/sync-chrome.mjs && node tools/check-data.mjs && node tests/data-services.test.mjs",
+    "check:contrast": "node tools/check-contrast.mjs",
+    "sync:chrome": "node tools/sync-chrome.mjs"
   },
   "repository": {
     "type": "git",
